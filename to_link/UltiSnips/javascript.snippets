@@ -93,32 +93,71 @@ export default ($1) => {
 endsnippet
 
 # helper functions in my world.js file for webdriver.io
+# this.verifyTextRegex('$1', /$2/i, next);
 snippet breg "verify text regex"
-this.verifyTextRegex('$1', /$2/i, next);
+this.browser.getText('$1').then(function (text) {
+  this.expect(text).to.match(/$2/);
+  next();
+}.bind(this)).catch(function (err) {
+  next.fail(err);
+});
 endsnippet
 
+# this.verifyText('$1', '$2', next);
 snippet btext "verify text"
-this.verifyText('$1', '$2', next);
+this.browser.getText('$1').then(function (text) {
+  this.expect(text).to.equal('$2');
+  next();
+}.bind(this)).catch(function (err) {
+  next.fail(err);
+});
 endsnippet
 
+# this.verifyExists('$1', next);
 snippet bexist "verify element exists"
-this.verifyExists('$1', next);
+this.browser.isExisting('$1').then(function (isExisting) {
+  this.expect(isExisting).to.be.true;
+  next();
+}.bind(this)).catch(function (err) {
+  next.fail(err);
+});
 endsnippet
 
+# this.gotoUrl('$1', next);
 snippet burl "go to url"
-this.gotoUrl('$1', next);
+this.browser.url('$1').then(function () {
+  next();
+}).catch(function (err) {
+  next.fail(err);
+});
 endsnippet
 
+# this.click('${1:button[type="submit"]}', next);
 snippet bclick "click an element"
-this.click('${1:button[type="submit"]}', next);
+this.browser.click('$1').then(function () {
+  next();
+}).catch(function (err) {
+  next.fail(err);
+});
 endsnippet
 
+# this.setValue('$1', '$2', next);
 snippet bset "set a value"
-this.setValue('$1', '$2', next);
+this.browser.setValue('$1', '$2').then(function () {
+  next();
+}).catch(function (err) {
+  next.fail(err);
+});
 endsnippet
 
+# this.verifyValue('$1', '$2', next);
 snippet bval "verify a selector has a value"
-this.verifyValue('$1', '$2', next);
+this.browser.getValue('$1').then(function (actualValue) {
+  this.expect(actualValue).to.equal($2);
+  next();
+}.bind(this)).catch(function (err) {
+  next.fail(err);
+});
 endsnippet
 
 snippet cla "javascript class"

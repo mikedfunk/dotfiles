@@ -293,9 +293,9 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
     # brew install php56-redis # used by airliners
     brew install php56-couchbase # used at Saatchi
     brew install php56-intl # needed by symfony installer
-    # have launchd start php56 at login
+    # have launchd start php-fpm at login
     ln -sfv /usr/local/opt/php56/*.plist ~/Library/LaunchAgents
-    # load php56 now
+    # load php-fpm now
     # launchctl load ~/Library/LaunchAgents/homebrew.mxcl.php56.plist
     # if extension not in httpd.conf, add it
     LoadPhp="LoadModule php5_module /usr/local/opt/php56/libexec/apache2/libphp5.so";

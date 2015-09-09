@@ -60,7 +60,7 @@ window saatchi
 dir ~/Sites/saatchi/saatchiart
 1 run vim
 0 run g st
-2 run cd ~/Sites/saatchi/environment/vagrant
+2 run cd ~/Sites/saatchi/vagrant
 2 run vup dev && vssh dev
 3 run grunt watch
 
@@ -79,7 +79,7 @@ window vagrant
 0000000000000000000000000
 0000000000000000000000000
 
-dir ~/Sites/saatchi/environment/vagrant
+dir ~/Sites/saatchi/vagrant
 1 run vim
 0 run g st
 
@@ -101,7 +101,7 @@ window catalog
 dir ~/Sites/saatchi/catalog
 1 run vim
 0 run g st
-2 run cd ~/Sites/saatchi/environment/vagrant
+2 run cd ~/Sites/saatchi/vagrant
 2 run vup catalog && vssh catalog
 
 window api
@@ -115,15 +115,13 @@ window api
 1111111111111111111111111
 1111111111111111111111111
 1111111111111111111111111
-0000000000022222222222222
-0000000000022222222222222
-0000000000022222222222222
+0000000000000000000000000
+0000000000000000000000000
+0000000000000000000000000
 
 dir ~/Sites/saatchi/api
 1 run vim
 0 run g st
-2 run cd ~/Sites/saatchi/environment/vagrant
-2 run vup api && vssh api
 
 window zed
 
@@ -143,5 +141,5 @@ window zed
 dir ~/Sites/saatchi/yzed
 1 run vim
 0 run g st
-2 run cd ~/Sites/saatchi/environment/vagrant
+2 run cd ~/Sites/saatchi/vagrant
 2 run vup zed && vssh zed
