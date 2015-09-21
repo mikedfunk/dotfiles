@@ -572,6 +572,13 @@ if isdirectory(expand("~/.vim/plugged/nerdtree"))
 endif
 " }}}
 
+" padawan.vim {{{
+if isdirectory(expand("~/.vim/plugged/padawan.vim")) && isdirectory(expand("~/.vim/plugged/YouCompleteMe"))
+    let g:ycm_semantic_triggers = {}
+    let g:ycm_semantic_triggers.php = ['->', '::', '(', 'use ', 'namespace ', '\']
+endif
+" }}}
+
 " {{{ PDV
 " (php documentor for vim)
 if isdirectory(expand("~/.vim/plugged/pdv"))
@@ -932,6 +939,7 @@ if isdirectory(expand("~/.vim/plugged/vim-php-refactoring-toolbox"))
     let g:vim_php_refactoring_auto_validate_visibility=0
 endif
 " }}}
+
 " vim-plug {{{
 if filereadable(expand("~/.vim/autoload/plug.vim"))
     nnoremap <leader>bi :so ~/.vimrc.plugins<cr> :PlugInstall<cr>

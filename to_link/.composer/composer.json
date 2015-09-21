@@ -28,6 +28,7 @@
     "laravel/installer": "~1.2",
     "behat/mink-zombie-driver": "~1.2",
     "psecio/iniscan": "^3.6",
-    "sami/sami": "^3.0"
+    "sami/sami": "^3.0",
+    "mkusher/padawan": "^0.2.1"
   }
 }
