@@ -195,6 +195,7 @@ Pillow # used by image.vim to preview images in vim via ascii conversion
 requests[security] # used to prevent urllib3 warning with wakatime vim plugin
 # robotframework # front-end testing framework
 # robotframework-selenium2screenshots
+saws # aws console on steroids
 # stellar # fast database stapshot and restore tool for development
 # supervisor # a client/server system that allows its users to control a number of processes
 )

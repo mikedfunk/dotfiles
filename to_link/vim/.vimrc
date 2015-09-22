@@ -878,6 +878,8 @@ if isdirectory(expand("~/.vim/plugged/vim-gutentags"))
         \ 'app/cache',
         \ '__TwigTemplate_*'
     \]
+    " to use cscope instead of ctags: (Didn't work for me)
+    " let g:gutentags_modules = [ 'cscope' ]
 endif
 " }}}
 

@@ -43,3 +43,5 @@ zf1_for_autocomplete
 .phpspec
 .idea
 .padawan
+cscope.out
+cscope.files
