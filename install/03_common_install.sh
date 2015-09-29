@@ -187,6 +187,7 @@ packages=(
 # gmusicapi # google music api
 # argcomplete # tab completion of arguments for python scripts
 fabric # deployment tool
+glances # like htop on steroids
 mycli # mysql cli tool with autocomplete
 neovim # neovim python library
 # pgcli # a postgresql repl with autocompletion

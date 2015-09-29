@@ -388,8 +388,8 @@ alias pearupgrade="sudo pear upgrade"
 # another split.
 
 # if [[ "$(type -P nvim)" ]]; then
-    # # neovim is the new hotness! true 24-bit color!
-    # vim="NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim"
+    # neovim is the new hotness! true 24-bit color!
+    vim="NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim"
 # elif [[ "$(type -P mvim)" ]]; then
     # # servername is for united-front
     # vim="mvim -vp --servername mikevimserver"
@@ -398,12 +398,12 @@ alias pearupgrade="sudo pear upgrade"
 # fi
 
 # use macvim executable in terminal mode
-if [ -f "/usr/local/bin/mvim" ]; then
-    # servername is for united-front
-    vim="mvim -vp --servername mikevimserver"
-else
-    vim="vim -p --servername mikevimserver"
-fi
+# if [ -f "/usr/local/bin/mvim" ]; then
+    # # servername is for united-front
+    # vim="mvim -vp --servername mikevimserver"
+# else
+    # vim="vim -p --servername mikevimserver"
+# fi
 alias vim="${vim}"
 alias v="${vim}"
 

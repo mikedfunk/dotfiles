@@ -396,7 +396,7 @@ Plug 'tpope/vim-unimpaired'
 " zen coding / emmett integration
 " div#page>div.logo+ul#navigation>li*5>a<c-y>, to get html
 " <c-y>n and <c-y>N to go to next and previous insert points
-Plug 'mattn/emmet-vim', { 'for': ['html', 'html.twig', 'twig', 'blade', 'xml'] }
+Plug 'mattn/emmet-vim', { 'for': ['phtml', 'html', 'html.twig', 'twig', 'blade', 'xml'] }
 
 " much better than snipmate or neosnippet
 " :UltiSnipsEdit to edit the snippets file for the current file type
@@ -796,7 +796,7 @@ Plug 'guns/xterm-color-table.vim', { 'on': 'XtermColorTable' }
 " Plug 'tpope/vim-vividchalk'
 " Plug 'morhetz/gruvbox'
 " this needs the following iterm2 themes: chriskempson/base16-iterm2
-" Plug 'chriskempson/base16-vim'
+Plug 'chriskempson/base16-vim'
 " Plug 'daylerees/colour-schemes', { 'rtp': 'vim/' }
 " Plug 'endel/vim-github-colorscheme'
 " Plug 'ricardovaleriano/vim-github-theme'

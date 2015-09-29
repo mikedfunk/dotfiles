@@ -234,6 +234,11 @@ silent! colorscheme lucius
 " gui colors
 " silent! colorscheme gotham
 " silent! colorscheme Tomorrow-Night-Blue
+
+" @link https://github.com/neovim/neovim/issues/2334
+if (has('neovim'))
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endif
 " }}}
 
 " Mappings {{{
@@ -385,6 +390,7 @@ nnoremap <leader>f9 :set foldlevel=9<CR>
     au BufRead,BufNewFile *.html.twig set filetype=html.twig
     au BufRead,BufNewFile Vagrantfile set filetype=ruby
     au BufRead,BufNewFile .env set filetype=dosini
+    au BufRead,BufNewFile *.phtml set filetype=phtml
     au BufRead,BufNewFile .vimrc.local,.vimrc.plugins set filetype=vim
     au BufRead,BufNewFile .bash_aliases,.bash_env,.bash_completions,.bash_functions,.bash_paths set filetype=sh
     " au BufRead,BufNewFile config set filetype=sshconfig
@@ -400,6 +406,12 @@ endif
 " }}}
 
 " Plugins {{{
+
+" ag.vim {{{
+if isdirectory(expand("~/.vim/plugged/ag.vim"))
+    cnoreabbrev ag Ag!
+endif
+" }}}
 
 " accelerated-smooth-scroll {{{
 " only enable c-d and c-u. I don't use c-f and c-b and I want to use c-b

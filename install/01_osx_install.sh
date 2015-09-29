@@ -107,6 +107,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
         nodejs
         pandoc # used for inline vim php documentation
         # postgresql
+        python # updated version of python with updated pip
         python3 # required for tmuxomatic
         ranger # vim-like file system browser
         rbenv # ruby environment switcher
@@ -192,6 +193,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
             ln -sf ~/.vimrc ~/.nvimrc
         else
             brew reinstall --HEAD neovim
+            sudo pip install neovim --upgrade
         fi
 
         log_info "setting up homebrew mysql to launch now and on startup"
