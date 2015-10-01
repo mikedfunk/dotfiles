@@ -37,6 +37,7 @@ export DOMPDF_LIB_DIR="$HOME/.composer/vendor/dompdf/dompdf/lib"
 # for autossh
 export AUTOSSH_PORT=0
 
-if [[ "$type -p rbenv" ]]; then
-    eval "$(rbenv init -)"
-fi
+# enable rbenv
+# if [[ "$type -p rbenv" ]]; then
+    # eval "$(rbenv init -)"
+# fi

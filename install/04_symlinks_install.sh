@@ -45,6 +45,7 @@ link_this "$HOME/.dotfiles/to_link/.hgrc" "$HOME/.hgrc"
 link_this "$HOME/.dotfiles/to_link/.hgignore" "$HOME/.hgignore"
 
 link_this "$HOME/.dotfiles/to_link/.jscsrc" "$HOME/.jscsrc"
+link_this "$HOME/.dotfiles/to_link/.curlrc" "$HOME/.curlrc"
 
 link_this "/var/www/sites" "$HOME/Sites"
 # default location for mac
