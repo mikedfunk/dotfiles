@@ -353,6 +353,9 @@ nnoremap <silent> <leader>/ :nohlsearch<CR>
 " open tag in tab
 nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
 
+" open tag in vertical split
+nnoremap <silent><Leader>v<C-]> :vsp<CR>:exec("tag ".expand("<cword>"))<CR>
+
 " open vhosts file
 command! Vhost tabe /etc/apache2/extra/httpd-vhosts.conf
 
@@ -525,14 +528,14 @@ if isdirectory(expand("~/.vim/plugged/phpcomplete.vim"))
     
     " default: 1.
     " this avoids an error in php-cs-fixer.vim
-    let g:phpcomplete_enhance_jump_to_definition = 0
+    " let g:phpcomplete_enhance_jump_to_definition = 0
 
     " now manually unmap and map these to work with php-cs-fixer.vim
-    autocmd phpcomplete_augroup FileType php silent! nunmap <buffer> <unique> <C-]>
-    autocmd phpcomplete_augroup FileType php silent! nunmap <buffer> <unique> <C-W><C-]>
-    autocmd phpcomplete_augroup FileType php nnoremap <silent> <C-]> :<C-u>call phpcomplete#JumpToDefinition('normal')<CR>
-    autocmd phpcomplete_augroup FileType php nnoremap <silent> <C-W><C-]> :<C-u>call phpcomplete#JumpToDefinition('split')<CR>
-    autocmd phpcomplete_augroup FileType php nnoremap <silent><Leader>v<C-]> :<C-u>call phpcomplete#JumpToDefinition('vsplit')<CR>
+    " autocmd phpcomplete_augroup FileType php silent! nunmap <buffer> <unique> <C-]>
+    " autocmd phpcomplete_augroup FileType php silent! nunmap <buffer> <unique> <C-W><C-]>
+    " autocmd phpcomplete_augroup FileType php nnoremap <silent> <C-]> :<C-u>call phpcomplete#JumpToDefinition('normal')<CR>
+    " autocmd phpcomplete_augroup FileType php nnoremap <silent> <C-W><C-]> :<C-u>call phpcomplete#JumpToDefinition('split')<CR>
+    " autocmd phpcomplete_augroup FileType php nnoremap <silent> <Leader>v<C-]> :<C-u>call phpcomplete#JumpToDefinition('vsplit')<CR>
 
     " default: 1.
     " let g:phpcomplete_cache_taglists = 1
@@ -795,6 +798,7 @@ if isdirectory(expand("~/.vim/plugged/vdebug"))
     \   '/data/code_base/current': '/Library/WebServer/Documents/saatchi/saatchiart'
     \}
     " default: 1. stop on first line of execution
+    let g:vdebug_options["break_on_open"] = 1
     " let g:vdebug_options["break_on_open"] = 0
     let g:vdebug_options["watch_window_style"] = 'compact'
     " move run_to_cursor from F1 to F9
