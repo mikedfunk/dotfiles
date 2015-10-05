@@ -353,9 +353,6 @@ nnoremap <silent> <leader>/ :nohlsearch<CR>
 " open tag in tab
 nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
 
-" open tag in vertical split
-nnoremap <silent><Leader>v<C-]> :vsp<CR>:exec("tag ".expand("<cword>"))<CR>
-
 " open vhosts file
 command! Vhost tabe /etc/apache2/extra/httpd-vhosts.conf
 
@@ -521,8 +518,26 @@ if isdirectory(expand("~/.vim/plugged/phpcomplete.vim"))
     " let g:phpcomplete_relax_static_constraint = 1
     " composer install command for phpcomplete
     let g:phpcomplete_index_composer_command = "composer"
-    let g:phpcomplete_parse_docblock_comments = 1
-    let g:phpcomplete_cache_taglists = 1
+
+    " default: 0. show more info in the preview window and return types. Slower.
+    " let g:phpcomplete_parse_docblock_comments = 1
+    let g:phpcomplete_parse_docblock_comments = 0
+    
+    " default: 1.
+    " this avoids an error in php-cs-fixer.vim
+    let g:phpcomplete_enhance_jump_to_definition = 0
+
+    " now manually unmap and map these to work with php-cs-fixer.vim
+    autocmd phpcomplete_augroup FileType php silent! nunmap <buffer> <unique> <C-]>
+    autocmd phpcomplete_augroup FileType php silent! nunmap <buffer> <unique> <C-W><C-]>
+    autocmd phpcomplete_augroup FileType php nnoremap <silent> <C-]> :<C-u>call phpcomplete#JumpToDefinition('normal')<CR>
+    autocmd phpcomplete_augroup FileType php nnoremap <silent> <C-W><C-]> :<C-u>call phpcomplete#JumpToDefinition('split')<CR>
+    autocmd phpcomplete_augroup FileType php nnoremap <silent><Leader>v<C-]> :<C-u>call phpcomplete#JumpToDefinition('vsplit')<CR>
+
+    " default: 1.
+    " let g:phpcomplete_cache_taglists = 1
+
+    " adds additional built-in functions from php to the completable ones
     " available extensions: https://github.com/shawncplus/phpcomplete.vim/blob/master/misc/available_extensions
     let g:phpcomplete_add_function_extensions = [
     \ 'arrays',
@@ -538,10 +553,12 @@ if isdirectory(expand("~/.vim/plugged/phpcomplete.vim"))
     \ 'sessions',
     \ ]
 
+    " same for interfaces
     let g:phpcomplete_add_interface_extensions = [
     \ 'predefined_interfaces_and_classes',
     \ ]
 
+    " don't try to complete this crap
     let g:phpcomplete_remove_function_extensions = ['xslt_php_4']
     let g:phpcomplete_remove_constant_extensions = ['xslt_php_4']
     " complete these built-in functions, classes, etc.
@@ -549,14 +566,6 @@ if isdirectory(expand("~/.vim/plugged/phpcomplete.vim"))
     " let g:phpcomplete_add_class_extensions = [...]
     " let g:phpcomplete_add_interface_extensions = [...]
     " let g:phpcomplete_add_constant_extensions = [...]
-
-    " this avoids an error in php-cs-fixer.vim
-    let g:phpcomplete_enhance_jump_to_definition = 0
-
-    autocmd phpcomplete_augroup FileType php silent! nunmap <buffer> <unique> <C-]>
-    autocmd phpcomplete_augroup FileType php silent! nunmap <buffer> <unique> <C-W><C-]>
-    autocmd phpcomplete_augroup FileType php nnoremap <silent> <C-]> :<C-u>call phpcomplete#JumpToDefinition('normal')<CR>
-    autocmd phpcomplete_augroup FileType php nnoremap <silent> <C-W><C-]> :<C-u>call phpcomplete#JumpToDefinition('split')<CR>
 endif
 " }}}"
 
@@ -782,11 +791,10 @@ if isdirectory(expand("~/.vim/plugged/vdebug"))
     let g:vdebug_options['ide_key'] = 'mikedfunkxd'
     " can add multiple path maps to this array, just duplicate the line
     " below and add another. remote is first, local is second.
-    " let g:vdebug_options['path_maps'] = {
-    " \   '/opt/igl': '/Users/mikefunk/sites/casesladder-repos/igl',
-    " \   '/opt/myleague': '/Users/mikefunk/sites/casesladder-repos/myleague'
-    " \}
-    " stop on first line of execution
+    let g:vdebug_options['path_maps'] = {
+    \   '/data/code_base/current': '/Library/WebServer/Documents/saatchi/saatchiart'
+    \}
+    " default: 1. stop on first line of execution
     " let g:vdebug_options["break_on_open"] = 0
     let g:vdebug_options["watch_window_style"] = 'compact'
     " move run_to_cursor from F1 to F9

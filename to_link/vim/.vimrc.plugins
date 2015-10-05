@@ -535,6 +535,9 @@ Plug 'ap/vim-css-color', { 'for': ['css', 'scss', 'sass', 'less'] }
 
 " Php {{{
 
+" update php syntax for 5.3-5.6
+Plug 'StanAngeloff/php.vim', { 'for': 'php' }
+
 " php manual in vim - get def of word under cursor with shift-K
 Plug 'alvan/vim-php-manual', { 'for': ['php', 'blade'] }
 
@@ -676,6 +679,8 @@ Plug 'stephpy/vim-php-cs-fixer', { 'for': 'php' }
 " I just pasted this into my .vimrc.local - it was only like 5 lines.
 " Plug 'thiagoalessio/vimux-phpunit'
 
+
+
 " whoa, cool. change variable names, extract code to a function, extract
 " local var to instance var.
 "
@@ -701,6 +706,8 @@ Plug 'stephpy/vim-php-cs-fixer', { 'for': 'php' }
 " The Qafoo labs cli tool does have active development on this, which is nice.
 " Kind of dumb extract method. Someday I hope to find a good refactoring tool.
 " Plug 'vim-php/vim-php-refactoring', { 'for': 'php' }
+
+
 
 " php refactor tools
 " nnoremap <unique> <Leader>rlv :call PhpRenameLocalVariable()<CR>
