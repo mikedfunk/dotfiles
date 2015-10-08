@@ -22,6 +22,10 @@ endif
 
 " Functions {{{
 
+" format json {{{
+nnoremap <leader>fj :%!python -m json.tool<cr>
+" }}}
+
 " adjust window height between min and max {{{
 function! AdjustWindowHeight(minheight, maxheight)
     exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
@@ -785,22 +789,47 @@ endif
 
 " {{{ vdebug xdebug plugin
 if isdirectory(expand("~/.vim/plugged/vdebug"))
+    "
+    " default options:
+    "
+    " \    "port" : 9000,
+    " \    "server" : '',
+    " \    "timeout" : 20,
+    " \    "on_close" : 'detach',
+    " \    "break_on_open" : 1,
+    " \    "ide_key" : '',
+    " \    "path_maps" : {},
+    " \    "debug_window_level" : 0,
+    " \    "debug_file_level" : 0,
+    " \    "debug_file" : "",
+    " \    "watch_window_style" : 'expanded',
+    " \    "marker_default" : '⬦',
+    " \    "marker_closed_tree" : '▸',
+    " \    "marker_open_tree" : '▾'
+    "
     let g:vdebug_options = {}
-    let g:vdebug_options['continuous_mode'] = 1
-    let g:vdebug_options['timeout'] = 30
     let g:vdebug_options['port'] = 9000
     " let g:vdebug_options['server'] = '127.0.0.1'
     let g:vdebug_options['server'] = ''
+    let g:vdebug_options['timeout'] = 30
+    let g:vdebug_options['on_close'] = 'detach'
+    " default: 1. stop on first line of execution
+    let g:vdebug_options["break_on_open"] = 1
+    " let g:vdebug_options["break_on_open"] = 0
     let g:vdebug_options['ide_key'] = 'mikedfunkxd'
     " can add multiple path maps to this array, just duplicate the line
     " below and add another. remote is first, local is second.
     let g:vdebug_options['path_maps'] = {
     \   '/data/code_base/current': '/Library/WebServer/Documents/saatchi/saatchiart'
     \}
-    " default: 1. stop on first line of execution
-    let g:vdebug_options["break_on_open"] = 1
-    " let g:vdebug_options["break_on_open"] = 0
-    let g:vdebug_options["watch_window_style"] = 'compact'
+    let g:vdebug_options['debug_window_level'] = 0
+    let g:vdebug_options['debug_file_level'] = 0
+    let g:vdebug_options['debug_file'] = ''
+    let g:vdebug_options['watch_window_style'] = 'compact'
+    let g:vdebug_options['marker_default'] = '⬦'
+    let g:vdebug_options['marker_closed_tree'] = '▸'
+    let g:vdebug_options['marker_open_tree'] = '▾'
+    let g:vdebug_options['continuous_mode'] = 1
     " move run_to_cursor from F1 to F9
     let g:vdebug_keymap = {
     \    "step_over" : "<F2>",
@@ -970,7 +999,7 @@ endif
 if filereadable(expand("~/.vim/autoload/plug.vim"))
     nnoremap <leader>bi :so ~/.vimrc.plugins<cr> :PlugInstall<cr>
     nnoremap <leader>bc :so ~/.vimrc.plugins<cr> :PlugClean!<cr>
-    nnoremap <leader>bu :so ~/.vimrc.plugins<cr> :PlugUpgrade<cr> :PlugUpdate<cr>
+    nnoremap <leader>bu :so ~/.vimrc.plugins<cr> :PlugUpgrade<cr> :PlugUpdate<cr> :UpdateRemotePlugins<cr>
 endif
 " }}}
 
