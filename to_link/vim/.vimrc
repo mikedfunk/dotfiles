@@ -225,7 +225,7 @@ endif
 " Style {{{
 set background=dark
 set cursorline
-set colorcolumn=80
+set colorcolumn=80,120
 
 " 256-friendly colors
 silent! colorscheme lucius
