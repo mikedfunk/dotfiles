@@ -212,7 +212,7 @@ endif
 
 " use register that works with mac clipboard {{{
 if has('clipboard')
-    if has('unnamedplus') || has('nvim')  " When possible use + register for copy-paste
+    if has('unnamedplus') && !has('nvim')  " When possible use + register for copy-paste
         set clipboard=unnamed,unnamedplus
     else         " On mac and Windows, use * register for copy-paste
         set clipboard=unnamed
@@ -829,7 +829,8 @@ if isdirectory(expand("~/.vim/plugged/vdebug"))
     let g:vdebug_options['marker_default'] = '⬦'
     let g:vdebug_options['marker_closed_tree'] = '▸'
     let g:vdebug_options['marker_open_tree'] = '▾'
-    let g:vdebug_options['continuous_mode'] = 1
+    " let g:vdebug_options['continuous_mode'] = 1
+    let g:vdebug_options['continuous_mode'] = 0
     " move run_to_cursor from F1 to F9
     let g:vdebug_keymap = {
     \    "step_over" : "<F2>",
@@ -1128,7 +1129,9 @@ if isdirectory(expand("~/.vim/plugged/YouCompleteMe"))
 
     " open preview window while completing
     let g:ycm_add_preview_to_completeopt = 1
-    let g:ycm_autoclose_preview_window_after_completion = 1
+    " this is cool but I want it to stay open while I'm entering method params
+    " so I know what they are
+    " let g:ycm_autoclose_preview_window_after_completion = 1
     let g:ycm_autoclose_preview_window_after_insertion = 1
 
     " disable youcompleteme
@@ -1136,6 +1139,10 @@ if isdirectory(expand("~/.vim/plugged/YouCompleteMe"))
 
     " let g:ycm_allow_changing_updatetime=0
     let g:ycm_seed_identifiers_with_syntax = 1
+
+    " add some triggers
+    let g:ycm_semantic_triggers = {}
+    let g:ycm_semantic_triggers.php = ['->', '::', '(', 'use ', 'namespace ', '\']
 endif
 " }}}
 

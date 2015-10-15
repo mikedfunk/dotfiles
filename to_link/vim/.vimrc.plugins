@@ -614,7 +614,7 @@ Plug 'joonty/vdebug', { 'for': 'php' }
 
 " improved php omnicompletion
 " I have this disabled to try padawan instead. Hopefully it's faster.
-" Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
+Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
 
 " Padawan.vim is a vim plugin for padawan.php server , a smart PHP code completion server for Composer projects.
 " This plugin includes:
@@ -628,7 +628,7 @@ Plug 'joonty/vdebug', { 'for': 'php' }
 " Enjoy smart completion
 " Index generation can take a while, but needs to be performed only once per project.
 " MUUUUUUUCH faster than phpcomplete!!!
-Plug 'mkusher/padawan.vim', { 'for': 'php' }
+" Plug 'mkusher/padawan.vim', { 'for': 'php' }
 
 " required for phpcomplete-extended
 " required for tsuqyomi
@@ -810,7 +810,7 @@ Plug 'chriskempson/base16-vim'
 " Plug '29decibel/codeschool-vim-theme'
 " grb256 color scheme
 " Plug 'garybernhardt/dotfiles', { 'rtp': '.vim/' }
-" Plug 'morhetz/gruvbox'
+Plug 'morhetz/gruvbox'
 " Plug 'vim-scripts/guardian'
 " Plug 'vim-scripts/herald.vim'
 " Plug 'vim-scripts/moria'
@@ -822,7 +822,7 @@ Plug 'chriskempson/base16-vim'
 " Plug 'vim-scripts/desert256.vim'
 " Plug 'vim-scripts/xoria256.vim'
 " Plug 'noahfrederick/vim-noctu'
-" Plug 'zenorocha/dracula-theme', {'rtp': 'vim/'}
+Plug 'zenorocha/dracula-theme', {'rtp': 'vim/'}
 " Plug 'Slava/vim-colors-tomorrow'
 " Plug 'vim-scripts/blackdust.vim'
 " Plug 'vim-scripts/peaksea'
@@ -845,7 +845,7 @@ Plug 'chriskempson/base16-vim'
 " Plug 'michalbachowski/vim-wombat256mod'
 " gets messed up when switching background
 " Plug 'noahfrederick/vim-hemisu'
-" Plug 'blueshirts/darcula'
+Plug 'blueshirts/darcula'
 " Plug 'jdkanani/vim-material-theme'
 " Plug 'NLKNguyen/papercolor-theme'
 
@@ -882,7 +882,7 @@ Plug 'freeo/vim-kalisi'
 " Plug 'vim-scripts/The-Vim-Gardener'
 " Plug 'ciaranm/inkpot'
 Plug 'fmoralesc/molokayo'
-" Plug 'romainl/Apprentice'
+Plug 'romainl/Apprentice'
 
 " Can I please have some trouble
 " Plug 'godlygeek/csapprox'
