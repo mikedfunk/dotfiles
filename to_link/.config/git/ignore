@@ -45,3 +45,4 @@ zf1_for_autocomplete
 .padawan
 cscope.out
 cscope.files
+.agignore

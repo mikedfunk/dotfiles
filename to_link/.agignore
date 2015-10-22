@@ -4,5 +4,5 @@ tags*
 *.cache.php
 bootstrap.php.cache
 app/cache
-**/*.min.js
-**/*.min.css
+*.min.js
+*.min.css

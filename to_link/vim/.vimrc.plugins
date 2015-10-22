@@ -628,7 +628,7 @@ Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
 " Enjoy smart completion
 " Index generation can take a while, but needs to be performed only once per project.
 " MUUUUUUUCH faster than phpcomplete!!!
-" Plug 'mkusher/padawan.vim', { 'for': 'php' }
+Plug 'mkusher/padawan.vim', { 'for': 'php' }
 
 " required for phpcomplete-extended
 " required for tsuqyomi
@@ -728,7 +728,9 @@ Plug 'stephpy/vim-php-cs-fixer', { 'for': 'php' }
 " assigns them to a var with list(). This is almost never what I want. All the
 " other ones are pretty cool though.
 " currently removed because of the useless extract_method
-Plug 'adoy/vim-php-refactoring-toolbox', { 'for': 'php' }
+" Plug 'adoy/vim-php-refactoring-toolbox', { 'for': 'php' }
+" Using my fork because of the unique mapping bullcrap
+Plug 'mikedfunk/vim-php-refactoring-toolbox', { 'for': 'php' }
 
 " A totally different one that doesn't work very well
 " Plug 'beberlei/vim-php-refactor'
