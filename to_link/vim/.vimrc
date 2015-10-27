@@ -761,6 +761,8 @@ if isdirectory(expand("~/.vim/plugged/ultisnips"))
     let g:UltiSnipsEditSplit="vertical"
     let g:UltiSnipsListSnippets='<c-l>'
 
+    " Fix for neovim
+    " let g:UltiSnipsUsePythonVersion = 2
 
     " remap Ultisnips for compatibility for YCM
     let g:UltiSnipsExpandTrigger = '<C-j>'

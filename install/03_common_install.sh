@@ -192,6 +192,7 @@ mycli # mysql cli tool with autocomplete
 neovim # neovim python library
 # pgcli # a postgresql repl with autocompletion
 Pillow # used by image.vim to preview images in vim via ascii conversion
+pre-commit # yelp git pre-commit framework
 #requests # used for vim-jira-complete
 requests[security] # used to prevent urllib3 warning with wakatime vim plugin
 # robotframework # front-end testing framework

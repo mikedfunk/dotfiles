@@ -1,5 +1,4 @@
 {
-  "esprima": "esprima-fb",
   "esnext": true,
   "preset": "airbnb",
   "disallowSpacesInNamedFunctionExpression": null,

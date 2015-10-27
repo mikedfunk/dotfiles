@@ -46,3 +46,4 @@ zf1_for_autocomplete
 cscope.out
 cscope.files
 .agignore
+.pre-commit-config.yaml
