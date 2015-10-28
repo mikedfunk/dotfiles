@@ -1068,13 +1068,18 @@ if isdirectory(expand("~/.vim/plugged/vim-startify"))
         \ ]
 
     " make vim startify show recent files
-    set viminfo='100,n$HOME/.vim/files/info/viminfo
+    " set viminfo='100,n$HOME/.vim/files/info/viminfo
 
     " autoload Session.vim in the current dir
     let g:startify_session_autoload = 1
 
     " auto save session on exit like obsession
     let g:startify_session_persistence = 1
+
+    " startify in new tabs
+    if has('nvim')
+        au! TabNewEntered * Startify
+    endif
 endif
 " }}}"
 

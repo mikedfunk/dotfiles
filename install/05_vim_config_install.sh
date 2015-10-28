@@ -52,10 +52,10 @@ log_info "linking configs for neovim"
 # link_this "$HOME/.vim" "$HOME/.nvim"
 # link_this "$HOME/.vimrc" "$HOME/.nvimrc"
 
-# new style
-[ -d "$HOME/.config/nvim" ] || mkdir -p "$HOME/.config/nvim" && log_info "~/.config/nvim directory created."
-link_this "$HOME/.dotfiles/to_link/vim/.vimrc" "$HOME/.config/nvim/init.vim"
-link_this "$HOME/.vim" "$HOME/.config/nvim"
+# new style - the whole ~/.config dir is linked though so this is not
+# necessary
+# link_this "$HOME/.vim" "$HOME/.config/nvim"
+# link_this "$HOME/.dotfiles/to_link/vim/.vimrc" "$HOME/.config/nvim/init.vim"
 
 # I just can't seem to get this working
 # log_info "linking nerdtree plugins"
