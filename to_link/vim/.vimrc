@@ -1077,9 +1077,10 @@ if isdirectory(expand("~/.vim/plugged/vim-startify"))
     let g:startify_session_persistence = 1
 
     " startify in new tabs
-    if has('nvim')
-        au! TabNewEntered * Startify
-    endif
+    " disabled because it messes up opening legit files in new tabs
+    " if has('nvim')
+        " au! TabNewEntered * Startify
+    " endif
 endif
 " }}}"
 

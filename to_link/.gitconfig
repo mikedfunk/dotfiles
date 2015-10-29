@@ -66,6 +66,7 @@
     cl = clone
     cleanup = !git remote prune origin && git gc && git clean -dfx && git stash clear
     cm = !git add -A && git commit -am
+    cma = !git add -A && git commit -a --amend --no-edit
     ca = !git add -A && git commit --amend
     co = checkout
     cob = checkout -b
