@@ -132,4 +132,9 @@ if [ -d "/Applications/Postgres.app/Contents/Versions/9.4/bin" ]; then
     export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin
 fi
 
+# Setting PATH for Python 2.7
+PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
 export PATH="$PATH"
