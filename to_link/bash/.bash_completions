@@ -19,7 +19,7 @@
 
 # some extra completions that don't go in bash_completion.d
 [ -f "/etc/bash_completion" ] && source /etc/bash_completion
-eval "$(grunt --completion=bash)"
+[[ "$(type -P grunt)" ]] && eval "$(grunt --completion=bash)"
 
 # Cannot find local karma!
 # eval "$(karma completion)"
