@@ -613,7 +613,6 @@ Plug 'arnaud-lb/vim-php-namespace', { 'for': 'php' }
 Plug 'joonty/vdebug', { 'for': 'php' }
 
 " improved php omnicompletion
-" I have this disabled to try padawan instead. Hopefully it's faster.
 Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
 
 " Padawan.vim is a vim plugin for padawan.php server , a smart PHP code completion server for Composer projects.
@@ -628,7 +627,8 @@ Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
 " Enjoy smart completion
 " Index generation can take a while, but needs to be performed only once per project.
 " MUUUUUUUCH faster than phpcomplete!!!
-Plug 'mkusher/padawan.vim', { 'for': 'php' }
+" disabled because it fails to parse on a codebase I'm working on. :(
+" Plug 'mkusher/padawan.vim', { 'for': 'php' }
 
 " required for phpcomplete-extended
 " required for tsuqyomi

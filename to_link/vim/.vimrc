@@ -513,13 +513,13 @@ endif
 
 " {{{ phpcomplete
 if isdirectory(expand("~/.vim/plugged/phpcomplete.vim"))
-    " phpcomplete omni complete for neocomplcache
+    " phpcomplete omni complete group
     augroup phpcomplete_augroup
         autocmd!
     augroup END
 
     " only for php set the omnifunc to completephp
-    " autocmd phpcomplete_augroup FileType php set omnifunc=phpcomplete#CompletePHP
+    autocmd phpcomplete_augroup FileType php set omnifunc=phpcomplete#CompletePHP
 
     " this lets non-static methods be called in static context. Good for laravel.
     " let g:phpcomplete_relax_static_constraint = 1
@@ -533,13 +533,6 @@ if isdirectory(expand("~/.vim/plugged/phpcomplete.vim"))
     " default: 1.
     " this avoids an error in php-cs-fixer.vim
     " let g:phpcomplete_enhance_jump_to_definition = 0
-
-    " now manually unmap and map these to work with php-cs-fixer.vim
-    " autocmd phpcomplete_augroup FileType php silent! nunmap <buffer> <unique> <C-]>
-    " autocmd phpcomplete_augroup FileType php silent! nunmap <buffer> <unique> <C-W><C-]>
-    " autocmd phpcomplete_augroup FileType php nnoremap <silent> <C-]> :<C-u>call phpcomplete#JumpToDefinition('normal')<CR>
-    " autocmd phpcomplete_augroup FileType php nnoremap <silent> <C-W><C-]> :<C-u>call phpcomplete#JumpToDefinition('split')<CR>
-    " autocmd phpcomplete_augroup FileType php nnoremap <silent> <Leader>v<C-]> :<C-u>call phpcomplete#JumpToDefinition('vsplit')<CR>
 
     " default: 1.
     " let g:phpcomplete_cache_taglists = 1
