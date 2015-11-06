@@ -144,12 +144,12 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
             brew install macvim --with-lua --override-system-vim
         fi
 
-        log_info "installing vagrant completion"
-        brew install homebrew/completions/vagrant-completion
-
         if [[ ! "$(type -P vagrant)" ]]; then
             log_info "installing vagrant"
             brew install Caskroom/cask/vagrant
+
+            log_info "installing vagrant completion"
+            brew install homebrew/completions/vagrant-completion
         fi
 
         if [[ ! "$(type -P tmux)" ]]; then
