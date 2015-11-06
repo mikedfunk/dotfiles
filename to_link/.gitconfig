@@ -118,6 +118,7 @@
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
     # show all files tracked by git in this branch
     ls = ls-files
+    mt = mergetool
     # another graphy log format
     olg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     permission-reset = !git diff -p -R | grep -E \"^(diff|(old|new) mode)\" | git apply
