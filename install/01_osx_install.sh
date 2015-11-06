@@ -112,7 +112,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
         ranger # vim-like file system browser
         rbenv # ruby environment switcher
         reattach-to-user-namespace # used to fix mac issues with copy/paste in tmux
-        redis # key/value store used by a project I'm working on
+        redis # key/value store used by a project I am working on
         ruby-build # an rbenv plugin that provides an rbenv install command to compile and install different versions of ruby
         s3cmd # amazon s3 uploader
         ssh-copy-id # copies ssh keys to remote servers
@@ -142,6 +142,14 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
         if [[ ! "$(type -P mvim)" ]]; then
             log_info "installing macvim"
             brew install macvim --with-lua --override-system-vim
+        fi
+
+        log_info "installing vagrant completion"
+        brew install homebrew/completions/vagrant-completion
+
+        if [[ ! "$(type -P vagrant)" ]]; then
+            log_info "installing vagrant"
+            brew install Caskroom/cask/vagrant
         fi
 
         if [[ ! "$(type -P tmux)" ]]; then
@@ -188,7 +196,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
         if [[ ! "$(type -P nvim)" ]]; then
             brew tap neovim/homebrew-neovim
             brew install --HEAD neovim
-            sudo pip install neovim
+            # sudo pip install neovim
             ln -sf ~/.vim ~/.nvim
             ln -sf ~/.vimrc ~/.nvimrc
         else
