@@ -1,7 +1,7 @@
 set show-all-if-ambiguous on
 set completion-ignore-case on
-control-b: backward-word
-control-f: forward-word
+Control-b: backward-word
+Control-f: forward-word
 
 # for vi mode
 set editing-mode vi
