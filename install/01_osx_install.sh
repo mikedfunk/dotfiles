@@ -139,6 +139,11 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
             }
         done
 
+        if [[ "$(which bash)" == "/usr/local/bin/bash" ]]; then
+            log_info "changing shell to homebrew bash"
+            chsh -s /usr/local/bin/bash
+        fi
+
         if [[ ! "$(type -P mvim)" ]]; then
             log_info "installing macvim"
             brew install macvim --with-lua --override-system-vim
