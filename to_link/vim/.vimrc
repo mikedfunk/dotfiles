@@ -257,7 +257,10 @@ nnoremap <leader>gu :GoToUseBlock<cr>
 let g:lasttab = 1
 nnoremap <Leader>tl :exe "tabn ".g:lasttab<CR>
 nnoremap <Leader>lt :exe "tabn ".g:lasttab<CR>
-au TabLeave * let g:lasttab = tabpagenr()
+augroup LastTab
+    autocmd!
+augroup END
+autocmd LastTab TabLeave * let g:lasttab = tabpagenr()
 " }}}
 
 let g:mapleader = ',' " use comma for leader
