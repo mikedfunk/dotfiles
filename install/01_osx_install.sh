@@ -59,6 +59,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
     if [[ "$(type -P brew)" ]]; then
         # update homebrew
         log_info "Updating Homebrew"
+        brew prune
         brew doctor
         brew update
         # brew tap phinze/homebrew-cask
@@ -298,25 +299,28 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
     brew linkapps
 
     # install php 5.6 via homebrew
-    log_info "Installing homebrew php"
+    log_info "Installing homebrew php with extensions"
     brew tap homebrew/dupes
     brew tap homebrew/versions
     brew tap homebrew/homebrew-php
-    brew install php56 --with-homebrew-curl --with-debug
-    brew install php56-xdebug --HEAD # fails if HEAD version not used
-    brew install php56-mcrypt
-    # brew install php56-redis # used by airliners
-    brew install php56-couchbase # used at Saatchi
-    brew install php56-intl # needed by symfony installer
+
+    # must do this first or it will say cannot find libz
+    xcode-select --install
+
+    brew install php70 --with-homebrew-curl --with-debug
+    brew install php70-xdebug --HEAD # fails if HEAD version not used
+    brew install php70-mcrypt
+    # brew install php70-redis # used by airliners
+    brew install php70-couchbase # used at Saatchi
+    brew install php70-intl # needed by symfony installer
     # have launchd start php-fpm at login
-    ln -sfv /usr/local/opt/php56/*.plist ~/Library/LaunchAgents
+    ln -sfv /usr/local/opt/php70/*.plist ~/Library/LaunchAgents
     # load php-fpm now
-    # launchctl load ~/Library/LaunchAgents/homebrew.mxcl.php56.plist
+    # launchctl load ~/Library/LaunchAgents/homebrew.mxcl.php70.plist
     # if extension not in httpd.conf, add it
-    LoadPhp="LoadModule php5_module /usr/local/opt/php56/libexec/apache2/libphp5.so";
-    if ! cat /etc/apache2/httpd.conf | grep -q "LoadModule php5_module /usr/local/opt/php56/libexec/apache2/libphp5.so"; then
+    if ! cat /etc/apache2/httpd.conf | grep -q "LoadModule php7_module /usr/local/opt/php70/libexec/apache2/libphp7.so"; then
         log_info "enabling homebrew php in apache"
-        sudo sed -i '.bak' 's/#LoadModule php5_module\ libexec\/apache2\/libphp5\.so/LoadModule php5_module\ \/usr\/local\/opt\/php56\/libexec\/apache2\/libphp5\.so/' /etc/apache2/httpd.conf
+        sudo sed -i '.bak' 's/#LoadModule\ php5_module\ libexec\/apache2\/libphp5\.so/LoadModule\ php7_module\ \/usr\/local\/opt\/php70\/libexec\/apache2\/libphp7\.so/' /etc/apache2/httpd.conf
     fi
 
     # if the vhosts lines are commented out in httpd.conf, uncomment them
