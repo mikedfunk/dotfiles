@@ -61,7 +61,7 @@ letswork # distraction remover (no reddit, facebook, twitter)
 live-server # just runs a web server in a dir and refreshes on file change.
 # localtunnel # allow others to view a site you have running locally
 # log.io # web-based live log browser
-newman # companion to postman REST tester for chrome
+# newman # companion to postman REST tester for chrome
 npm-check-updates # check for updates to stuff defined in package.json
 # phantomjs # headless browser used for BDD
 # phpunit-watchr # dinky tool to watch files for changes and run phpunit

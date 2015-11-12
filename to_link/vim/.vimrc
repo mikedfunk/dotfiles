@@ -529,6 +529,13 @@ if isdirectory(expand("~/.vim/plugged/phpcomplete.vim"))
     " default: 0. show more info in the preview window and return types. Slower.
     " let g:phpcomplete_parse_docblock_comments = 1
     let g:phpcomplete_parse_docblock_comments = 0
+
+    " Enables use of tags when the plugin tries to find variables. When
+    " enabled the plugin will search for the variables in the tag files with
+    " kind 'v', lines like $some_var = new Foo; but these usually yield highly
+    " inaccurate results and can be fairly slow.
+    " default: 0
+    " let g:phpcomplete_search_tags_for_variables = 1
     
     " default: 1.
     " this avoids an error in php-cs-fixer.vim
