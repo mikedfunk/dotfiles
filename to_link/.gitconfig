@@ -223,7 +223,8 @@
 
 # rebasing, squashing, pushing, fetching {{{
 [branch]
-    autosetuprebase = always
+    ; this breaks git flow hotfix finish. Just use git purr or sync to rebase.
+    ; autosetuprebase = always
 [rebase]
     autosquash = true
 [push]
