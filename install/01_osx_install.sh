@@ -207,7 +207,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
             ln -sf ~/.vimrc ~/.nvimrc
         else
             brew reinstall --HEAD neovim
-            sudo pip install neovim --upgrade
+            pip install neovim --upgrade
         fi
 
         log_info "setting up homebrew mysql to launch now and on startup"
