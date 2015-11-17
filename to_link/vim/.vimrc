@@ -403,7 +403,8 @@ nnoremap <leader>f9 :set foldlevel=9<CR>
     " au BufRead,BufNewFile config set filetype=sshconfig
 
     " all front-end 2 space indents
-    au FileType smarty,blade,html,javascript,json,css,twig,html.twig,coffee,yaml,cucumber set et sw=2 ts=2 sts=2
+    " this is now handled by ~/.editorconfig
+    " au FileType smarty,blade,html,javascript,json,css,twig,html.twig,coffee,yaml,cucumber set et sw=2 ts=2 sts=2
 " }}}
 
 " Gui {{{
