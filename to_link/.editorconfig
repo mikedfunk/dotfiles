@@ -1,0 +1,12 @@
+# http://editorconfig.org/
+
+# top-most EditorConfig file
+root = true
+
+[*]
+indent_style = space
+indent_size = 4
+insert_final_newline = true
+
+[*.{js,phtml,html,css,scss,less,coffee,yaml,yml,json,blade.php}]
+indent_size = 2
