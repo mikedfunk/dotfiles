@@ -202,11 +202,11 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
         if [[ ! "$(type -P nvim)" ]]; then
             brew tap neovim/homebrew-neovim
             brew install --HEAD neovim
-            # sudo pip install neovim
             ln -sf ~/.vim ~/.nvim
             ln -sf ~/.vimrc ~/.nvimrc
         else
-            brew reinstall --HEAD neovim
+            # commented out because it takes forever. Just upgrade neovim manually.
+            # brew reinstall --HEAD neovim
             pip install neovim --upgrade
         fi
 
@@ -311,7 +311,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
     brew install php70-xdebug --HEAD # fails if HEAD version not used
     brew install php70-mcrypt
     # brew install php70-redis # used by airliners
-    brew install php70-couchbase # used at Saatchi
+    brew install php70-couchbase # used at Saatchi - v7 doesn't exist yet :(
     brew install php70-intl # needed by symfony installer
     # have launchd start php-fpm at login
     ln -sfv /usr/local/opt/php70/*.plist ~/Library/LaunchAgents

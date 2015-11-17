@@ -53,6 +53,7 @@ jasmine # javascript behavior testing framework
 jscs # javascript coding style checker
 jshint # like jslint but less punishing
 # json # json formatter used for vim
+json-server # an easy way to set up a quick fake json API
 jsonlint # verify json
 # jspm # javascript package manager with autoloader
 # jsxhint # like jshint with extra stuff for reactjs jsx syntax ("jsxhint is being sunsetted and doesn't handle react errors correctly")
@@ -153,7 +154,6 @@ foundation # zurb foundation css framework installer
 github_changelog_generator # generate changelogs from tags, issues, and merged pull requests
 # haste
 jekyll # blogging platform used by github
-json-server # an easy way to set up a quick fake json API
 # json_pure
 # kramdown # another markdown parser option that can be used by Jekyll.
 # mailcatcher # catches outgoing mail and displays it from a local server to a web-based view
