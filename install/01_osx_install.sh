@@ -108,7 +108,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
         nodejs
         pandoc # used for inline vim php documentation
         # postgresql
-        python # updated version of python with updated pip
+        python # updated version of python with updated pip. Useful for installing pip packages without root.
         python3 # required for tmuxomatic
         ranger # vim-like file system browser
         rbenv # ruby environment switcher

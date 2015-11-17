@@ -209,7 +209,9 @@ for package in "${packages[@]}"
 do
     hash $package 2>/dev/null || {
         log_info "installing $package"
-        sudo pip install $package -H
+        # this will work fine as long as python is installed via brew and
+        # /usr/local/bin is before /usr/bin
+        pip install --upgrade $package
     }
 done
 
@@ -221,7 +223,7 @@ for package in "${packages[@]}"
 do
     hash $package 2>/dev/null || {
         log_info "installing $package"
-        sudo pip3 install $package -H
+        pip3 install --upgrade $package
     }
 done
 
