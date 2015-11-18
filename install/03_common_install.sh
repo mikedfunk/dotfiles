@@ -209,9 +209,7 @@ for package in "${packages[@]}"
 do
     hash $package 2>/dev/null || {
         log_info "installing $package"
-        # this will work fine as long as python is installed via brew and
-        # /usr/local/bin is before /usr/bin
-        pip install --upgrade $package
+        sudo pip install --upgrade $package
     }
 done
 

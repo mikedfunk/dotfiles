@@ -108,7 +108,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
         nodejs
         pandoc # used for inline vim php documentation
         # postgresql
-        python # updated version of python with updated pip. Useful for installing pip packages without root.
+        # python # updated version of python with updated pip. Useful for installing pip packages without root. NOTE: homebrew pip breaks neovim.
         python3 # required for tmuxomatic
         ranger # vim-like file system browser
         rbenv # ruby environment switcher
@@ -204,10 +204,10 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
             brew install --HEAD neovim
             ln -sf ~/.vim ~/.nvim
             ln -sf ~/.vimrc ~/.nvimrc
-        else
+        # else
             # commented out because it takes forever. Just upgrade neovim manually.
             # brew reinstall --HEAD neovim
-            pip install neovim --upgrade
+            # sudo pip install neovim --upgrade
         fi
 
         log_info "setting up homebrew mysql to launch now and on startup"
