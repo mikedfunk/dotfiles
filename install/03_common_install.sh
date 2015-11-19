@@ -67,7 +67,8 @@ live-server # just runs a web server in a dir and refreshes on file change.
 # log.io # web-based live log browser
 # newman # companion to postman REST tester for chrome
 nixar # friendly equivalents for existing linux commands such as clipboard and count
-npm-check-updates # check for updates to stuff defined in package.json
+npm-check # like npm-check-updates but prettier and interactive
+npm-check-updates # check for updates to stuff defined in package.json and update them
 # phantomjs # headless browser used for BDD
 # phpunit-watchr # dinky tool to watch files for changes and run phpunit
 # psi # PageSpeed Insights with reporting
