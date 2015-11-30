@@ -446,6 +446,9 @@ if isdirectory(expand("~/.vim/plugged/ctrlp.vim"))
     " ctrlp extensions
     let g:ctrlp_extensions = ['tag']
 
+    " allows backspace on empty prompt to exit ctrlp
+    " let g:ctrlp_brief_prompt = 1
+
     " enable ctrlp-py-matcher
     " let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 
@@ -815,7 +818,20 @@ if isdirectory(expand("~/.vim/plugged/vdebug"))
     " \    "marker_open_tree" : '▾'
     "
     let g:vdebug_options = {}
-    let g:vdebug_options['port'] = 9000
+
+    " this port is strangely used as the nginx pool port. It's also the xdebug
+    " default.
+    " let g:vdebug_options['port'] = 9000
+
+    " local machine php
+    " let g:vdebug_options['port'] = 9001
+    " zed VM
+    " let g:vdebug_options['port'] = 9015
+    " saatchi VM
+    let g:vdebug_options['port'] = 9010
+
+    " This is if you want to limit to only connecting to a specific server.
+    " Leave empty for any server.
     " let g:vdebug_options['server'] = '127.0.0.1'
     let g:vdebug_options['server'] = ''
     let g:vdebug_options['timeout'] = 30
@@ -827,7 +843,8 @@ if isdirectory(expand("~/.vim/plugged/vdebug"))
     " can add multiple path maps to this array, just duplicate the line
     " below and add another. remote is first, local is second.
     let g:vdebug_options['path_maps'] = {
-    \   '/data/code_base/current': '/Library/WebServer/Documents/saatchi/saatchiart'
+    \   '/data/code_base/current': '/Library/WebServer/Documents/saatchi/saatchiart',
+    \   '/data/shop/current': '/Library/WebServer/Documents/saatchi/yzed'
     \}
     let g:vdebug_options['debug_window_level'] = 0
     let g:vdebug_options['debug_file_level'] = 0

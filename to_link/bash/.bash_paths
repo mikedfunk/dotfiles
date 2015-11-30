@@ -28,6 +28,9 @@ fi
 if [[ -d "/usr/local/opt/php56/bin:$PATH" ]]; then
     export PATH="/usr/local/opt/php56/bin:$PATH"
 fi
+if [[ -d "/usr/local/opt/php70/bin:$PATH" ]]; then
+    export PATH="/usr/local/opt/php70/bin:$PATH"
+fi
 
 # local bin
 if [ -d "/usr/local/bin" ] ; then

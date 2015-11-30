@@ -442,6 +442,9 @@ Plug 'edsono/vim-matchit', { 'for': ['html', 'html.twig', 'blade', 'xml', 'php']
 
 " Syntax {{{
 
+" fish shell
+Plug 'dag/vim-fish'
+
 " api blueprint
 Plug 'kylef/apiblueprint.vim', { 'for': 'apiblueprint' }
 
@@ -805,7 +808,7 @@ Plug 'guns/xterm-color-table.vim', { 'on': 'XtermColorTable' }
 " Plug 'tpope/vim-vividchalk'
 " Plug 'morhetz/gruvbox'
 " this needs the following iterm2 themes: chriskempson/base16-iterm2
-Plug 'chriskempson/base16-vim'
+" Plug 'chriskempson/base16-vim'
 " Plug 'daylerees/colour-schemes', { 'rtp': 'vim/' }
 " Plug 'endel/vim-github-colorscheme'
 " Plug 'ricardovaleriano/vim-github-theme'
@@ -824,7 +827,7 @@ Plug 'morhetz/gruvbox'
 " Plug 'vim-scripts/desert256.vim'
 " Plug 'vim-scripts/xoria256.vim'
 " Plug 'noahfrederick/vim-noctu'
-Plug 'zenorocha/dracula-theme', {'rtp': 'vim/'}
+" Plug 'zenorocha/dracula-theme', {'rtp': 'vim/'}
 " Plug 'Slava/vim-colors-tomorrow'
 " Plug 'vim-scripts/blackdust.vim'
 " Plug 'vim-scripts/peaksea'
@@ -847,7 +850,7 @@ Plug 'zenorocha/dracula-theme', {'rtp': 'vim/'}
 " Plug 'michalbachowski/vim-wombat256mod'
 " gets messed up when switching background
 " Plug 'noahfrederick/vim-hemisu'
-Plug 'blueshirts/darcula'
+" Plug 'blueshirts/darcula'
 " Plug 'jdkanani/vim-material-theme'
 " Plug 'NLKNguyen/papercolor-theme'
 
@@ -866,7 +869,7 @@ Plug 'tomasr/molokai'
 " Plug 'Lokaltog/vim-distinguished'
 Plug 'junegunn/seoul256.vim'
 Plug 'jnurmine/Zenburn'
-Plug 'cocopon/iceberg.vim'
+" Plug 'cocopon/iceberg.vim'
 " Plug 'w0ng/vim-hybrid'
 " Plug 'nielsmadan/harlequin'
 " Plug 'hickop/vim-hickop-colors'

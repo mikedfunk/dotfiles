@@ -321,16 +321,21 @@ togglexdebug() {
     # group 'custom'
 
     # XDEBUGPATH="/usr/local/php5/php.d/50-extension-xdebug.ini"
-    XDEBUGPATH="/usr/local/etc/php/5.6/conf.d/ext-xdebug.ini"
+    # XDEBUGPATH="/usr/local/etc/php/5.6/conf.d/ext-xdebug.ini"
+    XDEBUGPATH="/usr/local/etc/php/7.0/conf.d/ext-xdebug.ini"
     XDEBUGDIS="${XDEBUGPATH}.disabled"
     if [[ -f $XDEBUGPATH ]]; then
         echo "Disabling Xdebug"
         sudo mv $XDEBUGPATH $XDEBUGDIS
         sudo apachectl restart
+        launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.php70.plist
+        launchctl load ~/Library/LaunchAgents/homebrew.mxcl.php70.plist
     elif [[ -f $XDEBUGDIS ]]; then
         echo "Enabling Xdebug"
         sudo mv $XDEBUGDIS $XDEBUGPATH
         sudo apachectl restart
+        launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.php70.plist
+        launchctl load ~/Library/LaunchAgents/homebrew.mxcl.php70.plist
     else
         echo "Xdebug ini file not found!"
     fi

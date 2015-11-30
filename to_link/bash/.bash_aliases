@@ -368,7 +368,6 @@ alias pearupgrade="sudo pear upgrade"
 
 # problems I've had with neovim:
 #
-# jj sometimes doesn't work as escape, causing a lot more keystrokes
 #
 # * <c-w><c-h> doesn't work even though it's mapped. <c-w><c-l> works fine.
 #
@@ -379,6 +378,8 @@ alias pearupgrade="sudo pear upgrade"
 # * youcompleteme can be slow and occasionally stops working completely. Not
 # sure if related to neovim.
 #
+# * vdebug is slow and buggy
+#
 # * vim-dispatch takes over the whole window, does not populate the quickfix
 # list, and can't seem to do stuff in a separate tmux window. I haven't tried
 # the neovim async api instead.
@@ -386,10 +387,14 @@ alias pearupgrade="sudo pear upgrade"
 # * <c-w>r doesn't work right - it prioritizes the quickfix window as a window
 # and tries to swap it to the top, even when there is an actual window in
 # another split.
+#
+# * related - quickfix windows from splits often end up spanning the width of
+# the view instead of the width of the split. It's annoying to be cleaning up
+# after syntastic all of the time.
 
 # if [[ "$(type -P nvim)" ]]; then
     # neovim is the new hotness! true 24-bit color!
-    vim="NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim"
+    # vim="NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim"
 # elif [[ "$(type -P mvim)" ]]; then
     # # servername is for united-front
     # vim="mvim -vp --servername mikevimserver"
@@ -398,12 +403,12 @@ alias pearupgrade="sudo pear upgrade"
 # fi
 
 # use macvim executable in terminal mode
-# if [ -f "/usr/local/bin/mvim" ]; then
+if [ -f "/usr/local/bin/mvim" ]; then
     # # servername is for united-front
-    # vim="mvim -vp --servername mikevimserver"
-# else
-    # vim="vim -p --servername mikevimserver"
-# fi
+    vim="mvim -vp --servername mikevimserver"
+else
+    vim="vim -p --servername mikevimserver"
+fi
 alias vim="${vim}"
 alias v="${vim}"
 
