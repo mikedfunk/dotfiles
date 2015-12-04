@@ -217,6 +217,7 @@
 [merge]
     ; tool = opendiff
     tool = vimdiff
+	conflictstyle = diff3
 [mergetool]
     keepBackup = false
 # }}}
