@@ -101,6 +101,9 @@
     fhr = flow hotfix rebase
     fhs = flow hotfix start
     fht = flow hotfix track
+    # git flow release shortcuts
+    frs = flow release start
+    frf = flow release finish
     # show change for one file
     filelog = log -u
     fl = log -u
@@ -253,3 +256,10 @@
 	trustExitCode = true
 # }}}
 
+# git flow avh settings {{{
+# @link https://github.com/petervanderdoes/gitflow-avh/wiki/Reference:-Configuration
+[gitflow "release.finish"]
+    keepremote = no
+[gitflow "hotfix.finish"]
+    keepremote = no
+# }}}

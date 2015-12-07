@@ -54,7 +54,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
     brew install caskroom/cask/brew-cask
 
     # this is required before installing sshfs
-    brew cask install osxfuse
+    # brew cask install osxfuse
 
     if [[ "$(type -P brew)" ]]; then
         # update homebrew
