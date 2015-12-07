@@ -35,7 +35,9 @@ My Bash, Vim, Git, and other dotfiles. *Now with 24-bit color support in [neovim
 * [Firefox Developer Edition](https://www.mozilla.org/en-US/firefox/developer/)
 * [Google Drive](https://tools.google.com/dlpage/drive)
 * [IE VMs](https://github.com/xdissent/ievms)
-* [MacFusion](http://downloads.patjack.co.uk/dl/Macfusion.zip) to mount ssh directories (if necessary). _NOTE: [this is a fork](http://patjack.co.uk/macfusion-64-bit-ready-for-lion-mountain-lion/) for compatibility._
+* [OSXFuse](https://osxfuse.github.io/) and then [MacFusion](http://downloads.patjack.co.uk/dl/Macfusion.zip) to mount ssh directories in the Finder (if necessary).
+ * _NOTE: Be sure to check the *MacFuse compatibility layer* in the OSXFuse installer._
+ * _NOTE: [this is a MacFuse fork](http://patjack.co.uk/macfusion-64-bit-ready-for-lion-mountain-lion/) for compatibility._
 * [Latest Python for mac](https://www.python.org/downloads/mac-osx/) if your urllib3 complains about insecure platform for the [wakatime](https://wakatime.com/) service
 * [Spectacle](http://spectacleapp.com/)
 * [TinyGrab](http://tinygrab.com/download.php)
