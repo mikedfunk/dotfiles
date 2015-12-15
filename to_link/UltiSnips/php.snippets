@@ -981,12 +981,12 @@ $ns = 'DemandMedia\\${1:Listing}\\${2:Interfaces}'
 ${5:$myvar} = Mockery::mock($ns);
 endsnippet
 
-snippet cst "constant with docblock"
+snippet cnst "constant with docblock"
 
 /**
- * ${1:Description}
+ * @var ${1:mixed} ${2:Description}
  */
-const ${2:MY_CONST} = '$3';
+const ${3:MY_CONST} = '$4';
 endsnippet
 
 snippet varblock "var docblock"
