@@ -986,6 +986,13 @@ if isdirectory(expand("~/.vim/plugged/vim-mark"))
 endif
 " }}}
 
+" vim-notes {{{
+if isdirectory(expand("~/.vim/plugged/vim-notes"))
+    let g:notes_directories = ['~/notes']
+    " Map ,ns in visual mode to start new note with selected text as title.
+endif
+" }}}
+
 " vim-php-cs-fixer {{{
 if isdirectory(expand("~/.vim/plugged/vim-php-cs-fixer"))
     " just do psr-2. I don't want all your opinionated stuff.
