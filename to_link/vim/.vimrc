@@ -287,6 +287,8 @@ nnoremap <c-w>% :vsp<cr>
 nnoremap gh gT
 nnoremap gl gt
 
+" go to url is gx
+
 " use jj for exiting insert mode
 inoremap jj <esc>
 
