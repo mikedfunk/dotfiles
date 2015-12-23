@@ -252,12 +252,10 @@ fi
 
 # setup gocode directory. this is like a vendor directory so no need to store
 # it in this repo.
-# if [[ ! -d "/usr/local/go" ]]; then
-    # log_info "creating gocode directory"
-    # mkdir "/usr/local/go"
-    # export GOPATH="/usr/local/go"
-    # export PATH="$GOPATH/bin:$PATH"
-# fi
+if [[ ! -d "$HOME/Go" ]]; then
+    log_info "creating gocode directory"
+    mkdir "$HOME/Go"
+fi
 
 # setup gopm
 # if [[ "$(type -P gopm)" ]]; then

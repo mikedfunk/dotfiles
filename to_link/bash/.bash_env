@@ -41,3 +41,9 @@ export AUTOSSH_PORT=0
 # if [[ "$type -p rbenv" ]]; then
     # eval "$(rbenv init -)"
 # fi
+
+# golang
+export GOPATH="$HOME/Go"
+export GOROOT=/usr/local/opt/go/libexec
+export PATH="$GOPATH/bin:$PATH"
+export PATH=$PATH:$GOROOT/bin
