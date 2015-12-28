@@ -47,3 +47,4 @@ cscope.out
 cscope.files
 .agignore
 .pre-commit-config.yaml
+__LAST__
