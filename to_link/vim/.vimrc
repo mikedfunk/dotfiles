@@ -564,10 +564,10 @@ if isdirectory(expand("~/.vim/plugged/phpcomplete.vim"))
     \ 'json',
     \ 'mail',
     \ 'misc',
-    \ 'mysql',
-    \ 'mysqli',
     \ 'sessions',
     \ ]
+    " \ 'mysql',
+    " \ 'mysqli',
 
     " same for interfaces
     let g:phpcomplete_add_interface_extensions = [
