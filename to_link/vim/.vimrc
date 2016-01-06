@@ -180,7 +180,9 @@ augroup omnifunc_augroup
     autocmd!
 augroup END
 
-autocmd omnifunc_augroup FileType css setlocal omnifunc=csscomplete#CompleteCSS
+" autocmd omnifunc_augroup FileType css setlocal omnifunc=csscomplete#CompleteCSS
+" this is the csscomplete version
+autocmd omnifunc_augroup FileType css setlocal omnifunc=csscomplete#CompleteCSS noci
 autocmd omnifunc_augroup FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd omnifunc_augroup FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd omnifunc_augroup FileType python setlocal omnifunc=pythoncomplete#Complete

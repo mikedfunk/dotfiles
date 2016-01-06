@@ -630,9 +630,13 @@ alias myleague-all-staging-rsync="myleague1-staging-rsync && myleague2-staging-r
 alias essortment-staging-rsync="cd ~/Sites/essortment && rsync --recursive --links --checksum --progress --exclude-from=./.rsync_exclude --chmod=Dugo+rwX,u+rw,go+r ./. web15:/home/cmeops/CME2/sites/mike.funk/www.essortment.com && cd -"
 
 # saatchi socks proxies
-alias saatchi-dev-socks-proxy="ssh -D 5556 -l mike.funk console.use1.dev.isaatchi.com"
+alias saatchi-dev-socks-proxy="ssh -D 5555 -l mike.funk console.use1.dev.isaatchi.com"
 alias saatchi-qa-socks-proxy="ssh -D 5556 -l mike.funk console.use1.qa.isaatchi.com"
 # alias saatchi-prod-socks="ssh -D 5557 -l mike.funk console.usw1.isaatchi.com"
+
+# mycli (pretty mysql helper) aliases for various dbs
+alias mycli-saatchi-local-saatchi="mycli -h localhost -u root -D $SAATCHI_LOCAL_DB"
+alias mycli-zed-local-zed="mycli -h localhost -u root -D $ZED_LOCAL_DB"
 # }}}
 
 # phantomjs on the port for behat to find it

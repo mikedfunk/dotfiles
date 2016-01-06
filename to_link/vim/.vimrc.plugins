@@ -506,6 +506,8 @@ Plug 'vimez/vim-tmux', { 'for': 'tmux' }
 " }}}
 
 " Css {{{
+" Update the bult-in CSS complete function to latest CSS standard.
+Plug 'othree/csscomplete.vim', { 'for': 'css' }
 Plug 'groenewege/vim-less', { 'for': 'less' }
 
 " colorize css colors without causing $VIMRC reload problems

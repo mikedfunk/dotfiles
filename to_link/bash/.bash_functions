@@ -486,3 +486,16 @@ gitlabtest() {
     # this works to test the api
     curl --header "PRIVATE-TOKEN: $GITLAB_API_PRIVATE_TOKEN" $GITLAB_API_ENDPOINT$URL
 }
+
+##
+# Get a document from couchbase in raw json without worrying about the 2.5k size
+# limitation in the web ui
+##
+function couchtest() {
+    read -e -p "Enter environment [local|dev|qa|production]: " -i "production" REMOVE_ENV
+    read -e -p "Enter bucket name [art|catalog|user]: " -i "art" BUCKET
+    read -p "Enter document id:" DOCID
+    APPLICATION_ENV=$REMOTE_ENV php ~/sites/saatchi/saatchiart/scripts/mike/couchtest.php $REMOTE_ENV -v -b=$BUCKET -d=$DOCID
+    # same thing but pretty-print json, which it turns out looks exactly the same :/
+    # php /data/code_base/current/scripts/mike/couchtest.php production -v -b=$BUCKET -d=$DOCID | sed '1d; $d; s/^ *//' | sed '1d; $d; s/^ *//' | python -m json.tool
+}
