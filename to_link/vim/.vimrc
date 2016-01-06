@@ -990,6 +990,12 @@ if isdirectory(expand("~/.vim/plugged/vim-mark"))
 endif
 " }}}
 
+" vim-move {{{
+if isdirectory(expand("~/.vim/plugged/vim-move"))
+    let g:move_key_modifier = 'C'
+endif
+" }}}
+
 " vim-notes {{{
 if isdirectory(expand("~/.vim/plugged/vim-notes"))
     let g:notes_directories = ['~/notes']

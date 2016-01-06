@@ -635,8 +635,10 @@ alias saatchi-qa-socks-proxy="ssh -D 5556 -l mike.funk console.use1.qa.isaatchi.
 # alias saatchi-prod-socks="ssh -D 5557 -l mike.funk console.usw1.isaatchi.com"
 
 # mycli (pretty mysql helper) aliases for various dbs
-alias mycli-saatchi-local-saatchi="mycli -h localhost -u root -D $SAATCHI_LOCAL_DB"
-alias mycli-zed-local-zed="mycli -h localhost -u root -D $ZED_LOCAL_DB"
+alias mycli-saatchi-local-saatchi="mycli -h $SAATCHI_LOCAL_HOST -u $SAATCHI_LOCAL_USERNAME -D $SAATCHI_LOCAL_DB"
+alias mycli-saatchi-local-zed="mycli -h $ZED_LOCAL_HOST -u $ZED_LOCAL_USERNAME -D $ZED_LOCAL_DB"
+alias mycli-saatchi-prod-saatchi="mycli -h $SAATCHI_PROD_HOST -u $SAATCHI_PROD_USERNAME -p $SAATCHI_PROD_PASSWORD -D $SAATCHI_PROD_DB"
+alias mycli-saatchi-prod-zed="mycli -h $ZED_PROD_HOST -u $ZED_PROD_USERNAME -p $ZED_PROD_PASSWORD -D $ZED_PROD_DB"
 # }}}
 
 # phantomjs on the port for behat to find it
