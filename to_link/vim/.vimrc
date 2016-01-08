@@ -1184,7 +1184,7 @@ if isdirectory(expand("~/.vim/plugged/YouCompleteMe"))
     let g:ycm_autoclose_preview_window_after_insertion = 1
 
     " disable youcompleteme
-    " let g:ycm_auto_trigger=0
+    let g:ycm_auto_trigger=0
 
     " let g:ycm_allow_changing_updatetime=0
     let g:ycm_seed_identifiers_with_syntax = 1

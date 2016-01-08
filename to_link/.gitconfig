@@ -220,7 +220,8 @@
 [merge]
     ; tool = opendiff
     tool = vimdiff
-	conflictstyle = diff3
+    ; shows local, parent, then remote
+	; conflictstyle = diff3
 [mergetool]
     keepBackup = false
 # }}}
