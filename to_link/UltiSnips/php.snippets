@@ -828,18 +828,25 @@ endsnippet
 snippet pucla "mike's phpunit test template with docblocks"
 <?php
 /**
- * ${1:Unit Tests}
+ * ${4:`!v expand("%:t:r")`}
  *
  * @copyright `date +%Y` Demand Media, Inc. All Rights Reserved.
  */
+namespace DemandMedia\Tests;
 
 /**
- * ${4:`!v expand("%:t:r")`}
+ * Unit Tests
  *
  * @author `!v g:snips_author`
  */
 class $4 extends \PHPUnit_Framework_TestCase
 {
+
+    /**
+     * @var ${2:ActualClass} class under test
+     */
+    protected \$${3:actualClass};
+
     /**
      * phpunit setup
      *
@@ -847,17 +854,8 @@ class $4 extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-
-    }
-
-    /**
-     * phpunit teardown
-     *
-     * @return void
-     */
-    public function tearDown()
-    {
-
+        // instantiate class under test
+        $this->$3 = new $2();
     }
 
     $6
@@ -905,10 +903,7 @@ endsnippet
 snippet pumeth "phpunit method"
 
 /**
- * $2
- *
  * @test
- * @return void
  */
 public function ${2:functionName}()
 {

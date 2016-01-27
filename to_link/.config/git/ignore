@@ -29,7 +29,7 @@ tags*
 .phpcomplete_extended
 .projections.json
 nbproject
-composer.phar
+# composer.phar
 nbproject
 build
 _ide_helper.php

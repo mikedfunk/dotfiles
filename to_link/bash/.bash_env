@@ -24,7 +24,7 @@ else
     export EDITOR="$(which vim) -p"
 fi
 
-# Tell grep to highlight matches
+# Tell grep to highlight matches. No such thing as .greprc
 export GREP_OPTIONS='--color=auto'
 
 # use lessfilter for less (colorize less with pygmentize)

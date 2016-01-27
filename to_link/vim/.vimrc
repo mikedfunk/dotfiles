@@ -167,6 +167,8 @@ au Filetype php au! BufEnter normal zR
 au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
 
 " Remove trailing whitespaces and ^M chars
+" Unfortunately I have to turn this off because factory class templates have
+" whitespace for now.
 autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,html.twig,xml,yml,perl autocmd BufWritePre <buffer> call StripTrailingWhitespace()
 
 " }}}

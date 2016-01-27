@@ -337,7 +337,7 @@ Plug 'sickill/vim-pasta'
 " Move a line up or down
 " <C-k>   Move current line/selection up
 " <C-j>   Move current line/selection down
-Plug 'matze/vim-move'
+" Plug 'matze/vim-move'
 
 " }}}
 

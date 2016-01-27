@@ -79,6 +79,7 @@ syntastic-react # used for vim syntastic syntax checking for jsx react modules
 # tldr # community-driven man pages
 ttystudio # easy terminal to gif maker
 typescript # superset of javascript that adds type hinting and other goodies. Must be compiled down to javascript of course. Used by tsuquyomi vim plugin
+webdriverio # webdriver.io - nodejs api to interact with selenium and integrate with test runners
 yo # yeoman - boilerplate maker
 # zombie@3.1.1 # browser emulator for testing like phantomjs. v3 is node, v4 is io.js
 )

@@ -320,7 +320,8 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
     brew install php56-xdebug --HEAD # fails if HEAD version not used
     brew install php56-mcrypt
     # brew install php56-redis # used by airliners
-    brew install php56-couchbase # used at Saatchi - v7 doesn't exist yet :(
+    brew install php56-couchbase # used for saatchi catalog codebase
+    brew install php56-mongo # used for saatchiart codebase
     brew install php56-intl # needed by symfony installer
 
     # have launchd start php-fpm at login
