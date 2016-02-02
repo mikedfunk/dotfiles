@@ -30,6 +30,7 @@
     "psecio/iniscan": "^3.6",
     "sami/sami": "^3.0",
     "mkusher/padawan": "^0.2.1",
-    "stecman/symfony-console-completion": "^0.6.2"
+    "stecman/symfony-console-completion": "^0.6.2",
+    "hirak/prestissimo": "^0.1.4"
   }
 }

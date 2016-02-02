@@ -56,14 +56,14 @@ if [ -d ~/.composer/vendor/bin ]; then
 fi
 
 # composer relative bin
-if [ -d ./vendor/bin ]; then
-    export PATH="./vendor/bin:$PATH"
-fi
+# if [ -d ./vendor/bin ]; then
+    # export PATH="./vendor/bin:$PATH"
+# fi
 
 # npm relative bin
-if [ -d ./node_modules/.bin ]; then
-    export PATH="./node_modules/.bin:$PATH"
-fi
+# if [ -d ./node_modules/.bin ]; then
+    # export PATH="./node_modules/.bin:$PATH"
+# fi
 
 # rbenv
 export RBENV_ROOT="${HOME}/.rbenv"

@@ -323,6 +323,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
     brew install php56-couchbase # used for saatchi catalog codebase
     brew install php56-mongo # used for saatchiart codebase
     brew install php56-intl # needed by symfony installer
+    brew install php56-memcache # used for saatchiart codebase testing
 
     # have launchd start php-fpm at login
     # ln -sfv /usr/local/opt/php70/*.plist ~/Library/LaunchAgents
