@@ -659,8 +659,11 @@ alias mysql-saatchi-dev-zed="ssh -f saatchi-dev-console-01 -L $ZED_DEV_PORT:$ZED
 alias mysql-saatchi-qa-saatchi="ssh -f saatchi-qa-console-01 -L $SAATCHI_QA_PORT:$SAATCHI_QA_HOST:3306 -N && mysql -h127.0.0.1 -P$SAATCHI_QA_PORT -u$SAATCHI_QA_USERNAME -p$SAATCHI_QA_PASSWORD -D$SAATCHI_QA_DB"
 alias mysql-saatchi-qa-zed="ssh -f saatchi-qa-console-01 -L $ZED_QA_PORT:$ZED_QA_HOST:3306 -N && mysql -h127.0.0.1 -P$ZED_QA_PORT -u$ZED_QA_USERNAME -p$ZED_QA_PASSWORD -D$ZED_QA_DB"
 
-alias mysql-saatchi-prod-saatchi="mysql -h $SAATCHI_PROD_HOST -u $SAATCHI_PROD_USERNAME -p $SAATCHI_PROD_PASSWORD -D $SAATCHI_PROD_DB"
-alias mysql-saatchi-prod-zed="mysql -h $ZED_PROD_HOST -u $ZED_PROD_USERNAME -p $ZED_PROD_PASSWORD -D $ZED_PROD_DB"
+alias mysql-saatchi-prod-saatchi="mysql -h$SAATCHI_PROD_HOST -u$SAATCHI_PROD_USERNAME -p$SAATCHI_PROD_PASSWORD -D$SAATCHI_PROD_DB"
+alias mysql-saatchi-prod-zed="mysql -h$ZED_PROD_HOST -u$ZED_PROD_USERNAME -p$ZED_PROD_PASSWORD -D$ZED_PROD_DB"
+
+alias mysql-saatchi-replica-saatchi="mysql -h$SAATCHI_REPLICA_HOST -u$SAATCHI_REPLICA_USERNAME -p$SAATCHI_REPLICA_PASSWORD -D$SAATCHI_REPLICA_DB"
+alias mysql-saatchi-replica-zed="mysql -h$ZED_REPLICA_HOST -u$ZED_REPLICA_USERNAME -p$ZED_REPLICA_PASSWORD -D$ZED_REPLICA_DB"
 # }}}
 
 # }}}
