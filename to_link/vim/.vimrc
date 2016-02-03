@@ -17,6 +17,8 @@ if filereadable(expand("~/.vimrc.plugins"))
     source ~/.vimrc.plugins
     syntax enable
     filetype plugin on
+    " needed for tagbar plugin of vim-airline
+    filetype plugin indent on
 endif
 " }}}
 
@@ -906,7 +908,7 @@ if isdirectory(expand("~/.vim/plugged/vim-airline"))
         augroup END
         " warning php tagbar is really slow. So I only enabled it for php files.
         if (isdirectory(expand("~/.vim/plugged/vim-airline")))
-            autocmd php_tagbar FileType php let g:airline#extensions#tagbar#enabled=1
+            autocmd php_tagbar FileType php let g:airline#extensions#tagbar#enabled = 1
             " let g:airline#extensions#tagbar#enabled=1
         endif
         " change how tags are displayed (:help tagbar-statusline)

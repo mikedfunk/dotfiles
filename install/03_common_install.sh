@@ -161,7 +161,7 @@ jekyll # blogging platform used by github
 # mailcatcher # catches outgoing mail and displays it from a local server to a web-based view
 # mysql2xxxx # export mysql to json, etc.
 # observr # watches the file system and does stuff when things change
-pre-commit # install pre-commit hooks to check for all kinds of things
+# pre-commit # install pre-commit hooks to check for all kinds of things DISABLED in favor of yelp pre-commit
 # pre-commit-php
 # puppet # virtual machine provisioning language
 pygmentize # used by jekyll and vim-instant-markdown

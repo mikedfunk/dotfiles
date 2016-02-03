@@ -50,7 +50,8 @@ Plug 'tpope/vim-repeat'
 " Plug 'vim-scripts/sessionman.vim', { 'on': ['SessionList', 'SessionSave', 'SessionClose'] }
 " I use a different one further down
 " Plug 'matchit.zip'
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 " Plug 'bling/vim-bufferline'
 " It's great and all but I just don't use it.
 " Plug 'Lokaltog/vim-easymotion'
