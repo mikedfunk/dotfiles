@@ -151,6 +151,9 @@ Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 " typescript completion
 Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
 
+" preview current js transpiled to babel!
+Plug 'jbgutierrez/vim-babel', { 'for': 'javascript' }
+
 " json formatting
 Plug 'elzr/vim-json', { 'for': 'json' }
 
@@ -379,6 +382,9 @@ Plug 'milkypostman/vim-togglelist'
 " *[T*     |:tfirst|
 " *]T*     |:tlast|
 Plug 'tpope/vim-unimpaired'
+
+" show pretty formatted table of leader shortcuts
+Plug 'ktonga/vim-follow-my-lead'
 
 " alias commands to other commands, even in lowercase
 " :call CmdAlias('runtime', 'Runtime')

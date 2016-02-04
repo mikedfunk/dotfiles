@@ -24,9 +24,8 @@ endif
 
 " Functions {{{
 
-" format json {{{
+" format json in current file
 nnoremap <leader>fj :%!python -m json.tool<cr>
-" }}}
 
 " adjust window height between min and max {{{
 function! AdjustWindowHeight(minheight, maxheight)
@@ -256,12 +255,15 @@ endif
 " go to end of use statements in php {{{
 " `m to go back
 command! GoToUseBlock execute "normal! mmgg/use\ <cr>}:nohlsearch<cr>"
+" go the the use block at the top of the php file
 nnoremap <leader>gu :GoToUseBlock<cr>
 " }}}
 
 " go to last active tab {{{
 let g:lasttab = 1
+" switch to the last active tab
 nnoremap <Leader>tl :exe "tabn ".g:lasttab<CR>
+" switch to the last active tab
 nnoremap <Leader>lt :exe "tabn ".g:lasttab<CR>
 augroup LastTab
     autocmd!
@@ -324,10 +326,10 @@ vnoremap < <gv
 vnoremap > >gv
 
 " format all
- nnoremap <leader>fa mzggVG=`z :delmarks z<cr>hh :echo "formatted file"<cr>
+nnoremap <leader>fa mzggVG=`z :delmarks z<cr>hh :echo "formatted file"<cr>
 
-" sort php use statements and return to where you were
 command! SortUse execute "normal! msgg/use\ <cr>vip:sort<cr>\`s:delmarks s<cr>:nohlsearch<cr>:echo 'sorted use statements'<cr>"
+" sort php use statements and return to where you were
 nnoremap <leader>su :SortUse<cr>
 
 " when copying php interface methods over, this turns interface stubs into
@@ -339,6 +341,7 @@ nnoremap <leader>su :SortUse<cr>
 "     //
 " }
 command! ExpandInterfaceMethods :%s/\v(\w+\sfunction\s\w+\(.*\));/\1\r    {\r        \/\/\r    }/g
+" Expand all pasted interface methods to a function block
 nnoremap <leader>ei :ExpandInterfaceMethods<cr>
 
 " map space to toggle folds
@@ -357,7 +360,9 @@ if isdirectory(expand("~/.vim/plugged/vim-dispatch"))
         command! Dotupdates :Dispatch cd $HOME/.dotfiles && git add -A && git commit -am 'updates' && git pull && git push &&cd -
         command! Privateupdates :Dispatch cd $HOME/.private-stuff && git add -A && git commit -am 'updates' && git pull && git push &&cd -
     endif
+    " add all dotfiles changes, commit, pull and push with vim-dispatch
     nnoremap <leader>tu :Dotupdates<cr>
+    " add all private-stuff changes, commit, pull and push with vim-dispatch
     nnoremap <leader>tv :Privateupdates<cr>
 endif
 " }}}
@@ -374,12 +379,12 @@ nnoremap <silent><Leader>v<C-]> :vsp<CR>:exec("tag ".expand("<cword>"))<CR>
 " open vhosts file
 command! Vhost tabe /etc/apache2/extra/httpd-vhosts.conf
 
-" source vimrc
 command! Source :so $MYVIMRC
+" source vimrc
 nnoremap <leader>so :Source<cr>
 
-" show todos
 if executable('ag') && (isdirectory(expand("~/.vim/plugged/ag.vim")) || isdirectory(expand("~/.vim/plugged/ag.nvim")))
+    " show todos
     nnoremap <leader>td :Ag! todo<CR>
 endif
 
@@ -463,7 +468,9 @@ if isdirectory(expand("~/.vim/plugged/ctrlp.vim"))
     " enable cpsm matcher
     " let g:ctrlp_match_func = { 'match': 'cpsm#CtrlPMatch' }
 
+    " search through buffers with ctrlp
     nnoremap <leader>pb :CtrlPBuffer<CR>
+    " search through most recently used files with ctrlp
     nnoremap <leader>pm :CtrlPMRUFiles<CR>
 
     " use ag in ctrlp for listing files
@@ -485,6 +492,7 @@ endif
 " ctrlp-smarttabs {{{
 if isdirectory(expand("~/.vim/plugged/ctrlp-smarttabs")) && isdirectory(expand("~/.vim/plugged/ctrlp.vim"))
     let g:ctrlp_extensions = ['smarttabs']
+    " search through open tabs with ctrlp
     nnoremap <leader>pt :CtrlPSmartTabs<CR>
 endif
 " }}}
@@ -605,6 +613,7 @@ endif
 " NERDTree {{{
 if isdirectory(expand("~/.vim/plugged/nerdtree"))
     nnoremap <C-e> :NERDTreeMirrorToggle<CR>
+    " open nerdtree at the current document
     nnoremap <leader>nt :NERDTreeFind<CR>
     let NERDTreeShowHidden=1
     let NERDTreeMouseMode=2
@@ -627,6 +636,7 @@ endif
 " (php documentor for vim)
 if isdirectory(expand("~/.vim/plugged/pdv"))
     let g:pdv_template_dir = $HOME ."/.vim/plugged/pdv/templates_snip"
+    " document the current element with php documentor for vim
     nnoremap <leader>pd :call pdv#DocumentWithSnip()<CR>
 endif
 " }}}
@@ -794,7 +804,7 @@ endif
 
 " {{{ undoclosewin
 if isdirectory(expand("~/.vim/plugged/undoclosewin.vim"))
-    " really it's undo close tab
+    " undo close window - really it's undo close tab
     nnoremap <leader>uc :UcwRestoreWindow<cr>
 endif
 " }}}
@@ -802,6 +812,7 @@ endif
 " {{{ undotree
 if isdirectory(expand("~/.vim/plugged/undotree"))
     silent! unmap <leader>u
+    " toggle undotree window
     nnoremap <leader>uu :UndotreeToggle<CR>
     let g:undotree_SetFocusWhenToggle=1
 endif
@@ -1030,8 +1041,11 @@ endif
 if isdirectory(expand("~/.vim/plugged/vim-php-namespace"))
     " php add use statement for current class
     inoremap <Leader><Leader>u <C-O>:call PhpInsertUse()<CR>
+    " php add use statement for current class
     noremap <Leader><Leader>u :call PhpInsertUse()<CR>
+    " expand the namespace for the current class name
     inoremap <Leader><Leader>e <C-O>:call PhpExpandClass()<CR>
+    " expand the namespace for the current class name
     noremap  <Leader><Leader>e :call PhpExpandClass()<CR>
 endif
 " }}}
@@ -1050,8 +1064,11 @@ endif
 
 " vim-plug {{{
 if filereadable(expand("~/.vim/autoload/plug.vim"))
+    " Install any newly added plugins in ~/.vimrc.plugins
     nnoremap <leader>bi :so ~/.vimrc.plugins<cr> :PlugInstall<cr>
+    " Remove any newly removed plugins in ~/.vimrc.plugins
     nnoremap <leader>bc :so ~/.vimrc.plugins<cr> :PlugClean!<cr>
+    " Upgrade all installed plugins in ~/.vimrc.plugins
     nnoremap <leader>bu :so ~/.vimrc.plugins<cr> :PlugUpgrade<cr> :PlugUpdate<cr> :UpdateRemotePlugins<cr>
 endif
 " }}}
@@ -1163,6 +1180,7 @@ endif
 if isdirectory(expand("~/.vim/plugged/vimux")) && executable('tmux')
     let g:VimuxHeight = "40"
     nnoremap <leader>vp :VimuxPromptCommand<cr>
+    " open vimux window at the current directory and focus it
     nnoremap <leader>vc :VimuxPromptCommand<cr>cd $PWD<cr>:VimuxInspectRunner<cr>
     nnoremap <leader>vl :VimuxRunLastCommand<cr>
     nnoremap <leader>vv :VimuxRunLastCommand<cr>
