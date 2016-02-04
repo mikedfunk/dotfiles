@@ -955,6 +955,11 @@ endif
 
 " vim-gutentags {{{
 if isdirectory(expand("~/.vim/plugged/vim-gutentags"))
+
+    " these are supposed to speed up ctags
+    set tags=tags
+    set path=.
+
     " let g:gutentags_exclude = []
     let g:gutentags_exclude = [
         \ '.git',
