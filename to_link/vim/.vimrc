@@ -381,7 +381,7 @@ command! Vhost tabe /etc/apache2/extra/httpd-vhosts.conf
 
 command! Source :so $MYVIMRC
 " source vimrc
-nnoremap <leader>so :Source<cr>
+nnoremap <leader>so :Source<cr>:IndentLinesReset<cr>
 
 if executable('ag') && (isdirectory(expand("~/.vim/plugged/ag.vim")) || isdirectory(expand("~/.vim/plugged/ag.nvim")))
     " show todos
