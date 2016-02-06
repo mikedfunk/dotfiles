@@ -24,9 +24,6 @@ endif
 
 " Functions {{{
 
-" format json in current file
-nnoremap <leader>fj :%!python -m json.tool<cr>
-
 " adjust window height between min and max {{{
 function! AdjustWindowHeight(minheight, maxheight)
     exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
@@ -115,6 +112,7 @@ command! StripTrailingWhitespace silent! :call StripTrailingWhitespace()<cr>
 set hlsearch " Highlight search terms
 set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
 set laststatus=2 " always show a statusline. This fixes airline split issue.
+let g:mapleader = ',' " use comma for leader
 
 " NOTE: gn will highlight or visually select the last highlighted search result
 
@@ -252,6 +250,11 @@ endif
 
 " Mappings {{{
 
+command! FormatJSON %!python -m json.tool
+" (for some reason this mapping is not applying but the command works)
+" format json in current file
+nnoremap <leader>fj :FormatJSON<cr>
+
 " go to end of use statements in php {{{
 " `m to go back
 command! GoToUseBlock execute "normal! mmgg/use\ <cr>}:nohlsearch<cr>"
@@ -271,7 +274,6 @@ augroup END
 autocmd LastTab TabLeave * let g:lasttab = tabpagenr()
 " }}}
 
-let g:mapleader = ',' " use comma for leader
 
 " since , replaces leader, use \ to go back in a [f]ind
 noremap \ ,
@@ -559,7 +561,7 @@ if isdirectory(expand("~/.vim/plugged/phpcomplete.vim"))
     " inaccurate results and can be fairly slow.
     " default: 0
     " let g:phpcomplete_search_tags_for_variables = 1
-    
+
     " default: 1.
     " this avoids an error in php-cs-fixer.vim
     " let g:phpcomplete_enhance_jump_to_definition = 0
