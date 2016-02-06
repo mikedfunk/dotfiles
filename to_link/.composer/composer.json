@@ -29,8 +29,9 @@
     "behat/mink-zombie-driver": "~1.2",
     "psecio/iniscan": "^3.6",
     "sami/sami": "^3.0",
-    "mkusher/padawan": "^0.2.1",
     "stecman/symfony-console-completion": "^0.6.2",
-    "hirak/prestissimo": "^0.1.4"
+    "hirak/prestissimo": "^0.1.4",
+    "zendframework/zftool": "dev-master",
+    "pyrech/composer-changelogs": "^1.3"
   }
 }
