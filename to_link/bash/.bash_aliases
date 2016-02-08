@@ -424,10 +424,10 @@ alias g="git"
 # alias phpunit="phpunitnotify"
 alias coverage="phpunit --debug && open build/coverage/index.html"
 # alias test="php artisan test "
-alias pf="phpunit --debug --filter "
 alias pu="phpunitnotify"
-alias pux="php -dxdebug.profiler_enable=1 -dxdebug.remote_autostart=On -dxdebug.idekey=netbeans-xdebug phpunit"
-alias puf="phpunit --filter "
+alias pf="pu --debug --filter "
+alias pux="php -dxdebug.profiler_enable=1 -dxdebug.remote_autostart=On -dxdebug.idekey=netbeans-xdebug pu"
+alias puf="pu --filter "
 # }}}
 
 # composer {{{
@@ -650,29 +650,32 @@ alias mycli-saatchi-prod-zed="mycli -h $ZED_PROD_HOST -u $ZED_PROD_USERNAME -p $
 # }}}
 
 ## same aliases for mysql {{{
+
+### local
+
 alias mysql-saatchi-local-saatchi="mysql -h $SAATCHI_LOCAL_HOST -u $SAATCHI_LOCAL_USERNAME -D $SAATCHI_LOCAL_DB --prompt='saatchi[local]> '"
 
 alias mysql-saatchi-local-zed="mysql -h $ZED_LOCAL_HOST -u $ZED_LOCAL_USERNAME -D $ZED_LOCAL_DB --prompt='zed[local]> '"
 
-###
+### dev
 
 alias mysql-saatchi-dev-saatchi="ssh -f saatchi-dev-console-01 -L $SAATCHI_DEV_PORT:$SAATCHI_DEV_HOST:3306 -N && mysql -h127.0.0.1 -P$SAATCHI_DEV_PORT -u$SAATCHI_DEV_USERNAME -p$SAATCHI_DEV_PASSWORD -D$SAATCHI_DEV_DB --prompt='saatchi[dev]> '"
 
 alias mysql-saatchi-dev-zed="ssh -f saatchi-dev-console-01 -L $ZED_DEV_PORT:$ZED_DEV_HOST:3306 -N && mysql -h127.0.0.1 -P$ZED_DEV_PORT -u$ZED_DEV_USERNAME -p$ZED_DEV_PASSWORD -D$ZED_DEV_DB --prompt='zed[dev]> '"
 
-###
+### qa
 
 alias mysql-saatchi-qa-saatchi="ssh -f saatchi-qa-console-01 -L $SAATCHI_QA_PORT:$SAATCHI_QA_HOST:3306 -N && mysql -h127.0.0.1 -P$SAATCHI_QA_PORT -u$SAATCHI_QA_USERNAME -p$SAATCHI_QA_PASSWORD -D$SAATCHI_QA_DB --prompt='saatchi[qa]> '"
 
 alias mysql-saatchi-qa-zed="ssh -f saatchi-qa-console-01 -L $ZED_QA_PORT:$ZED_QA_HOST:3306 -N && mysql -h127.0.0.1 -P$ZED_QA_PORT -u$ZED_QA_USERNAME -p$ZED_QA_PASSWORD -D$ZED_QA_DB --prompt='zed[qa]> '"
 
-###
+### prod
 
 alias mysql-saatchi-prod-saatchi="mysql -h$SAATCHI_PROD_HOST -u$SAATCHI_PROD_USERNAME -p$SAATCHI_PROD_PASSWORD -D$SAATCHI_PROD_DB --prompt='saatchi[PRODUCTION]> '"
 
 alias mysql-saatchi-prod-zed="mysql -h$ZED_PROD_HOST -u$ZED_PROD_USERNAME -p$ZED_PROD_PASSWORD -D$ZED_PROD_DB --prompt='zed[PRODUCTION]> '"
 
-###
+### replica
 
 alias mysql-saatchi-replica-saatchi="mysql -h$SAATCHI_REPLICA_HOST -u$SAATCHI_REPLICA_USERNAME -p$SAATCHI_REPLICA_PASSWORD -D$SAATCHI_REPLICA_DB --prompt='saatchi[REPLICA-PROD]> '"
 
