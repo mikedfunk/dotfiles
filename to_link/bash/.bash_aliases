@@ -649,7 +649,7 @@ alias mycli-saatchi-prod-zed="mycli -h $ZED_PROD_HOST -u $ZED_PROD_USERNAME -p $
 
 # }}}
 
-## same aliases for mysql {{{
+## saatchi mysql console aliases {{{
 
 ### local
 
