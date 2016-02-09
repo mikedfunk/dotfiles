@@ -65,6 +65,9 @@
     # tree and clear out your stash
     cl = clone
     cleanup = !git remote prune origin && git gc && git clean -dfx && git stash clear
+    # checkout develop, then run this to remove all local branches that haven't been
+    # merged into develop or master
+    cleanmerged = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 git branch -d"
     cm = !git add -A && git commit -am
     cma = !git add -A && git commit -a --amend --no-edit
     ca = !git add -A && git commit --amend
