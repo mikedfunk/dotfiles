@@ -237,6 +237,8 @@
     autosquash = true
 [push]
     default = current
+    # push any missing annotated tags related to this branch to remote when pushing a branch
+	followTag = true
 [rerere]
     enabled = 1
     autoupdate = true
