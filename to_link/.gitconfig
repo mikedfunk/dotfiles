@@ -182,10 +182,16 @@
     remote = green
 [color "diff"]
     meta = yellow bold
+    commit = green bold
     frag = magenta bold
     old = red bold
     new = green bold
     whitespace = red reverse
+[color "diff-highlight"]
+    oldNormal = red bold
+    oldHighlight = "red bold 52"
+    newNormal = "green bold"
+    newHighlight = "green bold 22"
 [color "status"]
     added = yellow
     changed = green
@@ -212,7 +218,8 @@
     autocrlf = false
     ignorecase = false
     preloadindex = true
-    pager = less -FRSX
+	pager = diff-highlight | diff-so-fancy | less --tabs=1,5 -R
+    ; pager = less -FRSX
 	; excludesfile = /Users/mikefunk/.config/git/ignore
 # }}}
 
@@ -269,3 +276,8 @@
 [gitflow "hotfix.finish"]
     keepremote = no
 # }}}
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22

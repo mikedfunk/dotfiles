@@ -39,6 +39,7 @@ browser-sync # like livereload but easier
 coffeelint # verify coffeescript files
 coffee-script # javascript abstraction / augmentation
 csslint # verify css files
+diff-so-fancy # great looking terminal replacement for git diff
 eslint # javascript linter - used by syntastic in vim
 eslint-plugin-react # react jsx javascript linter - used by syntastic in vim
 esprima-fb@15001.1.0-dev-harmony-fb # used by jscs to also check jsx coding standards

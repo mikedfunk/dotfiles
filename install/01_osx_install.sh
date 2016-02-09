@@ -85,7 +85,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
         # googlecl # google command line tool
         # graphviz # useful for xdebug profiler class maps
         grc # generic colorizer
-        gnu-sed # linux version of sed - saves as gsed
+        gnu-sed # linux version of sed - saves as gsed (required for diff-so-fancy)
         gnu-tar # linux version of tar so stuff actually works
         # go # go programming language. used for mailhog.
         gpg # used by s3cmd
