@@ -1552,7 +1552,7 @@ if executable('tmux')
 
 endif
 
-if $TERM == 'screen-256color' || $TERM == 'xterm-256color'
+if $TERM == 'screen-256color' || $TERM == 'xterm-256color' || $TERM == 'st-256color'
     " fix broken terminal keys when we use xterm-256-color in iterm prefs and
     " screen-256-color in tmux.conf prefs
     Plug 'nacitar/terminalkeys.vim'
