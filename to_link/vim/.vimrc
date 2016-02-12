@@ -544,7 +544,7 @@ if isdirectory(expand("~/.vim/plugged/phpcomplete.vim"))
     augroup END
 
     " only for php set the omnifunc to completephp
-    autocmd phpcomplete_augroup FileType php set omnifunc=phpcomplete#CompletePHP
+    " autocmd phpcomplete_augroup FileType php set omnifunc=phpcomplete#CompletePHP
 
     " this lets non-static methods be called in static context. Good for laravel.
     " let g:phpcomplete_relax_static_constraint = 1

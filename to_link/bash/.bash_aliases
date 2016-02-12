@@ -427,7 +427,7 @@ alias coverage="phpunit --debug && open build/coverage/index.html"
 alias pu="phpunitnotify"
 alias pf="pu --debug --filter "
 alias pux="php -dxdebug.profiler_enable=1 -dxdebug.remote_autostart=On -dxdebug.idekey=netbeans-xdebug pu"
-alias puf="pu --filter "
+alias puf="pu --filter="
 # }}}
 
 # composer {{{
