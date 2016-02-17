@@ -23,7 +23,7 @@ My Bash, Vim, Git, and other dotfiles. *Now with 24-bit color support in [neovim
  5. Load one from Preferences -> Profiles -> Default -> Colors -> Load Presets...
 5. To get Vim plugins installed, run `vim` from the command line, then type `:PlugInstall`.
 6. To install tmux plugins: when inside tmux, hit `ctrl-A` then `shift-I`
-7. Want to alias vim to neovim? It's in `to_link/bash/.bash_aliases`. I have this turned off for now.
+7. Want to alias vim to neovim? It's in `to_link/bash/.bash_aliases`. Change `WHICH_VIM` to either *macvim*, *neovim*, or *vim*.
 
 
 # Other stuff to install:

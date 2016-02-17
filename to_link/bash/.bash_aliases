@@ -392,23 +392,19 @@ alias pearupgrade="sudo pear upgrade"
 # the view instead of the width of the split. It's annoying to be cleaning up
 # after syntastic all of the time.
 
-# if [[ "$(type -P nvim)" ]]; then
+# WHICH_VIM="macvim"
+# WHICH_VIM="vim"
+WHICH_VIM="neovim"
+if [[ "$(type -P nvim)" ]] && [ $WHICH_VIM = "neovim" ]; then
     # neovim is the new hotness! true 24-bit color!
-    # vim="NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim"
-# elif [[ "$(type -P mvim)" ]]; then
-    # # servername is for united-front
-    # vim="mvim -vp --servername mikevimserver"
-# else
-    # vim="vim --servername mikevimserver"
-# fi
-
-# use macvim executable in terminal mode
-if [ -f "/usr/local/bin/mvim" ]; then
+    vim="NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim"
+elif [[ "$(type -P mvim)" ]] && [ $WHICH_VIM = "macvim" ]; then
     # # servername is for united-front
     vim="mvim -vp --servername mikevimserver"
 else
-    vim="vim -p --servername mikevimserver"
+    vim="vim --servername mikevimserver"
 fi
+
 alias vim="${vim}"
 alias v="${vim}"
 
