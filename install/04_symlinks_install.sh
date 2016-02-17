@@ -50,6 +50,8 @@ link_this "$HOME/.dotfiles/to_link/.editorconfig" "$HOME/.editorconfig"
 link_this "$HOME/.dotfiles/to_link/.myclirc" "$HOME/.myclirc"
 link_this "$HOME/.dotfiles/to_link/.zshrc" "$HOME/.zshrc"
 
+link_this "$HOME/.dotfiles/to_link/.warprc" "$HOME/.warprc"
+
 link_this "/var/www/sites" "$HOME/Sites"
 # default location for mac
 link_this "/Library/WebServer/Documents" "$HOME/Sites"
