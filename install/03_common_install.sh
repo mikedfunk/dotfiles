@@ -250,6 +250,12 @@ if [[ "$(type -P vagrant)" ]]; then
     fi
 fi
 
+# install oh-my-zsh
+if [[ "$(type -P zsh)" ]]; then
+    log_info "installing oh-my-zsh"
+    sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+fi
+
 # commented all go stuff out until I am programming in go
 
 # setup gocode directory. this is like a vendor directory so no need to store

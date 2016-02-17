@@ -111,6 +111,7 @@ if [[ "$(type -P apt-get)" ]]; then
     vim # the text editor
     watch # watch directories for changes and do stuff
     # w3m # full color image previewer for ranger but doesnt work in tmux
+    zsh # alternate awesome shell
     )
     for package in "${packages[@]}"
     do

@@ -131,6 +131,8 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
         watch # contains some tools: free, kill, ps, uptime, etc.
         # w3m # full color image previewer for ranger but doesnt work in tmux
         wget # latest version
+        zsh # awesome bash shell replacement
+        zsh-completions # tab completions
         )
         for package in "${packages[@]}"
         do
@@ -139,11 +141,6 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
                 brew install $package
             }
         done
-
-        if [[ "$(which bash)" == "/usr/local/bin/bash" ]]; then
-            log_info "changing shell to homebrew bash"
-            chsh -s /usr/local/bin/bash
-        fi
 
         if [[ ! "$(type -P mvim)" ]]; then
             log_info "installing macvim"
@@ -214,10 +211,26 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
         ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents
         launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
 
-        # ensuring homebrew bash is in /etc/shells
+        # ensuring homebrew bash and zsh are in /etc/shells
         if [[ $(grep "/usr/local/bin/bash" /etc/shells -c) == 0 ]]; then
-            log_info "installing homebrew bash to /etc/paths"
+            log_info "installing homebrew bash to /etc/shells"
             sudo bash -c "echo /usr/local/bin/bash >> /etc/shells"
+        fi
+        if [[ $(grep "/usr/local/bin/zsh" /etc/shells -c) == 0 ]]; then
+            log_info "installing homebrew zsh to /etc/shells"
+            sudo /bin/sh -c "echo /usr/local/bin/zsh >> /etc/shells"
+        fi
+
+        # bash shell
+        # if [[ "$(which bash)" == "/usr/local/bin/bash" ]]; then
+            # log_info "changing shell to homebrew bash"
+            # chsh -s /usr/local/bin/bash
+        # fi
+
+        # oh my zsh! shell
+        if [[ "$(which zsh)" == "/usr/local/bin/zsh" ]]; then
+            log_info "changing shell to homebrew zsh"
+            chsh -s `which zsh`
         fi
 
         # htop-osx requires root privileges to correctly display all running processes.
