@@ -295,6 +295,11 @@ profile () {
   fi
 }
 
+command_exists () {
+  # about 'check if a command exists in any shell'
+    type "$1" &> /dev/null;
+}
+
 phpunitnotify () {
     # about 'runs phpunit and uses terminal-notifier to show the results'
     # group 'custom'

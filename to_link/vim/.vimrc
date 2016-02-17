@@ -243,7 +243,7 @@ silent! colorscheme lucius
 " silent! colorscheme Tomorrow-Night-Blue
 
 " @link https://github.com/neovim/neovim/issues/2334
-if (has('neovim'))
+if (has('nvim'))
     let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
 " }}}
@@ -544,7 +544,12 @@ if isdirectory(expand("~/.vim/plugged/phpcomplete.vim"))
     augroup END
 
     " only for php set the omnifunc to completephp
-    autocmd phpcomplete_augroup FileType php set omnifunc=phpcomplete#CompletePHP
+    "
+    " enable:
+    " autocmd phpcomplete_augroup FileType php set omnifunc=phpcomplete#CompletePHP
+    "
+    " disable (because it's SLOW):
+    autocmd phpcomplete_augroup FileType php set omnifunc=
 
     " this lets non-static methods be called in static context. Good for laravel.
     " let g:phpcomplete_relax_static_constraint = 1
@@ -1213,7 +1218,7 @@ if isdirectory(expand("~/.vim/plugged/YouCompleteMe"))
     let g:ycm_autoclose_preview_window_after_insertion = 1
 
     " disable youcompleteme
-    let g:ycm_auto_trigger=0
+    " let g:ycm_auto_trigger=0
 
     " let g:ycm_allow_changing_updatetime=0
     let g:ycm_seed_identifiers_with_syntax = 1

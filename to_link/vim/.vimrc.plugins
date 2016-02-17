@@ -816,20 +816,20 @@ Plug 'guns/xterm-color-table.vim', { 'on': 'XtermColorTable' }
 " a bunch of color schemes to try. Most don't work in 256.
 " Plug 'flazz/vim-colorschemes'
 
-" Color schemes that don't look good in screen-256-colors
+" Color schemes that don't look good in screen-256color
 " --------------
+if (has('nvim'))
 " Plug '29decibel/codeschool-vim-theme'
 " Plug 'tpope/vim-vividchalk'
-" Plug 'morhetz/gruvbox'
+Plug 'morhetz/gruvbox'
 " this needs the following iterm2 themes: chriskempson/base16-iterm2
-" Plug 'chriskempson/base16-vim'
+Plug 'chriskempson/base16-vim'
 " Plug 'daylerees/colour-schemes', { 'rtp': 'vim/' }
 " Plug 'endel/vim-github-colorscheme'
 " Plug 'ricardovaleriano/vim-github-theme'
 " Plug '29decibel/codeschool-vim-theme'
 " grb256 color scheme
 " Plug 'garybernhardt/dotfiles', { 'rtp': '.vim/' }
-Plug 'morhetz/gruvbox'
 " Plug 'vim-scripts/guardian'
 " Plug 'vim-scripts/herald.vim'
 " Plug 'vim-scripts/moria'
@@ -841,7 +841,7 @@ Plug 'morhetz/gruvbox'
 " Plug 'vim-scripts/desert256.vim'
 " Plug 'vim-scripts/xoria256.vim'
 " Plug 'noahfrederick/vim-noctu'
-" Plug 'zenorocha/dracula-theme', {'rtp': 'vim/'}
+Plug 'zenorocha/dracula-theme', {'rtp': 'vim/'}
 " Plug 'Slava/vim-colors-tomorrow'
 " Plug 'vim-scripts/blackdust.vim'
 " Plug 'vim-scripts/peaksea'
@@ -864,7 +864,7 @@ Plug 'morhetz/gruvbox'
 " Plug 'michalbachowski/vim-wombat256mod'
 " gets messed up when switching background
 " Plug 'noahfrederick/vim-hemisu'
-" Plug 'blueshirts/darcula'
+Plug 'blueshirts/darcula'
 " Plug 'jdkanani/vim-material-theme'
 " Plug 'NLKNguyen/papercolor-theme'
 
@@ -873,6 +873,7 @@ Plug 'morhetz/gruvbox'
 
 " a ton of 256 color schemes that mostly look like crap on my setup
 " Plug 'noah/vim256-color'
+endif " neovim true color schemes
 
 " Schemes that look good in 256 colors:
 " Some of these I have commented out just because I don't currently use them
