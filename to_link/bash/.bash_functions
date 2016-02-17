@@ -286,10 +286,12 @@ fi
 profile () {
   # about 'source either bashrc or zshrc'
   # group 'custom'
-  if [[ $0 == "zsh" ]]; then
+  if [ $SHELL = "/usr/local/bin/zsh" ]; then
     source ~/.zshrc && echo 'zsh profile reloaded'
-  elif [[ $0 == "-bash" ]]; then
+  elif [ $SHELL = "/usr/local/bin/bash" ]; then
     source ~/.bash_profile && echo 'bash profile reloaded'
+  else
+    echo "Shell config not found for $SHELL"
   fi
 }
 
