@@ -682,7 +682,7 @@ if isdirectory(expand("~/.vim/plugged/promptline.vim"))
     " let g:promptline_theme = 'airline'
     let g:promptline_theme = 'airline_insert'
     " let g:promptline_theme = 'airline_visual'
-    let g:promptline_preset = 'clear'
+    let g:promptline_preset = 'full'
 endif
 " }}}"
 
