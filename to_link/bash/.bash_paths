@@ -78,7 +78,7 @@ if [ -f "/usr/local/Cellar/tmux/1.8/etc/bash_completion.d/tmux" ]; then
 fi
 
 # mac bash git completion
-if [ -f "/usr/local/etc/bash_completion" ]; then
+if [ -f "/usr/local/etc/bash_completion" ] && [[  $0 == "bash" ]]; then
   . /usr/local/etc/bash_completion
 fi
 
@@ -113,7 +113,7 @@ if [ -f /usr/local/etc/grc.bashrc ]; then
 fi
 
 # teamocil completion
-if [[ "$(type -P teamocil)" ]]; then
+if type "teamocil" &> /dev/null; then
     complete -W "$(teamocil --list)" teamocil
 fi
 

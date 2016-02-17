@@ -279,7 +279,9 @@ _vagrant()
     fi
 
 }
-complete -F _vagrant vagrant
+if [[  $0 == "bash" ]]; then
+  complete -F _vagrant vagrant
+fi
 
 phpunitnotify () {
     # about 'runs phpunit and uses terminal-notifier to show the results'

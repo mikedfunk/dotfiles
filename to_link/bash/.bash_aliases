@@ -434,7 +434,7 @@ alias puf="pu --filter="
 
 # composer {{{
 # composer with hhvm makes it way faster
-if [[ "$(type -P hhvm)" ]]; then
+if type "hhvm" &> /dev/null; then
     alias composer="hhvm -v ResourceLimit.SocketDefaultTimeout=30 -v Http.SlowQueryThreshold=30000 /usr/local/bin/composer"
 fi
 alias cda="composer dump-autoload"
@@ -508,7 +508,7 @@ alias largestfiles="find . -type f -print0 | xargs -0 du | sort -n | tail -10 | 
 alias largestdirs="find . -type d -print0 | xargs -0 du | sort -n | tail -10 | cut -f2 | xargs -I{} du -sh {}"
 
 # colorize cat {{{
-if [[ "$(type -P pygmentize)" ]]; then
+if type "pygmentize" &> /dev/null; then
     alias cat="pygmentize -g"
 fi
 # }}}
