@@ -48,6 +48,7 @@ link_this "$HOME/.dotfiles/to_link/.jscsrc" "$HOME/.jscsrc"
 link_this "$HOME/.dotfiles/to_link/.curlrc" "$HOME/.curlrc"
 link_this "$HOME/.dotfiles/to_link/.editorconfig" "$HOME/.editorconfig"
 link_this "$HOME/.dotfiles/to_link/.myclirc" "$HOME/.myclirc"
+link_this "$HOME/.dotfiles/to_link/.zshrc" "$HOME/.zshrc"
 
 link_this "/var/www/sites" "$HOME/Sites"
 # default location for mac

@@ -283,6 +283,16 @@ if [[  $0 == "bash" ]]; then
   complete -F _vagrant vagrant
 fi
 
+profile () {
+  # about 'source either bashrc or zshrc'
+  # group 'custom'
+  if [[ $0 == "zsh" ]]; then
+    source ~/.zshrc && echo 'zsh profile reloaded'
+  elif [[ $0 == "-bash" ]]; then
+    source ~/.bash_profile && echo 'bash profile reloaded'
+  fi
+}
+
 phpunitnotify () {
     # about 'runs phpunit and uses terminal-notifier to show the results'
     # group 'custom'

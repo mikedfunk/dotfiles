@@ -498,8 +498,6 @@ alias lines="find . -name '*.php' | xargs wc -l"
 
 alias storage="sudo chmod -R 777 app/storage public/assets/builds; echo 'done'"
 
-alias profile="source ~/.bash_profile && echo 'bash profile reloaded'"
-
 # restart networking
 alias restart-networking="sudo /etc/init.d/networking stop; sleep 2; sudo /etc/init.d/networking start"
 
