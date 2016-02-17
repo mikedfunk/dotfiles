@@ -422,9 +422,11 @@ alias g="git"
 
 # phpunit {{{
 # alias phpunit="phpunitnotify"
-alias coverage="phpunit --debug && open build/coverage/index.html"
 # alias test="php artisan test "
 alias pu="phpunitnotify"
+alias punonotify="[ -f ./vendor/bin/phpunit ] && ./vendor/bin/phpunit ${@} || $HOME/.composer.vendor/bin/phpunit ${@}"
+alias coverage="pu --coverage-html=./coverage && open coverage/index.html"
+alias puc="coverage"
 alias pf="pu --debug --filter "
 alias pux="php -dxdebug.profiler_enable=1 -dxdebug.remote_autostart=On -dxdebug.idekey=netbeans-xdebug pu"
 alias puf="pu --filter="

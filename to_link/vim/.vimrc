@@ -544,7 +544,7 @@ if isdirectory(expand("~/.vim/plugged/phpcomplete.vim"))
     augroup END
 
     " only for php set the omnifunc to completephp
-    " autocmd phpcomplete_augroup FileType php set omnifunc=phpcomplete#CompletePHP
+    autocmd phpcomplete_augroup FileType php set omnifunc=phpcomplete#CompletePHP
 
     " this lets non-static methods be called in static context. Good for laravel.
     " let g:phpcomplete_relax_static_constraint = 1
@@ -552,8 +552,8 @@ if isdirectory(expand("~/.vim/plugged/phpcomplete.vim"))
     let g:phpcomplete_index_composer_command = "composer"
 
     " default: 0. show more info in the preview window and return types. Slower.
-    " let g:phpcomplete_parse_docblock_comments = 1
-    let g:phpcomplete_parse_docblock_comments = 0
+    let g:phpcomplete_parse_docblock_comments = 1
+    " let g:phpcomplete_parse_docblock_comments = 0
 
     " Enables use of tags when the plugin tries to find variables. When
     " enabled the plugin will search for the variables in the tag files with
@@ -1213,7 +1213,7 @@ if isdirectory(expand("~/.vim/plugged/YouCompleteMe"))
     let g:ycm_autoclose_preview_window_after_insertion = 1
 
     " disable youcompleteme
-    " let g:ycm_auto_trigger=0
+    let g:ycm_auto_trigger=0
 
     " let g:ycm_allow_changing_updatetime=0
     let g:ycm_seed_identifiers_with_syntax = 1
