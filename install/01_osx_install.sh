@@ -89,6 +89,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
         gnu-tar # linux version of tar so stuff actually works
         # go # go programming language. used for mailhog.
         gpg # used by s3cmd
+        # heroku-toolbelt # heroku deploy tools
         # hg # mercurial
         highlight # colorizes html and other output on the command line. used by ranger.
         htop # prettier, more powerful version of top. gets the top running processes
