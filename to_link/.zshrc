@@ -51,7 +51,7 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(git)
-plugins=(gitfast git-extras git-flow-avh history colored-man colorize github jira vagrant brew osx zsh-syntax-highlighting bower capistrano composer common-aliases jsontools last-working-dir npm phing vagrant vi-mode wd)
+plugins=(gitfast git-extras git-flow-avh history colored-man colorize github jira vagrant brew osx zsh-syntax-highlighting bower capistrano composer common-aliases jsontools npm phing vagrant vi-mode wd)
 
 # User configuration
 
@@ -95,3 +95,13 @@ export SSH_KEY_PATH="~/.ssh/keys"
 # [ -f ~/.bash_completions ] && source ~/.bash_completions
 [ -f ~/.promptline.theme.bash ] && source ~/.promptline.theme.bash
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+# fast hostname completion
+# @link http://www.mervine.net/hacks/zsh-known-hosts-completion
+# local knownhosts knownhosts=( ${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*} ) zstyle ':completion:*:(ssh|scp|sftp):*' hosts $knownhosts
+
+# @link https://github.com/robbyrussell/oh-my-zsh/issues/2737#issuecomment-41153415
+# zstyle -e ':completion:*' hosts 'reply=($(< ~/.hosts))' # and then stick the ones you want in that file
+
+# autossh -> ssh completion
+compdef autossh=ssh

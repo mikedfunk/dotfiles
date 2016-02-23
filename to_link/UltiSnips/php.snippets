@@ -1705,3 +1705,19 @@ endsnippet
 snippet gmb "phpunit get mock builder"
 $this->getMockBuilder(${1:MyClass}::class)->getMock();
 endsnippet
+
+snippet pme "phpunit expects once (pneumonic Phpunit Mock Expects)"
+expects($this->once())->$2
+endsnippet
+
+snippet pmm "phpunit method (pneumonic Phpunit Mock Method)"
+method('${1:methodName}')->$2
+endsnippet
+
+snippet pmw "phpunit with (pneumonic Phpunit Mock With)"
+with('${1:input}')->$2
+endsnippet
+
+snippet pmr "phpunit return (pneumonic Phpunit Mock Return)"
+will($this->returnValue($1));
+endsnippet
