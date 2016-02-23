@@ -706,10 +706,18 @@ if isdirectory(expand("~/.vim/plugged/syntastic"))
     endif
 
     " recommended settings from their docs
-    let g:syntastic_always_populate_loc_list = 1
+    "
+    " Default: 0
+    " By default syntastic doesn't fill the |location-list| with the errors found
+    " by the checkers, in order to reduce clashes with other plugins. Enable this
+    " option to tell syntastic to always stick any detected errors into the
+    " let g:syntastic_always_populate_loc_list = 1
+
     " let g:syntastic_auto_loc_list = 1
     " let g:syntastic_check_on_open = 1
     let g:syntastic_check_on_wq = 0
+
+    " NOTE: show errors location list with :Errors
 
     " spiffy error columns
     " causing problems with spacing
