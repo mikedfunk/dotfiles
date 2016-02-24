@@ -168,6 +168,17 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
             brew install profanity --with-terminal-notifier
         fi
 
+        # fuzzy finder
+        if [[ ! "$(type -P fzf)" ]]; then
+            log_info "installing fzf"
+            brew install fzf
+            log_info "installing fzf shell extensions"
+            /usr/local/opt/fzf/install
+        else
+            log_info "upgrading fzf"
+            brew reinstall fzf
+        fi
+
         # install all quicklook plugins via brew cask
         # @link https://github.com/sindresorhus/quick-look-plugins
 

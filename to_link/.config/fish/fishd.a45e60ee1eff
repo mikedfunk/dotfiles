@@ -24,3 +24,4 @@ SET fish_pager_color_completion:normal
 SET fish_pager_color_description:555\x1eyellow
 SET fish_pager_color_prefix:cyan
 SET fish_pager_color_progress:cyan
+SET fish_user_paths:/usr/local/opt/fzf/bin\x1e/Users/mikefunk/\x2efzf/bin

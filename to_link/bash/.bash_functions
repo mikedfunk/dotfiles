@@ -523,3 +523,13 @@ function couchtest() {
     # same thing but pretty-print json, which it turns out looks exactly the same :/
     # php /data/code_base/current/scripts/mike/couchtest.php production -v -b=$BUCKET -d=$DOCID | sed '1d; $d; s/^ *//' | sed '1d; $d; s/^ *//' | python -m json.tool
 }
+
+##
+ # resilient ssh with ssh and screen
+ ##
+function asc() {
+    # Set the title to something more obvious, e.g. the expanded
+    # alias, eh, function
+    print -Pn "\e]0;%n@%m: autossh -t $* 'screen -RdU'\a";
+    autossh -x -a -t "$@" 'screen -RdU'
+}

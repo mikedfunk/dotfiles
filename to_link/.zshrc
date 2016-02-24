@@ -105,7 +105,11 @@ export SSH_KEY_PATH="~/.ssh/keys"
 
 # autossh -> ssh completion
 compdef autossh=ssh
+# function to use autossh with screen
+compdef asc=ssh
 
 # don't expand aliases _before_ completion has finished
 #   like: git comm-[tab]
 # setopt complete_aliases
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

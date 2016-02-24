@@ -1192,6 +1192,9 @@ Plug 'thinca/vim-visualstar', { 'on': ['<Plug>visualstar-*', '<Plug>visualstar-#
 " different fork of ctrlp that accepts pull requests
 Plug 'ctrlpvim/ctrlp.vim'
 
+" fuzzy finder - ctrlp replacement :FZF
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
 " only for added sources for phpcomplete_extended
 " which I currently do NOT use
 " Plug 'Shougo/unite.vim'
