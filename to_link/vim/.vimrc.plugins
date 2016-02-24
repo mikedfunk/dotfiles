@@ -80,7 +80,10 @@ Plug 'kana/vim-textobj-user'
 " }}}
 
 " General Programming {{{
-Plug 'scrooloose/syntastic', { 'for': ['vim', 'php', 'python', 'javascript', 'javascript.jsx', 'css'] }
+" This doesn't like lazy loading. Only works if you open one of these file
+" types directly like vim /path/to/filename.php
+" Plug 'scrooloose/syntastic', { 'for': ['vim', 'php', 'python', 'javascript', 'javascript.jsx', 'css'] }
+Plug 'scrooloose/syntastic'
 if executable('git')
     Plug 'tpope/vim-fugitive'
 endif

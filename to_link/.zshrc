@@ -105,3 +105,7 @@ export SSH_KEY_PATH="~/.ssh/keys"
 
 # autossh -> ssh completion
 compdef autossh=ssh
+
+# don't expand aliases _before_ completion has finished
+#   like: git comm-[tab]
+# setopt complete_aliases
