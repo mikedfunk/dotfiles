@@ -304,10 +304,10 @@ phpunitnotify () {
     # about 'runs phpunit and uses terminal-notifier to show the results'
     # group 'custom'
 
-    if [ -f ./vendor/bin/phpunit ]; then
+    if [ -f $PWD/vendor/bin/phpunit ]; then
       PHPUNIT="./vendor/bin/phpunit"
     else
-      PHPUNIT="$HOME/.composer.vendor/bin/phpunit"
+      PHPUNIT="$HOME/.composer/vendor/bin/phpunit"
     fi
     php -d memory_limit=2048M $PHPUNIT --colors "${@}"
     if [[ $? == 0 ]]; then
