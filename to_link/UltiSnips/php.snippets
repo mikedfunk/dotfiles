@@ -828,7 +828,7 @@ endsnippet
 snippet pucla "mike's phpunit test template with docblocks"
 <?php
 /**
- * `!v expand("%:t:r")`Test
+ * `!v expand("%:t:r")`
  *
  * @copyright `date +%Y` Demand Media, Inc. All Rights Reserved.
  */`!p snip.rv = namespace(snip, path)`
@@ -837,7 +837,7 @@ snippet pucla "mike's phpunit test template with docblocks"
  *
  * @author `!v g:snips_author`
  */
-class `!v expand("%:t:r")`Test extends \PHPUnit_Framework_TestCase
+class `!v expand("%:t:r")` extends \PHPUnit_Framework_TestCase
 {
 
     /**
