@@ -55,7 +55,7 @@
 [alias]
     ahead = git log --branches --not --remotes
     # delete every branch that has been merged into develop except develop
-    bclean = "!f() { git branch --merged ${1-develop} | grep -v " ${1-develop}$" | xargs -r git branch -d; }; f"
+    # bclean = "!f() { git branch --merged ${1-develop} | grep -v " ${1-develop}$" | xargs -r git branch -d; }; f"
     br = branch
     # list branches sorted by last modified
     bm = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"

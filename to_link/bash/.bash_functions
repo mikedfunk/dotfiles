@@ -369,6 +369,28 @@ togglexdebug() {
     fi
 }
 
+togglephp() {
+  # about 'toggle php versions between 5.6 and 5.4 (osx only)'
+  # group 'custom'
+  if [[ "$(php -i | grep 5.4)" ]]; then
+    echo 'Switching from php 5.4 to php 5.6'
+    brew unlink php54 php54-couchbase php54-intl php54-mcrypt php54-memcache php54-mongo php54-spl-types php54-xdebug
+    brew link php56 php56-couchbase php56-intl php56-mcrypt php56-memcache php56-mongo php56-spl-types php56-xdebug
+    echo 'now change your php version to 5.6...'
+    sudo vim /etc/apache2/httpd.conf +169
+    sudo apachectl restart
+    echo 'done'
+  else
+    echo 'Switching from php 5.6 to php 5.4'
+    brew unlink php56 php56-couchbase php56-intl php56-mcrypt php56-memcache php56-mongo php56-spl-types php56-xdebug
+    brew link php54 php54-couchbase php54-intl php54-mcrypt php54-memcache php54-mongo php54-spl-types php54-xdebug
+    echo 'now change your php version to 5.4...'
+    sudo vim /etc/apache2/httpd.conf +169
+    sudo apachectl restart
+    echo 'done'
+  fi
+}
+
 isxdebugon() {
     # about 'tell me whether xdebug is enabled'
     # group 'custom'
