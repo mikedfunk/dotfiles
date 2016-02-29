@@ -332,52 +332,57 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
     # must do this first or it will say cannot find libz
     xcode-select --install
 
-    # php 7.0 version
-    brew install php70 --with-homebrew-curl --with-debug
-    brew install php70-xdebug --HEAD # fails if HEAD version not used
-    brew install php70-mcrypt
-    # brew install php70-redis # used by airliners
-    brew install php70-couchbase # used at Saatchi - v7 doesn't exist yet :(
-    brew install php70-intl # needed by symfony installer
+    # only install php stuff if not installed via brew
+    if [[ ! "$(brew list | grep php)" ]]; then
+        log_info "Installing homebrew php 7.0"
+        brew install php70 --with-homebrew-curl --with-debug
+        brew install php70-xdebug --HEAD # fails if HEAD version not used
+        brew install php70-mcrypt
+        # brew install php70-redis # used by airliners
+        brew install php70-couchbase # used at Saatchi - v7 doesn't exist yet :(
+        brew install php70-intl # needed by symfony installer
 
-    # unlink them because we'll be using a different php normally
-    brew unlink php70
-    brew unlink php70-xdebug
-    brew unlink php70-mcrypt
-    brew unlink php70-couchbase
-    brew unlink php70-intl
+        # unlink them because we'll be using a different php normally
+        brew unlink php70
+        brew unlink php70-xdebug
+        brew unlink php70-mcrypt
+        brew unlink php70-couchbase
+        brew unlink php70-intl
 
-    # php 5.4 version
-    brew install php54 --with-homebrew-curl --with-debug
-    brew install php54-xdebug --HEAD # fails if HEAD version not used
-    brew install php54-mcrypt
-    # brew install php54-redis # used by airliners
-    brew install php54-couchbase # used for saatchi catalog codebase
-    brew install php54-mongo # used for saatchiart codebase
-    brew install php54-intl # needed by symfony installer
-    brew install php54-memcache # used for saatchiart codebase testing
-    brew install php54-spl-types # used for saatchiart codebase testing
+        # php 5.4 version
+        log_info "Installing homebrew php 5.4"
+        brew install php54 --with-homebrew-curl --with-debug
+        brew install php54-xdebug --HEAD # fails if HEAD version not used
+        brew install php54-mcrypt
+        # brew install php54-redis # used by airliners
+        brew install php54-couchbase # used for saatchi catalog codebase
+        brew install php54-mongo # used for saatchiart codebase
+        brew install php54-intl # needed by symfony installer
+        brew install php54-memcache # used for saatchiart codebase testing
+        brew install php54-spl-types # used for saatchiart codebase testing
 
-    # unlink them because we'll be using a different php normally
-    brew unlink php54
-    brew unlink php54-xdebug
-    brew unlink php54-mcrypt
-    brew unlink php54-couchbase
-    brew unlink php54-mongo
-    brew unlink php54-intl
-    brew unlink php54-memcache
-    brew unlink php54-spl-types
+        # unlink them because we'll be using a different php normally
+        brew unlink php54
+        brew unlink php54-xdebug
+        brew unlink php54-mcrypt
+        brew unlink php54-couchbase
+        brew unlink php54-mongo
+        brew unlink php54-intl
+        brew unlink php54-memcache
+        brew unlink php54-spl-types
 
-    # php 5.6 version
-    brew install php56 --with-homebrew-curl --with-debug
-    brew install php56-xdebug --HEAD # fails if HEAD version not used
-    brew install php56-mcrypt
-    # brew install php56-redis # used by airliners
-    brew install php56-couchbase # used for saatchi catalog codebase
-    brew install php56-mongo # used for saatchiart codebase
-    brew install php56-intl # needed by symfony installer
-    brew install php56-memcache # used for saatchiart codebase testing
-    brew install php56-spl-types # used for saatchiart codebase testing
+        # php 5.6 version
+        log_info "Installing homebrew php 5.6"
+        brew install php56 --with-homebrew-curl --with-debug
+        brew install php56-xdebug --HEAD # fails if HEAD version not used
+        brew install php56-mcrypt
+        # brew install php56-redis # used by airliners
+        brew install php56-couchbase # used for saatchi catalog codebase
+        brew install php56-mongo # used for saatchiart codebase
+        brew install php56-intl # needed by symfony installer
+        brew install php56-memcache # used for saatchiart codebase testing
+        brew install php56-spl-types # used for saatchiart codebase testing
+    fi
 
 
     # have launchd start php-fpm at login
