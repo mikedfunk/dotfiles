@@ -58,11 +58,12 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
 
     if [[ "$(type -P brew)" ]]; then
         # update homebrew
-        log_info "Updating Homebrew"
-        brew prune
-        brew doctor
-        brew update
+        log_info "Updating Homebrew and Package List"
+        brew prune # Remove dead symlinks from the homebrew prefix
+        brew doctor # make sure brew is ready to rock
+        brew update # get new versions of everything in the dictionary
         brew upgrade # upgrade everything!
+        brew cleanup # remove outdated versions
         # brew tap phinze/homebrew-cask
 
         # install homebrew recipes

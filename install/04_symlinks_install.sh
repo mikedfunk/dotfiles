@@ -51,6 +51,11 @@ link_this "$HOME/.dotfiles/to_link/.myclirc" "$HOME/.myclirc"
 link_this "$HOME/.dotfiles/to_link/.zshrc" "$HOME/.zshrc"
 
 link_this "$HOME/.dotfiles/to_link/.warprc" "$HOME/.warprc"
+link_this "$HOME/.dotfiles/to_link/.sshrc" "$HOME/.sshrc"
+link_this "$HOME/.dotfiles/to_link/.sshrc.d" "$HOME/.sshrc.d"
+link_this "$HOME/.dotfiles/to_link/.inputrc" "$HOME/.sshrc.d/.inputrc"
+
+link_this "$HOME/.dotfiles/to_link/.my.cnf" "$HOME/.sshrc.d/.my.cnf"
 
 link_this "/var/www/sites" "$HOME/Sites"
 # default location for mac

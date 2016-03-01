@@ -1,0 +1,51 @@
+#!/usr/env/bin bash
+
+# Set up prompts. Color code them for logins. Red for root, white for 
+# user logins, green for ssh sessions, cyan for telnet,
+# magenta with red "(ssh)" for ssh + su, magenta for telnet.
+THIS_TTY=tty`ps aux | grep $$ | grep bash | awk '{ print $7 }'`
+SESS_SRC=`who | grep $THIS_TTY | awk '{ print $6 }'`
+
+SSH_FLAG=0
+SSH_IP=`echo $SSH_CLIENT | awk '{ print $1 }'`
+if [ $SSH_IP ] ; then
+  SSH_FLAG=1
+fi
+SSH2_IP=`echo $SSH2_CLIENT | awk '{ print $1 }'`
+if [ $SSH2_IP ] ; then
+  SSH_FLAG=1
+fi
+if [ $SSH_FLAG -eq 1 ] ; then
+  CONN=ssh
+elif [ -z $SESS_SRC ] ; then
+  CONN=lcl
+elif [ $SESS_SRC = "(:0.0)" -o $SESS_SRC = "" ] ; then
+  CONN=lcl
+else
+  CONN=tel
+fi
+
+# Okay...Now who we be?
+if [ `/usr/bin/whoami` = "root" ] ; then
+  USR=priv
+else
+  USR=nopriv
+fi
+
+#Set some prompts...
+if [ $CONN = lcl -a $USR = nopriv ] ; then
+  PS1="[\u \W]\\$ "
+elif [ $CONN = lcl -a $USR = priv ] ; then
+  PS1="\[\033[01;31m\][\w]\\$\[\033[00m\] "
+elif [ $CONN = tel -a $USR = nopriv ] ; then
+  PS1="\[\033[01;34m\][\u@\h \W]\\$\[\033[00m\] "
+elif [ $CONN = tel -a $USR = priv ] ; then
+  PS1="\[\033[01;30;45m\][\u@\h \W]\\$\[\033[00m\] "
+elif [ $CONN = ssh -a $USR = nopriv ] ; then
+  PS1="\[\033[01;32m\][\u@\h \W]\\$\[\033[00m\] "
+elif [ $CONN = ssh -a $USR = priv ] ; then
+  PS1="\[\033[01;35m\][\u@\h \W]\\$\[\033[00m\] "
+fi
+
+# PS1="[\u@\h \W]\\$ "
+export PS1
