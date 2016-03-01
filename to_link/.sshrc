@@ -1,5 +1,7 @@
 #!/usr/env/bin bash
 
+# @link http://www.tldp.org/HOWTO/Bash-Prompt-HOWTO/x865.html
+
 # Set up prompts. Color code them for logins. Red for root, white for 
 # user logins, green for ssh sessions, cyan for telnet,
 # magenta with red "(ssh)" for ssh + su, magenta for telnet.

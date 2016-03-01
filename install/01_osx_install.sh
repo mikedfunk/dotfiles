@@ -120,6 +120,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
         ruby-build # an rbenv plugin that provides an rbenv install command to compile and install different versions of ruby
         s3cmd # amazon s3 uploader
         ssh-copy-id # copies ssh keys to remote servers
+        sshrc # use ~/.sshrc and ~/.sshrc.d on remote servers
         # sshfs # mounts ssh servers as file systems in the local fs. requires osxfuse.
         # sshuttle # poor mans vpn. doesnt work on yosemite at the moment
         # solr # search data server
