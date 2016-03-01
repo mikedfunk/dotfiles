@@ -330,6 +330,7 @@ vnoremap > >gv
 " format all
 nnoremap <leader>fa mzggVG=`z :delmarks z<cr>hh :echo "formatted file"<cr>
 
+" sort use statements alphabetically
 augroup sortuse_augroup
     autocmd!
 augroup END

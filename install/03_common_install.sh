@@ -112,11 +112,25 @@ fi
 link_this "$HOME/.dotfiles/to_link/.composer" "$HOME/.composer"
 composer global install
 
+# phpdoc install without composer. dependencies conflict with other packages
+# using composer and it has a selfupdate.
+if [[ "$(type -P phpdoc)" ]]; then
+    log_info "Installing phpdoc"
+    curl -o /usr/local/bin/phpdoc -L http://phpdoc.org/phpDocumentor.phar
+    sudo chmod +x /usr/local/bin/phpdoc
+else
+    log_info "Updating phpdoc"
+    phpdoc selfupdate
+fi
+
 # had some problems with php-cs-fixer via composer so here's the wget version
 if [[ ! "$(type -P php-cs-fixer)" ]]; then
     log_info "Installing php-cs-fixer"
     sudo wget http://get.sensiolabs.org/php-cs-fixer.phar -O /usr/local/bin/php-cs-fixer
     sudo chmod +x /usr/local/bin/php-cs-fixer
+else
+    log_info "Updating php-cs-fixer"
+    php-cs-fixer selfupdate
 fi
 
 # build phpctags

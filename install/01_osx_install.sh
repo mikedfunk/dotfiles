@@ -62,6 +62,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
         brew prune
         brew doctor
         brew update
+        brew upgrade # upgrade everything!
         # brew tap phinze/homebrew-cask
 
         # install homebrew recipes
