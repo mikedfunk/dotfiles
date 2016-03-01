@@ -330,9 +330,10 @@ vnoremap > >gv
 " format all
 nnoremap <leader>fa mzggVG=`z :delmarks z<cr>hh :echo "formatted file"<cr>
 
-command! SortUse execute "normal! msgg/use\ <cr>vip:sort<cr>\`s:delmarks s<cr>:nohlsearch<cr>:echo 'sorted use statements'<cr>"
-" sort php use statements and return to where you were
-nnoremap <leader>su :SortUse<cr>
+augroup sortuse_augroup
+    autocmd!
+augroup END
+autocmd sortuse_augroup FileType php noremap <Leader>su :call PhpSortUse()<CR>
 
 " when copying php interface methods over, this turns interface stubs into
 " empty php methods. e.g. turns
