@@ -804,6 +804,9 @@ Plug 'ntpeters/vim-better-whitespace', { 'for': ['php', 'python', 'javascript', 
 " works great... in some color schemes. In others it's just annoying.
 " Plug 'inside/vim-search-pulse'
 
+" same thing but blink. Much more capable with varying color schemes
+Plug 'ivyl/vim-bling'
+
 " Highlight the current word throughout the doc
 " I use a autocmd for this that works better instead in my .vimrc.local
 "
