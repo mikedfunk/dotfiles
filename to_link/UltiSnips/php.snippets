@@ -131,7 +131,6 @@ snippet cstr "laravel 4 DI construct"
  * dependency injection
  *
  * @param ${1/\w+\s*/\u$0/}Interface $$1
- * @return void
  */
 public function __construct(${1/\w+\s*/\u$0/}Interface $$1)
 {
@@ -145,7 +144,6 @@ snippet cstest1 "construct snippet, still working on it"
  * dependency injection
  *
  * @param ${1/, /\n     * @param /g}
- * @return void
  */
 public function __construct(${1:dependencies})
 {
@@ -388,8 +386,6 @@ class `!v expand("%:t:r")` extends BaseRepositoryTest
 
     /**
      * phpunit setup
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -466,8 +462,6 @@ class `!v expand("%:t:r")` extends ServiceProvider
 
     /**
      * Bootstrap the application events.
-     *
-     * @return void
      */
     public function boot()
     {
@@ -477,8 +471,6 @@ class `!v expand("%:t:r")` extends ServiceProvider
 
     /**
      * Register the service provider.
-     *
-     * @return void
      */
     public function register()
     {
@@ -664,8 +656,6 @@ class `!v expand("%:t:r")` extends BaseControllerTest
 
     /**
      * phpunit setup
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -719,8 +709,6 @@ class Create$1Table extends Migration
 
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -749,8 +737,6 @@ class Create$1Table extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {
@@ -793,8 +779,6 @@ class $4 extends BaseSeeder
 
     /**
      * run seeder
-     *
-     * @return void
      */
     public function run()
     {
@@ -847,8 +831,6 @@ class `!v expand("%:t:r")` extends \PHPUnit_Framework_TestCase
 
     /**
      * phpunit setup
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -1442,8 +1424,6 @@ class $8 extends BaseTest
 
     /**
      * phpunit setup
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -1470,8 +1450,6 @@ class $8 extends BaseTest
 
     /**
      * test$1Command
-     *
-     * @return void
      */
     public function test$1Command()
     {
@@ -1596,8 +1574,6 @@ public function serialize()
 
 /**
  * unserialize
- *
- * @return void
  */
 public function unserialize($serialized)
 {
