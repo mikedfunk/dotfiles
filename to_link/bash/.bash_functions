@@ -344,9 +344,20 @@ togglexdebug() {
     # about 'toggle local xdebug on or off'
     # group 'custom'
 
+    PHP_VERSION='5.4'
+    PHP_NO_DOT='54'
+    if [[ "$(php -v | grep 5.6)" ]]; then
+      PHP_VERSION='5.6'
+      PHP_NO_DOT='56'
+    elif [[ "$(php -v | grep 7.0)" ]]; then
+      PHP_VERSION='7.0'
+      PHP_NO_DOT='70'
+    fi
+
     # XDEBUGPATH="/usr/local/php5/php.d/50-extension-xdebug.ini"
-    XDEBUGPATH="/usr/local/etc/php/5.6/conf.d/ext-xdebug.ini"
+    # XDEBUGPATH="/usr/local/etc/php/5.6/conf.d/ext-xdebug.ini"
     # XDEBUGPATH="/usr/local/etc/php/7.0/conf.d/ext-xdebug.ini"
+    XDEBUGPATH="/usr/local/etc/php/${PHP_VERSION}/conf.d/ext-xdebug.ini"
     XDEBUGDIS="${XDEBUGPATH}.disabled"
     if [[ -f $XDEBUGPATH ]]; then
         echo "Disabling Xdebug"
@@ -354,16 +365,20 @@ togglexdebug() {
         sudo apachectl restart
         # launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.php70.plist
         # launchctl load ~/Library/LaunchAgents/homebrew.mxcl.php70.plist
-        launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.php56.plist
-        launchctl load ~/Library/LaunchAgents/homebrew.mxcl.php56.plist
+        # launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.php56.plist
+        # launchctl load ~/Library/LaunchAgents/homebrew.mxcl.php56.plist
+        # launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.php${PHP_NO_DOT}.plist
+        # launchctl load ~/Library/LaunchAgents/homebrew.mxcl.php${PHP_NO_DOT}.plist
     elif [[ -f $XDEBUGDIS ]]; then
         echo "Enabling Xdebug"
         sudo mv $XDEBUGDIS $XDEBUGPATH
         sudo apachectl restart
         # launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.php70.plist
         # launchctl load ~/Library/LaunchAgents/homebrew.mxcl.php70.plist
-        launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.php56.plist
-        launchctl load ~/Library/LaunchAgents/homebrew.mxcl.php56.plist
+        # launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.php56.plist
+        # launchctl load ~/Library/LaunchAgents/homebrew.mxcl.php56.plist
+        # launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.php${PHP_NO_DOT}.plist
+        # launchctl load ~/Library/LaunchAgents/homebrew.mxcl.php${PHP_NO_DOT}.plist
     else
         echo "Xdebug ini file not found!"
     fi
@@ -374,16 +389,16 @@ togglephp() {
   # group 'custom'
   if [[ "$(php -v | grep 5.4)" ]]; then
     echo 'Switching from php 5.4 to php 5.6'
-    brew unlink php54 php54-couchbase php54-intl php54-mcrypt php54-memcache php54-mongo php54-spl-types php54-xdebug
-    brew link php56 php56-couchbase php56-intl php56-mcrypt php56-memcache php56-mongo php56-spl-types php56-xdebug
+    brew unlink php54
+    brew link php56
     echo 'now change your php version to 5.6...'
     sudo vim /etc/apache2/httpd.conf +169
     sudo apachectl restart
     echo 'done'
   else
     echo 'Switching from php 5.6 to php 5.4'
-    brew unlink php56 php56-couchbase php56-intl php56-mcrypt php56-memcache php56-mongo php56-spl-types php56-xdebug
-    brew link php54 php54-couchbase php54-intl php54-mcrypt php54-memcache php54-mongo php54-spl-types php54-xdebug
+    brew unlink php56
+    brew link php54
     echo 'now change your php version to 5.4...'
     sudo vim /etc/apache2/httpd.conf +169
     sudo apachectl restart

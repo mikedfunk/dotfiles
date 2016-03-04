@@ -825,7 +825,7 @@ class `!v expand("%:t:r")` extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * @var ${2:ActualClass} class under test
+     * @var $0${2:ActualClass} class under test
      */
     protected \$${2/\w+\s*/\l$0/};
 
@@ -837,8 +837,6 @@ class `!v expand("%:t:r")` extends \PHPUnit_Framework_TestCase
         // instantiate class under test
         $this->${2/\w+\s*/\l$0/} = new $2();
     }
-
-    $6
 }
 endsnippet
 

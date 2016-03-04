@@ -339,30 +339,32 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
     if [[ ! "$(brew list | grep php)" ]]; then
         log_info "Installing homebrew php 7.0"
         brew install php70 --with-homebrew-curl --with-debug
-        brew install php70-xdebug --HEAD # fails if HEAD version not used
-        brew install php70-mcrypt
+        brew install php70-xdebug --build-from-source
+        brew install php70-mcrypt --build-from-source
+        brew install php70-mongodb --build-from-source
         # brew install php70-redis # used by airliners
-        brew install php70-couchbase # used at Saatchi - v7 doesn't exist yet :(
-        brew install php70-intl # needed by symfony installer
+        # brew install php70-couchbase --build-from-source # used at Saatchi - v7 doesn't exist yet :(
+        brew install php70-intl --build-from-source # needed by symfony installer
+        brew install php70-opcache --build-from-source
 
         # unlink them because we'll be using a different php normally
         brew unlink php70
         brew unlink php70-xdebug
         brew unlink php70-mcrypt
-        brew unlink php70-couchbase
+        # brew unlink php70-couchbase
         brew unlink php70-intl
 
         # php 5.4 version
         log_info "Installing homebrew php 5.4"
         brew install php54 --with-homebrew-curl --with-debug
-        brew install php54-xdebug --HEAD # fails if HEAD version not used
-        brew install php54-mcrypt
+        brew install php54-xdebug --build-from-source # fails if HEAD version not used
+        brew install php54-mcrypt --build-from-source
         # brew install php54-redis # used by airliners
-        brew install php54-couchbase # used for saatchi catalog codebase
-        brew install php54-mongo # used for saatchiart codebase
-        brew install php54-intl # needed by symfony installer
-        brew install php54-memcache # used for saatchiart codebase testing
-        brew install php54-spl-types # used for saatchiart codebase testing
+        brew install php54-couchbase --build-from-source # used for saatchi catalog codebase
+        brew install php54-mongo --build-from-source # used for saatchiart codebase
+        brew install php54-intl --build-from-source # needed by symfony installer
+        brew install php54-memcache --build-from-source # used for saatchiart codebase testing
+        brew install php54-spl-types --build-from-source # used for saatchiart codebase testing
 
         # unlink them because we'll be using a different php normally
         brew unlink php54
@@ -378,13 +380,13 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
         log_info "Installing homebrew php 5.6"
         brew install php56 --with-homebrew-curl --with-debug
         brew install php56-xdebug --HEAD # fails if HEAD version not used
-        brew install php56-mcrypt
+        brew install php56-mcrypt --build-from-source
         # brew install php56-redis # used by airliners
-        brew install php56-couchbase # used for saatchi catalog codebase
-        brew install php56-mongo # used for saatchiart codebase
-        brew install php56-intl # needed by symfony installer
-        brew install php56-memcache # used for saatchiart codebase testing
-        brew install php56-spl-types # used for saatchiart codebase testing
+        brew install php56-couchbase --build-from-source # used for saatchi catalog codebase
+        brew install php56-mongo --build-from-source # used for saatchiart codebase
+        brew install php56-intl --build-from-source # needed by symfony installer
+        brew install php56-memcache --build-from-source # used for saatchiart codebase testing
+        brew install php56-spl-types --build-from-source # used for saatchiart codebase testing
     fi
 
 
