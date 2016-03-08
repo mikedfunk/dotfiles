@@ -181,8 +181,8 @@ window qa|dev
 1111111111110000000000000
 
 dir ~
-1 run ssh saatchi-qa-console-01
-0 run ssh saatchi-dev-console-01
+1 run sshrc saatchi-qa-console-01
+0 run sshrc saatchi-dev-console-01
 
 window mysql
 

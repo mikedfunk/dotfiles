@@ -49,3 +49,4 @@ cscope.files
 .pre-commit-config.yaml
 __LAST__
 .localscript_*
+.exrc

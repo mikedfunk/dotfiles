@@ -107,6 +107,8 @@ export SSH_KEY_PATH="~/.ssh/keys"
 compdef autossh=ssh
 # function to use autossh with screen
 compdef asc=ssh
+# bring your dotfiles with you
+compdef sshrc=ssh
 
 # don't expand aliases _before_ completion has finished
 #   like: git comm-[tab]

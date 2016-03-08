@@ -113,6 +113,7 @@ set hlsearch " Highlight search terms
 set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
 set laststatus=2 " always show a statusline. This fixes airline split issue.
 let g:mapleader = ',' " use comma for leader
+set exrc " enables reading .vimrc from current directory
 
 " NOTE: gn will highlight or visually select the last highlighted search result
 
