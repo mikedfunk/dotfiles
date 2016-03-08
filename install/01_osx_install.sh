@@ -74,6 +74,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
         bash # homebrew has the newest version of bash
         # ack # a search tool better than grep but worse than ag
         # cloc #count lines of code
+        chromedriver # like selenium for chrome. Used with pioneer js
         colortail # tail with support for colors
         cmake # used by youcompleteme
         # ctags # allows jumping to function/class definitions, etc. in vim

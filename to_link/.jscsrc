@@ -5,6 +5,5 @@
   "disallowSpacesInFunctionExpression": null,
   "disallowSpacesInAnonymousFunctionExpression": null,
   "disallowSpacesInFunctionDeclaration": null,
-  "disallowMultipleVarDecl": null,
-  "requireLeftStickedOperators": []
+  "disallowMultipleVarDecl": null
 }

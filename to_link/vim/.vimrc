@@ -864,9 +864,9 @@ if isdirectory(expand("~/.vim/plugged/vdebug"))
     " local machine php
     " let g:vdebug_options['port'] = 9001
     " zed VM
-    " let g:vdebug_options['port'] = 9015
+    let g:vdebug_options['port'] = 9015
     " saatchi VM
-    let g:vdebug_options['port'] = 9010
+    " let g:vdebug_options['port'] = 9010
 
     " This is if you want to limit to only connecting to a specific server.
     " Leave empty for any server.
@@ -1070,6 +1070,25 @@ if isdirectory(expand("~/.vim/plugged/vim-php-namespace"))
     inoremap <Leader><Leader>e <C-O>:call PhpExpandClass()<CR>
     " expand the namespace for the current class name
     noremap  <Leader><Leader>e :call PhpExpandClass()<CR>
+endif
+" }}}
+
+" {{{ vim-phpqa
+if isdirectory(expand("~/.vim/plugged/vim-phpqa"))
+    " Don't run messdetector on save (default = 1)
+    let g:phpqa_messdetector_autorun = 0
+
+    " Don't run codesniffer on save (default = 1)
+    let g:phpqa_codesniffer_autorun = 0
+
+    " Show code coverage on load (default = 0)
+    " let g:phpqa_codecoverage_autorun = 1
+
+    " Clover code coverage XML file
+    let g:phpqa_codecoverage_file = "build/logs/clover.xml"
+
+    " Show markers for lines that ARE covered by tests (default = 1)
+    " let g:phpqa_codecoverage_showcovered = 0
 endif
 " }}}
 

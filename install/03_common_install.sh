@@ -38,7 +38,9 @@ bower-installer # allows you to only install the files you need into a specific 
 browser-sync # like livereload but easier
 coffeelint # verify coffeescript files
 coffee-script # javascript abstraction / augmentation
+commitizen # git cz makes pretty commit messages
 csslint # verify css files
+cz-jira-smart-commit # jira plugin for commitizen
 diff-so-fancy # great looking terminal replacement for git diff
 eslint # javascript linter - used by syntastic in vim
 eslint-plugin-react # react jsx javascript linter - used by syntastic in vim

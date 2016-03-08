@@ -568,7 +568,7 @@ Plug 'alvan/vim-php-manual', { 'for': ['php', 'blade'] }
 " :Phpcc - show code coverage (will ask for a clover XML file if not set)
 " <Leader>qc  " Show/hide code coverage markers
 " I don't care much about coverage right now. I may re-enable it sometime.
-" Plug 'joonty/vim-phpqa', { 'for': 'php' }
+Plug 'joonty/vim-phpqa', { 'for': 'php' }
 
 " customizable php folding
 " I don't use folding but this is cool when it's on
