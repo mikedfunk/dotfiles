@@ -102,7 +102,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
         irssi # irc client
         # jsawk # parse json in bash
         libcaca # image previewing in ASCII. used by ranger
-        libcouchbase # nosql fast data storage similar to mongo. Used at Saatchi
+        libcouchbase # nosql fast data storage similar to mongo. Used at Saatchi. Includes cli tool cbc
         lynx # console web browser. used by ranger to preview html.
         # macvim # mac gui vim client
         # mono # .NET compiler for mac. Useful for OmniSharp.

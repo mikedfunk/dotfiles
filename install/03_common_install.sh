@@ -197,18 +197,24 @@ do
 done
 
 # install pip
-sudo easy_install pip
+easy_install pip
+
+# avoid problems with pip
+log_info "Installing correct core python packages"
+pip install --ignore-installed python-dateutil
+pip install --ignore-installed six
 
 # install python packages
 if [[ ! "$(type -P pip)" ]]; then
     log_error "pip not installed"
     return ${E_FAILURE}
 fi
-log_info "Installing Python 2 packages"
+log_info "Installing Python 2 pip packages"
 
 packages=(
 # gmusicapi # google music api
 # argcomplete # tab completion of arguments for python scripts
+csvkit # display csvs in tables
 fabric # deployment tool
 glances # like htop on steroids
 mycli # mysql cli tool with autocomplete
@@ -228,7 +234,7 @@ for package in "${packages[@]}"
 do
     hash $package 2>/dev/null || {
         log_info "installing $package"
-        sudo pip install --upgrade $package
+        pip install --upgrade $package
     }
 done
 

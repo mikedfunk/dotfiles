@@ -65,6 +65,7 @@ log_info "linking configs for neovim"
 
 # install vim-plug plugins
 log_info "installing vim plugins"
-vim +PlugInstall +qall
+# vim +PlugInstall +qall
+nvim +PlugInstall +qall
 
 log_info "End vim install script"

@@ -114,6 +114,7 @@ set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
 set laststatus=2 " always show a statusline. This fixes airline split issue.
 let g:mapleader = ',' " use comma for leader
 set exrc " enables reading .vimrc from current directory
+set secure " Always append set secure when exrc option is enabled!
 
 " NOTE: gn will highlight or visually select the last highlighted search result
 
@@ -863,11 +864,17 @@ if isdirectory(expand("~/.vim/plugged/vdebug"))
     " let g:vdebug_options['port'] = 9000
 
     " local machine php
-    " let g:vdebug_options['port'] = 9001
+    let g:vdebug_options['port'] = 9001
+    "
     " zed VM
-    let g:vdebug_options['port'] = 9015
+    " let g:vdebug_options['port'] = 9015
+
     " saatchi VM
     " let g:vdebug_options['port'] = 9010
+
+    command! XdebugLocal let g:vdebug_options['port']=9001
+    command! XdebugSaatchi let g:vdebug_options['port']=9010
+    command! XdebugZed let g:vdebug_options['port']=9015
 
     " This is if you want to limit to only connecting to a specific server.
     " Leave empty for any server.

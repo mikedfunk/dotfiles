@@ -62,9 +62,10 @@ endsnippet
 snippet sg "PHP Class Setter Getter" !b
 
 /**
- * setter
+ * Setter
  *
  * @param ${2:mixed} $$1
+
  * @return ${3:mixed} the current instance for chainability
  */
 public function set${1/\w+\s*/\u$0/}($$1)
@@ -75,12 +76,45 @@ public function set${1/\w+\s*/\u$0/}($$1)
 }
 
 /**
- * getter
+ * Getter
  *
  * @return $2
  */
 public function get${1/\w+\s*/\u$0/}()
 {
+    return $this->$1;
+}
+endsnippet
+
+snippet ght "Ghetto dependency injection" !b
+
+/**
+ * Setter - ghetto dependency injection. Allows for setting this as a mock 
+ * in testing.
+ *
+ * @param ${2:mixed} $$1
+
+ * @return ${3:mixed} the current instance for chainability
+ */
+public function set${1/\w+\s*/\u$0/}($$1)
+{
+    $this->$1 = $$1;
+
+    return $this;
+}
+
+/**
+ * Getter - singleton.
+ *
+ * @return $2
+ */
+public function get${1/\w+\s*/\u$0/}()
+{
+    if (is_null($this->$1)) {
+        $this->$1 = new $2(); 
+        return $this->$1;
+    }
+
     return $this->$1;
 }
 endsnippet
@@ -1694,4 +1728,8 @@ endsnippet
 
 snippet pmr "phpunit return (pneumonic Phpunit Mock Return)"
 will($this->returnValue($1));
+endsnippet
+
+snippet lg "zend logger - log to file"
+\Zend_Registry::get('file_logger')->info("$1");
 endsnippet
