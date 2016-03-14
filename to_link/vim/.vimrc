@@ -794,7 +794,7 @@ if executable('tmux') && isdirectory(expand("~/.vim/plugged/tmuxline.vim"))
         \ 'b'    : ['#H'],
         \ 'win'  : ['#I', '#W'],
         \ 'cwin' : ['#I', '#W#F'],
-        \ 'x'    : ['#(battery -t)'],
+        \ 'x'    : ['#{prefix_highlight} #(battery -t)'],
         \ 'z'    : ['%a', '%b %d', '%I:%M %p'],
     \}
     let g:airline#extensions#tmuxline#snapshot_file = "~/.dotfiles/support/tmuxline.conf"

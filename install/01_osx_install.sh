@@ -81,6 +81,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
         dnsmasq # easily set up dynamic dev domains such as myproject.dev
         # dos2unix # converts dos line endings to unix in a file
         # fasd # Command-line productivity booster, offers quick access to files and directories, inspired by autojump, z and v.
+        fpp # facebook path picker. Used with tmux-fpp to easily open files in an editor.
         git
         git-extras # adds some cool additional git commands
         # git-flow # adds first class git commands for the git-flow workflow
