@@ -47,5 +47,6 @@ My Bash, Vim, Git, and other dotfiles. *Now with 24-bit color support in [neovim
 * [Sequel Pro](http://www.sequelpro.com/) for Mac or [MySQL Workbench](http://dev.mysql.com/downloads/tools/workbench/) for Windows/Linux
 * [NetExtender](https://sslvpn.demo.sonicwall.com/cgi-bin/portal) or [SonicWall Mobile Connect](https://itunes.apple.com/us/app/sonicwall-mobile-connect/id466931806/?mt=8) for vpn access
 * [Xcode](https://itunes.apple.com/us/app/xcode/id497799835?ls=1&mt=12) or [XCode Command Line Tools](https://developer.apple.com/downloads/index.action) for Mac
-* [Bluetooth Headphone Listener](https://github.com/JamesFator/BTHSControl) fixes issue with bluetooth headphone pause/play button always opening iTunes on Mac OSX.
+* [Mac Bluetooth Headset Fix](https://github.com/jguice/mac-bt-headset-fix) fixes issue with bluetooth headphone pause/play button always opening iTunes on Mac OSX.
+* [Function Flip](http://kevingessner.com/software/functionflip/) To selectively toggle function keys to not have to use the _fn_ key.
 * Selenium server standalone from homebrew does not work too well with the default java version. I had to install [JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) to get it to work.
