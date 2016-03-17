@@ -98,7 +98,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
         highlight # colorizes html and other output on the command line. used by ranger.
         htop # prettier, more powerful version of top. gets the top running processes
         httpie # a cool alternative to curl
-        # hub # github tool is a superset of git. 2.0 needs to be installed via --HEAD
+        hub # github tool is a superset of git. 2.0 needs to be installed via --HEAD
         imagemagick # image transformation tool
         irssi # irc client
         # jsawk # parse json in bash
