@@ -125,6 +125,13 @@ else
     phpdoc selfupdate
 fi
 
+# install php manual files for psysh
+if [[ ! -d "$HOME/.local/share/psysh" ]]; then
+    log_info "Installing php manual for psysh"
+    mkdir -p "$HOME/.local/share/psysh"
+    sudo wget http://psysh.org/manual/en/php_manual.sqlite -O "$HOME/.local/share/psysh/php_manual.sqlite"
+fi
+
 # had some problems with php-cs-fixer via composer so here's the wget version
 if [[ ! "$(type -P php-cs-fixer)" ]]; then
     log_info "Installing php-cs-fixer"

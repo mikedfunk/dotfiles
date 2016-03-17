@@ -1,0 +1,16 @@
+_HiStOrY_V2_
+doc\040implode
+$data
+$briefData
+$briefData\040=\040json_decode($briefData)
+$briefData
+$today\040=\040new\040DateTime('2016-03-13');
+$lastStatusChange\040=\040new\040DateTime('2016-03-13');
+$today\040=\040new\040DateTime('now');
+$diff\040=\040$today->diff($lastStatusChange)
+$diff->format('%H:\040%I:\040%S')
+$diff->format('%R\040days\040%H:\040%I:\040%S')
+$diff->format('%R%a\040days\040%H:\040%I:\040%S')
+exit
+'\040tags:"'\040.\040implode('\040',\040['tag1',\040'tag2'])\040.\040'"'
+exit

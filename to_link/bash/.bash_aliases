@@ -392,8 +392,8 @@ alias pearupgrade="sudo pear upgrade"
 # the view instead of the width of the split. It's annoying to be cleaning up
 # after syntastic all of the time.
 
-# WHICH_VIM="macvim"
 # WHICH_VIM="vim"
+# WHICH_VIM="macvim"
 WHICH_VIM="neovim"
 if type nvim &> /dev/null && [ $WHICH_VIM = "neovim" ]; then
     # neovim is the new hotness! true 24-bit color!

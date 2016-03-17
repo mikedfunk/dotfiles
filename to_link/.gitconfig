@@ -144,6 +144,9 @@
     # rebase interactively on to the upstream to this branch
     ready = rebase -i @{u}
     rh = reset --hard
+    # show tags sorted by semantic version e.g. 3.1.0, 3.2.0, 3.10.0
+    semtag = tag --sort=v:refname
+    semver = tag --sort=v:refname
     # save a stash with "git stash save 'my stash name'"
     # search for a stash by saved description e.g. "git sshow 'my stash name'"
     sshow = "!f() { git stash show stash^{/$*} -p; }; f"
@@ -206,7 +209,8 @@
 
 # Core settings {{{
 [core]
-    editor = vim
+    ; editor = vim
+    editor = nvim
     whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
     trustctime = false
     ; if you want to specify a custom global gitignore location
@@ -226,10 +230,12 @@
 # diff and mergetool {{{
 [diff]
     ; tool = opendiff
-    tool = vimdiff
+    ; tool = vimdiff
+    tool = "nvim -d"
 [merge]
     ; tool = opendiff
-    tool = vimdiff
+    ; tool = vimdiff
+    tool = "nvim -d"
     ; shows local, parent, then remote
 	; conflictstyle = diff3
 [mergetool]
