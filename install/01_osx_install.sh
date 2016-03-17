@@ -190,6 +190,9 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
         # install homebrew recipes
         log_info "Installing Homebrew cask Recipes"
         packages=(
+        google-chrome
+        iterm2
+        macgdbp # xdebug gui client
         pdftotext # used by ranger to preview pdfs
         qlcolorcode # quicklook plugin
         qlstephen # quicklook plugin
@@ -199,7 +202,11 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
         quicklook-csv # quicklook plugin
         betterzipql # quicklook plugin
         qlimagesize # quicklook plugin
+        sequel-pro # mysql gui client
+        spectacle # keyboard window splitter/resizer/mover
         suspicious-package # quicklook plugin
+        virtualbox # virtual machine software
+        virtualbox-extension-pack # add-on to do stuff you'll always want
         webpquicklook # quicklook plugin
         )
         for package in "${packages[@]}"
