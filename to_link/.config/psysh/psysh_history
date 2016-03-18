@@ -14,3 +14,6 @@ $diff->format('%R%a\040days\040%H:\040%I:\040%S')
 exit
 '\040tags:"'\040.\040implode('\040',\040['tag1',\040'tag2'])\040.\040'"'
 exit
+$criteria
+$criteria\040=\040[];
+exit

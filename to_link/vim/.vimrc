@@ -12,6 +12,13 @@
 " more info at http://mikefunk.com
 " }}}
 
+" Neovim python {{{
+" @link http://stackoverflow.com/a/33858952
+if (has('nvim'))
+    let g:python_host_prog='/usr/bin/python'
+endif
+" }}}
+
 " Use plugins config {{{
 if filereadable(expand("~/.vimrc.plugins"))
     source ~/.vimrc.plugins
