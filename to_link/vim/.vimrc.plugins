@@ -320,8 +320,7 @@ Plug 'dahu/bisectly', { 'on': 'Bisectly' }
 " :LOTRClose
 " :LOTRToggle also available through <PLUG>LOTRToggle which is mapped to <leader>cr by default.
 " error: Vim version is too old, LOTR requires at least 7.4, patch 392
-" This is cool but I don't use it
-" Plug 'dahu/vim-lotr'
+Plug 'dahu/vim-lotr'
 
 " no more pastetoggle!
 " I think because I use screen-256-color this messes up and types some chars

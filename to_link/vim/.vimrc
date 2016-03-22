@@ -12,6 +12,20 @@
 " more info at http://mikefunk.com
 " }}}
 
+" tips {{{
+"
+" ## general:
+" * [I list all the lines where the word under the cursor occurs.
+" * [i. This shows the first occurrence only—which is often useful to see the definition of a variable.
+"
+" ## vimdiff:
+" * Slightly related, do and dp are useful as a short form of :diffget and
+" :diffput respectively and they also take a count that acts like a bufspec
+" argument that you would normally give to those diff commands.
+" * Mnemonic for do (since it's not dg, as one might expect): diff obtain.
+"
+" }}}
+
 " Neovim python {{{
 " @link http://stackoverflow.com/a/33858952
 if (has('nvim'))
@@ -182,6 +196,14 @@ autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,html.twig,xml,y
 " }}}
 
 " Miscellaneous {{{
+
+" vimdiff {{{
+" @link https://www.reddit.com/r/vim/comments/4b9hg5/weekly_vim_tips_and_tricks_thread_2/
+" This is an easy trick, but Vim doesn't, by default, update the diff when you
+" make changes from :diffput or :diffget, etc. So I use an autocmd, so it
+" updates the diff if I save the working file:
+autocmd BufWritePost * if &diff | diffupdate | endif
+" }}}
 
 " omnicomplete {{{
 
@@ -1064,7 +1086,8 @@ endif
 " vim-php-cs-fixer {{{
 if isdirectory(expand("~/.vim/plugged/vim-php-cs-fixer"))
     " just do psr-2. I don't want all your opinionated stuff.
-    let g:php_cs_fixer_level = "psr2"
+    let g:php_cs_fixer_level = 'psr2'
+    let g:php_cs_fixer_fixers_list = '-phpdoc_params,-psr0,-single_blank_line_before_namespace,-phpdoc_short_description,-concat_without_spaces,concat_with_spaces,-no_blank_lines_after_class_opening,-spaces_cast'
 endif
 " }}}
 

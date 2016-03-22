@@ -1737,3 +1737,7 @@ endsnippet
 snippet dbg "Psysh debugger"
 eval(\Psy\sh());
 endsnippet
+
+snippet wl "php reduce array to only whitelisted keys"
+array_filter(array_intersect_key(${1:$myArray}, array_flip($whitelist)));
+endsnippet

@@ -17,3 +17,5 @@ exit
 $criteria
 $criteria\040=\040[];
 exit
+$emailAddress
+$this->postupTemplateId

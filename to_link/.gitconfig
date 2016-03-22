@@ -74,11 +74,13 @@
     co = checkout
     cob = checkout -b
     dc = diff --cached
+    dd = diff develop..HEAD
     df = diff
     # show modified files in the last commit
     dl = "!git ll -1"
     # show a diff of the last commit
     dlc = diff --cached HEAD^
+    dm = diff master..HEAD
     # show files changed
     ds = diff --stat
     # show diffs one-by-one of each file that has changed. Takes a branch or hash or HEAD~1 or something.
