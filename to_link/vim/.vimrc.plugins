@@ -759,6 +759,10 @@ Plug 'mikedfunk/vim-php-refactoring-toolbox', { 'for': 'php' }
 
 " Looks {{{
 
+" Dim inactive windows
+" kind of annoying
+" Plug 'blueyed/vim-diminactive'
+
 " hide all ui elements and focus on the block you're in
 " :DistractionFreeToggle
 " :DistractionsOn

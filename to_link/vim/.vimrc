@@ -733,10 +733,12 @@ if isdirectory(expand("~/.vim/plugged/syntastic"))
     " if executable('jsxhint')
         " let g:javascript_checkers = ['jsxhint']
     " endif
-    if executable('eslint')
-        " let g:syntastic_javascript_checkers = ['eslint', 'jscs']
-        let g:syntastic_javascript_checkers = ['eslint']
+    if executable('eslint') && executable('jscs')
+        let g:syntastic_javascript_checkers = ['eslint', 'jscs']
     endif
+    " if executable('eslint')
+        " let g:syntastic_javascript_checkers = ['eslint']
+    " endif
 
     " recommended settings from their docs
     "
