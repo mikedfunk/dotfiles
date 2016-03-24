@@ -64,12 +64,16 @@ Plug 'Yggdroot/indentLine'
 " show added/modified/removed lines in version control in the signs column
 " SLOW
 " Plug 'mhinz/vim-signify'
+" From signify readme: NOTE: If git is the only version control system you
+" use, I suggest having a look at vim-gitgutter. It provides more git-specific
+" features that would be unfeasible for Sy, since it only implements features
+" that work for all supported VCS.
+Plug 'airblade/vim-gitgutter'
 " Plug 'tpope/vim-abolish', { 'on': 'Abolish' }
 " :Subvert or :S
 Plug 'tpope/vim-abolish'
-" Preview command line actions
-" I never use this
-" Plug 'osyo-manga/vim-over'
+" Preview command line actions like replacements as you type
+Plug 'osyo-manga/vim-over'
 " create your own text objects - required by some other text object plugins
 " I use
 Plug 'kana/vim-textobj-user'

@@ -50,3 +50,4 @@ cscope.files
 __LAST__
 .localscript_*
 .exrc
+.phing_targets

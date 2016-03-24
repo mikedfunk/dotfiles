@@ -729,6 +729,14 @@ endif
 
 " Syntastic {{{
 if isdirectory(expand("~/.vim/plugged/syntastic"))
+
+    " Default: 0
+    " When enabled, syntastic runs all checkers that apply to the current filetype,
+    " then aggregates errors found by all checkers and displays them. When disabled,
+    " syntastic runs each checker in turn, and stops to display the results the first
+    " time a checker finds any errors.
+    let g:syntastic_aggregate_errors = 1
+
     let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['html'] }
     " if executable('jsxhint')
         " let g:javascript_checkers = ['jsxhint']
