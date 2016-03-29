@@ -1734,6 +1734,10 @@ snippet lg "zend logger - log to file"
 \Zend_Registry::get('file_logger')->info("$1");
 endsnippet
 
+snippet zlg "Zed log to file. Isn't there an easier way?"
+(new \Zend_Log(new \Zend_Log_Writer_Stream('/scratch/yzed/data/US/logs/ZED/exception.log')))->info($1);
+endsnippet
+
 snippet dbg "Psysh debugger"
 eval(\Psy\sh());
 endsnippet

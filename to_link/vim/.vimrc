@@ -136,6 +136,7 @@ set laststatus=2 " always show a statusline. This fixes airline split issue.
 let g:mapleader = ',' " use comma for leader
 set exrc " enables reading .vimrc from current directory
 set secure " Always append set secure when exrc option is enabled!
+set ff=unix " Any non-unix line endings are converted to unix
 
 " NOTE: gn will highlight or visually select the last highlighted search result
 
@@ -735,7 +736,8 @@ if isdirectory(expand("~/.vim/plugged/syntastic"))
     " then aggregates errors found by all checkers and displays them. When disabled,
     " syntastic runs each checker in turn, and stops to display the results the first
     " time a checker finds any errors.
-    let g:syntastic_aggregate_errors = 1
+    " SLOWER
+    " let g:syntastic_aggregate_errors = 1
 
     let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['html'] }
     " if executable('jsxhint')

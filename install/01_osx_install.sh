@@ -387,7 +387,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
 
         # php 5.6 version
         log_info "Installing homebrew php 5.6"
-        brew install php56 --with-homebrew-curl --with-debug
+        brew install php56 --with-phpdbg --with-homebrew-curl --with-debug
         brew install php56-xdebug --HEAD # fails if HEAD version not used
         brew install php56-mcrypt --build-from-source
         # brew install php56-redis # used by airliners
