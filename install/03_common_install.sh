@@ -27,7 +27,7 @@ if [[ ! "$(type -P npm)" ]]; then
 fi
 
 log_info "Updating npm"
-sudo npm install -g npm
+npm install -g npm
 
 log_info "Installing npm Packages"
 packages=(
@@ -90,14 +90,15 @@ for package in "${packages[@]}"
 do
     hash $package 2>/dev/null || {
         log_info "installing $package"
-        sudo npm install -g $package --user "$(whoami)"
+        # sudo npm install -g $package --user "$(whoami)"
+        npm install -g $package
     }
 done
 
 # jsctags
 if [[ ! "$(type -P jsctags)" ]]; then
     log_info "Installing jsctags"
-    sudo npm install -g git://github.com/ramitos/jsctags.git
+    npm install -g git://github.com/ramitos/jsctags.git
 fi
 
 # install composer
