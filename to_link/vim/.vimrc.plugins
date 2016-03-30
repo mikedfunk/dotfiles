@@ -1164,16 +1164,17 @@ endif
 
 " better than Ack
 " :Ag! 'my search' [options]
-if executable('ag')
-    if has('nvim')
-        " neovim support
-        Plug 'Numkil/ag.nvim'
-    else
-        " Plug 'rking/ag.vim', { 'on': 'Ag' }
-        " lazy loading only worked sporadically
-        Plug 'rking/ag.vim'
-    endif
-endif
+" commented out - use fzf.vim instead the same way (:Ag whatever)
+" if executable('ag')
+    " if has('nvim')
+        " " neovim support
+        " Plug 'Numkil/ag.nvim'
+    " else
+        " " Plug 'rking/ag.vim', { 'on': 'Ag' }
+        " " lazy loading only worked sporadically
+        " Plug 'rking/ag.vim'
+    " endif
+" endif
 
 " allow to star search from a visual selection
 " viw *

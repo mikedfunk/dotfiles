@@ -29,7 +29,14 @@
 " Neovim python {{{
 " @link http://stackoverflow.com/a/33858952
 if (has('nvim'))
-    let g:python_host_prog='/usr/bin/python'
+    " let g:python_host_prog='/usr/bin/python'
+    let g:python_host_prog='/usr/local/bin/python'
+    let g:python3_host_prog = '/usr/local/bin/python3'
+    " To disable Python 3 interface, set `g:loaded_python3_provider` to 1:
+    " let g:loaded_python3_provider = 1
+    " To disable Python 3 interpreter check, set `g:python3_host_skip_check` to 1:
+    " Note: If you disable Python 3 check, you must install neovim module properly.
+    " let g:python3_host_skip_check = 1
 endif
 " }}}
 
@@ -1311,7 +1318,13 @@ if isdirectory(expand("~/.vim/plugged/YouCompleteMe"))
     " disable youcompleteme
     " let g:ycm_auto_trigger=0
 
-    " let g:ycm_allow_changing_updatetime=0
+    " https://github.com/Floobits/floobits-vim
+    " Other plugins can interfere with Floobits. For example, YouCompleteMe
+    " changes updatetime to 2000 milliseconds. This causes increased latency
+    " and decreased reliability when collaborating. add let
+    " g:ycm_allow_changing_updatetime = 0 to your ~/.vimrc.
+    let g:ycm_allow_changing_updatetime=0
+
     let g:ycm_seed_identifiers_with_syntax = 1
 
     " add some triggers
