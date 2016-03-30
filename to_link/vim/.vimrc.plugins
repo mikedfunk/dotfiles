@@ -881,6 +881,7 @@ Plug 'zenorocha/dracula-theme', {'rtp': 'vim/'}
 Plug 'blueshirts/darcula'
 " Plug 'jdkanani/vim-material-theme'
 " Plug 'NLKNguyen/papercolor-theme'
+Plug 'AlessandroYorba/Sierra'
 
 " just for testing some of the top color schemes - lots of gui-only here
 " Plug 'vim-scripts/Colour-Sampler-Pack'
