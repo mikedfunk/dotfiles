@@ -282,10 +282,16 @@ endif
 
 " Mappings {{{
 
+" format json {{{
 command! FormatJSON %!python -m json.tool
 " (for some reason this mapping is not applying but the command works)
 " format json in current file
 nnoremap <leader>fj :FormatJSON<cr>
+" }}}
+
+" move lines {{{
+" use vim-unimpaired: [e and ]e
+" }}}
 
 " go to end of use statements in php {{{
 " `m to go back
