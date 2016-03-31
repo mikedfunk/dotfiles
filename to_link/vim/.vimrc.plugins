@@ -876,12 +876,15 @@ Plug 'zenorocha/dracula-theme', {'rtp': 'vim/'}
 " Plug 'zaiste/Atom'
 " Plug 'joschka/Smyck-Color-Scheme'
 " Plug 'michalbachowski/vim-wombat256mod'
+" Plug 'vim-scripts/Wombat'
+" Plug 'AlessandroYorba/Alduin'
+" Plug 'viccuad/badfox'
 " gets messed up when switching background
 " Plug 'noahfrederick/vim-hemisu'
 Plug 'blueshirts/darcula'
 " Plug 'jdkanani/vim-material-theme'
 " Plug 'NLKNguyen/papercolor-theme'
-Plug 'AlessandroYorba/Sierra'
+" Plug 'AlessandroYorba/Sierra'
 
 " just for testing some of the top color schemes - lots of gui-only here
 " Plug 'vim-scripts/Colour-Sampler-Pack'

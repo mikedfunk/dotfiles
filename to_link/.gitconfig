@@ -148,8 +148,7 @@
     ready = rebase -i @{u}
     rh = reset --hard
     # show tags sorted by semantic version e.g. 3.1.0, 3.2.0, 3.10.0
-    semtag = tag --sort=v:refname
-    semver = tag --sort=v:refname
+    semver = !git tag --sort=v:refname | grep -E \"\\d+\\.\\d+\\.\\d+\"
     # save a stash with "git stash save 'my stash name'"
     # search for a stash by saved description e.g. "git sshow 'my stash name'"
     sshow = "!f() { git stash show stash^{/$*} -p; }; f"

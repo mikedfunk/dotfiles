@@ -395,6 +395,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
         brew install php56-mongo --build-from-source # used for saatchiart codebase
         brew install php56-intl --build-from-source # needed by symfony installer
         brew install php56-memcache --build-from-source # used for saatchiart codebase testing
+        brew install php56-memcached --build-from-source # used for saatchiart codebase testing
         brew install php56-spl-types --build-from-source # used for saatchiart codebase testing
     fi
 

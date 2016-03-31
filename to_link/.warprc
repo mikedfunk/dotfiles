@@ -3,3 +3,7 @@ zed:/Library/WebServer/Documents/saatchi/yzed
 puppet:/Library/WebServer/Documents/saatchi/puppet
 catalog:/Library/WebServer/Documents/saatchi/catalog
 dotfiles:~/.dotfiles
+private:~/.private-stuff
+local:~/Sites/saatchi/local-scripts
+predictive:~/Sites/saatchi/predictive-shipping-research
+api:~/Sites/saatchi/api

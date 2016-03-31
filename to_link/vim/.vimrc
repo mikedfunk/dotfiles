@@ -1174,7 +1174,7 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
     " Remove any newly removed plugins in ~/.vimrc.plugins
     nnoremap <leader>bc :so ~/.vimrc.plugins<cr> :PlugClean!<cr>
     " Upgrade all installed plugins in ~/.vimrc.plugins
-    nnoremap <leader>bu :so ~/.vimrc.plugins<cr> :PlugUpgrade<cr> :PlugUpdate<cr> :UpdateRemotePlugins<cr>
+    nnoremap <leader>bu :so ~/.vimrc.plugins<cr> :PlugUpdate<cr> :PlugUpgrade<cr> :UpdateRemotePlugins<cr>
 endif
 " }}}
 

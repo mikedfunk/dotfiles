@@ -1745,3 +1745,7 @@ endsnippet
 snippet wl "php reduce array to only whitelisted keys"
 array_filter(array_intersect_key(${1:$myArray}, array_flip($whitelist)));
 endsnippet
+
+snippet cfg "Get config value via zend framework 1"
+Zend_Registry::get('config')->$1
+endsnippet
