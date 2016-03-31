@@ -76,12 +76,12 @@
     dc = diff --cached
     dd = diff develop..HEAD
     df = diff
-    # show modified files in the last commit
-    dl = "!git ll -1"
-    # show a diff of the last commit
-    dlc = diff --cached HEAD^
+    # show modified files _only_ in the last commit
+    dl = diff --cached HEAD~1 --name-only
+    # show a diff of _only_ the last commit
+    dlc = diff --cached HEAD~1
     dm = diff master..HEAD
-    # show files changed
+    # show files changed (only slightly different than git status)
     ds = diff --stat
     # show diffs one-by-one of each file that has changed. Takes a branch or hash or HEAD~1 or something.
     # e.g. g dt HEAD~1
@@ -232,12 +232,12 @@
 # diff and mergetool {{{
 [diff]
     ; tool = opendiff
-    ; tool = vimdiff
-    tool = "nvim -d"
+    tool = vimdiff
+    ; tool = "nvim -d"
 [merge]
     ; tool = opendiff
-    ; tool = vimdiff
-    tool = "nvim -d"
+    tool = vimdiff
+    ; tool = "nvim -d"
     ; shows local, parent, then remote
 	; conflictstyle = diff3
 [mergetool]
