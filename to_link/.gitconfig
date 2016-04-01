@@ -73,6 +73,9 @@
     ca = !git add -A && git commit --amend
     co = checkout
     cob = checkout -b
+    # Fire up your difftool (e.g. Kaleidescope) with all the changes that
+    # are on the current branch.
+    code-review = difftool origin/develop...
     dc = diff --cached
     dd = diff develop..HEAD
     df = diff
@@ -172,6 +175,7 @@
     synchm = "!f() { echo \"Syncing current branch with master\" && git checkout master && git pull && git checkout - && git rebase master; }; f"
     # uncommit the last commit
     undo = reset HEAD~1 --mixed
+    # hard to remember
     unstage = reset HEAD
     # who has contributed to a project
     who = shortlog -n -s --no-merges
