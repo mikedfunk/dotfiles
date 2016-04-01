@@ -127,12 +127,20 @@
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
     # show all files tracked by git in this branch
     ls = ls-files
+    # show the last added tag! Helpful for git flow!
+    lasttag = describe --tags --abbrev=0
+    lt = describe --tags --abbrev=0
     mt = mergetool
+    # To see what new commits have been created by the last command –
+    # typically after a git pull. You invoke it for example with: git new HEAD
+    new = !sh -c 'git log $1@{1}..$1@{0} "$@"'
     # another graphy log format
     olg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     permission-reset = !git diff -p -R | grep -E \"^(diff|(old|new) mode)\" | git apply
     pl = pull
     pnp = !git pull && git push
+    # yo baby yo
+    po = !echo 'Ah push it' && git push origin && echo 'PUSH IT REAL GOOD' 
     pp = !git pull && git push
     pu = push
     # pull and update submodules... i hate submodules...
@@ -149,10 +157,10 @@
     rh = reset --hard
     # show tags sorted by semantic version e.g. 3.1.0, 3.2.0, 3.10.0
     semver = !git tag --sort=v:refname | grep -E \"\\d+\\.\\d+\\.\\d+\"
-    # save a stash with "git stash save 'my stash name'"
-    # search for a stash by saved description e.g. "git sshow 'my stash name'"
+    # save a stash with "git stash save my_stash_name"
+    # search for a stash by saved description e.g. "git sshow my_stash_name"
     sshow = "!f() { git stash show stash^{/$*} -p; }; f"
-    # apply a stash by saved description e.g. "git sapply 'my stash name'"
+    # apply a stash by saved description e.g. "git sapply my_stash_name"
     sapply = "!f() { git stash apply stash^{/$*}; }; f"
     st = status -sb
     # show all of my commits since yesterday
@@ -252,7 +260,10 @@
     autosquash = true
 [push]
     default = current
-    # push any missing annotated tags related to this branch to remote when pushing a branch
+    # push any missing _annotated_ tags related to this branch to remote when
+    # pushing a branch. Useful for git flow - pushes related release tags for
+    # master/develop when pushing the branch without also pushing lightweight
+    # tags.
 	followTag = true
 [rerere]
     enabled = 1
