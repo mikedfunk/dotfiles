@@ -1,92 +1,64 @@
-# Path to your oh-my-zsh installation.
-export ZSH=/Users/mikefunk/.oh-my-zsh
+# @link https://github.com/b4b4r07/zplug
+source ~/.zplug/zplug
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-# ZSH_THEME="robbyrussell"
-ZSH_THEME="agnoster"
+# plugin definitions
+zplug "bobthecow/git-flow-completion", if:"which git"
+zplug "lib/clipboard", from:oh-my-zsh, if:"[[ $OSTYPE == *darwin* ]]"
+zplug "plugins/", from:oh-my-zsh
+zplug "plugins/brew", from:oh-my-zsh
+zplug "plugins/capistrano", from:oh-my-zsh
+zplug "plugins/colored-man", from:oh-my-zsh
+zplug "plugins/colorize", from:oh-my-zsh
+zplug "plugins/common-aliases", from:oh-my-zsh
+zplug "plugins/composer", from:oh-my-zsh
+zplug "plugins/git", from:oh-my-zsh, if:"which git"
+zplug "plugins/git-extras", from:oh-my-zsh, if:"which git"
+zplug "plugins/git-flow-avh", from:oh-my-zsh, if:"which git"
+zplug "plugins/gitfast", from:oh-my-zsh, if:"which git"
+zplug "plugins/github", from:oh-my-zsh, if:"which git"
+zplug "plugins/history", from:oh-my-zsh
+zplug "plugins/jira", from:oh-my-zsh
+zplug "plugins/jsontools", from:oh-my-zsh
+zplug "plugins/npm", from:oh-my-zsh
+zplug "plugins/osx", from:oh-my-zsh
+zplug "plugins/phing", from:oh-my-zsh
+zplug "plugins/vagrant", from:oh-my-zsh
+zplug "plugins/vi-mode", from:oh-my-zsh
+zplug "plugins/wd", from:oh-my-zsh
+zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-history-substring-search"
+# after completion
+zplug "zsh-users/zsh-syntax-highlighting", nice:10
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+    printf "Install zplug plugins? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
 
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+# zplug commands
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+# install	Install described items (plugins/commands) in parallel	--verbose,--select
+# load	Source installed plugins and add installed commands to $PATH	--verbose
+# list	List installed items (Strictly speaking, view the associative array $zplugs)	--select
+# update	Update installed items in parallel	--self,--select
+# check	Return false if there are not installed items	--verbose
+# status	Check if the remote repositories are up to date	--select
+# clean	Remove repositories which are no longer managed	--force,--select
+# clear	Remove the cache file	--force
 
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+# Then, source plugins and add commands to $PATH
+# zplug load --verbose
+zplug load
 
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-# plugins=(git)
-plugins=(gitfast git-extras git-flow-avh history colored-man colorize github jira vagrant brew osx zsh-syntax-highlighting bower capistrano composer common-aliases jsontools npm phing vagrant vi-mode wd git-flow-completion zsh-syntax-highlighting zsh-autosuggestions)
-# disabled plugins:
-# zsh-history-substring-search
-
-# User configuration
-
-export PATH="$PATH:/Users/mikefunk/.rvm/gems/ruby-2.2.1/bin:/Users/mikefunk/.rvm/gems/ruby-2.2.1@global/bin:/Users/mikefunk/.rvm/rubies/ruby-2.2.1/bin:/usr/local/heroku/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/usr/local/Cellar/ruby/2.2.3/bin:/Users/mikefunk/.composer/vendor/bin:/usr/local/sbin:/usr/local/bin:/Applications/VirtualBox.app/Contents/MacOS:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/mikefunk/.rvm/gems/ruby-2.2.1/bin:/Users/mikefunk/.rvm/gems/ruby-2.2.1@global/bin:/Users/mikefunk/.rvm/rubies/ruby-2.2.1/bin:/usr/local/heroku/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/usr/local/Cellar/ruby/2.2.3/bin:/Users/mikefunk/.composer/vendor/bin:/usr/local/sbin:/Applications/VirtualBox.app/Contents/MacOS:/usr/local/opt/go/libexec/bin:/Users/mikefunk/.rvm/bin:/usr/local/opt/go/libexec/bin:/Users/mikefunk/.rvm/bin"
-# export MANPATH="/usr/local/man:$MANPATH"
-
-source $ZSH/oh-my-zsh.sh
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-export SSH_KEY_PATH="~/.ssh/keys"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+# autossh -> ssh completion
+compdef autossh=ssh
+# function to use autossh with screen
+compdef asc=ssh
+# bring your dotfiles with you
+compdef sshrc=ssh
 
 # bash stuff
 [ -f ~/.private_vars.sh ] && source ~/.private_vars.sh
@@ -97,23 +69,3 @@ export SSH_KEY_PATH="~/.ssh/keys"
 # [ -f ~/.bash_completions ] && source ~/.bash_completions
 [ -f ~/.promptline.theme.bash ] && source ~/.promptline.theme.bash
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-# fast hostname completion
-# @link http://www.mervine.net/hacks/zsh-known-hosts-completion
-# local knownhosts knownhosts=( ${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*} ) zstyle ':completion:*:(ssh|scp|sftp):*' hosts $knownhosts
-
-# @link https://github.com/robbyrussell/oh-my-zsh/issues/2737#issuecomment-41153415
-# zstyle -e ':completion:*' hosts 'reply=($(< ~/.hosts))' # and then stick the ones you want in that file
-
-# autossh -> ssh completion
-compdef autossh=ssh
-# function to use autossh with screen
-compdef asc=ssh
-# bring your dotfiles with you
-compdef sshrc=ssh
-
-# don't expand aliases _before_ completion has finished
-#   like: git comm-[tab]
-# setopt complete_aliases
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -280,28 +280,10 @@ if [[ "$(type -P vagrant)" ]]; then
     fi
 fi
 
-# install oh-my-zsh
-if [[ "$(type -P zsh)" ]]; then
-    log_info "installing oh-my-zsh"
-    sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-fi
-
-# install git flow completion
-if [[ ! -d "$ZSH_CUSTOM/plugins/git-flow-completion" ]]; then
-    log_info "installing zsh git flow completion"
-    git clone https://github.com/bobthecow/git-flow-completion $ZSH_CUSTOM/plugins/git-flow-completion
-fi
-
-# install zsh-syntax-highlighting
-if [[ ! -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ]]; then
-    log_info "installing zsh syntax highlighting"
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
-fi
-
-# install fish-style autosuggestion of first match
-if [[ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ]]; then
-    log_info "installing zsh autosuggestions"
-    git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
+# install zplug (no longer use oh-my-zsh)
+if [[ ! -d "$HOME/.zplug" ]]; then
+    log_info "installing zplug"
+    git clone https://github.com/b4b4r07/zplug ~/.zplug
 fi
 
 # commented all go stuff out until I am programming in go
