@@ -882,6 +882,7 @@ Plug 'trapd00r/neverland-vim-theme'
 " gets messed up when switching background
 Plug 'noahfrederick/vim-hemisu'
 Plug 'blueshirts/darcula'
+Plug 'toupeira/vim-desertink'
 " Plug 'jdkanani/vim-material-theme'
 " Plug 'NLKNguyen/papercolor-theme'
 " Plug 'AlessandroYorba/Sierra'

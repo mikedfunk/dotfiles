@@ -286,6 +286,18 @@ if [[ "$(type -P zsh)" ]]; then
     sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi
 
+# install zsh-syntax-highlighting
+if [[ ! -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ]]; then
+    log_info "installing zsh syntax highlighting"
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+fi
+
+# install fish-style autosuggestion of first match
+if [[ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ]]; then
+    log_info "installing zsh autosuggestions"
+    git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
+fi
+
 # commented all go stuff out until I am programming in go
 
 # setup gocode directory. this is like a vendor directory so no need to store
