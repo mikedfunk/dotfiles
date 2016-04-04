@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 # @link https://github.com/b4b4r07/zplug
 source ~/.zplug/zplug
 
@@ -27,8 +29,7 @@ zplug "plugins/vi-mode", from:oh-my-zsh
 zplug "plugins/wd", from:oh-my-zsh
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-history-substring-search"
-# after completion
-zplug "zsh-users/zsh-syntax-highlighting", nice:10
+zplug "zsh-users/zsh-syntax-highlighting", nice:10 # source after completion scripts
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
