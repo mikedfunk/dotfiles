@@ -1,4 +1,7 @@
 #!/bin/zsh
+#
+# prevent zsh from auto-updating tmux window title
+export DISABLE_AUTO_TITLE="true"
 
 # @link https://github.com/b4b4r07/zplug
 source ~/.zplug/zplug
