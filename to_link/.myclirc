@@ -87,9 +87,5 @@ Token.Toolbar.System = 'noinherit bold'
 Token.Toolbar.Arg = 'noinherit bold'
 Token.Toolbar.Arg.Text = 'nobold'
 
-[client]
-# custom pager
-pager = 'grcat ~/.grcat | less -RSFXin'
-
 # Favorite queries.
 [favorite_queries]

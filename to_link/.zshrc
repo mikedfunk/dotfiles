@@ -51,7 +51,9 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(git)
-plugins=(gitfast git-extras git-flow-avh history colored-man colorize github jira vagrant brew osx zsh-syntax-highlighting bower capistrano composer common-aliases jsontools npm phing vagrant vi-mode wd zsh-syntax-highlighting zsh-autosuggestions zsh-history-substring-search)
+plugins=(gitfast git-extras git-flow-avh history colored-man colorize github jira vagrant brew osx zsh-syntax-highlighting bower capistrano composer common-aliases jsontools npm phing vagrant vi-mode wd git-flow-completion zsh-syntax-highlighting zsh-autosuggestions)
+# disabled plugins:
+# zsh-history-substring-search
 
 # User configuration
 

@@ -1443,6 +1443,10 @@ Plug 'mtth/scratch.vim', { 'on': 'Scratch' }
 " fork
 " Plug 'LucHermitte/vim-jira-complete'
 
+" confluence shitty wiki format syntax highlighting for use with jirafs
+" http://jirafs.readthedocs.org/en/latest/getting_started.html
+Plug 'coddingtonbear/confluencewiki.vim'
+
 " continuously update session files, autosave, etc.
 " I can do this with startify!
 " let g:startify_session_persistence = 1

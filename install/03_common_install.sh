@@ -230,7 +230,7 @@ neovim # neovim python library
 # pgcli # a postgresql repl with autocompletion
 Pillow # used by image.vim to preview images in vim via ascii conversion
 pre-commit # yelp git pre-commit framework
-#requests # used for vim-jira-complete
+requests # used for vim-jira-complete
 # requests[security] # used to prevent urllib3 warning with wakatime vim plugin
 # robotframework # front-end testing framework
 # robotframework-selenium2screenshots
@@ -284,6 +284,12 @@ fi
 if [[ "$(type -P zsh)" ]]; then
     log_info "installing oh-my-zsh"
     sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+fi
+
+# install git flow completion
+if [[ ! -d "$ZSH_CUSTOM/plugins/git-flow-completion" ]]; then
+    log_info "installing zsh git flow completion"
+    git clone https://github.com/bobthecow/git-flow-completion $ZSH_CUSTOM/plugins/git-flow-completion
 fi
 
 # install zsh-syntax-highlighting
