@@ -7,6 +7,7 @@ export DISABLE_AUTO_TITLE="true"
 source ~/.zplug/zplug
 
 # plugin definitions
+zplug "djui/alias-tips"
 zplug "bobthecow/git-flow-completion", if:"which git"
 zplug "lib/clipboard", from:oh-my-zsh, if:"[[ $OSTYPE == *darwin* ]]"
 zplug "plugins/", from:oh-my-zsh
@@ -24,15 +25,17 @@ zplug "plugins/github", from:oh-my-zsh, if:"which git"
 zplug "plugins/history", from:oh-my-zsh
 zplug "plugins/jira", from:oh-my-zsh
 zplug "plugins/jsontools", from:oh-my-zsh
+# zplug "horosgrisa/mysql-colorize" # I already have practically the same thing in ~/.my.cnf
 zplug "plugins/npm", from:oh-my-zsh
 zplug "plugins/osx", from:oh-my-zsh
 zplug "plugins/phing", from:oh-my-zsh
 zplug "plugins/vagrant", from:oh-my-zsh
 zplug "plugins/vi-mode", from:oh-my-zsh
 zplug "plugins/wd", from:oh-my-zsh
-zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-autosuggestions" # buggy. crashes the shell regularly.
 zplug "zsh-users/zsh-history-substring-search"
-zplug "zsh-users/zsh-syntax-highlighting", nice:10 # source after completion scripts
+# zplug "zsh-users/zsh-syntax-highlighting", nice:10 # source after completion scripts
+
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
