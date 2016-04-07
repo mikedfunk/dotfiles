@@ -7,3 +7,4 @@ private:~/.private-stuff
 local:~/Sites/saatchi/local-scripts
 predictive:~/Sites/saatchi/predictive-shipping-research
 api:~/Sites/saatchi/api
+vagrant:~/Sites/saatchi/vagrant

@@ -1,0 +1,22 @@
+#!/usr/env/bin bash
+
+# Modeline and Notes {{{
+# vim: set sw=4 ts=4 sts=4 et tw=78 foldmethod=marker filetype=sh:
+#
+#  ___  ____ _         ______           _
+#  |  \/  (_) |        |  ___|         | |
+#  | .  . |_| | _____  | |_ _   _ _ __ | | __
+#  | |\/| | | |/ / _ \ |  _| | | | '_ \| |/ /
+#  | |  | | |   <  __/ | | | |_| | | | |   <
+#  \_|  |_/_|_|\_\___| \_|  \__,_|_| |_|_|\_\
+#
+# These completions work in a zsh shell
+# more info at http://mikefunk.com
+# }}}
+
+# teamocil
+command_exists teamocil && complete -W "$(teamocil --list)" teamocil
+
+# composer package to add symfony autocompletion
+# https://github.com/bamarni/symfony-console-autocomplete
+command_exists symfony-autocomplete && eval "$(symfony-autocomplete)"

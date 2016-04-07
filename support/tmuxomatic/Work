@@ -34,8 +34,8 @@ window config
 0000000000000000000000000
 0000000000000000000000000
 
-  foc
-  dir ~/.dotfiles
+foc
+dir ~/.dotfiles
 1 run vim
 0 run tmux rename-session Work
 0 run g st
@@ -181,8 +181,8 @@ window qa|dev
 1111111111110000000000000
 
 dir ~
-1 run sshrc saatchi-qa-console-01
-0 run sshrc saatchi-dev-console-01
+1 run ssh saatchi-qa-console-01
+0 run ssh saatchi-dev-console-01
 
 window mysql
 

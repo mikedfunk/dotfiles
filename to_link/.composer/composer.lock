@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9e97c4f24967f2ed756efa841b64d549",
-    "content-hash": "0cc7e4c27f4dc40727f06bbcd8ac55cc",
+    "hash": "98c1b66f687a157f8f65817e25de232c",
+    "content-hash": "b448996d39068cf69bcb823514fe3e80",
     "packages": [
         {
             "name": "andrewsville/php-token-reflection",
@@ -53,6 +53,44 @@
                 "tokenizer"
             ],
             "time": "2014-08-06 16:37:08"
+        },
+        {
+            "name": "bamarni/symfony-console-autocomplete",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bamarni/symfony-console-autocomplete.git",
+                "reference": "0f224ae25d13b79aef353767af43d420d1f96b13"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bamarni/symfony-console-autocomplete/zipball/0f224ae25d13b79aef353767af43d420d1f96b13",
+                "reference": "0f224ae25d13b79aef353767af43d420d1f96b13",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/console": "^2.5|3.*",
+                "symfony/process": "^2.3|3.*"
+            },
+            "require-dev": {
+                "symfony/console": "2.8.*"
+            },
+            "bin": [
+                "symfony-autocomplete"
+            ],
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bilal Amarni",
+                    "email": "bilal.amarni@gmail.com"
+                }
+            ],
+            "description": "Shell completion for Symfony Console based scripts",
+            "time": "2016-02-14 10:55:22"
         },
         {
             "name": "beberlei/assert",

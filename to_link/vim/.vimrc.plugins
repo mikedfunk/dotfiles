@@ -73,7 +73,7 @@ Plug 'airblade/vim-gitgutter'
 " :Subvert or :S
 Plug 'tpope/vim-abolish'
 " Preview command line actions like replacements as you type
-Plug 'osyo-manga/vim-over'
+" Plug 'osyo-manga/vim-over'
 " create your own text objects - required by some other text object plugins
 " I use
 Plug 'kana/vim-textobj-user'
@@ -1445,7 +1445,8 @@ Plug 'mtth/scratch.vim', { 'on': 'Scratch' }
 
 " confluence shitty wiki format syntax highlighting for use with jirafs
 " http://jirafs.readthedocs.org/en/latest/getting_started.html
-Plug 'coddingtonbear/confluencewiki.vim'
+" I don't use it
+" Plug 'coddingtonbear/confluencewiki.vim'
 
 " continuously update session files, autosave, etc.
 " I can do this with startify!

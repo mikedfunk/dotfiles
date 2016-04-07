@@ -452,6 +452,9 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
         chmod +x /usr/local/bin/mailhog
     fi
 
+    # fix bluetooth audio quality issue
+    defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
+
     # mac defaults from mathias bynens {{{
         # @link https://github.com/mathiasbynens/dotfiles/blob/master/.osx
         log_info "updating mac settings"

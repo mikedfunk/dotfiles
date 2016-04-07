@@ -32,7 +32,7 @@ zplug "plugins/phing", from:oh-my-zsh
 zplug "plugins/vagrant", from:oh-my-zsh
 zplug "plugins/vi-mode", from:oh-my-zsh
 zplug "plugins/wd", from:oh-my-zsh
-zplug "zsh-users/zsh-autosuggestions" # buggy. crashes the shell regularly.
+zplug "zsh-users/zsh-autosuggestions" # buggy if enabled along with zsh-syntax-highlighting. crashes the shell regularly.
 zplug "zsh-users/zsh-history-substring-search"
 # zplug "zsh-users/zsh-syntax-highlighting", nice:10 # source after completion scripts
 
@@ -73,6 +73,8 @@ compdef sshrc=ssh
 [ -f ~/.bash_paths ] && source ~/.bash_paths
 [ -f ~/.bash_aliases ] && source ~/.bash_aliases
 [ -f ~/.bash_functions ] && source ~/.bash_functions
-# [ -f ~/.bash_completions ] && source ~/.bash_completions
+# it seems most bash completions do not play nice with zsh
+[ -f ~/.bash_completions ] && [[ $SHELL == 'bash' ]] && source ~/.bash_completions
+[ -f ~/.zsh_friendly_completions ] && source ~/.zsh_friendly_completions
 [ -f ~/.promptline.theme.bash ] && source ~/.promptline.theme.bash
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
