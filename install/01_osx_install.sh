@@ -169,12 +169,6 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
             brew install choppsv1/term24/tmux
         fi
 
-        # jabber/xmpp client to do chat in the terminal
-        if [[ ! "$(type -P profanity)" ]]; then
-            log_info "installing profanity console IM client"
-            brew install profanity --with-terminal-notifier
-        fi
-
         # fuzzy finder
         if [[ ! "$(type -P fzf)" ]]; then
             log_info "installing fzf"
@@ -220,8 +214,6 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
         done
 
         # https://github.com/neovim/neovim/wiki/Installing
-        # bookmarking this for later. right now some things are still breaking
-        # in my vim setup with neovim.
         if [[ ! "$(type -P nvim)" ]]; then
             brew tap neovim/homebrew-neovim
             brew install --HEAD neovim
@@ -254,7 +246,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
         # fi
 
         # oh my zsh! shell
-        if [[ "$(which zsh)" == "/usr/local/bin/zsh" ]]; then
+        if [[ "$(which zsh)" != "/usr/local/bin/zsh" ]]; then
             log_info "changing shell to homebrew zsh"
             chsh -s `which zsh`
         fi
@@ -280,12 +272,6 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
             brew install battery
         fi
 
-        # hub 2.x requires --HEAD
-        if [[ ! "$(type -P hub)" ]]; then
-            log_info "installing github hub"
-            brew install --HEAD hub
-        fi
-
         # install homebrew packages without the same cli name
         packages=(
         bash-completion # installs all homebrew bash completion
@@ -304,25 +290,15 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
         launchctl load ~/Library/LaunchAgents/homebrew.mxcl.selenium-server-standalone.plist
     fi
 
-    # install ctags patched
-    # @link https://github.com/shawncplus/phpcomplete.vim/wiki/Patched-ctags
-    # Works but fishman includes built-in support for css and coffeescript
-    # log_info "Installing Ctags Patched"
-    # cd /usr/local/Library/Formula/
-    # curl https://raw.githubusercontent.com/shawncplus/phpcomplete.vim/master/misc/ctags-better-php.rb > /usr/local/Library/Formula/ctags-better-php.rb
-    # brew install ctags-better-php
-    # brew link --overwrite ctags-better-php
-
-    # this used to be fishman ctags but it is merging thankfully with other
-    # ctags contributors
+    # universal ctags
     log_info "Installing Universal Ctags"
     brew tap universal-ctags/universal-ctags
     brew install --HEAD universal-ctags
 
-    # link brew apps
+    # link brew apps to ~/Applications folder
     brew linkapps
 
-    # must do this first or it will say cannot find libz
+    # must do this first on older osx versions or it will say cannot find libz
     xcode-select --install
 
     # install phpbrew
@@ -344,12 +320,13 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
         phpbrew install 5.4 +default +intl +mcrypt
         log_info "installing php 5.6"
         phpbrew install 5.6.20 +default +intl +mcrypt
-        phpbrew switch 5.6.20 # default version
+        phpbrew switch 5.6.20 # make this default version
 
         # install phpbrew extensions
         log_info "installing phpbrew extensions"
         packages=(
         couchbase
+        iconv
         memcache
         memcached
         spl_types
@@ -373,14 +350,6 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
     # Remove outdated versions from the cellar.
     brew cleanup
 
-    # fix an issue with variable loading
-    # @link http://stackoverflow.com/questions/4749330/how-to-test-if-string-exists-in-file-with-bash-shell
-    if grep -Fxq 'variables_order = "GPCS"' /usr/local/etc/php/5.6/php.ini
-    then
-        log_info "fixing php.ini variable order"
-        sed -i '.bak' 's/variables_order\ =\ "GPCS"/variables_order\ =\ "EGPCS"/' /usr/local/etc/php/5.6/php.ini
-    fi
-
     # install phing bash completion
     if [[ ! -f /usr/local/etc/bash_completion.d/phing ]]; then
         log_info "Installing phing bash completion"
@@ -389,15 +358,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
         sudo mv phing /usr/local/etc/bash_completion.d/
     fi
 
-    # download and move mailcatcher
-    if [[ ! "$(type -P mailhog)" ]]; then
-        log_info "installing mailhog"
-        wget https://github.com/mailhog/MailHog/releases/download/v0.1.3/MailHog_darwin_amd64
-        mv MailHog_darwin_amd64 /usr/local/bin/mailhog
-        chmod +x /usr/local/bin/mailhog
-    fi
-
-    # fix bluetooth audio quality issue
+    # fix bluetooth audio quality issue on older osx versions
     defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
 
     # mac defaults from mathias bynens {{{
