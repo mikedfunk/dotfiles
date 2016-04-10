@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "98c1b66f687a157f8f65817e25de232c",
-    "content-hash": "b448996d39068cf69bcb823514fe3e80",
+    "hash": "77f2a17d4f73ee56e671ebc62306445e",
+    "content-hash": "54f609ffabafbc4bfa442aaef8ee6180",
     "packages": [
         {
             "name": "andrewsville/php-token-reflection",
@@ -1392,32 +1392,27 @@
         },
         {
             "name": "laravel/homestead",
-            "version": "v3.0.2",
+            "version": "v2.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/homestead.git",
-                "reference": "705449c3dbedbded4bd4f3ed725303c69253cad4"
+                "reference": "5008339af93bbb73efee53cbef9374c5d443c708"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/homestead/zipball/705449c3dbedbded4bd4f3ed725303c69253cad4",
-                "reference": "705449c3dbedbded4bd4f3ed725303c69253cad4",
+                "url": "https://api.github.com/repos/laravel/homestead/zipball/5008339af93bbb73efee53cbef9374c5d443c708",
+                "reference": "5008339af93bbb73efee53cbef9374c5d443c708",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.5.9",
-                "symfony/console": "~2.3|~3.0",
-                "symfony/process": "~2.3|~3.0"
+                "php": ">=5.4",
+                "symfony/console": "~2.0",
+                "symfony/process": "~2.0"
             },
             "bin": [
                 "homestead"
             ],
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "4.0-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Laravel\\Homestead\\": "src/"
@@ -1434,7 +1429,7 @@
                 }
             ],
             "description": "A virtual machine for web artisans.",
-            "time": "2016-02-16 22:31:00"
+            "time": "2016-01-05 19:19:26"
         },
         {
             "name": "laravel/installer",
@@ -6462,7 +6457,6 @@
         "phpspec/phpspec": 0,
         "techlivezheng/phpctags": 0,
         "drush/drush": 0,
-        "laravel/homestead": 0,
         "psy/psysh": 0,
         "qafoolabs/php-refactoring-browser": 0,
         "zendframework/zftool": 20

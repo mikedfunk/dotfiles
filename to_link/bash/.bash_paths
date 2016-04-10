@@ -136,17 +136,15 @@ if [ -d "/Applications/Postgres.app/Contents/Versions/9.4/bin" ]; then
 fi
 
 # Setting PATH for Python 2.7
-PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
+export PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
 # prepend composer path
-PATH="$PWD/vendor/bin:${PATH}"
+export PATH="$PWD/vendor/bin:${PATH}"
 
 # prepend local npm path
-PATH="$PWD/node_modules/.bin:${PATH}"
+export PATH="$PWD/node_modules/.bin:${PATH}"
 
-export PATH="$PATH"
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

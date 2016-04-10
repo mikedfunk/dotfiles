@@ -997,10 +997,8 @@ if isdirectory(expand("~/.vim/plugged/vim-airline"))
             autocmd!
         augroup END
         " warning: php tagbar is really slow. So I only enabled it for php files.
-        if (isdirectory(expand("~/.vim/plugged/vim-airline")))
-            autocmd php_tagbar FileType php let g:airline#extensions#tagbar#enabled = 1
-            " let g:airline#extensions#tagbar#enabled=1
-        endif
+        autocmd php_tagbar FileType php let g:airline#extensions#tagbar#enabled = 1
+        " let g:airline#extensions#tagbar#enabled=1
 
         " change how tags are displayed (:help tagbar-statusline)
           " let g:airline#extensions#tagbar#flags = '' " (default)

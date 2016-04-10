@@ -25,10 +25,11 @@ link_this "$HOME/.dotfiles/to_link/bash/.bash_profile" "$HOME/.bash_profile"
 link_this "$HOME/.dotfiles/to_link/bash/.bash_aliases" "$HOME/.bash_aliases"
 link_this "$HOME/.dotfiles/to_link/bash/.bash_functions" "$HOME/.bash_functions"
 link_this "$HOME/.dotfiles/to_link/bash/.bash_completions" "$HOME/.bash_completions"
-link_this "$HOME/.dotfiles/to_link/zsh_friendly/.zsh_friendly_completions" "$HOME/.zsh_friendly_completions"
+link_this "$HOME/.dotfiles/to_link/bash/.zsh_friendly_completions" "$HOME/.zsh_friendly_completions"
 
 link_this "$HOME/.dotfiles/to_link/bash/.bash_paths" "$HOME/.bash_paths"
 link_this "$HOME/.dotfiles/to_link/bash/.bash_env" "$HOME/.bash_env"
+link_this "$HOME/.dotfiles/to_link/bash/.bash_init" "$HOME/.bash_init"
 link_this "$HOME/.dotfiles/to_link/promptline.theme.bash" "$HOME/.promptline.theme.bash"
 
 # try to add some more bash completions somewhere

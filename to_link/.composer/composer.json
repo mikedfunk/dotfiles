@@ -21,7 +21,7 @@
     "phpspec/phpspec": "@stable",
     "techlivezheng/phpctags": "@stable",
     "drush/drush": "@stable",
-    "laravel/homestead": "@stable",
+    "laravel/homestead": "~2.0",
     "psy/psysh": "@stable",
     "qafoolabs/php-refactoring-browser": "@stable",
     "laravel/lumen-installer": "~1.0",

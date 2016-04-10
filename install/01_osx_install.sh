@@ -78,7 +78,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
         colortail # tail with support for colors
         cmake # used by youcompleteme
         # ctags # allows jumping to function/class definitions, etc. in vim
-        dnsmasq # easily set up dynamic dev domains such as myproject.dev
+        # dnsmasq # easily set up dynamic dev domains such as myproject.dev
         # dos2unix # converts dos line endings to unix in a file
         # fasd # Command-line productivity booster, offers quick access to files and directories, inspired by autojump, z and v.
         fpp # facebook path picker. Used with tmux-fpp to easily open files in an editor.
@@ -100,6 +100,8 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
         httpie # a cool alternative to curl
         hub # github tool is a superset of git. 2.0 needs to be installed via --HEAD
         imagemagick # image transformation tool
+        intltool # needed for php intl extension
+        icu4c # needed for php intl extension
         irssi # irc client
         # jsawk # parse json in bash
         libcaca # image previewing in ASCII. used by ranger
@@ -284,21 +286,6 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
             brew install --HEAD hub
         fi
 
-        # set up dnsmasq
-        log_info "setting up dnsmasq"
-        link_this "$HOME/.dotfiles/to_link/dnsmasq.conf" "/usr/local/etc/dnsmasq.conf"
-        # launch dnsmasq on startup
-        sudo cp -fv /usr/local/opt/dnsmasq/*.plist /Library/LaunchDaemons
-        # load dnsmasq now
-        sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
-        # set up dns resolver dir if not already there
-        [[ -d "/etc/resolver" ]] || sudo mkdir -p /etc/resolver
-        # link the dns resolver file
-        link_this "$HOME/.dotfiles/to_link/dev_dns_resolver" "/etc/resolver/dev"
-        # restart dnsmasq
-        sudo launchctl stop homebrew.mxcl.dnsmasq
-        sudo launchctl start homebrew.mxcl.dnsmasq
-
         # install homebrew packages without the same cli name
         packages=(
         bash-completion # installs all homebrew bash completion
@@ -335,95 +322,53 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
     # link brew apps
     brew linkapps
 
-    # install php via homebrew
-    log_info "Installing homebrew php with extensions"
-    brew tap homebrew/dupes
-    brew tap homebrew/versions
-    brew tap homebrew/homebrew-php
-
     # must do this first or it will say cannot find libz
     xcode-select --install
 
-    # only install php stuff if not installed via brew
-    if [[ ! "$(brew list | grep php)" ]]; then
-        log_info "Installing homebrew php 7.0"
-        brew install php70 --with-homebrew-curl --with-debug
-        brew install php70-xdebug --build-from-source
-        brew install php70-mcrypt --build-from-source
-        brew install php70-mongodb --build-from-source
-        # brew install php70-redis # used by airliners
-        # brew install php70-couchbase --build-from-source # used at Saatchi - v7 doesn't exist yet :(
-        brew install php70-intl --build-from-source # needed by symfony installer
-        brew install php70-opcache --build-from-source
+    # install phpbrew
+    if ! command_exists phpbrew; then
+        log_info "installing phpbrew"
+        curl -L -O https://github.com/phpbrew/phpbrew/raw/master/phpbrew
+        chmod +x phpbrew
+        sudo mv phpbrew /usr/local/bin/phpbrew
 
-        # unlink them because we'll be using a different php normally
-        brew unlink php70
-        brew unlink php70-xdebug
-        brew unlink php70-mcrypt
-        # brew unlink php70-couchbase
-        brew unlink php70-intl
+        # required stuff for php intl extension
+        # @link https://github.com/phpbrew/phpbrew/wiki/TroubleShooting#configure-error-unable-to-detect-icu-prefix-or-no-failed-please-verify-icu-install-prefix-and-make-sure-icu-config-works
+        log_info "linking requirements for phpbrew"
+        brew link icu4c gettext --force
+        # https://github.com/Homebrew/homebrew-php/issues/1931
+        brew link libxml2 --force
 
-        # php 5.4 version
-        log_info "Installing homebrew php 5.4"
-        brew install php54 --with-homebrew-curl --with-debug
-        brew install php54-xdebug --build-from-source # fails if HEAD version not used
-        brew install php54-mcrypt --build-from-source
-        # brew install php54-redis # used by airliners
-        brew install php54-couchbase --build-from-source # used for saatchi catalog codebase
-        brew install php54-mongo --build-from-source # used for saatchiart codebase
-        brew install php54-intl --build-from-source # needed by symfony installer
-        brew install php54-memcache --build-from-source # used for saatchiart codebase testing
-        brew install php54-memcached --build-from-source # used for saatchiart codebase testing
-        brew install php54-spl-types --build-from-source # used for saatchiart codebase testing
+        # install php versions
+        log_info "installing php 5.4"
+        phpbrew install 5.4 +default +intl +mcrypt
+        log_info "installing php 5.6"
+        phpbrew install 5.6.20 +default +intl +mcrypt
+        phpbrew switch 5.6.20 # default version
 
-        # unlink them because we'll be using a different php normally
-        brew unlink php54
-        brew unlink php54-xdebug
-        brew unlink php54-mcrypt
-        brew unlink php54-couchbase
-        brew unlink php54-mongo
-        brew unlink php54-intl
-        brew unlink php54-memcache
-        brew unlink php54-spl-types
+        # install phpbrew extensions
+        log_info "installing phpbrew extensions"
+        packages=(
+        couchbase
+        memcache
+        memcached
+        spl_types
+        mongo
+        xdebug
+        )
+        for package in "${packages[@]}"
+        do
+            hash $package 2>/dev/null || {
+                log_info "installing phpbrew extension $package"
+                phpbrew ext install $package
+            }
+        done
 
-        # php 5.6 version
-        log_info "Installing homebrew php 5.6"
-        brew install php56 --with-phpdbg --with-homebrew-curl --with-debug
-        brew install php56-xdebug --HEAD # fails if HEAD version not used
-        brew install php56-mcrypt --build-from-source
-        # brew install php56-redis # used by airliners
-        brew install php56-couchbase --build-from-source # used for saatchi catalog codebase
-        brew install php56-mongo --build-from-source # used for saatchiart codebase
-        brew install php56-intl --build-from-source # needed by symfony installer
-        brew install php56-memcache --build-from-source # used for saatchiart codebase testing
-        brew install php56-memcached --build-from-source # used for saatchiart codebase testing
-        brew install php56-spl-types --build-from-source # used for saatchiart codebase testing
+        # NOTE: you can disable an ext with `phpbrew ext disable {ext-name}`
     fi
-
-
-    # have launchd start php-fpm at login
-    # ln -sfv /usr/local/opt/php70/*.plist ~/Library/LaunchAgents
-    ln -sfv /usr/local/opt/php56/*.plist ~/Library/LaunchAgents
-
-    # load php-fpm now
-    # launchctl load ~/Library/LaunchAgents/homebrew.mxcl.php70.plist
-    # if extension not in httpd.conf, add it
-    # php 7.0 version
-    # if ! cat /etc/apache2/httpd.conf | grep -q "LoadModule php7_module /usr/local/opt/php70/libexec/apache2/libphp7.so"; then
-        # log_info "enabling homebrew php in apache"
-        # sudo sed -i '.bak' 's/#LoadModule\ php5_module\ libexec\/apache2\/libphp5\.so/LoadModule\ php7_module\ \/usr\/local\/opt\/php70\/libexec\/apache2\/libphp7\.so/' /etc/apache2/httpd.conf
-    # fi
-    if ! cat /etc/apache2/httpd.conf | grep -q "LoadModule php5_module /usr/local/opt/php56/libexec/apache2/libphp5.so"; then
-        log_info "enabling homebrew php in apache"
-        sudo sed -i '.bak' 's/#LoadModule\ php5_module\ libexec\/apache2\/libphp5\.so/LoadModule\ php5_module\ \/usr\/local\/opt\/php56\/libexec\/apache2\/libphp5\.so/' /etc/apache2/httpd.conf
-    fi
-
-    # if the vhosts lines are commented out in httpd.conf, uncomment them
-    if ! cat /etc/apache2/httpd.conf | grep -q "#Include /private/etc/apache2/extra/httpd-vhosts.conf" || ! cat /etc/apache2/httpd.conf | grep -q "#LoadModule vhost_alias_module libexec/apache2/mod_vhost_alias.so"; then
-        log_info "enabling vhosts in apache"
-        sudo sed -i '.bak' 's/#Include\ \/private\/etc\/apache2\/extra\/httpd\vhosts\.conf/Include\ \/private\/etc\/apache2\/extra\/httpd\vhosts\.conf/' /etc/apache2/httpd.conf
-        sudo sed -i '.bak' 's/#LoadModule\ vhost_alias_module\ libexec\/apache2\/mod_vhost_alias\.so/LoadModule\ vhost_alias_module\ libexec\/apache2\/mod_vhost_alias\.so/' /etc/apache2/httpd.conf
-    fi
+    log_info "setting up phpbrew"
+    phpbrew lookup-prefix homebrew
+    [ -d "$HOME/.phpbrew" ] || phpbrew init
 
     # Remove outdated versions from the cellar.
     brew cleanup

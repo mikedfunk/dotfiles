@@ -313,7 +313,8 @@ endif
 " :Bisectly to start
 " :Zombies if problem still exists (lol)
 " :Unicorns if problem is fixed (lol)
-Plug 'dahu/bisectly', { 'on': 'Bisectly' }
+" This breaks vim, so it doesn't work.
+" Plug 'dahu/bisectly', { 'on': 'Bisectly' }
 
 " }}}
 
@@ -322,7 +323,8 @@ Plug 'dahu/bisectly', { 'on': 'Bisectly' }
 " display a persistent view of vim :registers in a sidebar window
 " :LOTROpen
 " :LOTRClose
-" :LOTRToggle also available through <PLUG>LOTRToggle which is mapped to <leader>cr by default.
+" :LOTRToggle also available through <PLUG>LOTRToggle which is mapped to 
+" <leader>cr by default.
 " error: Vim version is too old, LOTR requires at least 7.4, patch 392
 Plug 'dahu/vim-lotr'
 

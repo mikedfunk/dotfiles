@@ -10,15 +10,13 @@
 #  | |  | | |   <  __/ | | | |_| | | | |   <
 #  \_|  |_/_|_|\_\___| \_|  \__,_|_| |_|_|\_\
 #
-# These completions work in a zsh shell
+# initialize shell stuff
 # more info at http://mikefunk.com
 # }}}
 
-# teamocil
-command_exists teamocil && complete -W "$(teamocil --list)" teamocil
-
-# composer package to add symfony autocompletion
-# https://github.com/bamarni/symfony-console-autocomplete
-command_exists symfony-autocomplete && eval "$(symfony-autocomplete)"
-
-command_exists phpbrew && eval "$(phpbrew zsh)"
+# Load promptline shell theme
+[ -f ~/.promptline.theme.bash ] && source ~/.promptline.theme.bash
+# Load RVM into a shell session *as a function*
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
+# load phpbrew
+[[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc

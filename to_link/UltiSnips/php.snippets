@@ -30,7 +30,7 @@ snippet al "require composer autoloader"
 require __DIR__ . '/vendor/autoload.php';
 endsnippet
 
-snippet getr "php class getter" !b
+snippet gtr "php class getter" !b
 
 /**
  * getter
@@ -43,13 +43,14 @@ public function get${1/\w+\s*/\u$0/}()
 }
 endsnippet
 
-snippet setr "PHP Class Setter" !b
+snippet str "PHP Class Setter" !b
 
 /**
  * setter
  *
- * @param ${2:mixed} $$1
- * @return ${3:mixed}
+ * @param $$1
+ *
+ * @return ${3:mixed} the current instance for chainability
  */
 public function set${1/\w+\s*/\u$0/}($$1)
 {
@@ -162,7 +163,7 @@ endsnippet
 snippet cstr "laravel 4 DI construct"
 
 /**
- * dependency injection
+ * Dependency injection.
  *
  * @param ${1/\w+\s*/\u$0/}Interface $$1
  */
@@ -175,7 +176,7 @@ endsnippet
 snippet cstest1 "construct snippet, still working on it"
 
 /**
- * dependency injection
+ * Dependency injection.
  *
  * @param ${1/, /\n     * @param /g}
  */
@@ -343,7 +344,7 @@ class `!v expand("%:t:r")` extends EloquentRepository implements `!v expand("%:t
     );
 
     /**
-     * dependency injection
+     * Dependency injection.
      *
      * @param $1ModelInterface \$${1/\w+/\l$0/}Model
      */
@@ -576,7 +577,7 @@ class `!v expand("%:t:r")` extends BaseController implements `!v expand("%:t:r")
     protected \$${1/\w+/\l$0/}Repository;
 
     /**
-     * Dependency Injection
+     * Dependency Injection.
      *
      * @param BustersPhpInterface $bustersPhp
      * @param $1RepositoryInterface \$${1/\w+/\l$0/}Repository
@@ -1748,4 +1749,8 @@ endsnippet
 
 snippet cfg "Get config value via zend framework 1"
 Zend_Registry::get('config')->$1
+endsnippet
+
+snippet plg "Php log to debug file with no dependencies"
+file_put_contents("debug.log", "$1\n", FILE_APPEND);
 endsnippet
