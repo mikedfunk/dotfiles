@@ -612,6 +612,9 @@ alias dn="cd projects/net-framework/website"
 # Display all request and response HTTP headers. Packet limit of 10Kb and only knows GET, POST and HEAD commands.
 alias tcpd="sudo tcpdump -A -s 10240 'tcp port 80 and (((ip[2:2] - ((ip[0]&0xf)<<2)) - ((tcp[12]&0xf0)>>2)) != 0)' | egrep --line-buffered'^........(GET |HTTP\/|POST |HEAD )|^[A-Za-z0-9-]+: ' | sed -r 's/^........(GET |HTTP\/|POST |HEAD )/\n\1/g'"
 
+# homestead vagrant commands
+alias homestead='function __homestead() { (cd ~/Sites/homestead && vagrant $*); unset -f __homestead; }; __homestead'
+
 # demandmedia {{{
 # case's ladder staging rsync
 alias casesladder-www-staging-rsync="cd ~/Sites/casesladder-repos/casesladder && rsync --recursive --links --checksum --progress --exclude-from=./.rsync_exclude --chmod=Dugo+rwX,u+rw,go+r ./www/html/. clsw:/home/httpd/html/"
