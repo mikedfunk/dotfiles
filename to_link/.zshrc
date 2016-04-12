@@ -77,3 +77,5 @@ compdef sshrc=ssh
 # it seems most bash completions do not play nice with zsh
 [ -f ~/.bash_completions ] && [[ $SHELL == 'bash' ]] && source ~/.bash_completions
 [ -f ~/.zsh_friendly_completions ] && source ~/.zsh_friendly_completions
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

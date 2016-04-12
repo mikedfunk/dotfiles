@@ -34,7 +34,6 @@ window config
 0000000000000000000000000
 0000000000000000000000000
 
-foc
 dir ~/.dotfiles
 1 run vim
 0 run tmux rename-session Work
@@ -200,8 +199,10 @@ window mysql
 1111111111110000000000000
 
 dir ~
-1 run mysql-saatchi-local-zed
-0 run mysql-saatchi-local-saatchi
+# 1 run mysql-saatchi-local-zed
+# 0 run mysql-saatchi-local-saatchi
+1 run mycli-saatchi-local-zed
+0 run mycli-saatchi-local-saatchi
 
 window local-scripts
 

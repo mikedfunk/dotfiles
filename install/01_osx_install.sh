@@ -302,11 +302,12 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
     xcode-select --install
 
     # install phpbrew
-    if ! command_exists phpbrew; then
+    if [[ ! "$(type -P phpbrew)" ]]; then
         log_info "installing phpbrew"
         curl -L -O https://github.com/phpbrew/phpbrew/raw/master/phpbrew
         chmod +x phpbrew
         sudo mv phpbrew /usr/local/bin/phpbrew
+        phpbrew lookup-prefix homebrew
 
         # required stuff for php intl extension
         # @link https://github.com/phpbrew/phpbrew/wiki/TroubleShooting#configure-error-unable-to-detect-icu-prefix-or-no-failed-please-verify-icu-install-prefix-and-make-sure-icu-config-works
@@ -317,9 +318,9 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
 
         # install php versions
         log_info "installing php 5.4"
-        phpbrew install 5.4 +default +intl +mcrypt
+        phpbrew install 5.4 +default +intl +mcrypt +pdo +mysql
         log_info "installing php 5.6"
-        phpbrew install 5.6.20 +default +intl +mcrypt
+        phpbrew install 5.6.20 +default +intl +mcrypt +pdo +mysql
         phpbrew switch 5.6.20 # make this default version
 
         # install phpbrew extensions
@@ -342,10 +343,10 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
         done
 
         # NOTE: you can disable an ext with `phpbrew ext disable {ext-name}`
+
+        phpbrew init
+        source $HOME/.phpbrew/bashrc
     fi
-    log_info "setting up phpbrew"
-    phpbrew lookup-prefix homebrew
-    [ -d "$HOME/.phpbrew" ] || phpbrew init
 
     # Remove outdated versions from the cellar.
     brew cleanup
