@@ -117,7 +117,7 @@ composer global install
 
 # phpdoc install without composer. dependencies conflict with other packages
 # using composer and it has a selfupdate.
-if [[ "$(type -P phpdoc)" ]]; then
+if [[ ! "$(type -P phpdoc)" ]]; then
     log_info "Installing phpdoc"
     curl -o /usr/local/bin/phpdoc -L http://phpdoc.org/phpDocumentor.phar
     sudo chmod +x /usr/local/bin/phpdoc
