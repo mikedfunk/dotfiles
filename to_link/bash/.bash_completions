@@ -88,3 +88,4 @@ _vagrant()
 if [[  $SHELL == "bash" ]]; then
   complete -F _vagrant vagrant
 fi
+

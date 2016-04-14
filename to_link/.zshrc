@@ -60,11 +60,4 @@ fi
 # zplug load --verbose
 zplug load
 
-# autossh -> ssh completion
-compdef autossh=ssh
-# function to use autossh with screen
-compdef asc=ssh
-# bring your dotfiles with you
-compdef sshrc=ssh
-
 source ~/.bash_profile

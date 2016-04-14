@@ -22,3 +22,12 @@ command_exists teamocil && complete -W "$(teamocil --list)" teamocil
 command_exists symfony-autocomplete && eval "$(symfony-autocomplete)"
 
 command_exists phpbrew && eval "$(phpbrew zsh)"
+
+# allow aliases to tab complete too {{{
+# autossh -> ssh completion
+compdef autossh=ssh
+# function to use autossh with screen
+compdef asc=ssh
+# bring your dotfiles with you
+compdef sshrc=ssh
+# }}}
