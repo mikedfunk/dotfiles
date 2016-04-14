@@ -20,3 +20,7 @@
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
 # load phpbrew
 [[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
+# load fzf
+[ -f ~/.fzf.bash ] && [[ $SHELL == "bash" ]] && source ~/.fzf.bash
+# iterm2 integration if it's bash
+[[ $SHELL == "bash"  ]] && source /Users/mikefunk/.iterm2_shell_integration.bash

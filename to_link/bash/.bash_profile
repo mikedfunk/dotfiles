@@ -17,10 +17,9 @@
 [ -f ~/.private_vars.sh ] && source ~/.private_vars.sh
 [ -f ~/.bash_env ] && source ~/.bash_env
 [ -f ~/.bash_paths ] && source ~/.bash_paths
+[ -f ~/.bash_init ] && source ~/.bash_init
 [ -f ~/.bash_aliases ] && source ~/.bash_aliases
 [ -f ~/.bash_functions ] && source ~/.bash_functions
-[ -f ~/.bash_completions ] && source ~/.bash_completions
-[ -f ~/.promptline.theme.bash ] && source ~/.promptline.theme.bash
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-source /Users/mikefunk/.iterm2_shell_integration.bash
+# it seems most bash completions do not play nice with zsh
+[ -f ~/.bash_completions ] && [[ $SHELL == 'bash' ]] && source ~/.bash_completions
+[ -f ~/.zsh_friendly_completions ] && source ~/.zsh_friendly_completions
