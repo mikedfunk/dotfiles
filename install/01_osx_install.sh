@@ -330,6 +330,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
         iconv
         memcache
         memcached
+        soap
         spl_types
         mongo
         xdebug

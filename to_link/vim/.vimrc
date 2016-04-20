@@ -296,6 +296,11 @@ command! FormatJSON %!python -m json.tool
 nnoremap <leader>fj :FormatJSON<cr>
 " }}}
 
+" format xml {{{
+command! FormatXML %!xmllint --format --recover -
+nnoremap <leader>fx :FormatXML<cr>
+" }}}
+
 " move lines {{{
 " use vim-unimpaired: [e and ]e
 " }}}

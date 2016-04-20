@@ -134,7 +134,12 @@ if has("python")
     " Maybe too simple... also is nearly useless on large projects due to slow
     " omnicomplete in php.
     " Plug 'ajh17/VimCompletesMe'
+
+    " Completion sidekick
+    " @link kite.com
+    Plug 'kiteco/plugins'
 endif
+
 
 " give neocomplete a try...
 " won't work with neovim unless they get that viml->lua transcoder working
