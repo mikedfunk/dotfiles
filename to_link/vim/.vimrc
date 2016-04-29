@@ -960,6 +960,10 @@ if isdirectory(expand("~/.vim/plugged/vdebug"))
     let g:vdebug_options['marker_open_tree'] = '▾'
     " let g:vdebug_options['continuous_mode'] = 1
     let g:vdebug_options['continuous_mode'] = 0
+
+    " easy command to enable this. I usually do it on the fly.
+    command! XdebugContinuous let g:vdebug_options['continuous_mode'] = 1
+
     " move run_to_cursor from F1 to F9
     let g:vdebug_keymap = {
     \    "step_over" : "<F2>",
@@ -984,14 +988,13 @@ if isdirectory(expand("~/.vim/plugged/vim-airline"))
     let g:airline_powerline_fonts=1
 
     " when gutentags is updating show in the statusbar
-    " if isdirectory(expand("~/.vim/plugged/vim-gutentags"))
-        " augroup gutentags_augroup
-            " autocmd!
-        " augroup END
-        " need to add this as a new segment. section_x is already used for
-        " tagbar integration in php.
-        " autocmd gutentags_augroup FileType php let g:airline_section_x = '%{gutentags#statusline("Updating Tags... ")}%{airline#util#wrap(airline#parts#filetype(),0)}'
-    " endif
+    if isdirectory(expand("~/.vim/plugged/vim-gutentags"))
+        augroup gutentags_augroup
+            autocmd!
+        augroup END
+        autocmd gutentags_augroup FileType php let g:airline_section_x = "%{gutentags#statusline()} %{airline#util#wrap(airline#parts#filetype(),0)}"
+        autocmd gutentags_augroup FileType ruby let g:airline_section_x = "%{gutentags#statusline()} %{airline#util#wrap(airline#parts#filetype(),0)}"
+    endif
 
     let g:airline#extensions#hunks#hunk_symbols = ['+', '~', '-']
     " spiffy git symbols
@@ -1070,6 +1073,9 @@ if isdirectory(expand("~/.vim/plugged/vim-gutentags"))
         \ 'app/cache',
         \ '__TwigTemplate_*'
     \]
+
+    let g:gutentags_ctags_executable_ruby = 'ripper-tags -R'
+
     " to use cscope instead of ctags: (Didn't work for me)
     " let g:gutentags_modules = [ 'cscope' ]
 endif

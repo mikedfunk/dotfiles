@@ -1258,8 +1258,7 @@ Plug 'EinfachToll/DidYouMean'
 " Swap windows just like cxiw. Mark the first window with <leader>ww. Then
 " switch to the second window and do <leader>ww again. The windows will
 " swap. Simple!
-" cool but I usually don't have more than 2 splits
-" Plug 'wesQ3/vim-windowswap'
+Plug 'wesQ3/vim-windowswap'
 
 " :BD to load previous buffer in current window
 " :BB and :BF to move backwards and forwards in buffer history of current
@@ -1417,7 +1416,7 @@ endif
 " auto update tags... please... i want to believe...
 if executable('ctags')
     " Plug 'ludovicchabant/vim-gutentags', { 'for': ['php', 'css'] }
-    Plug 'ludovicchabant/vim-gutentags', { 'for': ['php'] }
+    Plug 'ludovicchabant/vim-gutentags', { 'for': ['php', 'ruby'] }
 endif
 
 " }}}
