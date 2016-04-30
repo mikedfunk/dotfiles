@@ -140,7 +140,7 @@
     # another graphy log format
     olg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     permission-reset = !git diff -p -R | grep -E \"^(diff|(old|new) mode)\" | git apply
-    pl = pull
+    pl = pull --rebase
     pnp = !git pull && git push
     # yo baby yo
     po = !echo 'Ah push it' && git push origin && echo 'PUSH IT REAL GOOD' 

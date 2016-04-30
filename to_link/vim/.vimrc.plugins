@@ -106,6 +106,8 @@ Plug 'scrooloose/nerdcommenter'
 " four  = 4
 " I never use this because of teamwork and git
 " Plug 'godlygeek/tabular'
+" same thing pretty much
+" Plug 'tommcdo/vim-lion'
 " }}}
 
 " Completion {{{
@@ -1342,6 +1344,9 @@ Plug 'tpope/vim-rhubarb'
 " I use this all the time!
 Plug 'kana/vim-textobj-entire'
 
+" column editing e.g. vic, cic, daC
+Plug 'coderifous/textobj-word-column.vim'
+
 " last search pattern:
 " va/, vi/, va?, vi?
 " I don't remember ever using this
@@ -1388,6 +1393,7 @@ if executable('ctags')
     " Plug 'majutsushi/tagbar', { 'for': ['php', 'css'] }
     " Plug 'majutsushi/tagbar', { 'for': ['php', 'coffee', 'css'] }
     Plug 'majutsushi/tagbar', { 'for': ['php'] }
+    " Plug 'majutsushi/tagbar', { 'for': ['php', 'ruby'] }
 endif
 
 " auto generate ctags on save
@@ -1650,7 +1656,7 @@ endif
 " ]=           Jump to next line having a marker of any type
 " [=           Jump to prev line having a marker of any type
 " m<BS>        Remove all markers
-" Plug 'kshenoy/vim-signature'
+Plug 'kshenoy/vim-signature'
 
 " mark quickfix locations and marks in the sign column
 " works great but it clobbers everything else in the sign column like git
@@ -1672,4 +1678,11 @@ endif
 
 " Vim-plug close {{{
 call plug#end()
+" }}}
+
+" Auto-install missing plugins {{{
+autocmd VimEnter *
+\  if !empty(filter(copy(g:plugs), '!isdirectory(v:val.dir)'))
+\|   PlugInstall | q
+\| endif
 " }}}

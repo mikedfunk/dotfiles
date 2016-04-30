@@ -809,6 +809,19 @@ if isdirectory(expand("~/.vim/plugged/tagbar"))
         \ ]
     \ }
 
+    " ruby support (so far not working for me, supposed to work with fishman
+    " ctags which I don't use any more. I use universal ctags.)
+    let g:tagbar_type_ruby = {
+    \ 'kinds' : [
+        \ 'm:modules',
+        \ 'c:classes',
+        \ 'd:describes',
+        \ 'C:contexts',
+        \ 'f:methods',
+        \ 'F:singleton methods'
+    \ ]
+\ }
+
     " ultisnips support
     " let g:tagbar_type_snippets = {
         " \ 'ctagstype' : 'snippets',
