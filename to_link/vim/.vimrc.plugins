@@ -44,8 +44,7 @@ Plug 'tpope/vim-repeat'
 " Plug 'terryma/vim-multiple-cursors'
 " better supported fork to do sublime-style multiple cursors
 " <c-n> to select the current word, then again for the next match
-" I just never use it.
-" Plug 'kristijanhusak/vim-multiple-cursors'
+Plug 'kristijanhusak/vim-multiple-cursors'
 " I am trying to switch to tpope/vim-obsession
 " Plug 'vim-scripts/sessionman.vim', { 'on': ['SessionList', 'SessionSave', 'SessionClose'] }
 " I use a different one further down

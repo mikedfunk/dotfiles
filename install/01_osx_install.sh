@@ -343,6 +343,20 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
             }
         done
 
+        # For trouble installing extensions in php7:
+        # https://github.com/phpbrew/phpbrew/wiki/Troubleshooting#i-cant-install-extension-why
+
+        # php7 extensions status:
+
+        # couchbase: broken
+        # iconv: works
+        # memcache: broken
+        # memcached: works via `phpbrew ext install github:php-memcached-dev/php-memcached php7 -- --disable-memcached-sasl`
+        # soap: works
+        # spl_types: broken
+        # mongo: works by `phpbrew ext install mongodb` instead
+        # xdebug: works
+
         # NOTE: you can disable an ext with `phpbrew ext disable {ext-name}`
 
         phpbrew init
