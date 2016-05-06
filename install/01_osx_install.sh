@@ -348,9 +348,9 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
 
         # php7 extensions status:
 
-        # couchbase: broken
+        # couchbase: WORKS via `phpbrew ext install couchbase 2.2.0beta2`
         # iconv: works
-        # memcache: broken
+        # memcache: broken but who cares
         # memcached: works via `phpbrew ext install github:php-memcached-dev/php-memcached php7 -- --disable-memcached-sasl`
         # soap: works
         # spl_types: broken

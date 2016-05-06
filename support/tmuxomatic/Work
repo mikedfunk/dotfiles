@@ -53,8 +53,8 @@ window saatchi
 1111111111111111111111111
 1111111111111111111111111
 1111111111111111111111111
-0000000003333322222222222
-0000000003333322222222222
+0000004444333322222222222
+0000004444333322222222222
 
 dir ~/Sites/saatchi/saatchiart
 1 run vim
@@ -63,6 +63,7 @@ dir ~/Sites/saatchi/saatchiart
 2 run vup dev && vssh dev
 2 run tail -f /data/temp/saatchi.log
 3 run grunt watch
+4 run cd assets/react && npm run start upload
 
 window vagrant
 

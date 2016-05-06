@@ -195,6 +195,7 @@ pygmentize # used by jekyll and vim-instant-markdown
 pygments.rb # syntax highlighting - used by jekyll
 redcarpet # used by jekyll to convert markdown to html. also used by vim-instant-markdown
 ripper-tags # ctags for ruby
+rubocop # ruby syntax checker. works with vim syntastic
 # rdiscount # another markdown option for jekyll.
 # ruby-fsevent # probably a dependency of another package I dont use anymore
 # teamocil # save tmux layouts and regenerate them with ease

@@ -768,6 +768,8 @@ if isdirectory(expand("~/.vim/plugged/syntastic"))
         " let g:syntastic_javascript_checkers = ['eslint']
     " endif
 
+    let g:syntastic_ruby_checkers = ['rubocop', 'mri']
+
     " recommended settings from their docs
     "
     " Default: 0
