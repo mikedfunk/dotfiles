@@ -1506,10 +1506,7 @@ if has('nvim')
     Plug 'Floobits/floobits-neovim'
     " Plug 'Floobits/floobits-neovim', { 'do': function('UpdateRemotePlugins') }
 else
-    " this breaks in vimdiff for some reason :/
-    if ! &diff
-        Plug 'Floobits/floobits-vim'
-    endif
+    Plug 'Floobits/floobits-vim'
 endif
 
 " DB tools in vim

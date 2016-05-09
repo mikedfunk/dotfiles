@@ -407,6 +407,7 @@ fi
 
 alias vim="${vim}"
 alias v="${vim}"
+alias vimdiff="${vim} -d"
 
 # alias hub to git
 if [ -f "/usr/local/bin/hub" ]; then
