@@ -397,7 +397,7 @@ alias pearupgrade="sudo pear upgrade"
 WHICH_VIM="neovim"
 if type nvim &> /dev/null && [ $WHICH_VIM = "neovim" ]; then
     # neovim is the new hotness! true 24-bit color!
-    vim="NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim"
+    vim="nvim"
 elif type mvim &> /dev/null && [ $WHICH_VIM = "macvim" ]; then
     # # servername is for united-front
     vim="mvim -vp --servername mikevimserver"

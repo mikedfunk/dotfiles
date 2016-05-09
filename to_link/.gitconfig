@@ -245,13 +245,21 @@
 [diff]
     ; tool = opendiff
     tool = vimdiff
-    ; tool = "nvim -d"
+    ; tool = "nvim"
 [merge]
     ; tool = opendiff
     tool = vimdiff
     ; tool = "nvim -d"
     ; shows local, parent, then remote
 	; conflictstyle = diff3
+[mergetool "vimdiff"]
+    ; cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+    ; use the neovim/macvim/vim switch to use whichever vim is configured
+    cmd = source ~/.bash_aliases && ${vim} -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+[difftool "vimdiff"]
+    ; cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+    ; use the neovim/macvim/vim switch to use whichever vim is configured
+    cmd = source ~/.bash_aliases && ${vim} -d $LOCAL $REMOTE
 [mergetool]
     keepBackup = false
 # }}}

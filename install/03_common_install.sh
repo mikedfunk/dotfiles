@@ -228,6 +228,7 @@ packages=(
 # argcomplete # tab completion of arguments for python scripts
 csvkit # display csvs in tables
 fabric # deployment tool
+gitsome # awesome repl for git, git-extras, and github
 glances # like htop on steroids
 mycli # mysql cli tool with autocomplete
 neovim # neovim python library

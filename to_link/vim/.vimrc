@@ -881,6 +881,8 @@ if isdirectory(expand("~/.vim/plugged/ultisnips"))
     let g:UltiSnipsEditSplit="vertical"
     let g:UltiSnipsListSnippets='<c-l>'
 
+    let g:UltiSnipsSnippetDirectories=["~/.vim/UltiSnips", "UltiSnips"]
+
     " Fix for neovim
     " let g:UltiSnipsUsePythonVersion = 2
 
