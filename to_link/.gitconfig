@@ -165,6 +165,7 @@
     sshow = "!f() { git stash show stash^{/$*} -p; }; f"
     # apply a stash by saved description e.g. "git sapply my_stash_name"
     sapply = "!f() { git stash apply stash^{/$*}; }; f"
+    sh = show HEAD
     st = status -sb
     # show all of my commits since yesterday
     standup = log --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cD) %C(bold blue)<%an>%Creset' --since yesterday --author mike.funk@internetbrands.com

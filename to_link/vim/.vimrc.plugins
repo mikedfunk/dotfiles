@@ -105,8 +105,10 @@ Plug 'scrooloose/nerdcommenter'
 " four  = 4
 " I never use this because of teamwork and git
 " Plug 'godlygeek/tabular'
-" same thing pretty much
+" same thing pretty much, just different bindings
 " Plug 'tommcdo/vim-lion'
+" from visual mode: ga= to align around =
+Plug 'junegunn/vim-easy-align'
 " }}}
 
 " Completion {{{
@@ -1019,10 +1021,6 @@ Plug 'AndrewRadev/splitjoin.vim'
 " delimiter.
 " used to move function arguments
 Plug 'AndrewRadev/sideways.vim', { 'on': ['SidewaysLeft', 'SidewaysRight'] }
-
-" Align in columns
-" Too much crossover with tabularize
-" Plug 'junegunn/vim-easy-align'
 
 " Move vertically without changing the cursor column in block edit mode
 Plug 'bruno-/vim-vertical-move'

@@ -1072,6 +1072,16 @@ endif
 
 " }}}
 
+" vim-easy-align {{{
+if isdirectory(expand("~/.vim/plugged/vim-easy-align"))
+    " Start interactive EasyAlign in visual mode (e.g. vipga)
+    xmap ga <Plug>(EasyAlign)
+
+    " Start interactive EasyAlign for a motion/text object (e.g. gaip)
+    nmap ga <Plug>(EasyAlign)
+endif
+" }}}
+
 " vim-gutentags {{{
 if isdirectory(expand("~/.vim/plugged/vim-gutentags"))
 
