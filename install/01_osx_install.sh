@@ -320,8 +320,8 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
         log_info "installing php 5.4"
         phpbrew install 5.4 +default +intl +mcrypt +pdo +mysql
         log_info "installing php 5.6"
-        phpbrew install 5.6.20 +default +intl +mcrypt +pdo +mysql
-        phpbrew switch 5.6.20 # make this default version
+        phpbrew install 5.6.21 +default +intl +mcrypt +pdo +mysql
+        phpbrew switch 5.6.21 # make this default version
 
         # install phpbrew extensions
         log_info "installing phpbrew extensions"
