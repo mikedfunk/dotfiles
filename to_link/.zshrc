@@ -1,5 +1,8 @@
 #!/bin/zsh
-#
+
+# shut up zplug!!
+unset ZPLUG_SHALLOW
+
 # prevent zsh from auto-updating tmux window title
 export DISABLE_AUTO_TITLE="true"
 
@@ -15,18 +18,18 @@ zplug "plugins/brew", from:oh-my-zsh
 zplug "plugins/capistrano", from:oh-my-zsh
 zplug "plugins/colored-man", from:oh-my-zsh
 zplug "plugins/colorize", from:oh-my-zsh
-zplug "plugins/common-aliases", from:oh-my-zsh
-zplug "plugins/composer", from:oh-my-zsh
-zplug "plugins/git", from:oh-my-zsh, if:"which git"
+# zplug "plugins/common-aliases", from:oh-my-zsh
+zplug "plugins/composer", from:oh-my-zsh, nice:15
+zplug "plugins/git", from:oh-my-zsh, if:"which git", nice:15
 zplug "plugins/git-extras", from:oh-my-zsh, if:"which git"
-zplug "plugins/gitfast", from:oh-my-zsh, if:"which git"
+zplug "plugins/gitfast", from:oh-my-zsh, if:"which git", nice:15
 zplug "plugins/github", from:oh-my-zsh, if:"which git"
 zplug "plugins/history", from:oh-my-zsh
 zplug "plugins/jira", from:oh-my-zsh
 zplug "plugins/jsontools", from:oh-my-zsh
 zplug "plugins/npm", from:oh-my-zsh
 zplug "plugins/osx", from:oh-my-zsh
-zplug "plugins/phing", from:oh-my-zsh
+zplug "plugins/phing", from:oh-my-zsh, nice:15
 zplug "plugins/vagrant", from:oh-my-zsh
 zplug "plugins/vi-mode", from:oh-my-zsh
 zplug "plugins/wd", from:oh-my-zsh

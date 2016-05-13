@@ -51,3 +51,6 @@ export PATH=$PATH:$GOROOT/bin
 # python nvim fix!
 # @link https://github.com/Valloric/YouCompleteMe/issues/620
 export DYLD_FORCE_FLAT_NAMESPACE=1
+
+# make zplug stop complaining
+# export ZPLUG_CLONE_DEPTH=1
