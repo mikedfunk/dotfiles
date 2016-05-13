@@ -503,8 +503,7 @@ endif
 " BufOnly.vim {{{
 if isdirectory(expand("~/.vim/plugged/BufOnly.vim"))
     " typo fixer
-    command! -nargs=? -complete=buffer -bang BUfo
-        \ :call BufOnly('<args>', '<bang>')
+    command! BUfo BufOnly
 endif
 " }}}
 
