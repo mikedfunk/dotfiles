@@ -1005,7 +1005,9 @@ Plug 'stefandtw/quickfix-reflector.vim'
 
 " Automatically detect indentation and set it
 " BUT it sets expandtab on php by default! Lame!
-Plug 'tpope/vim-sleuth'
+" It also FREQUENTLY gets spacing wrong. I kind of hate this plugin. I get
+" tired of typing `:set sw=4 ts=4 sts=4 et` all the time.
+" Plug 'tpope/vim-sleuth'
 
 " put html tags from one line to multiline or the opposite
 " works for practically any language. just wish it worked in function
