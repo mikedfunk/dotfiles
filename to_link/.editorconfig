@@ -1,8 +1,11 @@
-# http://editorconfig.org/
+# EditorConfig helps developers define and maintain consistent
+# coding styles between different editors and IDEs
+# editorconfig.org
 
-# top-most EditorConfig file
+# top-most EditorConfig file - makes it stop looking above this
 root = true
 
+# rules for all files
 [*]
 charset = utf-8
 indent_style = space
@@ -11,5 +14,6 @@ end_of_line = lf
 trim_trailing_whitespace = true
 insert_final_newline = true
 
+# rules for front-end files
 [*.{js,phtml,html,css,scss,less,coffee,yaml,yml,json,blade.php,feature}]
 indent_size = 2

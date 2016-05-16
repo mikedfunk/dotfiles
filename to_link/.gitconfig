@@ -7,7 +7,7 @@
 #  | |\/| | | |/ / _ \ |  _| | | | '_ \| |/ /
 #  | |  | | |   <  __/ | | | |_| | | | |   <
 #  \_|  |_/_|_|\_\___| \_|  \__,_|_| |_|_|\_\
-#
+        #
 # link my dotfiles to their expected locations
 # more info at http://mikefunk.com
 # }}}
@@ -27,8 +27,8 @@
 [help]
     autocorrect = 1
 [user]
-	email = mike@mikefunk.com
-	name = Mike Funk
+    email = mike@mikefunk.com
+    name = Mike Funk
 [web]
     browser = open
 [instaweb]
@@ -143,7 +143,7 @@
     pl = pull --rebase
     pnp = !git pull && git push
     # yo baby yo
-    po = !echo 'Ah push it' && git push origin && echo 'PUSH IT REAL GOOD' 
+    po = !echo 'Ah push it' && git push origin && echo 'PUSH IT REAL GOOD'
     pp = !git pull && git push
     pu = push
     # pull and update submodules... i hate submodules...
@@ -237,9 +237,9 @@
     autocrlf = false
     ignorecase = false
     preloadindex = true
-	pager = diff-highlight | diff-so-fancy | less --tabs=1,5 -R
+    pager = diff-highlight | diff-so-fancy | less --tabs=1,5 -R
     ; pager = less -FRSX
-	; excludesfile = /Users/mikefunk/.config/git/ignore
+    ; excludesfile = /Users/mikefunk/.config/git/ignore
 # }}}
 
 # diff and mergetool {{{
@@ -252,7 +252,7 @@
     tool = vimdiff
     ; tool = "nvim -d"
     ; shows local, parent, then remote
-	; conflictstyle = diff3
+    ; conflictstyle = diff3
 [mergetool "vimdiff"]
     ; cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
     ; use the neovim/macvim/vim switch to use whichever vim is configured
@@ -277,7 +277,7 @@
     # pushing a branch. Useful for git flow - pushes related release tags for
     # master/develop when pushing the branch without also pushing lightweight
     # tags.
-	followTag = true
+    followTag = true
 [rerere]
     enabled = 1
     autoupdate = true
@@ -294,11 +294,11 @@
 
 # tools {{{
 [difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+    path =
 [mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+    cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+    trustExitCode = true
 # }}}
 
 # git flow avh settings {{{
@@ -309,7 +309,7 @@
     keepremote = no
 # }}}
 [color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
+    oldNormal = red bold
+    oldHighlight = red bold 52
+    newNormal = green bold
+    newHighlight = green bold 22

@@ -1210,6 +1210,8 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
     nnoremap <leader>bc :so ~/.vimrc.plugins<cr> :PlugClean!<cr>
     " Upgrade all installed plugins in ~/.vimrc.plugins
     nnoremap <leader>bu :so ~/.vimrc.plugins<cr> :PlugUpdate<cr> :PlugUpgrade<cr> :UpdateRemotePlugins<cr>
+    " do everything!
+    nnoremap <leader>ba :so ~/.vimrc.plugins<cr> :PlugClean<cr> :PlugInstall<cr> :PlugUpdate<cr> :PlugUpgrade<cr> :UpdateRemotePlugins<cr>
 endif
 " }}}
 

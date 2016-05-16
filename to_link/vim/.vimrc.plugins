@@ -331,7 +331,7 @@ endif
 " display a persistent view of vim :registers in a sidebar window
 " :LOTROpen
 " :LOTRClose
-" :LOTRToggle also available through <PLUG>LOTRToggle which is mapped to 
+" :LOTRToggle also available through <PLUG>LOTRToggle which is mapped to
 " <leader>cr by default.
 " error: Vim version is too old, LOTR requires at least 7.4, patch 392
 Plug 'dahu/vim-lotr'
