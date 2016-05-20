@@ -15,5 +15,5 @@ trim_trailing_whitespace = true
 insert_final_newline = true
 
 # rules for front-end files
-[*.{js,phtml,html,css,scss,less,coffee,yaml,yml,json,blade.php,feature}]
+[*.{js,phtml,html,css,scss,less,coffee,yaml,yml,json,blade.php,feature,rb}]
 indent_size = 2

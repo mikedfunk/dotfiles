@@ -47,15 +47,17 @@ link_this "$HOME/.dotfiles/to_link/.hgignore" "$HOME/.hgignore"
 link_this "$HOME/.dotfiles/to_link/.jscsrc" "$HOME/.jscsrc"
 link_this "$HOME/.dotfiles/to_link/.curlrc" "$HOME/.curlrc"
 link_this "$HOME/.dotfiles/to_link/.editorconfig" "$HOME/.editorconfig"
+link_this "$HOME/.dotfiles/to_link/.editorconfig" "/Library/WebServer/Documents/.editorconfig"
 link_this "$HOME/.dotfiles/to_link/.myclirc" "$HOME/.myclirc"
-link_this "$HOME/.dotfiles/to_link/.zshrc" "$HOME/.zshrc"
 
+link_this "$HOME/.dotfiles/to_link/.zshrc" "$HOME/.zshrc"
 link_this "$HOME/.dotfiles/to_link/.warprc" "$HOME/.warprc"
 link_this "$HOME/.dotfiles/to_link/.sshrc" "$HOME/.sshrc"
 link_this "$HOME/.dotfiles/to_link/.sshrc.d" "$HOME/.sshrc.d"
 link_this "$HOME/.dotfiles/to_link/.inputrc" "$HOME/.sshrc.d/.inputrc"
 
 link_this "$HOME/.dotfiles/to_link/.my.cnf" "$HOME/.sshrc.d/.my.cnf"
+link_this "$HOME/.dotfiles/to_link/.rubocop.yml" "$HOME/.rubocop.yml"
 
 link_this "/var/www/sites" "$HOME/Sites"
 # default location for mac

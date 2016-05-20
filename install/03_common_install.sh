@@ -43,7 +43,9 @@ csslint # verify css files
 cz-jira-smart-commit # jira plugin for commitizen
 diff-so-fancy # great looking terminal replacement for git diff
 eslint # javascript linter - used by syntastic in vim
+eslint-plugin-import # used by saatchi
 eslint-plugin-react # react jsx javascript linter - used by syntastic in vim
+eslint-plugin-jsx-a11y # jsx javascript linter - used by saatchi
 esprima-fb@15001.1.0-dev-harmony-fb # used by jscs to also check jsx coding standards
 express-generator # generates express.js apps
 # fixmyjs # like php-cs-fixer for javascript

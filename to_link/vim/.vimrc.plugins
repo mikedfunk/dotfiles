@@ -1500,14 +1500,15 @@ Plug 'wakatime/vim-wakatime'
 
 " real-time collaborative editing like etherpad but with native editors
 " @link http://floobits.com
-if has('nvim')
+" I don't use this and I don't think it really works anyway.
+" if has('nvim')
     " after installing run :UpdateRemotePlugins and restart neovim
     " do the same when removing this plugin
-    Plug 'Floobits/floobits-neovim'
+    " Plug 'Floobits/floobits-neovim'
     " Plug 'Floobits/floobits-neovim', { 'do': function('UpdateRemotePlugins') }
-else
-    Plug 'Floobits/floobits-vim'
-endif
+" else
+    " Plug 'Floobits/floobits-vim'
+" endif
 
 " DB tools in vim
 " A little too complex right now, I am good with SequelPro or
