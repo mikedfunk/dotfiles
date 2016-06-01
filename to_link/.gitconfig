@@ -125,6 +125,7 @@
     # my go-to log format
     lg = log --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
     ld = log develop..HEAD
+    lm = log master..HEAD
     # graphy log format with the visual branching on the left
     lol = log --graph --decorate --pretty=oneline --abbrev-commit
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
