@@ -304,10 +304,12 @@
 
 # git flow avh settings {{{
 # @link https://github.com/petervanderdoes/gitflow-avh/wiki/Reference:-Configuration
+[gitflow "feature.finish"]
+    keepremote = false
 [gitflow "release.finish"]
-    keepremote = no
+    keepremote = false
 [gitflow "hotfix.finish"]
-    keepremote = no
+    keepremote = false
 # }}}
 [color "diff-highlight"]
     oldNormal = red bold
