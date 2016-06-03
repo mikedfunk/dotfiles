@@ -90,7 +90,7 @@ endsnippet
 snippet ght "Ghetto dependency injection" !b
 
 /**
- * Setter - ghetto dependency injection. Allows for setting this as a mock 
+ * Setter - ghetto dependency injection. Allows for setting this as a mock
  * in testing.
  *
  * @param ${2:mixed} $$1
@@ -112,7 +112,7 @@ public function set${1/\w+\s*/\u$0/}($$1)
 public function get${1/\w+\s*/\u$0/}()
 {
     if (is_null($this->$1)) {
-        $this->$1 = new $2(); 
+        $this->$1 = new $2();
         return $this->$1;
     }
 
@@ -1757,4 +1757,12 @@ endsnippet
 
 snippet plg "Php log to debug file with no dependencies"
 file_put_contents("debug.log", "$1\n", FILE_APPEND);
+endsnippet
+
+snippet tc "try/catch block"
+try {
+    ${1://}
+} catch (${2:\Exception} $e) {
+    ${3:echo $e->getMessage() . "\n"; exit;}
+}
 endsnippet

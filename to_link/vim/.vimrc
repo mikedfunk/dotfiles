@@ -1290,6 +1290,19 @@ if isdirectory(expand("~/.vim/plugged/vim-startify"))
     " if has('nvim')
         " au! TabNewEntered * Startify
     " endif
+
+    " remove sessions from the list
+    " let g:startify_list_order = [
+        " \ 'files',
+        " \ 'dir',
+        " \ 'bookmarks',
+        " \ 'commands'
+        " \ ]
+
+    let g:startify_session_before_save = [
+        \ 'echo "Cleaning up before saving.."',
+        \ 'silent! NERDTreeTabsClose'
+        \ ]
 endif
 " }}}"
 

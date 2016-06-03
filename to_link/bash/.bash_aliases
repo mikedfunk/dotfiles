@@ -646,11 +646,11 @@ alias mycli-saatchi-dev-zed="ssh -f saatchi-dev-console-01 -L $ZED_DEV_PORT:$ZED
 
 ### qa
 alias mycli-saatchi-qa-saatchi="ssh -f saatchi-qa-console-01 -L $SAATCHI_QA_PORT:$SAATCHI_QA_HOST:3306 -N && mycli -h127.0.0.1 -P$SAATCHI_QA_PORT -u$SAATCHI_QA_USERNAME -p$SAATCHI_QA_PASSWORD -D$SAATCHI_QA_DB --prompt 'saatchi[qa]> '"
-alias mycli-saatchi-qa-zed="ssh -f saatchi-qa-console-01 -L $ZED_QA_PORT:$ZED_QA_HOST:3306 -N && mycli -h127.0.0.1 -P$ZED_QA_PORT -u$ZED_QA_USERNAME -p$ZED_QA_PASSWORD -D$ZED_QA_DB --prompt 'zed[qa]> '" 
+alias mycli-saatchi-qa-zed="ssh -f saatchi-qa-console-01 -L $ZED_QA_PORT:$ZED_QA_HOST:3306 -N && mycli -h127.0.0.1 -P$ZED_QA_PORT -u$ZED_QA_USERNAME -p$ZED_QA_PASSWORD -D$ZED_QA_DB --prompt 'zed[qa]> '"
 
 ### prod
 alias mycli-saatchi-prod-saatchi="mycli -h $SAATCHI_PROD_HOST -u $SAATCHI_PROD_USERNAME -p $SAATCHI_PROD_PASSWORD -D $SAATCHI_PROD_DB --prompt 'saatchi[PRODUCTION]> '"
-alias mycli-saatchi-prod-zed="mycli -h $ZED_PROD_HOST -u $ZED_PROD_USERNAME -p $ZED_PROD_PASSWORD -D $ZED_PROD_DB --prompt 'zed[PRODUCTION]> '" 
+alias mycli-saatchi-prod-zed="mycli -h $ZED_PROD_HOST -u $ZED_PROD_USERNAME -p $ZED_PROD_PASSWORD -D $ZED_PROD_DB --prompt 'zed[PRODUCTION]> '"
 
 ### replica
 alias mycli-saatchi-replica-saatchi="mycli -h $SAATCHI_REPLICA_HOST -u $SAATCHI_REPLICA_USERNAME -p $SAATCHI_REPLICA_PASSWORD -D $SAATCHI_REPLICA_DB --prompt 'saatchi[REPLICA]> '"
@@ -685,5 +685,8 @@ alias mysql-saatchi-replica-zed="mysql -h$ZED_REPLICA_HOST -u$ZED_REPLICA_USERNA
 
 # phantomjs on the port for behat to find it
 alias phan="./node_modules/.bin/phantomjs --webdriver=8643"
+
+# find the biggest 20 folders on the hard drive
+alias biggest="du -h / | sort -nr | grep [0-9]M | head -20"
 
 # }}}

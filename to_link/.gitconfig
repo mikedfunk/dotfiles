@@ -141,7 +141,8 @@
     # another graphy log format
     olg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     permission-reset = !git diff -p -R | grep -E \"^(diff|(old|new) mode)\" | git apply
-    pl = pull --rebase
+    ; pl = pull --rebase
+    pl = !git fetch; git rebase --autostash FETCH_HEAD
     pnp = !git pull && git push
     # yo baby yo
     po = !echo 'Ah push it' && git push origin && echo 'PUSH IT REAL GOOD'
@@ -272,6 +273,7 @@
     ; autosetuprebase = always
 [rebase]
     autosquash = true
+    autostash = true
 [push]
     default = current
     # push any missing _annotated_ tags related to this branch to remote when
