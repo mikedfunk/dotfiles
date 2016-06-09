@@ -108,7 +108,8 @@ Plug 'scrooloose/nerdcommenter'
 " same thing pretty much, just different bindings
 " Plug 'tommcdo/vim-lion'
 " from visual mode: ga= to align around =
-Plug 'junegunn/vim-easy-align'
+" I don't use it
+" Plug 'junegunn/vim-easy-align'
 " }}}
 
 " Completion {{{
@@ -140,7 +141,8 @@ if has("python")
 
     " Completion sidekick
     " @link kite.com
-    Plug 'kiteco/plugins'
+    " I don't use it
+    " Plug 'kiteco/plugins'
 endif
 
 
@@ -400,7 +402,8 @@ Plug 'milkypostman/vim-togglelist'
 Plug 'tpope/vim-unimpaired'
 
 " show pretty formatted table of leader shortcuts
-Plug 'ktonga/vim-follow-my-lead'
+" I don't use it
+" Plug 'ktonga/vim-follow-my-lead'
 
 " alias commands to other commands, even in lowercase
 " :call CmdAlias('runtime', 'Runtime')
@@ -471,7 +474,8 @@ Plug 'edsono/vim-matchit', { 'for': ['html', 'html.twig', 'blade', 'xml', 'php']
 " Syntax {{{
 
 " fish shell
-Plug 'dag/vim-fish'
+" I don't use it
+" Plug 'dag/vim-fish'
 
 " api blueprint
 Plug 'kylef/apiblueprint.vim', { 'for': 'apiblueprint' }
@@ -856,11 +860,11 @@ Plug 'chriskempson/base16-vim'
 " Plug 'garybernhardt/dotfiles', { 'rtp': '.vim/' }
 " Plug 'vim-scripts/guardian'
 " Plug 'vim-scripts/herald.vim'
-Plug 'vim-scripts/moria'
+" Plug 'vim-scripts/moria'
 " Plug 'matthewtodd/vim-twilight'
 " Plug 'tpope/vim-vividchalk'
 " Plug 'vim-scripts/Zenburn'
-Plug 'reedes/vim-colors-pencil'
+" Plug 'reedes/vim-colors-pencil'
 " Plug 'modess/vim-phpcolors'
 " Plug 'vim-scripts/desert256.vim'
 " Plug 'vim-scripts/xoria256.vim'
@@ -877,11 +881,11 @@ Plug 'zenorocha/dracula-theme', {'rtp': 'vim/'}
 " Plug 'Marslo/marslo.vim'
 " Plug 'vim-scripts/sonoma.vim'
 " Plug 'vim-scripts/Gummybears'
-Plug 'vim-scripts/Cleanroom'
+" Plug 'vim-scripts/Cleanroom'
 " Plug 'veloce/vim-aldmeris'
 " Plug 'rainux/vim-desert-warm-256'
 " Plug 'vim-scripts/summerfruit256.vim'
-Plug 'trapd00r/neverland-vim-theme'
+" Plug 'trapd00r/neverland-vim-theme'
 " Plug 'vim-scripts/robokai'
 " Plug 'zaiste/Atom'
 " Plug 'joschka/Smyck-Color-Scheme'
@@ -1162,9 +1166,10 @@ Plug 'tpope/vim-projectionist'
 " Plug 'tacahiroy/ctrlp-funky'
 
 " The missing link in ctrlp navigation: switch tabs
-if isdirectory(expand("~/.vim/plugged/ctrlp.vim"))
-    Plug 'DavidEGx/ctrlp-smarttabs'
-endif
+" I don't use it
+" if isdirectory(expand("~/.vim/plugged/ctrlp.vim"))
+    " Plug 'DavidEGx/ctrlp-smarttabs'
+" endif
 
 " open directory in finder
 " <gof> opens the file manager at the directory of the file you are currently
@@ -1190,7 +1195,7 @@ endif
 " endif
 
 " allow to star search from a visual selection
-" viw *
+" vip *
 Plug 'thinca/vim-visualstar', { 'on': ['<Plug>visualstar-*', '<Plug>visualstar-#', '<Plug>visualstar-g*', '<Plug>visualstar-g#'] }
 
 " faster ctrlp matcher
@@ -1295,9 +1300,10 @@ if executable('git')
 endif
 
 " comment on the last commit on this line on github!
-if executable('git')
-    Plug 'mmozuras/vim-github-comment', {'on': ['GHComment'] }
-endif
+" I don't use it
+" if executable('git')
+    " Plug 'mmozuras/vim-github-comment', {'on': ['GHComment'] }
+" endif
 
 " github and fugitive together from tim pope
 " * enables :Gbrowse by fugitive for github repos
@@ -1344,7 +1350,8 @@ Plug 'tpope/vim-rhubarb'
 Plug 'kana/vim-textobj-entire'
 
 " column editing e.g. vic, cic, daC
-Plug 'coderifous/textobj-word-column.vim'
+" I don't use it
+" Plug 'coderifous/textobj-word-column.vim'
 
 " last search pattern:
 " va/, vi/, va?, vi?
@@ -1656,7 +1663,8 @@ endif
 " ]=           Jump to next line having a marker of any type
 " [=           Jump to prev line having a marker of any type
 " m<BS>        Remove all markers
-Plug 'kshenoy/vim-signature'
+" I don't use it
+" Plug 'kshenoy/vim-signature'
 
 " mark quickfix locations and marks in the sign column
 " works great but it clobbers everything else in the sign column like git

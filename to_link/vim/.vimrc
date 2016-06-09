@@ -494,6 +494,9 @@ endif
 " for incrementing values.
 if isdirectory(expand("~/.vim/plugged/accelerated-smooth-scroll"))
     let g:ac_smooth_scroll_no_default_key_mappings = 1
+    " make this higher than the default to speed up scrolling due to render lag
+    " let g:ac_smooth_scroll_min_limit_msec = 80
+    let g:ac_smooth_scroll_min_limit_msec = 120
     nmap <silent> <C-d> <Plug>(ac-smooth-scroll-c-d)
     nmap <silent> <C-u> <Plug>(ac-smooth-scroll-c-u)
     xmap <silent> <C-d> <Plug>(ac-smooth-scroll-c-d_v)
@@ -779,7 +782,8 @@ if isdirectory(expand("~/.vim/plugged/syntastic"))
     " let g:syntastic_always_populate_loc_list = 1
 
     " let g:syntastic_auto_loc_list = 1
-    let g:syntastic_check_on_open = 1
+    " let g:syntastic_check_on_open = 1
+    let g:syntastic_check_on_open = 0
     let g:syntastic_check_on_wq = 0
 
     " NOTE: show errors location list with :Errors
