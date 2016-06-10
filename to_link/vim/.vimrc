@@ -1076,6 +1076,13 @@ endif
 
 " }}}
 
+" vim-bling {{{
+if isdirectory(expand("~/.vim/plugged/vim-bling"))
+    " let g:bling_time = 25
+    let g:bling_time = 15
+endif
+" }}}
+
 " vim-easy-align {{{
 if isdirectory(expand("~/.vim/plugged/vim-easy-align"))
     " Start interactive EasyAlign in visual mode (e.g. vipga)
