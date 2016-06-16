@@ -248,6 +248,7 @@
 [diff]
     ; tool = opendiff
     tool = vimdiff
+	compactionHeuristic = 1
     ; tool = "nvim"
 [merge]
     ; tool = opendiff

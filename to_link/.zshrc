@@ -29,13 +29,13 @@ zplug "plugins/history", from:oh-my-zsh
 zplug "plugins/jira", from:oh-my-zsh
 zplug "plugins/jsontools", from:oh-my-zsh
 zplug "plugins/npm", from:oh-my-zsh
-zplug "plugins/osx", from:oh-my-zsh
 zplug "plugins/phing", from:oh-my-zsh, nice:15
 zplug "plugins/vagrant", from:oh-my-zsh
 zplug "plugins/vi-mode", from:oh-my-zsh
 zplug "plugins/wd", from:oh-my-zsh
 zplug "zsh-users/zsh-autosuggestions" # buggy if enabled along with zsh-syntax-highlighting. crashes the shell regularly.
 zplug "zsh-users/zsh-history-substring-search"
+# zplug "plugins/osx", from:oh-my-zsh #compdef issue
 # zplug "horosgrisa/mysql-colorize" # I already have practically the same thing in ~/.my.cnf
 # zplug "plugins/git-flow-avh", from:oh-my-zsh, if:"which git"
 # zplug "zsh-users/zsh-syntax-highlighting", nice:10 # source after completion scripts
