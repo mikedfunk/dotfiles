@@ -90,10 +90,10 @@ Plug 'scrooloose/syntastic'
 if executable('git')
     Plug 'tpope/vim-fugitive'
 endif
-if executable('curl')
-    Plug 'mattn/webapi-vim'
-    Plug 'mattn/gist-vim', { 'on': 'Gist' }
-endif
+" if executable('curl')
+    " Plug 'mattn/webapi-vim'
+    " Plug 'mattn/gist-vim', { 'on': 'Gist' }
+" endif
 " Comment toggle with
 " <leader>C<space>
 Plug 'scrooloose/nerdcommenter'
@@ -336,7 +336,7 @@ endif
 " :LOTRToggle also available through <PLUG>LOTRToggle which is mapped to
 " <leader>cr by default.
 " error: Vim version is too old, LOTR requires at least 7.4, patch 392
-Plug 'dahu/vim-lotr'
+" Plug 'dahu/vim-lotr'
 
 " no more pastetoggle!
 " I think because I use screen-256-color this messes up and types some chars
@@ -590,7 +590,7 @@ Plug 'alvan/vim-php-manual', { 'for': ['php', 'blade'] }
 
 " customizable php folding
 " I don't use folding but this is cool when it's on
-Plug 'swekaj/php-foldexpr.vim', { 'for': 'php' }
+" Plug 'swekaj/php-foldexpr.vim', { 'for': 'php' }
 
 " was used in PIV for php folding
 " <space> toggle fold
@@ -651,7 +651,7 @@ Plug 'arnaud-lb/vim-php-namespace', { 'for': 'php' }
 Plug 'joonty/vdebug', { 'for': 'php' }
 
 " improved php omnicompletion
-Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
+" Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
 
 " Padawan.vim is a vim plugin for padawan.php server , a smart PHP code completion server for Composer projects.
 " This plugin includes:
@@ -811,7 +811,7 @@ Plug 'mikedfunk/vim-php-refactoring-toolbox', { 'for': 'php' }
 " highlight group and with filetype whitelist/blacklist. I like it - the
 " highlight group is nice and subtle and it works well.
 " It's quite slow though - 1.5 seconds to load!
-Plug 'osyo-manga/vim-brightest'
+" Plug 'osyo-manga/vim-brightest'
 
 " highlights in bright red any trailing whitespace
 " I whitelisted this pretty much just so I could get ascii art on startify :P
@@ -827,7 +827,7 @@ Plug 'ntpeters/vim-better-whitespace', { 'for': ['php', 'python', 'javascript', 
 " Plug 'inside/vim-search-pulse'
 
 " same thing but blink. Much more capable with varying color schemes
-Plug 'ivyl/vim-bling'
+" Plug 'ivyl/vim-bling'
 
 " Highlight the current word throughout the doc
 " I use a autocmd for this that works better instead in my .vimrc.local
@@ -848,10 +848,10 @@ Plug 'guns/xterm-color-table.vim', { 'on': 'XtermColorTable' }
 " --------------
 if (has('nvim'))
 " Plug '29decibel/codeschool-vim-theme'
-Plug 'tpope/vim-vividchalk'
-Plug 'morhetz/gruvbox'
+" Plug 'tpope/vim-vividchalk'
+" Plug 'morhetz/gruvbox'
 " this needs the following iterm2 themes: chriskempson/base16-iterm2
-Plug 'chriskempson/base16-vim'
+" Plug 'chriskempson/base16-vim'
 " Plug 'daylerees/colour-schemes', { 'rtp': 'vim/' }
 " Plug 'endel/vim-github-colorscheme'
 " Plug 'ricardovaleriano/vim-github-theme'
@@ -869,7 +869,7 @@ Plug 'chriskempson/base16-vim'
 " Plug 'vim-scripts/desert256.vim'
 " Plug 'vim-scripts/xoria256.vim'
 " Plug 'noahfrederick/vim-noctu'
-Plug 'zenorocha/dracula-theme', {'rtp': 'vim/'}
+" Plug 'zenorocha/dracula-theme', {'rtp': 'vim/'}
 " Plug 'Slava/vim-colors-tomorrow'
 " Plug 'vim-scripts/blackdust.vim'
 " Plug 'vim-scripts/peaksea'
@@ -894,9 +894,9 @@ Plug 'zenorocha/dracula-theme', {'rtp': 'vim/'}
 " Plug 'AlessandroYorba/Alduin'
 " Plug 'viccuad/badfox'
 " gets messed up when switching background
-Plug 'noahfrederick/vim-hemisu'
-Plug 'blueshirts/darcula'
-Plug 'toupeira/vim-desertink'
+" Plug 'noahfrederick/vim-hemisu'
+" Plug 'blueshirts/darcula'
+" Plug 'toupeira/vim-desertink'
 " Plug 'jdkanani/vim-material-theme'
 " Plug 'NLKNguyen/papercolor-theme'
 " Plug 'AlessandroYorba/Sierra'
@@ -1002,7 +1002,7 @@ Plug 'deris/vim-rengbang', { 'on': 'RengBang' }
 
 " make changes in the quickfix window, save, and your changes are made in
 " the original files! Awesome when paired with :Ag!
-Plug 'stefandtw/quickfix-reflector.vim'
+" Plug 'stefandtw/quickfix-reflector.vim'
 " similar plugins:
 " Plug 'jceb/vim-editqf'
 " Plug 'thinca/vim-qfreplace'
@@ -1020,7 +1020,7 @@ Plug 'stefandtw/quickfix-reflector.vim'
 "
 " gS to split
 " gJ to join
-Plug 'AndrewRadev/splitjoin.vim'
+" Plug 'AndrewRadev/splitjoin.vim'
 
 " The plugin defines two commands, :SidewaysLeft and :SidewaysRight, which move
 " the item under the cursor left or right, where an 'item' is defined by a
@@ -1220,7 +1220,7 @@ Plug 'thinca/vim-visualstar', { 'on': ['<Plug>visualstar-*', '<Plug>visualstar-#
 " Plug 'ivalkeen/vim-ctrlp-tjump'
 
 " different fork of ctrlp that accepts pull requests
-Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'ctrlpvim/ctrlp.vim'
 
 " fuzzy finder - ctrlp replacement :FZF
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -1264,7 +1264,7 @@ Plug 'EinfachToll/DidYouMean'
 " Swap windows just like cxiw. Mark the first window with <leader>ww. Then
 " switch to the second window and do <leader>ww again. The windows will
 " swap. Simple!
-Plug 'wesQ3/vim-windowswap'
+" Plug 'wesQ3/vim-windowswap'
 
 " :BD to load previous buffer in current window
 " :BB and :BF to move backwards and forwards in buffer history of current
@@ -1503,7 +1503,7 @@ Plug 'xolox/vim-notes'
 
 " anlytics on languages, usage times, etc.
 " @link http://wakatime.com
-Plug 'wakatime/vim-wakatime'
+" Plug 'wakatime/vim-wakatime'
 
 " real-time collaborative editing like etherpad but with native editors
 " @link http://floobits.com
@@ -1584,7 +1584,7 @@ if executable('tmux')
     " Plug 'edkolev/tmuxline.vim', { 'on': ['MyTmuxline', 'MyConfFiles', 'TmuxlineSnapshot', 'Tmuxline'] }
 
     " query surrounding tmux splits to add to autocomplete, automatically
-    Plug 'buztard/vim-nomad'
+    " Plug 'buztard/vim-nomad'
 
     " create tmux window with a command from vim
     " nnoremap <leader>vp :VimuxPromptCommand<cr>
@@ -1597,7 +1597,7 @@ if executable('tmux')
     " nnoremap <leader>pf :VimuxPHPUnitRunCurrentFile<cr>
     " nnoremap <leader>pu :call VimuxRunCommand("phpunit")<cr>
     " nnoremap <leader>pp :VimuxRunLastCommand<cr>
-    Plug 'benmills/vimux'
+    " Plug 'benmills/vimux'
 
 endif
 

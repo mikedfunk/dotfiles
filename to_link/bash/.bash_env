@@ -54,3 +54,6 @@ export DYLD_FORCE_FLAT_NAMESPACE=1
 
 # make zplug stop complaining
 # export ZPLUG_CLONE_DEPTH=1
+
+# phpbrew enable .phpbrewrc
+# export PHPBREW_RC_ENABLE=1

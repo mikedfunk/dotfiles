@@ -347,14 +347,20 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
         # https://github.com/phpbrew/phpbrew/wiki/Troubleshooting#i-cant-install-extension-why
 
         # php7 extensions status:
+        # last checked 2016-05-16
 
-        # couchbase: WORKS via `phpbrew ext install couchbase 2.2.0beta2`
+        # couchbase: WORKS via `phpbrew ext install couchbase 2.2.0beta2` from 2016-04-19
+        # couchbase: beta3 is broken :( from 2016-05-25
         # iconv: works
-        # memcache: broken but who cares
+        # memcache: WORKS via `phpbrew ext install https://github.com/php-memcached-dev/php-memcached php7 -- --disable-memcached-sasl`
         # memcached: works via `phpbrew ext install github:php-memcached-dev/php-memcached php7 -- --disable-memcached-sasl`
         # soap: works
         # spl_types: broken
-        # mongo: works by `phpbrew ext install mongodb` instead
+
+        # mongo: works by `phpbrew ext install mongodb` instead. NOTE: You
+        # will have to `brew install openssl && brew link openssl --force`
+        # first
+
         # xdebug: works
 
         # NOTE: you can disable an ext with `phpbrew ext disable {ext-name}`
