@@ -16,9 +16,11 @@
 
 " Vim-plug setup {{{
 
-" Install Vim-plug on new systems
+" Install Vim-plug and packages on new systems
 if empty(glob("~/.vim/autoload/plug.vim"))
-    execute "!curl -fLo $HOME/.vim/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+      \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
 
 call plug#begin('~/.vim/plugged')
@@ -30,11 +32,21 @@ call plug#begin('~/.vim/plugged')
 " General {{{
 Plug 'tpope/vim-sensible'
 " Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
-Plug 'scrooloose/nerdtree'
+" Plug 'scrooloose/nerdtree'
 " I had trouble getting this to work for some reason
 " Plug 'jistr/vim-nerdtree-tabs', { 'on': ['NERDTreeMirrorToggle', 'NERDTreeTabsToggle', 'NERDTreeTabs'] }
 " Used for NERDTreeMirrorToggle with <c-e>
-Plug 'jistr/vim-nerdtree-tabs'
+" Plug 'jistr/vim-nerdtree-tabs'
+
+" Trying to ween myself off of nerdtree
+" :vs. open netrw at current _working_ dir
+" :Vex open netrw at dir of currently open file
+" % create a new file
+" d create a new directory
+" R rename the file/dir under the cursor
+" D delete the file/dir under the cursor
+Plug 'tpope/vim-vinegar'
+
 " change surrounding quotes, etc.
 Plug 'tpope/vim-surround'
 " make some stuff repeatable that usually isn't
@@ -44,7 +56,7 @@ Plug 'tpope/vim-repeat'
 " Plug 'terryma/vim-multiple-cursors'
 " better supported fork to do sublime-style multiple cursors
 " <c-n> to select the current word, then again for the next match
-Plug 'kristijanhusak/vim-multiple-cursors'
+" Plug 'kristijanhusak/vim-multiple-cursors'
 " I am trying to switch to tpope/vim-obsession
 " Plug 'vim-scripts/sessionman.vim', { 'on': ['SessionList', 'SessionSave', 'SessionClose'] }
 " I use a different one further down
@@ -155,21 +167,21 @@ endif
 " }}}
 
 " Python {{{
-Plug 'yssource/python.vim', { 'for': 'python' }
-Plug 'klen/python-mode', { 'for': 'python' }
-Plug 'python_match.vim', { 'for': 'python' }
-Plug 'pythoncomplete', { 'for': 'python' }
+" Plug 'yssource/python.vim', { 'for': 'python' }
+" Plug 'klen/python-mode', { 'for': 'python' }
+" Plug 'python_match.vim', { 'for': 'python' }
+" Plug 'pythoncomplete', { 'for': 'python' }
 " }}}
 
 " JavaScript {{{
 
 " typescript syntax
-Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+" Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 " typescript completion
-Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
+" Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
 
 " preview current js transpiled to babel!
-Plug 'jbgutierrez/vim-babel', { 'for': 'javascript' }
+" Plug 'jbgutierrez/vim-babel', { 'for': 'javascript' }
 
 " json formatting
 Plug 'elzr/vim-json', { 'for': 'json' }
@@ -186,7 +198,7 @@ Plug 'mxw/vim-jsx', { 'for': 'javascript.jsx' }
 " includes es6 support, web apis, and dom keywords.
 " Plug 'othree/yajs.vim', { 'for': 'javascript' }
 " Plug 'briancollins/vim-jst'
-Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
+" Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 
 " aj provides a text object for the outermost JSON object, array, string, number, or keyword.
 " gqaj 'pretty prints' (wraps/indents/sorts keys/otherwise cleans up) the JSON construct under the cursor.
@@ -224,7 +236,7 @@ Plug 'rodjek/vim-puppet', { 'for': 'puppet' }
 " }}}
 
 " Go {{{
-Plug 'fatih/vim-go', { 'for': 'go' }
+" Plug 'fatih/vim-go', { 'for': 'go' }
 " }}}
 
 " Markdown {{{
@@ -427,7 +439,7 @@ Plug 'tpope/vim-unimpaired'
 " zen coding / emmett integration
 " div#page>div.logo+ul#navigation>li*5>a<c-y>, to get html
 " <c-y>n and <c-y>N to go to next and previous insert points
-Plug 'mattn/emmet-vim', { 'for': ['phtml', 'html', 'html.twig', 'twig', 'blade', 'xml'] }
+" Plug 'mattn/emmet-vim', { 'for': ['phtml', 'html', 'html.twig', 'twig', 'blade', 'xml'] }
 
 " much better than snipmate or neosnippet
 " :UltiSnipsEdit to edit the snippets file for the current file type
@@ -478,10 +490,10 @@ Plug 'edsono/vim-matchit', { 'for': ['html', 'html.twig', 'blade', 'xml', 'php']
 " Plug 'dag/vim-fish'
 
 " api blueprint
-Plug 'kylef/apiblueprint.vim', { 'for': 'apiblueprint' }
+" Plug 'kylef/apiblueprint.vim', { 'for': 'apiblueprint' }
 
 " restful api modeling language
-Plug 'kennethzfeng/vim-raml', { 'for': 'raml' }
+" Plug 'kennethzfeng/vim-raml', { 'for': 'raml' }
 
 " view files for Zend, Symfony, CakePHP, etc.
 Plug 'vim-scripts/phtml.vim', { 'for': 'html' }
@@ -490,10 +502,10 @@ Plug 'vim-scripts/phtml.vim', { 'for': 'html' }
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
 
 " asp.net/c# enhanced
-Plug 'OrangeT/vim-csharp', { 'for': ['aspx.html', 'cs'] }
+" Plug 'OrangeT/vim-csharp', { 'for': ['aspx.html', 'cs'] }
 
 " rust
-Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+" Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 
 " Hide portions from syntax highlighting. Useful for when syntax coloring
 " gets messed up by html in php or markdown quotes/underscores/dashes
@@ -501,7 +513,7 @@ Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 " Plug 'vim-scripts/SyntaxRange', { 'on': ['SyntaxIgnore', 'SyntaxInclude'] }
 
 " nested levels of parentheses are all different colors
-Plug 'junegunn/rainbow_parentheses.vim', { 'on': ['RainbowParentheses', 'RainbowParenthesesColors'] }
+" Plug 'junegunn/rainbow_parentheses.vim', { 'on': ['RainbowParentheses', 'RainbowParenthesesColors'] }
 
 " preview images in vim via ascii conversion
 " NOTE: Requires python library PIL installed via pip:
@@ -512,10 +524,10 @@ Plug 'junegunn/rainbow_parentheses.vim', { 'on': ['RainbowParentheses', 'Rainbow
 " endif
 
 " syntax highlighting for twig templates
-Plug 'beyondwords/vim-twig', { 'for': 'twig' }
+" Plug 'beyondwords/vim-twig', { 'for': 'twig' }
 
 " facebook hhvm hack highlight support
-Plug 'hhvm/vim-hack', { 'for': 'hack' }
+" Plug 'hhvm/vim-hack', { 'for': 'hack' }
 
 " syntastic plugin for vimrc
 Plug 'dbakker/vim-lint', { 'for': 'vim' }
@@ -539,7 +551,7 @@ Plug 'vimez/vim-tmux', { 'for': 'tmux' }
 
 " Css {{{
 " Update the bult-in CSS complete function to latest CSS standard.
-Plug 'othree/csscomplete.vim', { 'for': 'css' }
+Plug 'othree/csscomplete.vim', { 'for': ['css', 'scss', 'less'] }
 Plug 'groenewege/vim-less', { 'for': 'less' }
 
 " colorize css colors without causing $VIMRC reload problems
@@ -575,6 +587,7 @@ Plug 'ap/vim-css-color', { 'for': ['css', 'scss', 'sass', 'less'] }
 " update php syntax for 5.3-5.6
 Plug 'StanAngeloff/php.vim', { 'for': 'php' }
 
+" REALLY USEFUL!!
 " php manual in vim - get def of word under cursor with shift-K
 Plug 'alvan/vim-php-manual', { 'for': ['php', 'blade'] }
 
@@ -839,7 +852,7 @@ Plug 'ntpeters/vim-better-whitespace', { 'for': ['php', 'python', 'javascript', 
 
 " show all 256 colors and their numbers. useful for assigning colors in
 " different color schemes.
-Plug 'guns/xterm-color-table.vim', { 'on': 'XtermColorTable' }
+" Plug 'guns/xterm-color-table.vim', { 'on': 'XtermColorTable' }
 
 " a bunch of color schemes to try. Most don't work in 256.
 " Plug 'flazz/vim-colorschemes'
@@ -969,7 +982,7 @@ Plug 'vim-scripts/ScrollColors', { 'on': 'SCROLL' }
 " check what highlights are on the current line with :HLT! and :HLTm to
 " disable until needed. Useful for debugging highlight groups
 " Plug 'kergoth/vim-hilinks'
-Plug 'kergoth/vim-hilinks', { 'on': ['HLT', 'HLTm'] }
+" Plug 'kergoth/vim-hilinks', { 'on': ['HLT', 'HLTm'] }
 
 " Set background to light or dark automatically at sunrise/sunset
 " does what it says but I like to set bg to whatever i want whenever i want
@@ -992,7 +1005,7 @@ Plug 'kergoth/vim-hilinks', { 'on': ['HLT', 'HLTm'] }
 
 " use :Switch to swap between 2 or more paired definitions in .vimrc
 " Cool but I've never used it
-Plug 'AndrewRadev/switch.vim', { 'on': 'Switch' }
+" Plug 'AndrewRadev/switch.vim', { 'on': 'Switch' }
 
 " take a bunch of zeroes and make them sequential. (rengbang is some japanese
 " word for doing this)
@@ -1196,7 +1209,7 @@ Plug 'tpope/vim-projectionist'
 
 " allow to star search from a visual selection
 " vip *
-Plug 'thinca/vim-visualstar', { 'on': ['<Plug>visualstar-*', '<Plug>visualstar-#', '<Plug>visualstar-g*', '<Plug>visualstar-g#'] }
+" Plug 'thinca/vim-visualstar', { 'on': ['<Plug>visualstar-*', '<Plug>visualstar-#', '<Plug>visualstar-g*', '<Plug>visualstar-g#'] }
 
 " faster ctrlp matcher
 " still not instantaneous like ag
@@ -1276,7 +1289,7 @@ Plug 'EinfachToll/DidYouMean'
 
 " reopen closed window, mapping in .vimrc.local
 " nnoremap <leader>uc :UcwRestoreWindow<cr>
-Plug 'tyru/undoclosewin.vim'
+" Plug 'tyru/undoclosewin.vim'
 " doesn't want to lazy load
 " Plug 'tyru/undoclosewin.vim', { 'on': 'UcwRestoreWindow' }
 
@@ -1284,7 +1297,7 @@ Plug 'tyru/undoclosewin.vim'
 " Plug 'vim-scripts/ZoomWin'
 " Latest version someone hosted
 " <c-w>z to toggle zoom
-Plug 'regedarek/ZoomWin'
+" Plug 'regedarek/ZoomWin'
 
 " allow to close all buffers but the current one
 " :BufOnly
@@ -1365,7 +1378,7 @@ Plug 'kana/vim-textobj-entire'
 
 " selection in/around underscore
 " a_, i_
-Plug 'kana/vim-textobj-underscore'
+" Plug 'kana/vim-textobj-underscore'
 
 " vai and vii text indent objects - REALLY useful
 " Plug 'kana/vim-textobj-indent'
@@ -1437,7 +1450,7 @@ endif
 
 " scratch window that autohides when not being used. gs to open. gs in visual
 " mode will paste the contents of the selection into the scratch window.
-Plug 'mtth/scratch.vim', { 'on': 'Scratch' }
+" Plug 'mtth/scratch.vim', { 'on': 'Scratch' }
 
 " review pull requests in vim
 " Plug 'codegram/vim-codereview'
@@ -1584,7 +1597,7 @@ if executable('tmux')
     " Plug 'edkolev/tmuxline.vim', { 'on': ['MyTmuxline', 'MyConfFiles', 'TmuxlineSnapshot', 'Tmuxline'] }
 
     " query surrounding tmux splits to add to autocomplete, automatically
-    " Plug 'buztard/vim-nomad'
+    Plug 'buztard/vim-nomad'
 
     " create tmux window with a command from vim
     " nnoremap <leader>vp :VimuxPromptCommand<cr>
@@ -1604,7 +1617,7 @@ endif
 if $TERM == 'screen-256color' || $TERM == 'xterm-256color' || $TERM == 'st-256color'
     " fix broken terminal keys when we use xterm-256-color in iterm prefs and
     " screen-256-color in tmux.conf prefs
-    Plug 'nacitar/terminalkeys.vim'
+    " Plug 'nacitar/terminalkeys.vim'
 
     " Terminus enhances Vim's integration with the terminal in four ways,
     " particularly when using tmux (https://tmux.github.io/) and iTerm
@@ -1613,7 +1626,7 @@ if $TERM == 'screen-256color' || $TERM == 'xterm-256color' || $TERM == 'st-256co
     " 1. Cursor shape change in insert mode ~
 
     " In insert mode, the cursor shape changes to a thin vertical bar. On leaving
-    " inset mode, it reverts to the standard "block" shape.
+    " inset mode, it reverts to the standard 'block' shape.
 
     " 2. Improved mouse support ~
 
@@ -1629,11 +1642,11 @@ if $TERM == 'screen-256color' || $TERM == 'xterm-256color' || $TERM == 'st-256co
     " automatically pick up changes made by other processes when switching to and
     " from Vim.
 
-    " 4. "Bracketed Paste" mode ~
+    " 4. 'Bracketed Paste' mode ~
 
-    " Sets up "Bracketed Paste" mode, which means you can forget about manually
+    " Sets up 'Bracketed Paste' mode, which means you can forget about manually
     " setting the 'paste' option and simply go ahead and paste in any mode.
-    Plug 'wincent/terminus'
+    " Plug 'wincent/terminus'
 endif
 
 " }}}
@@ -1689,8 +1702,8 @@ call plug#end()
 " }}}
 
 " Auto-install missing plugins {{{
-autocmd VimEnter *
-\  if !empty(filter(copy(g:plugs), '!isdirectory(v:val.dir)'))
-\|   PlugInstall | q
-\| endif
+" autocmd VimEnter *
+" \  if !empty(filter(copy(g:plugs), '!isdirectory(v:val.dir)'))
+" \|   PlugInstall | q
+" \| endif
 " }}}

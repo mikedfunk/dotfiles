@@ -228,6 +228,8 @@ autocmd omnifunc_augroup FileType javascript setlocal omnifunc=javascriptcomplet
 autocmd omnifunc_augroup FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd omnifunc_augroup FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd omnifunc_augroup FileType ruby setlocal omnifunc=rubycomplete#Complete
+" disable php autocomplete (because it's SLOW):
+autocmd omnifunc_augroup FileType php set omnifunc=
 " }}}
 
 " if the last window is a quickfix, close it {{{
@@ -284,6 +286,7 @@ silent! colorscheme lucius
 " @link https://github.com/neovim/neovim/issues/2334
 if (has('nvim'))
     let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+    " disabled because of annoying artifacts and slower rendering
     " set termguicolors
 endif
 " }}}
@@ -748,6 +751,13 @@ if isdirectory(expand("~/.vim/plugged/sessionman.vim/"))
     nnoremap <Leader>sc :SessionClose<CR>
 endif
 " }}}
+
+" sideways.vim {{{
+if isdirectory(expand("~/.vim/plugged/sideways.vim"))
+    nnoremap <leader>sr :SidewaysRight
+    nnoremap <leader>sl :SidewaysLeft
+endif
+"}}}
 
 " Syntastic {{{
 if isdirectory(expand("~/.vim/plugged/syntastic"))
@@ -1376,9 +1386,6 @@ if isdirectory(expand("~/.vim/plugged/YouCompleteMe"))
     " so I know what they are
     " let g:ycm_autoclose_preview_window_after_completion = 1
     let g:ycm_autoclose_preview_window_after_insertion = 1
-
-    " disable youcompleteme
-    " let g:ycm_auto_trigger=0
 
     " https://github.com/Floobits/floobits-vim
     " Other plugins can interfere with Floobits. For example, YouCompleteMe
