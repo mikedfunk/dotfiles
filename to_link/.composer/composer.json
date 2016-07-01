@@ -5,7 +5,7 @@
     }
   },
   "require": {
-    "covex-nn/phpcb": "@stable",
+    "mayflower/php-codebrowser": "@stable",
     "sebastian/phpcpd": "@stable",
     "pdepend/pdepend": "@stable",
     "phing/phing": "@stable",

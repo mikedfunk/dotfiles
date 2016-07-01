@@ -754,8 +754,8 @@ endif
 
 " sideways.vim {{{
 if isdirectory(expand("~/.vim/plugged/sideways.vim"))
-    nnoremap <leader>sr :SidewaysRight
-    nnoremap <leader>sl :SidewaysLeft
+    nnoremap <leader>sr :SidewaysRight<cr>
+    nnoremap <leader>sl :SidewaysLeft<cr>
 endif
 "}}}
 
@@ -1165,6 +1165,12 @@ if isdirectory(expand("~/.vim/plugged/vim-notes"))
 endif
 " }}}
 
+" vim-pasta {{{
+if isdirectory(expand("~/.vim/plugged/vim-pasta"))
+    let g:pasta_disabled_filetypes = ['netrw']
+endif
+" }}}
+
 " vim-php-cs-fixer {{{
 if isdirectory(expand("~/.vim/plugged/vim-php-cs-fixer"))
     " just do psr-2. I don't want all your opinionated stuff.
@@ -1231,9 +1237,9 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
     " Remove any newly removed plugins in ~/.vimrc.plugins
     nnoremap <leader>bc :so ~/.vimrc.plugins<cr> :PlugClean!<cr>
     " Upgrade all installed plugins in ~/.vimrc.plugins
-    nnoremap <leader>bu :so ~/.vimrc.plugins<cr> :PlugUpdate<cr> :PlugUpgrade<cr> :UpdateRemotePlugins<cr>
+    nnoremap <leader>bu :so ~/.vimrc.plugins<cr> :PlugUpdate<cr> :PlugUpgrade<cr> silent! :UpdateRemotePlugins<cr>
     " do everything!
-    nnoremap <leader>ba :so ~/.vimrc.plugins<cr> :PlugClean<cr> :PlugInstall<cr> :PlugUpdate<cr> :PlugUpgrade<cr> :UpdateRemotePlugins<cr>
+    nnoremap <leader>ba :so ~/.vimrc.plugins<cr> :PlugClean<cr> :PlugInstall<cr> :PlugUpdate<cr> :PlugUpgrade<cr> silent! :UpdateRemotePlugins<cr>
 endif
 " }}}
 

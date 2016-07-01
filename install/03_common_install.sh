@@ -243,6 +243,7 @@ requests # used for vim-jira-complete
 # robotframework-selenium2screenshots
 saws # aws console on steroids
 # stellar # fast database stapshot and restore tool for development
+stormssh # interact with ssh config
 # supervisor # a client/server system that allows its users to control a number of processes
 )
 for package in "${packages[@]}"

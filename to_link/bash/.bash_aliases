@@ -630,31 +630,31 @@ alias myleague-all-staging-rsync="myleague1-staging-rsync && myleague2-staging-r
 alias essortment-staging-rsync="cd ~/Sites/essortment && rsync --recursive --links --checksum --progress --exclude-from=./.rsync_exclude --chmod=Dugo+rwX,u+rw,go+r ./. web15:/home/cmeops/CME2/sites/mike.funk/www.essortment.com && cd -"
 
 # saatchi socks proxies
-alias saatchi-dev-socks-proxy="ssh -D 5555 -l mike.funk console.use1.dev.isaatchi.com"
-alias saatchi-qa-socks-proxy="ssh -D 5556 -l mike.funk console.use1.qa.isaatchi.com"
+alias saatchi-dev-socks-proxy="ssh -D 5555 -l mike.funk console.use1.dev.isaatchi.com -o ExitOnForwardFailure=yes"
+alias saatchi-qa-socks-proxy="ssh -D 5556 -l mike.funk console.use1.qa.isaatchi.com -o ExitOnForwardFailure=yes"
 # alias saatchi-prod-socks="ssh -D 5557 -l mike.funk console.usw1.isaatchi.com"
 
 # mycli (pretty mysql helper) aliases for various dbs {{{
 
 ### local
-alias mycli-saatchi-local-saatchi="mycli -h $SAATCHI_LOCAL_HOST -u $SAATCHI_LOCAL_USERNAME -D $SAATCHI_LOCAL_DB --prompt 'saatchi[local]> '"
-alias mycli-saatchi-local-zed="mycli -h $ZED_LOCAL_HOST -u $ZED_LOCAL_USERNAME -D $ZED_LOCAL_DB --prompt 'zed[local]> '"
+alias mycli-saatchi-local-saatchi="mycli -h $SAATCHI_LOCAL_HOST -u $SAATCHI_LOCAL_USERNAME -D $SAATCHI_LOCAL_DB --prompt 'saatchi[local]> ' --auto-vertical-output"
+alias mycli-saatchi-local-zed="mycli -h $ZED_LOCAL_HOST -u $ZED_LOCAL_USERNAME -D $ZED_LOCAL_DB --prompt 'zed[local]> ' --auto-vertical-output"
 
 ### dev
-alias mycli-saatchi-dev-saatchi="ssh -f saatchi-dev-console-01 -L $SAATCHI_DEV_PORT:$SAATCHI_DEV_HOST:3306 -N && mycli -h127.0.0.1 -P$SAATCHI_DEV_PORT -u$SAATCHI_DEV_USERNAME -p$SAATCHI_DEV_PASSWORD -D$SAATCHI_DEV_DB --prompt 'saatchi[dev]> '"
-alias mycli-saatchi-dev-zed="ssh -f saatchi-dev-console-01 -L $ZED_DEV_PORT:$ZED_DEV_HOST:3306 -N && mycli -h127.0.0.1 -P$ZED_DEV_PORT -u$ZED_DEV_USERNAME -p$ZED_DEV_PASSWORD -D$ZED_DEV_DB --prompt 'zed[dev]> '"
+alias mycli-saatchi-dev-saatchi="ssh -f saatchi-dev-console-01 -L $SAATCHI_DEV_PORT:$SAATCHI_DEV_HOST:3306 -N && mycli -h127.0.0.1 -P$SAATCHI_DEV_PORT -u$SAATCHI_DEV_USERNAME -p$SAATCHI_DEV_PASSWORD -D$SAATCHI_DEV_DB --prompt 'saatchi[dev]> ' --auto-vertical-output --warn"
+alias mycli-saatchi-dev-zed="ssh -f saatchi-dev-console-01 -L $ZED_DEV_PORT:$ZED_DEV_HOST:3306 -N && mycli -h127.0.0.1 -P$ZED_DEV_PORT -u$ZED_DEV_USERNAME -p$ZED_DEV_PASSWORD -D$ZED_DEV_DB --prompt 'zed[dev]> ' --auto-vertical-output --warn"
 
 ### qa
-alias mycli-saatchi-qa-saatchi="ssh -f saatchi-qa-console-01 -L $SAATCHI_QA_PORT:$SAATCHI_QA_HOST:3306 -N && mycli -h127.0.0.1 -P$SAATCHI_QA_PORT -u$SAATCHI_QA_USERNAME -p$SAATCHI_QA_PASSWORD -D$SAATCHI_QA_DB --prompt 'saatchi[qa]> '"
-alias mycli-saatchi-qa-zed="ssh -f saatchi-qa-console-01 -L $ZED_QA_PORT:$ZED_QA_HOST:3306 -N && mycli -h127.0.0.1 -P$ZED_QA_PORT -u$ZED_QA_USERNAME -p$ZED_QA_PASSWORD -D$ZED_QA_DB --prompt 'zed[qa]> '"
+alias mycli-saatchi-qa-saatchi="ssh -f saatchi-qa-console-01 -L $SAATCHI_QA_PORT:$SAATCHI_QA_HOST:3306 -N && mycli -h127.0.0.1 -P$SAATCHI_QA_PORT -u$SAATCHI_QA_USERNAME -p$SAATCHI_QA_PASSWORD -D$SAATCHI_QA_DB --prompt 'saatchi[qa]> ' --auto-vertical-output --warn"
+alias mycli-saatchi-qa-zed="ssh -f saatchi-qa-console-01 -L $ZED_QA_PORT:$ZED_QA_HOST:3306 -N && mycli -h127.0.0.1 -P$ZED_QA_PORT -u$ZED_QA_USERNAME -p$ZED_QA_PASSWORD -D$ZED_QA_DB --prompt 'zed[qa]> ' --auto-vertical-output --warn"
 
 ### prod
-alias mycli-saatchi-prod-saatchi="mycli -h $SAATCHI_PROD_HOST -u $SAATCHI_PROD_USERNAME -p $SAATCHI_PROD_PASSWORD -D $SAATCHI_PROD_DB --prompt 'saatchi[PRODUCTION]> '"
-alias mycli-saatchi-prod-zed="mycli -h $ZED_PROD_HOST -u $ZED_PROD_USERNAME -p $ZED_PROD_PASSWORD -D $ZED_PROD_DB --prompt 'zed[PRODUCTION]> '"
+alias mycli-saatchi-prod-saatchi="mycli -h $SAATCHI_PROD_HOST -u $SAATCHI_PROD_USERNAME -p $SAATCHI_PROD_PASSWORD -D $SAATCHI_PROD_DB --prompt 'saatchi[PRODUCTION]> ' --auto-vertical-output --warn"
+alias mycli-saatchi-prod-zed="mycli -h $ZED_PROD_HOST -u $ZED_PROD_USERNAME -p $ZED_PROD_PASSWORD -D $ZED_PROD_DB --prompt 'zed[PRODUCTION]> ' --auto-vertical-output --warn"
 
 ### replica
-alias mycli-saatchi-replica-saatchi="mycli -h $SAATCHI_REPLICA_HOST -u $SAATCHI_REPLICA_USERNAME -p $SAATCHI_REPLICA_PASSWORD -D $SAATCHI_REPLICA_DB --prompt 'saatchi[REPLICA]> '"
-alias mycli-saatchi-replica-zed="mycli -h $ZED_REPLICA_HOST -u $ZED_REPLICA_USERNAME -p $ZED_REPLICA_PASSWORD -D $ZED_REPLICA_DB --prompt 'zed[REPLICA]> '"
+alias mycli-saatchi-replica-saatchi="mycli -h $SAATCHI_REPLICA_HOST -u $SAATCHI_REPLICA_USERNAME -p $SAATCHI_REPLICA_PASSWORD -D $SAATCHI_REPLICA_DB --prompt 'saatchi[REPLICA]> ' --auto-vertical-output --warn"
+alias mycli-saatchi-replica-zed="mycli -h $ZED_REPLICA_HOST -u $ZED_REPLICA_USERNAME -p $ZED_REPLICA_PASSWORD -D $ZED_REPLICA_DB --prompt 'zed[REPLICA]> ' --auto-vertical-output --warn"
 
 # }}}
 
