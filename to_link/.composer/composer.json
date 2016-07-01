@@ -5,34 +5,8 @@
     }
   },
   "require": {
-    "mayflower/php-codebrowser": "@stable",
-    "sebastian/phpcpd": "@stable",
-    "pdepend/pdepend": "@stable",
-    "phing/phing": "@stable",
-    "phploc/phploc": "@stable",
-    "phpmd/phpmd": "@stable",
-    "phpunit/phpunit": "@stable",
-    "squizlabs/php_codesniffer": "@stable",
-    "behat/behat": "@stable",
-    "behat/mink": "@dev",
-    "behat/mink-extension": "@stable",
-    "behat/mink-goutte-driver": "~1.1",
-    "behat/mink-selenium2-driver": "~1.2",
-    "phpspec/phpspec": "@stable",
-    "techlivezheng/phpctags": "@stable",
-    "drush/drush": "@stable",
-    "laravel/homestead": "~2.0",
-    "psy/psysh": "@stable",
-    "qafoolabs/php-refactoring-browser": "@stable",
-    "laravel/lumen-installer": "~1.0",
-    "laravel/installer": "~1.2",
-    "behat/mink-zombie-driver": "~1.2",
-    "psecio/iniscan": "^3.6",
-    "sami/sami": "^3.0",
-    "stecman/symfony-console-completion": "^0.6.2",
     "hirak/prestissimo": "^0.3",
-    "zendframework/zftool": "dev-master",
     "pyrech/composer-changelogs": "^1.3",
-    "bamarni/symfony-console-autocomplete": "^1.2"
+    "consolidation/cgr": "^1.1"
   }
 }

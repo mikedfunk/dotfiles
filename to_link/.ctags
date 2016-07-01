@@ -8,7 +8,7 @@
 --exclude=classes.php.cache
 --exclude=app/cache
 --exclude=__TwigTemplate_*
---fields=+aim
+--fields=+aimlS
 --languages=php
 --PHP-kinds=+cf
 --sort=foldcase

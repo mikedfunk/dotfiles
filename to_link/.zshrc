@@ -20,7 +20,7 @@ zplug "plugins/colored-man", from:oh-my-zsh
 zplug "plugins/colorize", from:oh-my-zsh
 # currently dies with an undefined function "is-at-least"
 # zplug "plugins/common-aliases", from:oh-my-zsh
-zplug "plugins/composer", from:oh-my-zsh, nice:15
+# zplug "plugins/composer", from:oh-my-zsh, nice:15
 zplug "plugins/git", from:oh-my-zsh, if:"which git", nice:15
 zplug "plugins/git-extras", from:oh-my-zsh, if:"which git"
 zplug "plugins/gitfast", from:oh-my-zsh, if:"which git", nice:15
