@@ -679,7 +679,8 @@ Plug 'joonty/vdebug', { 'for': 'php' }
 " Index generation can take a while, but needs to be performed only once per project.
 " MUUUUUUUCH faster than phpcomplete!!!
 " disabled because it fails to parse on a codebase I'm working on. :(
-Plug 'mkusher/padawan.vim', { 'for': 'php' }
+" error output was this: 'Error occured, code: 255' (2016-07-01)
+" Plug 'mkusher/padawan.vim', { 'for': 'php' }
 
 " required for phpcomplete-extended
 " required for tsuqyomi
