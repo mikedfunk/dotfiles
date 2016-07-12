@@ -145,6 +145,9 @@ set exrc " enables reading .vimrc from current directory
 set secure " Always append set secure when exrc option is enabled!
 set ff=unix " Any non-unix line endings are converted to unix
 
+" nav point for current directory with %%
+cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
+
 " NOTE: gn will highlight or visually select the last highlighted search result
 
 " set quickfix window height min and max automatically

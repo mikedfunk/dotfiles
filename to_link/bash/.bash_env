@@ -57,3 +57,7 @@ export DYLD_FORCE_FLAT_NAMESPACE=1
 
 # phpbrew enable .phpbrewrc
 # export PHPBREW_RC_ENABLE=1
+
+# make fzf respect gitignore
+# @link https://github.com/junegunn/fzf#respecting-gitignore-hgignore-and-svnignore
+export FZF_DEFAULT_COMMAND='ag -g ""'

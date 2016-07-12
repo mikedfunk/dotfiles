@@ -79,6 +79,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
         cmake # used by youcompleteme
         # ctags # allows jumping to function/class definitions, etc. in vim
         # dnsmasq # easily set up dynamic dev domains such as myproject.dev
+        docker # virtualization software
         # dos2unix # converts dos line endings to unix in a file
         # fasd # Command-line productivity booster, offers quick access to files and directories, inspired by autojump, z and v.
         fpp # facebook path picker. Used with tmux-fpp to easily open files in an editor.
