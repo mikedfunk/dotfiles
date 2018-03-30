@@ -1,0 +1,329 @@
+# vim: set foldmethod=marker
+# global git config
+
+# Tips {{{
+# g rbid: git rebase -i develop
+# g rbi master: git rebase -i master
+# g lg -2: show the last 2 commits in the git log
+# g ffs my-feature-name: git flow feature start my-feature-name
+# }}}
+
+# General {{{
+[apply]
+    whitespace = nowarn
+[http]
+    sslVerify = false
+[help]
+    autocorrect = 1
+[user]
+    email = mike@mikefunk.com
+    name = Mike Funk
+[web]
+    browser = open
+[instaweb]
+    httpd = webrick
+[filter "media"]
+    clean = git-media-clean %f
+    smudge = git-media-smudge %f
+[pre-commit]
+    checks = php, tabs, white_space, console_log, merge_conflict, json, yaml, coffeelint
+[github]
+    user = mikedfunk
+[url "git@github.com"]
+    insteadOf = gh
+[url "git@bitbucket.org"]
+    insteadOf = bb
+# large files... not sure what this does
+[filter "lfs"]
+    clean = git lfs clean %f
+    smudge = git lfs smudge %f
+    required = true
+# }}}
+
+# Aliases {{{
+[alias]
+    ahead = git log --branches --not --remotes
+    br = branch
+    # list branches sorted by last modified
+    bm = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
+    ci = commit
+    cl = clone
+    # checkout develop, then run this to remove all local branches that haven't been
+    # merged into develop or master
+    cleanmerged = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 git branch -d"
+    cm = !git add -A && git commit -am
+    cma = !git add -A && git commit -a --amend --no-edit
+    ca = !git add -A && git commit --amend
+    co = checkout
+    cob = checkout -b
+    # Fire up your difftool (e.g. Kaleidescope) with all the changes that
+    # are on the current branch.
+    code-review = difftool origin/develop...
+    dc = diff --cached
+    dd = diff develop..HEAD
+    df = diff
+    dl = diff --cached HEAD~1 --name-only # show modified files _only_ in the last commit
+    dlc = diff --cached HEAD~1 # show a diff of _only_ the last commit
+    dm = diff master..HEAD
+    ds = diff --stat # show files changed (only slightly different than git status)
+    # show diffs one-by-one of each file that has changed. Takes a branch or hash or HEAD~1 or something.
+    # e.g. g dt HEAD~1
+    dt = difftool
+    # I always define git config --global alias.exec '!exec ' so I can do things
+    # like git exec make. This works because shell aliases are always executed in
+    # the top-level directory.
+    exec = "!exec "
+    # git flow feature shortcuts
+    ffc = flow feature checkout
+    ffd = flow feature diff
+    ; fff = flow feature finish
+    fff = "!f() { git flow feature finish $1 && git push; }; f"
+    ffl = flow feature list
+    ffp = flow feature publish
+    ffpl = flow feature pull
+    ffr = flow feature rebase
+    ffs = "!f() { git checkout develop && git pull && git flow feature start $1; }; f"
+    fft = flow feature track
+    # git flow hotfix shortcuts
+    fhc = flow hotfix checkout
+    fhd = flow hotfix diff
+    # fhf = flow hotfix finish
+    fhf = "!f() { git checkout develop && git pull && git checkout - && git checkout master && git pull && git flow hotfix finish $1 && git push && git checkout master && git push && git push --tags && git checkout develop && ( git push origin --delete hotfix/$1  || true ); }; f"
+    fhl = flow hotfix list
+    fhp = flow hotfix publish
+    fhpl = flow hotfix pull
+    fhr = flow hotfix rebase
+    # fhs = flow hotfix start
+    fhs = "!f() { git checkout develop && git pull && git checkout master && git pull && git flow hotfix start $1 && git push; }; f"
+    fht = flow hotfix track
+    # git flow release shortcuts
+    # frs = flow release start
+    frs = "!f() { git checkout develop && git pull && git checkout master && git pull && git flow release start $1 && git push; }; f"
+    # frf = flow release finish
+    frf = "!f() { git checkout develop && git pull && git checkout - && git checkout master && git pull && git flow release finish $1 && git push && git checkout master && git push && git push --tags && git checkout develop && hub release create $1 -m $1; }; f"
+    # show change for one file
+    filelog = log -u
+    fl = log -u
+    ft = fetch --tags
+    # show the sha ref of the current HEAD
+    headref = "!git show-ref --head -s | awk 'NR==1'"
+    # Show files ignored by git
+    ign = ls-files -o -i --exclude-standard
+    iw = instaweb --httpd webrick
+    # list aliases
+    la = "!git config -l | grep alias | cut -c 7-"
+    # show latest commits on all branches by most recent
+    latest = for-each-ref --sort=-committerdate refs/heads --format='%(committerdate:relative) %(refname:short)'
+    # my go-to log format
+    lg = log --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+    lgdate = log --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset'
+    ld = log --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' develop..HEAD --no-merges
+    lm = log --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' master..HEAD --no-merges
+    lmn = "!git log --pretty=format:'%h - %s (%cr) <%an>' master..HEAD --no-merges | pbcopy"
+    # graphy log format with the visual branching on the left
+    lol = log --graph --decorate --pretty=oneline --abbrev-commit
+    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    # show all files tracked by git in this branch
+    ls = ls-files
+    # show the last added tag! Helpful for git flow!
+    lasttag = describe --tags --abbrev=0
+    lt = describe --tags --abbrev=0
+    mt = mergetool
+    # To see what new commits have been created by the last command –
+    # typically after a git pull. You invoke it for example with: git new HEAD
+    new = !sh -c 'git log $1@{1}..$1@{0} "$@"'
+    # another graphy log format
+    olg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    permission-reset = !git diff -p -R | grep -E \"^(diff|(old|new) mode)\" | git apply
+    pl = pull --rebase
+    # pl = !git fetch; git rebase --autostash
+    pnp = !git pull -r && git push
+    # yo baby yo
+    po = !echo 'Ah push it' && git push origin && echo 'PUSH IT REAL GOOD'
+    pp = !git pull && git push
+    pu = push
+    # pull and update submodules... i hate submodules...
+    pup = !git pull --recurse-submodules && git submodule update
+    puf = push --force
+    purr = pull --rebase
+    put = push --tags
+    rbc = rebase --continue
+    rbi = rebase -i
+    rbd = rebase -i develop
+    rbm = rebase -i master
+    rbs = rebase --skip
+    rba = rebase --abort
+    # rebase interactively on to the upstream to this branch
+    ready = rebase -i @{u}
+    rh = reset --hard
+    # root dir - e.g. cd $(git root)
+    root = rev-parse --show-toplevel
+    # show tags sorted by semantic version e.g. 3.1.0, 3.2.0, 3.10.0
+    semver = !git fetch --tags && ( git tag --sort=v:refname | grep -E \"\\d+\\.\\d+\\.\\d+\" )
+    # save a stash with "git stash save my_stash_name"
+    # search for a stash by saved description e.g. "git sshow my_stash_name"
+    sshow = "!f() { git stash show stash^{/$*} -p; }; f"
+    # apply a stash by saved description e.g. "git sapply my_stash_name"
+    sapply = "!f() { git stash apply stash^{/$*}; }; f"
+    sh = show HEAD
+    st = status -sb
+    # show all of my commits since yesterday
+    # I use npm git-standup now instead
+    # standup = log --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cD) %C(bold blue)<%an>%Creset' --since yesterday --author mike.funk@internetbrands.com
+    stash-unapply = !git stash show -p | git apply -R
+    synchd = "!f() { echo \"Syncing current branch with develop\" && git checkout develop && git pull -r && git checkout - && git rebase develop; }; f"
+    synchm = "!f() { echo \"Syncing current branch with master\" && git checkout master && git pull -r && git checkout - && git rebase master; }; f"
+    # usage: git synch my-branch-name
+    synch = "!f() { echo \"Syncing current branch with $1\" && git checkout $1 && git pull -r && git checkout - && git rebase $1; }; f"
+    undo = reset HEAD~1 --mixed # uncommit the last commit
+    unstage = reset HEAD # hard to remember
+    who = shortlog -n -s --no-merges # who has contributed to a project
+    wiff = diff --color-words
+    wip = !git add -u && git commit -m "WIP" # work in progress commit
+    # uncommit the last commit... but make a backup ref first just in case
+    wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
+# }}}
+
+# Color and visual settings {{{
+; [color]
+;     branch = true
+;     diff = true
+;     status = true
+;     showbranch = true
+;     ui = true
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+[color "diff"]
+    meta = yellow bold
+    commit = green bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+    whitespace = red reverse
+[color "diff-highlight"]
+    oldNormal = red bold
+    oldHighlight = "red bold 52"
+    newNormal = "green bold"
+    newHighlight = "green bold 22"
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+    ui = true
+[commit]
+    verbose = true
+[format]
+    ; sets the git log format to be one line
+    ; pretty = '%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+[log]
+    date = short
+# }}}
+
+# Core settings {{{
+[core]
+    editor = vim
+    ;editor = nvim
+    whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+    trustctime = false
+    ; if you want to specify a custom global gitignore location
+    ; I don't use this, I use ~/.config/git/ignore now
+    ; excludesfile = ~/.gitignore
+    ; autocrlf = input
+    ; autocrlf = true
+    excludesfile = ~/.config/git/ignore
+    autocrlf = false
+    ignorecase = false
+    preloadindex = true
+    ; pager = diff-highlight | diff-so-fancy | less --tabs=1,5 -R
+    ; use diff-so-fancy and diff-highlight together
+    pager = diff-highlight | diff-so-fancy | less --tabs=4 -RFX
+    ; pager = less -FRSX
+    ; excludesfile = /Users/mikefunk/.config/git/ignore
+# }}}
+
+# diff and mergetool {{{
+[diff]
+    ; tool = opendiff
+    tool = vimdiff
+    compactionHeuristic = 1
+    ; tool = "nvim"
+[merge]
+    ; tool = opendiff
+    tool = vimdiff
+    ; tool = "nvim -d"
+    ; shows local, parent, then remote
+    ; conflictstyle = diff3
+[mergetool "vimdiff"]
+    ; cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+    ; use the neovim/macvim/vim switch to use whichever vim is configured
+    ; cmd = source ~/.bash_aliases && ${vim} -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+[difftool "vimdiff"]
+    ; cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+    ; use the neovim/macvim/vim switch to use whichever vim is configured
+    ; cmd = source ~/.bash_aliases && ${vim} -d $LOCAL $REMOTE
+[mergetool]
+    keepBackup = false
+[pager]
+    ; this lets you skip to the next/prev file with `n` and `N`
+    ; diff = diff-so-fancy | less --tabs=4 -RFX --pattern '^(Date|added|deleted|modified): '
+# }}}
+
+# rebasing, squashing, pushing, fetching {{{
+[branch]
+    ; this breaks git flow hotfix finish. Just use git purr or sync to rebase.
+    ; autosetuprebase = always
+[rebase]
+    autosquash = true
+    autostash = true
+[push]
+    default = current
+    # push any missing _annotated_ tags related to this branch to remote when
+    # pushing a branch. Useful for git flow - pushes related release tags for
+    # master/develop when pushing the branch without also pushing lightweight
+    # tags.
+    followTag = true
+[rerere]
+    enabled = 1
+    autoupdate = true
+[fetch]
+    prune = true
+# }}}
+
+# fix for itt tech torrance firewall and github {{{
+# [url "https://github"]
+    # insteadOf = git://github
+# [hub]
+    # protocol = https
+# }}}
+
+# tools {{{
+[difftool "sourcetree"]
+    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+    path =
+[mergetool "sourcetree"]
+    cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+    trustExitCode = true
+# }}}
+
+# git flow avh settings {{{
+# @link https://github.com/petervanderdoes/gitflow-avh/wiki/Reference:-Configuration
+[gitflow "feature.finish"]
+    keepremote = false
+[gitflow "release.finish"]
+    keepremote = false
+[gitflow "hotfix.finish"]
+    keepremote = false
+# }}}
+[color "diff-highlight"]
+    oldNormal = red bold
+    oldHighlight = red bold 52
+    newNormal = green bold
+    newHighlight = green bold 22
+[profile "Saatchi"]
+    name = Mike Funk
+    email = mike.funk@leafgroup.com
+[profile "Home"]
+    name = Mike Funk
+    email = mike@mikefunk.com

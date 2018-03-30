@@ -1,0 +1,11 @@
+snippet beh "behat yaml config"
+default:
+  extensions:
+    Behat\MinkExtension:
+      base_url: ${2:http://localhost:8000}
+      sessions:
+        default:
+          goutte: ~
+        javascript:
+          selenium2: ~
+endsnippet

@@ -1,0 +1,243 @@
+snippet str "function form of use strict"
+(function closure() {
+  'use strict';
+  $1
+}());
+endsnippet
+
+snippet thm "get a value from the styled-components theme"
+\${props => props.theme.$1}
+endsnippet
+
+snippet edl "eslint-disable-line"
+// eslint-disable-line
+endsnippet
+
+snippet dbg "debugger ignoring eslint"
+debugger; // eslint-disable-line no-debugger
+endsnippet
+
+snippet path "nodejs path"
+const path = require('path')
+endsnippet
+
+snippet rea "react"
+import React from 'react'
+endsnippet
+
+snippet rdom "react dom"
+import ReactDOM from 'react-dom'
+endsnippet
+
+snippet comp "react component"
+import {component} from 'react'
+endsnippet
+
+snippet al "psr-4 autoload"
+"autoload": {
+  "psr-4": {
+    "$1": "$2"
+  }
+}
+endsnippet
+
+snippet rq "node-style require"
+const ${1:gulp} = require('${2:gulp}');
+endsnippet
+
+snippet pj "path.join"
+path.join(__dirname, '$1')
+endsnippet
+
+snippet pr "path.resolve"
+path.resolve(__dirname)
+endsnippet
+
+snippet top "top of file"
+/**
+ * ${1:Description}
+ */
+endsnippet
+
+snippet desc "jasmine describe aka suite"
+(function () {
+  'use strict';
+  describe("$1", function () {
+    $2
+  });
+}());
+endsnippet
+
+snippet expt "jasmine expect"
+expect($1).toEqual($2);
+endsnippet
+
+snippet itsh "jasmine it should (test)"
+it("${1:should do something...}", function () {
+  $2
+});
+endsnippet
+
+snippet req "requirejs-style require"
+require(["$1"], function ($1) {
+  $2
+});
+endsnippet
+
+snippet def "requirejs define"
+define([$1], function () {
+  $2
+});
+endsnippet
+
+snippet me "module.exports"
+module.exports = function () {
+  $1
+}
+endsnippet
+
+snippet clg "console.log"
+console.log("$1");
+endsnippet
+
+snippet top "top jsdoc of js file"
+/**
+ * ${1:Description}
+ *
+ * @author Michael Funk [mike@mikefunk.com]
+ */
+endsnippet
+
+snippet hm "personal author tag"
+@author Michael Funk [mike@mikefunk.com]
+endsnippet
+
+snippet imp "ES6 import"
+import ${1/.*\/(\w+)-?(\w*)-?(\w*)$/\u$1(?2:\u$2)(?3:\u$3)/} from '$1';
+endsnippet
+
+snippet exp "ES6 export"
+/**
+ * ${1:Description}
+ *
+ * @author Michael Funk [mike@mikefunk.com]
+ */
+export default ($2) => {
+  $3
+};
+endsnippet
+
+# helper functions in my world.js file for webdriver.io
+# this.verifyTextRegex('$1', /$2/i, next);
+snippet breg "verify text regex"
+this.browser.getText('$1').then(function (text) {
+  this.expect(text).to.match(/$2/);
+  next();
+}.bind(this)).catch(function (err) {
+  next.fail(err);
+});
+endsnippet
+
+# this.verifyText('$1', '$2', next);
+snippet btext "verify text"
+this.browser.getText('$1').then(function (text) {
+  this.expect(text).to.equal('$2');
+  next();
+}.bind(this)).catch(function (err) {
+  next.fail(err);
+});
+endsnippet
+
+# this.verifyExists('$1', next);
+snippet bexist "verify element exists"
+this.browser.isExisting('$1').then(function (isExisting) {
+  this.expect(isExisting).to.be.true;
+  next();
+}.bind(this)).catch(function (err) {
+  next.fail(err);
+});
+endsnippet
+
+# this.gotoUrl('$1', next);
+snippet burl "go to url"
+this.browser.url('$1').then(function () {
+  next();
+}).catch(function (err) {
+  next.fail(err);
+});
+endsnippet
+
+# this.click('${1:button[type="submit"]}', next);
+snippet bclick "click an element"
+this.browser.click('$1').then(function () {
+  next();
+}).catch(function (err) {
+  next.fail(err);
+});
+endsnippet
+
+# this.setValue('$1', '$2', next);
+snippet bset "set a value"
+this.browser.setValue('$1', '$2').then(function () {
+  next();
+}).catch(function (err) {
+  next.fail(err);
+});
+endsnippet
+
+# this.verifyValue('$1', '$2', next);
+snippet bval "verify a selector has a value"
+this.browser.getValue('$1').then(function (actualValue) {
+  this.expect(actualValue).to.equal($2);
+  next();
+}.bind(this)).catch(function (err) {
+  next.fail(err);
+});
+endsnippet
+
+snippet cla "javascript class"
+/**
+ * @copyright Leaf Group, Ltd. All Rights Reserved.
+ * @author Michael Funk <mike.funk@leafgroup.com>
+ */
+/**
+ * ${1:Description}
+ */
+class `!v expand("%:t:r")` {
+  ${3://}
+}
+
+export default `!v expand("%:t:r")`;
+endsnippet
+
+snippet meth "javascript class method"
+
+/**
+ * ${1:Description}
+ *
+ * @return {void}
+ */
+${2:functionName}($3) {
+  ${4://}
+}
+endsnippet
+
+snippet cstr "javascript constructor"
+
+/**
+ * Assign class properties.
+ *
+ * $2
+ */
+constructor($1) {
+  ${3://}
+}
+endsnippet
+
+snippet dg "javascript debugger"
+debugger;
+endsnippet
+
+snippet rcpf "react component or pure function type"
+Class<React$Component<*, *, *>> | Class<React$PureComponent<*, *, *>>
+endsnippet

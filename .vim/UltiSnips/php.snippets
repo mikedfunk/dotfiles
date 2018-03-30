@@ -1,0 +1,2000 @@
+extends html
+
+global !p
+
+def namespace(snip, path):
+    import os
+    namespace = pathToNamespace(path)
+    if (len(namespace) == 0):
+        return ''
+    return os.linesep + snip.mkline('namespace ' + namespace + ';') + os.linesep
+
+def pathToNamespace(path):
+    import re
+    path = path.replace('\\', '/')
+
+    parts = []
+    for part in path.split('/'):
+        if re.match('^[A-Z]', part):
+            parts.append(part)
+        else:
+            parts = []
+    parts.pop()
+
+    return '\\'.join(parts)
+
+endglobal
+
+snippet al "require composer autoloader"
+// get composer autoloader
+require __DIR__ . '/vendor/autoload.php';
+endsnippet
+
+snippet di "dependency injection"
+
+$1::class => function (ContainerInterface $container) {
+    ${2:// }
+    return new $1($3);
+},
+endsnippet
+
+snippet gtr "php class getter" !b
+
+public function get${1/\w+\s*/\u$0/}(): $2
+{
+    return $this->$1;
+}
+endsnippet
+
+snippet str "PHP Class Setter" !b
+
+/**
+ * @return self the current instance for chainability
+ */
+public function set${1/\w+\s*/\u$0/}($$1)
+{
+    $this->$1 = $$1;
+
+    return $this;
+}
+endsnippet
+
+snippet sg "PHP Class Setter Getter" !b
+
+/**
+ * @return self the current instance for chainability
+ */
+public function set${1/\w+\s*/\u$0/}($2 $$1)
+{
+    $this->$1 = $$1;
+
+    return $this;
+}
+
+public function get${1/\w+\s*/\u$0/}(): $2
+{
+    return $this->$1;
+}
+endsnippet
+
+snippet ig "PHP Class Immutable With and Getter" !b
+
+/**
+ * Return a new instance with this property changed.
+ *
+ * @param ${2:mixed} $$1
+ *
+ * @return self a new instance of the current class for immutability.
+ */
+public function with${1/\w+\s*/\u$0/}($$1)
+{
+	$copy = clone $this;
+	$copy->$1 = $$1;
+
+	return $copy;
+}
+
+/**
+ * Getter.
+ *
+ * @return $2
+ */
+public function get${1/\w+\s*/\u$0/}()
+{
+	return $this->$1;
+}
+endsnippet
+
+snippet ght "Ghetto dependency injection" !b
+
+/**
+ * Setter - ghetto dependency injection. Allows for setting this as a mock
+ * in testing.
+ *
+ * @param ${2:mixed} $$1
+
+ * @return static the current instance for chainability
+ */
+public function set${1/\w+\s*/\u$0/}($$1)
+{
+    $this->$1 = $$1;
+
+    return $this;
+}
+
+/**
+ * Getter - singleton.
+ *
+ * @return $2
+ */
+public function get${1/\w+\s*/\u$0/}()
+{
+    if (is_null($this->$1)) {
+        $this->$1 = new $2();
+        return $this->$1;
+    }
+
+    return $this->$1;
+}
+endsnippet
+
+snippet prt "print_r true"
+print_r(${1}, true)${2}
+endsnippet
+
+snippet dprt "die print_r true"
+die(print_r(${1}, true));
+endsnippet
+
+snippet mti "phpunit incomplete test"
+$this->markTestIncomplete();${1}
+endsnippet
+
+snippet codingStandardsIgnore "magical docblock to make phpcs shut up!"
+/**
+ * @codingStandardsIgnoreFile
+ */
+endsnippet
+
+snippet authr
+
+/**
+ * ${1}
+ *
+ * @author Michael Funk <`!v g:snips_author`>
+ * @copyright Leaf Group, Ltd. All Rights Reserved.
+ */
+
+endsnippet
+
+snippet top "File-level PHP docblock"
+/**
+ * ${1:Description}
+ *
+ * @copyright Leaf Group, Ltd. All Rights Reserved.
+ */
+endsnippet
+
+snippet mck
+$$1Mock = Mockery::mock('${1/\w+\s*/\u$0/}');
+$$1Mock->shouldReceive('$3')
+    ->once()
+    ->andReturn(${4:true});
+endsnippet
+
+snippet cstr "laravel 4 DI construct"
+
+/**
+ * Dependency injection.
+ *
+ * @param \\${1/\w+\s*/\u$0/}Interface $$1
+ */
+public function __construct(${1/\w+\s*/\u$0/}Interface $$1)
+{
+    $this->$1 = $$1;
+}
+endsnippet
+
+snippet cstest1 "construct snippet, still working on it"
+
+/**
+ * Dependency injection.
+ *
+ * @param ${1/, /\n     * @param /g}
+ */
+public function __construct(${1:dependencies})
+{
+    ${1/\w*\s?\$(\w+)(, )*/\n        $this->$1 = $$1;/g}
+}
+endsnippet
+
+snippet dp "PHPUnit Data Provider function"
+
+/**
+ * $1DataProvider.
+ *
+ * @return array
+ */
+public function $1DataProvider()
+{
+    return [
+        [
+            $2
+        ],
+    ];
+}
+endsnippet
+
+snippet php "opening php tag"
+<?php
+$1
+endsnippet
+
+snippet cla "mike's class with namespace, file and class docblocks"
+<?php
+declare(strict_types=1);
+`!p snip.rv = namespace(snip, path)`
+/**
+ * ${1:Description}
+ *
+ * @author `!v g:snips_author`
+ */
+class `!v expand("%:t:r")`$4
+{
+    $6
+}
+endsnippet
+
+snippet scr "saatchi process abstract script"
+<?php
+declare(strict_types=1);
+
+require_once(__DIR__ . '/../../vendor/autoload.php');
+require_once(__DIR__ . '/../../application/command_line_bootstrap.php');
+require_once dirname(__DIR__) . '/ProcessAbstract.php';
+
+use Zend_Controller_Front as FrontController;
+
+/**
+ * ${1:Description}
+ *
+ * @author `!v g:snips_author`
+ *
+ * usage: php /data/code_base/current/`!v @%` {environment} -v {--dry-run}
+ */
+class ${2:MyScript} extends ProcessAbstract
+{
+    /** @var bool */
+    protected $isDryRun = true;
+
+    /**
+     * Setup the command options.
+     */
+    public function __construct()
+    {
+	    $this->_additionalOptionalFlags[] = ['flag' => 'dry-run', 'description' => 'If in dry run, don\'t actually do anything'];
+	    ${3:// $this->_optionalParameters[] = ['param' => '-param1', 'description' => 'My Desc'];
+	    // $this->_requiredParameters[] = ['param' => '-param2', 'description' => 'My Desc'];}
+	    parent::__construct();
+    }
+
+    /**
+     * Run the command.
+     *
+     * @param string|bool $file (default: false) path to script, or false
+     */
+    public function run($file = false)
+    {
+        parent::run($file);
+        ${4:// $this->_getParam('-param1', 'default val');}
+        $this->isDryRun = $this->_isFlagSet('dry-run');
+        if ($this->isDryRun) {
+            $this->logMsg("DRY RUN ONLY no changes will be made");
+        }
+        ${5:// TODO write script...}
+        $this->logMsg('All done processing.');
+    }
+}
+
+/* @var \DI\Container $container */
+$container = FrontController::getInstance()->getDispatcher()->getContainer();
+$script = $container->get($2::class);
+$script->setConcurrency(5);
+try {
+    $script->run();
+} catch (\Throwable $thrown) {
+    if ($script->isVerbose()) {
+        $script->logMsg($thrown);
+    }
+    throw $thrown;
+}
+endsnippet
+
+snippet qscr "saatchi queue process abstract script"
+<?php
+declare(strict_types=1);
+/**
+ * $2
+ *
+ * @copyright `date +%Y` Leaf Group, Ltd. All Rights Reserved.
+ */
+require_once(__DIR__ . '/../../vendor/autoload.php');
+require_once(__DIR__ . '/../../application/command_line_bootstrap.php');
+require_once dirname(__DIR__) . '/QueueProcessAbstract.php';
+
+use Zend_Controller_Front as FrontController;
+
+/**
+ * ${1:Description}
+ *
+ * @author `!v g:snips_author`
+ *
+ * usage: php /data/code_base/current/`!v @%` {environment} -v {--dry-run}
+ */
+class ${2:MyScript} extends QueueProcessAbstract
+{
+    /** @var bool */
+    protected $isDryRun = true;
+
+	/**
+	 * Dependency injection.
+	 */
+	public function __construct()
+	{
+        $this->_additionalOptionalFlags[] = ['flag' => 'dry-run', 'description' => 'If in dry run, don\'t actually do anything'];
+        ${3:// $this->_optionalParameters[] = ['param' => '-param1', 'description' => 'My Desc'];
+        // $this->_requiredParameters[] = ['param' => '-param2', 'description' => 'My Desc'];}
+		parent::__construct();
+		$this->setDefaultQueue('${3:config-key-for-sqs-queue}');
+		// number of messages to retrieve at once
+		// $this->setDefaultPull(10);
+	}
+
+	/**
+	 * Handle each sqs event.
+	 */
+	public function processData()
+	{
+        $this->isDryRun = $this->_isFlagSet('dry-run');
+        if ($this->isDryRun) {
+            $this->logMsg("DRY RUN ONLY no changes will be made");
+        }
+        ${4:// $this->_getParam('-param1', 'default val');}
+		/** @var array $event */
+		foreach ($this->updateData as $event) {
+            ${5:// TODO write script...}
+		}
+		$this->logMsg('All done processing');
+	}
+}
+
+/* @var \DI\Container $container */
+$container = FrontController::getInstance()->getDispatcher()->getContainer();
+$script = $container->get($2::class);
+$script->setConcurrency(5);
+try {
+	$script->run();
+} catch (\Throwable $thrown) {
+	if ($script->isVerbose()) {
+		$script->logMsg($thrown);
+	}
+	throw $thrown;
+}
+endsnippet
+
+snippet trt "mike's trait with namespace, file and class docblocks"
+<?php
+/**
+ * `!v expand("%:t:r")`
+ *
+ * @copyright `date +%Y` Leaf Group, Ltd. All Rights Reserved.
+ */
+declare(strict_types=1);
+`!p snip.rv = namespace(snip, path)`
+/**
+ * ${1:Description}
+ *
+ * @author `!v g:snips_author`
+ */
+trait `!v expand("%:t:r")`
+{
+    $6
+}
+endsnippet
+
+snippet mdl "ACP laravel model"
+<?php
+/**
+ * ${1:`!v expand("%:t:r")`} model
+ *
+ * @copyright `date +%Y` Leaf Group, Ltd. All Rights Reserved.
+ */`!p snip.rv = namespace(snip, path)`
+use DemandMedia\Common\Models\BaseModel;
+use DemandMedia\\${2:PackageName}\Interfaces\\$1ModelInterface;
+
+/**
+ * `!v expand("%:t:r")`
+ *
+ * @author `!v g:snips_author`
+ */
+class `!v expand("%:t:r")` extends BaseModel implements `!v expand("%:t:r")`ModelInterface
+{
+    /**
+     * the name of the table this model represents
+     *
+     * @var string
+     */
+    protected $table = '${4:table_name}';
+
+    /**
+     * whether to use created_at and updated_at
+     *
+     * @var boolean
+     */
+    public $timestamps = false;
+
+    /**
+     * fillable fields whitelist
+     *
+     * @var array
+     */
+    protected $fillable = [
+        $5
+    ];
+
+    /**
+     * these fields should return a Carbon date object
+     *
+     * @var array
+     */
+    protected $dates = [
+        $6
+    ];
+}
+endsnippet
+
+snippet mdli "ACP laravel model interface"
+<?php
+/**
+ * ${1:Listing} model interface
+ *
+ * @copyright `date +%Y` Leaf Group, Ltd. All Rights Reserved.
+ */`!p snip.rv = namespace(snip, path)`
+use DemandMedia\Common\Interfaces\BaseModelInterface;
+
+/**
+ * `!v expand("%:t:r")`
+ *
+ * @author `!v g:snips_author`
+ */
+interface `!v expand("%:t:r")` extends BaseModelInterface
+{
+    $6
+}
+endsnippet
+
+snippet rps "ACP laravel repository"
+<?php
+/**
+ * ${1:Listing} repository for data access
+ *
+ * @copyright `date +%Y` Leaf Group, Ltd. All Rights Reserved.
+ */`!p snip.rv = namespace(snip, path)`
+use DemandMedia\Common\Repositories\EloquentRepository;
+use DemandMedia\\${2:PackageName}\Interfaces\\$1ModelInterface;
+use DemandMedia\\$2\Interfaces\\$1RepositoryInterface;
+
+/**
+ * `!v expand("%:t:r")`
+ *
+ * @author `!v g:snips_author`
+ */
+class `!v expand("%:t:r")` extends EloquentRepository implements `!v expand("%:t:r")`Interface
+{
+
+    /**
+     * validation rules
+     *
+     * @var array
+     */
+    public $rules = array(
+        ${3:'title' => 'required',}
+    );
+
+    /**
+     * Dependency injection.
+     *
+     * @param \\$1ModelInterface \$${1/\w+/\l$0/}Model
+     */
+    public function __construct(
+        $1ModelInterface \$${1/\w+/\l$0/}Model
+    ) {
+        $this->setModel(\$${1/\w+/\l$0/}Model);
+    }
+}
+endsnippet
+
+snippet rpsi "ACP laravel repository interface"
+<?php
+/**
+ * ${1:Listing} repository interface
+ *
+ * @copyright `date +%Y` Leaf Group, Ltd. All Rights Reserved.
+ */`!p snip.rv = namespace(snip, path)`
+use DemandMedia\Common\Interfaces\EloquentRepositoryInterface;
+
+/**
+ * `!v expand("%:t:r")`
+ *
+ * @author `!v g:snips_author`
+ */
+interface `!v expand("%:t:r")` extends EloquentRepositoryInterface
+{
+    $6
+}
+endsnippet
+
+snippet asp "Add service providers to orchestra testbench"
+$newProviders = [
+    'DemandMedia\\${1:PackageName}\\${2:Whatever}ServiceProvider',
+];
+$this->addServiceProviders($newProviders);
+endsnippet
+
+snippet rpst "ACP laravel repository test"
+<?php
+/**
+ * ${1:Listing} repository test
+ *
+ * @copyright `date +%Y` Leaf Group, Ltd. All Rights Reserved.
+ */
+namespace DemandMedia\\${2:PackageName}\Tests;
+
+use DemandMedia\Common\Tests\Support\BaseRepositoryTest;
+use DemandMedia\\$2\Repositories\\$1Repository;
+use DemandMedia\\$2\Models\\$1;
+use Mockery;
+
+/**
+ * `!v expand("%:t:r")`
+ *
+ * @author `!v g:snips_author`
+ */
+class `!v expand("%:t:r")` extends BaseRepositoryTest
+{
+
+    /**
+     * $1 model instance
+     *
+     * @var \\$1
+     */
+    protected \$${1/\w+/\l$0/}Model;
+
+    /**
+     * $1 repository instance
+     *
+     * @var \\$1RepositoryInterface
+     */
+    protected \$${1/\w+/\l$0/}Repository;
+
+    /**
+     * phpunit setup
+     */
+    public function setUp()
+    {
+        parent::setUp();
+
+        // set up some shared mocks and dependencies
+        $ns = "DemandMedia\\$2\Models\\$1";
+        $this->${1/\w+/\l$0/}Model = Mockery::mock($ns);
+
+        // voltron assemble!
+        $this->${1/\w+/\l$0/}Repository = new $1Repository(
+            $this->${1/\w+/\l$0/}Model
+        );
+    }
+
+    /**
+     * data that will successfully update
+     *
+     * @return array
+     */
+    public function tryUpdateSuccessDataProvider()
+    {
+        return [
+            [
+                ${3:'name' => 'Hyundai',
+                'aces_name_id' => 1,}
+            ],
+        ];
+    }
+
+    /**
+     * data that will fail validation
+     *
+     * @return array
+     */
+    public function invalidValuesDataProvider()
+    {
+        return [
+            [
+                'values' => [
+                    ${4:'name' => '',}
+                ],
+            ],
+        ];
+    }
+    $5
+}
+endsnippet
+
+snippet sp "ACP Service Provider"
+<?php
+/**
+ * ${1:Listing} service provider. Used for defining IoC bindings, event
+ * listeners, etc.
+ *
+ * @copyright `date +%Y` Leaf Group, Ltd. All Rights Reserved.
+ */`!p snip.rv = namespace(snip, path)`
+use Illuminate\Support\ServiceProvider;
+
+/**
+ * `!v expand("%:t:r")`
+ *
+ * @author `!v g:snips_author`
+ */
+class `!v expand("%:t:r")` extends ServiceProvider
+{
+
+    /**
+     * Indicates if loading of the provider is deferred.
+     *
+     * @var bool
+     */
+    protected $defer = false;
+
+    /**
+     * Bootstrap the application events.
+     */
+    public function boot()
+    {
+        // manually defined the real path of the package
+        $this->package('demand-media/${1/\w+\s*/\l$0/}', null, __DIR__.'/../../../');
+    }
+
+    /**
+     * Register the service provider.
+     */
+    public function register()
+    {
+
+        // bind the controller
+        $this->app->bind(
+            'DemandMedia\\$1\Interfaces\\$1ControllerInterface',
+            'DemandMedia\\$1\Controllers\\$1Controller'
+        );
+
+        // bind the repository
+        $this->app->bind(
+            'DemandMedia\\$1\Interfaces\\$1RepositoryInterface',
+            'DemandMedia\\$1\Repositories\\$1Repository'
+        );
+
+        // bind the model
+        $this->app->bind(
+            'DemandMedia\\$1\Interfaces\\$1ModelInterface',
+            'DemandMedia\\$1\Models\\$1'
+        );
+    }
+
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return array();
+    }
+}
+endsnippet
+
+snippet ctl "ACP laravel controller"
+<?php
+/**
+ * ${1:Listing} controller
+ *
+ * @copyright `date +%Y` Leaf Group, Ltd. All Rights Reserved.
+ */`!p snip.rv = namespace(snip, path)`
+use Config;
+use DemandMedia\Common\Controllers\BaseController;
+use DemandMedia\\$1\Interfaces\\$1RepositoryInterface;
+use DemandMedia\\$1\Interfaces\\$1ControllerInterface;
+use Input;
+use Lang;
+use MikeFunk\BustersPhp\BustersPhpInterface;
+use Notification;
+use Redirect;
+use URL;
+use Validator;
+use View;
+
+/**
+ * `!v expand("%:t:r")`
+ *
+ * @author `!v g:snips_author`
+ */
+class `!v expand("%:t:r")` extends BaseController implements `!v expand("%:t:r")`Interface
+{
+
+    /**
+     * $1 repository instance
+     *
+     * @var \\$1RepositoryInterface
+     */
+    protected \$${1/\w+/\l$0/}Repository;
+
+    /**
+     * Dependency Injection.
+     *
+     * @param \\BustersPhpInterface $bustersPhp
+     * @param \\$1RepositoryInterface \$${1/\w+/\l$0/}Repository
+     */
+    public function __construct(
+        BustersPhpInterface $bustersPhp,
+        $1RepositoryInterface \$${1/\w+/\l$0/}Repository
+    ) {
+        parent::__construct($bustersPhp);
+        $this->${1/\w+/\l$0/}Repository = \$${1/\w+/\l$0/}Repository;
+    }
+    $5
+}
+endsnippet
+
+snippet sfctl "symfony controller"
+<?php
+/**
+* `!v expand("%:t:r")`
+ *
+ * @copyright `date +%Y` Leaf Group, Ltd. All Rights Reserved.
+ */`!p snip.rv = namespace(snip, path)`
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+
+/**
+* ${1:Whatever} controller
+ *
+ * @author `!v g:snips_author`
+ * @Route(service="app.${1/\w+/\l$0/}_controller")
+ */
+class `!v expand("%:t:r")` extends Controller
+{
+    /**
+     * @Route("/${1/\w+/\l$0/}", name="${1/\w+/\l$0/}_index")
+     * @Template()
+     * @return array
+     */
+    public function indexAction()
+    {
+        return [];
+    }
+}
+endsnippet
+
+snippet ctli "ACP laravel controller interface"
+<?php
+/**
+ * `!v expand("%:t:r")`
+ *
+ * @copyright `date +%Y` Leaf Group, Ltd. All Rights Reserved.
+ */`!p snip.rv = namespace(snip, path)`
+use DemandMedia\Common\Interfaces\BaseControllerInterface;
+
+/**
+ * `!v expand("%:t:r")`
+ *
+ * @author `!v g:snips_author`
+ */
+interface `!v expand("%:t:r")` extends BaseControllerInterface
+{
+    $6
+}
+endsnippet
+
+snippet ctlt "ACP laravel controller test"
+<?php
+/**
+ * ${1:Listing} controller test
+ *
+ * @copyright `date +%Y` Leaf Group, Ltd. All Rights Reserved.
+ */
+namespace DemandMedia\\${2:Package}\Tests;
+
+use Auth;
+use Config;
+use Input;
+use DemandMedia\Common\Tests\Support\BaseControllerTest;
+use DemandMedia\\$2\Controllers\\$1Controller;
+use Lang;
+use Mockery;
+use Notification;
+use Redirect;
+use URL;
+use Validator;
+use View;
+
+/**
+ * `!v expand("%:t:r")`
+ *
+ * @author `!v g:snips_author`
+ */
+class `!v expand("%:t:r")` extends BaseControllerTest
+{
+
+    /**
+     * $1 repository instance
+     *
+     * @var \\$1RepositoryInterface
+     */
+    protected \$${1/\w+/\l$0/}Repository;
+
+    /**
+     * $1 controller instance
+     *
+     * @var \\$1ControllerInterface
+     */
+    protected \$${1/\w+/\l$0/}Controller;
+
+    /**
+     * phpunit setup
+     */
+    public function setUp()
+    {
+
+        // add some new package providers
+        $newProvider = 'DemandMedia\\$2\\$2ServiceProvider';
+        $this->addServiceProviders($newProvider);
+
+        parent::setUp();
+
+        // set up some shared mocks and dependencies
+        $ns = 'MikeFunk\BustersPhp\BustersPhpInterface';
+        $bustersPhp = Mockery::mock($ns);
+
+        $ns = "DemandMedia\\$1\Interfaces\\$1RepositoryInterface";
+        $this->${1/\w+/\l$0/}Repository = Mockery::mock($ns);
+
+        // voltron assemble!
+        $this->${1/\w+/\l$0/}Controller = new $1Controller(
+            $bustersPhp,
+            $this->${1/\w+/\l$0/}Repository
+        );
+    }
+    $3
+}
+endsnippet
+
+snippet fe "php foreach as"
+foreach ($$1s as $${1:thing}) {
+    $2
+}
+endsnippet
+
+snippet mgt "laravel migration"
+<?php
+/**
+ * $1 initial migration
+ *
+ * @copyright `date +%Y` Leaf Group, Ltd. All Rights Reserved.
+ */
+
+use Illuminate\Database\Migrations\Migration;
+
+/**
+ * Create${1:Whatever}Table
+ *
+ * @author `!v g:snips_author`
+ */
+class Create$1Table extends Migration
+{
+
+    /**
+     * Run the migrations.
+     */
+    public function up()
+    {
+        Schema::create(
+            '${3:table_name}',
+            function ($table) {
+                $table->increments('id');
+                $4
+                // $table->integer('member_ad_id')->index();
+                // $table->string('city', 255)->nullable();
+                // $table->enum(
+                //     'status', array(
+                //         "unfinished",
+                //         "inactive",
+                //     )
+                // )->default("inactive")->index();
+                // $table->timestamp('start_date')->default("0000-00-00 00:00:00");
+                // $table->text('body');
+                // $table->decimal('price', 12, 2)->nullable();
+                // $table->date('featured_expiration_date')->nullable();
+                // $table->boolean('is_bigger');
+                // $table->timestamps();
+            }
+        );
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down()
+    {
+        Schema::drop('$3');
+    }
+}
+endsnippet
+
+snippet sdr "Auto Classifieds Platform laravel seeder"
+<?php
+
+/**
+ * $4
+ *
+ * @link https://github.com/fzaninotto/Faker use this library to provide fake
+ * data to the seeder
+ *
+ * @copyright `date +%Y` Leaf Group, Ltd. All Rights Reserved.
+ */`!p snip.rv = namespace(snip, path)`
+use DemandMedia\Common\Seeds\BaseSeeder;
+use Str;
+
+/**
+ * ${4:`!v expand("%:t:r")`}
+ *
+ * @author `!v g:snips_author`
+ */
+class $4 extends BaseSeeder
+{
+
+    /**
+     * getTableName
+     *
+     * @return string
+     */
+    protected function getTableName()
+    {
+        return '${5:table_name}';
+    }
+
+    /**
+     * run seeder
+     */
+    public function run()
+    {
+        $this->seedFakeRows(10);
+        $this->command->info('$5 table seeded!');
+    }
+
+    /**
+     * provide one fake row
+     *
+     * @return array
+     */
+    protected function provideOneRow()
+    {
+        return array(
+            $6
+            // 'title' => Str::limit($this->faker()->sentence(3), 45),
+            // 'price' => $this->faker()->randomNumber(5),
+            // 'fax' => $this->faker()->phoneNumber(),
+            // 'additional_notes' => $this->faker()->text(),
+            // 'other_payment_method' => $this->faker()->text(20),
+            // 'height' => $this->faker()->randomNumber(),
+            // 'current_step' => $this->faker()->word(),
+            // 'is_exclusive' => $this->faker()->boolean(),
+            // 'exclusive_expiration_date' => $this->faker()->dateTimeThisYear()->format('Y-m-d G:i:s'),
+        );
+    }
+}
+endsnippet
+
+snippet pucla "mike's phpunit test template with docblocks"
+<?php
+declare(strict_types=1);
+`!p snip.rv = namespace(snip, path)`
+use PHPUnit_Framework_TestCase as TestCase;
+
+/**
+ * Unit Tests.
+ *
+ * @see \\`!p snip.rv = pathToNamespace(path)`\\$2
+ *
+ * @author `!v g:snips_author`
+ */
+class `!v expand("%:t:r")` extends TestCase
+{
+
+    /** @var \\`!p snip.rv = pathToNamespace(path)`\\${2:ActualClass} class under test */
+    protected \$${2/\w+\s*/\l$0/};
+
+    /** Phpunit setup. Runs before each test. */
+    public function setUp()
+    {
+        // instantiate class under test
+        $this->${2/\w+\s*/\l$0/} = new $2();
+    }
+}
+endsnippet
+
+snippet pupcla "mike's phpunit prophecy test template with docblocks"
+<?php
+/**
+ * `!v expand("%:t:r")`
+ *
+ * @copyright `date +%Y` Leaf Group, Ltd. All Rights Reserved.
+ */`!p snip.rv = namespace(snip, path)`
+use DemandMedia\Test\AbstractProphecyTest;
+
+/**
+ * Unit Tests
+ *
+ * @author `!v g:snips_author`
+ */
+class `!v expand("%:t:r")` extends AbstractProphecyTest
+{
+
+    /**
+     * @var \\$0${2:ActualClass} class under test
+     */
+    protected \$${2/\w+\s*/\l$0/};
+
+    /**
+     * phpunit setup
+     */
+    public function setUp()
+    {
+        parent::setUp();
+
+        // instantiate class under test
+        $this->${2/\w+\s*/\l$0/} = new $2();
+    }
+}
+endsnippet
+
+snippet meth "php method"
+
+/**
+ * ${1:Description}
+ *
+ * @return ${2:void}
+ */
+${3:public} function ${4:functionname}(${5})$6
+{
+    $7
+}
+endsnippet
+
+snippet scmeth "symfony controller method"
+
+/**
+ * ${1:Description}
+ *
+ * @Route("${1:/}", name="${2:route_name}")
+ * @Template($3)
+ * @return ${4:array}
+ */
+public function ${5:functionname}Action($6)
+{
+    $7
+}
+endsnippet
+
+snippet imeth "php interface method"
+
+/**
+ * ${1:Description}
+ *
+ * @return ${4:void}
+ */
+public function ${2:functionname}(${3});
+endsnippet
+
+snippet pumeth "phpunit method"
+
+/** @test */
+public function ${2:functionName}()
+{
+    ${3:$this->markTestIncomplete();}
+}
+endsnippet
+
+snippet stp "phpunit setup"
+
+/**
+ * phpunit setup
+ */
+public function setUp()
+{
+    parent::setUp();
+    $1
+}
+endsnippet
+
+snippet inte
+<?php
+declare(strict_types=1);
+`!p snip.rv = namespace(snip, path)`
+/**
+ * ${3:Description}
+ *
+ * @author `!v g:snips_author`
+ */
+interface $4
+{
+    $6
+}
+endsnippet
+
+snippet vr "local var docblock"
+/** @var ${1:mixed} \$${2:myVar} */
+endsnippet
+
+snippet va "var with docblock"
+
+/** @var ${1:mixed} */
+protected \$${2:myvar};
+endsnippet
+
+snippet iva "var with docblock with @Inject for php-di"
+
+/**
+ * @Inject
+ *
+ * @var ${1:mixed}
+ */
+protected \$${2:myvar};
+endsnippet
+
+# snippet iva "var with docblock implementing an interface"
+
+# /**
+#  * ${1/\w+\s*/\u$0/} instance
+#  *
+#  * @var ${1/\w+\s*/\u$0/}Interface
+#  */
+# protected $$1;
+# endsnippet
+
+snippet srs "shouldReceive something andReturnSelf"
+->shouldReceive('$1')
+->once()
+->with($2)
+->andReturnSelf()
+endsnippet
+
+snippet sro "should receive once with no args"
+${1:\$file}->shouldReceive('$2')->once()->withNoArgs()->andReturn($3);
+endsnippet
+
+snippet mva "assign mock to instance variable"
+$ns = 'DemandMedia\\${1:Listing}\\${2:Interfaces}'
+    . '\\${3:MyClassName}${4:Interface}';
+${5:$myvar} = Mockery::mock($ns);
+endsnippet
+
+snippet cnst "constant with docblock"
+
+/**
+ * @var ${1:mixed} ${2:Description}
+ */
+const ${3:MY_CONST} = '$4';
+endsnippet
+
+snippet varblock "var docblock"
+/**
+ * ${1:description}
+ *
+ * @var ${2:mixed}
+ * @access ${3:public}
+ */
+endsnippet
+
+snippet pageblock "page level docblock"
+/**
+ * @copyright `date +%Y` Leaf Group, Ltd. All Rights Reserved.
+ */
+$3
+endsnippet
+
+snippet classblock "class level docblock"
+/**
+ * ${1:title}
+ *
+ * @author `!v g:snips_author`
+ */
+endsnippet
+
+snippet rn "nullable return type"
+/**
+ * @return $1|null
+ */
+endsnippet
+
+snippet methodblock "method level docblock"
+/**
+ * ${1:title}
+ *
+ * @param ${2:string $myvar my description here}
+ */
+endsnippet
+
+snippet lng "laravel Lang::get()"
+Lang::get('$1')
+endsnippet
+
+snippet vw "View::make"
+return View::make('$1');
+endsnippet
+
+snippet r:g "Laravel Route::get"
+Route::get(
+    '${1:route/path}',
+    [
+        'uses' => '${2:Namespace\To\Controller}',
+        'as' => '${3:route.name}'
+    ]
+);
+endsnippet
+
+snippet rdr "Redirect::route"
+return Redirect::route('$1');
+endsnippet
+
+# snippet if "php if" !b
+# if (${1}) {
+    # ${2}
+# }
+# endsnippet
+
+snippet ife "php if/else" !b
+if (${1}) {
+    ${2}
+} else {
+
+}
+endsnippet
+
+snippet foreach "php foreach"
+foreach (${1:$things as $thing}) {
+    $2
+}
+endsnippet
+
+snippet /** "php comment block" b
+/**
+ * ${1}
+ */
+endsnippet
+
+snippet -- "// ---"
+// ------------------------------------------------------------------------
+endsnippet
+
+snippet me "@author"
+@author Michael Funk <`!v g:snips_author`>
+endsnippet
+
+snippet hm "@author home address"
+@author Michael Funk <mike@mikefunk.com>
+endsnippet
+
+snippet uns "Laravel Unsigned Integer"
+$table->unsignedInteger('$1');
+endsnippet
+
+snippet forn "Laravel Foreign Key"
+$table->foreign('$1')->references('id')->on('$2');
+endsnippet
+
+snippet sft "Laravel Soft Delete"
+$table->softDeletes();
+endsnippet
+
+snippet vd "var_dump and exit"
+var_dump($1); exit;
+endsnippet
+
+snippet dd "symfony dump and die"
+dump($1); exit;
+endsnippet
+
+snippet cl "Laravel http call"
+$this->call('${1:GET}', ${2:myurl});
+endsnippet
+
+snippet zmodule "Zend Framework Module class"
+<?php
+/**
+ * @copyright `date +%Y` Leaf Group, Ltd. All Rights Reserved.
+ */
+namespace ${2:Namespace};
+
+/**
+ * Module
+ *
+ * @author Michael Funk <`!v g:snips_author`>
+ */
+class Module
+{
+
+    /**
+     * use composer instead of Zend's autoloader
+     *
+     * @return null
+     */
+    public function getAutoloaderConfig()
+    {
+    }
+
+    /**
+     * get module config
+     *
+     * @return array
+     */
+    public function getConfig()
+    {
+        return include __DIR__ . '/config/module.config.php';
+    }
+}
+endsnippet
+
+snippet zendbootstrap "Zend Framework Unit Testing Bootstrap File"
+<?php
+
+namespace AlbumTest;
+
+use Zend\Loader\AutoloaderFactory;
+use Zend\Mvc\Service\ServiceManagerConfig;
+use Zend\ServiceManager\ServiceManager;
+use RuntimeException;
+
+error_reporting(E_ALL | E_STRICT);
+chdir(__DIR__);
+
+/**
+ * Test bootstrap, for setting up autoloading
+ */
+class Bootstrap
+{
+    protected static $serviceManager;
+
+    public static function init()
+    {
+        $zf2ModulePaths = array(dirname(dirname(__DIR__)));
+        if (($path = static::findParentPath('vendor'))) {
+            $zf2ModulePaths[] = $path;
+        }
+        if (($path = static::findParentPath('module')) !== $zf2ModulePaths[0]) {
+            $zf2ModulePaths[] = $path;
+        }
+
+        static::initAutoloader();
+
+        // use ModuleManager to load this module and it's dependencies
+        $config = array(
+            'module_listener_options' => array(
+                'module_paths' => $zf2ModulePaths,
+            ),
+            'modules' => array(
+                '${1:MyModuleName}'
+            )
+        );
+
+        $serviceManager = new ServiceManager(new ServiceManagerConfig());
+        $serviceManager->setService('ApplicationConfig', $config);
+        $serviceManager->get('ModuleManager')->loadModules();
+        static::$serviceManager = $serviceManager;
+    }
+
+    public static function getServiceManager()
+    {
+        return static::$serviceManager;
+    }
+
+    protected static function initAutoloader()
+    {
+        $vendorPath = static::findParentPath('vendor');
+
+        $zf2Path = getenv('ZF2_PATH');
+        if (!$zf2Path) {
+            if (defined('ZF2_PATH')) {
+                $zf2Path = ZF2_PATH;
+            } elseif (is_dir($vendorPath . '/ZF2/library')) {
+                $zf2Path = $vendorPath . '/ZF2/library';
+            } elseif (is_dir($vendorPath . '/zendframework/zendframework/library')) {
+                $zf2Path = $vendorPath . '/zendframework/zendframework/library';
+            }
+        }
+
+        if (!$zf2Path) {
+            throw new RuntimeException('Unable to load ZF2. Run "php composer.phar install" or define a ZF2_PATH environment variable.');
+        }
+
+        include $zf2Path . '/Zend/Loader/AutoloaderFactory.php';
+        AutoloaderFactory::factory(array(
+            'Zend\Loader\StandardAutoloader' => array(
+                'autoregister_zf' => true,
+                'namespaces' => array(
+                    __NAMESPACE__ => __DIR__ . '/' . __NAMESPACE__,
+                ),
+            ),
+        ));
+    }
+
+    protected static function findParentPath($path)
+    {
+        $dir = __DIR__;
+        $previousDir = '.';
+        while (!is_dir($dir . '/' . $path)) {
+            $dir = dirname($dir);
+            if ($previousDir === $dir) return false;
+            $previousDir = $dir;
+        }
+        return $dir . '/' . $path;
+    }
+}
+
+Bootstrap::init();
+endsnippet
+
+snippet zendmodule "Zend Framework module config"
+<?php
+return array(
+    'controllers' => array(
+        'invokables' => array(
+            '${1:ZendSkeletonModule\Controller\Skeleton}' => '$1Controller',
+        ),
+    ),
+    'router' => array(
+        'routes' => array(
+            'module-name-here' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    // Change this to something specific to your module
+                    'route'    => '${2:/module-specific-root}',
+                    'defaults' => array(
+                        // Change this value to reflect the namespace in which
+                        // the controllers for your module are found
+                        '__NAMESPACE__' => '$1',
+                        'controller'    => '${4:Skeleton}',
+                        'action'        => 'index',
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    // This route is a sane default when developing a module;
+                    // as you solidify the routes for your module, however,
+                    // you may want to remove it and replace it with more
+                    // specific routes.
+                    'default' => array(
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '/[:controller[/:action]]',
+                            'constraints' => array(
+                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ),
+                            'defaults' => array(
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        ),
+    ),
+    'view_manager' => array(
+        'template_path_stack' => array(
+            'ZendSkeletonModule' => __DIR__ . '/../view',
+        ),
+    ),
+);
+endsnippet
+
+snippet mit "MIT License"
+@license MIT License <http://opensource.org/licenses/mit-license.html>
+endsnippet
+
+snippet asr "assert equals expected and actual"
+$this->assertEquals($expected, $actual);
+endsnippet
+
+snippet if "php if statement"
+if ($1) {
+    $2
+}
+endsnippet
+
+snippet ie "php if/else statement"
+if ($1) {
+    $2
+} else {
+    $3
+}
+endsnippet
+
+# snippet fe "php foreach"
+# foreach ($1) {
+    # $2
+# }
+# endsnippet
+
+snippet asn "assign variable to instance variable"
+$this->${1:listingModel} = \$$1;
+endsnippet
+
+snippet exp "$expected common line in unit tests"
+$expected = '${1:random string}';
+
+// call and verify
+$actual = $this->${2:listingRepository}->${3:myMethod()};
+$this->assertEquals($expected, $actual);
+endsnippet
+
+snippet cmd "ACP laravel artisan command"
+<?php
+/**
+ * $1
+ *
+ * @copyright `date +%Y` Leaf Group, Ltd. All Rights Reserved.
+ */`!p snip.rv = namespace(snip, path)`
+use Illuminate\Console\Command;
+use DemandMedia\Common\Interfaces\ArtisanCommandInterface;
+use Symfony\Component\Console\Input\InputOption;
+
+/**
+ * $1
+ *
+ * @author `!v g:snips_author`
+ */
+class ${1:`!v expand("%:t:r")`} extends Command implements
+    ArtisanCommandInterface
+{
+
+    /**
+     * The console command name.
+     *
+     * @var string
+     */
+    protected $name = '$4';
+
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = '$5';
+
+    /**
+     * fire the artisan command
+     *
+     * @return int the exit code
+     */
+    public function fire()
+    {
+        $6
+    }
+
+    /**
+     * Get the console command arguments.
+     * e.g. php artisan mycommand myargument
+     *
+     * @return array
+     */
+    protected function getArguments()
+    {
+        return [
+        ];
+    }
+
+    /**
+     * Get the console command options.
+     * e.g. php artisan mycommand --myargument=999 -n=value
+     *
+     * @return array
+     */
+    protected function getOptions()
+    {
+        return [
+        ];
+    }
+}
+endsnippet
+
+snippet cmdt "ACP laravel command test"
+<?php
+/**
+ * ${1:CommandName} command
+ *
+ * @copyright `date +%Y` Leaf Group, Ltd. All Rights Reserved.
+ */
+namespace DemandMedia\\${2:PackageName}\Tests;
+
+use App;
+use DemandMedia\Common\Tests\Support\BaseTest;
+use DemandMedia\\$2\Commands\\$1Command;
+use Mockery;
+
+/**
+ * ${8:`!v expand("%:t:r")`}
+ *
+ * @author `!v g:snips_author`
+ */
+class $8 extends BaseTest
+{
+
+    /**
+     * fake input
+     *
+     * @var \Symfony\Component\Console\Input\InputInterface
+     */
+    protected $input;
+
+    /**
+     * fake output
+     *
+     * @var \Symfony\Component\Console\Output\OutputInterface
+     */
+    protected $output;
+
+    /**
+     * $1 command instance
+     *
+     * @var \DemandMedia\Common\Interfaces\ArtisanCommandInterface
+     */
+    protected \$${1/\w+/\l$0/}Command;
+
+    /**
+     * phpunit setup
+     */
+    public function setUp()
+    {
+        parent::setUp();
+
+        // mock symfony input
+        $ns = 'Symfony\Component\Console\Input\InputInterface';
+        $this->input = Mockery::mock($ns);
+        $this->input->shouldReceive('bind')
+            ->shouldReceive('isInteractive')
+            ->shouldReceive('validate');
+
+        // mock symfony output
+        $ns = 'Symfony\Component\Console\Output\OutputInterface';
+        $this->output = Mockery::mock($ns);
+        $this->output->shouldReceive('writeln');
+
+        // voltron assemble!
+        $this->${1/\w+/\l$0/}Command = new $1Command();
+        // $ns = 'DemandMedia\\$2'
+        // . '\Commands\\$1Command';
+        // $this->${1/\w+/\l$0/}Command = App::make($ns);
+    }
+
+    /**
+     * test$1Command
+     */
+    public function test$1Command()
+    {
+        $5
+        $expected = '${3:random string}';
+
+        // call and verify
+        $actual = $this->\$${1/\w+/\l$0/}Command->run($this->input, $this->output);
+        $this->assertEquals($expected, $actual);
+    }
+}
+endsnippet
+
+snippet dpa "docblock part of param with matching interface"
+@param \\${1:ImageRepository}Interface $${1/\w+/\l$0/}
+endsnippet
+
+snippet mpa "method parameter input for typehinted class with matching interface"
+${1:Whatever}Interface $${1/\w+/\l$0/},
+endsnippet
+
+snippet apa "assign parameter to class variable"
+$this->${1:whatever} = $$1;
+endsnippet
+
+snippet rcmd "Register an artisan command in the service provider"
+// register $1 command
+$this->app->bind(
+    '${1:listing.import}',
+    'DemandMedia\\${2:Listing}\Commands'
+    . '\\${3:ListingImport}Command'
+);
+$this->commands('$1');
+endsnippet
+
+snippet ibap "DemandMedia"
+DemandMedia\
+endsnippet
+
+snippet behatspin "Behat keep trying until it succeeds"
+
+/**
+ * keep trying until this succeeds with a timeout of 60 seconds
+ *
+ * @param function $lambda
+ */
+public function spin ($lambda, $wait = 60)
+{
+    for ($i = 0; $i < $wait; $i++)
+    {
+        try {
+            if ($lambda($this)) {
+                return true;
+            }
+        } catch (Exception $e) {
+            // do nothing
+        }
+
+        sleep(1);
+    }
+
+    $backtrace = debug_backtrace();
+
+    throw new Exception(
+        "Timeout thrown by " . $backtrace[1]['class'] . "::" . $backtrace[1]['function'] . "()\n" .
+        $backtrace[1]['file'] . ", line " . $backtrace[1]['line']
+    );
+}
+endsnippet
+
+snippet dcli "doctrine cli config"
+<?php
+/**
+ * this file is required for the doctrine cli tool to work
+ *
+ * ${2:@license MIT License <http://opensource.org/licenses/mit-license.html>}
+ */
+use Doctrine\ORM\Tools\Console\ConsoleRunner;
+use Doctrine\ORM\Tools\Setup;
+use Doctrine\ORM\EntityManager;
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+// Create a simple yaml Doctrine ORM configuration for Annotations
+$isDevMode = true;
+$config = Setup::createYAMLMetadataConfiguration([__DIR__."/config/yaml"], $isDevMode);
+
+// database configuration parameters
+$conn = array(
+    'driver' => 'pdo_sqlite',
+    'path' => __DIR__ . '/db.sqlite',
+);
+
+// obtaining the entity manager
+$entityManager = EntityManager::create($conn, $config);
+
+return ConsoleRunner::createHelperSet($entityManager);
+endsnippet
+
+snippet ep "doctrine entity manager persist"
+$entityManager->persist($1);
+endsnippet
+
+snippet efl "doctrine entity manager flush"
+$entityManager->flush();
+endsnippet
+
+snippet serializable "doctrine entity serializable methods"
+/**
+ * serialize
+ *
+ * @return string|null representation of the object or null
+ */
+public function serialize()
+{
+    return serialize([
+        ${1:$this->id,
+        $this->username,
+        $this->password}
+    ]);
+}
+
+/**
+ * unserialize
+ */
+public function unserialize($serialized)
+{
+    list(
+        ${2:$this->id,
+        $this->username,
+        $this->password}
+    ) = unserialize($serialized);
+}
+endsnippet
+
+snippet asrt "symfony assert use statement for entities"
+use Symfony\Component\Validator\Constraints as Assert;
+endsnippet
+
+snippet dcol "doctrine entity column"
+
+/**
+ * ${1:column_name}
+ *
+ * @var ${2:int}
+ * @ORM\Column(name="$1", type="${3:integer}")
+ */
+protected $$1;
+endsnippet
+
+snippet sfft "symfony form type"
+<?php
+/**
+* `!v expand("%:t:r")`
+ *
+ * @copyright `date +%Y` Leaf Group, Ltd. All Rights Reserved.
+ */`!p snip.rv = namespace(snip, path)`
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+
+/**
+* ${1:Whatever} form type
+ *
+ * @author `!v g:snips_author`
+ */
+class `!v expand("%:t:r")` extends AbstractType
+{
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getName()
+    {
+        return '${1\w+/\l$0}';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+
+        // define the fields
+        return $builder->add('${4:username}', 'text')
+
+            // no field type guessing :(
+            // ->add('email', 'email')
+
+            // field type guessing! :) set second arg to null
+            // ->add('email', null)
+            // ->add('plainPassword', 'repeated', [
+            //     'type' => 'password'
+            // ]);
+        ;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        // data class indicates which entity the finished form will hydrate
+        $settings = ['data_class' => '${3:UserBundle\Entity\User}'];
+        $resolver->setDefaults($settings);
+        $this->configureOptions($resolver);
+    }
+}
+endsnippet
+
+snippet let "phpspec let (before each test)"
+/** Runs before each test */
+public function let($1)
+{
+    $this->beConstructedWith($2);
+}
+endsnippet
+
+snippet bcw "phpspec beConstructedWith()"
+$this->beConstructedWith($1);
+endsnippet
+
+snippet rpo "symfony get repo"
+$this->doctrine->getRepository('DemandMediaAirlinersAppBundle:${1:EntityName}')$2
+endsnippet
+
+snippet prp "PRophet Prophesize"
+$this->prophesize($1::class);
+endsnippet
+
+snippet prs "PRophet Should be called"
+shouldBeCalled()->
+endsnippet
+
+snippet prr "PRophet will Return"
+willReturn($1);
+endsnippet
+
+snippet gmb "phpunit get mock builder"
+$this->getMockBuilder(${1:MyClass}::class)->getMock();
+endsnippet
+
+snippet pme "phpunit expects once (pneumonic Phpunit Mock Expects)"
+expects($this->once())->$2
+endsnippet
+
+snippet pmd "phpunit disable original constructor (pneumonic phpunit mock disable)"
+disableOriginalConstructor()->$1
+endsnippet
+
+snippet pms "phpunit set methods (pneumonic phpunit mock set)"
+setMethods(['$1'])->
+endsnippet
+
+snippet pma "phpunit at (pneumonic Phpunit Mock At)"
+expects($this->at($1))->$2
+endsnippet
+
+snippet pmm "phpunit method (pneumonic Phpunit Mock Method)"
+method('${1:methodName}')->$2
+endsnippet
+
+snippet pmw "phpunit with (pneumonic Phpunit Mock With)"
+with('${1:input}')->$2
+endsnippet
+
+snippet pmr "phpunit return (pneumonic Phpunit Mock Return)"
+will($this->returnValue($1));
+endsnippet
+
+snippet slg "saatchi zend logger - log to file"
+\Zend_Registry::get('file_logger')->info("$1");
+endsnippet
+
+snippet lg "saatchi zend logger - log to file"
+\Zend_Registry::get('file_logger')->info("$1");
+endsnippet
+
+snippet zlg "Zed log to file. Isn't there an easier way?"
+(new \Zend_Log(new \Zend_Log_Writer_Stream('/scratch/yzed/data/US/logs/ZED/exception.log')))->info($1);
+endsnippet
+
+snippet dbg "Psysh debugger"
+eval(\Psy\sh());
+endsnippet
+
+snippet wl "php reduce array to only whitelisted keys"
+array_filter(array_intersect_key(${1:$myArray}, array_flip($whitelist)));
+endsnippet
+
+snippet cfg "Get config value via zend framework 1"
+Zend_Registry::get('config')->$1
+endsnippet
+
+snippet plg "Php log to debug file with no dependencies"
+file_put_contents("debug.log", "$1\n", FILE_APPEND);
+endsnippet
+
+snippet tc "try/catch block"
+try {
+    ${1://}
+} catch (${2:\Exception} $e) {
+    ${3:echo get_class($e) . ': ' . $e->getMessage() . "\n"; exit;}
+}
+endsnippet
+
+snippet pft "PhpUnit Framework TestCase"
+\PHPUnit_Framework_TestCase
+endsnippet
+
+snippet dvd "die and var_dump. useful for testing on remote"
+die(var_dump($1));
+endsnippet

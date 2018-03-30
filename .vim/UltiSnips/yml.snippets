@@ -1,0 +1,13 @@
+extends yaml
+
+snippet behat "behat mink config"
+default:
+  extensions:
+    Behat\MinkExtension\Extension:
+      default_session: goutte
+      base_url: http://${1:mysite.local}
+      selenium2: ~
+      goutte: ~
+  paths:
+      features: ${2:app/tests/MikeFunk/Bookymark/Tests/Acceptance}
+endsnippet

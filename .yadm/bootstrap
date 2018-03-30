@@ -1,0 +1,175 @@
+#!/bin/bash
+# vim: set foldmethod=marker ft=sh:
+
+# helper functions {{{
+function log_info() { echo -e "$(tput setaf 2)$(tput rev)$(tput bold) \xE2\x9C\x93 $1 $(tput sgr0)"; }
+function log_error() { echo -e "$(tput setaf 1)$(tput rev)$(tput bold) \xE2\x9C\x97 $1 $(tput sgr0)"; }
+function log_notice() { echo -e "$(tput setaf 3)$(tput rev)$(tput bold) \xE2\x9A\xa0 $1 $(tput sgr0)"; }
+# }}}
+
+# decrypt yadm files {{{
+# log_info "Decrypting yadm files"
+# yadm decrypt
+# }}}
+
+# install homebrew if it's missing {{{
+if ! command -v brew >/dev/null 2>&1; then
+    log_info "Installing homebrew"
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
+# }}}
+
+# install/update homebrew packages {{{
+if [ -e "$HOME/.Brewfile" ]; then
+    log_info "Installing/upgrading homebrew packages"
+    brew prune # Remove dead symlinks from the homebrew prefix
+    brew bundle --global # install/upgrade from ~/.Brewfile
+    brew upgrade # upgrade all homebrew packages
+    brew cleanup # remove outdated versions
+    # brew bundle --global cleanup --force # remove brew packages not in ~/.Brewfile
+fi
+# }}}
+
+# phpenv {{{
+# I only use this because homebrew is making it difficult to install php 7.0
+# and extensions right now.
+if [[ ! "$(builtin type -p phpenv)" ]]; then
+    log_info "Installing phpenv"
+    curl -L http://git.io/phpenv-installer | bash
+else
+    log_info "Updating phpenv"
+    phpenv update
+    # to uninstall: rm -rf $(phpenv root)
+fi
+# }}}
+
+# install/update composer {{{
+# https://getcomposer.org/doc/faqs/how-to-install-composer-programmatically.md
+if [[ ! "$(builtin type -p composer)" ]]; then
+    log_info "Installing composer"
+    EXPECTED_SIGNATURE=$(wget -q -O - https://composer.github.io/installer.sig)
+    php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+    ACTUAL_SIGNATURE=$(php -r "echo hash_file('SHA384', 'composer-setup.php');")
+
+    if [ "$EXPECTED_SIGNATURE" != "$ACTUAL_SIGNATURE" ]
+    then
+        >&2 echo 'ERROR: Invalid installer signature'
+        rm composer-setup.php
+        exit 1
+    fi
+
+    php composer-setup.php --quiet
+    RESULT=$?
+    rm composer-setup.php
+    exit $RESULT
+fi
+log_info "Installing/upgrading composer packages"
+composer global selfupdate
+composer global install
+composer global update
+# }}}
+
+# install/update ruby packages {{{
+# TODO: switch from rvm to rbenv
+# Installs from ~/Gemfile
+log_info "Installing/upgrading ruby gems"
+cd $HOME
+bundle install --system
+cd -
+# }}}
+
+# update python packages {{{
+if [[ ! "$(builtin type -p pip-review)" ]]; then
+    log_info "Installing/upgrading pip packages"
+    pip install -r "$HOME/requirements.txt"
+    pip-review --local --auto && \
+        pip freeze > "$HOME/requirements.txt"
+fi
+# }}}
+
+# update yarn {{{
+log_info "Installing/upgrading yarn packages"
+yarn global install
+yarn global upgrade
+# }}}
+
+# set zsh as shell {{{
+if [[ $(grep "/usr/local/bin/zsh" /etc/shells -c) == 0 ]]; then
+    log_info "Installing homebrew zsh to /etc/shells"
+    sudo /bin/sh -c "echo /usr/local/bin/zsh >> /etc/shells"
+fi
+if [[ "$(which zsh)" != "/usr/local/bin/zsh" ]]; then
+    log_info "Changing shell to homebrew zsh"
+    chsh -s `which zsh`
+fi
+# }}}
+
+# install tmux plugin manager {{{
+if [[ ! -d "$HOME/.tmux/plugins/tpm" ]]; then
+    log_info "Installing tmux plugin manager. Upgrade packages with \`<c-a>U\`."
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
+# }}}
+
+# Vim {{{
+
+# {{{ Directories
+if [[ ! -d "$HOME/.vim/autoload" ]]; then
+    log_info "Creating required vim autoload directory"
+    mkdir -p "$HOME/.vim/autoload" && \
+        chmod +w "$HOME/.vim/autoload"
+fi
+if [[ ! -d "$HOME/.vim/files/info" ]]; then
+    log_info "Creating required vim info directory"
+    mkdir -p "$HOME/.vim/files/info" && \
+    chmod a+w "$HOME/.vim/files/info"
+fi
+# }}}
+
+# install vim-plug {{{
+if [[ ! -f $HOME/.vim/autoload/plug.vim ]]; then
+    log_info "Installing vim-plug"
+    curl -fLo \
+        ~/.vim/autoload/plug.vim \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
+# }}}
+
+# install vim-plug plugins {{{
+log_info "Installing/upgrading vim plugins"
+vim +PlugInstall +PlugUpdate +PlugClean +qall
+# nvim +PlugInstall +qall
+# }}}
+
+# }}}
+
+# install/update zplug plugins {{{
+# log_info "Installing/upgrading zplug plugins"
+# TODO not working in here :/
+# zplug install && \
+#     zplug update
+# }}}
+
+# apply hosts file {{{
+log_info "Syncing hosts file"
+hostess apply "$HOME/.hosts.json"
+# }}}
+
+# let iterm see italics {{{
+log_info "Enabling italic terminal"
+mkdir -p "$HOME/.terminfo/78"
+tic -o "$HOME/.terminfo/78/" "$HOME/.screen-256color.terminfo.txt"
+# }}}
+
+# Mac preferences {{{
+if [[ $(defaults read com.apple.finder NewWindowTargetPath) != "file:/$HOME/" ]]; then
+    log_info "Setting finder default location"
+    defaults write com.apple.finder NewWindowTargetPath "file:/$HOME/"
+fi
+
+if [[ $(defaults read com.apple.finder AppleShowAllFiles) != "TRUE" ]]; then
+    log_info "Setting finder to show hidden files"
+    defaults write com.apple.finder AppleShowAllFiles TRUE
+    killall Finder
+fi
+# }}}

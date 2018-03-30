@@ -1,0 +1,17 @@
+parameters:
+  includes:
+    # does not work :( I think because I'm not using prophet explicitly - I'm using phpunit's $this->prophesize(...)
+    - /Users/mikefunk/.composer/vendor-bin/main/vendor/jangregor/phpstan-prophecy/src/extension.neon
+  excludes_analyse:
+    - lib/tests
+  autoload_directories:
+    - lib/cli
+    - lib/component
+    - lib/cubes
+    - lib/documentation
+    - lib/module
+    - lib/persistence
+    - lib/public
+    - lib/shared
+    - lib/src
+    - lib/tests/Pac

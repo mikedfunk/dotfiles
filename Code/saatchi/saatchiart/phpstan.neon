@@ -1,0 +1,63 @@
+parameters:
+  includes:
+      - ~/.composer/vendor-bin/main/vendor/jangregor/phpstan-prophecy/src/extension.neon
+  excludes_analyse:
+    - tests
+  autoload_directories:
+    - application/modules/curation/models
+    - application/modules/curation/controllers
+    # - application/modules/art-advisory/models <-- there is no models
+    - application/modules/art-advisory/controllers
+
+    - library/Saatchi
+    - library/Apache
+    - library/Artist
+    - library/Bootstrap
+
+    # workaround due to conflicting namespace/class with library/Catalog/User/Attribute and a dynamodb class
+    # - library/Catalog
+    - library/Catalog/Art
+    - library/Catalog/Collection
+    - library/Catalog/Data
+    - library/Catalog/History
+    - library/Catalog/Product
+    - library/Catalog/Solr
+    # - library/Catalog/User
+    - library/Catalog/User/NewSensations
+
+    - library/Dhl
+    - library/Facebook
+    - library/NewRelic
+    - library/Sendgrid
+    - library/Stereo
+    - library/Transfer
+    - library/Zed
+    - library/Zendesk
+    - library/Zoho
+  autoload_files:
+    - application/command_line_bootstrap.php
+    # tried to include everything but catalog user attribute but there is a source order autoload issue
+    # - library/PdfCrowd.php
+    # - library/recaptchalib.php
+    # - library/Catalog/ApiCall.php
+    # - library/Catalog/ApiClient.php
+    # - library/Catalog/ApiClientAdapter.php
+    # - library/Catalog/Constants.php
+    # - library/Catalog/Art.php
+    # - library/Catalog/Base.php
+    # - library/Catalog/ContentDeliveryUrl.php
+    # - library/Catalog/ImageUrl.php
+    # - library/Catalog/Offer.php
+    # - library/Catalog/ServiceProvider.php
+    # - library/Catalog/Version1ApiClient.php
+    # - library/Catalog/Version2ApiClient.php
+    # - library/Catalog/User/Activity.php
+    # # - library/Catalog/User/Attribute.php
+    # - library/Catalog/User/CouchAttribute.php
+    # - library/Catalog/User/DynamoDbAttribute.php
+    # - library/Catalog/User/DynamoDbFavorite.php
+    # - library/Catalog/User/Favorite.php
+    # - library/Catalog/User/MySqlFavorite.php
+    # - library/Catalog/User/NewSensations.php
+    # - library/Catalog/User/Profile.php
+    # - library/Catalog/User/Relationship.php

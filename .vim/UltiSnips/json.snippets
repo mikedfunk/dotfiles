@@ -1,0 +1,15 @@
+snippet beh "behat and related composer.json stuff"
+"behat/behat": "~3.0",
+"phpspec/phpspec": "~2.0",
+"behat/mink": "~1.6",
+"behat/mink-extension": "~2.0",
+"behat/mink-goutte-driver": "~1.1"
+endsnippet
+
+snippet al "psr-4 autoload"
+"autoload": {
+  "psr-4": {
+    "$1": "${2:src/MikeFunk/}"
+  }
+}
+endsnippet

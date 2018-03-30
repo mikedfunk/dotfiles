@@ -1,0 +1,16 @@
+# for scrollbar in tmux
+termcapinfo xterm*|xs|rxvt|terminal ti@:te@
+
+# remap to c-b
+escape b
+
+# always show the window bar in the footer
+hardstatus on
+hardstatus alwayslastline
+hardstatus string "%w"
+
+# ensure vim doesn't stay in the scrollback when exiting
+altscreen on
+
+# Enable mouse scrolling and scroll bar history scrolling
+termcapinfo xterm* ti@:te@

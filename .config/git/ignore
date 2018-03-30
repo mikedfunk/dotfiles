@@ -1,0 +1,64 @@
+# mac stuff
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# custom stuff
+*.swp
+tags
+tags*
+.DS_Store
+.phpcomplete_extended
+.projections.json
+nbproject
+# composer.phar
+nbproject
+build
+# _ide_helper.php
+autocomplete
+/.exrc
+/.vimrc
+types_php.taghl
+Session.vim
+*.un~
+zf1_for_autocomplete
+.notags
+.phpspec
+.idea
+.padawan
+cscope.out
+cscope.files
+# .agignore
+.ignore
+.pre-commit-config.yaml
+__LAST__
+.localscript_*
+.exrc
+.phing_targets
+.notags
+.php_cs.cache
+
+# floobits
+.floo
+.flooignore
+
+.tern-project
+.notags
+/.envrc

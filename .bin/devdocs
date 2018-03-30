@@ -1,0 +1,2 @@
+#!/bin/bash
+open "http://devdocs.io/search?q=$1%20$2"

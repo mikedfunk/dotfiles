@@ -1,0 +1,5 @@
+parameters:
+  excludes_analyse:
+    - tests
+  autoload_files:
+    - _ide_helper.php

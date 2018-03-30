@@ -1,0 +1,42 @@
+# vim: set foldmethod=marker:
+# see https://github.com/shawncplus/phpcomplete.vim/wiki/Getting-better-tags
+# Basic options {{{
+--recurse=yes
+--tag-relative=yes
+--sort=foldcase
+--fields=+aimlS
+# fixes double backslash in namespaces https://github.com/universal-ctags/ctags/issues/815
+# BUT this breaks phpcomplete.vim omnicomplete! (as of 2018-03-21 still broken)
+# It's not really a problem though - I can still complete namespaced classes,
+# expand and import classes with vim-php-namespace
+# --output-format=etags
+# strangely this defaults to TAGS
+-ftags
+# }}}
+
+# additional excludes {{{
+--exclude=.git
+--exclude=*.log
+--exclude=*.min.js
+--exclude=*.coffee
+--exclude=bootstrap.php.cache
+--exclude=classes.php.cache
+--exclude=app/cache
+--exclude=app/storage
+--exclude=_ide_helper.php
+--exclude=__TwigTemplate_*
+--exclude=tests
+--exclude=node_modules
+--exclude=assets/react/node_modules
+--exclude=composer.phar
+--exclude=yarn-error.log
+# }}}
+
+# language-specific {{{
+# --languages=php
+--languages=php,ruby
+# docs: https://github.com/universal-ctags/ctags/blob/master/parsers/php.c#L125-L142
+# classes, functions, namespaces, interfaces, traits, variables
+--PHP-kinds=cfnitv
+--regex-ruby=/(^|;)[ \t]*(class|module)[ \t]+([A-Z][[:alnum:]_]+(::[A-Z][[:alnum:]_]+)+)/\3/c,class,constant/
+# }}}

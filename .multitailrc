@@ -1,0 +1,300 @@
+# Possible colors: red, green, yellow, blue, magenta, cyan, black and white.
+# vim: set foldmethod=marker ft=conf:
+# defaultcscheme:zend
+# php examples: https://gist.github.com/homeyjd/5861617
+# more cool stuff: https://www.pantz.org/software/multitail/multitailconfig.html
+
+# whether to abbreviate filesizes to xKB/MB/GB
+abbreviate_filesize:on
+
+# Turn off mail check
+check_mail:0
+
+# catalog {{{
+colorscheme:catalog
+
+# I tried to combine these in braces but was getting strange results
+cs_re:white,,bold:\{
+cs_re:white,,bold:\}
+cs_re:white,,bold:\[
+cs_re:white,,bold:\]
+
+# date and time
+mcsre_s:magenta,,bold:\[([0-9]{4}-[0-9]{2}-[0-9]{2})
+mcsre_s:yellow,,bold:T([0-9]{2}:[0-9]{2}:[0-9]{2})
+
+# info
+cs_re:green,,bold:INFO
+cs_re:green:INFO.*$
+
+# error
+cs_re:red,,bold:ERROR
+mcsre_s:red:ERROR (.*)
+
+# file paths in stack traces
+mcsre_s:blue:(^/.*):in
+
+# keys
+cs_re:white,,bold:^(  )*[a-zA-Z_ -]+:
+# }}}
+
+# api {{{
+colorscheme:api
+
+# I tried to combine these in braces but was getting strange results
+cs_re:white,,bold:\{
+cs_re:white,,bold:\}
+cs_re:white,,bold:\[
+cs_re:white,,bold:\]
+
+# date and time
+mcsre_s:magenta,,bold:\[([0-9]{4}-[0-9]{2}-[0-9]{2})
+mcsre_s:yellow,,bold:T([0-9]{2}:[0-9]{2}:[0-9]{2})
+
+# info
+cs_re:green:INFO.*$
+mcsre_s:red:INFO (.*)
+
+# debug
+cs_re:green:DEBUG.*$
+mcsre_s:red:DEBUG (.*)
+
+# error
+cs_re:red,,bold:ERROR
+mcsre_s:red:ERROR (.*)
+
+# file paths in stack traces
+mcsre_s:blue:(/.*):in
+# }}}
+
+# legacy {{{
+colorscheme:legacy
+# I tried to combine these in braces but was getting strange results
+cs_re:white,,bold:\{
+cs_re:white,,bold:\}
+cs_re:white,,bold:\[
+cs_re:white,,bold:\]
+
+# date and time - saatchi log
+cs_re:magenta,,bold:^[0-9]{4}-[0-9]{2}-[0-9]{2}
+mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})\+00:00
+# date and time - nginx legacy error log
+cs_re:magenta,,bold:^[0-9]{4}/[0-9]{2}/[0-9]{2}
+mcsre_s:yellow,,bold:^[0-9]{4}/[0-9]{2}/[0-9]{2} +([0-9]{2}:[0-9]{2}:[0-9]{2})
+
+# errors and warnings - legacy error log
+mcsre_s:red,,bold:^[0-9]{4}/[0-9]{2}/[0-9]{2} +[0-9]{2}:[0-9]{2}:[0-9]{2} (\[error\])
+mcsre_s:yellow,,bold:^[0-9]{4}/[0-9]{2}/[0-9]{2} +[0-9]{2}:[0-9]{2}:[0-9]{2} (\[warn\])
+mcsre_s:red:^.*\[error\](.*)
+mcsre_s:yellow:^.*\[warn\](.*)
+# cs_re:red,,bold:^Stack trace:
+
+# lines
+cs_re:blue,,bold:^-+
+
+# info and debug
+cs_re:red,,bold:INFO \(6\): Error
+cs_re:green,,bold:DEBUG
+cs_re:green,,bold:INFO
+# cs_re:blue:^.*(RESPONSE|REQUEST) ART CREATE.*$
+cs_re:red:INFO \(6\): Error.*$
+cs_re:green:INFO.*$
+# shown in catalog requests
+cs_re:blue:HTTP/1\.1 200 OK
+
+# error and severe
+cs_re:red,,bold:ERR
+cs_re:red,,bold:SEVERE
+mcsre_s:red:ERR (.*)
+mcsre_s:red:SEVERE (.*)
+
+# keys and stack traces
+cs_re:white,,bold:^(  )*[a-zA-Z_ -]+:
+cs_re:red,,bold:^Stack trace:
+cs_re:white,,bold:^#[0-9]+
+# }}}
+
+# gallery {{{
+colorscheme:gallery
+# I tried to combine these in braces but was getting strange results
+cs_re:white,,bold:\{
+cs_re:white,,bold:\}
+cs_re:white,,bold:\[
+cs_re:white,,bold:\]
+
+# date and time
+mcsre_s:magenta,,bold:^\[([0-9\-]+).*$
+mcsre_s:yellow,,bold:^\[[0-9\-]+ ([0-9:]+)\].*$
+
+# debug
+cs_re:green,,bold:DEBUG
+mcsre_s:green:DEBUG: (.*)
+
+# error and emergency
+cs_re:red,,blink:EMERGENCY
+cs_re:red,,bold:ERROR
+mcsre_s:red:ERROR: (.*)
+mcsre_s:red:EMERGENCY: (.*)
+
+# date and time - nginx www error log
+cs_re:magenta,,bold:^[0-9]{4}/[0-9]{2}/[0-9]{2}
+mcsre_s:yellow,,bold:^[0-9]{4}/[0-9]{2}/[0-9]{2} +([0-9]{2}:[0-9]{2}:[0-9]{2})
+
+# errors and warnings - www error log
+mcsre_s:red,,bold:^[0-9]{4}/[0-9]{2}/[0-9]{2} +[0-9]{2}:[0-9]{2}:[0-9]{2} (\[error\])
+mcsre_s:yellow,,bold:^[0-9]{4}/[0-9]{2}/[0-9]{2} +[0-9]{2}:[0-9]{2}:[0-9]{2} (\[warn\])
+mcsre_s:red:^.*\[error\](.*)
+mcsre_s:yellow:^.*\[warn\](.*)
+
+# keys and stack traces
+cs_re:white,,bold:^(  )*[a-zA-Z_ -]+:
+cs_re:green,,bold:^Stack trace:
+cs_re:white,,bold:^#[0-9]+
+# }}}
+
+# easel {{{
+colorscheme:easel
+# I tried to combine these in braces but was getting strange results
+cs_re:white,,bold:\{
+cs_re:white,,bold:\}
+cs_re:white,,bold:\[
+cs_re:white,,bold:\]
+
+# date and time: 2017-10-18-01:01:56
+#
+# do not seem to be included in the logs. Apparently you have to run pm2 with
+# date format specified for it to write date to the logs.
+#
+# cs_re:magenta,,bold:^[0-9]{4}-[0-9]{2}-[0-9]{2}
+# mcsre_s:yellow,,bold:^[0-9]{4}-[0-9]{2}-[0-9]{2}-([0-9]{2}:[0-9]{2}:[0-9]{2})
+
+# server name
+mcsre_s:magenta,,bold:^[0-9:-]+ ([0-9]+\|[a-zA-Z]+.*\|)
+# datetime
+mcsre_s:yellow,,bold:(^[0-9:-]+) [0-9]+\|[a-zA-Z]+.*\|
+# server name without datetime
+cs_re:magenta,,bold:^[0-9]+\|[a-zA-Z]+.*\|
+# PM2
+cs_re:magenta,,bold:^PM2.*\|
+
+# errors and warnings
+cs_re:red,,bold:[a-zA-Z]*Error:
+mcsre_s:red:[a-zA-Z]*Error:(.*)
+mcsre_s:red,,blink:(Error) {
+# cs_re:red,,bold:^Stack trace:
+
+# keys and stack traces
+cs_re:white,,bold:^(  )*[a-zA-Z_ -]+:
+cs_re:red,,bold:^Stack trace:
+cs_re:white,,bold:^#[0-9]+
+# }}}
+
+# palette {{{
+colorscheme:palette
+# I tried to combine these in braces but was getting strange results
+cs_re:white,,bold:\{
+cs_re:white,,bold:\}
+cs_re:white,,bold:\[
+cs_re:white,,bold:\]
+
+# date and time
+mcsre_s:magenta,,bold:^\[([0-9\-]+).*$
+mcsre_s:yellow,,bold:^\[[0-9\-]+ ([0-9:]+)\].*$
+
+# date and time - nginx app error log
+cs_re:magenta,,bold:^[0-9]{4}/[0-9]{2}/[0-9]{2}
+mcsre_s:yellow,,bold:^[0-9]{4}/[0-9]{2}/[0-9]{2} +([0-9]{2}:[0-9]{2}:[0-9]{2})
+
+# errors and warnings - app error log
+mcsre_s:red,,bold:^[0-9]{4}/[0-9]{2}/[0-9]{2} +[0-9]{2}:[0-9]{2}:[0-9]{2} (\[error\])
+mcsre_s:yellow,,bold:^[0-9]{4}/[0-9]{2}/[0-9]{2} +[0-9]{2}:[0-9]{2}:[0-9]{2} (\[warn\])
+mcsre_s:red:^.*\[error\](.*)
+mcsre_s:yellow:^.*\[warn\](.*)
+
+# debug
+cs_re:green,,bold:DEBUG
+mcsre_s:green:DEBUG: (.*)
+
+# error and emergency
+cs_re:red,,blink:EMERGENCY
+cs_re:red,,bold:ERROR
+mcsre_s:red:ERROR: (.*)
+mcsre_s:red:EMERGENCY: (.*)
+
+# keys and stack traces
+cs_re:white,,bold:^(  )*[a-zA-Z_ -]+:
+cs_re:green,,bold:^Stack trace:
+cs_re:white,,bold:^#[0-9]+
+# }}}
+
+# zed {{{
+colorscheme:zed
+# I tried to combine these in braces but was getting strange results
+cs_re:white,,bold:\{
+cs_re:white,,bold:\}
+cs_re:white,,bold:\[
+cs_re:white,,bold:\]
+
+cs_re:blue,,bold:^-+
+
+# date and time
+cs_re:magenta,,bold:^[0-9]{4}-[0-9]{2}-[0-9]{2}
+mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})\+00:00
+
+# error and severe
+cs_re:red,,bold:PHP Fatal error:
+mcsre_s:red,,bold:ZED Exception([a-zA-Z]+)
+mcsre_s:red:ZED Exception[a-zA-Z]+ (.*)
+mcsre_s:red:PHP Fatal error: (.*)
+
+# keys and stack traces
+cs_re:white,,bold:^(  )*[a-zA-Z_ -]+:
+cs_re:green,,bold:^Stack trace:
+cs_re:white,,bold:^#[0-9]+
+
+# date and time - nginx error log
+cs_re:magenta,,bold:^[0-9]{4}/[0-9]{2}/[0-9]{2}
+mcsre_s:yellow,,bold:^[0-9]{4}/[0-9]{2}/[0-9]{2} +([0-9]{2}:[0-9]{2}:[0-9]{2})
+
+# data and time - session errors
+mcsre_s:magenta,,bold:^\[([0-9]{2}-[a-zA-Z]{3}-[0-9]{4})
+mcsre_s:yellow,,bold:^\[[0-9]{2}-[a-zA-Z]{3}-[0-9]{4} ([0-9]{2}:[0-9]{2}:[0-9]{2})
+
+# errors and warnings - nginx error log
+mcsre_s:red,,bold:^[0-9]{4}/[0-9]{2}/[0-9]{2} +[0-9]{2}:[0-9]{2}:[0-9]{2} (\[error\])
+mcsre_s:yellow,,bold:^[0-9]{4}/[0-9]{2}/[0-9]{2} +[0-9]{2}:[0-9]{2}:[0-9]{2} (\[warn\])
+mcsre_s:red:^.*\[error\](.*)
+mcsre_s:yellow:^.*\[warn\](.*)
+# }}}
+
+# lb {{{
+colorscheme:lb
+# date
+cs_re:magenta,,bold:^[A-Za-z]+ +[0-9]+
+# time
+mcsre_s:yellow,,bold:^[A-Za-z]+ +[0-9]+ ([0-9:]+)
+# server
+# cs_re:blue: [a-zA-Z_\-]+/[a-zA-Z_\-]+[0-9]*
+mcsre_s:blue: [a-zA-Z_\-]+/([a-zA-Z_\-]+[0-9]*)
+# request
+mcsre_s:red:"(.*)"
+# }}}
+
+# mysql general query log {{{
+colorscheme:mysqllog
+# date, time
+cs_re:magenta:^[0-9]+\-[0-9]+\-[0-9]+
+mcsre_s:yellow:^[0-9\-]+T([0-9:]+)\.[0-9]+Z.*$
+# ignore this stuff
+mcsre_s:black:^[0-9\-]+(T)
+mcsre_s:black:^[-0-9:T]+(\.[A-Z0-9]+)
+cs_re:black:Query
+# query time
+mcsre_s:magenta,,bold:([0-9]+) Query
+# queries
+cs_re:white:(START TRANSACTION|commit)
+cs_re:cyan:(SELECT).*
+cs_re:green:(INSERT).*
+cs_re:yellow:(UPDATE).*
+cs_re:red:(DELETE).*
+# }}}

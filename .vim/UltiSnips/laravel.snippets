@@ -1,0 +1,1587 @@
+snippet App "Laravel 4: App::abort()"
+	App::abort(${1:$code}, ${2:$message}, ${3:$headers})
+endsnippet
+
+snippet App "Laravel 4: App::after()"
+	App::after(${1:$callback})
+endsnippet
+
+snippet App "Laravel 4: App::before()"
+	App::before(${1:$callback})
+endsnippet
+
+snippet App "Laravel 4: App::bindInstallPaths()"
+	App::bindInstallPaths(${1:$paths})
+endsnippet
+
+snippet App "Laravel 4: App::boot()"
+	App::boot()
+endsnippet
+
+snippet App "Laravel 4: App::booted()"
+	App::booted(${1:$callback})
+endsnippet
+
+snippet App "Laravel 4: App::booting()"
+	App::booting(${1:$callback})
+endsnippet
+
+snippet App "Laravel 4: App::close()"
+	App::close(${1:$callback})
+endsnippet
+
+snippet App "Laravel 4: App::detectEnvironment()"
+	App::detectEnvironment(${1:$environments})
+endsnippet
+
+snippet App "Laravel 4: App::dispatch()"
+	App::dispatch(${1:$request})
+endsnippet
+
+snippet App "Laravel 4: App::down()"
+	App::down(${1:$callback})
+endsnippet
+
+snippet App "Laravel 4: App::environment()"
+	App::environment()
+endsnippet
+
+snippet App "Laravel 4: App::error()"
+	App::error(${1:$callback})
+endsnippet
+
+snippet App "Laravel 4: App::fatal()"
+	App::fatal(${1:$callback})
+endsnippet
+
+snippet App "Laravel 4: App::finish()"
+	App::finish(${1:$callback})
+endsnippet
+
+snippet App "Laravel 4: App::getConfigLoader()"
+	App::getConfigLoader()
+endsnippet
+
+snippet App "Laravel 4: App::getLoadedProviders()"
+	App::getLoadedProviders()
+endsnippet
+
+snippet App "Laravel 4: App::getProviderRepository()"
+	App::getProviderRepository()
+endsnippet
+
+snippet App "Laravel 4: App::handle()"
+	App::handle(${1:$request}, ${2:$type}, ${3:$catch})
+endsnippet
+
+snippet App "Laravel 4: App::isDownForMaintenance()"
+	App::isDownForMaintenance()
+endsnippet
+
+snippet App "Laravel 4: App::loadDeferredProviders()"
+	App::loadDeferredProviders()
+endsnippet
+
+snippet App "Laravel 4: App::make()"
+	App::make(${1:$abstract}, ${2:$parameters})
+endsnippet
+
+snippet App "Laravel 4: App::missing()"
+	App::missing(${1:$callback})
+endsnippet
+
+snippet App "Laravel 4: App::prepareRequest()"
+	App::prepareRequest(${1:$request})
+endsnippet
+
+snippet App "Laravel 4: App::prepareResponse()"
+	App::prepareResponse(${1:$value})
+endsnippet
+
+snippet App "Laravel 4: App::register()"
+	App::register(${1:$provider}, ${2:$options})
+endsnippet
+
+snippet App "Laravel 4: App::run()"
+	App::run()
+endsnippet
+
+snippet App "Laravel 4: App::runningInConsole()"
+	App::runningInConsole()
+endsnippet
+
+snippet App "Laravel 4: App::runningUnitTests()"
+	App::runningUnitTests()
+endsnippet
+
+snippet App "Laravel 4: App::setDeferredServices()"
+	App::setDeferredServices(${1:$services})
+endsnippet
+
+snippet App "Laravel 4: App::setLocale()"
+	App::setLocale(${1:$locale})
+endsnippet
+
+snippet App "Laravel 4: App::setRequestForConsoleEnvironment()"
+	App::setRequestForConsoleEnvironment()
+endsnippet
+
+snippet App "Laravel 4: App::shutdown()"
+	App::shutdown(${1:$callback})
+endsnippet
+
+snippet App "Laravel 4: App::startExceptionHandling()"
+	App::startExceptionHandling()
+endsnippet
+
+snippet Art "Laravel 4: Artisan::call()"
+	Artisan::call(${1:$command}, ${2:$parameters}, ${3:$output})
+endsnippet
+
+snippet Auth "Laravel 4: Auth::createEloquentDriver()"
+	Auth::createEloquentDriver()
+endsnippet
+
+snippet Config "Laravel 4: Config::addNamespace()"
+	Config::addNamespace(${1:$namespace}, ${2:$hint})
+endsnippet
+
+snippet Config "Laravel 4: Config::afterLoading()"
+	Config::afterLoading(${1:$namespace}, ${2:$callback})
+endsnippet
+
+snippet Config "Laravel 4: Config::get()"
+	Config::get(${1:$key}, ${2:$default})
+endsnippet
+
+snippet Config "Laravel 4: Config::getAfterLoadCallbacks()"
+	Config::getAfterLoadCallbacks()
+endsnippet
+
+snippet Config "Laravel 4: Config::getEnvironment()"
+	Config::getEnvironment()
+endsnippet
+
+snippet Config "Laravel 4: Config::getItems()"
+	Config::getItems()
+endsnippet
+
+snippet Config "Laravel 4: Config::getLoader()"
+	Config::getLoader()
+endsnippet
+
+snippet Config "Laravel 4: Config::getNamespaces()"
+	Config::getNamespaces()
+endsnippet
+
+snippet Config "Laravel 4: Config::has()"
+	Config::has(${1:$key})
+endsnippet
+
+snippet Config "Laravel 4: Config::hasGroup()"
+	Config::hasGroup(${1:$key})
+endsnippet
+
+snippet Config "Laravel 4: Config::offsetExists()"
+	Config::offsetExists(${1:$key})
+endsnippet
+
+snippet Config "Laravel 4: Config::offsetGet()"
+	Config::offsetGet(${1:$key})
+endsnippet
+
+snippet Config "Laravel 4: Config::offsetSet()"
+	Config::offsetSet(${1:$key}, ${2:$value})
+endsnippet
+
+snippet Config "Laravel 4: Config::offsetUnset()"
+	Config::offsetUnset(${1:$key})
+endsnippet
+
+snippet Config "Laravel 4: Config::package()"
+	Config::package(${1:$package}, ${2:$hint}, ${3:$namespace})
+endsnippet
+
+snippet Config "Laravel 4: Config::set()"
+	Config::set(${1:$key}, ${2:$value})
+endsnippet
+
+snippet Config "Laravel 4: Config::setLoader()"
+	Config::setLoader(${1:$loader})
+endsnippet
+
+snippet Cookie "Laravel 4: Cookie::forever()"
+	Cookie::forever(${1:$name}, ${2:$value}, ${3:$path}, ${4:$domain}, ${5:$secure}, ${6:$httpOnly})
+endsnippet
+
+snippet Cookie "Laravel 4: Cookie::forget()"
+	Cookie::forget(${1:$name})
+endsnippet
+
+snippet Cookie "Laravel 4: Cookie::get()"
+	Cookie::get(${1:$key}, ${2:$default})
+endsnippet
+
+snippet Cookie "Laravel 4: Cookie::getEncrypter()"
+	Cookie::getEncrypter()
+endsnippet
+
+snippet Cookie "Laravel 4: Cookie::getRequest()"
+	Cookie::getRequest()
+endsnippet
+
+snippet Cookie "Laravel 4: Cookie::has()"
+	Cookie::has(${1:$key})
+endsnippet
+
+snippet Cookie "Laravel 4: Cookie::make()"
+	Cookie::make(${1:$name}, ${2:$value}, ${3:$minutes}, ${4:$path}, ${5:$domain}, ${6:$secure}, ${7:$httpOnly})
+endsnippet
+
+snippet Cookie "Laravel 4: Cookie::setDefaultPathAndDomain()"
+	Cookie::setDefaultPathAndDomain(${1:$path}, ${2:$domain})
+endsnippet
+
+snippet Crypt "Laravel 4: Crypt::decrypt()"
+	Crypt::decrypt(${1:$payload})
+endsnippet
+
+snippet Crypt "Laravel 4: Crypt::encrypt()"
+	Crypt::encrypt(${1:$value})
+endsnippet
+
+snippet Crypt "Laravel 4: Crypt::setCipher()"
+	Crypt::setCipher(${1:$cipher})
+endsnippet
+
+snippet Crypt "Laravel 4: Crypt::setKey()"
+	Crypt::setKey(${1:$key})
+endsnippet
+
+snippet Crypt "Laravel 4: Crypt::setMode()"
+	Crypt::setMode(${1:$mode})
+endsnippet
+
+snippet DB "Laravel 4: DB::connection()"
+	DB::connection(${1:$name})
+endsnippet
+
+snippet DB "Laravel 4: DB::extend()"
+	DB::extend(${1:$name}, ${2:$resolver})
+endsnippet
+
+snippet DB "Laravel 4: DB::getDefaultConnection()"
+	DB::getDefaultConnection()
+endsnippet
+
+snippet DB "Laravel 4: DB::reconnect()"
+	DB::reconnect(${1:$name})
+endsnippet
+
+snippet DB "Laravel 4: DB::setDefaultConnection()"
+	DB::setDefaultConnection(${1:$name})
+endsnippet
+
+snippet Event "Laravel 4: Event::createClassListener()"
+	Event::createClassListener(${1:$listener})
+endsnippet
+
+snippet Event "Laravel 4: Event::fire()"
+	Event::fire(${1:$event}, ${2:$payload}, ${3:$halt})
+endsnippet
+
+snippet Event "Laravel 4: Event::flush()"
+	Event::flush(${1:$event})
+endsnippet
+
+snippet Event "Laravel 4: Event::getListeners()"
+	Event::getListeners(${1:$eventName})
+endsnippet
+
+snippet Event "Laravel 4: Event::hasListeners()"
+	Event::hasListeners(${1:$eventName})
+endsnippet
+
+snippet Event "Laravel 4: Event::listen()"
+	Event::listen(${1:$event}, ${2:$listener}, ${3:$priority})
+endsnippet
+
+snippet Event "Laravel 4: Event::makeListener()"
+	Event::makeListener(${1:$listener})
+endsnippet
+
+snippet Event "Laravel 4: Event::queue()"
+	Event::queue(${1:$event}, ${2:$payload})
+endsnippet
+
+snippet Event "Laravel 4: Event::subscribe()"
+	Event::subscribe(${1:$subscriber})
+endsnippet
+
+snippet Event "Laravel 4: Event::until()"
+	Event::until(${1:$event}, ${2:$payload})
+endsnippet
+
+snippet File "Laravel 4: File::allFiles()"
+	File::allFiles(${1:$directory})
+endsnippet
+
+snippet File "Laravel 4: File::append()"
+	File::append(${1:$path}, ${2:$data})
+endsnippet
+
+snippet File "Laravel 4: File::cleanDirectory()"
+	File::cleanDirectory(${1:$directory})
+endsnippet
+
+snippet File "Laravel 4: File::copy()"
+	File::copy(${1:$path}, ${2:$target})
+endsnippet
+
+snippet File "Laravel 4: File::copyDirectory()"
+	File::copyDirectory(${1:$directory}, ${2:$destination}, ${3:$options})
+endsnippet
+
+snippet File "Laravel 4: File::delete()"
+	File::delete(${1:$path})
+endsnippet
+
+snippet File "Laravel 4: File::deleteDirectory()"
+	File::deleteDirectory(${1:$directory}, ${2:$preserve})
+endsnippet
+
+snippet File "Laravel 4: File::directories()"
+	File::directories(${1:$directory})
+endsnippet
+
+snippet File "Laravel 4: File::exists()"
+	File::exists(${1:$path})
+endsnippet
+
+snippet File "Laravel 4: File::extension()"
+	File::extension(${1:$path})
+endsnippet
+
+snippet File "Laravel 4: File::files()"
+	File::files(${1:$directory})
+endsnippet
+
+snippet File "Laravel 4: File::get()"
+	File::get(${1:$path})
+endsnippet
+
+snippet File "Laravel 4: File::getRemote()"
+	File::getRemote(${1:$path})
+endsnippet
+
+snippet File "Laravel 4: File::getRequire()"
+	File::getRequire(${1:$path})
+endsnippet
+
+snippet File "Laravel 4: File::glob()"
+	File::glob(${1:$pattern}, ${2:$flags})
+endsnippet
+
+snippet File "Laravel 4: File::isDirectory()"
+	File::isDirectory(${1:$directory})
+endsnippet
+
+snippet File "Laravel 4: File::isFile()"
+	File::isFile(${1:$file})
+endsnippet
+
+snippet File "Laravel 4: File::isWritable()"
+	File::isWritable(${1:$path})
+endsnippet
+
+snippet File "Laravel 4: File::lastModified()"
+	File::lastModified(${1:$path})
+endsnippet
+
+snippet File "Laravel 4: File::makeDirectory()"
+	File::makeDirectory(${1:$path}, ${2:$mode}, ${3:$recursive})
+endsnippet
+
+snippet File "Laravel 4: File::move()"
+	File::move(${1:$path}, ${2:$target})
+endsnippet
+
+snippet File "Laravel 4: File::put()"
+	File::put(${1:$path}, ${2:$contents})
+endsnippet
+
+snippet File "Laravel 4: File::requireOnce()"
+	File::requireOnce(${1:$file})
+endsnippet
+
+snippet File "Laravel 4: File::size()"
+	File::size(${1:$path})
+endsnippet
+
+snippet File "Laravel 4: File::type()"
+	File::type(${1:$path})
+endsnippet
+
+snippet Form "Laravel 4: Form::button()"
+	Form::button(${1:$value}, ${2:$options})
+endsnippet
+
+snippet Form "Laravel 4: Form::checkbox()"
+	Form::checkbox(${1:$name}, ${2:$value}, ${3:$checked}, ${4:$options})
+endsnippet
+
+snippet Form "Laravel 4: Form::close()"
+	Form::close()
+endsnippet
+
+snippet Form "Laravel 4: Form::email()"
+	Form::email(${1:$name}, ${2:$value}, ${3:$options})
+endsnippet
+
+snippet Form "Laravel 4: Form::file()"
+	Form::file(${1:$name}, ${2:$options})
+endsnippet
+
+snippet Form "Laravel 4: Form::getSessionStore()"
+	Form::getSessionStore()
+endsnippet
+
+snippet Form "Laravel 4: Form::getValueAttribute()"
+	Form::getValueAttribute(${1:$name}, ${2:$value})
+endsnippet
+
+snippet Form "Laravel 4: Form::hidden()"
+	Form::hidden(${1:$name}, ${2:$value}, ${3:$options})
+endsnippet
+
+snippet Form "Laravel 4: Form::image()"
+	Form::image(${1:$url}, ${2:$name}, ${3:$attributes})
+endsnippet
+
+snippet Form "Laravel 4: Form::input()"
+	Form::input(${1:$type}, ${2:$name}, ${3:$value}, ${4:$options})
+endsnippet
+
+snippet Form "Laravel 4: Form::label()"
+	Form::label(${1:$name}, ${2:$value}, ${3:$options})
+endsnippet
+
+snippet Form "Laravel 4: Form::macro()"
+	Form::macro(${1:$name}, ${2:$macro})
+endsnippet
+
+snippet Form "Laravel 4: Form::model()"
+	Form::model(${1:$model}, ${2:$options})
+endsnippet
+
+snippet Form "Laravel 4: Form::open()"
+	Form::open(${1:$options})
+endsnippet
+
+snippet Form "Laravel 4: Form::password()"
+	Form::password(${1:$name}, ${2:$options})
+endsnippet
+
+snippet Form "Laravel 4: Form::radio()"
+	Form::radio(${1:$name}, ${2:$value}, ${3:$checked}, ${4:$options})
+endsnippet
+
+snippet Form "Laravel 4: Form::reset()"
+	Form::reset(${1:$value}, ${2:$attributes})
+endsnippet
+
+snippet Form "Laravel 4: Form::select()"
+	Form::select(${1:$name}, ${2:$list}, ${3:$selected}, ${4:$options})
+endsnippet
+
+snippet Form "Laravel 4: Form::setSessionStore()"
+	Form::setSessionStore(${1:$session})
+endsnippet
+
+snippet Form "Laravel 4: Form::submit()"
+	Form::submit(${1:$value}, ${2:$options})
+endsnippet
+
+snippet Form "Laravel 4: Form::text()"
+	Form::text(${1:$name}, ${2:$value}, ${3:$options})
+endsnippet
+
+snippet Form "Laravel 4: Form::textarea()"
+	Form::textarea(${1:$name}, ${2:$value}, ${3:$options})
+endsnippet
+
+snippet Form "Laravel 4: Form::token()"
+	Form::token()
+endsnippet
+
+snippet HTML "Laravel 4: HTML::attributes()"
+	HTML::attributes(${1:$attributes})
+endsnippet
+
+snippet HTML "Laravel 4: HTML::decode()"
+	HTML::decode(${1:$value})
+endsnippet
+
+snippet HTML "Laravel 4: HTML::email()"
+	HTML::email(${1:$email})
+endsnippet
+
+snippet HTML "Laravel 4: HTML::entities()"
+	HTML::entities(${1:$value})
+endsnippet
+
+snippet HTML "Laravel 4: HTML::image()"
+	HTML::image(${1:$url}, ${2:$alt}, ${3:$attributes})
+endsnippet
+
+snippet HTML "Laravel 4: HTML::link()"
+	HTML::link(${1:$url}, ${2:$title}, ${3:$attributes}, ${4:$secure})
+endsnippet
+
+snippet HTML "Laravel 4: HTML::linkAction()"
+	HTML::linkAction(${1:$action}, ${2:$title}, ${3:$parameters}, ${4:$attributes})
+endsnippet
+
+snippet HTML "Laravel 4: HTML::linkAsset()"
+	HTML::linkAsset(${1:$url}, ${2:$title}, ${3:$attributes}, ${4:$secure})
+endsnippet
+
+snippet HTML "Laravel 4: HTML::linkRoute()"
+	HTML::linkRoute(${1:$name}, ${2:$title}, ${3:$parameters}, ${4:$attributes})
+endsnippet
+
+snippet HTML "Laravel 4: HTML::linkSecureAsset()"
+	HTML::linkSecureAsset(${1:$url}, ${2:$title}, ${3:$attributes})
+endsnippet
+
+snippet HTML "Laravel 4: HTML::macro()"
+	HTML::macro(${1:$name}, ${2:$macro})
+endsnippet
+
+snippet HTML "Laravel 4: HTML::mailto()"
+	HTML::mailto(${1:$email}, ${2:$title}, ${3:$attributes})
+endsnippet
+
+snippet HTML "Laravel 4: HTML::obfuscate()"
+	HTML::obfuscate(${1:$value})
+endsnippet
+
+snippet HTML "Laravel 4: HTML::ol()"
+	HTML::ol(${1:$list}, ${2:$attributes})
+endsnippet
+
+snippet HTML "Laravel 4: HTML::script()"
+	HTML::script(${1:$url}, ${2:$attributes})
+endsnippet
+
+snippet HTML "Laravel 4: HTML::secureLink()"
+	HTML::secureLink(${1:$url}, ${2:$title}, ${3:$attributes})
+endsnippet
+
+snippet HTML "Laravel 4: HTML::style()"
+	HTML::style(${1:$url}, ${2:$attributes})
+endsnippet
+
+snippet HTML "Laravel 4: HTML::ul()"
+	HTML::ul(${1:$list}, ${2:$attributes})
+endsnippet
+
+snippet Hash "Laravel 4: Hash::check()"
+	Hash::check(${1:$value}, ${2:$hashedValue}, ${3:$options})
+endsnippet
+
+snippet Hash "Laravel 4: Hash::make()"
+	Hash::make(${1:$value}, ${2:$options})
+endsnippet
+
+snippet Hash "Laravel 4: Hash::needsRehash()"
+	Hash::needsRehash(${1:$hashedValue}, ${2:$options})
+endsnippet
+
+snippet Input "Laravel 4: Input::ajax()"
+	Input::ajax()
+endsnippet
+
+snippet Input "Laravel 4: Input::all()"
+	Input::all()
+endsnippet
+
+snippet Input "Laravel 4: Input::cookie()"
+	Input::cookie(${1:$key}, ${2:$default})
+endsnippet
+
+snippet Input "Laravel 4: Input::except()"
+	Input::except(${1:$keys})
+endsnippet
+
+snippet Input "Laravel 4: Input::file()"
+	Input::file(${1:$key}, ${2:$default})
+endsnippet
+
+snippet Input "Laravel 4: Input::flash()"
+	Input::flash(${1:$filter}, ${2:$keys})
+endsnippet
+
+snippet Input "Laravel 4: Input::flashExcept()"
+	Input::flashExcept(${1:$keys})
+endsnippet
+
+snippet Input "Laravel 4: Input::flashOnly()"
+	Input::flashOnly(${1:$keys})
+endsnippet
+
+snippet Input "Laravel 4: Input::flush()"
+	Input::flush()
+endsnippet
+
+snippet Input "Laravel 4: Input::fullUrl()"
+	Input::fullUrl()
+endsnippet
+
+snippet Input "Laravel 4: Input::getSessionStore()"
+	Input::getSessionStore()
+endsnippet
+
+snippet Input "Laravel 4: Input::has()"
+	Input::has(${1:$key})
+endsnippet
+
+snippet Input "Laravel 4: Input::hasFile()"
+	Input::hasFile(${1:$key})
+endsnippet
+
+snippet Input "Laravel 4: Input::hasSessionStore()"
+	Input::hasSessionStore()
+endsnippet
+
+snippet Input "Laravel 4: Input::header()"
+	Input::header(${1:$key}, ${2:$default})
+endsnippet
+
+snippet Input "Laravel 4: Input::input()"
+	Input::input(${1:$key}, ${2:$default})
+endsnippet
+
+snippet Input "Laravel 4: Input::instance()"
+	Input::instance()
+endsnippet
+
+snippet Input "Laravel 4: Input::is()"
+	Input::is(${1:$pattern})
+endsnippet
+
+snippet Input "Laravel 4: Input::isJson()"
+	Input::isJson()
+endsnippet
+
+snippet Input "Laravel 4: Input::json()"
+	Input::json(${1:$key}, ${2:$default})
+endsnippet
+
+snippet Input "Laravel 4: Input::merge()"
+	Input::merge(${1:$input})
+endsnippet
+
+snippet Input "Laravel 4: Input::old()"
+	Input::old(${1:$key}, ${2:$default})
+endsnippet
+
+snippet Input "Laravel 4: Input::only()"
+	Input::only(${1:$keys})
+endsnippet
+
+snippet Input "Laravel 4: Input::path()"
+	Input::path()
+endsnippet
+
+snippet Input "Laravel 4: Input::query()"
+	Input::query(${1:$key}, ${2:$default})
+endsnippet
+
+snippet Input "Laravel 4: Input::replace()"
+	Input::replace(${1:$input})
+endsnippet
+
+snippet Input "Laravel 4: Input::root()"
+	Input::root()
+endsnippet
+
+snippet Input "Laravel 4: Input::secure()"
+	Input::secure()
+endsnippet
+
+snippet Input "Laravel 4: Input::segment()"
+	Input::segment(${1:$index}, ${2:$default})
+endsnippet
+
+snippet Input "Laravel 4: Input::segments()"
+	Input::segments()
+endsnippet
+
+snippet Input "Laravel 4: Input::server()"
+	Input::server(${1:$key}, ${2:$default})
+endsnippet
+
+snippet Input "Laravel 4: Input::setSessionStore()"
+	Input::setSessionStore(${1:$session})
+endsnippet
+
+snippet Input "Laravel 4: Input::url()"
+	Input::url()
+endsnippet
+
+snippet Lang "Laravel 4: Lang::addNamespace()"
+	Lang::addNamespace(${1:$namespace}, ${2:$hint})
+endsnippet
+
+snippet Lang "Laravel 4: Lang::choice()"
+	Lang::choice(${1:$key}, ${2:$number}, ${3:$replace}, ${4:$locale})
+endsnippet
+
+snippet Lang "Laravel 4: Lang::get()"
+	Lang::get(${1:$key}, ${2:$replace}, ${3:$locale})
+endsnippet
+
+snippet Lang "Laravel 4: Lang::getLoader()"
+	Lang::getLoader()
+endsnippet
+
+snippet Lang "Laravel 4: Lang::getLocale()"
+	Lang::getLocale()
+endsnippet
+
+snippet Lang "Laravel 4: Lang::getSelector()"
+	Lang::getSelector()
+endsnippet
+
+snippet Lang "Laravel 4: Lang::has()"
+	Lang::has(${1:$key}, ${2:$locale})
+endsnippet
+
+snippet Lang "Laravel 4: Lang::load()"
+	Lang::load(${1:$namespace}, ${2:$group}, ${3:$locale})
+endsnippet
+
+snippet Lang "Laravel 4: Lang::locale()"
+	Lang::locale()
+endsnippet
+
+snippet Lang "Laravel 4: Lang::parseKey()"
+	Lang::parseKey(${1:$key})
+endsnippet
+
+snippet Lang "Laravel 4: Lang::setLocale()"
+	Lang::setLocale(${1:$locale})
+endsnippet
+
+snippet Lang "Laravel 4: Lang::setSelector()"
+	Lang::setSelector(${1:$selector})
+endsnippet
+
+snippet Lang "Laravel 4: Lang::trans()"
+	Lang::trans(${1:$id}, ${2:$parameters}, ${3:$domain}, ${4:$locale})
+endsnippet
+
+snippet Lang "Laravel 4: Lang::transChoice()"
+	Lang::transChoice(${1:$id}, ${2:$number}, ${3:$parameters}, ${4:$domain}, ${5:$locale})
+endsnippet
+
+snippet Log "Laravel 4: Log::getEventDispatcher()"
+	Log::getEventDispatcher()
+endsnippet
+
+snippet Log "Laravel 4: Log::getMonolog()"
+	Log::getMonolog()
+endsnippet
+
+snippet Log "Laravel 4: Log::listen()"
+	Log::listen(${1:$callback})
+endsnippet
+
+snippet Log "Laravel 4: Log::setEventDispatcher()"
+	Log::setEventDispatcher(${1:$dispatcher})
+endsnippet
+
+snippet Log "Laravel 4: Log::useDailyFiles()"
+	Log::useDailyFiles(${1:$path}, ${2:$days}, ${3:$level})
+endsnippet
+
+snippet Log "Laravel 4: Log::useFiles()"
+	Log::useFiles(${1:$path}, ${2:$level})
+endsnippet
+
+snippet Mail "Laravel 4: Mail::alwaysFrom()"
+	Mail::alwaysFrom(${1:$address}, ${2:$name})
+endsnippet
+
+snippet Mail "Laravel 4: Mail::getSwiftMailer()"
+	Mail::getSwiftMailer()
+endsnippet
+
+snippet Mail "Laravel 4: Mail::getViewEnvironment()"
+	Mail::getViewEnvironment()
+endsnippet
+
+snippet Mail "Laravel 4: Mail::handleQueuedMessage()"
+	Mail::handleQueuedMessage(${1:$job}, ${2:$data})
+endsnippet
+
+snippet Mail "Laravel 4: Mail::later()"
+	Mail::later(${1:$delay}, ${2:$view}, ${3:$data}, ${4:$callback}, ${5:$queue})
+endsnippet
+
+snippet Mail "Laravel 4: Mail::laterOn()"
+	Mail::laterOn(${1:$queue}, ${2:$delay}, ${3:$view}, ${4:$data}, ${5:$callback})
+endsnippet
+
+snippet Mail "Laravel 4: Mail::plain()"
+	Mail::plain(${1:$view}, ${2:$data}, ${3:$callback})
+endsnippet
+
+snippet Mail "Laravel 4: Mail::pretend()"
+	Mail::pretend(${1:$value})
+endsnippet
+
+snippet Mail "Laravel 4: Mail::queue()"
+	Mail::queue(${1:$view}, ${2:$data}, ${3:$callback}, ${4:$queue})
+endsnippet
+
+snippet Mail "Laravel 4: Mail::queueOn()"
+	Mail::queueOn(${1:$queue}, ${2:$view}, ${3:$data}, ${4:$callback})
+endsnippet
+
+snippet Mail "Laravel 4: Mail::send()"
+	Mail::send(${1:$view}, ${2:$data}, ${3:$callback})
+endsnippet
+
+snippet Mail "Laravel 4: Mail::setContainer()"
+	Mail::setContainer(${1:$container})
+endsnippet
+
+snippet Mail "Laravel 4: Mail::setLogger()"
+	Mail::setLogger(${1:$logger})
+endsnippet
+
+snippet Mail "Laravel 4: Mail::setQueue()"
+	Mail::setQueue(${1:$queue})
+endsnippet
+
+snippet Mail "Laravel 4: Mail::setSwiftMailer()"
+	Mail::setSwiftMailer(${1:$swift})
+endsnippet
+
+snippet Pagin "Laravel 4: Paginator::getCurrentPage()"
+	Paginator::getCurrentPage()
+endsnippet
+
+snippet Pagin "Laravel 4: Paginator::getCurrentUrl()"
+	Paginator::getCurrentUrl()
+endsnippet
+
+snippet Pagin "Laravel 4: Paginator::getLocale()"
+	Paginator::getLocale()
+endsnippet
+
+snippet Pagin "Laravel 4: Paginator::getPageName()"
+	Paginator::getPageName()
+endsnippet
+
+snippet Pagin "Laravel 4: Paginator::getPaginationView()"
+	Paginator::getPaginationView(${1:$paginator})
+endsnippet
+
+snippet Pagin "Laravel 4: Paginator::getRequest()"
+	Paginator::getRequest()
+endsnippet
+
+snippet Pagin "Laravel 4: Paginator::getTranslator()"
+	Paginator::getTranslator()
+endsnippet
+
+snippet Pagin "Laravel 4: Paginator::getViewDriver()"
+	Paginator::getViewDriver()
+endsnippet
+
+snippet Pagin "Laravel 4: Paginator::getViewName()"
+	Paginator::getViewName()
+endsnippet
+
+snippet Pagin "Laravel 4: Paginator::make()"
+	Paginator::make(${1:$items}, ${2:$total}, ${3:$perPage})
+endsnippet
+
+snippet Pagin "Laravel 4: Paginator::setBaseUrl()"
+	Paginator::setBaseUrl(${1:$baseUrl})
+endsnippet
+
+snippet Pagin "Laravel 4: Paginator::setCurrentPage()"
+	Paginator::setCurrentPage(${1:$number})
+endsnippet
+
+snippet Pagin "Laravel 4: Paginator::setLocale()"
+	Paginator::setLocale(${1:$locale})
+endsnippet
+
+snippet Pagin "Laravel 4: Paginator::setPageName()"
+	Paginator::setPageName(${1:$pageName})
+endsnippet
+
+snippet Pagin "Laravel 4: Paginator::setRequest()"
+	Paginator::setRequest(${1:$request})
+endsnippet
+
+snippet Pagin "Laravel 4: Paginator::setViewDriver()"
+	Paginator::setViewDriver(${1:$view})
+endsnippet
+
+snippet Pagin "Laravel 4: Paginator::setViewName()"
+	Paginator::setViewName(${1:$viewName})
+endsnippet
+
+snippet Queue "Laravel 4: Queue::addConnector()"
+	Queue::addConnector(${1:$driver}, ${2:$resolver})
+endsnippet
+
+snippet Queue "Laravel 4: Queue::connection()"
+	Queue::connection(${1:$name})
+endsnippet
+
+snippet Redir "Laravel 4: Redirect::action()"
+	Redirect::action(${1:$action}, ${2:$parameters}, ${3:$status}, ${4:$headers})
+endsnippet
+
+snippet Redir "Laravel 4: Redirect::back()"
+	Redirect::back(${1:$status}, ${2:$headers})
+endsnippet
+
+snippet Redir "Laravel 4: Redirect::getUrlGenerator()"
+	Redirect::getUrlGenerator()
+endsnippet
+
+snippet Redir "Laravel 4: Redirect::guest()"
+	Redirect::guest(${1:$path}, ${2:$status}, ${3:$headers}, ${4:$secure})
+endsnippet
+
+snippet Redir "Laravel 4: Redirect::home()"
+	Redirect::home(${1:$status})
+endsnippet
+
+snippet Redir "Laravel 4: Redirect::intended()"
+	Redirect::intended(${1:$default}, ${2:$status}, ${3:$headers}, ${4:$secure})
+endsnippet
+
+snippet Redir "Laravel 4: Redirect::refresh()"
+	Redirect::refresh(${1:$status}, ${2:$headers})
+endsnippet
+
+snippet Redir "Laravel 4: Redirect::route()"
+	Redirect::route(${1:$route}, ${2:$parameters}, ${3:$status}, ${4:$headers})
+endsnippet
+
+snippet Redir "Laravel 4: Redirect::secure()"
+	Redirect::secure(${1:$path}, ${2:$status}, ${3:$headers})
+endsnippet
+
+snippet Redir "Laravel 4: Redirect::setSession()"
+	Redirect::setSession(${1:$session})
+endsnippet
+
+snippet Redir "Laravel 4: Redirect::to()"
+	Redirect::to(${1:$path}, ${2:$status}, ${3:$headers}, ${4:$secure})
+endsnippet
+
+snippet Redis "Laravel 4: Redis::command()"
+	Redis::command(${1:$method}, ${2:$parameters})
+endsnippet
+
+snippet Redis "Laravel 4: Redis::connection()"
+	Redis::connection(${1:$name})
+endsnippet
+
+snippet Req "Laravel 4: Request::ajax()"
+	Request::ajax()
+endsnippet
+
+snippet Req "Laravel 4: Request::all()"
+	Request::all()
+endsnippet
+
+snippet Req "Laravel 4: Request::cookie()"
+	Request::cookie(${1:$key}, ${2:$default})
+endsnippet
+
+snippet Req "Laravel 4: Request::except()"
+	Request::except(${1:$keys})
+endsnippet
+
+snippet Req "Laravel 4: Request::file()"
+	Request::file(${1:$key}, ${2:$default})
+endsnippet
+
+snippet Req "Laravel 4: Request::flash()"
+	Request::flash(${1:$filter}, ${2:$keys})
+endsnippet
+
+snippet Req "Laravel 4: Request::flashExcept()"
+	Request::flashExcept(${1:$keys})
+endsnippet
+
+snippet Req "Laravel 4: Request::flashOnly()"
+	Request::flashOnly(${1:$keys})
+endsnippet
+
+snippet Req "Laravel 4: Request::flush()"
+	Request::flush()
+endsnippet
+
+snippet Req "Laravel 4: Request::fullUrl()"
+	Request::fullUrl()
+endsnippet
+
+snippet Req "Laravel 4: Request::getSessionStore()"
+	Request::getSessionStore()
+endsnippet
+
+snippet Req "Laravel 4: Request::has()"
+	Request::has(${1:$key})
+endsnippet
+
+snippet Req "Laravel 4: Request::hasFile()"
+	Request::hasFile(${1:$key})
+endsnippet
+
+snippet Req "Laravel 4: Request::hasSessionStore()"
+	Request::hasSessionStore()
+endsnippet
+
+snippet Req "Laravel 4: Request::header()"
+	Request::header(${1:$key}, ${2:$default})
+endsnippet
+
+snippet Req "Laravel 4: Request::input()"
+	Request::input(${1:$key}, ${2:$default})
+endsnippet
+
+snippet Req "Laravel 4: Request::instance()"
+	Request::instance()
+endsnippet
+
+snippet Req "Laravel 4: Request::is()"
+	Request::is(${1:$pattern})
+endsnippet
+
+snippet Req "Laravel 4: Request::isJson()"
+	Request::isJson()
+endsnippet
+
+snippet Req "Laravel 4: Request::json()"
+	Request::json(${1:$key}, ${2:$default})
+endsnippet
+
+snippet Req "Laravel 4: Request::merge()"
+	Request::merge(${1:$input})
+endsnippet
+
+snippet Req "Laravel 4: Request::old()"
+	Request::old(${1:$key}, ${2:$default})
+endsnippet
+
+snippet Req "Laravel 4: Request::only()"
+	Request::only(${1:$keys})
+endsnippet
+
+snippet Req "Laravel 4: Request::path()"
+	Request::path()
+endsnippet
+
+snippet Req "Laravel 4: Request::query()"
+	Request::query(${1:$key}, ${2:$default})
+endsnippet
+
+snippet Req "Laravel 4: Request::replace()"
+	Request::replace(${1:$input})
+endsnippet
+
+snippet Req "Laravel 4: Request::root()"
+	Request::root()
+endsnippet
+
+snippet Req "Laravel 4: Request::secure()"
+	Request::secure()
+endsnippet
+
+snippet Req "Laravel 4: Request::segment()"
+	Request::segment(${1:$index}, ${2:$default})
+endsnippet
+
+snippet Req "Laravel 4: Request::segments()"
+	Request::segments()
+endsnippet
+
+snippet Req "Laravel 4: Request::server()"
+	Request::server(${1:$key}, ${2:$default})
+endsnippet
+
+snippet Req "Laravel 4: Request::setSessionStore()"
+	Request::setSessionStore(${1:$session})
+endsnippet
+
+snippet Req "Laravel 4: Request::url()"
+	Request::url()
+endsnippet
+
+snippet Route "Laravel 4: Route::addFilter()"
+	Route::addFilter(${1:$name}, ${2:$callback})
+endsnippet
+
+snippet Route "Laravel 4: Route::after()"
+	Route::after(${1:$callback})
+endsnippet
+
+snippet Route "Laravel 4: Route::any()"
+	Route::any(${1:$pattern}, ${2:$action})
+endsnippet
+
+snippet Route "Laravel 4: Route::before()"
+	Route::before(${1:$callback})
+endsnippet
+
+snippet Route "Laravel 4: Route::bind()"
+	Route::bind(${1:$key}, ${2:$binder})
+endsnippet
+
+snippet Route "Laravel 4: Route::callCloseFilter()"
+	Route::callCloseFilter(${1:$request}, ${2:$response})
+endsnippet
+
+snippet Route "Laravel 4: Route::callFinishFilter()"
+	Route::callFinishFilter(${1:$request}, ${2:$response})
+endsnippet
+
+snippet Route "Laravel 4: Route::close()"
+	Route::close(${1:$callback})
+endsnippet
+
+snippet Route "Laravel 4: Route::controller()"
+	Route::controller(${1:$uri}, ${2:$controller}, ${3:$names})
+endsnippet
+
+snippet Route "Laravel 4: Route::controllers()"
+	Route::controllers(${1:$controllers})
+endsnippet
+
+snippet Route "Laravel 4: Route::currentRouteAction()"
+	Route::currentRouteAction()
+endsnippet
+
+snippet Route "Laravel 4: Route::currentRouteName()"
+	Route::currentRouteName()
+endsnippet
+
+snippet Route "Laravel 4: Route::currentRouteNamed()"
+	Route::currentRouteNamed(${1:$name})
+endsnippet
+
+snippet Route "Laravel 4: Route::currentRouteUses()"
+	Route::currentRouteUses(${1:$action})
+endsnippet
+
+snippet Route "Laravel 4: Route::delete()"
+	Route::delete(${1:$pattern}, ${2:$action})
+endsnippet
+
+snippet Route "Laravel 4: Route::disableFilters()"
+	Route::disableFilters()
+endsnippet
+
+snippet Route "Laravel 4: Route::dispatch()"
+	Route::dispatch(${1:$request})
+endsnippet
+
+snippet Route "Laravel 4: Route::enableFilters()"
+	Route::enableFilters()
+endsnippet
+
+snippet Route "Laravel 4: Route::filtersEnabled()"
+	Route::filtersEnabled()
+endsnippet
+
+snippet Route "Laravel 4: Route::findPatternFilters()"
+	Route::findPatternFilters(${1:$request})
+endsnippet
+
+snippet Route "Laravel 4: Route::finish()"
+	Route::finish(${1:$callback})
+endsnippet
+
+snippet Route "Laravel 4: Route::get()"
+	Route::get(${1:$pattern}, ${2:$action})
+endsnippet
+
+snippet Route "Laravel 4: Route::getContainer()"
+	Route::getContainer()
+endsnippet
+
+snippet Route "Laravel 4: Route::getCurrentRoute()"
+	Route::getCurrentRoute()
+endsnippet
+
+snippet Route "Laravel 4: Route::getFilter()"
+	Route::getFilter(${1:$name})
+endsnippet
+
+snippet Route "Laravel 4: Route::getFilters()"
+	Route::getFilters()
+endsnippet
+
+snippet Route "Laravel 4: Route::getGlobalFilters()"
+	Route::getGlobalFilters()
+endsnippet
+
+snippet Route "Laravel 4: Route::getInspector()"
+	Route::getInspector()
+endsnippet
+
+snippet Route "Laravel 4: Route::getRequest()"
+	Route::getRequest()
+endsnippet
+
+snippet Route "Laravel 4: Route::getResourceUri()"
+	Route::getResourceUri(${1:$resource})
+endsnippet
+
+snippet Route "Laravel 4: Route::getRoutes()"
+	Route::getRoutes()
+endsnippet
+
+snippet Route "Laravel 4: Route::group()"
+	Route::group(${1:$attributes}, ${2:$callback})
+endsnippet
+
+snippet Route "Laravel 4: Route::hasBinder()"
+	Route::hasBinder(${1:$key})
+endsnippet
+
+snippet Route "Laravel 4: Route::match()"
+	Route::match(${1:$method}, ${2:$pattern}, ${3:$action})
+endsnippet
+
+snippet Route "Laravel 4: Route::matchFilter()"
+	Route::matchFilter(${1:$pattern}, ${2:$names})
+endsnippet
+
+snippet Route "Laravel 4: Route::model()"
+	Route::model(${1:$key}, ${2:$class}, ${3:$callback})
+endsnippet
+
+snippet Route "Laravel 4: Route::options()"
+	Route::options(${1:$pattern}, ${2:$action})
+endsnippet
+
+snippet Route "Laravel 4: Route::patch()"
+	Route::patch(${1:$pattern}, ${2:$action})
+endsnippet
+
+snippet Route "Laravel 4: Route::pattern()"
+	Route::pattern(${1:$key}, ${2:$pattern})
+endsnippet
+
+snippet Route "Laravel 4: Route::performBinding()"
+	Route::performBinding(${1:$key}, ${2:$value}, ${3:$route})
+endsnippet
+
+snippet Route "Laravel 4: Route::post()"
+	Route::post(${1:$pattern}, ${2:$action})
+endsnippet
+
+snippet Route "Laravel 4: Route::prepare()"
+	Route::prepare(${1:$value}, ${2:$request})
+endsnippet
+
+snippet Route "Laravel 4: Route::put()"
+	Route::put(${1:$pattern}, ${2:$action})
+endsnippet
+
+snippet Route "Laravel 4: Route::resource()"
+	Route::resource(${1:$resource}, ${2:$controller}, ${3:$options})
+endsnippet
+
+snippet Route "Laravel 4: Route::setContainer()"
+	Route::setContainer(${1:$container})
+endsnippet
+
+snippet Route "Laravel 4: Route::setCurrentRoute()"
+	Route::setCurrentRoute(${1:$route})
+endsnippet
+
+snippet Route "Laravel 4: Route::setInspector()"
+	Route::setInspector(${1:$inspector})
+endsnippet
+
+snippet Sess "Laravel 4: Session::flash()"
+	Session::flash(${1:$key}, ${2:$value})
+endsnippet
+
+snippet Sess "Laravel 4: Session::flashInput()"
+	Session::flashInput(${1:$value})
+endsnippet
+
+snippet Sess "Laravel 4: Session::flush()"
+	Session::flush()
+endsnippet
+
+snippet Sess "Laravel 4: Session::forget()"
+	Session::forget(${1:$key})
+endsnippet
+
+snippet Sess "Laravel 4: Session::get()"
+	Session::get(${1:$name}, ${2:$default})
+endsnippet
+
+snippet Sess "Laravel 4: Session::getOldInput()"
+	Session::getOldInput(${1:$key}, ${2:$default})
+endsnippet
+
+snippet Sess "Laravel 4: Session::getToken()"
+	Session::getToken()
+endsnippet
+
+snippet Sess "Laravel 4: Session::has()"
+	Session::has(${1:$name})
+endsnippet
+
+snippet Sess "Laravel 4: Session::hasOldInput()"
+	Session::hasOldInput(${1:$key})
+endsnippet
+
+snippet Sess "Laravel 4: Session::keep()"
+	Session::keep(${1:$keys})
+endsnippet
+
+snippet Sess "Laravel 4: Session::push()"
+	Session::push(${1:$key}, ${2:$value})
+endsnippet
+
+snippet Sess "Laravel 4: Session::put()"
+	Session::put(${1:$key}, ${2:$value})
+endsnippet
+
+snippet Sess "Laravel 4: Session::reflash()"
+	Session::reflash()
+endsnippet
+
+snippet Sess "Laravel 4: Session::regenerate()"
+	Session::regenerate()
+endsnippet
+
+snippet Sess "Laravel 4: Session::save()"
+	Session::save()
+endsnippet
+
+snippet Sess "Laravel 4: Session::start()"
+	Session::start()
+endsnippet
+
+snippet Sess "Laravel 4: Session::token()"
+	Session::token()
+endsnippet
+
+snippet URL "Laravel 4: URL::action()"
+	URL::action(${1:$action}, ${2:$parameters}, ${3:$absolute})
+endsnippet
+
+snippet URL "Laravel 4: URL::asset()"
+	URL::asset(${1:$path}, ${2:$secure})
+endsnippet
+
+snippet URL "Laravel 4: URL::current()"
+	URL::current()
+endsnippet
+
+snippet URL "Laravel 4: URL::full()"
+	URL::full()
+endsnippet
+
+snippet URL "Laravel 4: URL::getGenerator()"
+	URL::getGenerator()
+endsnippet
+
+snippet URL "Laravel 4: URL::getRequest()"
+	URL::getRequest()
+endsnippet
+
+snippet URL "Laravel 4: URL::isValidUrl()"
+	URL::isValidUrl(${1:$path})
+endsnippet
+
+snippet URL "Laravel 4: URL::previous()"
+	URL::previous()
+endsnippet
+
+snippet URL "Laravel 4: URL::route()"
+	URL::route(${1:$name}, ${2:$parameters}, ${3:$absolute})
+endsnippet
+
+snippet URL "Laravel 4: URL::secure()"
+	URL::secure(${1:$path}, ${2:$parameters})
+endsnippet
+
+snippet URL "Laravel 4: URL::secureAsset()"
+	URL::secureAsset(${1:$path})
+endsnippet
+
+snippet URL "Laravel 4: URL::setGenerator()"
+	URL::setGenerator(${1:$generator})
+endsnippet
+
+snippet URL "Laravel 4: URL::setRequest()"
+	URL::setRequest(${1:$request})
+endsnippet
+
+snippet URL "Laravel 4: URL::to()"
+	URL::to(${1:$path}, ${2:$parameters}, ${3:$secure})
+endsnippet
+
+snippet Valid "Laravel 4: Validator::extend()"
+	Validator::extend(${1:$rule}, ${2:$extension})
+endsnippet
+
+snippet Valid "Laravel 4: Validator::extendImplicit()"
+	Validator::extendImplicit(${1:$rule}, ${2:$extension})
+endsnippet
+
+snippet Valid "Laravel 4: Validator::getPresenceVerifier()"
+	Validator::getPresenceVerifier()
+endsnippet
+
+snippet Valid "Laravel 4: Validator::getTranslator()"
+	Validator::getTranslator()
+endsnippet
+
+snippet Valid "Laravel 4: Validator::make()"
+	Validator::make(${1:$data}, ${2:$rules}, ${3:$messages})
+endsnippet
+
+snippet Valid "Laravel 4: Validator::resolver()"
+	Validator::resolver(${1:$resolver})
+endsnippet
+
+snippet Valid "Laravel 4: Validator::setPresenceVerifier()"
+	Validator::setPresenceVerifier(${1:$presenceVerifier})
+endsnippet
+
+snippet View "Laravel 4: View::addExtension()"
+	View::addExtension(${1:$extension}, ${2:$engine}, ${3:$resolver})
+endsnippet
+
+snippet View "Laravel 4: View::addLocation()"
+	View::addLocation(${1:$location})
+endsnippet
+
+snippet View "Laravel 4: View::addNamespace()"
+	View::addNamespace(${1:$namespace}, ${2:$hints})
+endsnippet
+
+snippet View "Laravel 4: View::callComposer()"
+	View::callComposer(${1:$view})
+endsnippet
+
+snippet View "Laravel 4: View::composer()"
+	View::composer(${1:$views}, ${2:$callback})
+endsnippet
+
+snippet View "Laravel 4: View::decrementRender()"
+	View::decrementRender()
+endsnippet
+
+snippet View "Laravel 4: View::doneRendering()"
+	View::doneRendering()
+endsnippet
+
+snippet View "Laravel 4: View::exists()"
+	View::exists(${1:$view})
+endsnippet
+
+snippet View "Laravel 4: View::flushSections()"
+	View::flushSections()
+endsnippet
+
+snippet View "Laravel 4: View::getContainer()"
+	View::getContainer()
+endsnippet
+
+snippet View "Laravel 4: View::getDispatcher()"
+	View::getDispatcher()
+endsnippet
+
+snippet View "Laravel 4: View::getEngineResolver()"
+	View::getEngineResolver()
+endsnippet
+
+snippet View "Laravel 4: View::getExtensions()"
+	View::getExtensions()
+endsnippet
+
+snippet View "Laravel 4: View::getFinder()"
+	View::getFinder()
+endsnippet
+
+snippet View "Laravel 4: View::getNames()"
+	View::getNames()
+endsnippet
+
+snippet View "Laravel 4: View::getSections()"
+	View::getSections()
+endsnippet
+
+snippet View "Laravel 4: View::getShared()"
+	View::getShared()
+endsnippet
+
+snippet View "Laravel 4: View::incrementRender()"
+	View::incrementRender()
+endsnippet
+
+snippet View "Laravel 4: View::inject()"
+	View::inject(${1:$section}, ${2:$content})
+endsnippet
+
+snippet View "Laravel 4: View::make()"
+	View::make(${1:$view}, ${2:$data}, ${3:$mergeData})
+endsnippet
+
+snippet View "Laravel 4: View::name()"
+	View::name(${1:$view}, ${2:$name})
+endsnippet
+
+snippet View "Laravel 4: View::of()"
+	View::of(${1:$view}, ${2:$data})
+endsnippet
+
+snippet View "Laravel 4: View::renderEach()"
+	View::renderEach(${1:$view}, ${2:$data}, ${3:$iterator}, ${4:$empty})
+endsnippet
+
+snippet View "Laravel 4: View::setContainer()"
+	View::setContainer(${1:$container})
+endsnippet
+
+snippet View "Laravel 4: View::share()"
+	View::share(${1:$key}, ${2:$value})
+endsnippet
+
+snippet View "Laravel 4: View::startSection()"
+	View::startSection(${1:$section}, ${2:$content})
+endsnippet
+
+snippet View "Laravel 4: View::stopSection()"
+	View::stopSection(${1:$overwrite})
+endsnippet
+
+snippet View "Laravel 4: View::yieldContent()"
+	View::yieldContent(${1:$section})
+endsnippet
+
+snippet View "Laravel 4: View::yieldSection()"
+	View::yieldSection()
+endsnippet
