@@ -16,6 +16,7 @@ brew "docker-compose" # manage multiple docker images and how they interact
 brew "docker-machine" # virtualbox VM for your docker images
 brew "docker-machine-nfs" # enables nfs mounts for docker-machine via `docker-machine-nfs default`
 # brew "dos"2unix # converts dos line endings to unix in a file
+brew "entr" # file watcher
 # brew "fasd" # Command-line productivity booster, offers quick access to files and directories, inspired by autojump, z and v.
 brew "fd" # alternative to find
 # brew "fpp" # facebook path picker. Used with tmux-fpp to easily open files in an editor.
