@@ -1919,6 +1919,10 @@ snippet prp "PRophet Prophesize"
 $this->$1 = $this->prophesize(${1/\w+\s*/\u$0/}::class);
 endsnippet
 
+snippet rvl "reveal a prophesized object"
+$this->$1->reveal()
+endsnippet
+
 snippet prs "PRophet Should be called"
 shouldBeCalled()->
 endsnippet

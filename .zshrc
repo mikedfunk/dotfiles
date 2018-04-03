@@ -145,7 +145,8 @@ export AUTOSSH_PORT=0
 
 # gpg {{{
 # uncomment this to enable gpg passwords in the terminal
-# export GPG_TTY=`tty` # make gpg prompt for a password
+export GPG_TTY=`tty` # make gpg prompt for a password
+export PINENTRY_USER_DATA="USE_CURSES=1"
 # }}}
 
 # functions and aliases {{{

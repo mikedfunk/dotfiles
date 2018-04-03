@@ -109,9 +109,9 @@ if &term =~ '^screen' " enable split dragging
     set ttymouse=sgr " @link https://stackoverflow.com/questions/7000960/in-vim-why-doesnt-my-mouse-work-past-the-220th-column
     " set ttymouse=xterm2
 endif
-if filereadable("cscope.out") && has('cscope')
-    cs add cscope.out
-endif
+" if filereadable("cscope.out") && has('cscope')
+"     cs add cscope.out
+" endif
 
 " Automatically equalize splits when Vim is resized https://vi.stackexchange.com/a/206/11130
 augroup resizeequalize
