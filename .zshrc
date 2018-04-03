@@ -28,7 +28,7 @@ zplug 'mfaerevaag/wd', as:command, use:"wd.sh", hook-load:"wd() { . $ZPLUG_REPOS
 zplug "marzocchi/zsh-notify" # notify when a command fails or lasts longer than 30 seconds and the terminal is in the background (requires terminal-notifier)
 zplug "zsh-users/zsh-autosuggestions" # buggy if enabled along with zsh-syntax-highlighting. crashes the shell regularly.
 zplug "zsh-users/zsh-completions" # do-everything argument completions
-zplug "zsh-users/zsh-syntax-highlighting", defer:2 # colored input... see above
+# zplug "zsh-users/zsh-syntax-highlighting", defer:2 # colored input... see above
 
 # https://github.com/mfaerevaag/wd
 # If you're NOT using oh-my-zsh and you want to utilize the zsh-completion
@@ -106,7 +106,7 @@ path=(
 )
 # }}}
 
-# source additional files {{{
+# source additional files and env vars {{{
 [ -f ~/.private_vars.sh ] && source ~/.private_vars.sh # where I store my secret env vars
 [ -f ~/.promptline.theme.bash ] && source ~/.promptline.theme.bash # vim plugin generates this tmux status line file
 # [ -f /usr/local/etc/grc.bashrc ] && source "/usr/local/etc/grc.bashrc" # generic colorizer
@@ -118,16 +118,10 @@ path=(
 # [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 [[ "$(builtin type -p rbenv)" ]] && eval "$(rbenv init -)"
 # source $(brew --prefix php-version)/php-version.sh && php-version 7.0
-# I only use phpenv because homebrew is making it difficult to install php 7.0
-# and extensions right now.
-export PHPENV_ROOT="/Users/mikefunk/.phpenv"
-[[ "$(builtin type -p phpenv)" ]] && eval "$($PHPENV_ROOT/bin/phpenv init -)"
 
-# }}}
-#
-# phpenv {{{
 # I only use phpenv because homebrew is making it difficult to install php 7.0
 # and extensions right now.
+#
 # TODO php-build is broken so it doesn't matter :/
 #
 # ```
@@ -139,12 +133,14 @@ export PHPENV_ROOT="/Users/mikefunk/.phpenv"
 # class U_COMMON_API UnicodeString : public Replaceable
 # ```
 #
-# https://github.com/php-build/php-build/issues/498
 export PHPENV_ROOT="/Users/mikefunk/.phpenv"
-if [ -d "${PHPENV_ROOT}" ]; then
-  export PATH="${PHPENV_ROOT}/bin:${PATH}"
-  eval "$(phpenv init -)"
-fi
+[[ "$(builtin type -p phpenv)" ]] && eval "$($PHPENV_ROOT/bin/phpenv init -)"
+
+# disable autossh port monitoring and use ServerAliveInterval and
+# ServerAliveCountMax instead.
+# https://www.everythingcli.org/ssh-tunnelling-for-fun-and-profit-autossh/
+export AUTOSSH_PORT=0
+
 # }}}
 
 # gpg {{{
