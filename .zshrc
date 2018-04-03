@@ -285,19 +285,19 @@ function saatchi-mount-dir() {
 
 # runs phpunit/phpspec and uses noti to show the results {{{
 function phpunitnotify() {
-    xdebug-off > /dev/null
+    # xdebug-off > /dev/null
     php -dmemory_limit=2048M -ddisplay_errors=on ./vendor/bin/phpunit --colors "${@}"
     [[ $? == 0 ]] && noti --message "PHPUnit tests passed 👍" ||
         noti --message "PHPUnit tests failed 👎"
-    xdebug-on > /dev/null
+    # xdebug-on > /dev/null
 }
 function phpspecnotify() {
-    xdebug-off > /dev/null
+    # xdebug-off > /dev/null
     php -dmemory_limit=2048M -ddisplay_errors=on ./vendor/bin/phpspec run "${@}"
     # php -dxdebug.remote_autostart=1 -dxdebug.remote_connect_back=1 -dxdebug.idekey=${XDEBUG_IDE_KEY} -dxdebug.remote_port=9015 -dmemory_limit=2048M -ddisplay_errors=on ./vendor/bin/phpspec run "${@}"
     [[ $? == 0 ]] && noti --message "Specs passed 👍" ||
         noti --message "Specs failed 👎"
-    xdebug-on > /dev/null
+    # xdebug-on > /dev/null
 }
 # }}}
 

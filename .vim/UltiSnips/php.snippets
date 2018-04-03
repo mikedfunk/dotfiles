@@ -1536,6 +1536,10 @@ snippet asn "assign variable to instance variable"
 $this->${1:listingModel} = \$$1;
 endsnippet
 
+snippet arg "set up class instance arg"
+${1/\w+\s*/\u$0/} $$1
+endsnippet
+
 snippet exp "$expected common line in unit tests"
 $expected = '${1:random string}';
 
@@ -1912,7 +1916,7 @@ $this->doctrine->getRepository('DemandMediaAirlinersAppBundle:${1:EntityName}')$
 endsnippet
 
 snippet prp "PRophet Prophesize"
-$this->prophesize($1::class);
+$this->$1 = $this->prophesize(${1/\w+\s*/\u$0/}::class);
 endsnippet
 
 snippet prs "PRophet Should be called"
