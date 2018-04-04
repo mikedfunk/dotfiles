@@ -103,6 +103,10 @@ endif
 " let g:AutoPairsFlyMode = 1 " Fly Mode will always force closed-pair jumping instead of inserting. only for ')', '}', ']'
 " }}}
 
+" challenger-deep-theme {{{
+let g:challenger_deep_termcolors = 16
+" }}}
+
 " completor.vim {{{
 " enabling this slows down completion. just use c-x c-o when you want omni.
 " let g:completor_php_omni_trigger = '([$\w]+|use\s*|->[$\w]*|::[$\w]*|implements\s*|extends\s*|class\s+[$\w]+|new\s*)$'

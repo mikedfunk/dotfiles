@@ -217,9 +217,6 @@ compdef g="git"
 alias grt="cd `g root`" # I can't do this as a git alias
 alias git-standup="$HOME/.config/yarn/global/node_modules/.bin/git-standup" # use this instead of the one in brew git-extras
 # alias standup="tig --since='2 days ago' --author='Mike Funk' --no-merges"
-# alias standup="builtin cd $HOME/Sites/saatchi && git standup"
-standup () { builtin cd $HOME/Sites/saatchi && git standup $@ && builtin cd - > /dev/null; }
-alias standup-monday="standup -d 3"
 alias t="tig"
 # }}}
 
