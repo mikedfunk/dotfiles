@@ -259,6 +259,7 @@ Plug 'chrisbra/NrrwRgn' " work in a separate window with a sub-region of a docum
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
 " Plug 'archSeer/colibri.vim'
 " Plug 'fenetikm/falcon'
+Plug 'challenger-deep-theme/vim'
 " }}}
 
 " color schemes: 24-bit only {{{

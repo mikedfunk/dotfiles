@@ -21,10 +21,10 @@ let g:vdebug_options['port'] = 9015
 let g:phpfmt_standard = 'phpcs.xml'
 " }}}
 
-" edit on remote {{{
-ab Edev e scp://saatchi-xdev-palette-01://data/palette/current/
-ab Eqa1 e scp://saatchi-xqa-palette-01://data/palette/current/
-ab Eqa2 e scp://saatchi-xqa-palette-02://data/palette/current/
+" commands {{{
+" edit remote services code
+command! -nargs=1 Edev execute "e scp://appdeploy@saatchi-xdev-palette-services-01//data/palette/current/" . <f-args>
+command! -nargs=1 Eqa execute "e scp://appdeploy@saatchi-xqa-palette-services-01//data/palette/current/" . <f-args>
 " }}}
 
 " ale fixers {{{

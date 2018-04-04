@@ -48,4 +48,6 @@ let g:vdebug_options['port'] = 9010
 ab Edev e scp://saatchi-xdev-gallery-01://data/gallery/current/
 ab Eqa1 e scp://saatchi-xqa-gallery-01://data/gallery/current/
 ab Eqa2 e scp://saatchi-xqa-gallery-02://data/gallery/current/
+command! -nargs=1 Edev execute "e scp://appdeploy@saatchi-xdev-gallery-01//data/gallery/current/" . <f-args>
+command! -nargs=1 Eqa execute "e scp://appdeploy@saatchi-xqa-gallery-01//data/gallery/current/" . <f-args>
 " }}}

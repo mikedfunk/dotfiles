@@ -32,7 +32,7 @@ let b:jiracomplete_username = 'mike.funk'
 " let b:jiracomplete_password = ''  " optional
 " }}}
 
-" edit on remote {{{
-ab Edev e scp://saatchi-xdev-zed-01://data/shop/current/
-ab Eqa e scp://saatchi-xqa-zed-01://data/shop/current/
+" commands {{{
+command! -nargs=1 Edev execute "e scp://appdeploy@saatchi-xdev-zed-01//data/shop/current/" . <f-args>
+command! -nargs=1 Eqa execute "e scp://appdeploy@saatchi-xqa-zed-01//data/shop/current/" . <f-args>
 " }}}
