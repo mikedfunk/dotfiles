@@ -17,8 +17,6 @@
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.5.1",
     "eslint-plugin-vue": "^2.1.0",
-    "esprima-fb": "^15001.1001.0-dev-harmony-fb",
-    "fkill-cli": "^3.7.0",
     "flow": "^0.2.3",
     "flow-bin": "^0.61.0",
     "flow-typed": "^2.2.3",
@@ -54,6 +52,7 @@
     "vue-cli": "^2.9.1",
     "webdriverio": "^4.9.9",
     "webpack": "^3.8.1",
-    "webpack-dev-server": "^2.9.4"
+    "webpack-dev-server": "^2.9.4",
+    "yo": "^2.0.1"
   }
 }
