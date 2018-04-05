@@ -150,6 +150,7 @@ if [[ ! "$(php -v | grep 7.0.29)" ]]; then
     $HOME/.phpenv/plugins/php-build/bin/php-build -i development 7.0.29 $HOME/.phpenv/versions/7.0.29
 
     # install pear so we can use pecl to install extensions
+    wget -O "$HOME/.phpenv/bin/go-pear.phar" http://pear.php.net/go-pear.phar
     cd && $HOME/.support/install-pear.sh && cd -
 
     # install php extensions
