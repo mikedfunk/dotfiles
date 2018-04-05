@@ -12,7 +12,7 @@
 # expand and import classes with vim-php-namespace
 # --output-format=etags
 # strangely this defaults to TAGS
--ftags
+# -ftags
 # WHY
 --languages=-html
 # }}}

@@ -24,6 +24,7 @@ Temporary Items
 *.swp
 tags
 tags*
+TAGS
 .DS_Store
 .phpcomplete_extended
 .projections.json
@@ -39,7 +40,6 @@ types_php.taghl
 Session.vim
 *.un~
 zf1_for_autocomplete
-.notags
 .phpspec
 .idea
 .padawan
@@ -52,7 +52,6 @@ __LAST__
 .localscript_*
 .exrc
 .phing_targets
-.notags
 .php_cs.cache
 
 # floobits
@@ -60,5 +59,4 @@ __LAST__
 .flooignore
 
 .tern-project
-.notags
 /.envrc

@@ -327,3 +327,5 @@
 [profile "Home"]
     name = Mike Funk
     email = mike@mikefunk.com
+[init]
+	templatedir = ~/.git_template
