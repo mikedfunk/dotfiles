@@ -92,7 +92,7 @@ manpath=(
 
 path=(
   # $HOME/.rvm/bin
-  $HOME/.bin:${PATH}
+  $HOME/.bin
   $HOME/.composer/vendor/bin
   $(brew --prefix)/{bin,sbin}
   ${PHPENV_ROOT}/bin
