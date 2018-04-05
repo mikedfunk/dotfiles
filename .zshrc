@@ -122,7 +122,8 @@ path=(
 # I only use phpenv because homebrew is making it difficult to install php 7.0
 # and extensions right now.
 #
-# TODO php-build is broken so it doesn't matter :/
+# TODO php-build is broken so it doesn't matter :/ (last checked 04-05-2018)
+# $ ~/.phpenv/plugins/php-build/bin/php-build -i development 7.0.29 $HOME/.phpenv/versions/7.0.29
 #
 # ```
 # /var/tmp/php-build/source/7.0.28/ext/intl/intl_convertcpp.cpp:59:40: error: unknown type name 'UnicodeString'; did you mean 'icu_61::UnicodeString'?
