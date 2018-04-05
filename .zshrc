@@ -108,7 +108,7 @@ path=(
 
 # source additional files and env vars {{{
 [ -f ~/.private_vars.sh ] && source ~/.private_vars.sh # where I store my secret env vars
-[ -f ~/.promptline.theme.bash ] && source ~/.promptline.theme.bash # vim plugin generates this tmux status line file
+[ -f ~/.support/promptline.theme.bash ] && source ~/.support/promptline.theme.bash # vim plugin generates this tmux status line file
 # [ -f /usr/local/etc/grc.bashrc ] && source "/usr/local/etc/grc.bashrc" # generic colorizer
 [ -f /usr/local/etc/grc.zsh ] && source "/usr/local/etc/grc.zsh" # generic colorizer
 # https://github.com/google/google-api-ruby-client/issues/235#issuecomment-169956795
@@ -319,6 +319,6 @@ xdb () { xdebug-toggle $1 --no-server-restart; }
 # }}}
 
 # source more files {{{
-[ -e ~/.saatchirc.sh ] && source ~/.saatchirc.sh
+[ -e ~/.support/saatchirc.sh ] && source ~/.support/saatchirc.sh
 # }}}
 #

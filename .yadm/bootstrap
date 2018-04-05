@@ -160,7 +160,7 @@ hostess apply "$HOME/.hosts.json"
 # let iterm see italics {{{
 log_info "Enabling italic terminal"
 mkdir -p "$HOME/.terminfo/78"
-tic -o "$HOME/.terminfo/78/" "$HOME/.screen-256color.terminfo.txt"
+tic -o "$HOME/.terminfo/78/" "$HOME/.support/screen-256color.terminfo.txt"
 # }}}
 
 # Mac preferences {{{
