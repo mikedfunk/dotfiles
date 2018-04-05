@@ -2,8 +2,8 @@
 " my vim config
 
 " Use plugins config {{{
-if filereadable(expand("~/.vimrc.plugins"))
-    source ~/.vimrc.plugins
+if filereadable(expand("~/.support/.vimrc.plugins"))
+    source ~/.support/.vimrc.plugins
 endif
 " }}}
 
@@ -544,8 +544,8 @@ command! FocusModeToggle :call FocusModeToggle()
 " }}}
 
 " Plugin Configuration {{{
-if filereadable(expand("~/.vimrc.pluginconfig"))
-    source ~/.vimrc.pluginconfig
+if filereadable(expand("~/.support/.vimrc.pluginconfig"))
+    source ~/.support/.vimrc.pluginconfig
 endif
 
 " }}}
