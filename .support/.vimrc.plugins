@@ -18,7 +18,7 @@ if executable('ctags')
     " Plug 'vim-php/tagbar-phpctags.vim', { 'do': 'make' } " Better php support for tagbar. Without this tagbar will show nothing if you use a trait. However, the php parser used is not updated for php 7, so it will fail on null coalesce! The first problem is now fixed in majutsushi/tagbar.
 endif
 " use these shortcuts for completion! https://github.com/mikedfunk/learning/blob/master/vim/completion.md
-" Plug 'ajh17/VimCompletesMe' " simple tab omni completion
+Plug 'ajh17/VimCompletesMe' " simple tab omni completion
 " Plug 'maralla/completor.vim', { 'do': 'make js' } " vim 8 async autocomplete
 " if has("python") | Plug 'Valloric/YouCompleteMe', { 'do': './install.py' } | endif " huge autocomplete plugin
 " Plug 'maxboisvert/vim-simple-complete' " simple autocomplete in 50 lines
@@ -147,6 +147,7 @@ Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' } " better php omnicomplete. T
 " Plug 'php-vim/phpcd.vim' " based on phpcomplete but supposedly faster. Actually gives me lots of errors.
 Plug 'alvan/vim-php-manual', { 'for': ['php', 'blade', 'phtml'] } " contextual php manual with shift-K
 " Plug 'rayburgemeestre/phpfolding.vim' " php syntax folding with :EnableFastPhpFolds
+" Plug 'Plug 'swekaj/php-foldexpr.vim' " better php folding recommended here https://stackoverflow.com/questions/792886/vim-syntax-based-folding-with-php#comment46149243_11859632
 " Plug 'stephpy/vim-php-cs-fixer', { 'for': 'php' } " fix coding standards for current file/dir. Disabled: I use vim-phpfmt instead so it uses phpcbf.
 " Plug 'beanworks/vim-phpfmt', { 'for': 'php', 'on': 'PhpFmt' } " automatically fixes coding standards which phpcbf on save or via :PhpFmt
 " Plug 'sbdchd/neoformat' " auto format code using prettier, phpcbf, etc. :Neoformat
@@ -194,6 +195,7 @@ Plug 'tpope/vim-jdaddy' "`gqaj` to pretty-print json, `gwaj` to merge the json o
 " Plug 'flowtype/vim-flow' " flowtype omnicompletion
 Plug 'jez/vim-flow' " fork that adds --quiet
 Plug 'othree/javascript-libraries-syntax.vim' " syntax completion for common libraries (react, lodash, jquery, etc.)
+Plug 'kristijanhusak/vim-js-file-import' " Go to definition: <leader>ig Import file: <Leader>if
 " }}}
 
 " Syntax highlighting {{{

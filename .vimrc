@@ -92,6 +92,9 @@ if executable('ag')
 endif
 set noswapfile " swap files are a pain in the ass. I have git.
 
+" let php_baselib = 1 " highlight php builtin functions
+" let g:php_folding = 1 " fold methods, control structures, etc.
+
 " 'Rolodex Vim' http://vim.wikia.com/wiki/Window_zooming_convenience
 " set noequalalways winminheight=0 winheight=9999 helpheight=9999
 

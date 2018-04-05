@@ -1186,7 +1186,7 @@ saatchi-deploy () {
     BRANCH=$2
     ENVIRONMENT=$3
     SSH_COMMAND="bash -c \""
-    SSH_COMMAND+="cd $HOME/code/$REPO"
+    SSH_COMMAND+="cd ~/code/$REPO"
     SSH_COMMAND+=" && git fetch"
     SSH_COMMAND+=" && git fetch --tags"
     SSH_COMMAND+=" && git checkout $BRANCH"
@@ -1194,7 +1194,7 @@ saatchi-deploy () {
     SSH_COMMAND+=" && source \$(/usr/local/rvm/bin/rvm 2.2.2@cap do rvm env --path)"
     SSH_COMMAND+=" && ( echo '' | /usr/local/rvm/gems/ruby-2.2.2@cap/bin/cap $ENVIRONMENT deploy )"
     # dang gallery and its build folder never gets cleaned out
-    SSH_COMMAND+=" && cd $HOME/code/gallery && rm -rf public/build/*"
+    SSH_COMMAND+=" && cd ~/code/gallery && rm -rf public/build/*"
     SSH_COMMAND+="\""
     ssh saatchi-builder-01 -t "$SSH_COMMAND"
     _open-new-relic $1 $3

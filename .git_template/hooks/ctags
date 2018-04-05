@@ -1,0 +1,8 @@
+#!/bin/sh
+# http://kushellig.de/neovim-php-ide/
+set -e
+PATH="/usr/local/bin:$PATH"
+dir="`git rev-parse --git-dir`"
+trap 'rm -f "$dir/$$.tags"' EXIT
+ctags --tag-relative -R -f "$dir/$$.tags" --fields=+aimlS --languages=php --PHP-kinds=+cf-va
+mv "$dir/$$.tags" "$dir/tags"
