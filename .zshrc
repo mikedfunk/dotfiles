@@ -93,10 +93,10 @@ manpath=(
 path=(
   # $HOME/.rvm/bin
   $HOME/.bin
-  $HOME/.composer/vendor/bin
-  $(brew --prefix)/{bin,sbin}
   ${PHPENV_ROOT}/bin
   ${PHPENV_ROOT}/shims
+  $HOME/.composer/vendor/bin
+  $(brew --prefix)/{bin,sbin}
   $ZPLUG_ROOT/bin
   /usr/local/{bin,sbin}
   /usr/{bin,sbin}
@@ -119,21 +119,6 @@ path=(
 [[ "$(builtin type -p rbenv)" ]] && eval "$(rbenv init -)"
 # source $(brew --prefix php-version)/php-version.sh && php-version 7.0
 
-# I only use phpenv because homebrew is making it difficult to install php 7.0
-# and extensions right now.
-#
-# TODO php-build is broken so it doesn't matter :/ (last checked 04-05-2018)
-# $ ~/.phpenv/plugins/php-build/bin/php-build -i development 7.0.29 $HOME/.phpenv/versions/7.0.29
-#
-# ```
-# /var/tmp/php-build/source/7.0.28/ext/intl/intl_convertcpp.cpp:59:40: error: unknown type name 'UnicodeString'; did you mean 'icu_61::UnicodeString'?
-# zend_string* intl_charFromString(const UnicodeString &from, UErrorCode *status)
-#                                        ^~~~~~~~~~~~~
-#                                        icu_61::UnicodeString
-# /usr/local/Cellar/icu4c/HEAD-41179/include/unicode/unistr.h:286:20: note: 'icu_61::UnicodeString' declared here
-# class U_COMMON_API UnicodeString : public Replaceable
-# ```
-#
 export PHPENV_ROOT="/Users/mikefunk/.phpenv"
 [[ "$(builtin type -p phpenv)" ]] && eval "$($PHPENV_ROOT/bin/phpenv init -)"
 
@@ -142,6 +127,35 @@ export PHPENV_ROOT="/Users/mikefunk/.phpenv"
 # https://www.everythingcli.org/ssh-tunnelling-for-fun-and-profit-autossh/
 export AUTOSSH_PORT=0
 
+# }}}
+
+# install php 7 {{{
+
+# I only use phpenv because homebrew is making it difficult to install php 7.0
+# and extensions right now.
+#
+if [[ ! "$(php -v | grep 7.0.29)" ]]; then
+    log_info "Installing php 7.0.29"
+    # Temporary workaround for icu4c issue
+    export CPPFLAGS="-DU_USING_ICU_NAMESPACE=1"
+    $HOME/.phpenv/plugins/php-build/bin/php-build -i development 7.0.29 $HOME/.phpenv/versions/7.0.29
+
+    # install php extensions... yeah pecl doesn't automatically add the inis :/
+    pecl install couchbase
+    echo 'zend_extension="couchbase.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/couchbase.ini
+    pecl install pcntl
+    echo 'zend_extension="pcntl.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/pcntl.ini
+    pecl install intl # needed for phpstan build
+    echo 'zend_extension="intl.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/intl.ini
+    pecl install memcache
+    echo 'zend_extension="memcache.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/memcache.ini
+    pecl install memcached # needed for zed
+    echo 'zend_extension="memcached.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/memcached.ini
+    pecl install mongodb
+    echo 'zend_extension="mongodb.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/mongodb.ini
+    pecl install xdebug
+    echo 'zend_extension="xdebug.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/xdebug.ini
+fi
 # }}}
 
 # gpg {{{
