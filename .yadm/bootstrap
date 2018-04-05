@@ -153,14 +153,14 @@ if [[ ! "$(php -v | grep 7.0.29)" ]]; then
     cd && $HOME/.support/install-pear.sh && cd -
 
     # install php extensions
-    pecl install igbinary && echo 'extension="igbinary.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/igbinary.ini # needed for couchbase
-    pecl install couchbase && echo 'extension="couchbase.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/couchbase.ini
-    # pecl install pcntl && echo 'zend_extension="pcntl.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/pcntl.ini
-    # pecl install intl && echo 'zend_extension="intl.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/intl.ini # needed for phpstan build
-    # pecl install memcache && echo 'zend_extension="memcache.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/memcache.ini # needed for zed
-    pecl install memcached && echo 'extension="memcached.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/memcached.ini
-    # pecl install mongodb && echo 'extension="mongodb.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/mongodb.ini
-    # pecl install xdebug && echo 'zend_extension="xdebug.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/xdebug.ini
+    pecl install igbinary && ( echo 'extension="igbinary.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/igbinary.ini ) # needed for couchbase
+    pecl install couchbase && ( echo 'extension="couchbase.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/couchbase.ini )
+    # pecl install pcntl && ( echo 'zend_extension="pcntl.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/pcntl.ini )
+    # pecl install intl && ( echo 'zend_extension="intl.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/intl.ini ) # needed for phpstan build
+    # pecl install memcache && ( echo 'zend_extension="memcache.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/memcache.ini ) # needed for zed
+    pecl install memcached && ( echo 'extension="memcached.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/memcached.ini )
+    # pecl install mongodb && ( echo 'extension="mongodb.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/mongodb.ini )
+    # pecl install xdebug && ( echo 'zend_extension="xdebug.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/xdebug.ini )
 fi
 # }}}
 
