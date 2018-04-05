@@ -182,6 +182,7 @@
     wip = !git add -u && git commit -m "WIP" # work in progress commit
     # uncommit the last commit... but make a backup ref first just in case
     wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
+	ctags = !.git/hooks/ctags # https://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
 # }}}
 
 # Color and visual settings {{{
