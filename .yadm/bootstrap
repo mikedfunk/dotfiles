@@ -164,6 +164,9 @@ if [[ ! "$(php -v | grep 7.0.29)" ]]; then
     pecl install memcached && ( echo 'extension="memcached.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/memcached.ini )
     # pecl install mongodb && ( echo 'extension="mongodb.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/mongodb.ini )
     # pecl install xdebug && ( echo 'zend_extension="xdebug.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/xdebug.ini )
+
+    log_info "Enabling php 7.0.29"
+    phpenv global 7.0.29
 fi
 # }}}
 
