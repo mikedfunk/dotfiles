@@ -137,6 +137,33 @@ if [[ ! -f $HOME/.vim/autoload/plug.vim ]]; then
 fi
 # }}}
 
+# install php {{{
+
+# TODO figure out a simpler way to install php 7.0 locally :/
+# I only use phpenv because homebrew is making it difficult to install php 7.0
+# and extensions right now.
+#
+if [[ ! "$(php -v | grep 7.0.29)" ]]; then
+    log_info "Installing php 7.0.29"
+    # Temporary workaround for icu4c issue
+    export CPPFLAGS="-DU_USING_ICU_NAMESPACE=1"
+    $HOME/.phpenv/plugins/php-build/bin/php-build -i development 7.0.29 $HOME/.phpenv/versions/7.0.29
+
+    # install pear so we can use pecl to install extensions
+    chmod +x $HOME/.support/install-pear.sh && $HOME/.support/install-pear.sh
+
+    # install php extensions
+    pecl install igbinary && echo 'extension="igbinary.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/igbinary.ini # needed for couchbase
+    pecl install couchbase && echo 'extension="couchbase.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/couchbase.ini
+    # pecl install pcntl && echo 'zend_extension="pcntl.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/pcntl.ini
+    # pecl install intl && echo 'zend_extension="intl.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/intl.ini # needed for phpstan build
+    # pecl install memcache && echo 'zend_extension="memcache.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/memcache.ini # needed for zed
+    pecl install memcached && echo 'extension="memcached.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/memcached.ini
+    # pecl install mongodb && echo 'extension="mongodb.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/mongodb.ini
+    # pecl install xdebug && echo 'zend_extension="xdebug.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/xdebug.ini
+fi
+# }}}
+
 # install vim-plug plugins {{{
 log_info "Installing/upgrading vim plugins"
 vim +PlugInstall +PlugUpdate +PlugClean +qall

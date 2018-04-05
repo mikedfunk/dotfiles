@@ -129,35 +129,6 @@ export AUTOSSH_PORT=0
 
 # }}}
 
-# install php 7 {{{
-
-# I only use phpenv because homebrew is making it difficult to install php 7.0
-# and extensions right now.
-#
-if [[ ! "$(php -v | grep 7.0.29)" ]]; then
-    log_info "Installing php 7.0.29"
-    # Temporary workaround for icu4c issue
-    export CPPFLAGS="-DU_USING_ICU_NAMESPACE=1"
-    $HOME/.phpenv/plugins/php-build/bin/php-build -i development 7.0.29 $HOME/.phpenv/versions/7.0.29
-
-    # install php extensions... yeah pecl doesn't automatically add the inis :/
-    pecl install couchbase
-    echo 'zend_extension="couchbase.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/couchbase.ini
-    pecl install pcntl
-    echo 'zend_extension="pcntl.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/pcntl.ini
-    pecl install intl # needed for phpstan build
-    echo 'zend_extension="intl.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/intl.ini
-    pecl install memcache
-    echo 'zend_extension="memcache.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/memcache.ini
-    pecl install memcached # needed for zed
-    echo 'zend_extension="memcached.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/memcached.ini
-    pecl install mongodb
-    echo 'zend_extension="mongodb.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/mongodb.ini
-    pecl install xdebug
-    echo 'zend_extension="xdebug.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/xdebug.ini
-fi
-# }}}
-
 # gpg {{{
 # uncomment this to enable gpg passwords in the terminal
 export GPG_TTY=`tty` # make gpg prompt for a password
