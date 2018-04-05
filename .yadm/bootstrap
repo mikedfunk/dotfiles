@@ -150,10 +150,12 @@ if [[ ! "$(php -v | grep 7.0.29)" ]]; then
     $HOME/.phpenv/plugins/php-build/bin/php-build -i development 7.0.29 $HOME/.phpenv/versions/7.0.29
 
     # install pear so we can use pecl to install extensions
+    log_info "Installing pear"
     wget -O "$HOME/.phpenv/bin/go-pear.phar" http://pear.php.net/go-pear.phar
-    cd && $HOME/.support/install-pear.sh && cd -
+    $HOME/.support/install-pear.sh
 
     # install php extensions
+    log_info "Installing php extensions"
     pecl install igbinary && ( echo 'extension="igbinary.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/igbinary.ini ) # needed for couchbase
     pecl install couchbase && ( echo 'extension="couchbase.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/couchbase.ini )
     # pecl install pcntl && ( echo 'zend_extension="pcntl.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/pcntl.ini )
