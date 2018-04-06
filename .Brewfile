@@ -45,6 +45,7 @@ brew "imagemagick" # image transformation tool - needed by php imagemagick exten
 brew "intltool" # needed for php intl extension
 # brew "irssi" # irc client
 # brew "jsawk" # parse json in bash
+brew "joplin" # powerful note-taking app
 brew "jq" # simple json pretty-printer `echo '{"my" => "json"}' | jq .`
 # brew "libcaca" # image previewing in ASCII. used by ranger
 brew "libcouchbase" # nosql fast data storage similar to mongo. Used at Saatchi. Includes cli tool cbc
