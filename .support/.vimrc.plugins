@@ -26,12 +26,6 @@ Plug 'ajh17/VimCompletesMe' " simple tab omni completion
 " Plug 'lifepillar/vim-mucomplete' " yet another completion plugin
 " Plug 'roxma/nvim-completion-manager' | Plug 'roxma/vim-hug-neovim-rpc' " completion plugin recommended on reddit https://www.reddit.com/r/vim/comments/6zgi34/what_are_the_differences_between_vimcompletesme/?utm_content=title&utm_medium=front&utm_source=reddit&utm_name=vim
 
-" My problem with echodoc: it _only_ shows up when you :EchoDocEnable, you
-" trigger omni-complete (not ctrl-p), there is more than one match, and you
-" press ctrl-y to complete. Only have one match? Start typing part
-" of the match and therefore only get one match? Use another key combo besides
-" ctrl-y to complete, or just continue typing? Use ctrl-p to complete? No
-" echodoc. Lame!
 Plug 'Shougo/echodoc.vim' " Displays function signatures from completions in the command line. Really helpful for omnicompletion!
 Plug 'wellle/tmux-complete.vim' " add tmux as a completion source with user-defined completion <c-x><c-u>
 
@@ -138,6 +132,7 @@ Plug 'frioux/vim-lost' " gL to see what function you're in. I use this in php so
 " Plug 'wincent/ferret' " enhances search, quickfix window, etc. with :Ack command
 " Plug 'dhruvasagar/vim-zoom' " zoom toggle. Can kind of do the same thing with <c-w>_ or <c-w><bar>
 Plug 'lifepillar/vim-cheat40' " Customizable cheatsheet. Mine is in ~/.vim/plugged/cheat40.txt. Open cheatsheet with <leader>? . I use this to avoid written cheatsheets on my desk for refactor tools and vdebug.
+Plug 'auwsmit/vim-active-numbers' " Only show line numbers on active window. Helps to show which is active.
 " }}}
 
 " Php {{{
@@ -179,7 +174,7 @@ Plug 'dkarter/bullets.vim' " does cool stuff with numbered and bullet lists in m
 if executable('git') | Plug 'mhinz/vim-signify' | endif " show git changes in sidebar
 " if executable('git') | Plug 'tpope/vim-fugitive' | Plug 'shumphrey/fugitive-gitlab.vim' | Plug 'tpope/vim-dispatch' | endif " git integration
 if executable('git') | Plug 'tpope/vim-fugitive' | Plug 'shumphrey/fugitive-gitlab.vim' | Plug 'tommcdo/vim-fubitive' | Plug 'tpope/vim-rhubarb' | endif " git integration
-" if executable('git') | Plug 'esneider/YUNOcommit.vim' | endif " u save lot but no commit. Y u no commit??
+if executable('git') | Plug 'esneider/YUNOcommit.vim' | endif " u save lot but no commit. Y u no commit??
 if executable('git') | Plug 'rhysd/committia.vim' | endif " prettier commit editor. Really cool!
 " if executable('git') | Plug 'junegunn/gv.vim', { 'on': 'GV' } | endif " :GV for git/tig-style log
 if executable('git') | Plug 'mmozuras/vim-github-comment', { 'on': 'GHComment' } | Plug 'mattn/webapi-vim' | endif " :GHComment my comment goes to latest commit on github
@@ -237,8 +232,9 @@ Plug 'Yggdroot/indentLine' " show vertical lines for levels of indentions
 " Plug 'edkolev/promptline.vim', { 'on': ['Promptline', 'PromptlineSnapshot'] } " custom bash prompt in sync with airline
 " Plug 'ntpeters/vim-better-whitespace' " highlight tabs and trailing whitespace. Slows down typing considerably though!
 " Plug 'thirtythreeforty/lessspace.vim' " remove trailing whitespace only on lines you edit. Messes up paste indent!
-" Plug 'dodie/vim-disapprove-deep-indentation', { 'for': ['php', 'ruby'] } " too much indentation = ಠ_ಠ
+Plug 'dodie/vim-disapprove-deep-indentation', { 'for': ['php', 'ruby'] } " too much indentation = ಠ_ಠ
 " Plug 'xolox/vim-colorscheme-switcher' " F8 for next, Shift-F8 for previous color scheme
+" Plug 'chxuan/change-colorscheme' " :NextColorScheme :PreviousColorScheme
 " Plug 'osyo-manga/vim-brightest' " highlight matching words. 1.5 seconds to load!
 " Plug 'dominikduda/vim_current_word' " highlight matching words. More intelligent.
 Plug 'itchyny/vim-cursorword' " highlight matching words. What I like about this one is it keeps the same color and bold/italic.
