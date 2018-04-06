@@ -90,7 +90,7 @@ fi
 # update yarn {{{
 log_info "Installing/upgrading yarn packages"
 cd $HOME
-yarn global install
+# yarn global install
 yarn global upgrade
 cd -
 # }}}

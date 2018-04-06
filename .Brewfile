@@ -81,7 +81,7 @@ brew "php", args: ["--with-pear"], link: true
 # brew "php70-mongodb"
 # brew "php70-pcntl"
 # brew "php70-xdebug"
-brew "php-version" # php version switcher
+# brew "php-version" # php version switcher
 brew "pinentry-mac" # gpg pin entry for yadm and others
 brew "plenv" # perl version manager. better than perlbrew. used to get percona-toolkit working.
 # brew "postgresql"
