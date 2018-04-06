@@ -1,0 +1,20 @@
+[
+  { "keys": [":"], "type": "function", "command": "enter_command_line_mode" },
+  { "keys": ["TAB", "CTRL_Wl"], "type": "function", "command": "focus_next" },
+  { "keys": ["SHIFT_TAB", "CTRL_Wh"], "type": "function", "command": "focus_previous" },
+  { "keys": ["k", "UP"], "type": "function", "command": "move_up" },
+  { "keys": ["j", "DOWN"], "type": "function", "command": "move_down" },
+  { "keys": ["CTRL_B", "PAGE_UP"], "type": "function", "command": "page_up" },
+  { "keys": ["CTRL_F", "PAGE_DOWN"], "type": "function", "command": "page_down" },
+  { "keys": ["ENTER"], "type": "function", "command": "activate" },
+  { "keys": ["D", "DELETE", "BACKSPACE"], "type": "function", "command": "delete" },
+  { "keys": [" "], "command": "todo toggle $n" },
+  { "keys": ["tt", "tc"], "type": "function", "command": "toggle_console" },
+  { "keys": ["tm"], "type": "function", "command": "toggle_metadata" },
+  { "keys": ["/"], "type": "prompt", "command": "search \"\"", "cursorPosition": -2 },
+  { "keys": ["%", "mn"], "type": "prompt", "command": "mknote \"\"", "cursorPosition": -2 },
+  { "keys": ["mt"], "type": "prompt", "command": "mktodo \"\"", "cursorPosition": -2 },
+  { "keys": ["d", "mb"], "type": "prompt", "command": "mkbook \"\"", "cursorPosition": -2 },
+  { "keys": ["yy", "yn"], "type": "prompt", "command": "cp $n \"\"", "cursorPosition": -2 },
+  { "keys": ["R", "dn"], "type": "prompt", "command": "mv $n \"\"", "cursorPosition": -2 }
+]
