@@ -34,3 +34,22 @@ snippet pu "phpunit xml boilerplate"
 
 </phpunit>
 endsnippet
+
+snippet la "launch agent"
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>KeepAlive</key>
+        <true/>
+        <key>Label</key>
+        <string>$1</string>
+        <key>ProgramArguments</key>
+        <array>
+            <string>$2</string>
+        </array>
+        <key>StartInterval</key>
+        <integer>${3:3600}</integer>
+    </dict>
+</plist>
+endsnippet

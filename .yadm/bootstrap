@@ -152,7 +152,7 @@ if [[ ! "$(php -v | grep 7.0.29)" ]]; then
     # install pear so we can use pecl to install extensions
     log_info "Installing pear"
     wget -O "$HOME/.phpenv/bin/go-pear.phar" http://pear.php.net/go-pear.phar
-    $HOME/.support/install-pear.sh
+    cd $HOME && ./.support/install-pear.sh && cd -
 
     # install php extensions
     log_info "Installing php extensions"

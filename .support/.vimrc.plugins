@@ -56,6 +56,7 @@ Plug 'simnalamburt/vim-mundo', { 'on': 'MundoToggle' } " nicer undotree
 Plug 'w0rp/ale' " as-you-type syntax checker
 " Plug 'w0rp/ale', { 'commit': '2f9869d' } " as-you-type syntax checker
 Plug 'tpope/vim-surround' | Plug 'tpope/vim-repeat' " surround text in quotes or something. repeatable.
+" Plug 'machakann/vim-sandwich' " A better alternative to vim-surround... according to the internet
 Plug 'vim-scripts/BufOnly.vim', { 'on': ['BufOnly', 'Bufonly'] } " close all buffers but the current one
 Plug 'tpope/vim-commentary' " toggle comment with gcc. in my case I use <leader>c<space>
 " Plug 'junegunn/vim-easy-align' " align on = with ga=
@@ -182,6 +183,7 @@ if executable('git') | Plug 'tpope/vim-fugitive' | Plug 'shumphrey/fugitive-gitl
 if executable('git') | Plug 'rhysd/committia.vim' | endif " prettier commit editor. Really cool!
 " if executable('git') | Plug 'junegunn/gv.vim', { 'on': 'GV' } | endif " :GV for git/tig-style log
 if executable('git') | Plug 'mmozuras/vim-github-comment', { 'on': 'GHComment' } | Plug 'mattn/webapi-vim' | endif " :GHComment my comment goes to latest commit on github
+if executable('git') | Plug 'hotwatermorning/auto-git-diff' | endif " cool git rebase diffs per commit
 " }}}
 
 " Javascript {{{
@@ -220,7 +222,7 @@ Plug 'rhysd/vim-gfm-syntax' " github-flavored markdown. yum!
 Plug 'osyo-manga/vim-precious' | Plug 'Shougo/context_filetype.vim' " code block syntax highlighting for markdown
 Plug 'qnighy/vim-ssh-annex' " ssh files syntax coloring e.g. ssh config
 " Plug 'evanmiller/nginx-vim-syntax' " nginx conf syntax
-Plug 'darfink/vim-plist' " plist syntax
+" Plug 'darfink/vim-plist' " plist syntax
 Plug 'rodjek/vim-puppet'
 " }}}
 
@@ -239,6 +241,7 @@ Plug 'Yggdroot/indentLine' " show vertical lines for levels of indentions
 " Plug 'xolox/vim-colorscheme-switcher' " F8 for next, Shift-F8 for previous color scheme
 " Plug 'osyo-manga/vim-brightest' " highlight matching words. 1.5 seconds to load!
 " Plug 'dominikduda/vim_current_word' " highlight matching words. More intelligent.
+Plug 'itchyny/vim-cursorword' " highlight matching words. What I like about this one is it keeps the same color and bold/italic.
 " Plug 'elqatib/remaining-todos.vim' " when remaining todos in a file, flash a message before closing a buffer
 Plug 'ap/vim-css-color', { 'for': ['scss', 'css'] } " colorize css colors e.g. #333 with the actual color in the background
 Plug 'chrisbra/NrrwRgn' " work in a separate window with a sub-region of a document. :NR

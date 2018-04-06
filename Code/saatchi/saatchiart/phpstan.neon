@@ -1,6 +1,7 @@
 parameters:
+  # bootstrap: application/Bootstrap.php
   includes:
-      - ~/.composer/vendor-bin/main/vendor/jangregor/phpstan-prophecy/src/extension.neon
+    - ~/.composer/vendor-bin/main/vendor/jangregor/phpstan-prophecy/src/extension.neon
   excludes_analyse:
     - tests
   autoload_directories:
@@ -35,7 +36,7 @@ parameters:
     - library/Zendesk
     - library/Zoho
   autoload_files:
-    - application/command_line_bootstrap.php
+    # - application/command_line_bootstrap.php
     # tried to include everything but catalog user attribute but there is a source order autoload issue
     # - library/PdfCrowd.php
     # - library/recaptchalib.php
