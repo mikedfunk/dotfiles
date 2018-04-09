@@ -1,4 +1,4 @@
-# vim: set foldmethod=marker
+# vim: set foldmethod=marker:
 # global git config
 
 # Tips {{{
@@ -38,6 +38,8 @@
     clean = git lfs clean %f
     smudge = git lfs smudge %f
     required = true
+[init]
+    templatedir = ~/.git_template
 # }}}
 
 # Aliases {{{
@@ -317,16 +319,12 @@
 [gitflow "hotfix.finish"]
     keepremote = false
 # }}}
-[color "diff-highlight"]
-    oldNormal = red bold
-    oldHighlight = red bold 52
-    newNormal = green bold
-    newHighlight = green bold 22
+
+# git-profile {{{
 [profile "Saatchi"]
     name = Mike Funk
     email = mike.funk@leafgroup.com
 [profile "Home"]
     name = Mike Funk
     email = mike@mikefunk.com
-[init]
-	templatedir = ~/.git_template
+# }}}

@@ -16,5 +16,7 @@
   { "keys": ["mt"], "type": "prompt", "command": "mktodo \"\"", "cursorPosition": -2 },
   { "keys": ["d", "mb"], "type": "prompt", "command": "mkbook \"\"", "cursorPosition": -2 },
   { "keys": ["yy", "yn"], "type": "prompt", "command": "cp $n \"\"", "cursorPosition": -2 },
-  { "keys": ["R", "dn"], "type": "prompt", "command": "mv $n \"\"", "cursorPosition": -2 }
+  { "keys": ["dn"], "type": "prompt", "command": "mv $n \"\"", "cursorPosition": -2 },
+  { "keys": ["R"], "type": "prompt", "command": "ren $n \"\"", "cursorPosition": -2 },
+  { "keys": ["qt"], "type": "prompt", "command": "tag add \"\" $n", "cursorPosition": 9 }
 ]
