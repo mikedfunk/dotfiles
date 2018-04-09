@@ -1,7 +1,7 @@
 [
   { "keys": [":"], "type": "function", "command": "enter_command_line_mode" },
-  { "keys": ["TAB", "CTRL_Wl"], "type": "function", "command": "focus_next" },
-  { "keys": ["SHIFT_TAB", "CTRL_Wh"], "type": "function", "command": "focus_previous" },
+  { "keys": ["TAB", "CTRL_Wl", "l"], "type": "function", "command": "focus_next" },
+  { "keys": ["SHIFT_TAB", "CTRL_Wh", "h"], "type": "function", "command": "focus_previous" },
   { "keys": ["k", "UP"], "type": "function", "command": "move_up" },
   { "keys": ["j", "DOWN"], "type": "function", "command": "move_down" },
   { "keys": ["CTRL_B", "PAGE_UP"], "type": "function", "command": "page_up" },
@@ -16,7 +16,7 @@
   { "keys": ["mt"], "type": "prompt", "command": "mktodo \"\"", "cursorPosition": -2 },
   { "keys": ["d", "mb"], "type": "prompt", "command": "mkbook \"\"", "cursorPosition": -2 },
   { "keys": ["yy", "yn"], "type": "prompt", "command": "cp $n \"\"", "cursorPosition": -2 },
-  { "keys": ["dn"], "type": "prompt", "command": "mv $n \"\"", "cursorPosition": -2 },
+  { "keys": ["M", "dn"], "type": "prompt", "command": "mv $n \"\"", "cursorPosition": -2 },
   { "keys": ["R"], "type": "prompt", "command": "ren $n \"\"", "cursorPosition": -2 },
   { "keys": ["qt"], "type": "prompt", "command": "tag add \"\" $n", "cursorPosition": 9 }
 ]
