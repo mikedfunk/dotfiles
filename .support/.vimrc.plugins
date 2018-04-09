@@ -232,7 +232,7 @@ Plug 'Yggdroot/indentLine' " show vertical lines for levels of indentions
 " Plug 'edkolev/promptline.vim', { 'on': ['Promptline', 'PromptlineSnapshot'] } " custom bash prompt in sync with airline
 " Plug 'ntpeters/vim-better-whitespace' " highlight tabs and trailing whitespace. Slows down typing considerably though!
 " Plug 'thirtythreeforty/lessspace.vim' " remove trailing whitespace only on lines you edit. Messes up paste indent!
-Plug 'dodie/vim-disapprove-deep-indentation', { 'for': ['php', 'ruby'] } " too much indentation = ಠ_ಠ
+" Plug 'dodie/vim-disapprove-deep-indentation', { 'for': ['php', 'ruby'] } " too much indentation = ಠ_ಠ . messes up the quantum theme I use for saatchi
 " Plug 'xolox/vim-colorscheme-switcher' " F8 for next, Shift-F8 for previous color scheme
 " Plug 'chxuan/change-colorscheme' " :NextColorScheme :PreviousColorScheme
 " Plug 'osyo-manga/vim-brightest' " highlight matching words. 1.5 seconds to load!
