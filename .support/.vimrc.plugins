@@ -176,7 +176,7 @@ if executable('git') | Plug 'mhinz/vim-signify' | endif " show git changes in si
 if executable('git') | Plug 'tpope/vim-fugitive' | Plug 'shumphrey/fugitive-gitlab.vim' | Plug 'tommcdo/vim-fubitive' | Plug 'tpope/vim-rhubarb' | endif " git integration
 if executable('git') | Plug 'esneider/YUNOcommit.vim' | endif " u save lot but no commit. Y u no commit??
 if executable('git') | Plug 'rhysd/committia.vim' | endif " prettier commit editor. Really cool!
-" if executable('git') | Plug 'junegunn/gv.vim', { 'on': 'GV' } | endif " :GV for git/tig-style log
+if executable('git') | Plug 'junegunn/gv.vim', { 'on': 'GV' } | endif " :GV for git/tig-style log
 if executable('git') | Plug 'mmozuras/vim-github-comment', { 'on': 'GHComment' } | Plug 'mattn/webapi-vim' | endif " :GHComment my comment goes to latest commit on github
 if executable('git') | Plug 'hotwatermorning/auto-git-diff' | endif " cool git rebase diffs per commit
 " }}}
