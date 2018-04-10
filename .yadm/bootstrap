@@ -183,10 +183,7 @@ if [[ ! -d "$HOME/.zplug" ]]; then
     log_info "Installing zplug"
     curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 else
-    log_info "Upgrading zplug"
-    cd $ZPLUG_HOME
-    git pull
-    cd -
+    log_info "Upgrading zplug"; cd $ZPLUG_HOME && git pull && cd -
 fi
 log_info "Installing/upgrading zplug plugins"
 $HOME/.support/install-update-zplug.zsh

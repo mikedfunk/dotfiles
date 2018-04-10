@@ -36,7 +36,11 @@ zplug "zsh-users/zsh-syntax-highlighting", defer:2 # colored input... see above
 # feature, you will also need to add the path to your wd installation (~/bin/wd
 # if you used the automatic installer) to your fpath. E.g. in your ~/.zshrc:
 # fpath=(~/path/to/wd $fpath)
-fpath=($ZPLUG_REPOS/mfaerevaag/wd $fpath)
+fpath=(
+  $ZPLUG_REPOS/mfaerevaag/wd
+  $ZPLUG_REPOS/zsh-users/zsh-completions
+  $fpath
+)
 
 # DISABLED
 # zplug "b4b4r07/enhancd", use:init.sh # enhanced cd
