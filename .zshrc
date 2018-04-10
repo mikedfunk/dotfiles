@@ -19,6 +19,8 @@ zplug "zsh-users/zsh-autosuggestions" # buggy if enabled along with zsh-syntax-h
 zplug "zsh-users/zsh-completions" # do-everything argument completions
 zplug "zsh-users/zsh-syntax-highlighting", defer:2 # colored input... see above
 zplug 'zplug/zplug', hook-build:'zplug --self-manage' # manage itself
+# zplug "jamesob/desk", from:github, as:command, use:"desk" # shell workspace manager
+# zplug "hchbaw/auto-fu.zsh", at:pu
 
 # DISABLED
 # zplug "b4b4r07/enhancd", use:init.sh # enhanced cd
@@ -99,6 +101,7 @@ path=(
 [[ "$(builtin type -p nodenv)" ]] && eval "$(nodenv init -)"
 [[ "$(builtin type -p pyenv)" ]] && eval "$(pyenv init -)"
 [[ -f "$HOME/.phpenv/bin/phpenv" ]] && eval "$($HOME/.phpenv/bin/phpenv init -)"
+# [ -n "$DESK_ENV" ] && source "$DESK_ENV" || true # Hook for desk activation
 
 # disable autossh port monitoring and use ServerAliveInterval and
 # ServerAliveCountMax instead.

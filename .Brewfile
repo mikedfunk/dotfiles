@@ -9,6 +9,7 @@ brew "cmake" # used by youcompleteme
 # brew "ctags" # allows jumping to function/class definitions, etc. in vim
 brew "ctop" # like top for docker containers
 brew "curl" # http cli tool
+# brew "desk" # shell workspace manager
 brew "direnv" # allow .envrc in directories to be loaded at every prompt. easy.
 # brew "dnsmasq" # easily set up dynamic dev domains such as myproject.dev
 brew "docker" # virtualization software
