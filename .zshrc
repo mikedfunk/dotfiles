@@ -72,7 +72,7 @@ manpath=(
 
 path=(
   $HOME/.bin
-  $HOME/.{php,rb,pl,nod,py}env/{bin,shims}
+  # $HOME/.{php,rb,pl,nod,py}env/{bin,shims}
   $HOME/.phpenv/pear/bin
   $(composer config home --global)/$(composer config bin-dir --global)
   $(gem env home)
@@ -280,4 +280,8 @@ function pux() {
 
 # source more files {{{
 [ -e ~/.support/saatchirc.sh ] && source ~/.support/saatchirc.sh
+# }}}
+
+# zsh options {{{
+setopt auto_cd # if a command is a directory cd to it
 # }}}
