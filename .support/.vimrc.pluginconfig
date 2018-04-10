@@ -72,7 +72,7 @@ endif
 " \}
 let js_fixers = ['importjs']
 if executable('./node_modules/.bin/eslint') | call add(js_linters, 'eslint') | endif
-if executable('./node_modules/.bin/prettier-eslint') | call add(js_linters, 'prettier-eslint') | endif
+if executable('./node_modules/.bin/prettier-eslint') | call add(js_linters, 'prettier_eslint') | endif
 let g:ale_fixers = {
 \   'javascript': js_fixers,
 \   'php': ['php_cs_fixer', 'phpcbf'],

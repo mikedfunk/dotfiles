@@ -178,11 +178,20 @@ vim +PlugInstall +PlugUpdate +PlugClean +qall
 
 # }}}
 
-# install/update zplug plugins {{{
-# log_info "Installing/upgrading zplug plugins"
+# zplug {{{
+if [[ ! "$(builtin type -p zplug)" ]]; then
+    log_info "Installing zplug"
+    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+else
+    log_info "Upgrading zplug"
+    cd $ZPLUG_HOME
+    git pull
+    cd -
+fi
+log_info "Installing/upgrading zplug plugins"
 # TODO not working in here :/
-# zplug install && \
-#     zplug update
+zplug install && \
+    zplug update
 # }}}
 
 # apply hosts file {{{

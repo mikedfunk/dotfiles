@@ -16,6 +16,7 @@ if [ -d /usr/local/opt/zplug ]; then
     source $ZPLUG_HOME/init.zsh
 else
     # curl version
+    # export ZPLUG_HOME=~/.zplug
     source ~/.zplug/init.zsh
 fi
 # }}}
@@ -28,14 +29,14 @@ zplug 'mfaerevaag/wd', as:command, use:"wd.sh", hook-load:"wd() { . $ZPLUG_REPOS
 zplug "marzocchi/zsh-notify" # notify when a command fails or lasts longer than 30 seconds and the terminal is in the background (requires terminal-notifier)
 zplug "zsh-users/zsh-autosuggestions" # buggy if enabled along with zsh-syntax-highlighting. crashes the shell regularly.
 zplug "zsh-users/zsh-completions" # do-everything argument completions
-# zplug "zsh-users/zsh-syntax-highlighting", defer:2 # colored input... see above
+zplug "zsh-users/zsh-syntax-highlighting", defer:2 # colored input... see above
 
 # https://github.com/mfaerevaag/wd
 # If you're NOT using oh-my-zsh and you want to utilize the zsh-completion
 # feature, you will also need to add the path to your wd installation (~/bin/wd
 # if you used the automatic installer) to your fpath. E.g. in your ~/.zshrc:
 # fpath=(~/path/to/wd $fpath)
-fpath=(/usr/local/opt/zplug/repos/mfaerevaag/wd $fpath)
+fpath=($ZPLUG_REPOS/mfaerevaag/wd $fpath)
 
 # DISABLED
 # zplug "b4b4r07/enhancd", use:init.sh # enhanced cd
@@ -307,4 +308,3 @@ xdb () { xdebug-toggle $1 --no-server-restart; }
 # source more files {{{
 [ -e ~/.support/saatchirc.sh ] && source ~/.support/saatchirc.sh
 # }}}
-#

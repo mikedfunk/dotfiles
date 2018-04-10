@@ -18,3 +18,10 @@ augroup END
 autocmd BufReadPre *.js let b:javascript_lib_use_underscore = 1 " lodash
 autocmd BufReadPre *.js let b:javascript_lib_use_react = 1
 " }}}
+
+" ale {{{
+let g:ale_fixers['javascript'] = ['importjs', 'prettier', 'eslint']
+" call add(g:ale_fixers['javascript'], 'prettier_eslint')
+" let g:javascript_prettier_eslint_use_global = 1
+" call add(g:ale_fixers['javascript'], 'prettier')
+" }}}
