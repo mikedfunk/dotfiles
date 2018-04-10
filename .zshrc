@@ -151,20 +151,23 @@ compdef autossh="ssh"
 # }}}
 
 # suffix aliases {{{
-alias -s php=vim
-alias -s js=vim
 alias -s css=vim
-alias -s scss=vim
-alias -s jsx=vim
-alias -s yml=vim
-alias -s yaml=vim
-alias -s json=vim
-alias -s txt=vim
-alias -s md=vim
-alias -s markdown=vim
-alias -s phtml=vim
 alias -s html=vim
+alias -s js=vim
+alias -s json=vim
+alias -s jsx=vim
+alias -s markdown=vim
+alias -s md=vim
+alias -s phar=php
+alias -s php=vim
+alias -s phtml=vim
 alias -s rb=vim
+alias -s scss=vim
+alias -s txt=vim
+alias -s xml=vim
+alias -s xql=vim
+alias -s yaml=vim
+alias -s yml=vim
 # }}}
 
 # brew {{{

@@ -151,12 +151,12 @@
   resolved "https://registry.yarnpkg.com/@types/mocha/-/mocha-2.2.44.tgz#1d4a798e53f35212fd5ad4d04050620171cd5b5e"
 
 "@types/node@*":
-  version "7.0.60"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-7.0.60.tgz#5406c35961e4f9e2d5a1b9482daa14501754ecda"
+  version "9.6.3"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.3.tgz#f5fd440f8a9867b65ae76d442e269622a1db00b5"
 
 "@types/node@^8.0.24":
-  version "8.10.4"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.10.4.tgz#d3ca40ee884c853e2b786ee73096726ec59a5b31"
+  version "8.10.6"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.10.6.tgz#c922d975ab778435ea85c1b1ce6802ed9ff5d52f"
 
 "@types/sinon-chai@2.7.29":
   version "2.7.29"
@@ -9439,8 +9439,8 @@ mdast-util-compact@^1.0.0:
     unist-util-visit "^1.1.0"
 
 mdn-data@^1.0.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/mdn-data/-/mdn-data-1.1.0.tgz#a7056319da95a2d0881267d7263075042eb061e2"
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/mdn-data/-/mdn-data-1.1.1.tgz#79586c90321787e5a2e51eb6823bb448949bc1ab"
 
 media-typer@0.3.0:
   version "0.3.0"
@@ -13520,8 +13520,8 @@ static-extend@^0.1.1:
     object-copy "^0.1.0"
 
 static-module@^2.2.0:
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/static-module/-/static-module-2.2.3.tgz#72cf34b2ccb77d261f702da1dfda5df7853db14a"
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/static-module/-/static-module-2.2.4.tgz#25a3ffbe6e1fdaf7e64e5bc21edcd77fc7708dac"
   dependencies:
     concat-stream "~1.6.0"
     convert-source-map "^1.5.1"
