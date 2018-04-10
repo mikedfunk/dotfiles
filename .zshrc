@@ -72,7 +72,7 @@ manpath=(
 
 path=(
   $HOME/.bin
-  $HOME/.{phpenv,rbenv,plenv,nodenv,pyenv}/{bin,shims}
+  $HOME/.{php,rb,pl,nod,py}env/{bin,shims}
   $HOME/.phpenv/pear/bin
   $(composer config home --global)/$(composer config bin-dir --global)
   $(gem env home)
