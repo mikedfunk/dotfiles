@@ -105,6 +105,7 @@ path=(
 # https://www.everythingcli.org/ssh-tunnelling-for-fun-and-profit-autossh/
 export AUTOSSH_PORT=0
 
+export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡 '
 # }}}
 
 # gpg {{{
