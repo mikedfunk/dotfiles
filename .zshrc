@@ -74,6 +74,7 @@ path=(
   $HOME/.bin
   $HOME/.phpenv/bin
   $HOME/.phpenv/shims
+  $HOME/.phpenv/pear/bin
   $HOME/.rbenv/bin
   $HOME/.rbenv/shims
   $HOME/.plenv/bin
