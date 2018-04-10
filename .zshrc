@@ -6,19 +6,7 @@
 # setup {{{
 unset ZPLUG_SHALLOW # shut up zplug!!
 export DISABLE_AUTO_TITLE="true" # prevent zsh from auto-updating tmux window title
-# export ZSH="/Users/mikefunk/.zplug/repos/robbyrussell/oh-my-zsh/" # fix issue with wd plugin
-# export ZSH="$ZPLUG_REPOS/robbyrussell/oh-my-zsh" # fix issue with wd plugin
-
-# @link https://github.com/b4b4r07/zplug
-if [ -d /usr/local/opt/zplug ]; then
-    # homebrew version
-    export ZPLUG_HOME=/usr/local/opt/zplug
-    source $ZPLUG_HOME/init.zsh
-else
-    # curl version
-    # export ZPLUG_HOME=~/.zplug
-    source ~/.zplug/init.zsh
-fi
+source $HOME/.zplug/init.zsh
 # }}}
 
 # plugin definitions {{{
@@ -30,17 +18,7 @@ zplug "marzocchi/zsh-notify" # notify when a command fails or lasts longer than 
 zplug "zsh-users/zsh-autosuggestions" # buggy if enabled along with zsh-syntax-highlighting. crashes the shell regularly.
 zplug "zsh-users/zsh-completions" # do-everything argument completions
 zplug "zsh-users/zsh-syntax-highlighting", defer:2 # colored input... see above
-
-# https://github.com/mfaerevaag/wd
-# If you're NOT using oh-my-zsh and you want to utilize the zsh-completion
-# feature, you will also need to add the path to your wd installation (~/bin/wd
-# if you used the automatic installer) to your fpath. E.g. in your ~/.zshrc:
-# fpath=(~/path/to/wd $fpath)
-fpath=(
-  $ZPLUG_REPOS/mfaerevaag/wd
-  $ZPLUG_REPOS/zsh-users/zsh-completions
-  $fpath
-)
+zplug 'zplug/zplug', hook-build:'zplug --self-manage' # manage itself
 
 # DISABLED
 # zplug "b4b4r07/enhancd", use:init.sh # enhanced cd
@@ -60,7 +38,6 @@ fpath=(
 # zplug "supercrabtree/k" # pretty ls with git, filesize, and date features
 # zplug "zplug/zplug" # zplugception!
 # zplug "zsh-users/zaw" # completer with aliases, git branches, etc. <ctrl-x> to open
-# zplug 'zplug/zplug', hook-build:'zplug --self-manage' # I handle this through homebrew
 # }}}
 
 # Install plugins if there are plugins that have not been installed {{{
@@ -82,15 +59,13 @@ cdpath=(
 )
 
 infopath=(
-  $BREW_PREFIX/share/info
-  /usr/local/share/info
+  $(brew --prefix)/share/info
   /usr/share/info
   $infopath
 )
 
 manpath=(
-  $BREW_PREFIX/share/man
-  /usr/local/share/man
+  $(brew --prefix)/share/man
   /usr/share/man
   $manpath
 )
@@ -103,7 +78,6 @@ path=(
   $HOME/.composer/vendor/bin
   $(brew --prefix)/{bin,sbin}
   $ZPLUG_ROOT/bin
-  /usr/local/{bin,sbin}
   /usr/{bin,sbin}
   /{bin,sbin}
   # /usr/local/opt/icu4c/{bin,sbin}
