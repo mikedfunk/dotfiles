@@ -151,8 +151,8 @@
   resolved "https://registry.yarnpkg.com/@types/mocha/-/mocha-2.2.44.tgz#1d4a798e53f35212fd5ad4d04050620171cd5b5e"
 
 "@types/node@*":
-  version "9.6.2"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.2.tgz#e49ac1adb458835e95ca6487bc20f916b37aff23"
+  version "6.0.105"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.105.tgz#dfcabd3c519b9fed67ec70e788fc04433f4bd8e3"
 
 "@types/node@^8.0.24":
   version "8.10.4"

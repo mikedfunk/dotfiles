@@ -125,7 +125,7 @@ brew "wget" # latest version
 brew "vim" # macvim requires xcode. This also allows you to get vim 8 without using a separate tap.
 brew "yarn" # wrapper for npm with real lock files and caching
 brew "yadm" # yet another dotfiles manager
-brew "zplug" # zsh plugin manager like composer. bash installer crashes for some reason. works fine via homebrew.
+# brew "zplug" # zsh plugin manager like composer. bash installer crashes for some reason. works fine via homebrew. (switched to installer - see bootstrap)
 brew "zsh" # awesome bash shell replacement
 brew "zsh-completions" # tab completions
 
