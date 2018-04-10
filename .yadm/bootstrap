@@ -43,50 +43,6 @@ else
 fi
 # }}}
 
-# install/update composer {{{
-# https://getcomposer.org/doc/faqs/how-to-install-composer-programmatically.md
-if [[ ! "$(builtin type -p composer)" ]]; then
-    log_info "Installing composer"
-    EXPECTED_SIGNATURE=$(wget -q -O - https://composer.github.io/installer.sig)
-    php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-    ACTUAL_SIGNATURE=$(php -r "echo hash_file('SHA384', 'composer-setup.php');")
-
-    if [ "$EXPECTED_SIGNATURE" != "$ACTUAL_SIGNATURE" ]
-    then
-        >&2 echo 'ERROR: Invalid installer signature'
-        rm composer-setup.php
-        exit 1
-    fi
-
-    php composer-setup.php --quiet
-    RESULT=$?
-    rm composer-setup.php
-    exit $RESULT
-fi
-log_info "Installing/upgrading composer packages"
-composer global selfupdate
-composer global install
-composer global update
-# }}}
-
-# install/update ruby packages {{{
-# TODO: switch from rvm to rbenv
-# Installs from ~/Gemfile
-log_info "Installing/upgrading ruby gems"
-cd $HOME
-bundle install --system
-cd -
-# }}}
-
-# update python packages {{{
-if [[ ! "$(builtin type -p pip-review)" ]]; then
-    log_info "Installing/upgrading pip packages"
-    pip install -r "$HOME/requirements.txt"
-    pip-review --local --auto && \
-        pip freeze > "$HOME/requirements.txt"
-fi
-# }}}
-
 # update yarn {{{
 log_info "Installing/upgrading yarn packages"
 cd $HOME
@@ -188,6 +144,55 @@ if [[ ! "$(plenv version | grep 5.27.8)" ]]; then
     log_info "Installing perl 5.27.8"
     plenv install 5.27.8 && plenv rehash && plenv global 5.27.8
 fi
+# }}}
+
+# install python3 version {{{
+if [[ ! "$(pyenv version | grep 3.6.5)" ]]; then
+    log_info "Installing python 3.6.5"
+    pyenv install 3.6.5 && pyenv rehash && pyenv global 3.6.5
+fi
+# }}}
+
+# install/update ruby gems {{{
+# TODO: switch from rvm to rbenv
+# Installs from ~/Gemfile
+log_info "Installing/upgrading ruby gems"
+cd $HOME
+bundle install --system
+cd -
+# }}}
+
+# update python packages {{{
+log_info "Installing/upgrading pip packages"
+pip install -r "$HOME/requirements.txt" --user
+pip-review --local --auto && \
+    pip freeze > "$HOME/requirements.txt"
+# }}}
+
+# install/update composer and packages {{{
+# https://getcomposer.org/doc/faqs/how-to-install-composer-programmatically.md
+if [[ ! "$(builtin type -p composer)" ]]; then
+    log_info "Installing composer"
+    EXPECTED_SIGNATURE=$(wget -q -O - https://composer.github.io/installer.sig)
+    php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+    ACTUAL_SIGNATURE=$(php -r "echo hash_file('SHA384', 'composer-setup.php');")
+
+    if [ "$EXPECTED_SIGNATURE" != "$ACTUAL_SIGNATURE" ]
+    then
+        >&2 echo 'ERROR: Invalid installer signature'
+        rm composer-setup.php
+        exit 1
+    fi
+
+    php composer-setup.php --quiet
+    RESULT=$?
+    rm composer-setup.php
+    exit $RESULT
+fi
+log_info "Installing/upgrading composer packages"
+composer global selfupdate
+composer global install
+composer global update
 # }}}
 
 # zplug {{{

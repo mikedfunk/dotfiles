@@ -88,6 +88,7 @@ brew "pinentry-mac" # gpg pin entry for yadm and others
 brew "plenv" # perl version manager. better than perlbrew. used to get percona-toolkit working.
 # brew "postgresql"
 # brew "pre-commit" # yelp git pre-commit framework (I manage this via pip)
+brew "pyenv" # python version manager
 brew "python" # updated version of python with updated pip. Useful for installing pip packages without root. NOTE: homebrew "pip" breaks neovim.
 brew "python3" # required for tmuxomatic
 # brew "ranger" # vim-like file system browser

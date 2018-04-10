@@ -71,7 +71,6 @@ manpath=(
 )
 
 path=(
-  # $HOME/.rvm/bin
   $HOME/.bin
   $HOME/.phpenv/bin
   $HOME/.phpenv/shims
@@ -81,10 +80,12 @@ path=(
   $HOME/.plenv/shims
   $HOME/.nodenv/bin
   $HOME/.nodenv/shims
+  $HOME/.pyenv/bin
+  $HOME/.pyenv/shims
   $HOME/.composer/vendor/bin
   $(gem env home)
   $(brew --prefix)/{bin,sbin}
-  $(yarn global bin)
+  $HOME/.local/bin
   $ZPLUG_ROOT/bin
   /usr/{bin,sbin}
   /{bin,sbin}
@@ -104,6 +105,7 @@ path=(
 [[ "$(builtin type -p plenv)" ]] && eval "$(plenv init -)"
 [[ "$(builtin type -p rbenv)" ]] && eval "$(rbenv init -)"
 [[ "$(builtin type -p nodenv)" ]] && eval "$(nodenv init -)"
+[[ "$(builtin type -p pyenv)" ]] && eval "$(pyenv init -)"
 [[ -f "$HOME/.phpenv/bin/phpenv" ]] && eval "$($HOME/.phpenv/bin/phpenv init -)"
 
 # disable autossh port monitoring and use ServerAliveInterval and
