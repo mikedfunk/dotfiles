@@ -123,18 +123,22 @@ alias phpx="php -dxdebug.remote_autostart=1 -dxdebug.remote_connect_back=1 -dxde
 alias work="tmux attach -t Work || tmuxomatic ~/.tmuxomatic/Work"
 alias home="tmux attach -t Home || tmuxomatic ~/.tmuxomatic/Home"
 alias rmf='rm -rf'
+compdef rmf="rm"
 mkcd () { mkdir $1 && cd $1; }
 alias src="source ~/.zshrc"
 alias jobs="jobs -l"
-alias k="k --no-vcs"
+# alias k="k --no-vcs"
 alias pso="ps -o pid,command"
-alias add-keys="ssh-add -K ~/.ssh/keys/githubkey ~/.ssh/keys/bitbucketkey ~/.ssh/keys/saatchiartkey"
+# alias add-keys="ssh-add -K ~/.ssh/keys/githubkey ~/.ssh/keys/bitbucketkey ~/.ssh/keys/saatchiartkey"
 alias art="php artisan"
 alias zpu="zplug update"
 alias pc="phing -logger phing.listener.DefaultLogger"
+compdef pc="phing"
 alias pg="phing"
+compdef pg="phing"
 
 alias y="yadm"
+compdef y="yadm"
 alias yb="yadm bootstrap"
 alias upgrades="yb"
 alias save-dotfiles="yadm add -u && yadm ci -m working && yadm pu"
@@ -227,6 +231,7 @@ alias pipu="pip-review --local --auto"
 alias v="vim"
 compdef v="vim"
 export EDITOR=vim # aww yeah
+export LANG=en_US.UTF-8
 KEYTIMEOUT=1 # no vim delay entering normal mode
 # }}}
 

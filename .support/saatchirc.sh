@@ -7,7 +7,7 @@
 alias saatchi-sns-list-topics-east="aws sns list-topics --profile=east | awk '{print \$2}' | awk -F":" '{print \$6}'"
 alias saatchi-sns-list-topics-west="aws sns list-topics --profile=west | awk '{print \$2}' | awk -F":" '{print \$6}'"
 
-alias saatchi-visii-monitor="ssh saatchi-xprod-legacy-services-02 -t \"screen -dAR mike.funk\""
+alias saatchi-visii-monitor="autossh saatchi-xprod-legacy-services-02 -t \"screen -dAR mike.funk\""
 # }}}
 
 # dirs {{{
@@ -89,27 +89,27 @@ alias saatchi-tail-legacy-xdev="multitail -CS legacy \
 -Ev \"REQUEST ART CREATE\" \
 -Ev \"RESPONSE ART CREATE\" \
 -Ev \"healthcheck\" \
--l 'ssh appdeploy@saatchi-xdev-legacy-01 \"tail -n500 -f /var/log/nginx/error.log /var/log/nginx/legacy.error.log /var/log/nginx/upload.error.log /data/temp/saatchi.log\"' \
+-l 'autossh appdeploy@saatchi-xdev-legacy-01 \"tail -n500 -f /var/log/nginx/error.log /var/log/nginx/legacy.error.log /var/log/nginx/upload.error.log /data/temp/saatchi.log\"' \
 -ts -M 3000"
 
 alias saatchi-tail-catalog-xdev="multitail -CS catalog \
 -Ev \"heartbeat\" \
 -Ev \"AWS SQS 200\" -cT ANSI \
--l 'ssh -t appdeploy@saatchi-xdev-catalog-01 \"tail -n500 -f /data/catalog/shared/log/unicorn.stderr.log /data/catalog/current/log/development.log\"' \
+-l 'autossh -t appdeploy@saatchi-xdev-catalog-01 \"tail -n500 -f /data/catalog/shared/log/unicorn.stderr.log /data/catalog/current/log/development.log\"' \
 -ts -M 3000"
 
 alias saatchi-tail-api-xdev="multitail -CS api \
 -Ev \"End Point\" \
 -Ev \"\*{5}\" \
--l 'ssh -t appdeploy@saatchi-xdev-catalog-01 \"tail -n500 -f /data/api/current/log/unicorn.stderr.log /data/api/current/log/development.log\"' \
+-l 'autossh -t appdeploy@saatchi-xdev-catalog-01 \"tail -n500 -f /data/api/current/log/unicorn.stderr.log /data/api/current/log/development.log\"' \
 -ts -M 3000"
 
 alias saatchi-tail-legacy-services-xdev="multitail -CS legacy \
--l 'ssh -t appdeploy@saatchi-xdev-legacy-services-01 \"tail -n500 -f /data/temp/saatchi.log\"' \
+-l 'autossh -t appdeploy@saatchi-xdev-legacy-services-01 \"tail -n500 -f /data/temp/saatchi.log\"' \
 -ts -M 3000"
 
 alias saatchi-tail-zed-xdev="multitail -CS zed \
--l 'ssh -t appdeploy@saatchi-xdev-zed-01 \"tail -n500 -f \
+-l 'autossh -t appdeploy@saatchi-xdev-zed-01 \"tail -n500 -f \
 /var/log/nginx/error.log \
 /var/log/nginx/static.error.log \
 /var/log/nginx/zed.error.log \
@@ -119,19 +119,19 @@ alias saatchi-tail-zed-xdev="multitail -CS zed \
 -ts -M 3000"
 
 alias saatchi-tail-gallery-xdev="multitail -CS gallery \
--l 'ssh -t appdeploy@saatchi-xdev-gallery-01 \"tail -n500 -f /var/log/nginx/error.log /var/log/nginx/www.error.log /data/gallery/current/storage/logs/laravel.log\"' \
+-l 'autossh -t appdeploy@saatchi-xdev-gallery-01 \"tail -n500 -f /var/log/nginx/error.log /var/log/nginx/www.error.log /data/gallery/current/storage/logs/laravel.log\"' \
 -ts -M 3000"
 
 alias saatchi-tail-easel-xdev="multitail -CS easel \
--l 'ssh -t appdeploy@saatchi-xdev-gallery-01 \"/usr/local/node/node-default/bin/pm2 logs --timestamp --lines=500\"' \
+-l 'autossh -t appdeploy@saatchi-xdev-gallery-01 \"/usr/local/node/node-default/bin/pm2 logs --timestamp --lines=500\"' \
 -ts -M 3000"
 
 alias saatchi-tail-palette-xdev="multitail -CS palette \
--l 'ssh -t appdeploy@saatchi-xdev-palette-01 \"tail -n500 -f /var/log/nginx/error.log /var/log/nginx/app.error.log /scratch/palette/log/general-laravel.log /scratch/palette/log/saatchi-ecommerce.log\"' \
+-l 'autossh -t appdeploy@saatchi-xdev-palette-01 \"tail -n500 -f /var/log/nginx/error.log /var/log/nginx/app.error.log /scratch/palette/log/general-laravel.log /scratch/palette/log/saatchi-ecommerce.log\"' \
 -ts -M 3000"
 
 alias saatchi-tail-palette-services-xdev="multitail -CS palette \
--l 'ssh -t appdeploy@saatchi-xdev-palette-services-01 \"tail -n500 -f \
+-l 'autossh -t appdeploy@saatchi-xdev-palette-services-01 \"tail -n500 -f \
 /var/log/nginx/error.log \
 /var/log/nginx/app.error.log \
 /scratch/palette/log/general-laravel.log \
@@ -139,12 +139,12 @@ alias saatchi-tail-palette-services-xdev="multitail -CS palette \
 -ts -M 3000"
 
 alias saatchi-tail-lb-xdev="multitail -CS lb \
--l 'ssh -t appdeploy@saatchi-xdev-lb-01 \"sudo tail -n500 -f /var/log/haproxy.log\"' \
+-l 'autossh -t appdeploy@saatchi-xdev-lb-01 \"sudo tail -n500 -f /var/log/haproxy.log\"' \
 -ts -M 3000"
 
 # log file seems to be /scratch/log/imgproc/imgproc.log.gz
 alias saatchi-tail-imgproc-xdev="multitail -cT ANSI \
--l 'ssh -t saatchi-xdev-origin-01 tail -n500 -f /scratch/log/imgproc/imgproc.log'"
+-l 'autossh -t saatchi-xdev-origin-01 tail -n500 -f /scratch/log/imgproc/imgproc.log'"
 # }}}
 
 # xqa {{{
@@ -152,32 +152,32 @@ alias saatchi-tail-legacy-xqa="multitail -CS legacy \
 -Ev \"REQUEST ART CREATE\" \
 -Ev \"RESPONSE ART CREATE\" \
 -Ev \"healthcheck\" \
--l 'ssh -t appdeploy@saatchi-xqa-legacy-01 \"tail -n500 -f /var/log/nginx/error.log /var/log/nginx/legacy.error.log /var/log/nginx/upload.error.log /data/temp/saatchi.log\"' \
--L 'ssh -t appdeploy@saatchi-xqa-legacy-02 \"tail -n500 -f /var/log/nginx/error.log /var/log/nginx/legacy.error.log /var/log/nginx/upload.error.log /data/temp/saatchi.log\"' \
+-l 'autossh -t appdeploy@saatchi-xqa-legacy-01 \"tail -n500 -f /var/log/nginx/error.log /var/log/nginx/legacy.error.log /var/log/nginx/upload.error.log /data/temp/saatchi.log\"' \
+-L 'autossh -t appdeploy@saatchi-xqa-legacy-02 \"tail -n500 -f /var/log/nginx/error.log /var/log/nginx/legacy.error.log /var/log/nginx/upload.error.log /data/temp/saatchi.log\"' \
 -ts -M 3000"
 
 alias saatchi-tail-catalog-xqa="multitail -CS catalog  \
 -Ev \"heartbeat\" \
 -Ev \"AWS SQS 200\" \
--cT ANSI -l 'ssh -t saatchi-xqa-catalog-01 \"tail -n500 -f /data/catalog/shared/log/unicorn.stderr.log /data/catalog/current/log/qa.log\"' \
--cT ANSI -L 'ssh -t saatchi-xqa-catalog-02 \"tail -n500 -f /data/catalog/shared/log/unicorn.stderr.log /data/catalog/current/log/qa.log\"' \
+-cT ANSI -l 'autossh -t saatchi-xqa-catalog-01 \"tail -n500 -f /data/catalog/shared/log/unicorn.stderr.log /data/catalog/current/log/qa.log\"' \
+-cT ANSI -L 'autossh -t saatchi-xqa-catalog-02 \"tail -n500 -f /data/catalog/shared/log/unicorn.stderr.log /data/catalog/current/log/qa.log\"' \
 -ts -M 3000"
 
 alias saatchi-tail-api-xqa="multitail -CS api \
 -Ev \"End Point\" \
 -Ev \"\*{5}\" \
--cT ANSI -l 'ssh -t saatchi-xqa-catalog-01 \"tail -n500 -f /data/api/current/log/unicorn.stderr.log /data/api/current/log/qa.log\"' \
--cT ANSI -L 'ssh -t saatchi-xqa-catalog-02 \"tail -n500 -f /data/api/current/log/unicorn.stderr.log /data/api/current/log/qa.log\"' \
+-cT ANSI -l 'autossh -t saatchi-xqa-catalog-01 \"tail -n500 -f /data/api/current/log/unicorn.stderr.log /data/api/current/log/qa.log\"' \
+-cT ANSI -L 'autossh -t saatchi-xqa-catalog-02 \"tail -n500 -f /data/api/current/log/unicorn.stderr.log /data/api/current/log/qa.log\"' \
 -ts -M 3000"
 
 alias saatchi-tail-legacy-services-xqa="multitail -CS legacy \
 -Ev \"REQUEST ART CREATE\" \
 -Ev \"RESPONSE ART CREATE\" \
--l 'ssh -t saatchi-xqa-legacy-services-01 \"tail -n500 -f /data/temp/saatchi.log\"' \
+-l 'autossh -t saatchi-xqa-legacy-services-01 \"tail -n500 -f /data/temp/saatchi.log\"' \
 -ts -M 3000"
 
 alias saatchi-tail-zed-xqa="multitail -CS zed \
--l 'ssh -t appdeploy@saatchi-xqa-zed-01 \"tail -n500 -f \
+-l 'autossh -t appdeploy@saatchi-xqa-zed-01 \"tail -n500 -f \
 /var/log/nginx/error.log \
 /var/log/nginx/static.error.log \
 /var/log/nginx/zed.error.log \
@@ -187,22 +187,22 @@ alias saatchi-tail-zed-xqa="multitail -CS zed \
 -ts -M 3000"
 
 alias saatchi-tail-gallery-xqa="multitail -CS gallery \
--l 'ssh -t appdeploy@saatchi-xqa-gallery-01 \"tail -n500 -f /var/log/nginx/error.log /var/log/nginx/www.error.log /data/gallery/current/storage/logs/laravel.log\"' \
--L 'ssh -t appdeploy@saatchi-xqa-gallery-02 \"tail -n500 -f /var/log/nginx/error.log /var/log/nginx/www.error.log /data/gallery/current/storage/logs/laravel.log\"' \
+-l 'autossh -t appdeploy@saatchi-xqa-gallery-01 \"tail -n500 -f /var/log/nginx/error.log /var/log/nginx/www.error.log /data/gallery/current/storage/logs/laravel.log\"' \
+-L 'autossh -t appdeploy@saatchi-xqa-gallery-02 \"tail -n500 -f /var/log/nginx/error.log /var/log/nginx/www.error.log /data/gallery/current/storage/logs/laravel.log\"' \
 -ts -M 3000"
 
 alias saatchi-tail-easel-xqa="multitail -CS easel \
--l 'ssh -t appdeploy@saatchi-xqa-gallery-01 \"/usr/local/node/node-default/bin/pm2 logs --timestamp --lines=500\"' \
--L 'ssh -t appdeploy@saatchi-xqa-gallery-02 \"/usr/local/node/node-default/bin/pm2 logs --timestamp --lines=500\"' \
+-l 'autossh -t appdeploy@saatchi-xqa-gallery-01 \"/usr/local/node/node-default/bin/pm2 logs --timestamp --lines=500\"' \
+-L 'autossh -t appdeploy@saatchi-xqa-gallery-02 \"/usr/local/node/node-default/bin/pm2 logs --timestamp --lines=500\"' \
 -ts -M 3000"
 
 alias saatchi-tail-palette-xqa="multitail -CS palette \
--l 'ssh -t appdeploy@saatchi-xqa-palette-01 \"tail -n500 -f /var/log/nginx/error.log /var/log/nginx/app.error.log /scratch/palette/log/general-laravel.log /scratch/palette/log/saatchi-ecommerce.log\"' \
--L 'ssh -t appdeploy@saatchi-xqa-palette-02 \"tail -n500 -f /var/log/nginx/error.log /var/log/nginx/app.error.log /scratch/palette/log/general-laravel.log /scratch/palette/log/saatchi-ecommerce.log\"' \
+-l 'autossh -t appdeploy@saatchi-xqa-palette-01 \"tail -n500 -f /var/log/nginx/error.log /var/log/nginx/app.error.log /scratch/palette/log/general-laravel.log /scratch/palette/log/saatchi-ecommerce.log\"' \
+-L 'autossh -t appdeploy@saatchi-xqa-palette-02 \"tail -n500 -f /var/log/nginx/error.log /var/log/nginx/app.error.log /scratch/palette/log/general-laravel.log /scratch/palette/log/saatchi-ecommerce.log\"' \
 -ts -M 3000"
 
 alias saatchi-tail-palette-services-xqa="multitail -CS palette \
--l 'ssh -t appdeploy@saatchi-xqa-palette-services-01 \"tail -n500 -f \
+-l 'autossh -t appdeploy@saatchi-xqa-palette-services-01 \"tail -n500 -f \
 /var/log/nginx/error.log \
 /var/log/nginx/app.error.log \
 /scratch/palette/log/general-laravel.log \
@@ -210,14 +210,14 @@ alias saatchi-tail-palette-services-xqa="multitail -CS palette \
 -ts -M 3000"
 
 alias saatchi-tail-lb-xqa="multitail -CS lb \
--l 'ssh -t appdeploy@saatchi-xqa-lb-01 \"sudo tail -n500 -f /var/log/haproxy.log\"' \
+-l 'autossh -t appdeploy@saatchi-xqa-lb-01 \"sudo tail -n500 -f /var/log/haproxy.log\"' \
 -ts -M 3000"
 
 # log file seems to be /scratch/imgproc/imgproc.log.gz
-# alias saatchi-tail-imgproc-xqa="multitail -cT ANSI -l 'ssh -t saatchi-xqa-origin-01 tail -n500 -f /var/log/imgproc/imgproc.log' -cT ANSI -L 'ssh -t saatchi-xqa-origin-02 tail -n500 -f /var/log/imgproc/imgproc.log'"
+# alias saatchi-tail-imgproc-xqa="multitail -cT ANSI -l 'autossh -t saatchi-xqa-origin-01 tail -n500 -f /var/log/imgproc/imgproc.log' -cT ANSI -L 'autossh -t saatchi-xqa-origin-02 tail -n500 -f /var/log/imgproc/imgproc.log'"
 alias saatchi-tail-imgproc-xqa="multitail \
--cT ANSI -l 'ssh -t saatchi-xqa-origin-01 tail -n500 -f /scratch/log/imgproc/imgproc.log' \
--cT ANSI -L 'ssh -t saatchi-xqa-origin-02 tail -n500 -f /scratch/log/imgproc/imgproc.log'"
+-cT ANSI -l 'autossh -t saatchi-xqa-origin-01 tail -n500 -f /scratch/log/imgproc/imgproc.log' \
+-cT ANSI -L 'autossh -t saatchi-xqa-origin-02 tail -n500 -f /scratch/log/imgproc/imgproc.log'"
 # }}}
 
 # xprod {{{
@@ -225,11 +225,11 @@ alias saatchi-tail-legacy-xprod="multitail -CS legacy \
 -Ev \"REQUEST ART CREATE\" \
 -Ev \"RESPONSE ART CREATE\" \
 -Ev \"healthcheck\" \
--l 'ssh -t appdeploy@saatchi-xprod-legacy-01 \"tail -n500 -f /data/temp/saatchi.log\"' \
--L 'ssh -t appdeploy@saatchi-xprod-legacy-02 \"tail -n500 -f /data/temp/saatchi.log\"' \
--L 'ssh -t appdeploy@saatchi-xprod-legacy-03 \"tail -n500 -f /data/temp/saatchi.log\"' \
--L 'ssh -t appdeploy@saatchi-xprod-legacy-04 \"tail -n500 -f /data/temp/saatchi.log\"' \
--L 'ssh -t appdeploy@saatchi-xprod-legacy-05 \"tail -n500 -f /data/temp/saatchi.log\"' \
+-l 'autossh -t appdeploy@saatchi-xprod-legacy-01 \"tail -n500 -f /data/temp/saatchi.log\"' \
+-L 'autossh -t appdeploy@saatchi-xprod-legacy-02 \"tail -n500 -f /data/temp/saatchi.log\"' \
+-L 'autossh -t appdeploy@saatchi-xprod-legacy-03 \"tail -n500 -f /data/temp/saatchi.log\"' \
+-L 'autossh -t appdeploy@saatchi-xprod-legacy-04 \"tail -n500 -f /data/temp/saatchi.log\"' \
+-L 'autossh -t appdeploy@saatchi-xprod-legacy-05 \"tail -n500 -f /data/temp/saatchi.log\"' \
 -ts -M 3000"
 
 # needs www-data to access nginx logs. Even appdeploy doesn't have aaccess to those.
@@ -237,65 +237,64 @@ alias saatchi-tail-legacy-nginx-xprod="multitail -CS legacy \
 -Ev \"REQUEST ART CREATE\" \
 -Ev \"RESPONSE ART CREATE\" \
 -Ev \"healthcheck\" \
--l 'ssh -t appdeploy@saatchi-xprod-legacy-01 \"sudo -u www-data tail -n500 -f /var/log/nginx/error.log /var/log/nginx/legacy.error.log /var/log/nginx/upload.error.log\"' \
--L 'ssh -t appdeploy@saatchi-xprod-legacy-02 \"sudo -u www-data tail -n500 -f /var/log/nginx/error.log /var/log/nginx/legacy.error.log /var/log/nginx/upload.error.log\"' \
--L 'ssh -t appdeploy@saatchi-xprod-legacy-03 \"sudo -u www-data tail -n500 -f /var/log/nginx/error.log /var/log/nginx/legacy.error.log /var/log/nginx/upload.error.log\"' \
--L 'ssh -t appdeploy@saatchi-xprod-legacy-04 \"sudo -u www-data tail -n500 -f /var/log/nginx/error.log /var/log/nginx/legacy.error.log /var/log/nginx/upload.error.log\"' \
--L 'ssh -t appdeploy@saatchi-xprod-legacy-05 \"sudo -u www-data tail -n500 -f /var/log/nginx/error.log /var/log/nginx/legacy.error.log /var/log/nginx/upload.error.log\"' \
+-l 'autossh -t appdeploy@saatchi-xprod-legacy-01 \"sudo -u www-data tail -n500 -f /var/log/nginx/error.log /var/log/nginx/legacy.error.log /var/log/nginx/upload.error.log\"' \
+-L 'autossh -t appdeploy@saatchi-xprod-legacy-02 \"sudo -u www-data tail -n500 -f /var/log/nginx/error.log /var/log/nginx/legacy.error.log /var/log/nginx/upload.error.log\"' \
+-L 'autossh -t appdeploy@saatchi-xprod-legacy-03 \"sudo -u www-data tail -n500 -f /var/log/nginx/error.log /var/log/nginx/legacy.error.log /var/log/nginx/upload.error.log\"' \
+-L 'autossh -t appdeploy@saatchi-xprod-legacy-04 \"sudo -u www-data tail -n500 -f /var/log/nginx/error.log /var/log/nginx/legacy.error.log /var/log/nginx/upload.error.log\"' \
+-L 'autossh -t appdeploy@saatchi-xprod-legacy-05 \"sudo -u www-data tail -n500 -f /var/log/nginx/error.log /var/log/nginx/legacy.error.log /var/log/nginx/upload.error.log\"' \
 -ts -M 3000"
 
 alias saatchi-tail-catalog-xprod="multitail -CS catalog \
 -Ev \"heartbeat\" \
 -Ev \"AWS SQS 200\" \
--l 'ssh -t saatchi-xprod-catalog-01 \"tail -n500 -f /data/catalog/shared/log/unicorn.stderr.log /data/catalog/current/log/orders.log /data/catalog/current/log/production.log\"' \
--L 'ssh -t saatchi-xprod-catalog-02 \"tail -n500 -f /data/catalog/shared/log/unicorn.stderr.log /data/catalog/current/log/orders.log /data/catalog/current/log/production.log\"' \
--L 'ssh -t saatchi-xprod-catalog-03 \"tail -n500 -f /data/catalog/shared/log/unicorn.stderr.log /data/catalog/current/log/orders.log /data/catalog/current/log/production.log\"' \
--L 'ssh -t saatchi-xprod-catalog-03 \"tail -n500 -f /data/catalog/shared/log/unicorn.stderr.log /data/catalog/current/log/orders.log /data/catalog/current/log/production.log\"' \
--L 'ssh -t saatchi-xprod-catalog-04 \"tail -n500 -f /data/catalog/shared/log/unicorn.stderr.log /data/catalog/current/log/orders.log /data/catalog/current/log/production.log\"' \
--L 'ssh -t saatchi-xprod-catalog-05 \"tail -n500 -f /data/catalog/shared/log/unicorn.stderr.log /data/catalog/current/log/orders.log /data/catalog/current/log/production.log\"' \
+-l 'autossh -t saatchi-xprod-catalog-01 \"tail -n500 -f /data/catalog/shared/log/unicorn.stderr.log /data/catalog/current/log/orders.log /data/catalog/current/log/production.log\"' \
+-L 'autossh -t saatchi-xprod-catalog-02 \"tail -n500 -f /data/catalog/shared/log/unicorn.stderr.log /data/catalog/current/log/orders.log /data/catalog/current/log/production.log\"' \
+-L 'autossh -t saatchi-xprod-catalog-03 \"tail -n500 -f /data/catalog/shared/log/unicorn.stderr.log /data/catalog/current/log/orders.log /data/catalog/current/log/production.log\"' \
+-L 'autossh -t saatchi-xprod-catalog-03 \"tail -n500 -f /data/catalog/shared/log/unicorn.stderr.log /data/catalog/current/log/orders.log /data/catalog/current/log/production.log\"' \
+-L 'autossh -t saatchi-xprod-catalog-04 \"tail -n500 -f /data/catalog/shared/log/unicorn.stderr.log /data/catalog/current/log/orders.log /data/catalog/current/log/production.log\"' \
+-L 'autossh -t saatchi-xprod-catalog-05 \"tail -n500 -f /data/catalog/shared/log/unicorn.stderr.log /data/catalog/current/log/orders.log /data/catalog/current/log/production.log\"' \
 -ts -M 3000"
 
 alias saatchi-tail-sidekiq-xprod="multitail -CS catalog \
 -Ev \"heartbeat\" \
 -Ev \"AWS SQS 200\" \
--l 'ssh -t saatchi-xprod-catalog-01 \"tail -n500 -f /data/catalog/current/log/sidekiq.log\"' \
--L 'ssh -t saatchi-xprod-catalog-02 \"tail -n500 -f /data/catalog/current/log/sidekiq.log\"' \
--L 'ssh -t saatchi-xprod-catalog-03 \"tail -n500 -f /data/catalog/current/log/sidekiq.log\"' \
--L 'ssh -t saatchi-xprod-catalog-03 \"tail -n500 -f /data/catalog/current/log/sidekiq.log\"' \
--L 'ssh -t saatchi-xprod-catalog-04 \"tail -n500 -f /data/catalog/current/log/sidekiq.log\"' \
--L 'ssh -t saatchi-xprod-catalog-05 \"tail -n500 -f /data/catalog/current/log/sidekiq.log\"' \
+-l 'autossh -t saatchi-xprod-catalog-01 \"tail -n500 -f /data/catalog/current/log/sidekiq.log\"' \
+-L 'autossh -t saatchi-xprod-catalog-02 \"tail -n500 -f /data/catalog/current/log/sidekiq.log\"' \
+-L 'autossh -t saatchi-xprod-catalog-03 \"tail -n500 -f /data/catalog/current/log/sidekiq.log\"' \
+-L 'autossh -t saatchi-xprod-catalog-03 \"tail -n500 -f /data/catalog/current/log/sidekiq.log\"' \
+-L 'autossh -t saatchi-xprod-catalog-04 \"tail -n500 -f /data/catalog/current/log/sidekiq.log\"' \
+-L 'autossh -t saatchi-xprod-catalog-05 \"tail -n500 -f /data/catalog/current/log/sidekiq.log\"' \
 -ts -M 3000"
 
 alias saatchi-tail-catalog-orders-xprod="multitail -CS catalog \
 -Ev \"heartbeat\" -Ev \"AWS SQS 200\" \
--l 'ssh -t saatchi-xprod-catalog-01 \"tail -n500 -f /data/catalog/current/log/orders.log\"' \
--L 'ssh -t saatchi-xprod-catalog-02 \"tail -n500 -f /data/catalog/current/log/orders.log\"' \
--L 'ssh -t saatchi-xprod-catalog-03 \"tail -n500 -f /data/catalog/current/log/orders.log\"' \
--L 'ssh -t saatchi-xprod-catalog-03 \"tail -n500 -f /data/catalog/current/log/orders.log\"' \
--L 'ssh -t saatchi-xprod-catalog-04 \"tail -n500 -f /data/catalog/current/log/orders.log\"' \
--L 'ssh -t saatchi-xprod-catalog-05 \"tail -n500 -f /data/catalog/current/log/orders.log\"' \
+-l 'autossh -t saatchi-xprod-catalog-01 \"tail -n500 -f /data/catalog/current/log/orders.log\"' \
+-L 'autossh -t saatchi-xprod-catalog-02 \"tail -n500 -f /data/catalog/current/log/orders.log\"' \
+-L 'autossh -t saatchi-xprod-catalog-03 \"tail -n500 -f /data/catalog/current/log/orders.log\"' \
+-L 'autossh -t saatchi-xprod-catalog-03 \"tail -n500 -f /data/catalog/current/log/orders.log\"' \
+-L 'autossh -t saatchi-xprod-catalog-04 \"tail -n500 -f /data/catalog/current/log/orders.log\"' \
+-L 'autossh -t saatchi-xprod-catalog-05 \"tail -n500 -f /data/catalog/current/log/orders.log\"' \
 -ts -M 3000"
 
-# alias saatchi-tail-catalog-xprod="multitail -CS catalog -Ev \"heartbeat\" -Ev \"AWS SQS 200\" -cT ANSI -l 'ssh -t saatchi-xprod-catalog-01 \"tail -n500 -f /data/catalog/shared/log/*.log /data/catalog/current/log/production.log\"' -L 'ssh -t saatchi-xprod-catalog-02 \"tail -n500 -f /data/catalog/shared/log/*.log /data/catalog/current/log/production.log\"' -L 'ssh -t saatchi-xprod-catalog-03 \"tail -n500 -f /data/catalog/shared/log/*.log /data/catalog/current/log/production.log\"' -L 'ssh -t saatchi-xprod-catalog-03 \"tail -n500 -f /data/catalog/shared/log/*.log /data/catalog/current/log/production.log\"' -L 'ssh -t saatchi-xprod-catalog-04 \"tail -n500 -f /data/catalog/shared/log/*.log /data/catalog/current/log/production.log\"' -L 'ssh -t saatchi-xprod-catalog-05 \"tail -n500 -f /data/catalog/shared/log/*.log /data/catalog/current/log/production.log\"' -ts -M 3000"
 alias saatchi-tail-api-xprod="multitail -CS api \
 -Ev \"End Point\" \
 -Ev \"\*{5}\" \
--l 'ssh -t saatchi-xprod-catalog-01 \"tail -n500 -f /data/api/current/log/unicorn.stderr.log /data/api/current/log/production.log\"' \
--L 'ssh -t saatchi-xprod-catalog-02 \"tail -n500 -f /data/api/current/log/unicorn.stderr.log /data/api/current/log/production.log\"' \
--L 'ssh -t saatchi-xprod-catalog-03 \"tail -n500 -f /data/api/current/log/unicorn.stderr.log /data/api/current/log/production.log\"' \
--L 'ssh -t saatchi-xprod-catalog-03 \"tail -n500 -f /data/api/current/log/unicorn.stderr.log /data/api/current/log/production.log\"' \
--L 'ssh -t saatchi-xprod-catalog-04 \"tail -n500 -f /data/api/current/log/unicorn.stderr.log /data/api/current/log/production.log\"' \
--L 'ssh -t saatchi-xprod-catalog-05 \"tail -n500 -f /data/api/current/log/unicorn.stderr.log /data/api/current/log/production.log\"' \
+-l 'autossh -t saatchi-xprod-catalog-01 \"tail -n500 -f /data/api/current/log/unicorn.stderr.log /data/api/current/log/production.log\"' \
+-L 'autossh -t saatchi-xprod-catalog-02 \"tail -n500 -f /data/api/current/log/unicorn.stderr.log /data/api/current/log/production.log\"' \
+-L 'autossh -t saatchi-xprod-catalog-03 \"tail -n500 -f /data/api/current/log/unicorn.stderr.log /data/api/current/log/production.log\"' \
+-L 'autossh -t saatchi-xprod-catalog-03 \"tail -n500 -f /data/api/current/log/unicorn.stderr.log /data/api/current/log/production.log\"' \
+-L 'autossh -t saatchi-xprod-catalog-04 \"tail -n500 -f /data/api/current/log/unicorn.stderr.log /data/api/current/log/production.log\"' \
+-L 'autossh -t saatchi-xprod-catalog-05 \"tail -n500 -f /data/api/current/log/unicorn.stderr.log /data/api/current/log/production.log\"' \
 -ts -M 3000"
 
 alias saatchi-tail-legacy-services-xprod="multitail -CS legacy \
 -Ev \"REQUEST ART CREATE\" \
 -Ev \"RESPONSE ART CREATE\" \
--l 'ssh -t saatchi-xprod-legacy-services-02 \"tail -n500 -f /data/temp/saatchi.log\"' \
+-l 'autossh -t saatchi-xprod-legacy-services-02 \"tail -n500 -f /data/temp/saatchi.log\"' \
 -ts -M 3000"
 
 alias saatchi-tail-zed-xprod="multitail -CS zed \
--l 'ssh -t appdeploy@saatchi-xprod-zed-02 \"tail -n500 -f \
+-l 'autossh -t appdeploy@saatchi-xprod-zed-02 \"tail -n500 -f \
 /var/log/nginx/error.log \
 /var/log/nginx/static.error.log \
 /var/log/nginx/zed.error.log \
@@ -305,31 +304,31 @@ alias saatchi-tail-zed-xprod="multitail -CS zed \
 -ts -M 3000"
 
 alias saatchi-tail-zed-exception-log-xprod="multitail -CS zed \
--l 'ssh -t appdeploy@saatchi-xprod-zed-02 \"tail -n500 -f /scratch/yzed/data/US/logs/ZED/exception.log\"' \
+-l 'autossh -t appdeploy@saatchi-xprod-zed-02 \"tail -n500 -f /scratch/yzed/data/US/logs/ZED/exception.log\"' \
 -ts -M 3000"
 alias saatchi-tail-gallery-xprod="multitail -CS gallery \
--l 'ssh -t appdeploy@saatchi-xprod-gallery-01 \"tail -n500 -f /data/gallery/current/storage/logs/laravel.log\"' \
--L 'ssh -t appdeploy@saatchi-xprod-gallery-02 \"tail -n500 -f /data/gallery/current/storage/logs/laravel.log\"' \
+-l 'autossh -t appdeploy@saatchi-xprod-gallery-01 \"tail -n500 -f /data/gallery/current/storage/logs/laravel.log\"' \
+-L 'autossh -t appdeploy@saatchi-xprod-gallery-02 \"tail -n500 -f /data/gallery/current/storage/logs/laravel.log\"' \
 -ts -M 3000"
 
 # needs www-data to access nginx logs. Even appdeploy doesn't have aaccess to those.
 alias saatchi-tail-gallery-nginx-xprod="multitail -CS gallery \
--l 'ssh -t appdeploy@saatchi-xprod-gallery-01 \"sudo -u www-data tail -n500 -f /var/log/nginx/error.log /var/log/nginx/www.error.log /var/log/nginx/error.log /var/log/nginx/error.log\"' \
--L 'ssh -t appdeploy@saatchi-xprod-gallery-02 \"sudo -u www-data tail -n500 -f /var/log/nginx/error.log /var/log/nginx/www.error.log /var/log/nginx/error.log /var/log/nginx/error.log\"' \
+-l 'autossh -t appdeploy@saatchi-xprod-gallery-01 \"sudo -u www-data tail -n500 -f /var/log/nginx/error.log /var/log/nginx/www.error.log /var/log/nginx/error.log /var/log/nginx/error.log\"' \
+-L 'autossh -t appdeploy@saatchi-xprod-gallery-02 \"sudo -u www-data tail -n500 -f /var/log/nginx/error.log /var/log/nginx/www.error.log /var/log/nginx/error.log /var/log/nginx/error.log\"' \
 -ts -M 3000"
 
 alias saatchi-tail-easel-xprod="multitail -CS easel \
--l 'ssh -t appdeploy@saatchi-xprod-gallery-01 \"/usr/local/node/node-default/bin/pm2 logs --timestamp --lines=500\"' \
--L 'ssh -t appdeploy@saatchi-xprod-gallery-02 \"/usr/local/node/node-default/bin/pm2 logs --timestamp --lines=500\"' \
+-l 'autossh -t appdeploy@saatchi-xprod-gallery-01 \"/usr/local/node/node-default/bin/pm2 logs --timestamp --lines=500\"' \
+-L 'autossh -t appdeploy@saatchi-xprod-gallery-02 \"/usr/local/node/node-default/bin/pm2 logs --timestamp --lines=500\"' \
 -ts -M 3000"
 
 alias saatchi-tail-palette-xprod="multitail -CS palette \
--l 'ssh -t appdeploy@saatchi-xprod-palette-01 \"tail -n500 -f /scratch/palette/log/general-laravel.log /scratch/palette/log/saatchi-ecommerce.log\"' \
--L 'ssh -t appdeploy@saatchi-xprod-palette-02 \"tail -n500 -f /scratch/palette/log/general-laravel.log /scratch/palette/log/saatchi-ecommerce.log\"' \
+-l 'autossh -t appdeploy@saatchi-xprod-palette-01 \"tail -n500 -f /scratch/palette/log/general-laravel.log /scratch/palette/log/saatchi-ecommerce.log\"' \
+-L 'autossh -t appdeploy@saatchi-xprod-palette-02 \"tail -n500 -f /scratch/palette/log/general-laravel.log /scratch/palette/log/saatchi-ecommerce.log\"' \
 -ts -M 3000"
 
 alias saatchi-tail-palette-services-xprod="multitail -CS palette \
--l 'ssh -t appdeploy@saatchi-xprod-palette-services-01 \"tail -n500 -f \
+-l 'autossh -t appdeploy@saatchi-xprod-palette-services-01 \"tail -n500 -f \
 /var/log/nginx/error.log \
 /var/log/nginx/app.error.log \
 /scratch/palette/log/general-laravel.log \
@@ -337,23 +336,23 @@ alias saatchi-tail-palette-services-xprod="multitail -CS palette \
 -ts -M 3000"
 
 alias saatchi-tail-palette-nginx-xprod="multitail -CS palette \
--l 'ssh -t appdeploy@saatchi-xprod-palette-01 \"sudo -u www-data tail -n500 -f /var/log/nginx/error.log /var/log/nginx/app.error.log\"' \
--L 'ssh -t appdeploy@saatchi-xprod-palette-02 \"sudo -u www-data tail -n500 -f /var/log/nginx/error.log /var/log/nginx/app.error.log\"' \
+-l 'autossh -t appdeploy@saatchi-xprod-palette-01 \"sudo -u www-data tail -n500 -f /var/log/nginx/error.log /var/log/nginx/app.error.log\"' \
+-L 'autossh -t appdeploy@saatchi-xprod-palette-02 \"sudo -u www-data tail -n500 -f /var/log/nginx/error.log /var/log/nginx/app.error.log\"' \
 -ts -M 3000"
 
 # FIREHOSE! Note: needs sudo to access log, but sudo prevents process from being stopped automatically. Be sure to stop process afterward!
 alias saatchi-tail-lb-xprod="multitail -CS lb \
--l 'ssh -t appdeploy@saatchi-xprod-lb-01 sudo tail -n500 -f /var/log/haproxy.log' \
--L 'ssh -t appdeploy@saatchi-xprod-lb-02 sudo tail -n500 -f /var/log/haproxy.log' \
+-l 'autossh -t appdeploy@saatchi-xprod-lb-01 sudo tail -n500 -f /var/log/haproxy.log' \
+-L 'autossh -t appdeploy@saatchi-xprod-lb-02 sudo tail -n500 -f /var/log/haproxy.log' \
 -ts -M 3000"
 
 # no access to apache logs
 alias saatchi-tail-imgproc-xprod="multitail \
--cT ANSI -l 'ssh -t saatchi-xprod-origin-01 tail -n500 -f /scratch/log/imgproc/imgproc.log' \
--cT ANSI -L 'ssh -t saatchi-xprod-origin-02 tail -n500 -f /scratch/log/imgproc/imgproc.log' \
--cT ANSI -L 'ssh -t saatchi-xprod-origin-03 tail -n500 -f /scratch/log/imgproc/imgproc.log' \
--cT ANSI -L 'ssh -t saatchi-xprod-origin-04 tail -n500 -f /scratch/log/imgproc/imgproc.log' \
--cT ANSI -L 'ssh -t saatchi-xprod-origin-05 tail -n500 -f /scratch/log/imgproc/imgproc.log'"
+-cT ANSI -l 'autossh -t saatchi-xprod-origin-01 tail -n500 -f /scratch/log/imgproc/imgproc.log' \
+-cT ANSI -L 'autossh -t saatchi-xprod-origin-02 tail -n500 -f /scratch/log/imgproc/imgproc.log' \
+-cT ANSI -L 'autossh -t saatchi-xprod-origin-03 tail -n500 -f /scratch/log/imgproc/imgproc.log' \
+-cT ANSI -L 'autossh -t saatchi-xprod-origin-04 tail -n500 -f /scratch/log/imgproc/imgproc.log' \
+-cT ANSI -L 'autossh -t saatchi-xprod-origin-05 tail -n500 -f /scratch/log/imgproc/imgproc.log'"
 # }}}
 # }}}
 
@@ -415,16 +414,56 @@ saatchi-id-user-art-xprod () {
 # }}}
 
 # saatchi - get id_user_collection by collection id. {{{
-saatchi-id-user-collection-local () { if [[ "$1" == "--help" ]]; then echo "usage: saatchi-id-user-collection-local {collection_id}"; return; fi; mysql -h $SAATCHI_LOCAL_HOST -u $SAATCHI_LOCAL_USERNAME -D $SAATCHI_LOCAL_DB --execute "select id_user_collection from user_collections where id = $1;" --batch -N; }
-saatchi-id-user-collection-xdev () { if [[ "$1" == "--help" ]]; then echo "usage: saatchi-id-user-collection-xdev {collection_id}"; return; fi; ssh -f saatchi-console-01 -L $SAATCHI_XDEV_TUNNEL_PORT:$SAATCHI_XDEV_HOST:$SAATCHI_XDEV_PORT -N && export MYSQL_PWD=$SAATCHI_XDEV_PASSWORD && mysql -h127.0.0.1 -P$SAATCHI_XDEV_TUNNEL_PORT -u$SAATCHI_XDEV_USERNAME -D$SAATCHI_XDEV_DB --execute "select id_user_collection from user_collections where id = $1;" --batch -N; }
-saatchi-id-user-collection-xqa () { if [[ "$1" == "--help" ]]; then echo "usage: saatchi-id-user-collection-xqa {collection_id}"; return; fi; ssh -f saatchi-console-01 -L 8307:$SAATCHI_XQA_HOST:$SAATCHI_XQA_PORT -N && export MYSQL_PWD=$SAATCHI_XQA_PASSWORD && mysql -h127.0.0.1 -P8307 -u$SAATCHI_XQA_USERNAME -D$SAATCHI_XQA_DB --execute "select id_user_collection from user_collections where id = $1;" --batch -N; }
-saatchi-id-user-collection-xprod () { if [[ "$1" == "--help" ]]; then echo "usage: saatchi-id-user-collection-xprod {collection_id}"; return; fi; ssh -f saatchi-console-01 -L 8307:$SAATCHI_XPROD_HOST:$SAATCHI_XPROD_PORT -N && export MYSQL_PWD=$SAATCHI_XPROD_PASSWORD && mysql -h127.0.0.1 -P8307 -u$SAATCHI_XPROD_USERNAME -D$SAATCHI_XPROD_DB --execute "select id_user_collection from user_collections where id = $1;" --batch -N; }
+saatchi-id-user-collection-local () {
+    if [[ "$1" == "--help" ]]; then echo "usage: saatchi-id-user-collection-local {collection_id}"; return; fi;
+    mysql -h $SAATCHI_LOCAL_HOST \
+        -u $SAATCHI_LOCAL_USERNAME \
+        -D $SAATCHI_LOCAL_DB \
+        --execute "select id_user_collection from user_collections where id = $1;" \
+        --batch -N;
+}
+saatchi-id-user-collection-xdev () {
+    if [[ "$1" == "--help" ]]; then echo "usage: saatchi-id-user-collection-xdev {collection_id}"; return; fi;
+    ssh -f saatchi-console-01 \
+        -L $SAATCHI_XDEV_TUNNEL_PORT:$SAATCHI_XDEV_HOST:$SAATCHI_XDEV_PORT -N && \
+        export MYSQL_PWD=$SAATCHI_XDEV_PASSWORD && \
+        mysql -h127.0.0.1 \
+        -P$SAATCHI_XDEV_TUNNEL_PORT \
+        -u$SAATCHI_XDEV_USERNAME \
+        -D$SAATCHI_XDEV_DB \
+        --execute "select id_user_collection from user_collections where id = $1;" \
+        --batch -N;
+}
+saatchi-id-user-collection-xqa () {
+    if [[ "$1" == "--help" ]]; then echo "usage: saatchi-id-user-collection-xqa {collection_id}"; return; fi;
+    ssh -f saatchi-console-01 \
+        -L 8307:$SAATCHI_XQA_HOST:$SAATCHI_XQA_PORT -N && \
+        export MYSQL_PWD=$SAATCHI_XQA_PASSWORD && \
+        mysql -h127.0.0.1 \
+        -P8307 \
+        -u$SAATCHI_XQA_USERNAME \
+        -D$SAATCHI_XQA_DB \
+        --execute "select id_user_collection from user_collections where id = $1;" \
+        --batch -N;
+}
+saatchi-id-user-collection-xprod () {
+    if [[ "$1" == "--help" ]]; then echo "usage: saatchi-id-user-collection-xprod {collection_id}"; return; fi; \
+    ssh -f saatchi-console-01 \
+        -L 8307:$SAATCHI_XPROD_HOST:$SAATCHI_XPROD_PORT -N && \
+        export MYSQL_PWD=$SAATCHI_XPROD_PASSWORD && \
+        mysql -h127.0.0.1 \
+        -P8307 \
+        -u$SAATCHI_XPROD_USERNAME \
+        -D$SAATCHI_XPROD_DB \
+        --execute "select id_user_collection from user_collections where id = $1;" \
+        --batch -N;
+}
 # }}}
 
 # saatchi socks proxies {{{
 # used to connect to web admins for solr and couchbase via switchyomega chrome extension
 # should not need this any more now that it's a launchd service
-alias saatchi-proxy="ssh saatchi-console-proxy -N &"
+alias saatchi-proxy="autossh saatchi-console-proxy -N &"
 # }}}
 
 # saatchi mycli aliases {{{
@@ -454,7 +493,7 @@ alias saatchi-mycli-palette-local="mycli -h $PALETTE_LOCAL_HOST \
 #}}}
 
 # xdev {{{
-alias saatchi-mycli-legacy-xdev="ssh -f saatchi-console-01 \
+alias saatchi-mycli-legacy-xdev="autossh -f saatchi-console-01 \
 -L $SAATCHI_XDEV_TUNNEL_PORT:$SAATCHI_XDEV_HOST:$SAATCHI_XDEV_PORT \
 -N && export MYSQL_PWD=$SAATCHI_XDEV_PASSWORD && \
 mycli -h localhost \
@@ -464,7 +503,7 @@ mycli -h localhost \
 --prompt 'saatchi[xdev]> ' \
 --auto-vertical-output --warn"
 
-alias saatchi-mycli-palette-xdev="ssh -f saatchi-console-01 \
+alias saatchi-mycli-palette-xdev="autossh -f saatchi-console-01 \
 -L $PALETTE_XDEV_TUNNEL_PORT:$PALETTE_XDEV_HOST:$PALETTE_XDEV_PORT \
 -N && export MYSQL_PWD=$PALETTE_XDEV_PASSWORD && \
 mycli -h localhost \
@@ -474,7 +513,7 @@ mycli -h localhost \
 --prompt 'palette[xdev]> ' \
 --auto-vertical-output --warn"
 
-alias saatchi-mycli-zed-xdev="ssh -f saatchi-console-01 \
+alias saatchi-mycli-zed-xdev="autossh -f saatchi-console-01 \
 -L $ZED_XDEV_TUNNEL_PORT:$ZED_XDEV_HOST:$ZED_XDEV_PORT \
 -N && export MYSQL_PWD=$ZED_XDEV_PASSWORD && \
 mycli -h localhost \
@@ -486,21 +525,21 @@ mycli -h localhost \
 #}}}
 
 # xqa {{{
-alias saatchi-mycli-legacy-xqa="ssh -f saatchi-console-01 -L $SAATCHI_XQA_TUNNEL_PORT:$SAATCHI_XQA_HOST:$SAATCHI_XQA_PORT -N && export MYSQL_PWD=$SAATCHI_XQA_PASSWORD && mycli -h localhost -u $SAATCHI_XQA_USERNAME -D $SAATCHI_XQA_DB --port=$SAATCHI_XQA_TUNNEL_PORT --prompt 'saatchi[xqa]> ' --auto-vertical-output --warn"
-alias saatchi-mycli-zed-xqa="ssh -f saatchi-console-01 -L $ZED_XQA_TUNNEL_PORT:$ZED_XQA_HOST:3306 -N && export MYSQL_PWD=$ZED_XQA_PASSWORD && mycli -h127.0.0.1 -P$ZED_XQA_TUNNEL_PORT -u$ZED_XQA_USERNAME -D$ZED_XQA_DB --prompt 'zed[xqa]> ' --auto-vertical-output --warn"
-alias saatchi-mycli-palette-xqa="ssh -f saatchi-console-01 -L $PALETTE_XQA_TUNNEL_PORT:$PALETTE_XQA_HOST:$PALETTE_XQA_PORT -N && export MYSQL_PWD=$PALETTE_XQA_PASSWORD && mycli -h localhost -u $PALETTE_XQA_USERNAME -D $PALETTE_XQA_DB --port=$PALETTE_XQA_TUNNEL_PORT --prompt 'palette[xqa]> ' --auto-vertical-output --warn"
+alias saatchi-mycli-legacy-xqa="autossh -f saatchi-console-01 -L $SAATCHI_XQA_TUNNEL_PORT:$SAATCHI_XQA_HOST:$SAATCHI_XQA_PORT -N && export MYSQL_PWD=$SAATCHI_XQA_PASSWORD && mycli -h localhost -u $SAATCHI_XQA_USERNAME -D $SAATCHI_XQA_DB --port=$SAATCHI_XQA_TUNNEL_PORT --prompt 'saatchi[xqa]> ' --auto-vertical-output --warn"
+alias saatchi-mycli-zed-xqa="autossh -f saatchi-console-01 -L $ZED_XQA_TUNNEL_PORT:$ZED_XQA_HOST:3306 -N && export MYSQL_PWD=$ZED_XQA_PASSWORD && mycli -h127.0.0.1 -P$ZED_XQA_TUNNEL_PORT -u$ZED_XQA_USERNAME -D$ZED_XQA_DB --prompt 'zed[xqa]> ' --auto-vertical-output --warn"
+alias saatchi-mycli-palette-xqa="autossh -f saatchi-console-01 -L $PALETTE_XQA_TUNNEL_PORT:$PALETTE_XQA_HOST:$PALETTE_XQA_PORT -N && export MYSQL_PWD=$PALETTE_XQA_PASSWORD && mycli -h localhost -u $PALETTE_XQA_USERNAME -D $PALETTE_XQA_DB --port=$PALETTE_XQA_TUNNEL_PORT --prompt 'palette[xqa]> ' --auto-vertical-output --warn"
 #}}}
 
 # prod {{{
-alias saatchi-mycli-legacy-xprod="ssh -f saatchi-console-01 -L 5381:$SAATCHI_XPROD_HOST:$SAATCHI_XPROD_PORT -N && export MYSQL_PWD=$SAATCHI_XPROD_PASSWORD && mycli -h localhost -u $SAATCHI_XPROD_USERNAME -D $SAATCHI_XPROD_DB --port=5381 --prompt 'legacy[PRODUCTION]> ' --auto-vertical-output --warn"
-alias saatchi-mycli-legacy-xprod-read-only="ssh -f saatchi-console-01 -L 5381:$SAATCHI_REPLICA_HOST:$SAATCHI_REPLICA_PORT -N && export MYSQL_PWD=$SAATCHI_REPLICA_PASSWORD && mycli -h localhost -u $SAATCHI_REPLICA_USERNAME -D $SAATCHI_REPLICA_DB --port=5381 --prompt 'legacy[PRODUCTION:READ-ONLY]> ' --auto-vertical-output --warn"
-alias saatchi-mycli-zed-xprod="ssh -f saatchi-console-01 -L 6783:$ZED_XPROD_HOST:$ZED_XPROD_PORT -N && export MYSQL_PWD=$ZED_XPROD_PASSWORD && mycli -h localhost -u $ZED_XPROD_USERNAME -D $ZED_XPROD_DB --port=6783 --prompt 'zed[PRODUCTION]> ' --auto-vertical-output --warn"
-alias saatchi-mycli-zed-xprod-read-only="ssh -f saatchi-console-01 -L 7733:$ZED_REPLICA_HOST:$ZED_REPLICA_PORT -N && export MYSQL_PWD=$ZED_REPLICA_PASSWORD && mycli -h localhost -u $ZED_REPLICA_USERNAME -D $ZED_REPLICA_DB --port=7733 --prompt 'zed[PRODUCTION:READ-ONLY]> ' --auto-vertical-output --warn"
-alias saatchi-mycli-palette-xprod="ssh -f saatchi-console-01 -L 4913:$PALETTE_PROD_HOST:3306 -N && export MYSQL_PWD=$PALETTE_PROD_PASSWORD && mycli -h127.0.0.1 -P4913 -u$PALETTE_PROD_USERNAME -D$PALETTE_PROD_DB --prompt 'palette[PRODUCTION]> ' --auto-vertical-output --warn"
-alias saatchi-mycli-palette-xreplica-ready-only="ssh -f saatchi-console-01 -L 4913:$PALETTE_REPLICA_HOST:3306 -N && export MYSQL_PWD=$PALETTE_REPLICA_PASSWORD && mycli -h127.0.0.1 -P4913 -u$PALETTE_REPLICA_USERNAME -D$PALETTE_REPLICA_DB --prompt 'palette[PRODUCTION:READ-ONLY]> ' --auto-vertical-output --warn"
+alias saatchi-mycli-legacy-xprod="autossh -f saatchi-console-01 -L 5381:$SAATCHI_XPROD_HOST:$SAATCHI_XPROD_PORT -N && export MYSQL_PWD=$SAATCHI_XPROD_PASSWORD && mycli -h localhost -u $SAATCHI_XPROD_USERNAME -D $SAATCHI_XPROD_DB --port=5381 --prompt 'legacy[PRODUCTION]> ' --auto-vertical-output --warn"
+alias saatchi-mycli-legacy-xprod-read-only="autossh -f saatchi-console-01 -L 5381:$SAATCHI_REPLICA_HOST:$SAATCHI_REPLICA_PORT -N && export MYSQL_PWD=$SAATCHI_REPLICA_PASSWORD && mycli -h localhost -u $SAATCHI_REPLICA_USERNAME -D $SAATCHI_REPLICA_DB --port=5381 --prompt 'legacy[PRODUCTION:READ-ONLY]> ' --auto-vertical-output --warn"
+alias saatchi-mycli-zed-xprod="autossh -f saatchi-console-01 -L 6783:$ZED_XPROD_HOST:$ZED_XPROD_PORT -N && export MYSQL_PWD=$ZED_XPROD_PASSWORD && mycli -h localhost -u $ZED_XPROD_USERNAME -D $ZED_XPROD_DB --port=6783 --prompt 'zed[PRODUCTION]> ' --auto-vertical-output --warn"
+alias saatchi-mycli-zed-xprod-read-only="autossh -f saatchi-console-01 -L 7733:$ZED_REPLICA_HOST:$ZED_REPLICA_PORT -N && export MYSQL_PWD=$ZED_REPLICA_PASSWORD && mycli -h localhost -u $ZED_REPLICA_USERNAME -D $ZED_REPLICA_DB --port=7733 --prompt 'zed[PRODUCTION:READ-ONLY]> ' --auto-vertical-output --warn"
+alias saatchi-mycli-palette-xprod="autossh -f saatchi-console-01 -L 4913:$PALETTE_PROD_HOST:3306 -N && export MYSQL_PWD=$PALETTE_PROD_PASSWORD && mycli -h127.0.0.1 -P4913 -u$PALETTE_PROD_USERNAME -D$PALETTE_PROD_DB --prompt 'palette[PRODUCTION]> ' --auto-vertical-output --warn"
+alias saatchi-mycli-palette-xreplica-ready-only="autossh -f saatchi-console-01 -L 4913:$PALETTE_REPLICA_HOST:3306 -N && export MYSQL_PWD=$PALETTE_REPLICA_PASSWORD && mycli -h127.0.0.1 -P4913 -u$PALETTE_REPLICA_USERNAME -D$PALETTE_REPLICA_DB --prompt 'palette[PRODUCTION:READ-ONLY]> ' --auto-vertical-output --warn"
 
 # do we have a xsaatchi version of this?
-alias saatchi-mycli-legacy-xprod-greensql="ssh -f saatchi-console-01 -L 8948:$SAATCHI_GREENSQL_HOST:3306 -N && export MYSQL_PWD=$SAATCHI_GREENSQL_PASSWORD && mycli -h127.0.0.1 -P8948 -u$SAATCHI_GREENSQL_USERNAME -D$SAATCHI_GREENSQL_DB --prompt 'Saatchi[GREENSQL]> ' --auto-vertical-output --warn"
+alias saatchi-mycli-legacy-xprod-greensql="autossh -f saatchi-console-01 -L 8948:$SAATCHI_GREENSQL_HOST:3306 -N && export MYSQL_PWD=$SAATCHI_GREENSQL_PASSWORD && mycli -h127.0.0.1 -P8948 -u$SAATCHI_GREENSQL_USERNAME -D$SAATCHI_GREENSQL_DB --prompt 'Saatchi[GREENSQL]> ' --auto-vertical-output --warn"
 #}}}
 #}}}
 
@@ -662,9 +701,9 @@ function saatchi-docker-mysql () { if [[ $# > 0 ]]; then; dme && docker exec -t 
 
 # run saatchi legacy scripts (commands) {{{
 function saatchi-command-legacy-local() {if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-command-legacy-local art/my-script --my-arg=1"; return; fi; saatchi-docker-legacy-fpm php -dxdebug.remote_autostart=1 -dxdebug.remote_connect_back=1 -dxdebug.idekey=${XDEBUG_IDE_KEY} -dxdebug.remote_port=9000 -ddisplay_errors=on /data/code_base/current/scripts/$1.php local -v ${@:2}; }
-function saatchi-command-legacy-xdev() {if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-command-legacy-xdev art/my-script --my-arg=1"; return; fi; ssh -t saatchi-xdev-legacy-services-01 "php -ddisplay_errors=on /data/code_base/current/scripts/$1.php development -v ${@:2}"; }
-function saatchi-command-legacy-xqa() {if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-command-legacy-xqa art/my-script --my-arg=1"; return; fi; ssh -t saatchi-xqa-legacy-services-01 "php -ddisplay_errors=on /data/code_base/current/scripts/$1.php qa -v ${@:2}"; }
-function saatchi-command-legacy-xprod() {if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-command-legacy-xprod art/my-script --my-arg=1"; return; fi; ssh -t saatchi-xprod-legacy-services-02 "php -ddisplay_errors=on /data/code_base/current/scripts/$1.php production -v ${@:2}"; }
+function saatchi-command-legacy-xdev() {if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-command-legacy-xdev art/my-script --my-arg=1"; return; fi; autossh -t saatchi-xdev-legacy-services-01 "php -ddisplay_errors=on /data/code_base/current/scripts/$1.php development -v ${@:2}"; }
+function saatchi-command-legacy-xqa() {if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-command-legacy-xqa art/my-script --my-arg=1"; return; fi; autossh -t saatchi-xqa-legacy-services-01 "php -ddisplay_errors=on /data/code_base/current/scripts/$1.php qa -v ${@:2}"; }
+function saatchi-command-legacy-xprod() {if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-command-legacy-xprod art/my-script --my-arg=1"; return; fi; autossh -t saatchi-xprod-legacy-services-02 "php -ddisplay_errors=on /data/code_base/current/scripts/$1.php production -v ${@:2}"; }
 # }}}
 
 # saatchi docker attach to log output {{{
@@ -932,7 +971,7 @@ saatchi-add-artwork-to-collection-xprod () { saatchi-add-artwork-to-collection-i
 #
 saatchi-matchback () {
     if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-matchback --date-from=2017-01-20 --date-to=2017-02-01 --only-country=USA --with-category"; return; fi;
-    ssh mike.funk@saatchi-xprod-legacy-services-02 -t "cd local-scripts && ( [ -f output.csv ] && rm output.csv ); ./bin/app order-items-to-csv $@" && \
+    autossh mike.funk@saatchi-xprod-legacy-services-02 -t "cd local-scripts && ( [ -f output.csv ] && rm output.csv ); ./bin/app order-items-to-csv $@" && \
         scp mike.funk@saatchi-xprod-legacy-services-02:local-scripts/output.csv $HOME/output.csv && \
         wc -l $HOME/output.csv && \
         open $HOME && \
@@ -1457,9 +1496,9 @@ function saatchi-algolia-export-artwork-xprod () {
 
 # saatchi-pm2-monit {{{
 # get a cool dashboard to monitor the pm2 process and the child node processes. Leaks memory - be sure to close when done.
-alias saatchi-pm2-monit-xdev="ssh -t saatchi-xdev-easel-01 /usr/local/node/node-default/bin/pm2 monit"
-alias saatchi-pm2-monit-xqa="ssh -t saatchi-xqa-easel-01 /usr/local/node/node-default/bin/pm2 monit"
-alias saatchi-pm2-monit-xprod="ssh -t saatchi-xprod-easel-01 /usr/local/node/node-default/bin/pm2 monit"
+alias saatchi-pm2-monit-xdev="autossh -t saatchi-xdev-easel-01 /usr/local/node/node-default/bin/pm2 monit"
+alias saatchi-pm2-monit-xqa="autossh -t saatchi-xqa-easel-01 /usr/local/node/node-default/bin/pm2 monit"
+alias saatchi-pm2-monit-xprod="autossh -t saatchi-xprod-easel-01 /usr/local/node/node-default/bin/pm2 monit"
 # }}}
 
 # saatchi-haproxy-config {{{
