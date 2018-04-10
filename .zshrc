@@ -73,10 +73,18 @@ manpath=(
 path=(
   # $HOME/.rvm/bin
   $HOME/.bin
-  ${PHPENV_ROOT}/bin
-  ${PHPENV_ROOT}/shims
+  $HOME/.phpenv/bin
+  $HOME/.phpenv/shims
+  $HOME/.rbenv/bin
+  $HOME/.rbenv/shims
+  $HOME/.plenv/bin
+  $HOME/.plenv/shims
+  $HOME/.nodenv/bin
+  $HOME/.nodenv/shims
   $HOME/.composer/vendor/bin
+  $(gem env home)
   $(brew --prefix)/{bin,sbin}
+  $(yarn global bin)
   $ZPLUG_ROOT/bin
   /usr/{bin,sbin}
   /{bin,sbin}
@@ -94,12 +102,9 @@ path=(
 [ -f /usr/local/etc/openssl/cert.pem ] && export SSL_CERT_FILE=/usr/local/etc/openssl/cert.pem
 [ -d "$HOME/.zsh/completion" ] && find "$HOME/.zsh/completion" | while read f; do source "$f"; done
 [[ "$(builtin type -p plenv)" ]] && eval "$(plenv init -)"
-# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 [[ "$(builtin type -p rbenv)" ]] && eval "$(rbenv init -)"
-# source $(brew --prefix php-version)/php-version.sh && php-version 7.0
-
-export PHPENV_ROOT="/Users/mikefunk/.phpenv"
-[[ "$(builtin type -p phpenv)" ]] && eval "$($PHPENV_ROOT/bin/phpenv init -)"
+[[ "$(builtin type -p nodenv)" ]] && eval "$(nodenv init -)"
+[[ -f "$HOME/.phpenv/bin/phpenv" ]] && eval "$($HOME/.phpenv/bin/phpenv init -)"
 
 # disable autossh port monitoring and use ServerAliveInterval and
 # ServerAliveCountMax instead.

@@ -63,6 +63,7 @@ brew "mysql"
 # brew "nano" # text editor. This gets the latest version: 2.2.6 rather than 2.2.0 that comes with osx.
 brew "neovim" # vim re-imagining
 brew "node" # nodejs and npm
+brew "nodenv" # node version manager
 brew "noti" # simple terminal notifier
 # brew "openssl@1.1" # not sure if this is still needed...
 brew "pandoc" # used for inline vim php documentation
