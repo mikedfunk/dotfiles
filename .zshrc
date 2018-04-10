@@ -74,7 +74,7 @@ path=(
   $HOME/.bin
   # $HOME/.{php,rb,pl,nod,py}env/{bin,shims}
   $HOME/.phpenv/pear/bin
-  $(composer config home --global)/$(composer config bin-dir --global)
+  $HOME/.composer/vendor/bin
   $(gem env home)
   $(brew --prefix)/{bin,sbin}
   $HOME/.local/bin
@@ -104,8 +104,6 @@ path=(
 # ServerAliveCountMax instead.
 # https://www.everythingcli.org/ssh-tunnelling-for-fun-and-profit-autossh/
 export AUTOSSH_PORT=0
-
-export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡 '
 # }}}
 
 # gpg {{{
@@ -127,6 +125,7 @@ alias home="tmux attach -t Home || tmuxomatic ~/.tmuxomatic/Home"
 alias rmf='rm -rf'
 mkcd () { mkdir $1 && cd $1; }
 alias src="source ~/.zshrc"
+alias jobs="jobs -l"
 alias k="k --no-vcs"
 alias pso="ps -o pid,command"
 alias add-keys="ssh-add -K ~/.ssh/keys/githubkey ~/.ssh/keys/bitbucketkey ~/.ssh/keys/saatchiartkey"
@@ -149,6 +148,23 @@ export NODE_PATH="/usr/local/lib/node_modules" # zombie.js doesn't work without 
 [[ "$(builtin type -p direnv)" ]] && eval "$(direnv hook zsh)" # allow .envrc on each prompt start
 ssh-add -A 2>/dev/null # add all keys stored in keychain if they haven't been added yet
 compdef autossh="ssh"
+# }}}
+
+# suffix aliases {{{
+alias -s php=vim
+alias -s js=vim
+alias -s css=vim
+alias -s scss=vim
+alias -s jsx=vim
+alias -s yml=vim
+alias -s yaml=vim
+alias -s json=vim
+alias -s txt=vim
+alias -s md=vim
+alias -s markdown=vim
+alias -s phtml=vim
+alias -s html=vim
+alias -s rb=vim
 # }}}
 
 # brew {{{
@@ -284,4 +300,20 @@ function pux() {
 
 # zsh options {{{
 setopt auto_cd # if a command is a directory cd to it
+setopt auto_pushd # Make cd push the old directory onto the directory stack.
+# setopt extended_history # Save time stamp
+# setopt hist_expand # Expand history
+# setopt long_list_jobs # Better jobs
+# setopt magic_equal_subst # Enable completion in "--option=arg"
+# setopt rm_star_wait # wait 10 seconds before running rm *
+zstyle ':completion:*' use-cache true
+zstyle ':completion:*:default' menu select
+zstyle ':completion:*' list-colors 'di=;34;1' # highlight selected item
+# Share zsh histories {{{
+HISTFILE=$HOME/.zsh-history
+HISTSIZE=10000
+SAVEHIST=50000
+setopt inc_append_history
+setopt share_history
+# }}}
 # }}}
