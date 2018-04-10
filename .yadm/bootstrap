@@ -188,10 +188,8 @@ else
     git pull
     cd -
 fi
-# TODO not working in here because we're in bash, not zsh, so we can't source the init. hmmm... :/
-# log_info "Installing/upgrading zplug plugins"
-# zplug install && \
-#     zplug update
+log_info "Installing/upgrading zplug plugins"
+$HOME/.support/install-update-zplug.zsh
 # }}}
 
 # apply hosts file {{{
