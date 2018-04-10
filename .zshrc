@@ -72,18 +72,9 @@ manpath=(
 
 path=(
   $HOME/.bin
-  $HOME/.phpenv/bin
-  $HOME/.phpenv/shims
+  $HOME/.{phpenv,rbenv,plenv,nodenv,pyenv}/{bin,shims}
   $HOME/.phpenv/pear/bin
-  $HOME/.rbenv/bin
-  $HOME/.rbenv/shims
-  $HOME/.plenv/bin
-  $HOME/.plenv/shims
-  $HOME/.nodenv/bin
-  $HOME/.nodenv/shims
-  $HOME/.pyenv/bin
-  $HOME/.pyenv/shims
-  $HOME/.composer/vendor/bin
+  $(composer config home --global)/$(composer config bin-dir --global)
   $(gem env home)
   $(brew --prefix)/{bin,sbin}
   $HOME/.local/bin
@@ -223,6 +214,8 @@ KEYTIMEOUT=1 # no vim delay entering normal mode
 alias xdebug-on="xdebug-toggle on --no-server-restart"
 alias xdebug-off="xdebug-toggle off --no-server-restart"
 alias xdebug-status="xdebug-toggle"
+# usage: `xdb on` or `xdb off` or `xdb` for status
+xdb () { xdebug-toggle $1 --no-server-restart; }
 # }}}
 
 # docker {{{
@@ -279,13 +272,6 @@ function pux() {
     [[ $? == 0 ]] && noti --message "PHPUnit tests passed 👍" || noti --message "PHPUnit tests failed 👎"
     xdebug-on > /dev/null
 }
-# }}}
-# }}}
-
-# xdebug {{{
-
-# usage: `xdb on` or `xdb off` or `xdb` for status {{{
-xdb () { xdebug-toggle $1 --no-server-restart; }
 # }}}
 # }}}
 
