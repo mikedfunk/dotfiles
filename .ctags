@@ -17,7 +17,7 @@
 --languages=-html
 # }}}
 
-# additional excludes {{{
+# additional excludes (ignores) {{{
 --exclude=*.coffee
 --exclude=*.log
 --exclude=*.min.js

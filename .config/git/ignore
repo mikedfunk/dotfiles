@@ -21,42 +21,33 @@ Temporary Items
 .apdisk
 
 # custom stuff
-*.swp
-tags
-tags*
-TAGS
-.DS_Store
-.phpcomplete_extended
-.projections.json
-nbproject
-# composer.phar
-nbproject
-build
-# _ide_helper.php
-autocomplete
-/.exrc
-/.vimrc
-types_php.taghl
-Session.vim
-*.un~
-zf1_for_autocomplete
-.phpspec
-.idea
-.padawan
-cscope.out
-cscope.files
 # .agignore
-.ignore
-.pre-commit-config.yaml
-__LAST__
-.localscript_*
-.exrc
+# .ignore
+# _ide_helper.php
+# composer.phar
+*.swp
+*.un~
+.DS_Store
 .phing_targets
 .php_cs.cache
-
-# floobits
-.floo
-.flooignore
-
+.phpspec
+.pre-commit-config.yaml
+.projections.json
 .tern-project
 /.envrc
+/.exrc
+/.vimrc
+/.ignore
+Session.vim
+TAGS
+__LAST__
+autocomplete
+build
+cscope.files
+cscope.out
+nbproject
+nbproject
+tags
+tags*
+types_php.taghl
+zf1_for_autocomplete
