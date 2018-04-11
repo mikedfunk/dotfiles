@@ -2,9 +2,7 @@
 " my vim config
 
 " Use plugins config {{{
-if filereadable(expand("~/.support/.vimrc.plugins"))
-    source ~/.support/.vimrc.plugins
-endif
+if filereadable(expand("~/.support/.vimrc.plugins")) | source ~/.support/.vimrc.plugins | endif
 " }}}
 
 " Initialize directories {{{
@@ -57,7 +55,7 @@ set secure " Always append set secure when exrc option is enabled!
 set completeopt-=preview " turn off omnicomplete preview window
 set completeopt+=longest " only autofill the common text between all completion options
 set completeopt-=menu | set completeopt+=menuone " display completion even if there is one result. Useful for echodoc.
-" set ff=unix " Any non-unix line endings are converted to unix
+set ff=unix " Any non-unix line endings are converted to unix
 set nojoinspaces " Prevents inserting two spaces after punctuation on a join (J)
 set splitright " Puts new vsplit windows to the right of the current
 set splitbelow " Puts new split windows to the bottom of the current
@@ -91,6 +89,10 @@ if executable('ag')
     " command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw! " :Ag command that allows args
 endif
 set noswapfile " swap files are a pain in the ass. I have git.
+set nrformats= " make <C-a> and <C-x> play well with zero-padded numbers (i.e. don't consider them octal or hex)
+set shortmess+=I " hide the launch screen
+set gdefault " search/replace 'globally' (on a line) by default
+
 
 " let php_baselib = 1 " highlight php builtin functions
 " let g:php_folding = 1 " fold methods, control structures, etc.

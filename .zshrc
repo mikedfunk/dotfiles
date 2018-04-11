@@ -203,7 +203,8 @@ alias crd="composer require --dev"
 # git {{{
 alias g="git"
 compdef g="git"
-alias grt="cd `g root`" # I can't do this as a git alias
+function grt () { cd `g root`; }
+alias cdg="grt"
 alias git-standup="$HOME/.config/yarn/global/node_modules/.bin/git-standup" # use this instead of the one in brew git-extras
 # alias standup="tig --since='2 days ago' --author='Mike Funk' --no-merges"
 alias t="tig"
@@ -263,6 +264,25 @@ alias dcu="dme && docker-compose up"
 alias dcb="dme && docker-compose build"
 alias dcd="dme && docker-compose stop"
 alias dcp="dme && docker-compose ps"
+
+# https://github.com/moby/moby/issues/9098#issuecomment-189743947
+# kill docker exec processes on ctrl-c
+# it's not perfect but it does stop the process
+function _docker_cleanup {
+    docker exec $IMAGE bash -c "if [ -f $PIDFILE ]; then kill -TERM -\$(cat $PIDFILE); rm $PIDFILE; fi"
+}
+
+function _docker_exec {
+    IMAGE=$1
+    PIDFILE=/tmp/docker-exec-$$
+    shift
+    trap 'kill $PID; _docker_cleanup $IMAGE $PIDFILE' TERM INT
+    docker exec $IMAGE bash -c "echo \"\$\$\" > $PIDFILE; exec $*" &
+    PID=$!
+    wait $PID
+    trap - TERM INT
+    wait $PID
+}
 
 function saatchi-mount-dir() {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-mount-dir {/path/to/dir}"; return; fi;

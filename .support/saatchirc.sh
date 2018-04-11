@@ -702,6 +702,12 @@ function saatchi-docker-imgproc-redis () { if [[ $# > 0 ]]; then; dme && docker 
 function saatchi-docker-mysql () { if [[ $# > 0 ]]; then; dme && docker exec -t xsaatchi_mysql_instance "$@"; return; fi; dme && docker exec -ti xsaatchi_mysql_instance env TERM=xterm sh -il; }
 # }}}
 
+# saatchi docker command shortcuts {{{
+function sde () { dme && _docker_exec $SAATCHI_DOCKER_CONTAINER $@; }
+function sdv () { dme && _docker_exec $SAATCHI_DOCKER_CONTAINER vendor/bin/$@; }
+function sda () { dme && _docker_exec $SAATCHI_DOCKER_CONTAINER php artisan $@; }
+# }}}
+
 # run saatchi legacy scripts (commands) {{{
 function saatchi-command-legacy-local() {if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-command-legacy-local art/my-script --my-arg=1"; return; fi; saatchi-docker-legacy-fpm php -dxdebug.remote_autostart=1 -dxdebug.remote_connect_back=1 -dxdebug.idekey=${XDEBUG_IDE_KEY} -dxdebug.remote_port=9000 -ddisplay_errors=on /data/code_base/current/scripts/$1.php local -v ${@:2}; }
 function saatchi-command-legacy-xdev() {if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-command-legacy-xdev art/my-script --my-arg=1"; return; fi; autossh -t saatchi-xdev-legacy-services-01 "php -ddisplay_errors=on /data/code_base/current/scripts/$1.php development -v ${@:2}"; }
