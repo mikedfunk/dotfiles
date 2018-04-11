@@ -38,6 +38,15 @@
 --exclude=node_modules
 --exclude=tests
 --exclude=yarn-error.log
+--exclude=*.phar
+# --exclude=vendor/**/installed.json
+# --exclude=vendor/**/composer.json
+
+# from files
+--exclude=@.git/info/exclude
+--exclude=@.ignore
+--exclude=@/Users/mikefunk/.config/git/ignore
+--exclude=@/Users/mikefunk/.ignore
 # }}}
 
 # php {{{
