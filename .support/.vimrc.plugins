@@ -21,7 +21,7 @@ endif
 " use these shortcuts for completion! https://github.com/mikedfunk/learning/blob/master/vim/completion.md
 Plug 'ajh17/VimCompletesMe' " simple tab omni completion
 " Plug 'maralla/completor.vim', { 'do': 'make js' } " vim 8 async autocomplete
-" if has("python") | Plug 'Valloric/YouCompleteMe', { 'do': './install.py' } | endif " huge autocomplete plugin
+" if has("python") || has("python3") | Plug 'Valloric/YouCompleteMe', { 'do': './install.py' } | endif " huge autocomplete plugin
 " Plug 'maxboisvert/vim-simple-complete' " simple autocomplete in 50 lines
 " Plug 'lifepillar/vim-mucomplete' " yet another completion plugin
 " Plug 'roxma/nvim-completion-manager' | Plug 'roxma/vim-hug-neovim-rpc' " completion plugin recommended on reddit https://www.reddit.com/r/vim/comments/6zgi34/what_are_the_differences_between_vimcompletesme/?utm_content=title&utm_medium=front&utm_source=reddit&utm_name=vim
@@ -55,8 +55,8 @@ Plug 'vim-scripts/BufOnly.vim', { 'on': ['BufOnly', 'Bufonly'] } " close all buf
 Plug 'tpope/vim-commentary' " toggle comment with gcc. in my case I use <leader>c<space>
 " Plug 'junegunn/vim-easy-align' " align on = with ga=
 Plug 'tpope/vim-unimpaired' " lots of cool keyboard shortcuts
-" if has("python3") | Plug 'SirVer/ultisnips' | endif " dynamic snippet completion
-if has("python3") | Plug 'SirVer/ultisnips' | endif " dynamic snippet completion
+" if has("python") || has("python3") | Plug 'SirVer/ultisnips' | endif " dynamic snippet completion
+if has("python") || has("python3") | Plug 'SirVer/ultisnips' | endif " dynamic snippet completion
 " if has("python") | Plug 'robertbasic/snipbar' | endif " show available snips
 Plug 'jiangmiao/auto-pairs' " Auto insert closing brackets and parens
 Plug 'sickill/vim-pasta' " paste with context-sensitive indenting
@@ -82,8 +82,8 @@ Plug 'tpope/vim-endwise' " auto add end/endif for vimscript/ruby. no lazy load o
 " Html {{{
 Plug 'mattn/emmet-vim', { 'for': ['phtml', 'html', 'html.twig', 'twig', 'blade', 'xml'] } " html shorthand expander <c-y>, <c-y>n
 Plug 'docunext/closetag.vim', { 'for': ['html', 'xml', 'html.twig', 'blade', 'php', 'phtml'] } " auto close tags by typing </ . different from auto-pairs.
-" if has("python3") | Plug 'Valloric/MatchTagAlways' | endif " highlight matching tag
-if has("python3") | Plug 'Valloric/MatchTagAlways' | endif " highlight matching tag
+" if has("python") || has("python3") | Plug 'Valloric/MatchTagAlways' | endif " highlight matching tag
+if has("python") || has("python3") | Plug 'Valloric/MatchTagAlways' | endif " highlight matching tag
 " Plug 'Seb-C/better-indent-support-for-php-with-html' " fix god-awful phtml indentation
 " runtime macros/matchit.vim " jump to matching html tag
 " }}}
@@ -136,8 +136,8 @@ Plug 'auwsmit/vim-active-numbers' " Only show line numbers on active window. Hel
 " }}}
 
 " Php {{{
-if has("python3") | Plug 'vim-vdebug/vdebug' | endif " xdebug (dbgp) client. To load with other filetypes do :PlugStatus and L over vdebug.
-" Plug 'vim-vdebug/vdebug', { 'for': 'php', 'tag': 'v1.5.2' } " python2 compatible version
+" if has("python") || has("python3") | Plug 'vim-vdebug/vdebug' | endif " xdebug (dbgp) client. To load with other filetypes do :PlugStatus and L over vdebug. temporarily disabled due to UnicodeError and vim.error on breaking :/
+if has("python") | Plug 'vim-vdebug/vdebug', { 'for': 'php', 'tag': 'v1.5.2' } | endif " python2 compatible version
 Plug 'arnaud-lb/vim-php-namespace', { 'for': 'php' } " insert use statements
 Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' } " better php omnicomplete. This is included with vim8 but the package keeps it up-to-date.
 " Plug 'mkusher/padawan.vim', { 'for': 'php', 'do': 'command -v padawan >/dev/null 2>&1 && cgr update mkusher/padawan \|\| cgr mkusher/padawan' } " better php omnicomplete... but it doesn't complete at all for me

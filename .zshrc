@@ -10,6 +10,7 @@ source $HOME/.zplug/init.zsh
 # }}}
 
 # plugin definitions {{{
+zplug "yous/vanilli.sh" # sensible zsh defaults
 zplug "djui/alias-tips" # tell you when an alias would shorten the command you ran
 zplug "plugins/colored-man-pages", from:oh-my-zsh
 zplug "plugins/colorize", from:oh-my-zsh # Plugin for highlighting file content
@@ -144,10 +145,7 @@ alias y="yadm"
 compdef y="yadm"
 alias yb="yadm bootstrap"
 alias upgrades="yb"
-alias save-dotfiles="yadm add -u && yadm ci -m working && yadm pu"
-# TODO: figure out how to properly use pinentry to save password to keychain
-# https://github.com/TheLocehiliosan/yadm/issues/110
-alias save-privates="yadm encrypt && yadm add -u && yadm ci -m working && yadm pu"
+alias save-dotfiles="yadm encrypt && yadm add -u && yadm ci -m working && yadm pu"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # fuzzy finder - installed and managed via vim-plug
 export CLICOLOR=1 # ls colors by default
@@ -310,21 +308,6 @@ function pux() {
 # }}}
 
 # zsh options {{{
-setopt auto_cd # if a command is a directory cd to it
-setopt auto_pushd # Make cd push the old directory onto the directory stack.
-# setopt extended_history # Save time stamp
-# setopt hist_expand # Expand history
-# setopt long_list_jobs # Better jobs
-# setopt magic_equal_subst # Enable completion in "--option=arg"
-# setopt rm_star_wait # wait 10 seconds before running rm *
+# most basic options are now set up by vanilla zplug plugin
 zstyle ':completion:*' use-cache true
-zstyle ':completion:*:default' menu select
-zstyle ':completion:*' list-colors 'di=;34;1' # highlight selected item
-# Share zsh histories {{{
-HISTFILE=$HOME/.zsh-history
-HISTSIZE=10000
-SAVEHIST=50000
-setopt inc_append_history
-setopt share_history
-# }}}
 # }}}

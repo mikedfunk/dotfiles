@@ -38,8 +38,11 @@ alias saatchi-restart-imgproc-local="dme && cd $XDOCKER_DIR/apps/imgproc && dock
 # }}}
 
 # temporary commands to fix logs in docker containers {{{
-alias saatchi-fix-logs-legacy-fpm="saatchi-docker-legacy-fpm bash -c \"touch /data/temp/saatchi.log && chmod a+w /data/temp/saatchi.log\""
-alias saatchi-fix-logs-zed-fpm="saatchi-docker-zed-fpm bash -c \"mkdir -p /scratch/yzed/data/US/logs/ZED && touch /scratch/yzed/data/US/logs/ZED/exception.log && chmod -R a+w /scratch/yzed/data/US/logs\""
+alias saatchi-fix-logs-legacy-fpm="saatchi-docker-legacy-fpm bash -c \"touch /data/temp/saatchi.log && \
+    chmod a+w /data/temp/saatchi.log\""
+alias saatchi-fix-logs-zed-fpm="saatchi-docker-zed-fpm bash -c \"mkdir -p /scratch/yzed/data/US/logs/ZED && \
+    touch /scratch/yzed/data/US/logs/ZED/exception.log && \
+    chmod -R a+w /scratch/yzed/data/US/logs\""
 # }}}
 
 # saatchi tail commands {{{
@@ -1216,6 +1219,7 @@ function saatchi-memcached-clear-user-cache-xqa() {
 # }}}
 
 # saatchi deploy {{{
+# TODO switch to instana
 saatchi-deploy () {
     if [[ "$1" == "--help" ]]; then
         echo "Usage: saatchi-deploy {repo} {branch} {environment}"
