@@ -1,53 +1,22 @@
-# mac stuff
-.DS_Store
-.AppleDouble
-.LSOverride
-
-# Icon must end with two \r
-Icon
-
-# Thumbnails
-._*
-
-# Files that might appear on external disk
-.Spotlight-V100
-.Trashes
-
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
-
-# custom stuff
-# .agignore
-# .ignore
 # _ide_helper.php
 # composer.phar
 *.swp
 *.un~
+.DS_Store
 .DS_Store
 .phing_targets
 .php_cs.cache
 .phpspec
 .pre-commit-config.yaml
 .projections.json
-.tern-project
 /.envrc
 /.exrc
-/.vimrc
 /.ignore
+/.vimrc
 Session.vim
 TAGS
 __LAST__
-autocomplete
-build
 cscope.files
 cscope.out
-nbproject
-nbproject
 tags
 tags*
-types_php.taghl
-zf1_for_autocomplete
