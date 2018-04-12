@@ -66,7 +66,7 @@ set smartcase " Case sensitive when uc present
 set number " turn on line numbering
 set iskeyword-=. " '.' is an end of word designator
 set iskeyword-=- " '-' is an end of word designator
-set tags=./.git/tags,./tags " avoid searching for other tags files
+setglobal tags=./.git/tags,./tags " avoid searching for other tags files
 " set path=.,** " only search in git root
 set path=** " only search in git root
 " disabled due to this: Adding ** to 'path' is also a bad idea. Instead create a mapping that pre-fills :find **/, etc.

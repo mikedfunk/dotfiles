@@ -18,5 +18,6 @@ TAGS
 __LAST__
 cscope.files
 cscope.out
+*.tags
 tags
 tags*
