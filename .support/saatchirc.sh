@@ -534,15 +534,28 @@ alias saatchi-mycli-palette-xqa="autossh -f saatchi-console-01 -L $PALETTE_XQA_T
 #}}}
 
 # prod {{{
-alias saatchi-mycli-legacy-xprod="autossh -f saatchi-console-01 -L 5381:$SAATCHI_XPROD_HOST:$SAATCHI_XPROD_PORT -N && export MYSQL_PWD=$SAATCHI_XPROD_PASSWORD && mycli -h localhost -u $SAATCHI_XPROD_USERNAME -D $SAATCHI_XPROD_DB --port=5381 --prompt 'legacy[PRODUCTION]> ' --auto-vertical-output --warn"
-alias saatchi-mycli-legacy-xprod-read-only="autossh -f saatchi-console-01 -L 5381:$SAATCHI_REPLICA_HOST:$SAATCHI_REPLICA_PORT -N && export MYSQL_PWD=$SAATCHI_REPLICA_PASSWORD && mycli -h localhost -u $SAATCHI_REPLICA_USERNAME -D $SAATCHI_REPLICA_DB --port=5381 --prompt 'legacy[PRODUCTION:READ-ONLY]> ' --auto-vertical-output --warn"
-alias saatchi-mycli-zed-xprod="autossh -f saatchi-console-01 -L 6783:$ZED_XPROD_HOST:$ZED_XPROD_PORT -N && export MYSQL_PWD=$ZED_XPROD_PASSWORD && mycli -h localhost -u $ZED_XPROD_USERNAME -D $ZED_XPROD_DB --port=6783 --prompt 'zed[PRODUCTION]> ' --auto-vertical-output --warn"
-alias saatchi-mycli-zed-xprod-read-only="autossh -f saatchi-console-01 -L 7733:$ZED_REPLICA_HOST:$ZED_REPLICA_PORT -N && export MYSQL_PWD=$ZED_REPLICA_PASSWORD && mycli -h localhost -u $ZED_REPLICA_USERNAME -D $ZED_REPLICA_DB --port=7733 --prompt 'zed[PRODUCTION:READ-ONLY]> ' --auto-vertical-output --warn"
-alias saatchi-mycli-palette-xprod="autossh -f saatchi-console-01 -L 4913:$PALETTE_PROD_HOST:3306 -N && export MYSQL_PWD=$PALETTE_PROD_PASSWORD && mycli -h127.0.0.1 -P4913 -u$PALETTE_PROD_USERNAME -D$PALETTE_PROD_DB --prompt 'palette[PRODUCTION]> ' --auto-vertical-output --warn"
-alias saatchi-mycli-palette-xreplica-ready-only="autossh -f saatchi-console-01 -L 4913:$PALETTE_REPLICA_HOST:3306 -N && export MYSQL_PWD=$PALETTE_REPLICA_PASSWORD && mycli -h127.0.0.1 -P4913 -u$PALETTE_REPLICA_USERNAME -D$PALETTE_REPLICA_DB --prompt 'palette[PRODUCTION:READ-ONLY]> ' --auto-vertical-output --warn"
+alias saatchi-mycli-legacy-xprod="autossh -f saatchi-console-01 -L 5381:$SAATCHI_XPROD_HOST:$SAATCHI_XPROD_PORT -N && \
+    export MYSQL_PWD=$SAATCHI_XPROD_PASSWORD && \
+    mycli -h localhost -u $SAATCHI_XPROD_USERNAME -D $SAATCHI_XPROD_DB --port=5381 --prompt 'legacy[PRODUCTION]> ' --auto-vertical-output --warn"
+alias saatchi-mycli-legacy-xprod-read-only="autossh -f saatchi-console-01 -L 5381:$SAATCHI_REPLICA_HOST:$SAATCHI_REPLICA_PORT -N && \
+    export MYSQL_PWD=$SAATCHI_REPLICA_PASSWORD && \
+    mycli -h localhost -u $SAATCHI_REPLICA_USERNAME -D $SAATCHI_REPLICA_DB --port=5381 --prompt 'legacy[PRODUCTION:READ-ONLY]> ' --auto-vertical-output --warn"
+alias saatchi-mycli-zed-xprod="autossh -f saatchi-console-01 -L 6783:$ZED_XPROD_HOST:$ZED_XPROD_PORT -N && \
+    export MYSQL_PWD=$ZED_XPROD_PASSWORD && mycli -h localhost -u $ZED_XPROD_USERNAME -D $ZED_XPROD_DB --port=6783 --prompt 'zed[PRODUCTION]> ' --auto-vertical-output --warn"
+alias saatchi-mycli-zed-xprod-read-only="autossh -f saatchi-console-01 -L 7733:$ZED_REPLICA_HOST:$ZED_REPLICA_PORT -N && \
+    export MYSQL_PWD=$ZED_REPLICA_PASSWORD && \
+    mycli -h localhost -u $ZED_REPLICA_USERNAME -D $ZED_REPLICA_DB --port=7733 --prompt 'zed[PRODUCTION:READ-ONLY]> ' --auto-vertical-output --warn"
+alias saatchi-mycli-palette-xprod="autossh -f saatchi-console-01 -L 4913:$PALETTE_PROD_HOST:3306 -N && \
+    export MYSQL_PWD=$PALETTE_PROD_PASSWORD && \
+    mycli -h127.0.0.1 -P4913 -u$PALETTE_PROD_USERNAME -D$PALETTE_PROD_DB --prompt 'palette[PRODUCTION]> ' --auto-vertical-output --warn"
+alias saatchi-mycli-palette-xreplica-ready-only="autossh -f saatchi-console-01 -L 4913:$PALETTE_REPLICA_HOST:3306 -N && \
+    export MYSQL_PWD=$PALETTE_REPLICA_PASSWORD && \
+    mycli -h127.0.0.1 -P4913 -u$PALETTE_REPLICA_USERNAME -D$PALETTE_REPLICA_DB --prompt 'palette[PRODUCTION:READ-ONLY]> ' --auto-vertical-output --warn"
 
 # do we have a xsaatchi version of this?
-alias saatchi-mycli-legacy-xprod-greensql="autossh -f saatchi-console-01 -L 8948:$SAATCHI_GREENSQL_HOST:3306 -N && export MYSQL_PWD=$SAATCHI_GREENSQL_PASSWORD && mycli -h127.0.0.1 -P8948 -u$SAATCHI_GREENSQL_USERNAME -D$SAATCHI_GREENSQL_DB --prompt 'Saatchi[GREENSQL]> ' --auto-vertical-output --warn"
+alias saatchi-mycli-legacy-xprod-greensql="autossh -f saatchi-console-01 -L 8948:$SAATCHI_GREENSQL_HOST:3306 -N && \
+    export MYSQL_PWD=$SAATCHI_GREENSQL_PASSWORD && \
+    mycli -h127.0.0.1 -P8948 -u$SAATCHI_GREENSQL_USERNAME -D$SAATCHI_GREENSQL_DB --prompt 'Saatchi[GREENSQL]> ' --auto-vertical-output --warn"
 #}}}
 #}}}
 
