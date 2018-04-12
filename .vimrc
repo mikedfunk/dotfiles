@@ -468,6 +468,20 @@ nnoremap <leader>so :Source<cr>
 " fix syntax highlighting when it goes away
 command! FixSyntax :filetype detect
 
+" fix issue with netrw {{{
+" https://github.com/tpope/vim-vinegar/issues/13#issuecomment-315584214
+augroup netrw_buf_hidden_fix
+autocmd!
+
+" Set all non-netrw buffers to bufhidden=hide
+autocmd BufWinEnter *
+            \  if &ft != 'netrw'
+            \|     set bufhidden=hide
+            \| endif
+
+augroup end
+" }}}
+
 " delete inactive buffers (the ones not in tabs or windows) {{{
 " @link http://stackoverflow.com/a/7321131/557215
 function! DeleteInactiveBufs()
