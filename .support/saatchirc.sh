@@ -1535,3 +1535,25 @@ alias saatchi-haproxy-config-xprod="ssh saatchi-xprod-lb-01 -t vim -M /etc/hapro
 saatchi-standup () { wd legacy && git standup $@ && builtin cd - > /dev/null; }
 alias saatchi-standup-monday="standup -d 3"
 # }}}
+
+# zed update propel {{{
+# see notes on propel.
+
+# check to see if the current schema is different than the one that would be
+# with all migrations run
+function saatchi-zed-migrations-diff () {
+    noglob http GET zed.local.saatchiart.com/setup/cronjob/propel-command/command/diff?verbose=true --check-status
+}
+
+# run any necessary migrations
+function saatchi-zed-migrations-run () {
+    noglob http GET zed.local.saatchiart.com/setup/cronjob/propel-command/command/migrate?verbose=true --check-status
+}
+
+# this generates propel files when you edit the schema like this:
+# project/Zed/application/components/Sao/Fulfillment/sao_fulfillment.schema.xml
+function saatchi-zed-migrations-create () {
+    saatchi-docker-zed-fpm ./propel-gen.sh
+}
+
+# }}}
