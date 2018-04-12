@@ -12,7 +12,7 @@ use Prophecy\Argument;
 /**
  * Specification unit test for %subject%.
  *
- * @see %subject%
+ * @see \%subject%
  *
  * @author Michael Funk <mike.funk@leafgroup.com>
  */

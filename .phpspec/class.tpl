@@ -7,9 +7,9 @@
 namespace %namespace%;
 
 /**
- * Defines %namespace%\%name%.
+ * Defines \%namespace%\%name%.
  *
- * @see spec\%namespace%\%name%Spec
+ * @see \spec\%namespace%\%name%Spec
  *
  * @author Michael Funk <mike.funk@leafgroup.com>
  */
