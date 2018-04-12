@@ -131,6 +131,7 @@ DEPENDENCIES
   rainbow
   redcarpet
   ripper-tags
+  rouge
   rubocop
   scss-lint
 

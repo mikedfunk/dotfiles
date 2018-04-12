@@ -157,8 +157,10 @@ fi
 # TODO: switch from rvm to rbenv
 # Installs from ~/Gemfile
 log_info "Installing/upgrading ruby gems"
+gem install bundler
 cd $HOME
-bundle install --system
+bundle install --system --binstubs
+bundle clean --force
 cd -
 # }}}
 

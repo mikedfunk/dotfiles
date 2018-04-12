@@ -672,9 +672,9 @@ function saatchi-releases-xprod () {
 
 # saatchi crontab {{{
 # alias saatchi-cron-legacy-services-01="ssh saatchi-xprod-legacy-services-01 -t 'sudo -u www-data crontab -l'" # not needed currently
-alias saatchi-cron-legacy-services-xqa="ssh appdeploy@saatchi-xqa-legacy-services-01 'sudo -u www-data crontab -l' | pygmentize -l ini | less -r"
-alias saatchi-cron-legacy-services-xdev="ssh appdeploy@saatchi-xdev-legacy-services-01 'sudo -u www-data crontab -l' | pygmentize -l ini | less -r"
-alias saatchi-cron-legacy-services-xprod="ssh appdeploy@saatchi-xprod-legacy-services-02 'sudo -u www-data crontab -l' | pygmentize -l ini | less -r"
+alias saatchi-cron-legacy-services-xqa="ssh appdeploy@saatchi-xqa-legacy-services-01 'sudo -u www-data crontab -l' | rougify -l ini | less -r"
+alias saatchi-cron-legacy-services-xdev="ssh appdeploy@saatchi-xdev-legacy-services-01 'sudo -u www-data crontab -l' | rougify -l ini | less -r"
+alias saatchi-cron-legacy-services-xprod="ssh appdeploy@saatchi-xprod-legacy-services-02 'sudo -u www-data crontab -l' | rougify -l ini | less -r"
 # alias saatchi-cron-legacy-services-02="ssh appdeploy@saatchi-xprod-legacy-services-02 -t 'sudo -u www-data VISUAL=vim crontab -e'" # this one edits
 # }}}
 
@@ -786,7 +786,7 @@ tmp_file="/tmp/tmp.json"
 #
 _saatchi-couchbase-get-local () {
     if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-local-get {bucket} {my_key}"; return; fi;
-    cbc cat "$2" -U "$SAATCHI_LOCAL_COUCHBASE/$1" | python -m json.tool | pygmentize -l javascript | less -R;
+    cbc cat "$2" -U "$SAATCHI_LOCAL_COUCHBASE/$1" | python -m json.tool | rougify -l javascript -t tulip | less -R;
 }
 saatchi-couchbase-get-art-local () { _saatchi-couchbase-get-local art $@; }
 saatchi-couchbase-get-catalog-local () { _saatchi-couchbase-get-local catalog $@; }
@@ -805,7 +805,7 @@ _saatchi-couchbase-get () {
 
     SSH_COMMAND="php -r \"\\\$result = (new CouchbaseCluster('$COUCHBASE_SERVER'))->openBucket('$BUCKET')->get('$KEY')->value; echo is_string(\\\$result) ? \\\$result : json_encode(\\\$result, JSON_PRETTY_PRINT);\""
     RESULT=$(ssh $SERVICES "$SSH_COMMAND")
-    echo "$RESULT" | python -m json.tool | pygmentize -l javascript | less -R
+    echo "$RESULT" | python -m json.tool | rougify -l javascript | less -R
 }
 saatchi-couchbase-get-catalog-xdev () { if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-get-catalog-xdev {key}"; return; fi; _saatchi-couchbase-get "catalog" "$1" "$SAATCHI_XDEV_COUCHBASE_SERVER" "xdev" "saatchi-xdev-legacy-services-01"; }
 saatchi-couchbase-get-catalog-xqa () { if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-get-catalog-xqa {key}"; return; fi; _saatchi-couchbase-get "catalog" "$1" "$SAATCHI_XQA_COUCHBASE_SERVER" "xdev" "saatchi-xqa-legacy-services-01"; }

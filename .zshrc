@@ -74,7 +74,10 @@ manpath=(
 )
 
 path=(
+  # my own scripts
   $HOME/.bin
+  # ruby gems
+  $HOME/bin
   # $HOME/.{php,rb,pl,nod,py}env/{bin,shims}
   $HOME/.phpenv/pear/bin
   $HOME/.composer/vendor/bin

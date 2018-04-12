@@ -5,6 +5,7 @@ gem 'bundler' # lets gems be package-specific. Used by jekyll.
 gem 'coderay' # used by https://github.com/junegunn/fzf.vim customization to add syntax highlighting to preview in :Ag
 # gem "CoffeeTags" # ctags with coffeescript
 gem 'compass' # ruby tool to compile sass. Used by foundation cli tool.
+# gem 'did_you_mean' # is this used anywhere? typo detector for scripts.
 # gem "execjs"
 # gem "git-gitlab" # command line tool to create merge requests and stuff
 # gem "foundation" # zurb foundation css framework installer
@@ -19,11 +20,13 @@ gem 'jekyll' # blogging platform used by github
 # gem "pre-commit" # install pre-commit hooks to check for all kinds of things DISABLED in favor of yelp pre-commit
 # gem "pre-commit-php"
 # gem "puppet" # virtual machine provisioning language
-gem 'pygmentize' # used by jekyll and vim-instant-markdown
+# gem 'pygmentize' # used by jekyll and vim-instant-markdown
 gem 'pygments.rb' # syntax highlighting - used by jekyll
+# gem 'rake' # do I need this as a gem??
 gem 'rainbow' # needed by scss-lint
 gem 'redcarpet' # used by jekyll to convert markdown to html. also used by vim-instant-markdown
 gem 'ripper-tags' # ctags for ruby
+gem 'rouge' # syntax higlighter (rougify in bin) themes: http://www.rubydoc.info/gems/rouge/frames
 gem 'rubocop' # ruby syntax checker. works with vim syntastic
 # gem "rdiscount" # another markdown option for jekyll.
 gem 'scss-lint' # for syntastic / vim-ale
