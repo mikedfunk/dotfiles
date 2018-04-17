@@ -314,11 +314,29 @@ alias saatchi-tail-gallery-xprod="multitail -CS gallery \
 -L 'autossh -t appdeploy@saatchi-xprod-gallery-02 \"tail -n500 -f /data/gallery/current/storage/logs/laravel.log\"' \
 -ts -M 3000"
 
-# needs www-data to access nginx logs. Even appdeploy doesn't have aaccess to those.
-alias saatchi-tail-gallery-nginx-xprod="multitail -CS gallery \
--l 'autossh -t appdeploy@saatchi-xprod-gallery-01 \"sudo -u www-data tail -n500 -f /var/log/nginx/error.log /var/log/nginx/www.error.log /var/log/nginx/error.log /var/log/nginx/error.log\"' \
--L 'autossh -t appdeploy@saatchi-xprod-gallery-02 \"sudo -u www-data tail -n500 -f /var/log/nginx/error.log /var/log/nginx/www.error.log /var/log/nginx/error.log /var/log/nginx/error.log\"' \
+# needs www-data to access nginx logs. Even appdeploy doesn't have access to those.
+alias saatchi-tail-gallery-nginx-xprod="multitail -CS gallery-nginx \
+-Ev \"heartbeat\" \
+-Ev \"Instana Agent\" \
+-l 'autossh -t appdeploy@saatchi-xprod-gallery-01 \"sudo -u www-data tail -n500 -f \
+/var/log/nginx/error.log \
+/var/log/nginx/access.log \
+/var/log/nginx/www.error.log \
+/var/log/nginx/www.access.log \
+/var/log/nginx/limited.error.log \
+/var/log/nginx/limited.access.log \
+\"' \
+-L 'autossh -t appdeploy@saatchi-xprod-gallery-02 \"sudo -u www-data tail -n500 -f \
+/var/log/nginx/error.log \
+/var/log/nginx/access.log \
+/var/log/nginx/www.error.log \
+/var/log/nginx/www.access.log \
+/var/log/nginx/limited.error.log \
+/var/log/nginx/limited.access.log \
+\"' \
 -ts -M 3000"
+
+alias saatchi-tail-easel-nginx-xprod="saatchi-tail-gallery-nginx-xprod"
 
 alias saatchi-tail-easel-xprod="multitail -CS easel \
 -l 'autossh -t appdeploy@saatchi-xprod-gallery-01 \"/usr/local/node/node-default/bin/pm2 logs --timestamp --lines=500\"' \
@@ -345,8 +363,8 @@ alias saatchi-tail-palette-nginx-xprod="multitail -CS palette \
 
 # FIREHOSE! Note: needs sudo to access log, but sudo prevents process from being stopped automatically. Be sure to stop process afterward!
 alias saatchi-tail-lb-xprod="multitail -CS lb \
--l 'autossh -t appdeploy@saatchi-xprod-lb-01 sudo tail -n500 -f /var/log/haproxy.log' \
--L 'autossh -t appdeploy@saatchi-xprod-lb-02 sudo tail -n500 -f /var/log/haproxy.log' \
+-l 'ssh -t appdeploy@saatchi-xprod-lb-01 sudo tail -n500 -f /var/log/haproxy.log' \
+-L 'ssh -t appdeploy@saatchi-xprod-lb-02 sudo tail -n500 -f /var/log/haproxy.log' \
 -ts -M 3000"
 
 # no access to apache logs
@@ -639,7 +657,8 @@ function saatchi-releases-xdev () {
     out+="Zed: $(saatchi-release-zed-xdev)\n"
     out+="Catalog: $(saatchi-release-catalog-xdev)\n"
     out+="Api: $(saatchi-release-api-xdev)\n"
-    out+="Imgproc: $(saatchi-release-imgproc-xdev)\n"
+    # out+="Imgproc: $(saatchi-release-imgproc-xdev)\n" # temporarily down
+    [[ $1 == '--clear' ]] && clear && echo "XDEV"
     echo $out | column -t -s' '
 }
 
@@ -653,6 +672,7 @@ function saatchi-releases-xqa () {
     out+="Catalog: $(saatchi-release-catalog-xqa)\n"
     out+="Api: $(saatchi-release-api-xqa)\n"
     out+="Imgproc: $(saatchi-release-imgproc-xqa)\n"
+    [[ $1 == '--clear' ]] && clear && echo "XQA"
     echo $out | column -t -s' '
 }
 
@@ -666,15 +686,16 @@ function saatchi-releases-xprod () {
     out+="Catalog: $(saatchi-release-catalog-xprod)\n"
     out+="Api: $(saatchi-release-api-xprod)\n"
     out+="Imgproc: $(saatchi-release-imgproc-xprod)\n"
+    [[ $1 == '--clear' ]] && clear && echo "XPROD"
     echo $out | column -t -s' '
 }
 # }}}
 
 # saatchi crontab {{{
 # alias saatchi-cron-legacy-services-01="ssh saatchi-xprod-legacy-services-01 -t 'sudo -u www-data crontab -l'" # not needed currently
-alias saatchi-cron-legacy-services-xqa="ssh appdeploy@saatchi-xqa-legacy-services-01 'sudo -u www-data crontab -l' | rougify -l ini | less -r"
-alias saatchi-cron-legacy-services-xdev="ssh appdeploy@saatchi-xdev-legacy-services-01 'sudo -u www-data crontab -l' | rougify -l ini | less -r"
-alias saatchi-cron-legacy-services-xprod="ssh appdeploy@saatchi-xprod-legacy-services-02 'sudo -u www-data crontab -l' | rougify -l ini | less -r"
+alias saatchi-cron-legacy-services-xqa="ssh appdeploy@saatchi-xqa-legacy-services-01 'sudo -u www-data crontab -l' | rougify -l shell | less -r"
+alias saatchi-cron-legacy-services-xdev="ssh appdeploy@saatchi-xdev-legacy-services-01 'sudo -u www-data crontab -l' | rougify -l shell | less -r"
+alias saatchi-cron-legacy-services-xprod="ssh appdeploy@saatchi-xprod-legacy-services-02 'sudo -u www-data crontab -l' | rougify -l shell | less -r"
 # alias saatchi-cron-legacy-services-02="ssh appdeploy@saatchi-xprod-legacy-services-02 -t 'sudo -u www-data VISUAL=vim crontab -e'" # this one edits
 # }}}
 
@@ -722,10 +743,46 @@ function sda () { dme && _docker_exec $SAATCHI_DOCKER_CONTAINER php artisan $@; 
 # }}}
 
 # run saatchi legacy scripts (commands) {{{
-function saatchi-command-legacy-local() {if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-command-legacy-local art/my-script --my-arg=1"; return; fi; saatchi-docker-legacy-fpm php -dxdebug.remote_autostart=1 -dxdebug.remote_connect_back=1 -dxdebug.idekey=${XDEBUG_IDE_KEY} -dxdebug.remote_port=9000 -ddisplay_errors=on /data/code_base/current/scripts/$1.php local -v ${@:2}; }
-function saatchi-command-legacy-xdev() {if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-command-legacy-xdev art/my-script --my-arg=1"; return; fi; autossh -t saatchi-xdev-legacy-services-01 "php -ddisplay_errors=on /data/code_base/current/scripts/$1.php development -v ${@:2}"; }
-function saatchi-command-legacy-xqa() {if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-command-legacy-xqa art/my-script --my-arg=1"; return; fi; autossh -t saatchi-xqa-legacy-services-01 "php -ddisplay_errors=on /data/code_base/current/scripts/$1.php qa -v ${@:2}"; }
-function saatchi-command-legacy-xprod() {if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-command-legacy-xprod art/my-script --my-arg=1"; return; fi; autossh -t saatchi-xprod-legacy-services-02 "php -ddisplay_errors=on /data/code_base/current/scripts/$1.php production -v ${@:2}"; }
+function saatchi-command-legacy-local() {
+    if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-command-legacy-local art/my-script --my-arg=1"; return; fi;
+    saatchi-docker-legacy-fpm php \
+        -dxdebug.remote_autostart=1 \
+        -dxdebug.remote_connect_back=1 \
+        -dxdebug.idekey=${XDEBUG_IDE_KEY} \
+        -dxdebug.remote_port=9000 -ddisplay_errors=on \
+        /data/code_base/current/scripts/$1.php local -v ${@:2};
+}
+function saatchi-command-legacy-xdev() {
+    if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-command-legacy-xdev art/my-script --my-arg=1"; return; fi;
+    autossh -t saatchi-xdev-legacy-services-01 "php -ddisplay_errors=on /data/code_base/current/scripts/$1.php development -v ${@:2}";
+}
+function saatchi-command-legacy-xqa() {
+    if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-command-legacy-xqa art/my-script --my-arg=1"; return; fi;
+    autossh -t saatchi-xqa-legacy-services-01 "php -ddisplay_errors=on /data/code_base/current/scripts/$1.php qa -v ${@:2}";
+}
+function saatchi-command-legacy-xprod() {
+    if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-command-legacy-xprod art/my-script --my-arg=1"; return; fi;
+    autossh -t saatchi-xprod-legacy-services-02 "php -ddisplay_errors=on /data/code_base/current/scripts/$1.php production -v ${@:2}";
+}
+# }}}
+
+# run palette artisan commands {{{
+function saatchi-command-palette-local() {
+    if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-command-palette-local my:command --my-arg=1"; return; fi;
+    saatchi-docker-palette-fpm php artisan $@;
+}
+function saatchi-command-palette-xdev() {
+    if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-command-palette-xdev my:command --my-arg=1"; return; fi;
+    autossh -t saatchi-xdev-palette-services-01 "cd /data/palette/current && php artisan $@";
+}
+function saatchi-command-palette-xqa() {
+    if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-command-palette-xqa my:command --my-arg=1"; return; fi;
+    autossh -t saatchi-xqa-palette-services-01 "cd /data/palette/current && php artisan $@";
+}
+function saatchi-command-palette-xprod() {
+    if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-command-palette-xprod my:command --my-arg=1"; return; fi;
+    autossh -t saatchi-xprod-palette-services-01 "cd /data/palette/current && php artisan $@";
+}
 # }}}
 
 # saatchi docker attach to log output {{{

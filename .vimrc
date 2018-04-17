@@ -63,6 +63,9 @@ set ignorecase " Case insensitive search. Needed for smartcase to work.
 set infercase " smarter, case-aware completion in insert mode.
 set lazyredraw " to speed up rendering
 set smartcase " Case sensitive when uc present
+" https://vi.stackexchange.com/a/11413
+au InsertEnter * set noignorecase
+au InsertLeave * set ignorecase
 set number " turn on line numbering
 set iskeyword-=. " '.' is an end of word designator
 set iskeyword-=- " '-' is an end of word designator
@@ -92,7 +95,6 @@ set noswapfile " swap files are a pain in the ass. I have git.
 set nrformats= " make <C-a> and <C-x> play well with zero-padded numbers (i.e. don't consider them octal or hex)
 set shortmess+=I " hide the launch screen
 set gdefault " search/replace 'globally' (on a line) by default
-
 
 " let php_baselib = 1 " highlight php builtin functions
 " let g:php_folding = 1 " fold methods, control structures, etc.
@@ -263,7 +265,7 @@ augroup csscompletegroup
     au FileType scss setlocal omnifunc=csscomplete#CompleteCSS
 augroup END
 
-set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png,*.ico,*.pdf,*.psd,node_modules/*
+set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png,*.ico,*.pdf,*.psd,node_modules/*.git/*,Session.vim
 " }}}
 
 " Abbreviations {{{

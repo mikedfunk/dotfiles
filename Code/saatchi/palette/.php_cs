@@ -16,7 +16,9 @@ return PhpCsFixer\Config::create()
         // 'phpdoc_no_empty_return' => true, // matt doesn't like this
         'phpdoc_scalar' => true,
         'phpdoc_trim' => true,
+        'comment_to_phpdoc' => true,
         // 'single_line_comment_style' => true, // this breaks local @var
         // 'single_quote' => true, // cool but this fills the commit with a ton of unnecessary changes
         // 'trailing_comma_in_multiline_array' => true, // likewise - good but really fills the commit
-    ]);
+    ])
+    ->setRiskyAllowed(true);
