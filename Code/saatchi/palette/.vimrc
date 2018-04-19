@@ -29,9 +29,9 @@ command! -nargs=1 Eqa execute "e scp://appdeploy@saatchi-xqa-palette-services-01
 
 " ale fixers {{{
 " remove php_cs_fixer
-let g:ale_fixers = {
-\   'javascript': ['eslint'],
-\   'php': ['phpcbf', 'php_cs_fixer'],
-\   'ruby': ['rubocop']
-\}
+" let g:ale_fixers = {
+" \   'javascript': ['eslint'],
+" \   'php': ['phpcbf', 'php_cs_fixer'],
+" \   'ruby': ['rubocop']
+" \}
 " }}}
