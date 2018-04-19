@@ -79,7 +79,7 @@ path=(
   $HOME/.bin
   # global ruby gems
   $HOME/bin
-  # $HOME/.{php,rb,pl,nod,py}env/{bin,shims}
+  $HOME/.{php,rb,pl,nod,py}env/bin
   $HOME/.phpenv/pear/bin
   $HOME/.composer/vendor/bin
   $(gem env home)
