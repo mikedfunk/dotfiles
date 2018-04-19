@@ -54,7 +54,8 @@ dir ~/Code/saatchi/saatchiart
 3 run grunt build
 # 3 run grunt watch
 4 run cd assets/react
-4 run npm run start
+4 run yarn
+4 run yarn start
 # 5 run saatchi-docker-legacy
 # 5 run tail -f /data/temp/saatchi.log /var/log/nginx/*error.log
 

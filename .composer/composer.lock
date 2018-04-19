@@ -3346,12 +3346,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "1f55125d76385c48a36801628d40be1f482cf7ac"
+                "reference": "b7fed6b6af062e166d3c5a4caed27073e5c5c006"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/1f55125d76385c48a36801628d40be1f482cf7ac",
-                "reference": "1f55125d76385c48a36801628d40be1f482cf7ac",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/b7fed6b6af062e166d3c5a4caed27073e5c5c006",
+                "reference": "b7fed6b6af062e166d3c5a4caed27073e5c5c006",
                 "shasum": ""
             },
             "require": {
@@ -3389,7 +3389,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2018-04-18T23:55:23+00:00"
+            "time": "2018-04-19T05:25:52+00:00"
         },
         {
             "name": "symfony/config",

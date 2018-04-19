@@ -21,3 +21,4 @@ cscope.out
 *.tags
 tags
 tags*
+.yo-rc.json
