@@ -17,6 +17,7 @@ parameters:
 
     # workaround due to conflicting namespace/class with library/Catalog/User/Attribute and a dynamodb class
     # - library/Catalog
+    - library/Catalog/ImageUrl
     - library/Catalog/Art
     - library/Catalog/Collection
     - library/Catalog/Data

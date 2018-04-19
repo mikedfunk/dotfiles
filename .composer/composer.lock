@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f0d11c3445684023a10efa0a3b267e6c",
+    "content-hash": "f6c1606dadc25ad3726a51c793862989",
     "packages": [
         {
             "name": "composer/semver",
@@ -370,57 +370,6 @@
             ],
             "description": "A tool to automatically fix PHP code style",
             "time": "2018-03-21T17:41:26+00:00"
-        },
-        {
-            "name": "hirak/prestissimo",
-            "version": "0.3.7",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/hirak/prestissimo.git",
-                "reference": "45fcc8a65fb06b29cc5cdd1b0bae7a690aa09496"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/hirak/prestissimo/zipball/45fcc8a65fb06b29cc5cdd1b0bae7a690aa09496",
-                "reference": "45fcc8a65fb06b29cc5cdd1b0bae7a690aa09496",
-                "shasum": ""
-            },
-            "require": {
-                "composer-plugin-api": "^1.0.0",
-                "ext-curl": "*",
-                "php": "^5.3.2 || ^7.0"
-            },
-            "require-dev": {
-                "composer/composer": "1.0.0",
-                "phpunit/phpunit": "^4.8",
-                "squizlabs/php_codesniffer": "^2.5"
-            },
-            "type": "composer-plugin",
-            "extra": {
-                "class": "Hirak\\Prestissimo\\Plugin"
-            },
-            "autoload": {
-                "psr-4": {
-                    "Hirak\\Prestissimo\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Hiraku NAKANO",
-                    "email": "hiraku@tojiru.net"
-                }
-            ],
-            "description": "composer parallel install plugin",
-            "keywords": [
-                "install",
-                "parallel",
-                "speedup"
-            ],
-            "time": "2017-05-27T04:45:45+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -1925,23 +1874,23 @@
         },
         {
             "name": "phpspec/prophecy",
-            "version": "1.7.5",
+            "version": "1.7.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/prophecy.git",
-                "reference": "dfd6be44111a7c41c2e884a336cc4f461b3b2401"
+                "reference": "33a7e3c4fda54e912ff6338c48823bd5c0f0b712"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/dfd6be44111a7c41c2e884a336cc4f461b3b2401",
-                "reference": "dfd6be44111a7c41c2e884a336cc4f461b3b2401",
+                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/33a7e3c4fda54e912ff6338c48823bd5c0f0b712",
+                "reference": "33a7e3c4fda54e912ff6338c48823bd5c0f0b712",
                 "shasum": ""
             },
             "require": {
                 "doctrine/instantiator": "^1.0.2",
                 "php": "^5.3|^7.0",
                 "phpdocumentor/reflection-docblock": "^2.0|^3.0.2|^4.0",
-                "sebastian/comparator": "^1.1|^2.0",
+                "sebastian/comparator": "^1.1|^2.0|^3.0",
                 "sebastian/recursion-context": "^1.0|^2.0|^3.0"
             },
             "require-dev": {
@@ -1984,7 +1933,7 @@
                 "spy",
                 "stub"
             ],
-            "time": "2018-02-19T10:16:54+00:00"
+            "time": "2018-04-18T13:57:24+00:00"
         },
         {
             "name": "phpstan/phpdoc-parser",
@@ -2744,61 +2693,6 @@
             "time": "2018-04-02T05:41:44+00:00"
         },
         {
-            "name": "pyrech/composer-changelogs",
-            "version": "v1.6.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/pyrech/composer-changelogs.git",
-                "reference": "0871e60c77a2ed6771e6191300809ded4f51e775"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/pyrech/composer-changelogs/zipball/0871e60c77a2ed6771e6191300809ded4f51e775",
-                "reference": "0871e60c77a2ed6771e6191300809ded4f51e775",
-                "shasum": ""
-            },
-            "require": {
-                "composer-plugin-api": "^1.0|^1.1",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "composer/composer": "~1.0.0-alpha10@dev",
-                "composer/semver": "1.2.0",
-                "friendsofphp/php-cs-fixer": "~1.5",
-                "phpunit/phpunit": "^4.8"
-            },
-            "type": "composer-plugin",
-            "extra": {
-                "class": "Pyrech\\ComposerChangelogs\\ChangelogsPlugin",
-                "branch-alias": {
-                    "dev-master": "1.5.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Pyrech\\ComposerChangelogs\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Loïck Piera",
-                    "email": "pyrech@gmail.com"
-                }
-            ],
-            "description": "Display changelogs after each composer update",
-            "keywords": [
-                "changelog",
-                "composer",
-                "plugin",
-                "update"
-            ],
-            "time": "2017-12-11T14:49:29+00:00"
-        },
-        {
             "name": "sebastian/code-unit-reverse-lookup",
             "version": "1.0.1",
             "source": {
@@ -3452,12 +3346,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "35ca0c90cd4c691b8826a4fc7bf2f10cd3e5e3e8"
+                "reference": "1f55125d76385c48a36801628d40be1f482cf7ac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/35ca0c90cd4c691b8826a4fc7bf2f10cd3e5e3e8",
-                "reference": "35ca0c90cd4c691b8826a4fc7bf2f10cd3e5e3e8",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/1f55125d76385c48a36801628d40be1f482cf7ac",
+                "reference": "1f55125d76385c48a36801628d40be1f482cf7ac",
                 "shasum": ""
             },
             "require": {
@@ -3495,7 +3389,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2018-04-17T04:09:28+00:00"
+            "time": "2018-04-18T23:55:23+00:00"
         },
         {
             "name": "symfony/config",

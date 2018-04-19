@@ -69,7 +69,7 @@ au InsertLeave * set ignorecase
 set number " turn on line numbering
 set iskeyword-=. " '.' is an end of word designator
 set iskeyword-=- " '-' is an end of word designator
-setglobal tags=./.git/tags,./tags " avoid searching for other tags files
+set tags=./.git/tags,./tags " avoid searching for other tags files
 " set path=.,** " only search in git root
 set path=** " only search in git root
 " disabled due to this: Adding ** to 'path' is also a bad idea. Instead create a mapping that pre-fills :find **/, etc.
@@ -94,7 +94,7 @@ endif
 set noswapfile " swap files are a pain in the ass. I have git.
 set nrformats= " make <C-a> and <C-x> play well with zero-padded numbers (i.e. don't consider them octal or hex)
 set shortmess+=I " hide the launch screen
-set gdefault " search/replace 'globally' (on a line) by default
+" set gdefault " search/replace 'globally' (on a line) by default NOTE: this just swaps the functionality of /g, so if you add /g it will only replace the first match :/ not what I expected
 
 " let php_baselib = 1 " highlight php builtin functions
 " let g:php_folding = 1 " fold methods, control structures, etc.
@@ -409,6 +409,12 @@ nnoremap <leader>jt :tab tag<space>
 
 " poor man's vim-vinegar
 nnoremap - :Ex<cr>
+
+" open current file in browser (useful for markdown preview)
+function! PreviewInBrowser()
+    :!open -a "Google Chrome" %:p
+endfunction
+command! PreviewInBrowser :call PreviewInBrowser()
 " }}}
 
 " Visuals {{{

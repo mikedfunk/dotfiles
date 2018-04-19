@@ -4,8 +4,8 @@
 # zplug {{{
 
 # setup {{{
-unset ZPLUG_SHALLOW # shut up zplug!!
-export DISABLE_AUTO_TITLE="true" # prevent zsh from auto-updating tmux window title
+# unset ZPLUG_SHALLOW # shut up zplug!!
+# export DISABLE_AUTO_TITLE="true" # prevent zsh from auto-updating tmux window title
 source $HOME/.zplug/init.zsh
 # }}}
 
@@ -20,10 +20,11 @@ zplug "zsh-users/zsh-autosuggestions" # buggy if enabled along with zsh-syntax-h
 zplug "zsh-users/zsh-completions" # do-everything argument completions
 zplug "zsh-users/zsh-syntax-highlighting", defer:2 # colored input... see above
 zplug 'zplug/zplug', hook-build:'zplug --self-manage' # manage itself
-# zplug "jamesob/desk", from:github, as:command, use:"desk" # shell workspace manager
-# zplug "hchbaw/auto-fu.zsh", at:pu
+zplug "TheLocehiliosan/yadm", rename-to:_yadm, use:"completion/yadm.zsh_completion", as:command, defer:2
 
 # DISABLED
+# zplug "jamesob/desk", from:github, as:command, use:"desk" # shell workspace manager
+# zplug "hchbaw/auto-fu.zsh", at:pu
 # zplug "b4b4r07/enhancd", use:init.sh # enhanced cd
 # zplug "felixr/docker-zsh-completion" # docker completion (deprecated)
 # zplug "gko/ssh-connect", use:ssh-connect.sh # ssh-connect to get a ssh session manager
@@ -76,19 +77,25 @@ manpath=(
 path=(
   # my own scripts
   $HOME/.bin
-  # ruby gems
+  # global ruby gems
   $HOME/bin
   # $HOME/.{php,rb,pl,nod,py}env/{bin,shims}
   $HOME/.phpenv/pear/bin
   $HOME/.composer/vendor/bin
   $(gem env home)
   $(brew --prefix)/{bin,sbin}
+  # pip bin
   $HOME/.local/bin
   $ZPLUG_ROOT/bin
   /usr/{bin,sbin}
   /{bin,sbin}
   # /usr/local/opt/icu4c/{bin,sbin}
   $path
+)
+
+fpath=(
+  "$ZPLUG_HOME/bin"
+  $fpath
 )
 # }}}
 
@@ -332,5 +339,5 @@ function pux() {
 
 # zsh options {{{
 # most basic options are now set up by vanilla zplug plugin
-zstyle ':completion:*' use-cache true
+# zstyle ':completion:*' use-cache true
 # }}}

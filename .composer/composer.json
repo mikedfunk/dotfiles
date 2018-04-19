@@ -1,7 +1,5 @@
 {
     "require": {
-        "hirak/prestissimo": "^0.3",
-        "pyrech/composer-changelogs": "^1.3",
         "FriendsofPHP/php-cs-fixer": "^2.8",
         "phing/phing": "^2.16",
         "phpmd/phpmd": "^2.6",

@@ -56,7 +56,7 @@ if [[ $(grep "/usr/local/bin/zsh" /etc/shells -c) == 0 ]]; then
     log_info "Installing homebrew zsh to /etc/shells"
     sudo /bin/sh -c "echo /usr/local/bin/zsh >> /etc/shells"
 fi
-if [[ "$(which zsh)" != "/usr/local/bin/zsh" ]]; then
+if [[ "$SHELL" != "/usr/local/bin/zsh" ]]; then
     log_info "Changing shell to homebrew zsh"
     chsh -s `which zsh`
 fi
@@ -122,7 +122,7 @@ if [[ ! "$(phpenv version | grep 7.0.29)" ]]; then
 
     log_info "Installing php extensions"
     $HOME/.phpenv/pear/bin/pecl install igbinary && ( echo 'extension="igbinary.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/igbinary.ini ) # needed for couchbase
-    $HOME/.phpenv/pear/bin/pecl install couchbase && ( echo 'extension="couchbase.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/couchbase.ini )
+    $HOME/.phpenv/pear/bin/pecl install couchbase-2.2.2 && ( echo 'extension="couchbase.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/couchbase.ini ) # their sdk has breaking changes all the time
     # $HOME/.phpenv/pear/bin/pecl install pcntl && ( echo 'zend_extension="pcntl.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/pcntl.ini )
     # $HOME/.phpenv/pear/bin/pecl install intl && ( echo 'zend_extension="intl.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/intl.ini ) # needed for phpstan build
     # $HOME/.phpenv/pear/bin/pecl install memcache && ( echo 'zend_extension="memcache.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/memcache.ini ) # needed for zed
