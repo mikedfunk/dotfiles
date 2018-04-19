@@ -80,7 +80,7 @@ dir ~/Code/saatchi/gallery
 # 2 run saatchi-docker-gallery
 # 2 run tail -f /data/gallery/current/storage/logs/*.log /var/log/nginx/*.log
 3 run wd gallery
-3 run yarn run gulp
+3 run yarn gulp
 
 window easel
 

@@ -96,6 +96,11 @@ set nrformats= " make <C-a> and <C-x> play well with zero-padded numbers (i.e. d
 set shortmess+=I " hide the launch screen
 " set gdefault " search/replace 'globally' (on a line) by default NOTE: this just swaps the functionality of /g, so if you add /g it will only replace the first match :/ not what I expected
 
+" https://stackoverflow.com/questions/3494435/vimrc-make-comments-italic
+" escape codes for italic fonts
+set t_ZH=[3m
+set t_ZR=[23m
+
 " let php_baselib = 1 " highlight php builtin functions
 " let g:php_folding = 1 " fold methods, control structures, etc.
 
@@ -140,8 +145,14 @@ if has('clipboard')
     endif
 endif
 
+" https://vi.stackexchange.com/a/13012
+" Per default, netrw leaves unmodified buffers open. This autocommand
+" deletes netrw's buffer once it's hidden (using ':q', for example)
+autocmd FileType netrw setl bufhidden=delete
+
 " disable Ex mode
 nnoremap Q <nop>
+
 " packadd! matchit " use the included matchit plugin (already loaded by vim-sensible)
 
 " set filetypes for unusual files
@@ -435,6 +446,18 @@ augroup isbashgroup
 augroup END
 
 let php_htmlInStrings = 1 " neat! :h php.vim
+
+" https://stackoverflow.com/questions/3494435/vimrc-make-comments-italic
+augroup italic_comments_group
+    autocmd!
+    au FileType * hi! Comment cterm=italic
+augroup END
+
+augroup italic_comments_group_javascript
+    autocmd!
+    " jsdoc docblock @param, etc. in italic
+    au FileType javascript hi! Special cterm=italic
+augroup END
 
 " Gui {{{
 if has("gui_running") | set guifont=Meslo\ LG\ M\ Regular\ for\ Powerline:h11 | endif

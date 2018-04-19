@@ -262,8 +262,8 @@ Plug 'chrisbra/NrrwRgn' " work in a separate window with a sub-region of a docum
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
 " Plug 'archSeer/colibri.vim'
 " Plug 'fenetikm/falcon'
-" Plug 'challenger-deep-theme/vim'
-Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+" Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+" Plug 'connorholyday/vim-snazzy'
 " }}}
 
 " color schemes: 24-bit only {{{
@@ -293,7 +293,7 @@ Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 " Plug 'ayu-theme/ayu-vim'
 Plug 'chriskempson/base16-vim' " themes made of 16 colors
 Plug 'kristijanhusak/vim-hybrid-material'
-Plug 'tyrannicaltoucan/vim-quantum'
+" Plug 'tyrannicaltoucan/vim-quantum'
 " Plug 'cocopon/iceberg.vim'
 " }}}
 " }}}

@@ -271,7 +271,10 @@ if isdirectory(expand("~/.vim/plugged/php.vim"))
     " highlight docblocks
     augroup phpdoctagsgroup
         autocmd!
+        " docblock color
         au FileType php hi! def link phpDocTags phpDefine
+        " docblock comments italic
+        au FileType php hi! PreProc cterm=italic
     augroup END
 endif
 " }}}
