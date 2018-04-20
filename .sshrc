@@ -1,0 +1,2 @@
+export VIMINIT="let \$MYVIMRC='$SSHHOME/.sshrc.d/.vimrc' | source \$MYVIMRC"
+[ -f $SSHHOME/.sshrc.d/promptline.theme.bash ] && source $SSHHOME/.sshrc.d/promptline.theme.bash

@@ -20,7 +20,7 @@ zplug "zsh-users/zsh-autosuggestions" # buggy if enabled along with zsh-syntax-h
 zplug "zsh-users/zsh-completions" # do-everything argument completions
 zplug "zsh-users/zsh-syntax-highlighting", defer:2 # colored input... see above
 zplug 'zplug/zplug', hook-build:'zplug --self-manage' # manage itself
-zplug "TheLocehiliosan/yadm", rename-to:_yadm, use:"completion/yadm.zsh_completion", as:command, defer:2
+zplug "TheLocehiliosan/yadm", rename-to:_yadm, use:"completion/yadm.zsh_completion", as:command, defer:2 # yadm completion
 
 # DISABLED
 # zplug "jamesob/desk", from:github, as:command, use:"desk" # shell workspace manager
@@ -163,6 +163,7 @@ export NODE_PATH="/usr/local/lib/node_modules" # zombie.js doesn't work without 
 [[ "$(builtin type -p direnv)" ]] && eval "$(direnv hook zsh)" # allow .envrc on each prompt start
 ssh-add -A 2>/dev/null # add all keys stored in keychain if they haven't been added yet
 compdef autossh="ssh"
+compdef sshrc="ssh"
 # }}}
 
 # suffix aliases {{{

@@ -2,8 +2,7 @@
 " my vim config
 
 " Use plugins config {{{
-" if filereadable(expand("~/.support/.vimrc.plugins")) | source ~/.support/.vimrc.plugins | endif
-runtime! .vimrc.plugins .vimrc.pluginconfig
+runtime .vimrc.plugins.vim
 " }}}
 
 " Initialize directories {{{
@@ -42,15 +41,112 @@ endfunction
 call InitializeDirectories()
 " }}}
 
+" sensible.vim {{{
+" Copied from sensible.vim so I don't need to install plugins to have basic sensible settings
+" sensible.vim - Defaults everyone can agree on
+" Maintainer:   Tim Pope <http://tpo.pe/>
+" Version:      1.2
+
+if exists('g:loaded_sensible') || &compatible
+  finish
+else
+  let g:loaded_sensible = 'yes'
+endif
+
+if has('autocmd')
+  filetype plugin indent on
+endif
+if has('syntax') && !exists('g:syntax_on')
+  syntax enable
+endif
+
+" Use :help 'option' to see the documentation for the given option.
+
+set autoindent
+set backspace=indent,eol,start
+set complete-=i
+set smarttab
+
+set nrformats-=octal
+
+if !has('nvim') && &ttimeoutlen == -1
+  set ttimeout
+  set ttimeoutlen=100
+endif
+
+set incsearch
+" Use <C-L> to clear the highlighting of :set hlsearch.
+if maparg('<C-L>', 'n') ==# ''
+  nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+endif
+
+set laststatus=2
+set ruler
+set wildmenu
+
+if !&scrolloff
+  set scrolloff=1
+endif
+if !&sidescrolloff
+  set sidescrolloff=5
+endif
+set display+=lastline
+
+if &encoding ==# 'latin1' && has('gui_running')
+  set encoding=utf-8
+endif
+
+" if &listchars ==# 'eol:$'
+"   set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+" endif
+
+if v:version > 703 || v:version == 703 && has("patch541")
+  set formatoptions+=j " Delete comment character when joining commented lines
+endif
+
+if has('path_extra')
+  setglobal tags-=./tags tags-=./tags; tags^=./tags;
+endif
+
+if &shell =~# 'fish$' && (v:version < 704 || v:version == 704 && !has('patch276'))
+  set shell=/bin/bash
+endif
+
+set autoread
+
+if &history < 1000
+  set history=1000
+endif
+if &tabpagemax < 50
+  set tabpagemax=50
+endif
+if !empty(&viminfo)
+  set viminfo^=!
+endif
+set sessionoptions-=options
+
+" Allow color schemes to do bright colors without forcing bold.
+if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
+  set t_Co=16
+endif
+
+" Load matchit.vim, but only if the user hasn't installed a newer version.
+" if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
+"   runtime! macros/matchit.vim
+" endif
+
+inoremap <C-U> <C-G>u<C-U>
+" }}}
+
 " General {{{
 " use bram's defaults https://github.com/vim/vim/blob/master/runtime/defaults.vim
-unlet! skip_defaults_vim
-if filereadable($VIMRUNTIME . "/defaults.vim") | source $VIMRUNTIME/defaults.vim | endif
+" unlet! skip_defaults_vim
+" if filereadable($VIMRUNTIME . "/defaults.vim") | source $VIMRUNTIME/defaults.vim | endif
 " set t_ut=
 let g:mapleader = ',' " use comma for leader
 " since , replaces leader, use \ to go back in a [f]ind
 noremap \ ,
-set autoread " update files changed outside of vim. This works well with `set noswapfile`
+" set autoread " update files changed outside of vim. This works well with `set noswapfile`(in sensible.vim)
 set exrc " enables reading .exrc or .vimrc from current directory
 set secure " Always append set secure when exrc option is enabled!
 set completeopt-=preview " turn off omnicomplete preview window
@@ -93,7 +189,7 @@ if executable('ag')
     " command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw! " :Ag command that allows args
 endif
 set noswapfile " swap files are a pain in the ass. I have git.
-set nrformats= " make <C-a> and <C-x> play well with zero-padded numbers (i.e. don't consider them octal or hex)
+" set nrformats= " make <C-a> and <C-x> play well with zero-padded numbers (i.e. don't consider them octal or hex)
 set shortmess+=I " hide the launch screen
 " set gdefault " search/replace 'globally' (on a line) by default NOTE: this just swaps the functionality of /g, so if you add /g it will only replace the first match :/ not what I expected
 
@@ -494,7 +590,7 @@ augroup gotousegroup
     au FileType php command! GoToUseBlock execute ":normal! mmgg/use\ <cr>}:nohlsearch<cr>"
     " au FileType php nnoremap <leader>gu :GoToUseBlock<cr>
 augroup END
-command! Source :so ~/.vimrc | if filereadable('.vimrc') | :so .vimrc | endif | AirlineRefresh
+command! Source :source ~/.vimrc | if filereadable('.vimrc') | :source .vimrc | endif | AirlineRefresh
 nnoremap <leader>so :Source<cr>
 
 " fix syntax highlighting when it goes away
@@ -595,8 +691,5 @@ command! FocusModeToggle :call FocusModeToggle()
 " }}}
 
 " Plugin Configuration {{{
-if filereadable(expand("~/.support/.vimrc.pluginconfig"))
-    source ~/.support/.vimrc.pluginconfig
-endif
-
+runtime .vimrc.pluginconfig.vim
 " }}}

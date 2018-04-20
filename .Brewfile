@@ -91,7 +91,7 @@ brew "reattach-to-user-namespace" # used to fix mac issues with copy/paste in tm
 # brew "selenium-server-standalone" # controls a browser for automated testing
 # brew "shellcheck" # hooks in with syntastic to style-check and lint bash. DISABLED because vim dies in shell files with this installed
 brew "ssh-copy-id" # copies ssh keys to remote servers
-# brew "sshrc" # use ~/.sshrc and ~/.sshrc.d on remote servers
+brew "sshrc" # use ~/.sshrc and ~/.sshrc.d on remote servers
 # brew "sshfs" # mounts ssh servers as file systems in the local fs. requires osxfuse.
 # brew "sshuttle" # poor mans vpn. doesnt work on yosemite at the moment
 # brew "solr" # search data server
