@@ -1,5 +1,7 @@
 parameters:
   # bootstrap: application/Bootstrap.php
+  # bootstrap: application/command_line_bootstrap.php
+  bootstrap: phpstan_bootstrap.php
   includes:
     - ~/.composer/vendor-bin/main/vendor/jangregor/phpstan-prophecy/src/extension.neon
   excludes_analyse:
@@ -17,7 +19,7 @@ parameters:
 
     # workaround due to conflicting namespace/class with library/Catalog/User/Attribute and a dynamodb class
     # - library/Catalog
-    - library/Catalog/ImageUrl
+    - library/Catalog/ImageUrl.php
     - library/Catalog/Art
     - library/Catalog/Collection
     - library/Catalog/Data
@@ -47,7 +49,7 @@ parameters:
     # - library/Catalog/Constants.php
     # - library/Catalog/Art.php
     # - library/Catalog/Base.php
-    # - library/Catalog/ContentDeliveryUrl.php
+    - library/Catalog/ContentDeliveryUrl.php
     # - library/Catalog/ImageUrl.php
     # - library/Catalog/Offer.php
     # - library/Catalog/ServiceProvider.php
