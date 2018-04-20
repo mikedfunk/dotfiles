@@ -2,12 +2,13 @@
 " my vim config
 
 " Use plugins config {{{
-if filereadable(expand("~/.support/.vimrc.plugins")) | source ~/.support/.vimrc.plugins | endif
+" if filereadable(expand("~/.support/.vimrc.plugins")) | source ~/.support/.vimrc.plugins | endif
+runtime! .vimrc.plugins .vimrc.pluginconfig
 " }}}
 
 " Initialize directories {{{
 " put everything in ~/.vim to avoid inline backup and swap files.
-function! InitializeDirectories()
+function! InitializeDirectories() abort
     let parent = $HOME
     let prefix = 'vim'
     let dir_list = {
@@ -422,7 +423,7 @@ nnoremap <leader>jt :tab tag<space>
 nnoremap - :Ex<cr>
 
 " open current file in browser (useful for markdown preview)
-function! PreviewInBrowser()
+function! PreviewInBrowser() abort
     :!open -a "Google Chrome" %:p
 endfunction
 command! PreviewInBrowser :call PreviewInBrowser()
@@ -515,7 +516,7 @@ augroup end
 
 " delete inactive buffers (the ones not in tabs or windows) {{{
 " @link http://stackoverflow.com/a/7321131/557215
-function! DeleteInactiveBufs()
+function! DeleteInactiveBufs() abort
     "From tabpagebuflist() help, get a list of all buffers in all tabs
     let tablist = []
     for i in range(tabpagenr('$'))
@@ -537,7 +538,7 @@ command! Bdi :call DeleteInactiveBufs()
 
 " profiler {{{
 " to see what is causing vim to slow down
-function! StartProfiler()
+function! StartProfiler() abort
     profile start profile.log
     profile func *
     profile file *
@@ -545,7 +546,7 @@ function! StartProfiler()
 endfunction
 command! StartProfiler :call StartProfiler()
 
-function! EndProfiler()
+function! EndProfiler() abort
     profile pause
     noautocmd qall!
 endfunction
@@ -553,14 +554,14 @@ command! EndProfiler :call EndProfiler()
 " }}}
 
 " json to php array {{{
-function! JsonToPhp()
+function! JsonToPhp() abort
     :%s/":"/" => "/ge | %s/":{/" => [/ge | %s/":\[/" => [/ge | %s/{/[/ge | %s/}/]/ge
 endfunction
 command! JsonToPhp :call JsonToPhp()<cr>
 " }}}
 
 " convert copied chrome headers to http request {{{
-function! HeadersToHttp()
+function! HeadersToHttp() abort
     :normal! ggjddkOPdaWihttp://jj$daWojVGdkPGddO
 endfunction
 augroup headerstohttpgroup
@@ -570,7 +571,7 @@ augroup END
 " }}}
 
 " focus mode {{{
-function! FocusModeToggle()
+function! FocusModeToggle() abort
     if (&foldcolumn != 12)
         set showtabline=0
         set laststatus=0

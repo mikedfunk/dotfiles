@@ -445,20 +445,25 @@ let g:vdebug_options = {
 let vdebug_keymap = { 'eval_visual': '<leader>ev' }
 
 " @link https://vi.stackexchange.com/questions/3355/why-do-custom-highlights-in-my-vimrc-get-cleared-or-reset-to-default
-function! FixVdebugHighlights()
+function! FixVdebugHighlights() abort
     hi DbgBreakptLine term=reverse ctermfg=Black ctermbg=Green guifg=#000000 guibg=#00ff00
     hi DbgBreakptSign term=reverse ctermfg=Black ctermbg=Green guifg=#000000 guibg=#00ff00
     hi DbgCurrentLine term=reverse ctermfg=White ctermbg=Red guifg=#ffffff guibg=#ff0000
     hi DbgCurrentSign term=reverse ctermfg=White ctermbg=Red guifg=#ffffff guibg=#ff0000
 endfunction
-call FixVdebugHighlights()
+
+augroup fix_vdebug_highlights_load
+    autocmd!
+    autocmd FileType * call FixVdebugHighlights()
+augroup END
+
 augroup fixvdebughighlights
     autocmd!
     autocmd ColorScheme * call FixVdebugHighlights()
 augroup END
 
 " didn't work as just a command
-function! ZendRoutingParams()
+function! ZendRoutingParams() abort
     :VdebugEval $this->getRequest()->getParams()
 endfunction
 command! ZendRoutingParams :call ZendRoutingParams()
@@ -483,7 +488,7 @@ let g:airline#extensions#tagbar#enabled = 0 " cool but slows down php
 if isdirectory(expand("~/.vim/plugged/vim-airline"))
     " add asyncrun status for async tasks e.g. 'running' 'failure' 'success'
     if isdirectory(expand("~/.vim/plugged/asyncrun.vim"))
-        function! AsyncrunAirlineInit()
+        function! AsyncrunAirlineInit() abort
             let g:airline_section_z = airline#section#create_right([
                 \ '%{g:asyncrun_status} ' . g:airline_section_z
             \ ])
