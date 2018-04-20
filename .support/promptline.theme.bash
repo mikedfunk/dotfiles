@@ -218,6 +218,7 @@ function __promptline {
     local b_fg="${wrap}38;5;59${end_wrap}"
     local b_bg="${wrap}48;5;235${end_wrap}"
     local b_sep_fg="${wrap}38;5;235${end_wrap}"
+    local c_fg="${wrap}38;5;15${end_wrap}"
     local c_bg="${wrap}48;5;234${end_wrap}"
     local c_sep_fg="${wrap}38;5;234${end_wrap}"
   fi
