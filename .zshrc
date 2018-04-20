@@ -113,11 +113,21 @@ fpath=(
 [[ "$(builtin type -p pyenv)" ]] && eval "$(pyenv init -)"
 [[ -f "$HOME/.phpenv/bin/phpenv" ]] && eval "$($HOME/.phpenv/bin/phpenv init -)"
 # [ -n "$DESK_ENV" ] && source "$DESK_ENV" || true # Hook for desk activation
+# }}}
 
+# ssh {{{
 # disable autossh port monitoring and use ServerAliveInterval and
 # ServerAliveCountMax instead.
 # https://www.everythingcli.org/ssh-tunnelling-for-fun-and-profit-autossh/
 export AUTOSSH_PORT=0
+
+# pass the current ssh alias. Used by my promptline theme to show the alias in the PS1.
+function alias-ssh () { LC_SSH_ALIAS=$1 sshrc $1; }
+alias ssh="alias-ssh"
+
+ssh-add -A 2>/dev/null # add all keys stored in keychain if they haven't been added yet
+compdef autossh="ssh"
+compdef sshrc="ssh"
 # }}}
 
 # gpg {{{
@@ -161,9 +171,6 @@ alias save-dotfiles="yadm encrypt && yadm add -u && yadm ci -m working && yadm p
 export CLICOLOR=1 # ls colors by default
 export NODE_PATH="/usr/local/lib/node_modules" # zombie.js doesn't work without this
 [[ "$(builtin type -p direnv)" ]] && eval "$(direnv hook zsh)" # allow .envrc on each prompt start
-ssh-add -A 2>/dev/null # add all keys stored in keychain if they haven't been added yet
-compdef autossh="ssh"
-compdef sshrc="ssh"
 # }}}
 
 # suffix aliases {{{

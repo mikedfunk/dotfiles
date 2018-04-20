@@ -8,7 +8,13 @@ function __promptline_host {
   # local only_if_ssh="0"
 
   if [ $only_if_ssh -eq 0 -o -n "${SSH_CLIENT}" ]; then
-    if [[ -n ${ZSH_VERSION-} ]]; then print %m; elif [[ -n ${FISH_VERSION-} ]]; then hostname -s; else printf "%s" \\h; fi
+      # I wrap ssh to pass this so I know which server I'm on.
+    if ! [ -z "$LC_SSH_ALIAS" ]; then
+        printf "%s" $LC_SSH_ALIAS
+    else
+      # otherwise use the current server name.
+      if [[ -n ${ZSH_VERSION-} ]]; then print %m; elif [[ -n ${FISH_VERSION-} ]]; then hostname -s; else printf "%s" \\h; fi
+    fi
   fi
 }
 
