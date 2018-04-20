@@ -333,6 +333,10 @@ let g:phpcomplete_remove_constant_extensions = ['xslt_php_4']
 let g:DisableAutoPHPFolding = 1
 " }}}
 
+" promptline.vim {{{
+" PromptlineSnapshot! ~/.support/promptline.theme.bash airline_insert full
+" }}}
+
 " QFEnter {{{
 let g:qfenter_vopen_map = ['v']
 let g:qfenter_hopen_map = ['s']

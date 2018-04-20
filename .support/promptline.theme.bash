@@ -1,10 +1,13 @@
 #
 # This shell prompt config file was created by promptline.vim
 #
-function __promptline_host {
-  local only_if_ssh="0"
 
-  if [ ! $only_if_ssh -o -n "${SSH_CLIENT}" ]; then
+# pulled out of function to allow use in setting color later
+only_if_ssh="1"
+function __promptline_host {
+  # local only_if_ssh="0"
+
+  if [ $only_if_ssh -eq 0 -o -n "${SSH_CLIENT}" ]; then
     if [[ -n ${ZSH_VERSION-} ]]; then print %m; elif [[ -n ${FISH_VERSION-} ]]; then hostname -s; else printf "%s" \\h; fi
   fi
 }
@@ -195,15 +198,30 @@ function __promptline {
   local alt_rsep=""
   local reset="${wrap}0${end_wrap}"
   local reset_bg="${wrap}49${end_wrap}"
-  local a_fg="${wrap}38;5;15${end_wrap}"
-  local a_bg="${wrap}48;5;28${end_wrap}"
-  local a_sep_fg="${wrap}38;5;28${end_wrap}"
-  local b_fg="${wrap}38;5;59${end_wrap}"
-  local b_bg="${wrap}48;5;235${end_wrap}"
-  local b_sep_fg="${wrap}38;5;235${end_wrap}"
-  local c_fg="${wrap}38;5;15${end_wrap}"
-  local c_bg="${wrap}48;5;234${end_wrap}"
-  local c_sep_fg="${wrap}38;5;234${end_wrap}"
+
+  if [ $only_if_ssh -eq 0 -o -n "${SSH_CLIENT}" ]; then
+    # orange
+    local a_fg="${wrap}38;5;232${end_wrap}"
+    local a_bg="${wrap}48;5;214${end_wrap}"
+    local a_sep_fg="${wrap}38;5;214${end_wrap}"
+    local b_fg="${wrap}38;5;232${end_wrap}"
+    local b_bg="${wrap}48;5;202${end_wrap}"
+    local b_sep_fg="${wrap}38;5;202${end_wrap}"
+    local c_fg="${wrap}38;5;15${end_wrap}"
+    local c_bg="${wrap}48;5;52${end_wrap}"
+    local c_sep_fg="${wrap}38;5;52${end_wrap}"
+  else
+    # green
+    local a_fg="${wrap}38;5;15${end_wrap}"
+    local a_bg="${wrap}48;5;28${end_wrap}"
+    local a_sep_fg="${wrap}38;5;28${end_wrap}"
+    local b_fg="${wrap}38;5;59${end_wrap}"
+    local b_bg="${wrap}48;5;235${end_wrap}"
+    local b_sep_fg="${wrap}38;5;235${end_wrap}"
+    local c_bg="${wrap}48;5;234${end_wrap}"
+    local c_sep_fg="${wrap}38;5;234${end_wrap}"
+  fi
+
   local warn_fg="${wrap}38;5;232${end_wrap}"
   local warn_bg="${wrap}48;5;166${end_wrap}"
   local warn_sep_fg="${wrap}38;5;166${end_wrap}"
