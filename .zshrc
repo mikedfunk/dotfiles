@@ -204,7 +204,9 @@ alias bri="brew install"
 alias pu="phpunitnotify"
 alias coverage="pu --coverage-html=./coverage && open coverage/index.html"
 alias puf="pu --filter="
-alias puwatch="noglob ag -l -g '(application\/models|library|src|tests)/.*\\.php' | entr -r -c ./vendor/bin/phpunit --colors"
+alias puwatch="noglob ag -l -g '\
+    (application\/controllers|application\/modules\/*\/controllers|application\/models|library|src|tests)/.*\\.php\
+    ' | entr -r -c ./vendor/bin/phpunit --colors"
 alias puw="puwatch"
 # }}}
 
