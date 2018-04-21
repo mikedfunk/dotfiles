@@ -258,11 +258,39 @@ KEYTIMEOUT=1 # no vim delay entering normal mode
 # }}}
 
 # xdebug-toggle {{{
-alias xdebug-on="xdebug-toggle on --no-server-restart"
-alias xdebug-off="xdebug-toggle off --no-server-restart"
-alias xdebug-status="xdebug-toggle"
+# alias xdebug-on="xdebug-toggle on --no-server-restart"
+# alias xdebug-off="xdebug-toggle off --no-server-restart"
+# alias xdebug-status="xdebug-toggle"
 # usage: `xdb on` or `xdb off` or `xdb` for status
-xdb () { xdebug-toggle $1 --no-server-restart; }
+# xdb () { xdebug-toggle $1 --no-server-restart; }
+
+function xdebug-off () {
+    builtin cd "$(phpenv root)/versions/$( phpenv version | cut -d' ' -f1 )/etc/conf.d"
+    if ! [ -f xdebug.ini ]; then
+        echo "xdebug.ini does not exist"
+        return 1
+    fi
+    mv xdebug.ini xdebug.ini.DISABLED
+    builtin cd -
+    echo "xdebug disabled"
+}
+
+function xdebug-on () {
+    builtin cd "$(phpenv root)/versions/$( phpenv version | cut -d' ' -f1 )/etc/conf.d"
+    if ! [ -f xdebug.ini.DISABLED ]; then
+        echo "xdebug.ini.DISABLED does not exist"
+        return 1
+    fi
+    mv xdebug.ini.DISABLED xdebug.ini
+    builtin cd -
+    echo "xdebug disabled"
+}
+
+function xdebug-status () {
+    builtin cd "$(phpenv root)/versions/$( phpenv version | cut -d' ' -f1 )/etc/conf.d"
+    [ -f ./xdebug.ini  ] && echo 'xdebug enabled' || echo 'xdebug disabled'
+    builtin cd -
+}
 # }}}
 
 # docker {{{
@@ -333,7 +361,7 @@ function phpspecnotify() {
 
 # phpunit with xdebug turned on {{{
 function pux() {
-    xdebug-off > /dev/null
+    # xdebug-off > /dev/null
     phpx -dmemory_limit=2048M -ddisplay_errors=on ./vendor/bin/phpunit --colors "${@}"
     [[ $? == 0 ]] && noti --message "PHPUnit tests passed 👍" || noti --message "PHPUnit tests failed 👎"
     xdebug-on > /dev/null
