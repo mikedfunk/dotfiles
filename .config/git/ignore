@@ -22,3 +22,4 @@ cscope.out
 tags
 tags*
 .yo-rc.json
+yarn-error.log

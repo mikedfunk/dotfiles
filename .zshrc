@@ -122,8 +122,10 @@ fpath=(
 export AUTOSSH_PORT=0
 
 # pass the current ssh alias. Used by my promptline theme to show the alias in the PS1.
-function alias-ssh () { LC_SSH_ALIAS=$1 sshrc $1; }
-alias ssh="alias-ssh"
+function assh () { LC_SSH_ALIAS=$1 sshrc $1; } # ass H :D
+compdef assh="ssh"
+# I tried this but it broke my deploy function :/
+# alias ssh="alias-ssh"
 
 ssh-add -A 2>/dev/null # add all keys stored in keychain if they haven't been added yet
 compdef autossh="ssh"
@@ -202,7 +204,7 @@ alias bri="brew install"
 alias pu="phpunitnotify"
 alias coverage="pu --coverage-html=./coverage && open coverage/index.html"
 alias puf="pu --filter="
-alias puwatch="noglob ag -l -g '(application\/models|src|tests)/.*\\.php' | entr -r -c ./vendor/bin/phpunit --colors"
+alias puwatch="noglob ag -l -g '(application\/models|library|src|tests)/.*\\.php' | entr -r -c ./vendor/bin/phpunit --colors"
 alias puw="puwatch"
 # }}}
 

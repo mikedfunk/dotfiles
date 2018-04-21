@@ -520,7 +520,8 @@ nnoremap - :Ex<cr>
 
 " open current file in browser (useful for markdown preview)
 function! PreviewInBrowser() abort
-    :!open -a "Google Chrome" %:p
+    silent !open -a "Google Chrome" %:p
+    redraw!
 endfunction
 command! PreviewInBrowser :call PreviewInBrowser()
 " }}}

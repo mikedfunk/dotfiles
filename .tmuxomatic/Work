@@ -266,7 +266,7 @@ window releases
 dir ~
 1 run while true; do saatchi-releases-xdev --clear; sleep 60; done
 2 run while true; do saatchi-releases-xqa --clear; sleep 60; done
-2 run while true; do saatchi-releases-xprod --clear; sleep 60; done
+3 run while true; do saatchi-releases-xprod --clear; sleep 60; done
 
 # window catalog
 

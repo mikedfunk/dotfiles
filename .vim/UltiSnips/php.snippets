@@ -1914,6 +1914,10 @@ $this->doctrine->getRepository('DemandMediaAirlinersAppBundle:${1:EntityName}')$
 endsnippet
 
 snippet prp "PRophet Prophesize"
+$this->prophesize($1::class);
+endsnippet
+
+snippet prpt "PRophet Prophesize to property"
 $this->$1 = $this->prophesize(${1/\w+\s*/\u$0/}::class);
 endsnippet
 

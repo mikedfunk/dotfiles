@@ -55,32 +55,46 @@ alias saatchi-tail-lb-local="dme && multitail \
 
 alias saatchi-tail-legacy-local="saatchi-fix-logs-legacy-fpm && multitail \
 -CS legacy -l 'docker exec -ti xsaatchi_legacy_fpm_instance tail -n500 -f /data/temp/saatchi.log' \
--CS legacy -L 'docker exec -ti xsaatchi_legacy_nginx_instance tail -n500 -f /var/log/nginx/error.log /var/log/nginx/legacy.error.log /var/log/nginx/upload.error.log | grep -v healthcheck' \
+-CS legacy -L 'docker exec -ti xsaatchi_legacy_nginx_instance tail -n500 -f \
+/var/log/nginx/error.log \
+/var/log/nginx/legacy.error.log \
+/var/log/nginx/upload.error.log \
+| grep -v healthcheck' \
 -ts -M 3000"
 
 alias saatchi-tail-zed-local="saatchi-fix-logs-zed-fpm && multitail \
--CS zed -l 'docker exec -ti xsaatchi_zed_nginx_instance tail -n500 -f /var/log/nginx/error.log /var/log/nginx/zed.error.log' \
+-CS zed -l 'docker exec -ti xsaatchi_zed_nginx_instance tail -n500 -f \
+/var/log/nginx/error.log \
+/var/log/nginx/zed.error.log' \
 -CS zed -L 'docker exec -ti xsaatchi_zed_fpm_instance tail -n500 -f /scratch/yzed/data/US/logs/ZED/*.log' \
 -ts -M 3000"
 
 alias saatchi-tail-palette-local="dme && multitail \
 -CS palette -l 'docker exec -ti xsaatchi_palette_fpm_instance tail -n500 -f /scratch/palette/log/general-laravel.log' \
--CS palette -L 'docker exec -ti xsaatchi_palette_nginx_instance tail -n500 -f /var/log/nginx/error.log /var/log/nginx/palette.error.log' \
+-CS palette -L 'docker exec -ti xsaatchi_palette_nginx_instance tail -n500 -f \
+/var/log/nginx/error.log \
+/var/log/nginx/palette.error.log' \
 -ts -M 3000"
 
 alias saatchi-tail-gallery-local="dme && multitail \
--CS gallery -l 'docker exec -ti xsaatchi_gallery_nginx_instance tail -n500 -f /var/log/nginx/error.log /var/log/nginx/www.error.log' \
+-CS gallery -l 'docker exec -ti xsaatchi_gallery_nginx_instance tail -n500 -f \
+/var/log/nginx/error.log \
+/var/log/nginx/www.error.log' \
 -CS gallery -L 'docker exec -ti xsaatchi_gallery_fpm_instance tail -n500 -f /data/gallery/current/storage/logs/laravel.log' \
 -ts -M 3000"
 
 # no pm2 in easel
 # alias saatchi-tail-easel-local="dme && multitail -CS easel -l 'docker exec -ti xsaatchi_easel_node_instance /usr/local/node/node-default/bin/pm2 logs --timestamp --lines=500 --err' -ts -M 3000"
 alias saatchi-tail-catalog-local="dme && multitail -CS catalog -Ev \"AWS SQS 200\" -cT ANSI \
--l 'docker exec -ti xsaatchi_catalog_unicorn_instance tail -n500 -f /data/catalog/shared/log/unicorn.stderr.log /data/catalog/current/log/local.log' \
+-l 'docker exec -ti xsaatchi_catalog_unicorn_instance tail -n500 -f \
+/data/catalog/shared/log/unicorn.stderr.log \
+/data/catalog/current/log/local.log' \
 -ts -M 3000"
 
 alias saatchi-tail-api-local="dme && multitail -CS api -Ev \"AWS SQS 200\" \
--l 'docker exec -ti xsaatchi_api_unicorn_instance tail -n500 -f /data/catalog/shared/log/unicorn.stderr.log /data/api/current/log/local.log' \
+-l 'docker exec -ti xsaatchi_api_unicorn_instance tail -n500 -f \
+/data/catalog/shared/log/unicorn.stderr.log \
+/data/api/current/log/local.log' \
 -ts -M 3000"
 
 # directory doesn't exist...
@@ -92,19 +106,27 @@ alias saatchi-tail-legacy-xdev="multitail -CS legacy \
 -Ev \"REQUEST ART CREATE\" \
 -Ev \"RESPONSE ART CREATE\" \
 -Ev \"healthcheck\" \
--l 'autossh appdeploy@saatchi-xdev-legacy-01 \"tail -n500 -f /var/log/nginx/error.log /var/log/nginx/legacy.error.log /var/log/nginx/upload.error.log /data/temp/saatchi.log\"' \
+-l 'autossh appdeploy@saatchi-xdev-legacy-01 \"tail -n500 -f \
+/var/log/nginx/error.log \
+/var/log/nginx/legacy.error.log \
+/var/log/nginx/upload.error.log \
+/data/temp/saatchi.log\"' \
 -ts -M 3000"
 
 alias saatchi-tail-catalog-xdev="multitail -CS catalog \
 -Ev \"heartbeat\" \
 -Ev \"AWS SQS 200\" -cT ANSI \
--l 'autossh -t appdeploy@saatchi-xdev-catalog-01 \"tail -n500 -f /data/catalog/shared/log/unicorn.stderr.log /data/catalog/current/log/development.log\"' \
+-l 'autossh -t appdeploy@saatchi-xdev-catalog-01 \"tail -n500 -f \
+/data/catalog/shared/log/unicorn.stderr.log \
+/data/catalog/current/log/development.log\"' \
 -ts -M 3000"
 
 alias saatchi-tail-api-xdev="multitail -CS api \
 -Ev \"End Point\" \
 -Ev \"\*{5}\" \
--l 'autossh -t appdeploy@saatchi-xdev-catalog-01 \"tail -n500 -f /data/api/current/log/unicorn.stderr.log /data/api/current/log/development.log\"' \
+-l 'autossh -t appdeploy@saatchi-xdev-catalog-01 \"tail -n500 -f \
+/data/api/current/log/unicorn.stderr.log \
+/data/api/current/log/development.log\"' \
 -ts -M 3000"
 
 alias saatchi-tail-legacy-services-xdev="multitail -CS legacy \
@@ -122,7 +144,10 @@ alias saatchi-tail-zed-xdev="multitail -CS zed \
 -ts -M 3000"
 
 alias saatchi-tail-gallery-xdev="multitail -CS gallery \
--l 'autossh -t appdeploy@saatchi-xdev-gallery-01 \"tail -n500 -f /var/log/nginx/error.log /var/log/nginx/www.error.log /data/gallery/current/storage/logs/laravel.log\"' \
+-l 'autossh -t appdeploy@saatchi-xdev-gallery-01 \"tail -n500 -f \
+/var/log/nginx/error.log \
+/var/log/nginx/www.error.log \
+/data/gallery/current/storage/logs/laravel.log\"' \
 -ts -M 3000"
 
 alias saatchi-tail-easel-xdev="multitail -CS easel \
@@ -130,7 +155,11 @@ alias saatchi-tail-easel-xdev="multitail -CS easel \
 -ts -M 3000"
 
 alias saatchi-tail-palette-xdev="multitail -CS palette \
--l 'autossh -t appdeploy@saatchi-xdev-palette-01 \"tail -n500 -f /var/log/nginx/error.log /var/log/nginx/app.error.log /scratch/palette/log/general-laravel.log /scratch/palette/log/saatchi-ecommerce.log\"' \
+-l 'autossh -t appdeploy@saatchi-xdev-palette-01 \"tail -n500 -f \
+/var/log/nginx/error.log \
+/var/log/nginx/app.error.log \
+/scratch/palette/log/general-laravel.log \
+/scratch/palette/log/saatchi-ecommerce.log\"' \
 -ts -M 3000"
 
 alias saatchi-tail-palette-services-xdev="multitail -CS palette \
@@ -155,22 +184,47 @@ alias saatchi-tail-legacy-xqa="multitail -CS legacy \
 -Ev \"REQUEST ART CREATE\" \
 -Ev \"RESPONSE ART CREATE\" \
 -Ev \"healthcheck\" \
--l 'autossh -t appdeploy@saatchi-xqa-legacy-01 \"tail -n500 -f /var/log/nginx/error.log /var/log/nginx/legacy.error.log /var/log/nginx/upload.error.log /data/temp/saatchi.log\"' \
--L 'autossh -t appdeploy@saatchi-xqa-legacy-02 \"tail -n500 -f /var/log/nginx/error.log /var/log/nginx/legacy.error.log /var/log/nginx/upload.error.log /data/temp/saatchi.log\"' \
+\
+-l 'autossh -t appdeploy@saatchi-xqa-legacy-01 \"tail -n500 -f \
+/var/log/nginx/error.log \
+/var/log/nginx/legacy.error.log \
+/var/log/nginx/upload.error.log \
+/data/temp/saatchi.log\"' \
+\
+-L 'autossh -t appdeploy@saatchi-xqa-legacy-02 \"tail -n500 -f \
+/var/log/nginx/error.log \
+/var/log/nginx/legacy.error.log \
+/var/log/nginx/upload.error.log \
+/data/temp/saatchi.log\"' \
+\
 -ts -M 3000"
 
 alias saatchi-tail-catalog-xqa="multitail -CS catalog  \
 -Ev \"heartbeat\" \
 -Ev \"AWS SQS 200\" \
--cT ANSI -l 'autossh -t saatchi-xqa-catalog-01 \"tail -n500 -f /data/catalog/shared/log/unicorn.stderr.log /data/catalog/current/log/qa.log\"' \
--cT ANSI -L 'autossh -t saatchi-xqa-catalog-02 \"tail -n500 -f /data/catalog/shared/log/unicorn.stderr.log /data/catalog/current/log/qa.log\"' \
+\
+-cT ANSI -l 'autossh -t saatchi-xqa-catalog-01 \"tail -n500 -f \
+/data/catalog/shared/log/unicorn.stderr.log \
+/data/catalog/current/log/qa.log\"' \
+\
+-cT ANSI -L 'autossh -t saatchi-xqa-catalog-02 \"tail -n500 -f \
+/data/catalog/shared/log/unicorn.stderr.log \
+/data/catalog/current/log/qa.log\"' \
+\
 -ts -M 3000"
 
 alias saatchi-tail-api-xqa="multitail -CS api \
 -Ev \"End Point\" \
 -Ev \"\*{5}\" \
--cT ANSI -l 'autossh -t saatchi-xqa-catalog-01 \"tail -n500 -f /data/api/current/log/unicorn.stderr.log /data/api/current/log/qa.log\"' \
--cT ANSI -L 'autossh -t saatchi-xqa-catalog-02 \"tail -n500 -f /data/api/current/log/unicorn.stderr.log /data/api/current/log/qa.log\"' \
+\
+-cT ANSI -l 'autossh -t saatchi-xqa-catalog-01 \"tail -n500 -f \
+/data/api/current/log/unicorn.stderr.log \
+/data/api/current/log/qa.log\"' \
+\
+-cT ANSI -L 'autossh -t saatchi-xqa-catalog-02 \"tail -n500 -f \
+/data/api/current/log/unicorn.stderr.log \
+/data/api/current/log/qa.log\"' \
+\
 -ts -M 3000"
 
 alias saatchi-tail-legacy-services-xqa="multitail -CS legacy \
@@ -190,8 +244,16 @@ alias saatchi-tail-zed-xqa="multitail -CS zed \
 -ts -M 3000"
 
 alias saatchi-tail-gallery-xqa="multitail -CS gallery \
--l 'autossh -t appdeploy@saatchi-xqa-gallery-01 \"tail -n500 -f /var/log/nginx/error.log /var/log/nginx/www.error.log /data/gallery/current/storage/logs/laravel.log\"' \
--L 'autossh -t appdeploy@saatchi-xqa-gallery-02 \"tail -n500 -f /var/log/nginx/error.log /var/log/nginx/www.error.log /data/gallery/current/storage/logs/laravel.log\"' \
+-l 'autossh -t appdeploy@saatchi-xqa-gallery-01 \"tail -n500 -f \
+/var/log/nginx/error.log \
+/var/log/nginx/www.error.log \
+/data/gallery/current/storage/logs/laravel.log\"' \
+\
+-L 'autossh -t appdeploy@saatchi-xqa-gallery-02 \"tail -n500 -f \
+/var/log/nginx/error.log \
+/var/log/nginx/www.error.log \
+/data/gallery/current/storage/logs/laravel.log\"' \
+\
 -ts -M 3000"
 
 alias saatchi-tail-easel-xqa="multitail -CS easel \
@@ -200,8 +262,17 @@ alias saatchi-tail-easel-xqa="multitail -CS easel \
 -ts -M 3000"
 
 alias saatchi-tail-palette-xqa="multitail -CS palette \
--l 'autossh -t appdeploy@saatchi-xqa-palette-01 \"tail -n500 -f /var/log/nginx/error.log /var/log/nginx/app.error.log /scratch/palette/log/general-laravel.log /scratch/palette/log/saatchi-ecommerce.log\"' \
--L 'autossh -t appdeploy@saatchi-xqa-palette-02 \"tail -n500 -f /var/log/nginx/error.log /var/log/nginx/app.error.log /scratch/palette/log/general-laravel.log /scratch/palette/log/saatchi-ecommerce.log\"' \
+-l 'autossh -t appdeploy@saatchi-xqa-palette-01 \"tail -n500 -f \
+/var/log/nginx/error.log \
+/var/log/nginx/app.error.log \
+/scratch/palette/log/general-laravel.log /scratch/palette/log/saatchi-ecommerce.log\"' \
+\
+-L 'autossh -t appdeploy@saatchi-xqa-palette-02 \"tail -n500 -f \
+/var/log/nginx/error.log \
+/var/log/nginx/app.error.log \
+/scratch/palette/log/general-laravel.log \
+/scratch/palette/log/saatchi-ecommerce.log\"' \
+\
 -ts -M 3000"
 
 alias saatchi-tail-palette-services-xqa="multitail -CS palette \
@@ -216,8 +287,6 @@ alias saatchi-tail-lb-xqa="multitail -CS lb \
 -l 'autossh -t appdeploy@saatchi-xqa-lb-01 \"sudo tail -n500 -f /var/log/haproxy.log\"' \
 -ts -M 3000"
 
-# log file seems to be /scratch/imgproc/imgproc.log.gz
-# alias saatchi-tail-imgproc-xqa="multitail -cT ANSI -l 'autossh -t saatchi-xqa-origin-01 tail -n500 -f /var/log/imgproc/imgproc.log' -cT ANSI -L 'autossh -t saatchi-xqa-origin-02 tail -n500 -f /var/log/imgproc/imgproc.log'"
 alias saatchi-tail-imgproc-xqa="multitail \
 -cT ANSI -l 'autossh -t saatchi-xqa-origin-01 tail -n500 -f /scratch/log/imgproc/imgproc.log' \
 -cT ANSI -L 'autossh -t saatchi-xqa-origin-02 tail -n500 -f /scratch/log/imgproc/imgproc.log'"
@@ -240,22 +309,67 @@ alias saatchi-tail-legacy-nginx-xprod="multitail -CS legacy \
 -Ev \"REQUEST ART CREATE\" \
 -Ev \"RESPONSE ART CREATE\" \
 -Ev \"healthcheck\" \
--l 'autossh -t appdeploy@saatchi-xprod-legacy-01 \"sudo -u www-data tail -n500 -f /var/log/nginx/error.log /var/log/nginx/legacy.error.log /var/log/nginx/upload.error.log\"' \
--L 'autossh -t appdeploy@saatchi-xprod-legacy-02 \"sudo -u www-data tail -n500 -f /var/log/nginx/error.log /var/log/nginx/legacy.error.log /var/log/nginx/upload.error.log\"' \
--L 'autossh -t appdeploy@saatchi-xprod-legacy-03 \"sudo -u www-data tail -n500 -f /var/log/nginx/error.log /var/log/nginx/legacy.error.log /var/log/nginx/upload.error.log\"' \
--L 'autossh -t appdeploy@saatchi-xprod-legacy-04 \"sudo -u www-data tail -n500 -f /var/log/nginx/error.log /var/log/nginx/legacy.error.log /var/log/nginx/upload.error.log\"' \
--L 'autossh -t appdeploy@saatchi-xprod-legacy-05 \"sudo -u www-data tail -n500 -f /var/log/nginx/error.log /var/log/nginx/legacy.error.log /var/log/nginx/upload.error.log\"' \
+\
+-l 'autossh -t appdeploy@saatchi-xprod-legacy-01 \"sudo -u www-data tail -n500 -f \
+/var/log/nginx/error.log \
+/var/log/nginx/legacy.error.log \
+/var/log/nginx/upload.error.log\"' \
+\
+-L 'autossh -t appdeploy@saatchi-xprod-legacy-02 \"sudo -u www-data tail -n500 -f \
+/var/log/nginx/error.log \
+/var/log/nginx/legacy.error.log \
+/var/log/nginx/upload.error.log\"' \
+\
+-L 'autossh -t appdeploy@saatchi-xprod-legacy-03 \"sudo -u www-data tail -n500 -f \
+/var/log/nginx/error.log \
+/var/log/nginx/legacy.error.log \
+/var/log/nginx/upload.error.log\"' \
+\
+-L 'autossh -t appdeploy@saatchi-xprod-legacy-04 \"sudo -u www-data tail -n500 -f \
+/var/log/nginx/error.log \
+/var/log/nginx/legacy.error.log \
+/var/log/nginx/upload.error.log\"' \
+\
+-L 'autossh -t appdeploy@saatchi-xprod-legacy-05 \"sudo -u www-data tail -n500 -f \
+/var/log/nginx/error.log \
+/var/log/nginx/legacy.error.log \
+/var/log/nginx/upload.error.log\"' \
+\
 -ts -M 3000"
 
 alias saatchi-tail-catalog-xprod="multitail -CS catalog \
 -Ev \"heartbeat\" \
 -Ev \"AWS SQS 200\" \
--l 'autossh -t saatchi-xprod-catalog-01 \"tail -n500 -f /data/catalog/shared/log/unicorn.stderr.log /data/catalog/current/log/orders.log /data/catalog/current/log/production.log\"' \
--L 'autossh -t saatchi-xprod-catalog-02 \"tail -n500 -f /data/catalog/shared/log/unicorn.stderr.log /data/catalog/current/log/orders.log /data/catalog/current/log/production.log\"' \
--L 'autossh -t saatchi-xprod-catalog-03 \"tail -n500 -f /data/catalog/shared/log/unicorn.stderr.log /data/catalog/current/log/orders.log /data/catalog/current/log/production.log\"' \
--L 'autossh -t saatchi-xprod-catalog-03 \"tail -n500 -f /data/catalog/shared/log/unicorn.stderr.log /data/catalog/current/log/orders.log /data/catalog/current/log/production.log\"' \
--L 'autossh -t saatchi-xprod-catalog-04 \"tail -n500 -f /data/catalog/shared/log/unicorn.stderr.log /data/catalog/current/log/orders.log /data/catalog/current/log/production.log\"' \
--L 'autossh -t saatchi-xprod-catalog-05 \"tail -n500 -f /data/catalog/shared/log/unicorn.stderr.log /data/catalog/current/log/orders.log /data/catalog/current/log/production.log\"' \
+\
+-l 'autossh -t saatchi-xprod-catalog-01 \"tail -n500 -f \
+/data/catalog/shared/log/unicorn.stderr.log \
+/data/catalog/current/log/orders.log \
+/data/catalog/current/log/production.log\"' \
+\
+-L 'autossh -t saatchi-xprod-catalog-02 \"tail -n500 -f \
+/data/catalog/shared/log/unicorn.stderr.log \
+/data/catalog/current/log/orders.log \
+/data/catalog/current/log/production.log\"' \
+\
+-L 'autossh -t saatchi-xprod-catalog-03 \"tail -n500 -f \
+/data/catalog/shared/log/unicorn.stderr.log \
+/data/catalog/current/log/orders.log \
+/data/catalog/current/log/production.log\"' \
+\
+-L 'autossh -t saatchi-xprod-catalog-03 \"tail -n500 -f \
+/data/catalog/shared/log/unicorn.stderr.log \
+/data/catalog/current/log/orders.log \
+/data/catalog/current/log/production.log\"' \
+\
+-L 'autossh -t saatchi-xprod-catalog-04 \"tail -n500 -f \
+/data/catalog/shared/log/unicorn.stderr.log \
+/data/catalog/current/log/orders.log \
+/data/catalog/current/log/production.log\"' \
+\
+-L 'autossh -t saatchi-xprod-catalog-05 \"tail -n500 -f \
+/data/catalog/shared/log/unicorn.stderr.log \
+/data/catalog/current/log/orders.log \
+/data/catalog/current/log/production.log\"' \
 -ts -M 3000"
 
 alias saatchi-tail-sidekiq-xprod="multitail -CS catalog \
@@ -282,12 +396,31 @@ alias saatchi-tail-catalog-orders-xprod="multitail -CS catalog \
 alias saatchi-tail-api-xprod="multitail -CS api \
 -Ev \"End Point\" \
 -Ev \"\*{5}\" \
--l 'autossh -t saatchi-xprod-catalog-01 \"tail -n500 -f /data/api/current/log/unicorn.stderr.log /data/api/current/log/production.log\"' \
--L 'autossh -t saatchi-xprod-catalog-02 \"tail -n500 -f /data/api/current/log/unicorn.stderr.log /data/api/current/log/production.log\"' \
--L 'autossh -t saatchi-xprod-catalog-03 \"tail -n500 -f /data/api/current/log/unicorn.stderr.log /data/api/current/log/production.log\"' \
--L 'autossh -t saatchi-xprod-catalog-03 \"tail -n500 -f /data/api/current/log/unicorn.stderr.log /data/api/current/log/production.log\"' \
--L 'autossh -t saatchi-xprod-catalog-04 \"tail -n500 -f /data/api/current/log/unicorn.stderr.log /data/api/current/log/production.log\"' \
--L 'autossh -t saatchi-xprod-catalog-05 \"tail -n500 -f /data/api/current/log/unicorn.stderr.log /data/api/current/log/production.log\"' \
+-l 'autossh -t saatchi-xprod-catalog-01 \"tail -n500 -f \
+\
+/data/api/current/log/unicorn.stderr.log \
+/data/api/current/log/production.log\"' \
+\
+-L 'autossh -t saatchi-xprod-catalog-02 \"tail -n500 -f \
+/data/api/current/log/unicorn.stderr.log \
+/data/api/current/log/production.log\"' \
+\
+-L 'autossh -t saatchi-xprod-catalog-03 \"tail -n500 -f \
+/data/api/current/log/unicorn.stderr.log \
+/data/api/current/log/production.log\"' \
+\
+-L 'autossh -t saatchi-xprod-catalog-03 \"tail -n500 -f \
+/data/api/current/log/unicorn.stderr.log \
+/data/api/current/log/production.log\"' \
+\
+-L 'autossh -t saatchi-xprod-catalog-04 \"tail -n500 -f \
+/data/api/current/log/unicorn.stderr.log \
+/data/api/current/log/production.log\"' \
+\
+-L 'autossh -t saatchi-xprod-catalog-05 \"tail -n500 -f \
+/data/api/current/log/unicorn.stderr.log \
+/data/api/current/log/production.log\"' \
+\
 -ts -M 3000"
 
 alias saatchi-tail-legacy-services-xprod="multitail -CS legacy \
@@ -344,8 +477,14 @@ alias saatchi-tail-easel-xprod="multitail -CS easel \
 -ts -M 3000"
 
 alias saatchi-tail-palette-xprod="multitail -CS palette \
--l 'autossh -t appdeploy@saatchi-xprod-palette-01 \"tail -n500 -f /scratch/palette/log/general-laravel.log /scratch/palette/log/saatchi-ecommerce.log\"' \
--L 'autossh -t appdeploy@saatchi-xprod-palette-02 \"tail -n500 -f /scratch/palette/log/general-laravel.log /scratch/palette/log/saatchi-ecommerce.log\"' \
+-l 'autossh -t appdeploy@saatchi-xprod-palette-01 \"tail -n500 -f \
+/scratch/palette/log/general-laravel.log \
+/scratch/palette/log/saatchi-ecommerce.log\"' \
+\
+-L 'autossh -t appdeploy@saatchi-xprod-palette-02 \"tail -n500 -f \
+/scratch/palette/log/general-laravel.log \
+/scratch/palette/log/saatchi-ecommerce.log\"' \
+\
 -ts -M 3000"
 
 alias saatchi-tail-palette-services-xprod="multitail -CS palette \
@@ -357,8 +496,14 @@ alias saatchi-tail-palette-services-xprod="multitail -CS palette \
 -ts -M 3000"
 
 alias saatchi-tail-palette-nginx-xprod="multitail -CS palette \
--l 'autossh -t appdeploy@saatchi-xprod-palette-01 \"sudo -u www-data tail -n500 -f /var/log/nginx/error.log /var/log/nginx/app.error.log\"' \
--L 'autossh -t appdeploy@saatchi-xprod-palette-02 \"sudo -u www-data tail -n500 -f /var/log/nginx/error.log /var/log/nginx/app.error.log\"' \
+-l 'autossh -t appdeploy@saatchi-xprod-palette-01 \"sudo -u www-data tail -n500 -f \
+/var/log/nginx/error.log \
+/var/log/nginx/app.error.log\"' \
+\
+-L 'autossh -t appdeploy@saatchi-xprod-palette-02 \"sudo -u www-data tail -n500 -f \
+/var/log/nginx/error.log \
+/var/log/nginx/app.error.log\"' \
+\
 -ts -M 3000"
 
 # FIREHOSE! Note: needs sudo to access log, but sudo prevents process from being stopped automatically. Be sure to stop process afterward!
@@ -390,7 +535,7 @@ saatchi-id-user-art-local () {
 }
 saatchi-id-user-art-xdev () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-id-user-art-xdev {art_id}"; return; fi;
-    ssh -f saatchi-console-01 \
+    builtin ssh -f saatchi-console-01 \
         -L $SAATCHI_XDEV_TUNNEL_PORT:$SAATCHI_XDEV_HOST:$SAATCHI_XDEV_PORT -N && \
         export MYSQL_PWD=$SAATCHI_XDEV_PASSWORD && \
         mysql -h127.0.0.1 \
@@ -403,7 +548,7 @@ saatchi-id-user-art-xdev () {
 
 saatchi-id-user-art-xqa () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-id-user-art-xqa {art_id}"; return; fi;
-    ssh -f saatchi-console-01 \
+    builtin ssh -f saatchi-console-01 \
         -L $SAATCHI_XQA_TUNNEL_PORT:$SAATCHI_XQA_HOST:$SAATCHI_XQA_PORT \
         -N && export MYSQL_PWD=$SAATCHI_XQA_PASSWORD && \
         mysql -h127.0.0.1 \
@@ -416,7 +561,7 @@ saatchi-id-user-art-xqa () {
 
 saatchi-id-user-art-xprod () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-id-user-art-xprod {art_id}"; return; fi;
-        ssh -f saatchi-console-01 \
+        builtin ssh -f saatchi-console-01 \
             -L 2567:$SAATCHI_XPROD_HOST:$SAATCHI_XPROD_PORT \
             -N && export MYSQL_PWD=$SAATCHI_XPROD_PASSWORD && \
             mysql -h127.0.0.1 \
@@ -428,10 +573,10 @@ saatchi-id-user-art-xprod () {
 }
 
 # copy to clipboard
-# saatchi-id-user-art-local-copy () { saatchi-id-user-art-local $1 | head -n1 | tr -d '\n' | pbcopy; }
-# saatchi-id-user-art-xdev-copy () { saatchi-id-user-art-xdev $1 | head -n1 | tr -d '\n' | pbcopy; }
-# saatchi-id-user-art-xqa-copy () { saatchi-id-user-art-xqa $1 | head -n1 | tr -d '\n' | pbcopy; }
-# saatchi-id-user-art-xprod-copy () { saatchi-id-user-art-xprod $1 | head -n1 | tr -d '\n' | pbcopy; }
+saatchi-id-user-art-local-copy () { ( saatchi-id-user-art-local $1 > tmp.txt ); ( cat tmp.txt | pbcopy ); rm tmp.txt; }
+saatchi-id-user-art-xdev-copy () { ( saatchi-id-user-art-xdev $1 > tmp.txt ); ( cat tmp.txt | pbcopy ); rm tmp.txt; }
+saatchi-id-user-art-xqa-copy () { ( saatchi-id-user-art-xqa $1 > tmp.txt ); ( cat tmp.txt | pbcopy ); rm tmp.txt; }
+saatchi-id-user-art-xprod-copy () { ( saatchi-id-user-art-xprod $1 > tmp.txt ); ( cat tmp.txt | pbcopy ); rm tmp.txt; }
 # }}}
 
 # saatchi - get id_user_collection by collection id. {{{
@@ -445,7 +590,7 @@ saatchi-id-user-collection-local () {
 }
 saatchi-id-user-collection-xdev () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-id-user-collection-xdev {collection_id}"; return; fi;
-    ssh -f saatchi-console-01 \
+    builtin ssh -f saatchi-console-01 \
         -L $SAATCHI_XDEV_TUNNEL_PORT:$SAATCHI_XDEV_HOST:$SAATCHI_XDEV_PORT -N && \
         export MYSQL_PWD=$SAATCHI_XDEV_PASSWORD && \
         mysql -h127.0.0.1 \
@@ -457,7 +602,7 @@ saatchi-id-user-collection-xdev () {
 }
 saatchi-id-user-collection-xqa () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-id-user-collection-xqa {collection_id}"; return; fi;
-    ssh -f saatchi-console-01 \
+    builtin ssh -f saatchi-console-01 \
         -L 8307:$SAATCHI_XQA_HOST:$SAATCHI_XQA_PORT -N && \
         export MYSQL_PWD=$SAATCHI_XQA_PASSWORD && \
         mysql -h127.0.0.1 \
@@ -469,7 +614,7 @@ saatchi-id-user-collection-xqa () {
 }
 saatchi-id-user-collection-xprod () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-id-user-collection-xprod {collection_id}"; return; fi; \
-    ssh -f saatchi-console-01 \
+    builtin ssh -f saatchi-console-01 \
         -L 8307:$SAATCHI_XPROD_HOST:$SAATCHI_XPROD_PORT -N && \
         export MYSQL_PWD=$SAATCHI_XPROD_PASSWORD && \
         mysql -h127.0.0.1 \
@@ -479,6 +624,12 @@ saatchi-id-user-collection-xprod () {
         --execute "select id_user_collection from user_collections where id = $1;" \
         --batch -N;
 }
+
+# copy to clipboard
+saatchi-id-user-collection-local-copy () { ( saatchi-id-user-collection-local $1 > tmp.txt ); ( cat tmp.txt | pbcopy ); rm tmp.txt; }
+saatchi-id-user-collection-xdev-copy () { ( saatchi-id-user-collection-xdev $1 > tmp.txt ); ( cat tmp.txt | pbcopy ); rm tmp.txt; }
+saatchi-id-user-collection-xqa-copy () { ( saatchi-id-user-collection-xqa $1 > tmp.txt ); ( cat tmp.txt | pbcopy ); rm tmp.txt; }
+saatchi-id-user-collection-xprod-copy () { ( saatchi-id-user-collection-xprod $1 > tmp.txt ); ( cat tmp.txt | pbcopy ); rm tmp.txt; }
 # }}}
 
 # saatchi socks proxies {{{
@@ -692,11 +843,11 @@ function saatchi-releases-xprod () {
 # }}}
 
 # saatchi crontab {{{
-# alias saatchi-cron-legacy-services-01="ssh saatchi-xprod-legacy-services-01 -t 'sudo -u www-data crontab -l'" # not needed currently
-alias saatchi-cron-legacy-services-xqa="ssh appdeploy@saatchi-xqa-legacy-services-01 'sudo -u www-data crontab -l' | rougify -l shell | less -r"
-alias saatchi-cron-legacy-services-xdev="ssh appdeploy@saatchi-xdev-legacy-services-01 'sudo -u www-data crontab -l' | rougify -l shell | less -r"
-alias saatchi-cron-legacy-services-xprod="ssh appdeploy@saatchi-xprod-legacy-services-02 'sudo -u www-data crontab -l' | rougify -l shell | less -r"
-# alias saatchi-cron-legacy-services-02="ssh appdeploy@saatchi-xprod-legacy-services-02 -t 'sudo -u www-data VISUAL=vim crontab -e'" # this one edits
+# alias saatchi-cron-legacy-services-01="builtin ssh saatchi-xprod-legacy-services-01 -t 'sudo -u www-data crontab -l'" # not needed currently
+alias saatchi-cron-legacy-services-xqa="builtin ssh appdeploy@saatchi-xqa-legacy-services-01 'sudo -u www-data crontab -l' | rougify -l shell | less -r"
+alias saatchi-cron-legacy-services-xdev="builtin ssh appdeploy@saatchi-xdev-legacy-services-01 'sudo -u www-data crontab -l' | rougify -l shell | less -r"
+alias saatchi-cron-legacy-services-xprod="builtin ssh appdeploy@saatchi-xprod-legacy-services-02 'sudo -u www-data crontab -l' | rougify -l shell | less -r"
+# alias saatchi-cron-legacy-services-02="builtin ssh appdeploy@saatchi-xprod-legacy-services-02 -t 'sudo -u www-data VISUAL=vim crontab -e'" # this one edits
 # }}}
 
 # saatchi docker shells {{{
@@ -864,21 +1015,62 @@ _saatchi-couchbase-get () {
     RESULT=$(ssh $SERVICES "$SSH_COMMAND")
     echo "$RESULT" | python -m json.tool | rougify -l javascript | less -R
 }
-saatchi-couchbase-get-catalog-xdev () { if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-get-catalog-xdev {key}"; return; fi; _saatchi-couchbase-get "catalog" "$1" "$SAATCHI_XDEV_COUCHBASE_SERVER" "xdev" "saatchi-xdev-legacy-services-01"; }
-saatchi-couchbase-get-catalog-xqa () { if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-get-catalog-xqa {key}"; return; fi; _saatchi-couchbase-get "catalog" "$1" "$SAATCHI_XQA_COUCHBASE_SERVER" "xdev" "saatchi-xqa-legacy-services-01"; }
-saatchi-couchbase-get-catalog-xprod () { if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-get-catalog-xprod {key}"; return; fi; _saatchi-couchbase-get "catalog" "$1" "$SAATCHI_XPROD_COUCHBASE_SERVER" "xdev" "saatchi-xprod-legacy-services-02"; }
 
-saatchi-couchbase-get-art-xdev () { if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-get-art-xdev {key}"; return; fi; _saatchi-couchbase-get "art" "$1" "$SAATCHI_XDEV_COUCHBASE_SERVER" "xdev" "saatchi-xdev-legacy-services-01"; }
-saatchi-couchbase-get-art-xqa () { if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-get-art-xqa {key}"; return; fi; _saatchi-couchbase-get "art" "$1" "$SAATCHI_XQA_COUCHBASE_SERVER" "xdev" "saatchi-xqa-legacy-services-01"; }
-saatchi-couchbase-get-art-xprod () { if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-get-art-xprod {key}"; return; fi; _saatchi-couchbase-get "art" "$1" "$SAATCHI_XPROD_COUCHBASE_SERVER" "xdev" "saatchi-xprod-legacy-services-02"; }
 
-saatchi-couchbase-get-user-xdev () { if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-get-user-xdev {key}"; return; fi; _saatchi-couchbase-get "user" "$1" "$SAATCHI_XDEV_COUCHBASE_SERVER" "xdev" "saatchi-xdev-legacy-services-01"; }
-saatchi-couchbase-get-user-xqa () { if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-get-user-xqa {key}"; return; fi; _saatchi-couchbase-get "user" "$1" "$SAATCHI_XQA_COUCHBASE_SERVER" "xdev" "saatchi-xqa-legacy-services-01"; }
-saatchi-couchbase-get-user-xprod () { if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-get-user-xprod {key}"; return; fi; _saatchi-couchbase-get "user" "$1" "$SAATCHI_XPROD_COUCHBASE_SERVER" "xdev" "saatchi-xprod-legacy-services-02"; }
+saatchi-couchbase-get-catalog-xdev () {
+    if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-get-catalog-xdev {key}"; return; fi;
+    _saatchi-couchbase-get "catalog" "$1" "$SAATCHI_XDEV_COUCHBASE_SERVER" "xdev" "saatchi-xdev-legacy-services-01";
+}
+saatchi-couchbase-get-catalog-xqa () {
+    if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-get-catalog-xqa {key}"; return; fi;
+    saatchi-couchbase-get "catalog" "$1" "$SAATCHI_XQA_COUCHBASE_SERVER" "xdev" "saatchi-xqa-legacy-services-01";
+}
+saatchi-couchbase-get-catalog-xprod () {
+    if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-get-catalog-xprod {key}"; return; fi;
+    _saatchi-couchbase-get "catalog" "$1" "$SAATCHI_XPROD_COUCHBASE_SERVER" "xdev" "saatchi-xprod-legacy-services-02";
+}
 
-saatchi-couchbase-get-collection-xdev () { if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-get-collection-xdev {key}"; return; fi; _saatchi-couchbase-get "collection" "$1" "$SAATCHI_XDEV_COUCHBASE_SERVER" "xdev" "saatchi-xdev-legacy-services-01"; }
-saatchi-couchbase-get-collection-xqa () { if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-get-collection-xqa {key}"; return; fi; _saatchi-couchbase-get "collection" "$1" "$SAATCHI_XQA_COUCHBASE_SERVER" "xdev" "saatchi-xqa-legacy-services-01"; }
-saatchi-couchbase-get-collection-xprod () { if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-get-collection-xprod {key}"; return; fi; _saatchi-couchbase-get "collection" "$1" "$SAATCHI_XPROD_COUCHBASE_SERVER" "xdev" "saatchi-xprod-legacy-services-02"; }
+
+saatchi-couchbase-get-art-xdev () {
+    if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-get-art-xdev {key}"; return; fi;
+    _saatchi-couchbase-get "art" "$1" "$SAATCHI_XDEV_COUCHBASE_SERVER" "xdev" "saatchi-xdev-legacy-services-01";
+}
+saatchi-couchbase-get-art-xqa () {
+    if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-get-art-xqa {key}"; return; fi;
+    _saatchi-couchbase-get "art" "$1" "$SAATCHI_XQA_COUCHBASE_SERVER" "xdev" "saatchi-xqa-legacy-services-01";
+}
+saatchi-couchbase-get-art-xprod () {
+    if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-get-art-xprod {key}"; return; fi;
+    _saatchi-couchbase-get "art" "$1" "$SAATCHI_XPROD_COUCHBASE_SERVER" "xdev" "saatchi-xprod-legacy-services-02";
+}
+
+
+saatchi-couchbase-get-user-xdev () {
+    if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-get-user-xdev {key}"; return; fi;
+    _saatchi-couchbase-get "user" "$1" "$SAATCHI_XDEV_COUCHBASE_SERVER" "xdev" "saatchi-xdev-legacy-services-01";
+}
+saatchi-couchbase-get-user-xqa () {
+    if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-get-user-xqa {key}"; return; fi;
+    _saatchi-couchbase-get "user" "$1" "$SAATCHI_XQA_COUCHBASE_SERVER" "xdev" "saatchi-xqa-legacy-services-01";
+}
+saatchi-couchbase-get-user-xprod () {
+    if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-get-user-xprod {key}"; return; fi;
+    _saatchi-couchbase-get "user" "$1" "$SAATCHI_XPROD_COUCHBASE_SERVER" "xdev" "saatchi-xprod-legacy-services-02";
+}
+
+
+saatchi-couchbase-get-collection-xdev () {
+    if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-get-collection-xdev {key}"; return; fi;
+    _saatchi-couchbase-get "collection" "$1" "$SAATCHI_XDEV_COUCHBASE_SERVER" "xdev" "saatchi-xdev-legacy-services-01";
+}
+saatchi-couchbase-get-collection-xqa () {
+    if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-get-collection-xqa {key}"; return; fi;
+    _saatchi-couchbase-get "collection" "$1" "$SAATCHI_XQA_COUCHBASE_SERVER" "xdev" "saatchi-xqa-legacy-services-01";
+}
+saatchi-couchbase-get-collection-xprod () {
+    if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-get-collection-xprod {key}"; return; fi;
+    _saatchi-couchbase-get "collection" "$1" "$SAATCHI_XPROD_COUCHBASE_SERVER" "xdev" "saatchi-xprod-legacy-services-02";
+}
 # }}}
 
 # Query a couchbase view {{{
@@ -923,10 +1115,22 @@ _saatchi-couchbase-update-local () {
         echo "no data for this key"
     fi
 }
-saatchi-couchbase-update-art-local () { if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-update-art-local {my_key}"; return; fi; _saatchi-couchbase-update-local "art" $1; }
-saatchi-couchbase-update-catalog-local () { if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-update-catalog-local {my_key}"; return; fi; _saatchi-couchbase-update-local "catalog" $1; }
-saatchi-couchbase-update-collection-local () { if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-update-collection-local {my_key}"; return; fi; _saatchi-couchbase-update-local "collection" $1; }
-saatchi-couchbase-update-user-local () { if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-update-user-local {my_key}"; return; fi; _saatchi-couchbase-update-local "user" $1; }
+saatchi-couchbase-update-art-local () {
+    if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-update-art-local {my_key}"; return; fi;
+    _saatchi-couchbase-update-local "art" $1;
+}
+saatchi-couchbase-update-catalog-local () {
+    if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-update-catalog-local {my_key}"; return; fi;
+    _saatchi-couchbase-update-local "catalog" $1;
+}
+saatchi-couchbase-update-collection-local () {
+    if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-update-collection-local {my_key}"; return; fi;
+    _saatchi-couchbase-update-local "collection" $1;
+}
+saatchi-couchbase-update-user-local () {
+    if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-update-user-local {my_key}"; return; fi;
+    _saatchi-couchbase-update-local "user" $1;
+}
 
 # Internal method to update a couchbase doc on a server through the services box
 _saatchi-couchbase-update () {
@@ -959,69 +1163,182 @@ _saatchi-couchbase-update () {
         echo "no data to insert"
     fi
 }
-saatchi-couchbase-update-art-xdev () { if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-update-art-xdev {bucket} {key}"; return; fi; _saatchi-couchbase-update "art" "$1" "$SAATCHI_XDEV_COUCHBASE_SERVER" "xdev" "saatchi-xdev-legacy-services-01" }
-saatchi-couchbase-update-catalog-xdev () { if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-update-catalog-xdev {bucket} {key}"; return; fi; _saatchi-couchbase-update "catalog" "$1" "$SAATCHI_XDEV_COUCHBASE_SERVER" "xdev" "saatchi-xdev-legacy-services-01" }
-saatchi-couchbase-update-collection-xdev () { if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-update-collection-xdev {bucket} {key}"; return; fi; _saatchi-couchbase-update "collection" "$1" "$SAATCHI_XDEV_COUCHBASE_SERVER" "xdev" "saatchi-xdev-legacy-services-01" }
-saatchi-couchbase-update-user-xdev () { if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-update-user-xdev {bucket} {key}"; return; fi; _saatchi-couchbase-update "user" "$1" "$SAATCHI_XDEV_COUCHBASE_SERVER" "xdev" "saatchi-xdev-legacy-services-01" }
+saatchi-couchbase-update-art-xdev () {
+    if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-update-art-xdev {bucket} {key}"; return; fi;
+    _saatchi-couchbase-update "art" "$1" "$SAATCHI_XDEV_COUCHBASE_SERVER" "xdev" "saatchi-xdev-legacy-services-01"
+}
+saatchi-couchbase-update-catalog-xdev () {
+    if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-update-catalog-xdev {bucket} {key}"; return; fi;
+    _saatchi-couchbase-update "catalog" "$1" "$SAATCHI_XDEV_COUCHBASE_SERVER" "xdev" "saatchi-xdev-legacy-services-01"
+}
+saatchi-couchbase-update-collection-xdev () {
+    if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-update-collection-xdev {bucket} {key}"; return; fi;
+    _saatchi-couchbase-update "collection" "$1" "$SAATCHI_XDEV_COUCHBASE_SERVER" "xdev" "saatchi-xdev-legacy-services-01"
+}
+saatchi-couchbase-update-user-xdev () {
+    if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-update-user-xdev {bucket} {key}"; return; fi;
+    _saatchi-couchbase-update "user" "$1" "$SAATCHI_XDEV_COUCHBASE_SERVER" "xdev" "saatchi-xdev-legacy-services-01"
+}
 
-saatchi-couchbase-update-art-xqa () { if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-update-art-xqa {bucket} {key}"; return; fi; _saatchi-couchbase-update "art" "$1" "$SAATCHI_XQA_COUCHBASE_SERVER" "xqa" "saatchi-xqa-legacy-services-01" }
-saatchi-couchbase-update-catalog-xqa () { if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-update-catalog-xqa {bucket} {key}"; return; fi; _saatchi-couchbase-update "catalog" "$1" "$SAATCHI_XQA_COUCHBASE_SERVER" "xqa" "saatchi-xqa-legacy-services-01" }
-saatchi-couchbase-update-collection-xqa () { if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-update-collection-xqa {bucket} {key}"; return; fi; _saatchi-couchbase-update "collection" "$1" "$SAATCHI_XQA_COUCHBASE_SERVER" "xqa" "saatchi-xqa-legacy-services-01" }
-saatchi-couchbase-update-user-xqa () { if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-update-user-xqa {bucket} {key}"; return; fi; _saatchi-couchbase-update "user" "$1" "$SAATCHI_XQA_COUCHBASE_SERVER" "xqa" "saatchi-xqa-legacy-services-01" }
 
-saatchi-couchbase-update-art-xprod () { if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-update-art-xprod {bucket} {key}"; return; fi; _saatchi-couchbase-update "art" "$1" "$SAATCHI_XPROD_COUCHBASE_SERVER" "xprod" "saatchi-xprod-legacy-services-02" }
-saatchi-couchbase-update-catalog-xprod () { if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-update-catalog-xprod {bucket} {key}"; return; fi; _saatchi-couchbase-update "catalog" "$1" "$SAATCHI_XPROD_COUCHBASE_SERVER" "xprod" "saatchi-xprod-legacy-services-02" }
-saatchi-couchbase-update-collection-xprod () { if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-update-collection-xprod {bucket} {key}"; return; fi; _saatchi-couchbase-update "collection" "$1" "$SAATCHI_XPROD_COUCHBASE_SERVER" "xprod" "saatchi-xprod-legacy-services-02" }
-saatchi-couchbase-update-user-xprod () { if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-update-user-xprod {bucket} {key}"; return; fi; _saatchi-couchbase-update "user" "$1" "$SAATCHI_XPROD_COUCHBASE_SERVER" "xprod" "saatchi-xprod-legacy-services-02" }
+saatchi-couchbase-update-art-xqa () {
+    if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-update-art-xqa {bucket} {key}"; return; fi;
+    _saatchi-couchbase-update "art" "$1" "$SAATCHI_XQA_COUCHBASE_SERVER" "xqa" "saatchi-xqa-legacy-services-01"
+}
+saatchi-couchbase-update-catalog-xqa () {
+    if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-update-catalog-xqa {bucket} {key}"; return; fi;
+    _saatchi-couchbase-update "catalog" "$1" "$SAATCHI_XQA_COUCHBASE_SERVER" "xqa" "saatchi-xqa-legacy-services-01"
+}
+saatchi-couchbase-update-collection-xqa () {
+    if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-update-collection-xqa {bucket} {key}"; return; fi;
+    _saatchi-couchbase-update "collection" "$1" "$SAATCHI_XQA_COUCHBASE_SERVER" "xqa" "saatchi-xqa-legacy-services-01"
+}
+saatchi-couchbase-update-user-xqa () {
+    if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-update-user-xqa {bucket} {key}"; return; fi;
+    _saatchi-couchbase-update "user" "$1" "$SAATCHI_XQA_COUCHBASE_SERVER" "xqa" "saatchi-xqa-legacy-services-01"
+}
+
+
+saatchi-couchbase-update-art-xprod () {
+    if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-update-art-xprod {bucket} {key}"; return; fi;
+    _saatchi-couchbase-update "art" "$1" "$SAATCHI_XPROD_COUCHBASE_SERVER" "xprod" "saatchi-xprod-legacy-services-02"
+}
+saatchi-couchbase-update-catalog-xprod () {
+    if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-update-catalog-xprod {bucket} {key}"; return; fi;
+    _saatchi-couchbase-update "catalog" "$1" "$SAATCHI_XPROD_COUCHBASE_SERVER" "xprod" "saatchi-xprod-legacy-services-02"
+}
+saatchi-couchbase-update-collection-xprod () {
+    if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-update-collection-xprod {bucket} {key}"; return; fi;
+    _saatchi-couchbase-update "collection" "$1" "$SAATCHI_XPROD_COUCHBASE_SERVER" "xprod" "saatchi-xprod-legacy-services-02"
+}
+saatchi-couchbase-update-user-xprod () {
+    if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-update-user-xprod {bucket} {key}"; return; fi;
+    _saatchi-couchbase-update "user" "$1" "$SAATCHI_XPROD_COUCHBASE_SERVER" "xprod" "saatchi-xprod-legacy-services-02"
+}
 # }}}
 # }}}
 
 # saatchi solr {{{
 
 # uses httpie to query solr {{{
-saatchi-solr-query-art-local () { if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-query-art-local q==\"*:*\" sort==\"random asc\" ..."; return; fi; http --pretty=all $SAATCHI_LOCAL_SOLR/solr/ap_art/select wt==json $@ -j | less -R; }
-saatchi-solr-query-art-xdev () { if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-query-art-xdev q==\"*:*\" sort==\"random asc\" ..."; return; fi; http --pretty=all $SAATCHI_XDEV_SOLR:8080/solr/ap_art/select wt==json $@ -j | less -R; }
-saatchi-solr-query-art-xqa () { if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-query-art-xqa q==\"*:*\" sort==\"random asc\" ..."; return; fi; http --pretty=all $SAATCHI_XQA_SOLR:8080/solr/ap_art/select wt==json $@ -j | less -R; }
-saatchi-solr-query-art-xprod () { if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-query-art-xprod q==\"*:*\" sort==\"random asc\" ..."; return; fi; ssh -f saatchi-console-01 -L 8397:$SAATCHI_XPROD_SOLR:8080 -N && http --pretty=all http://localhost:8397/solr/ap_art/select wt==json $@ -j | less -R; }
+saatchi-solr-query-art-local () {
+    if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-query-art-local q==\"*:*\" sort==\"random asc\" ..."; return; fi;
+    http --pretty=all $SAATCHI_LOCAL_SOLR/solr/ap_art/select wt==json $@ -j | less -R;
+}
+saatchi-solr-query-art-xdev () {
+    if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-query-art-xdev q==\"*:*\" sort==\"random asc\" ..."; return; fi;
+    http --pretty=all $SAATCHI_XDEV_SOLR:8080/solr/ap_art/select wt==json $@ -j | less -R;
+}
+saatchi-solr-query-art-xqa () {
+    if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-query-art-xqa q==\"*:*\" sort==\"random asc\" ..."; return; fi;
+    http --pretty=all $SAATCHI_XQA_SOLR:8080/solr/ap_art/select wt==json $@ -j | less -R;
+}
+saatchi-solr-query-art-xprod () {
+    if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-query-art-xprod q==\"*:*\" sort==\"random asc\" ..."; return; fi;
+    ssh -f saatchi-console-01 -L 8397:$SAATCHI_XPROD_SOLR:8080 -N && http --pretty=all http://localhost:8397/solr/ap_art/select wt==json $@ -j | less -R;
+}
 # }}}
 
 # query collections in solr {{{
-saatchi-solr-query-collection-local () { if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-query-collection-local q==\"*:*\" sort==\"random asc\" ..."; return; fi; http --pretty=all $SAATCHI_LOCAL_SOLR/solr/ap_collection/select wt==json $@ -j | less -R; }
-saatchi-solr-query-collection-xdev () { if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-query-collection-xdev q==\"*:*\" sort==\"random asc\" ..."; return; fi; http --pretty=all $SAATCHI_XDEV_SOLR:8080/solr/ap_collection/select wt==json $@ -j | less -R; }
-saatchi-solr-query-collection-xqa () { if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-query-collection-xqa q==\"*:*\" sort==\"random asc\" ..."; return; fi; http --pretty=all $SAATCHI_XQA_SOLR:8080/solr/ap_collection/select wt==json $@ -j | less -R; }
-saatchi-solr-query-collection-xprod () { if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-query-collection-xprod q==\"*:*\" sort==\"random asc\" ..."; return; fi; ssh -f saatchi-console-01 -L 8397:$SAATCHI_XPROD_SOLR:8080 -N && http --pretty=all http://localhost:8397/solr/ap_collection/select wt==json $@ -j | less -R; }
+saatchi-solr-query-collection-local () {
+    if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-query-collection-local q==\"*:*\" sort==\"random asc\" ..."; return; fi;
+    http --pretty=all $SAATCHI_LOCAL_SOLR/solr/ap_collection/select wt==json $@ -j | less -R;
+}
+saatchi-solr-query-collection-xdev () {
+    if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-query-collection-xdev q==\"*:*\" sort==\"random asc\" ..."; return; fi;
+    http --pretty=all $SAATCHI_XDEV_SOLR:8080/solr/ap_collection/select wt==json $@ -j | less -R;
+}
+saatchi-solr-query-collection-xqa () {
+    if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-query-collection-xqa q==\"*:*\" sort==\"random asc\" ..."; return; fi;
+    http --pretty=all $SAATCHI_XQA_SOLR:8080/solr/ap_collection/select wt==json $@ -j | less -R;
+}
+saatchi-solr-query-collection-xprod () {
+    if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-query-collection-xprod q==\"*:*\" sort==\"random asc\" ..."; return; fi;
+    ssh -f saatchi-console-01 -L 8397:$SAATCHI_XPROD_SOLR:8080 -N && http --pretty=all http://localhost:8397/solr/ap_collection/select wt==json $@ -j | less -R;
+}
 # }}}
 
 # query users in solr {{{
-saatchi-solr-query-user-local () { if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-query-user-local q==\"*:*\" sort==\"random asc\" ..."; return; fi; http --pretty=all $SAATCHI_LOCAL_SOLR/solr/ap/select wt==json $@ -j | less -R; }
-saatchi-solr-query-user-xdev () { if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-query-user-xdev q==\"*:*\" sort==\"random asc\" ..."; return; fi; http --pretty=all $SAATCHI_XDEV_SOLR:8080/solr/ap/select wt==json $@ -j | less -R; }
-saatchi-solr-query-user-xqa () { if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-query-user-xqa q==\"*:*\" sort==\"random asc\" ..."; return; fi; http --pretty=all $SAATCHI_XQA_SOLR:8080/solr/ap/select wt==json $@ -j | less -R; }
-saatchi-solr-query-user-xprod () { if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-query-user-xprod q==\"*:*\" sort==\"random asc\" ..."; return; fi; ssh -f saatchi-console-01 -L 8397:$SAATCHI_XPROD_SOLR:8080 -N && http --pretty=all http://localhost:8397/solr/ap/select wt==json $@ -j | less -R; }
+saatchi-solr-query-user-local () {
+    if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-query-user-local q==\"*:*\" sort==\"random asc\" ..."; return; fi;
+    http --pretty=all $SAATCHI_LOCAL_SOLR/solr/ap/select wt==json $@ -j | less -R;
+}
+saatchi-solr-query-user-xdev () {
+    if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-query-user-xdev q==\"*:*\" sort==\"random asc\" ..."; return; fi;
+    http --pretty=all $SAATCHI_XDEV_SOLR:8080/solr/ap/select wt==json $@ -j | less -R;
+}
+saatchi-solr-query-user-xqa () {
+    if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-query-user-xqa q==\"*:*\" sort==\"random asc\" ..."; return; fi;
+    http --pretty=all $SAATCHI_XQA_SOLR:8080/solr/ap/select wt==json $@ -j | less -R;
+}
+saatchi-solr-query-user-xprod () {
+    if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-query-user-xprod q==\"*:*\" sort==\"random asc\" ..."; return; fi;
+    ssh -f saatchi-console-01 -L 8397:$SAATCHI_XPROD_SOLR:8080 -N && http --pretty=all http://localhost:8397/solr/ap/select wt==json $@ -j | less -R;
+}
 # }}}
 
 # index artwork in solr by id_user_art {{{
-saatchi-solr-index-art-local () { if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-index-art-local {id_user_art}"; return; fi; dme && docker exec -ti xsaatchi_legacy_fpm_instance php -ddisplay_errors=on /data/code_base/current/scripts/solr/index-art-by-id.php local -v -minId=$1 -maxId=$1; }
-saatchi-solr-index-art-xdev () { if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-index-art-xdev {id_user_art}"; return; fi; ssh saatchi-xdev-legacy-services-01 -t "php -ddisplay_errors=on /data/code_base/current/scripts/solr/index-art-by-id.php development -v -minId=$1 -maxId=$1;" }
-saatchi-solr-index-art-xqa () { if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-index-art-xqa {id_user_art}"; return; fi; ssh saatchi-xqa-legacy-services-01 -t "php -ddisplay_errors=on /data/code_base/current/scripts/solr/index-art-by-id.php qa -v -minId=$1 -maxId=$1;" }
-saatchi-solr-index-art-xprod () { if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-index-art-xprod {id_user_art}"; return; fi; ssh saatchi-xprod-legacy-services-02 -t "php -ddisplay_errors=on /data/code_base/current/scripts/solr/index-art-by-id.php production -v -minId=$1 -maxId=$1;" }
+saatchi-solr-index-art-local () {
+    if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-index-art-local {id_user_art}"; return; fi;
+    dme && docker exec -ti xsaatchi_legacy_fpm_instance php -ddisplay_errors=on /data/code_base/current/scripts/solr/index-art-by-id.php local -v -minId=$1 -maxId=$1;
+}
+saatchi-solr-index-art-xdev () {
+    if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-index-art-xdev {id_user_art}"; return; fi;
+    ssh saatchi-xdev-legacy-services-01 -t "php -ddisplay_errors=on /data/code_base/current/scripts/solr/index-art-by-id.php development -v -minId=$1 -maxId=$1;"
+}
+saatchi-solr-index-art-xqa () {
+    if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-index-art-xqa {id_user_art}"; return; fi;
+    ssh saatchi-xqa-legacy-services-01 -t "php -ddisplay_errors=on /data/code_base/current/scripts/solr/index-art-by-id.php qa -v -minId=$1 -maxId=$1;"
+}
+saatchi-solr-index-art-xprod () {
+    if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-index-art-xprod {id_user_art}"; return; fi;
+    ssh saatchi-xprod-legacy-services-02 -t "php -ddisplay_errors=on /data/code_base/current/scripts/solr/index-art-by-id.php production -v -minId=$1 -maxId=$1;"
+}
 # }}}
 
 # index art by artist id {{{
-saatchi-solr-index-art-by-artist-local () { if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-index-art-local {id_user_art}"; return; fi; dme && docker exec -ti xsaatchi_legacy_fpm_instance php -ddisplay_errors=on /data/code_base/current/scripts/solr/index-art-by-artist-id.php local -v --artist-id=$1; }
-saatchi-solr-index-art-by-artist-xdev () { if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-index-art-xdev {id_user_art}"; return; fi; ssh saatchi-xdev-legacy-services-01 -t "php -ddisplay_errors=on /data/code_base/current/scripts/solr/index-art-by-artist-id.php development -v --artist-id=$1;" }
-saatchi-solr-index-art-by-artist-xqa () { if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-index-art-xqa {id_user_art}"; return; fi; ssh saatchi-xqa-legacy-services-01 -t "php -ddisplay_errors=on /data/code_base/current/scripts/solr/index-art-by-artist-id.php qa -v --artist-id=$1;" }
-saatchi-solr-index-art-by-artist-xprod () { if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-index-art-xprod {id_user_art}"; return; fi; ssh saatchi-xprod-legacy-services-02 -t "php -ddisplay_errors=on /data/code_base/current/scripts/solr/index-art-by-artist-id.php production -v --artist-id=$1;" }
+saatchi-solr-index-art-by-artist-local () {
+    if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-index-art-local {id_user_art}"; return; fi;
+    dme && docker exec -ti xsaatchi_legacy_fpm_instance php -ddisplay_errors=on /data/code_base/current/scripts/solr/index-art-by-artist-id.php local -v --artist-id=$1;
+}
+saatchi-solr-index-art-by-artist-xdev () {
+    if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-index-art-xdev {id_user_art}"; return; fi;
+    ssh saatchi-xdev-legacy-services-01 -t "php -ddisplay_errors=on /data/code_base/current/scripts/solr/index-art-by-artist-id.php development -v --artist-id=$1;"
+}
+saatchi-solr-index-art-by-artist-xqa () {
+    if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-index-art-xqa {id_user_art}"; return; fi;
+    ssh saatchi-xqa-legacy-services-01 -t "php -ddisplay_errors=on /data/code_base/current/scripts/solr/index-art-by-artist-id.php qa -v --artist-id=$1;"
+}
+saatchi-solr-index-art-by-artist-xprod () {
+    if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-index-art-xprod {id_user_art}"; return; fi;
+    ssh saatchi-xprod-legacy-services-02 -t "php -ddisplay_errors=on /data/code_base/current/scripts/solr/index-art-by-artist-id.php production -v --artist-id=$1;"
+}
 # }}}
 
 # index collections by user id {{{
-saatchi-solr-index-collections-by-user-id-local () { if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-index-collections-by-user-id-local {user_id}"; return; fi; dme && docker exec -ti xsaatchi_legacy_fpm_instance php -ddisplay_errors=on /data/code_base/current/scripts/solr/index-collection-data.php local -v -minId=$1 -maxId=$1; }
-saatchi-solr-index-collections-by-user-id-xdev () { if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-index-collections-by-user-id-xdev {user_id}"; return; fi; ssh saatchi-xdev-legacy-services-01 -t "php -ddisplay_errors=on /data/code_base/current/scripts/solr/index-collection-data.php development -v -minId=$1 -maxId=$1;" }
-saatchi-solr-index-collections-by-user-id-xqa () { if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-index-collections-by-user-id-xqa {user_id}"; return; fi; ssh saatchi-xqa-legacy-services-01 -t "php -ddisplay_errors=on /data/code_base/current/scripts/solr/index-collection-data.php qa -v -minId=$1 -maxId=$1;" }
-saatchi-solr-index-collections-by-user-id-xprod () { if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-index-collections-by-user-id-xprod {user_id}"; return; fi; ssh saatchi-xprod-legacy-services-02 -t "php -ddisplay_errors=on /data/code_base/current/scripts/solr/index-collection-data.php production -v -minId=$1 -maxId=$1;" }
+saatchi-solr-index-collections-by-user-id-local () {
+    if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-index-collections-by-user-id-local {user_id}"; return; fi;
+    dme && docker exec -ti xsaatchi_legacy_fpm_instance php -ddisplay_errors=on /data/code_base/current/scripts/solr/index-collection-data.php local -v -minId=$1 -maxId=$1;
+}
+saatchi-solr-index-collections-by-user-id-xdev () {
+    if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-index-collections-by-user-id-xdev {user_id}"; return; fi;
+    ssh saatchi-xdev-legacy-services-01 -t "php -ddisplay_errors=on /data/code_base/current/scripts/solr/index-collection-data.php development -v -minId=$1 -maxId=$1;"
+}
+saatchi-solr-index-collections-by-user-id-xqa () {
+    if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-index-collections-by-user-id-xqa {user_id}"; return; fi;
+    ssh saatchi-xqa-legacy-services-01 -t "php -ddisplay_errors=on /data/code_base/current/scripts/solr/index-collection-data.php qa -v -minId=$1 -maxId=$1;"
+}
+saatchi-solr-index-collections-by-user-id-xprod () {
+    if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-index-collections-by-user-id-xprod {user_id}"; return; fi;
+    ssh saatchi-xprod-legacy-services-02 -t "php -ddisplay_errors=on /data/code_base/current/scripts/solr/index-collection-data.php production -v -minId=$1 -maxId=$1;"
+}
 # }}}
 
 # delete solr docs by query {{{
-saatchi-solr-delete-docs-by-query-local () { if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-delete-docs-by-query-local {query_in_quotes}"; return; fi; noglob curl $SAATCHI_LOCAL_SOLR:8983/solr/ap_art/update?commit=true -H "Content-Type: text/xml" --data-binary "<delete><query>$1</query></delete>" }
+saatchi-solr-delete-docs-by-query-local () {
+    if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-delete-docs-by-query-local {query_in_quotes}"; return; fi;
+    noglob curl $SAATCHI_LOCAL_SOLR:8983/solr/ap_art/update?commit=true -H "Content-Type: text/xml" --data-binary "<delete><query>$1</query></delete>"
+}
 # }}}
 
 # add art to collection {{{
@@ -1083,83 +1400,183 @@ saatchi-docker-stop () {
 # saatchi - flatten items (from mysql to couchbase) by pk {{{
 saatchi-flatten-user-local () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-flatten-user-local {user_id}"; return; fi;
-    dme && docker exec -ti xsaatchi_catalog_unicorn_instance bash -c "source /etc/profile && export SAATCHI_ENV=local && export RAILS_ENV=local && cd /data/catalog/current && export REDIS_URL=redis://catalog.redis && rake flatten:user[$1]"
+    dme && docker exec -ti xsaatchi_catalog_unicorn_instance bash -c "\
+        source /etc/profile && \
+        export SAATCHI_ENV=local && \
+        export RAILS_ENV=local && \
+        cd /data/catalog/current && \
+        export REDIS_URL=redis://catalog.redis && \
+        rake flatten:user[$1]"
 }
 
 saatchi-flatten-artwork-local () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-flatten-artwork-local {id_user_art}"; return; fi;
-    dme && docker exec -ti xsaatchi_catalog_unicorn_instance bash -c "source /etc/profile && export SAATCHI_ENV=local && export RAILS_ENV=local && cd /data/catalog/current && export REDIS_URL=redis://catalog.redis && rake flatten:artwork[$1]"
+    dme && docker exec -ti xsaatchi_catalog_unicorn_instance bash -c "\
+        source /etc/profile && \
+        export SAATCHI_ENV=local && \
+        export RAILS_ENV=local && \
+        cd /data/catalog/current && \
+        export REDIS_URL=redis://catalog.redis && \
+        rake flatten:artwork[$1]"
 }
 # super verbose rails console method
 # saatchi-flatten-art-for-user-local () { if [[ "$1" == "--help" ]]; then echo "usage: saatchi-flatten-art-for-user-local {user_id}"; return; fi; dme && docker exec -ti saatchi_catalog_instance bash -c "source /etc/profile && export SAATCHI_ENV=local && export RAILS_ENV=local && cd /data/catalog/current && export REDIS_URL=redis://redis:6379/0 && ( echo 'User.find($1).artworks.each {|art| art.flatten}' | bin/rails c )" }
 saatchi-flatten-art-for-user-local () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-flatten-art-for-user-local {user_id}"; return; fi;
-    dme && docker exec -ti xsaatchi_catalog_unicorn_instance bash -c "source /etc/profile && export SAATCHI_ENV=local && export RAILS_ENV=local && cd /data/catalog/current && export REDIS_URL=redis://catalog.redis && bin/rails runner 'User.find($1).artworks.each {|art| art.flatten}' && echo 'done'"
+    dme && docker exec -ti xsaatchi_catalog_unicorn_instance bash -c "\
+        source /etc/profile && \
+        export SAATCHI_ENV=local && \
+        export RAILS_ENV=local && \
+        cd /data/catalog/current && \
+        export REDIS_URL=redis://catalog.redis && \
+        bin/rails runner 'User.find($1).artworks.each {|art| art.flatten}' && \
+        echo 'done'"
 }
 
 saatchi-flatten-collection-local () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-flatten-collection-local {id_user_collection}"; return; fi;
-    dme && docker exec -ti xsaatchi_catalog_unicorn_instance bash -c "source /etc/profile && export SAATCHI_ENV=local && export RAILS_ENV=local && cd /data/catalog/current && export REDIS_URL=redis://catalog.redis && rake flatten:collection[$1]"
+    dme && docker exec -ti xsaatchi_catalog_unicorn_instance bash -c "\
+        source /etc/profile && \
+        export SAATCHI_ENV=local && \
+        export RAILS_ENV=local && \
+        cd /data/catalog/current && \
+        export REDIS_URL=redis://catalog.redis && \
+        rake flatten:collection[$1]"
 }
 
 saatchi-flatten-user-xdev () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-flatten-user-xdev {user_id}"; return; fi;
-        ssh appdeploy@saatchi-xdev-catalog-01 -t "bash -c \"source /etc/profile && export SAATCHI_ENV=development && export RAILS_ENV=development && cd /data/catalog/current && export REDIS_URL=$SAATCHI_XDEV_REDIS_SERVER && rake flatten:user[$1]\""
+        ssh appdeploy@saatchi-xdev-catalog-01 -t "bash -c \"\
+            source /etc/profile && \
+            export SAATCHI_ENV=development && \
+            export RAILS_ENV=development && \
+            cd /data/catalog/current && \
+            export REDIS_URL=$SAATCHI_XDEV_REDIS_SERVER && \
+            rake flatten:user[$1]\""
 }
 
 saatchi-flatten-artwork-xdev () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-flatten-artwork-xdev {id_user_art}"; return; fi;
-    ssh appdeploy@saatchi-xdev-catalog-01 -t "bash -c \"source /etc/profile && export SAATCHI_ENV=development && export RAILS_ENV=development && cd /data/catalog/current && export REDIS_URL=$SAATCHI_XDEV_REDIS_SERVER && rake flatten:artwork[$1]\""
+    ssh appdeploy@saatchi-xdev-catalog-01 -t "bash -c \"\
+        source /etc/profile && \
+        export SAATCHI_ENV=development && \
+        export RAILS_ENV=development && \
+        cd /data/catalog/current && \
+        export REDIS_URL=$SAATCHI_XDEV_REDIS_SERVER && \
+        rake flatten:artwork[$1]\""
 }
 
 saatchi-flatten-art-for-user-xdev () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-flatten-art-for-user-xdev {user_id}"; return; fi;
-    ssh appdeploy@saatchi-xdev-catalog-01 -t "bash -c \"source /etc/profile && export SAATCHI_ENV=development && export RAILS_ENV=development && cd /data/catalog/current && export REDIS_URL=$SAATCHI_XDEV_REDIS_SERVER && bin/rails runner 'User.find($1).artworks.each {|art| art.flatten}' && echo 'done'\""
+    ssh appdeploy@saatchi-xdev-catalog-01 -t "bash -c \"\
+        source /etc/profile && \
+        export SAATCHI_ENV=development && \
+        export RAILS_ENV=development && \
+        cd /data/catalog/current && \
+        export REDIS_URL=$SAATCHI_XDEV_REDIS_SERVER && \
+        bin/rails runner 'User.find($1).artworks.each {|art| art.flatten}' \
+        && echo 'done'\""
 }
 
 saatchi-flatten-collection-xdev () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-flatten-collection-xdev {id_user_collection}"; return; fi;
-    ssh appdeploy@saatchi-xdev-catalog-01 -t "bash -c \"source /etc/profile && export SAATCHI_ENV=development && export RAILS_ENV=development && cd /data/catalog/current && export REDIS_URL=$SAATCHI_XDEV_REDIS_SERVER && rake flatten:collection[$1]\""
+    ssh appdeploy@saatchi-xdev-catalog-01 -t "bash -c \"\
+        source /etc/profile && \
+        export SAATCHI_ENV=development && \
+        export RAILS_ENV=development && \
+        cd /data/catalog/current && \
+        export REDIS_URL=$SAATCHI_XDEV_REDIS_SERVER && \
+        rake flatten:collection[$1]\""
 }
 
 saatchi-flatten-user-xqa () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-flatten-user-xqa {user_id}"; return; fi;
-    ssh appdeploy@saatchi-xqa-catalog-01 -t "bash -c \"source /etc/profile && export SAATCHI_ENV=qa && export RAILS_ENV=qa && cd /data/catalog/current && export REDIS_URL=$SAATCHI_XQA_REDIS_SERVER && rake flatten:user[$1]\""
+    ssh appdeploy@saatchi-xqa-catalog-01 -t "bash -c \"\
+        source /etc/profile && \
+        export SAATCHI_ENV=qa && \
+        export RAILS_ENV=qa && \
+        cd /data/catalog/current && \
+        export REDIS_URL=$SAATCHI_XQA_REDIS_SERVER && \
+        rake flatten:user[$1]\""
 }
 
 saatchi-flatten-artwork-xqa () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-flatten-artwork-xqa {id_user_art}"; return; fi;
-    ssh appdeploy@saatchi-xqa-catalog-01 -t "bash -c \"source /etc/profile && export SAATCHI_ENV=qa && export RAILS_ENV=qa && cd /data/catalog/current && export REDIS_URL=$SAATCHI_XQA_REDIS_SERVER && rake flatten:artwork[$1]\""
+    ssh appdeploy@saatchi-xqa-catalog-01 -t "bash -c \"\
+        source /etc/profile && \
+        export SAATCHI_ENV=qa && \
+        export RAILS_ENV=qa && \
+        cd /data/catalog/current && \
+        export REDIS_URL=$SAATCHI_XQA_REDIS_SERVER && \
+        rake flatten:artwork[$1]\""
 }
 
 saatchi-flatten-art-for-user-xqa () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-flatten-art-for-user-xqa {user_id}"; return; fi;
-    ssh appdeploy@saatchi-xqa-catalog-01 -t "bash -c \"source /etc/profile && export SAATCHI_ENV=qa && export RAILS_ENV=qa && cd /data/catalog/current && export REDIS_URL=$SAATCHI_XQA_REDIS_SERVER && bin/rails runner 'User.find($1).artworks.each {|art| art.flatten}' && echo 'done'\""
+    ssh appdeploy@saatchi-xqa-catalog-01 -t "bash -c \"\
+        source /etc/profile && \
+        export SAATCHI_ENV=qa && \
+        export RAILS_ENV=qa && \
+        cd /data/catalog/current && \
+        export REDIS_URL=$SAATCHI_XQA_REDIS_SERVER && \
+        bin/rails runner 'User.find($1).artworks.each {|art| art.flatten}' \
+        && echo 'done'\""
 }
 
 saatchi-flatten-collection-xqa () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-flatten-collection-xqa {id_user_collection}"; return; fi;
-    ssh appdeploy@saatchi-xqa-catalog-01 -t "bash -c \"source /etc/profile && export SAATCHI_ENV=qa && export RAILS_ENV=qa && cd /data/catalog/current && export REDIS_URL=$SAATCHI_XQA_REDIS_SERVER && rake flatten:collection[$1]\""
+    ssh appdeploy@saatchi-xqa-catalog-01 -t "bash -c \"\
+        source /etc/profile && \
+        export SAATCHI_ENV=qa && \
+        export RAILS_ENV=qa && \
+        cd /data/catalog/current && \
+        export REDIS_URL=$SAATCHI_XQA_REDIS_SERVER && \
+        rake flatten:collection[$1]\""
 }
 
 saatchi-flatten-user-xprod () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-flatten-user-xprod {user_id}"; return; fi;
-    ssh appdeploy@saatchi-xprod-catalog-01 -t "bash -c \"source /etc/profile && export SAATCHI_ENV=production && export RAILS_ENV=production && cd /data/catalog/current && export REDIS_URL=$SAATCHI_XPROD_REDIS_SERVER && rake flatten:user[$1]\""
+    ssh appdeploy@saatchi-xprod-catalog-01 -t "bash -c \"\
+        source /etc/profile && \
+        export SAATCHI_ENV=production && \
+        export RAILS_ENV=production && \
+        cd /data/catalog/current && \
+        export REDIS_URL=$SAATCHI_XPROD_REDIS_SERVER && \
+        rake flatten:user[$1]\""
 }
 
 saatchi-flatten-artwork-xprod () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-flatten-artwork-xprod {id_user_art}"; return; fi;
-    ssh appdeploy@saatchi-xprod-catalog-01 -t "bash -c \"source /etc/profile && export SAATCHI_ENV=production && export RAILS_ENV=production && cd /data/catalog/current && export REDIS_URL=$SAATCHI_XPROD_REDIS_SERVER && rake flatten:artwork[$1]\""
+    ssh appdeploy@saatchi-xprod-catalog-01 -t "bash -c \"\
+        source /etc/profile && \
+        export SAATCHI_ENV=production && \
+        export RAILS_ENV=production && \
+        cd /data/catalog/current && \
+        export REDIS_URL=$SAATCHI_XPROD_REDIS_SERVER && \
+        rake flatten:artwork[$1]\""
 }
 
 saatchi-flatten-art-for-user-xprod () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-flatten-art-for-user-xprod {user_id}"; return; fi;
-    ssh appdeploy@saatchi-xprod-catalog-01 -t "bash -c \"source /etc/profile && export SAATCHI_ENV=production && export RAILS_ENV=production && cd /data/catalog/current && export REDIS_URL=$SAATCHI_XPROD_REDIS_SERVER && bin/rails runner 'User.find($1).artworks.each {|art| art.flatten}' && echo 'done'\""
+    ssh appdeploy@saatchi-xprod-catalog-01 -t "bash -c \"\
+        source /etc/profile && \
+        export SAATCHI_ENV=production && \
+        export RAILS_ENV=production && \
+        cd /data/catalog/current && \
+        export REDIS_URL=$SAATCHI_XPROD_REDIS_SERVER && \
+        bin/rails runner 'User.find($1).artworks.each {|art| art.flatten}' \
+        && echo 'done'\""
 }
 
 saatchi-flatten-collection-xprod () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-flatten-collection-xprod {id_user_collection}"; return; fi;
-    ssh appdeploy@saatchi-xprod-catalog-01 -t "bash -c \"source /etc/profile && export SAATCHI_ENV=production && export RAILS_ENV=production && cd /data/catalog/current && export REDIS_URL=$SAATCHI_XPROD_REDIS_SERVER && rake flatten:collection[$1]\""
+    ssh appdeploy@saatchi-xprod-catalog-01 -t "bash -c \"\
+        source /etc/profile && \
+        export SAATCHI_ENV=production && \
+        export RAILS_ENV=production && \
+        cd /data/catalog/current && \
+        export REDIS_URL=$SAATCHI_XPROD_REDIS_SERVER && \
+        rake flatten:collection[$1]\""
 }
 # }}}
 
@@ -1256,15 +1673,24 @@ function saatchi-memcached-delete-acl-xprod () {
 # DEV {{{
 function saatchi-memcached-get-xdev() {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-memcached-get-xdev {key}"; return; fi;
-    MCSERVER="$SAATCHI_XDEV_MEMCACHE_SERVER"; MCPORT="$SAATCHI_XDEV_MEMCACHE_PORT"; MCPROXYSERVER="$SAATCHI_XDEV_MEMCACHE_PROXY"; _mc_get "$@"
+    MCSERVER="$SAATCHI_XDEV_MEMCACHE_SERVER"
+    MCPORT="$SAATCHI_XDEV_MEMCACHE_PORT"
+    MCPROXYSERVER="$SAATCHI_XDEV_MEMCACHE_PROXY"
+    _mc_get "$@"
 }
 function saatchi-memcached-add-xdev() {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-memcached-add-xdev {key} {value}"; return; fi;
-    MCSERVER="$SAATCHI_XDEV_MEMCACHE_SERVER"; MCPORT="$SAATCHI_XDEV_MEMCACHE_PORT"; MCPROXYSERVER="$SAATCHI_XDEV_MEMCACHE_PROXY"; _mc_add "$@"
+    MCSERVER="$SAATCHI_XDEV_MEMCACHE_SERVER"
+    MCPORT="$SAATCHI_XDEV_MEMCACHE_PORT"
+    MCPROXYSERVER="$SAATCHI_XDEV_MEMCACHE_PROXY"
+    _mc_add "$@"
 }
 function saatchi-memcached-delete-xdev() {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-memcached-delete-xdev {key}"; return; fi;
-    MCSERVER="$SAATCHI_XDEV_MEMCACHE_SERVER"; MCPORT="$SAATCHI_XDEV_MEMCACHE_PORT"; MCPROXYSERVER="$SAATCHI_XDEV_MEMCACHE_PROXY"; _mc_delete "$@"
+    MCSERVER="$SAATCHI_XDEV_MEMCACHE_SERVER"
+    MCPORT="$SAATCHI_XDEV_MEMCACHE_PORT"
+    MCPROXYSERVER="$SAATCHI_XDEV_MEMCACHE_PROXY"
+    _mc_delete "$@"
 }
 function saatchi-memcached-clear-user-cache-xdev() {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-memcached-clear-user-cache-xdev {user_id}"; return; fi;
@@ -1276,15 +1702,24 @@ function saatchi-memcached-clear-user-cache-xdev() {
 # QA {{{
 function saatchi-memcached-get-xqa() {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-memcached-get-xqa {key}"; return; fi;
-    MCSERVER="$SAATCHI_XQA_MEMCACHE_SERVER"; MCPORT="$SAATCHI_XQA_MEMCACHE_PORT"; MCPROXYSERVER="$SAATCHI_XQA_MEMCACHE_PROXY"; _mc_get "$@"
+    MCSERVER="$SAATCHI_XQA_MEMCACHE_SERVER"
+    MCPORT="$SAATCHI_XQA_MEMCACHE_PORT"
+    MCPROXYSERVER="$SAATCHI_XQA_MEMCACHE_PROXY"
+    _mc_get "$@"
 }
 function saatchi-memcached-add-xqa() {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-memcached-add-xqa {key} {value}"; return; fi;
-    MCSERVER="$SAATCHI_XQA_MEMCACHE_SERVER"; MCPORT="$SAATCHI_XQA_MEMCACHE_PORT"; MCPROXYSERVER="$SAATCHI_XQA_MEMCACHE_PROXY"; _mc_add "$@"
+    MCSERVER="$SAATCHI_XQA_MEMCACHE_SERVER"
+    MCPORT="$SAATCHI_XQA_MEMCACHE_PORT"
+    MCPROXYSERVER="$SAATCHI_XQA_MEMCACHE_PROXY"
+    _mc_add "$@"
 }
 function saatchi-memcached-delete-xqa() {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-memcached-delete-xqa {key}"; return; fi;
-    MCSERVER="$SAATCHI_XQA_MEMCACHE_SERVER"; MCPORT="$SAATCHI_XQA_MEMCACHE_PORT"; MCPROXYSERVER="$SAATCHI_XQA_MEMCACHE_PROXY"; _mc_delete "$@"
+    MCSERVER="$SAATCHI_XQA_MEMCACHE_SERVER"
+    MCPORT="$SAATCHI_XQA_MEMCACHE_PORT"
+    MCPROXYSERVER="$SAATCHI_XQA_MEMCACHE_PROXY"
+    _mc_delete "$@"
 }
 function saatchi-memcached-clear-user-cache-xqa() {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-memcached-clear-user-cache-xqa {user_id}"; return; fi;
@@ -1315,7 +1750,7 @@ saatchi-deploy () {
     # dang gallery and its build folder never gets cleaned out
     SSH_COMMAND+=" && cd ~/code/gallery && rm -rf public/build/*"
     SSH_COMMAND+="\""
-    ssh saatchi-builder-01 -t "$SSH_COMMAND"
+    builtin ssh saatchi-builder-01 -t "$SSH_COMMAND"
     _open-new-relic $1 $3
 }
 # open new relic to the right place if production
@@ -1409,17 +1844,23 @@ saatchi-scp-zed-xqa () {
 # saatchi post zed art {{{
 saatchi-zed-post-art-local () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-zed-post-art-local {user_id} {art_id}"; return; fi;
-    dme && docker exec -ti xsaatchi_legacy_fpm_instance php -ddisplay_errors=on /data/code_base/current/scripts/ops/post-zed-art.php local -user_id=$1 -art_id=$2 -v;
+    dme && docker exec -ti xsaatchi_legacy_fpm_instance php \
+        -ddisplay_errors=on \
+        /data/code_base/current/scripts/ops/post-zed-art.php \
+        local \
+        -user_id=$1 \
+        -art_id=$2 \
+        -v;
 }
 
 saatchi-zed-post-art-xdev () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-zed-post-art-xdev {user_id} {art_id}"; return; fi;
-    ssh saatchi-xdev-legacy-services-01 "php -ddisplay_errors=on /data/code_base/current/scripts/ops/post-zed-art.php development -user_id=$1 -art_id=$2 -v";
+    builtin ssh saatchi-xdev-legacy-services-01 "php -ddisplay_errors=on /data/code_base/current/scripts/ops/post-zed-art.php development -user_id=$1 -art_id=$2 -v";
 }
 
 saatchi-zed-post-art-xqa () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-zed-post-art-xqa {user_id} {art_id}"; return; fi;
-    ssh saatchi-xqa-legacy-services-01 "php -ddisplay_errors=on /data/code_base/current/scripts/ops/post-zed-art.php qa -user_id=$1 -art_id=$2 -v";
+    builtin ssh saatchi-xqa-legacy-services-01 "php -ddisplay_errors=on /data/code_base/current/scripts/ops/post-zed-art.php qa -user_id=$1 -art_id=$2 -v";
 }
 # }}}
 
@@ -1473,11 +1914,12 @@ function saatchi-composer-fix () {
         return
     fi
     scp /usr/local/bin/composer appdeploy@$1:~/composer && \
-        ssh -t appdeploy@$1 "sudo cp ~/composer /usr/local/bin/composer"
+        builtin ssh -t appdeploy@$1 "sudo cp ~/composer /usr/local/bin/composer"
 }
 # }}}
 
 # saatchi-tinker {{{
+# remote tinkers do not work currently as we do not install composer with dev requirements
 alias saatchi-tinker-legacy-local="dme && docker exec -ti xsaatchi_legacy_fpm_instance /data/code_base/current/bin/saatchi tinker"
 # alias saatchi-tinker-legacy-xdev="ssh -t saatchi-xdev-legacy-services-01 /data/code_base/current/bin/saatchi tinker"
 # alias saatchi-tinker-legacy-xqa="ssh -t saatchi-xqa-legacy-services-01 /data/code_base/current/bin/saatchi tinker"
@@ -1533,8 +1975,21 @@ function saatchi-zed-fix-quantity-local () {
 # get all open saatchi pull requests {{{
 alias saatchi-pull-requests="gh pr --list --org=saatchiart --all --sort long-running --direction desc"
 alias saatchi-pull-requests-me="gh pr --list --org=saatchiart --all --me --sort long-running --direction desc"
-# alias saatchi-pull-request="hub pull-request -b develop -"
-function saatchi-pull-request() { if [[ "$1" == "--help" ]]; then echo "usage: saatchi-pull-request {github_username_of_assignee}"; return; fi; hub pull-request -b develop -a $1; }
+function saatchi-pull-request() {
+    if [[ "$1" == "--help" ]]; then echo "usage: saatchi-pull-request {first_or_last_name_of_coworker}"; return; fi;
+    declare -A usernameMap
+    usernameMap[sergey]="stsibel"
+    usernameMap[day]="tolstoyleo"
+    usernameMap[otto]="ottoinfo"
+    usernameMap[michael]="zickonezero"
+    usernameMap[derek]="durkbag2"
+    username=${usernameMap[$1]}
+    if [[ ! $username ]]; then
+        echo "Error: username $1 does not have a mapping"
+        return;
+    fi
+    hub pull-request -b develop -a $username;
+}
 # }}}
 
 # take action on a jira {{{
@@ -1547,11 +2002,11 @@ function saatchi-grep-emails-xprod() {
     for i in `seq 1 5`; do
         echo "-------------------------"
         echo "saatchi-xprod-legacy-0$i:"
-        ssh -t saatchi-xprod-legacy-0$i grep "To:\ $1" /data/temp/saatchi.log -A2 -B1 --color=always
+        builtin ssh -t saatchi-xprod-legacy-0$i grep "To:\ $1" /data/temp/saatchi.log -A2 -B1 --color=always
     done
     echo "-------------------------"
     echo "saatchi-xprod-legacy-services-02"
-    ssh -t saatchi-xprod-legacy-services-02 grep "To:\ $1" /data/temp/saatchi.log -A2 -B1 --color=always
+    builtin ssh -t saatchi-xprod-legacy-services-02 grep "To:\ $1" /data/temp/saatchi.log -A2 -B1 --color=always
 }
 # }}}
 
@@ -1562,15 +2017,15 @@ function saatchi-algolia-export-artwork-local () {
 }
 function saatchi-algolia-export-artwork-xdev () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-algolia-export-artwork-xdev {id_user_art}"; return; fi;
-    ssh -t appdeploy@saatchi-xdev-palette-services-01 "cd /data/palette/current && php artisan algolia:export-artwork-to-algolia $1"
+    builtin ssh -t appdeploy@saatchi-xdev-palette-services-01 "cd /data/palette/current && php artisan algolia:export-artwork-to-algolia $1"
 }
 function saatchi-algolia-export-artwork-xqa () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-algolia-export-artwork-xqa {id_user_art}"; return; fi;
-    ssh -t appdeploy@saatchi-xqa-palette-services-01 "cd /data/palette/current && php artisan algolia:export-artwork-to-algolia $1"
+    builtin ssh -t appdeploy@saatchi-xqa-palette-services-01 "cd /data/palette/current && php artisan algolia:export-artwork-to-algolia $1"
 }
 function saatchi-algolia-export-artwork-xprod () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-algolia-export-artwork-xprod {id_user_art}"; return; fi;
-    ssh -t appdeploy@saatchi-xprod-palette-services-01 "cd /data/palette/current && php artisan algolia:export-artwork-to-algolia $1"
+    builtin ssh -t appdeploy@saatchi-xprod-palette-services-01 "cd /data/palette/current && php artisan algolia:export-artwork-to-algolia $1"
 }
 # }}}
 
@@ -1582,9 +2037,9 @@ alias saatchi-pm2-monit-xprod="autossh -t saatchi-xprod-easel-01 /usr/local/node
 # }}}
 
 # saatchi-haproxy-config {{{
-alias saatchi-haproxy-config-xdev="ssh saatchi-xdev-lb-01 -t vim -M /etc/haproxy/haproxy.cfg"
-alias saatchi-haproxy-config-xqa="ssh saatchi-xqa-lb-01 -t vim -M /etc/haproxy/haproxy.cfg"
-alias saatchi-haproxy-config-xprod="ssh saatchi-xprod-lb-01 -t vim -M /etc/haproxy/haproxy.cfg"
+alias saatchi-haproxy-config-xdev="builtin ssh saatchi-xdev-lb-01 -t vim -M /etc/haproxy/haproxy.cfg"
+alias saatchi-haproxy-config-xqa="builtin ssh saatchi-xqa-lb-01 -t vim -M /etc/haproxy/haproxy.cfg"
+alias saatchi-haproxy-config-xprod="builtin ssh saatchi-xprod-lb-01 -t vim -M /etc/haproxy/haproxy.cfg"
 # }}}
 
 # saatchi-standup {{{
