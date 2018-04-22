@@ -1,7 +1,36 @@
 watch:
     directories:
         - application/controllers
-        - 'application/modules/*/controllers'
+        - application/modules/account
+        - application/modules/admin
+        - application/modules/art
+        - application/modules/art-advisory
+        - application/modules/browse
+        - application/modules/catalog
+        - application/modules/collection
+        - application/modules/curation
+        - application/modules/data
+        - application/modules/designer-rewards
+        - application/modules/ebook
+        - application/modules/feature
+        - application/modules/fulfillment
+        - application/modules/healthcheck
+        - application/modules/invest
+        - application/modules/landing
+        - application/modules/loyalty
+        - application/modules/ncr
+        - application/modules/new-sensations
+        - application/modules/newsletter
+        - application/modules/notification
+        - application/modules/shows
+        - application/modules/social
+        - application/modules/static
+        - application/modules/stripe
+        - application/modules/testimonials
+        - application/modules/theotherartfair
+        - application/modules/trending
+        - application/modules/visii
+        - application/modules/ws1
         - application/models
         - library
         - src
