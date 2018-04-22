@@ -1,0 +1,8 @@
+{
+  "app/*.php": {"alternate": "spec/{}Spec.php", "type": "class"},
+  "spec/*Spec.php": {"alternate": "app/{}.php", "type": "spec"},
+  "app/Http/Controllers/*.php": {"alternate": "tests/application/{}Test.php", "type": "controller"},
+  "tests/application/*Test.php": {"alternate": "app/Http/Controllers/{}.php", "type": "controllerTest"},
+  "app/Adapters/Repositories/Shopping*.php": {"alternate": "tests/port/adapter/persistance/{}Test.php", "type": "repository"},
+  "tests/port/adapter/persistance/*Test.php": {"alternate": "app/Adapters/Repositories/Shopping{}.php", "type": "repositoryTest"}
+}

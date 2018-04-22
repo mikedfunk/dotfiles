@@ -1,0 +1,4 @@
+vendor/assets
+# node_modules/*
+# app/assets/*
+# apiary.apib
