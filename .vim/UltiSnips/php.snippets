@@ -2,12 +2,12 @@ extends html
 
 global !p
 
-def namespace(snip, path):
+def namespace(snip, path, prepend = ''):
     import os
     namespace = pathToNamespace(path)
     if (len(namespace) == 0):
         return ''
-    return os.linesep + snip.mkline('namespace ' + namespace + ';') + os.linesep
+    return os.linesep + snip.mkline('namespace ' + prepend + namespace + ';') + os.linesep
 
 def pathToNamespace(path):
     import re
@@ -1020,7 +1020,7 @@ use PHPUnit_Framework_TestCase as TestCase;
 class `!v expand("%:t:r")` extends TestCase
 {
 
-    /** @var \\`!p snip.rv = pathToNamespace(path)`\\${2:ActualClass} class under test */
+    /** @var \\`!p snip.rv = pathToNamespace(path)`\\${2:ActualClass} system under test */
     protected \$${2/\w+\s*/\l$0/};
 
     /** Phpunit setup. Runs before each test. */
@@ -1028,6 +1028,37 @@ class `!v expand("%:t:r")` extends TestCase
     {
         // instantiate class under test
         $this->${2/\w+\s*/\l$0/} = new $2();
+    }
+
+    /** @test */
+    public function it_is_initializable()
+    {
+        $this->assertInstanceOf($2::class, $this->${2/\w+\s*/\l$0/});
+    }
+}
+endsnippet
+
+snippet pscla "mike's phpspec (palette) template"
+<?php
+declare(strict_types=1);
+`!p snip.rv = namespace(snip, path, "spec\\Palette\\")`
+use PhpSpec\ObjectBehavior;
+use Prophecy\Argument;
+
+/**
+ * Specification unit test for \\Palette\\`!p snip.rv = pathToNamespace(path)`\\$2.
+ *
+ * @see \\Palette\\`!p snip.rv = pathToNamespace(path)`\\$2
+ *
+ * @author `!v g:snips_author`
+ */
+class `!v expand("%:t:r")` extends ObjectBehavior
+{
+
+    /** @test */
+    public function it_is_initializable()
+    {
+        $this->shouldHaveType('\\Palette\\`!p snip.rv = pathToNamespace(path)`\\${2:ActualClass}');
     }
 }
 endsnippet

@@ -1,14 +1,9 @@
 <?php
-/**
- * %name%
- *
- * @copyright Leaf Group, Ltd. All Rights Reserved.
- */
+declare(strict_types=1);
+
 namespace %namespace%;
 
 /**
- * Defines \%namespace%\%name%.
- *
  * @see \spec\%namespace%\%name%Spec
  *
  * @author Michael Funk <mike.funk@leafgroup.com>

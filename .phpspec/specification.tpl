@@ -1,16 +1,13 @@
 <?php
-/**
- * %name%
- *
- * @copyright Leaf Group, Ltd. All Rights Reserved.
- */
+declare(strict_types=1);
+
 namespace %namespace%;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
 /**
- * Specification unit test for %subject%.
+ * Specification unit test
  *
  * @see \%subject%
  *
@@ -19,9 +16,7 @@ use Prophecy\Argument;
 class %name% extends ObjectBehavior
 {
 
-    /**
-     * it_is_initializable
-     */
+    /** @test */
     public function it_is_initializable()
     {
         $this->shouldHaveType('%subject%');
