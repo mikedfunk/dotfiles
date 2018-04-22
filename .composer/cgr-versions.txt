@@ -14,3 +14,4 @@ phpstan/phpstan-strict-rules:^0.9.0
 phpstan/phpstan-phpunit:^0.9.1
 jangregor/phpstan-prophecy:dev-master
 spatie/phpunit-watcher:^1.
+fetzi/phpspec-watcher:^1.0
