@@ -25,6 +25,8 @@ let g:phpfmt_standard = 'phpcs.xml'
 " edit remote services code
 command! -nargs=1 Edev execute "e scp://appdeploy@saatchi-xdev-palette-services-01//data/palette/current/" . <f-args>
 command! -nargs=1 Eqa execute "e scp://appdeploy@saatchi-xqa-palette-services-01//data/palette/current/" . <f-args>
+
+" docker run --rm -t -v $(pwd):/palette wata727/pahout /palette --ignore-paths=/palette/vendor --config=/palette/.pahout.yaml
 " }}}
 
 " ale fixers {{{

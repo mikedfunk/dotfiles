@@ -32,6 +32,9 @@ if (filereadable('phpstan.neon')) | let g:ale_php_phpstan_configuration = getcwd
 
 " If I don't do this, phpcbf fails on any file in the exclude-pattern :/
 let g:ale_php_phpcbf_executable = '/Users/mikefunk/.support/phpcbf-helper.sh'
+" in order to get the alternate executable working you have to declare it as
+" use global, even though it's not global :/
+let g:ale_php_phpcbf_use_global = 1
 
 if isdirectory(expand("~/.vim/plugged/ale"))
     nmap <silent> [w <Plug>(ale_previous_wrap)

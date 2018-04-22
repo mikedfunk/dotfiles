@@ -136,7 +136,7 @@ Plug 'auwsmit/vim-active-numbers' " Only show line numbers on active window. Hel
 " }}}
 
 " Php {{{
-" if has("python") || has("python3") | Plug 'vim-vdebug/vdebug' | endif " xdebug (dbgp) client. To load with other filetypes do :PlugStatus and L over vdebug. temporarily disabled due to UnicodeError and vim.error on breaking :/
+" if has("python3") | Plug 'vim-vdebug/vdebug' | endif " xdebug (dbgp) client. To load with other filetypes do :PlugStatus and L over vdebug. temporarily disabled due to UnicodeError and vim.error on breaking :/ last tested 04-21-2018
 if has("python") | Plug 'vim-vdebug/vdebug', { 'for': 'php', 'tag': 'v1.5.2' } | endif " python2 compatible version
 Plug 'arnaud-lb/vim-php-namespace', { 'for': 'php' } " insert use statements
 Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' } " better php omnicomplete. This is included with vim8 but the package keeps it up-to-date.
@@ -179,7 +179,7 @@ if executable('git') | Plug 'rhysd/committia.vim' | endif " prettier commit edit
 if executable('git') | Plug 'junegunn/gv.vim', { 'on': 'GV' } | endif " :GV for git/tig-style log
 if executable('git') | Plug 'mmozuras/vim-github-comment', { 'on': 'GHComment' } | Plug 'mattn/webapi-vim' | endif " :GHComment my comment goes to latest commit on github
 if executable('git') | Plug 'hotwatermorning/auto-git-diff' | endif " cool git rebase diffs per commit
-Plug 'euclio/gitignore.vim' " automatically populate wildignore from gitignore. Why would I not want to do this?
+if has('python') | Plug 'euclio/gitignore.vim' | endif " automatically populate wildignore from gitignore. Why would I not want to do this?
 " }}}
 
 " Javascript {{{

@@ -95,7 +95,7 @@ fi
 
 # install vim-plug plugins {{{
 log_info "Installing/upgrading vim plugins"
-vim +PlugInstall +PlugUpdate +PlugClean +qall
+vim +PlugInstall +PlugUpdate +PlugClean! +qall
 # nvim +PlugInstall +qall
 # }}}
 
