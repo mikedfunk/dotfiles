@@ -48,7 +48,8 @@ window legacy
 dir ~/Code/saatchi/saatchiart
 0 run g st
 1 run vim -S
-2 run wd xdocker
+# 2 run wd xdocker
+2 run puw
 # 2 run saatchi-docker-legacy
 # 2 run tail -f /data/temp/saatchi.log
 3 run grunt build
@@ -121,7 +122,8 @@ window palette
 dir ~/Code/saatchi/palette
 1 run vim -S
 0 run g st
-2 run wd xdocker
+# 2 run wd xdocker
+2 run psw
 # 2 run saatchi-docker-palette
 # 2 run tail -f /scratch/palette/log/*.log /var/log/nginx/*.log
 

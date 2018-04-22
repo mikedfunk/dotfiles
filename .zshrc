@@ -173,6 +173,10 @@ alias save-dotfiles="yadm encrypt && yadm add -u && yadm ci -m working && yadm p
 export CLICOLOR=1 # ls colors by default
 export NODE_PATH="/usr/local/lib/node_modules" # zombie.js doesn't work without this
 [[ "$(builtin type -p direnv)" ]] && eval "$(direnv hook zsh)" # allow .envrc on each prompt start
+
+function phpcbf-wrapper () {
+    php ' . getcwd() . '/vendor/bin/phpcbf -q  $@ > /dev/null || true
+}
 # }}}
 
 # suffix aliases {{{

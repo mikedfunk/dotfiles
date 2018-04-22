@@ -29,6 +29,37 @@ command! -nargs=1 Eqa execute "e scp://appdeploy@saatchi-xqa-palette-services-01
 
 " ale fixers {{{
 " remove php_cs_fixer
+" let ale_fixers['php'] = ['phpcbf', 'php_cs_fixer']
+" let ale_fixers['php'] = ['php_cs_fixer']
+" If I don't do this, phpcbf fails on any file in the exclude-pattern :/
+" let g:ale_php_phpcbf_executable = '/Users/mikefunk/.support/phpcbf-helper.sh'
+
+" This is a pain in the ass, but phpcbf and ale kept wiping any files in the
+" exclude-pattern. I couldn't get the executable above to be recognized, so I
+" set it directly in the plugin config to test. I STILL got the dreaded 'No
+" fixable errors were found' message replaced over the contents of the file.
+"
+" I could get the bash wrapper to work sometimes
+" let g:ale_php_fixers_backup = get(g:, "ale_fixers")['php']
+" function! RestoreAlePhpFixers() abort
+"     let g:ale_fixers['php'] = get(g:, 'ale_php_fixers_backup')
+" endfunction
+
+" function! RemoveAlePhpFixers() abort
+"     let g:ale_php_fixers_backup = g:ale_fixers['php']
+"     let g:ale_fixers['php'] = ['php_cs_fixer']
+" endfunction
+
+" augroup phpcbf_not_tests
+"     autocmd!
+"     autocmd BufEnter *.php call RestoreAlePhpFixers()
+" augroup END
+
+" augroup phpcbf_tests
+"     autocmd!
+"     autocmd BufEnter *{Test,Spec}.php call RemoveAlePhpFixers()
+" augroup END
+
 " let g:ale_fixers = {
 " \   'javascript': ['eslint'],
 " \   'php': ['phpcbf', 'php_cs_fixer'],

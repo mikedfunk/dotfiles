@@ -1,3 +1,4 @@
+# NOTE: there are no defaults - you can't declare part of a config. :/
 watch:
     directories:
         - app

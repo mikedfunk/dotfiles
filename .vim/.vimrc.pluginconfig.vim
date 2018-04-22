@@ -29,6 +29,10 @@ if (filereadable('phpstan.neon')) | let g:ale_php_phpstan_configuration = getcwd
 " \   'php': ['phpcbf'],
 " \   'ruby': ['rubocop']
 " \}
+
+" If I don't do this, phpcbf fails on any file in the exclude-pattern :/
+let g:ale_php_phpcbf_executable = '/Users/mikefunk/.support/phpcbf-helper.sh'
+
 if isdirectory(expand("~/.vim/plugged/ale"))
     nmap <silent> [w <Plug>(ale_previous_wrap)
     nmap <silent> ]w <Plug>(ale_next_wrap)
