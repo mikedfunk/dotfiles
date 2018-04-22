@@ -1,0 +1,8 @@
+directories:
+    - app
+    - spec
+
+phpspec:
+    binary: ./vendor/bin/phpspec
+    arguments:
+        - format=progress
