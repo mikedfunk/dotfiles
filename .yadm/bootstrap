@@ -195,6 +195,17 @@ log_info "Installing/upgrading composer packages"
 composer global selfupdate
 composer global install
 composer global update
+if [[ ! -d $HOME/.composer/global ]]; then
+    # ^ this will install cgr. Now install cgr packages...
+    log_info "Installing cgr packages"
+    # https://github.com/consolidation/cgr
+    while read package; do
+        cgr $package
+    done <$HOME/.composer/cgr-versions.txt
+else
+    log_info "Upgrading cgr packages"
+    cgr update
+fi
 # }}}
 
 # zplug {{{

@@ -1,19 +1,5 @@
 {
     "require": {
-        "FriendsofPHP/php-cs-fixer": "^2.8",
-        "phing/phing": "^2.16",
-        "phpmd/phpmd": "^2.6",
-        "phploc/phploc": "^4.0",
-        "phpspec/phpspec": "^4.2",
-        "phpunit/phpunit": "^6.4",
-        "sebastian/phpcpd": "^3.0",
-        "pdepend/pdepend": "^2.5",
-        "squizlabs/php_codesniffer": "3.*@dev",
-        "psy/psysh": "^0.8.15",
-        "zeeshan/git-profile": "^2.1",
-        "phpstan/phpstan": "^0.9.0",
-        "phpstan/phpstan-strict-rules": "^0.9.0",
-        "phpstan/phpstan-phpunit": "^0.9.1",
-        "jangregor/phpstan-prophecy": "dev-master"
+        "consolidation/cgr": "^2.0"
     }
 }

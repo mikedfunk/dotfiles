@@ -217,7 +217,7 @@ alias ci="composer install --prefer-dist"
 alias cgu="composer global update"
 alias cgi="composer global install"
 # alias cgr="composer global require"
-alias cgr="composer global bin main require"
+# alias cgr="composer global bin main require"
 alias cr="composer require"
 alias crd="composer require --dev"
 # }}}
