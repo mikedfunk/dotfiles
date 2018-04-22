@@ -1,3 +1,4 @@
-directories:
-    - app
-    - spec
+watch:
+    directories:
+        - app
+        - spec

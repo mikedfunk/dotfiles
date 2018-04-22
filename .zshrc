@@ -204,10 +204,11 @@ alias bri="brew install"
 alias pu="phpunitnotify"
 alias coverage="pu --coverage-html=./coverage && open coverage/index.html"
 alias puf="pu --filter="
-alias puwatch="noglob ag -l -g '\
-    (application\/controllers|application\/modules\/*\/controllers|application\/models|library|src|tests)/.*\\.php\
-    ' | entr -r -c ./vendor/bin/phpunit --colors"
-alias puw="puwatch"
+# alias puwatch="noglob ag -l -g '\
+#     (application\/controllers|application\/modules\/*\/controllers|application\/models|library|src|tests)/.*\\.php\
+#     ' | entr -r -c ./vendor/bin/phpunit --colors"
+# alias puw="puwatch"
+alias puw="php -derror_reporting='E_ALL & ~E_NOTICE' $(which phpunit-watcher) watch"
 # }}}
 
 # composer {{{
@@ -242,7 +243,8 @@ alias ygu="yarn global upgrade"
 # phpspec {{{
 alias psr="phpspecnotify"
 alias psd="phpspec describe"
-alias psw="noglob ag -l -g '.*\\.php' | entr -r -c phpspec run"
+# alias psw="noglob ag -l -g '.*\\.php' | entr -r -c phpspec run"
+alias psw="phpspec-watcher watch"
 # }}}
 
 # pip {{{

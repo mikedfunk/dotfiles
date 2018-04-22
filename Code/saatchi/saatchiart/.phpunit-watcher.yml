@@ -1,10 +1,11 @@
-directories:
-    - application/controllers
-    - 'application/modules/*/controllers'
-    - application/models
-    - library
-    - src
-    - tests
+watch:
+    directories:
+        - application/controllers
+        - 'application/modules/*/controllers'
+        - application/models
+        - library
+        - src
+        - tests
 
 phpunit:
     binary: ./vendor/bin/phpunit
