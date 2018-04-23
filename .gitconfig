@@ -40,6 +40,8 @@
     required = true
 [init]
     templatedir = ~/.git_template
+[mailmap]
+    file = ~/.mailmap
 # }}}
 
 # Aliases {{{
@@ -222,6 +224,7 @@
     ; pretty = '%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
 [log]
     date = short
+	mailmap = true
 # }}}
 
 # Core settings {{{

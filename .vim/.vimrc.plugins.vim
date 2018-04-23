@@ -53,7 +53,7 @@ Plug 'tpope/vim-surround' | Plug 'tpope/vim-repeat' " surround text in quotes or
 " Plug 'machakann/vim-sandwich' " A better alternative to vim-surround... according to the internet
 Plug 'vim-scripts/BufOnly.vim', { 'on': ['BufOnly', 'Bufonly'] } " close all buffers but the current one
 Plug 'tpope/vim-commentary' " toggle comment with gcc. in my case I use <leader>c<space>
-" Plug 'junegunn/vim-easy-align' " align on = with ga=
+Plug 'junegunn/vim-easy-align' " align on = with ga=
 Plug 'tpope/vim-unimpaired' " lots of cool keyboard shortcuts
 " if has("python") || has("python3") | Plug 'SirVer/ultisnips' | endif " dynamic snippet completion
 if has("python") || has("python3") | Plug 'SirVer/ultisnips' | endif " dynamic snippet completion
