@@ -3,6 +3,7 @@
 # settings {{{
 set refresh-mode = periodic
 set refresh-interval = 1
+set mailmap = true
 # }}}
 
 # bindings {{{
