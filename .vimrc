@@ -359,6 +359,14 @@ onoremap il :normal vil<CR>
 " https://stackoverflow.com/questions/1694599/how-do-i-get-vims-sh-command-to-source-my-bashrc
 " use my ~/.zshrc when running shell commands
 " set shell=/usr/local/bin/zsh\ -l
+
+" https://laracasts.com/series/vim-mastery/episodes/4#comment-2487013283
+if has("gui_running")
+    set macligatures
+endif
+" https://github.com/tonsky/FiraCode/issues/462
+" set renderoptions=type:directx
+" set encoding=utf-8
 " }}}
 
 " Completion {{{

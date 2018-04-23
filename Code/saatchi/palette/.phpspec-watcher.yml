@@ -1,9 +1,0 @@
-# NOTE: there are no defaults - you can't declare part of a config. :/
-directories:
-    - app
-    - spec
-
-phpspec:
-    binary: ./vendor/bin/phpspec
-    arguments:
-        - format=progress

@@ -1,10 +1,5 @@
 {
-  "apps/printDetail/components/*.js": {"alternate": "apps/printDetail/containers/{}.js"},
-  "apps/printDetail/containers/*.js": {"alternate": "apps/printDetail/components/{}.js"},
-  "apps/about/components/*.js": {"alternate": "apps/about/containers/{}.js"},
-  "apps/about/containers/*.js": {"alternate": "apps/about/components/{}.js"},
-  "apps/browse/components/*.js": {"alternate": "apps/browse/containers/{}.js"},
-  "apps/browse/containers/*.js": {"alternate": "apps/browse/components/{}.js"},
-  "apps/homepage/components/*.js": {"alternate": "apps/homepage/containers/{}.js"},
-  "apps/homepage/containers/*.js": {"alternate": "apps/homepage/components/{}.js"}
+  "components/Collection/*.js": {"alternate": "components/Collection/specs/{}.spec.js"},
+  "components/Navigation/Desktop/*.js": {"alternate": "components/Navigation/Desktop/specs/{}.spec.js"},
+  "components/Navigation/Desktop/specs/*.spec.js": {"alternate": "components/Navigation/Desktop/{}.js"}
 }

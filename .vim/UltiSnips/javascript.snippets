@@ -241,3 +241,17 @@ endsnippet
 snippet rcpf "react component or pure function type"
 Class<React$Component<*, *, *>> | Class<React$PureComponent<*, *, *>>
 endsnippet
+
+snippet snp "jest snapshot test"
+import React from 'react'
+import ${1:MyComponent} from '../$1'
+import ShallowRenderer from 'react-test-renderer/shallow'
+// import 'jest-styled-components'
+// be sure to pass in an actual theme if this uses styled components
+
+const renderer = new ShallowRenderer()
+it('renders correctly', () => {
+  const tree = renderer.render(<$1 />)
+  expect(tree).toMatchSnapshot()
+})
+endsnippet

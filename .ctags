@@ -53,6 +53,9 @@
 # docs: https://github.com/universal-ctags/ctags/blob/master/parsers/php.c#L125-L142
 # classes, functions, namespaces, interfaces, traits, variables
 --PHP-kinds=cfnitv
+# fixes double backslashes in php namespaces in use completion
+# https://github.com/universal-ctags/ctags/issues/787#issuecomment-197138526
+--regex-php=/^use .*[ \\]([A-Z0-9a-z]+);/\1/a,alias,aliases/'' ]
 # }}}
 #
 # ruby {{{
