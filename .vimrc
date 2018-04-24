@@ -532,6 +532,14 @@ function! PreviewInBrowser() abort
     redraw!
 endfunction
 command! PreviewInBrowser :call PreviewInBrowser()
+
+" prefix php namespaces
+function! PhpPrefixNamespaces() abort
+    %s/@\([a-z]\+\) \([A-Z]\)/@\1 \\\2/g
+    %s/@author \\/@author /g
+    nohlsearch
+endfunction
+command! PhpPrefixNamespaces :call PhpPrefixNamespaces()
 " }}}
 
 " Visuals {{{

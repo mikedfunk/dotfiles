@@ -235,6 +235,7 @@ alias cdg="grt"
 alias git-standup="$HOME/.config/yarn/global/node_modules/.bin/git-standup" # use this instead of the one in brew git-extras
 # alias standup="tig --since='2 days ago' --author='Mike Funk' --no-merges"
 alias t="tig"
+alias ts="tig status"
 # }}}
 
 # yarn {{{

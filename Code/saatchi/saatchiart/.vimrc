@@ -31,8 +31,9 @@ let g:vdebug_options['path_maps'] = {
 
 " ale {{{
 " If I don't do this, phpcbf fails on any file in the exclude-pattern :/
-let g:ale_php_phpcbf_executable = 'php ' . getcwd() . '/vendor/bin/phpcbf -q'
-" let g:ale_php_phpcbf_use_global = 1
+" let g:ale_php_phpcbf_executable = 'php ' . getcwd() . '/vendor/bin/phpcbf -q'
+let g:ale_php_phpcbf_executable = '/Users/mikefunk/.support/phpcbf-helper.sh'
+let g:ale_php_phpcbf_use_global = 1
 " }}}
 
 " javascript-libraries-syntax {{{

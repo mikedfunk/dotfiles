@@ -1,11 +1,12 @@
 # vim:set filetype=dosini foldmethod=marker:
 
 # settings {{{
-set refresh-mode = periodic
-set refresh-interval = 1
+# set refresh-mode = periodic
+# set refresh-interval = 1
+set refresh-mode = auto
 set mailmap = true
 # }}}
 
 # bindings {{{
-bind status P !git push origin
+bind status P !git push
 # }}}

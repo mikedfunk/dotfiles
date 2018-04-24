@@ -535,7 +535,7 @@ saatchi-id-user-art-local () {
 }
 saatchi-id-user-art-xdev () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-id-user-art-xdev {art_id}"; return; fi;
-    builtin ssh -f saatchi-console-01 \
+    /usr/bin/ssh -f saatchi-console-01 \
         -L $SAATCHI_XDEV_TUNNEL_PORT:$SAATCHI_XDEV_HOST:$SAATCHI_XDEV_PORT -N && \
         export MYSQL_PWD=$SAATCHI_XDEV_PASSWORD && \
         mysql -h127.0.0.1 \
@@ -548,7 +548,7 @@ saatchi-id-user-art-xdev () {
 
 saatchi-id-user-art-xqa () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-id-user-art-xqa {art_id}"; return; fi;
-    builtin ssh -f saatchi-console-01 \
+    /usr/bin/ssh -f saatchi-console-01 \
         -L $SAATCHI_XQA_TUNNEL_PORT:$SAATCHI_XQA_HOST:$SAATCHI_XQA_PORT \
         -N && export MYSQL_PWD=$SAATCHI_XQA_PASSWORD && \
         mysql -h127.0.0.1 \
@@ -561,7 +561,7 @@ saatchi-id-user-art-xqa () {
 
 saatchi-id-user-art-xprod () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-id-user-art-xprod {art_id}"; return; fi;
-        builtin ssh -f saatchi-console-01 \
+        /usr/bin/ssh -f saatchi-console-01 \
             -L 2567:$SAATCHI_XPROD_HOST:$SAATCHI_XPROD_PORT \
             -N && export MYSQL_PWD=$SAATCHI_XPROD_PASSWORD && \
             mysql -h127.0.0.1 \
@@ -590,7 +590,7 @@ saatchi-id-user-collection-local () {
 }
 saatchi-id-user-collection-xdev () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-id-user-collection-xdev {collection_id}"; return; fi;
-    builtin ssh -f saatchi-console-01 \
+    /usr/bin/ssh -f saatchi-console-01 \
         -L $SAATCHI_XDEV_TUNNEL_PORT:$SAATCHI_XDEV_HOST:$SAATCHI_XDEV_PORT -N && \
         export MYSQL_PWD=$SAATCHI_XDEV_PASSWORD && \
         mysql -h127.0.0.1 \
@@ -602,7 +602,7 @@ saatchi-id-user-collection-xdev () {
 }
 saatchi-id-user-collection-xqa () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-id-user-collection-xqa {collection_id}"; return; fi;
-    builtin ssh -f saatchi-console-01 \
+    /usr/bin/ssh -f saatchi-console-01 \
         -L 8307:$SAATCHI_XQA_HOST:$SAATCHI_XQA_PORT -N && \
         export MYSQL_PWD=$SAATCHI_XQA_PASSWORD && \
         mysql -h127.0.0.1 \
@@ -614,7 +614,7 @@ saatchi-id-user-collection-xqa () {
 }
 saatchi-id-user-collection-xprod () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-id-user-collection-xprod {collection_id}"; return; fi; \
-    builtin ssh -f saatchi-console-01 \
+    /usr/bin/ssh -f saatchi-console-01 \
         -L 8307:$SAATCHI_XPROD_HOST:$SAATCHI_XPROD_PORT -N && \
         export MYSQL_PWD=$SAATCHI_XPROD_PASSWORD && \
         mysql -h127.0.0.1 \
@@ -767,37 +767,37 @@ function _saatchi-release-color () {
     # sed version
     echo "$1" | sed -E -e "s/^Branch ([a-zA-Z0-9\.\/\-]+) \(at ([0-9a-z]{7})[0-9a-z\)]+ deployed as release ([0-9]{4})([0-9]{2})([0-9]{2})([0-9]{2})([0-9]{2})[0-9]{2} by ([a-z\.]+).*/${BLUE}\1 ${RED}\2${NORMAL} deployed by ${GREEN}\8${NORMAL} on ${YELLOW}\3-\4-\5${NORMAL} at ${PINK}\6:\7${NORMAL} UTC/"
 }
-alias saatchi-release-legacy-xqa='_saatchi-release-color "$(ssh saatchi-xqa-legacy-01 tail -n 1 /data/code_base/revisions.log)"'
-alias saatchi-release-legacy-xdev='_saatchi-release-color "$(ssh saatchi-xdev-legacy-01 tail -n 1 /data/code_base/revisions.log)"'
-alias saatchi-release-legacy-xprod='_saatchi-release-color "$(ssh saatchi-xprod-legacy-01 tail -n 1 /data/code_base/revisions.log)"'
+alias saatchi-release-legacy-xqa='_saatchi-release-color "$(autossh saatchi-xqa-legacy-01 tail -n 1 /data/code_base/revisions.log)"'
+alias saatchi-release-legacy-xdev='_saatchi-release-color "$(autossh saatchi-xdev-legacy-01 tail -n 1 /data/code_base/revisions.log)"'
+alias saatchi-release-legacy-xprod='_saatchi-release-color "$(autossh saatchi-xprod-legacy-01 tail -n 1 /data/code_base/revisions.log)"'
 
-alias saatchi-release-gallery-xqa='_saatchi-release-color "$(ssh saatchi-xqa-gallery-01 tail -n 1 /data/gallery/revisions.log)"'
-alias saatchi-release-gallery-xdev='_saatchi-release-color "$(ssh saatchi-xdev-gallery-01 tail -n 1 /data/gallery/revisions.log)"'
-alias saatchi-release-gallery-xprod='_saatchi-release-color "$(ssh saatchi-xprod-gallery-01 tail -n 1 /data/gallery/revisions.log)"'
+alias saatchi-release-gallery-xqa='_saatchi-release-color "$(autossh saatchi-xqa-gallery-01 tail -n 1 /data/gallery/revisions.log)"'
+alias saatchi-release-gallery-xdev='_saatchi-release-color "$(autossh saatchi-xdev-gallery-01 tail -n 1 /data/gallery/revisions.log)"'
+alias saatchi-release-gallery-xprod='_saatchi-release-color "$(autossh saatchi-xprod-gallery-01 tail -n 1 /data/gallery/revisions.log)"'
 
-alias saatchi-release-easel-xqa='_saatchi-release-color "$(ssh saatchi-xqa-gallery-01 tail -n 1 /data/easel/revisions.log)"'
-alias saatchi-release-easel-xdev='_saatchi-release-color "$(ssh saatchi-xdev-gallery-01 tail -n 1 /data/easel/revisions.log)"'
-alias saatchi-release-easel-xprod='_saatchi-release-color "$(ssh saatchi-xprod-gallery-01 tail -n 1 /data/easel/revisions.log)"'
+alias saatchi-release-easel-xqa='_saatchi-release-color "$(autossh saatchi-xqa-gallery-01 tail -n 1 /data/easel/revisions.log)"'
+alias saatchi-release-easel-xdev='_saatchi-release-color "$(autossh saatchi-xdev-gallery-01 tail -n 1 /data/easel/revisions.log)"'
+alias saatchi-release-easel-xprod='_saatchi-release-color "$(autossh saatchi-xprod-gallery-01 tail -n 1 /data/easel/revisions.log)"'
 
-alias saatchi-release-palette-xqa='_saatchi-release-color "$(ssh saatchi-xqa-palette-01 tail -n 1 /data/palette/revisions.log)"'
-alias saatchi-release-palette-xdev='_saatchi-release-color "$(ssh saatchi-xdev-palette-01 tail -n 1 /data/palette/revisions.log)"'
-alias saatchi-release-palette-xprod='_saatchi-release-color "$(ssh saatchi-xprod-palette-01 tail -n 1 /data/palette/revisions.log)"'
+alias saatchi-release-palette-xqa='_saatchi-release-color "$(autossh saatchi-xqa-palette-01 tail -n 1 /data/palette/revisions.log)"'
+alias saatchi-release-palette-xdev='_saatchi-release-color "$(autossh saatchi-xdev-palette-01 tail -n 1 /data/palette/revisions.log)"'
+alias saatchi-release-palette-xprod='_saatchi-release-color "$(autossh saatchi-xprod-palette-01 tail -n 1 /data/palette/revisions.log)"'
 
-alias saatchi-release-zed-xqa='_saatchi-release-color "$(ssh saatchi-xqa-zed-01 tail -n 1 /data/shop/revisions.log)"'
-alias saatchi-release-zed-xdev='_saatchi-release-color "$(ssh saatchi-xdev-zed-01 tail -n 1 /data/shop/revisions.log)"'
-alias saatchi-release-zed-xprod='_saatchi-release-color "$(ssh saatchi-xprod-zed-01 tail -n 1 /data/shop/revisions.log)"'
+alias saatchi-release-zed-xqa='_saatchi-release-color "$(autossh saatchi-xqa-zed-01 tail -n 1 /data/shop/revisions.log)"'
+alias saatchi-release-zed-xdev='_saatchi-release-color "$(autossh saatchi-xdev-zed-01 tail -n 1 /data/shop/revisions.log)"'
+alias saatchi-release-zed-xprod='_saatchi-release-color "$(autossh saatchi-xprod-zed-01 tail -n 1 /data/shop/revisions.log)"'
 
-alias saatchi-release-catalog-xqa='_saatchi-release-color "$(ssh saatchi-xqa-catalog-01 tail -n 1 /data/catalog/revisions.log)"'
-alias saatchi-release-catalog-xdev='_saatchi-release-color "$(ssh saatchi-xdev-catalog-01 tail -n 1 /data/catalog/revisions.log)"'
-alias saatchi-release-catalog-xprod='_saatchi-release-color "$(ssh saatchi-xprod-catalog-01 tail -n 1 /data/catalog/revisions.log)"'
+alias saatchi-release-catalog-xqa='_saatchi-release-color "$(autossh saatchi-xqa-catalog-01 tail -n 1 /data/catalog/revisions.log)"'
+alias saatchi-release-catalog-xdev='_saatchi-release-color "$(autossh saatchi-xdev-catalog-01 tail -n 1 /data/catalog/revisions.log)"'
+alias saatchi-release-catalog-xprod='_saatchi-release-color "$(autossh saatchi-xprod-catalog-01 tail -n 1 /data/catalog/revisions.log)"'
 
-alias saatchi-release-api-xqa='_saatchi-release-color "$(ssh saatchi-xqa-catalog-01 tail -n 1 /data/api/revisions.log)"'
-alias saatchi-release-api-xdev='_saatchi-release-color "$(ssh saatchi-xdev-catalog-01 tail -n 1 /data/api/revisions.log)"'
-alias saatchi-release-api-xprod='_saatchi-release-color "$(ssh saatchi-xprod-catalog-01 tail -n 1 /data/api/revisions.log)"'
+alias saatchi-release-api-xqa='_saatchi-release-color "$(autossh saatchi-xqa-catalog-01 tail -n 1 /data/api/revisions.log)"'
+alias saatchi-release-api-xdev='_saatchi-release-color "$(autossh saatchi-xdev-catalog-01 tail -n 1 /data/api/revisions.log)"'
+alias saatchi-release-api-xprod='_saatchi-release-color "$(autossh saatchi-xprod-catalog-01 tail -n 1 /data/api/revisions.log)"'
 
-alias saatchi-release-imgproc-xqa='_saatchi-release-color "$(ssh saatchi-xqa-origin-01 tail -n 1 /data/imgproc/revisions.log)"'
-alias saatchi-release-imgproc-xdev='_saatchi-release-color "$(ssh saatchi-xdev-origin-01 tail -n 1 /data/imgproc/revisions.log)"'
-alias saatchi-release-imgproc-xprod='_saatchi-release-color "$(ssh saatchi-xprod-origin-01 tail -n 1 /data/imgproc/revisions.log)"'
+alias saatchi-release-imgproc-xqa='_saatchi-release-color "$(autossh saatchi-xqa-origin-01 tail -n 1 /data/imgproc/revisions.log)"'
+alias saatchi-release-imgproc-xdev='_saatchi-release-color "$(autossh saatchi-xdev-origin-01 tail -n 1 /data/imgproc/revisions.log)"'
+alias saatchi-release-imgproc-xprod='_saatchi-release-color "$(autossh saatchi-xprod-origin-01 tail -n 1 /data/imgproc/revisions.log)"'
 
 function saatchi-releases-xdev () {
     out="\n"
@@ -843,11 +843,11 @@ function saatchi-releases-xprod () {
 # }}}
 
 # saatchi crontab {{{
-# alias saatchi-cron-legacy-services-01="builtin ssh saatchi-xprod-legacy-services-01 -t 'sudo -u www-data crontab -l'" # not needed currently
-alias saatchi-cron-legacy-services-xqa="builtin ssh appdeploy@saatchi-xqa-legacy-services-01 'sudo -u www-data crontab -l' | rougify -l shell | less -r"
-alias saatchi-cron-legacy-services-xdev="builtin ssh appdeploy@saatchi-xdev-legacy-services-01 'sudo -u www-data crontab -l' | rougify -l shell | less -r"
-alias saatchi-cron-legacy-services-xprod="builtin ssh appdeploy@saatchi-xprod-legacy-services-02 'sudo -u www-data crontab -l' | rougify -l shell | less -r"
-# alias saatchi-cron-legacy-services-02="builtin ssh appdeploy@saatchi-xprod-legacy-services-02 -t 'sudo -u www-data VISUAL=vim crontab -e'" # this one edits
+# alias saatchi-cron-legacy-services-01="/usr/bin/ssh saatchi-xprod-legacy-services-01 -t 'sudo -u www-data crontab -l'" # not needed currently
+alias saatchi-cron-legacy-services-xqa="/usr/bin/ssh appdeploy@saatchi-xqa-legacy-services-01 'sudo -u www-data crontab -l' | rougify -l shell | less -r"
+alias saatchi-cron-legacy-services-xdev="/usr/bin/ssh appdeploy@saatchi-xdev-legacy-services-01 'sudo -u www-data crontab -l' | rougify -l shell | less -r"
+alias saatchi-cron-legacy-services-xprod="/usr/bin/ssh appdeploy@saatchi-xprod-legacy-services-02 'sudo -u www-data crontab -l' | rougify -l shell | less -r"
+# alias saatchi-cron-legacy-services-02="/usr/bin/ssh appdeploy@saatchi-xprod-legacy-services-02 -t 'sudo -u www-data VISUAL=vim crontab -e'" # this one edits
 # }}}
 
 # saatchi docker shells {{{
@@ -1750,7 +1750,7 @@ saatchi-deploy () {
     # dang gallery and its build folder never gets cleaned out
     SSH_COMMAND+=" && cd ~/code/gallery && rm -rf public/build/*"
     SSH_COMMAND+="\""
-    builtin ssh saatchi-builder-01 -t "$SSH_COMMAND"
+    /usr/bin/ssh saatchi-builder-01 -t "$SSH_COMMAND"
     _open-new-relic $1 $3
 }
 # open new relic to the right place if production
@@ -1855,12 +1855,12 @@ saatchi-zed-post-art-local () {
 
 saatchi-zed-post-art-xdev () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-zed-post-art-xdev {user_id} {art_id}"; return; fi;
-    builtin ssh saatchi-xdev-legacy-services-01 "php -ddisplay_errors=on /data/code_base/current/scripts/ops/post-zed-art.php development -user_id=$1 -art_id=$2 -v";
+    /usr/bin/ssh saatchi-xdev-legacy-services-01 "php -ddisplay_errors=on /data/code_base/current/scripts/ops/post-zed-art.php development -user_id=$1 -art_id=$2 -v";
 }
 
 saatchi-zed-post-art-xqa () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-zed-post-art-xqa {user_id} {art_id}"; return; fi;
-    builtin ssh saatchi-xqa-legacy-services-01 "php -ddisplay_errors=on /data/code_base/current/scripts/ops/post-zed-art.php qa -user_id=$1 -art_id=$2 -v";
+    /usr/bin/ssh saatchi-xqa-legacy-services-01 "php -ddisplay_errors=on /data/code_base/current/scripts/ops/post-zed-art.php qa -user_id=$1 -art_id=$2 -v";
 }
 # }}}
 
@@ -1914,7 +1914,7 @@ function saatchi-composer-fix () {
         return
     fi
     scp /usr/local/bin/composer appdeploy@$1:~/composer && \
-        builtin ssh -t appdeploy@$1 "sudo cp ~/composer /usr/local/bin/composer"
+        /usr/bin/ssh -t appdeploy@$1 "sudo cp ~/composer /usr/local/bin/composer"
 }
 # }}}
 
@@ -2002,11 +2002,11 @@ function saatchi-grep-emails-xprod() {
     for i in `seq 1 5`; do
         echo "-------------------------"
         echo "saatchi-xprod-legacy-0$i:"
-        builtin ssh -t saatchi-xprod-legacy-0$i grep "To:\ $1" /data/temp/saatchi.log -A2 -B1 --color=always
+        /usr/bin/ssh -t saatchi-xprod-legacy-0$i grep "To:\ $1" /data/temp/saatchi.log -A2 -B1 --color=always
     done
     echo "-------------------------"
     echo "saatchi-xprod-legacy-services-02"
-    builtin ssh -t saatchi-xprod-legacy-services-02 grep "To:\ $1" /data/temp/saatchi.log -A2 -B1 --color=always
+    /usr/bin/ssh -t saatchi-xprod-legacy-services-02 grep "To:\ $1" /data/temp/saatchi.log -A2 -B1 --color=always
 }
 # }}}
 
@@ -2017,15 +2017,15 @@ function saatchi-algolia-export-artwork-local () {
 }
 function saatchi-algolia-export-artwork-xdev () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-algolia-export-artwork-xdev {id_user_art}"; return; fi;
-    builtin ssh -t appdeploy@saatchi-xdev-palette-services-01 "cd /data/palette/current && php artisan algolia:export-artwork-to-algolia $1"
+    /usr/bin/ssh -t appdeploy@saatchi-xdev-palette-services-01 "cd /data/palette/current && php artisan algolia:export-artwork-to-algolia $1"
 }
 function saatchi-algolia-export-artwork-xqa () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-algolia-export-artwork-xqa {id_user_art}"; return; fi;
-    builtin ssh -t appdeploy@saatchi-xqa-palette-services-01 "cd /data/palette/current && php artisan algolia:export-artwork-to-algolia $1"
+    /usr/bin/ssh -t appdeploy@saatchi-xqa-palette-services-01 "cd /data/palette/current && php artisan algolia:export-artwork-to-algolia $1"
 }
 function saatchi-algolia-export-artwork-xprod () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-algolia-export-artwork-xprod {id_user_art}"; return; fi;
-    builtin ssh -t appdeploy@saatchi-xprod-palette-services-01 "cd /data/palette/current && php artisan algolia:export-artwork-to-algolia $1"
+    /usr/bin/ssh -t appdeploy@saatchi-xprod-palette-services-01 "cd /data/palette/current && php artisan algolia:export-artwork-to-algolia $1"
 }
 # }}}
 
@@ -2037,9 +2037,9 @@ alias saatchi-pm2-monit-xprod="autossh -t saatchi-xprod-easel-01 /usr/local/node
 # }}}
 
 # saatchi-haproxy-config {{{
-alias saatchi-haproxy-config-xdev="builtin ssh saatchi-xdev-lb-01 -t vim -M /etc/haproxy/haproxy.cfg"
-alias saatchi-haproxy-config-xqa="builtin ssh saatchi-xqa-lb-01 -t vim -M /etc/haproxy/haproxy.cfg"
-alias saatchi-haproxy-config-xprod="builtin ssh saatchi-xprod-lb-01 -t vim -M /etc/haproxy/haproxy.cfg"
+alias saatchi-haproxy-config-xdev="/usr/bin/ssh saatchi-xdev-lb-01 -t vim -M /etc/haproxy/haproxy.cfg"
+alias saatchi-haproxy-config-xqa="/usr/bin/ssh saatchi-xqa-lb-01 -t vim -M /etc/haproxy/haproxy.cfg"
+alias saatchi-haproxy-config-xprod="/usr/bin/ssh saatchi-xprod-lb-01 -t vim -M /etc/haproxy/haproxy.cfg"
 # }}}
 
 # saatchi-standup {{{

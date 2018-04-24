@@ -19,7 +19,7 @@ if executable('ctags')
     " Plug 'vim-php/tagbar-phpctags.vim', { 'do': 'make' } " Better php support for tagbar. Without this tagbar will show nothing if you use a trait. However, the php parser used is not updated for php 7, so it will fail on null coalesce! The first problem is now fixed in majutsushi/tagbar.
 endif
 " use these shortcuts for completion! https://github.com/mikedfunk/learning/blob/master/vim/completion.md
-Plug 'ajh17/VimCompletesMe' " simple tab omni completion
+" Plug 'ajh17/VimCompletesMe' " simple tab omni completion
 " Plug 'maralla/completor.vim', { 'do': 'make js' } " vim 8 async autocomplete
 " if has("python") || has("python3") | Plug 'Valloric/YouCompleteMe', { 'do': './install.py' } | endif " huge autocomplete plugin
 " Plug 'maxboisvert/vim-simple-complete' " simple autocomplete in 50 lines
@@ -53,7 +53,7 @@ Plug 'tpope/vim-surround' | Plug 'tpope/vim-repeat' " surround text in quotes or
 " Plug 'machakann/vim-sandwich' " A better alternative to vim-surround... according to the internet
 Plug 'vim-scripts/BufOnly.vim', { 'on': ['BufOnly', 'Bufonly'] } " close all buffers but the current one
 Plug 'tpope/vim-commentary' " toggle comment with gcc. in my case I use <leader>c<space>
-Plug 'junegunn/vim-easy-align' " align on = with ga=
+" Plug 'junegunn/vim-easy-align' " align on = with ga=
 Plug 'tpope/vim-unimpaired' " lots of cool keyboard shortcuts
 " if has("python") || has("python3") | Plug 'SirVer/ultisnips' | endif " dynamic snippet completion
 if has("python") || has("python3") | Plug 'SirVer/ultisnips' | endif " dynamic snippet completion
@@ -80,7 +80,7 @@ Plug 'tpope/vim-endwise' " auto add end/endif for vimscript/ruby. no lazy load o
 " }}}
 
 " Html {{{
-Plug 'mattn/emmet-vim', { 'for': ['phtml', 'html', 'html.twig', 'twig', 'blade', 'xml'] } " html shorthand expander <c-y>, <c-y>n
+" Plug 'mattn/emmet-vim', { 'for': ['phtml', 'html', 'html.twig', 'twig', 'blade', 'xml'] } " html shorthand expander <c-y>, <c-y>n
 Plug 'docunext/closetag.vim', { 'for': ['html', 'xml', 'html.twig', 'blade', 'php', 'phtml'] } " auto close tags by typing </ . different from auto-pairs.
 " if has("python") || has("python3") | Plug 'Valloric/MatchTagAlways' | endif " highlight matching tag
 if has("python") || has("python3") | Plug 'Valloric/MatchTagAlways' | endif " highlight matching tag
@@ -132,7 +132,7 @@ Plug 'frioux/vim-lost' " gL to see what function you're in. I use this in php so
 " Plug 'wincent/ferret' " enhances search, quickfix window, etc. with :Ack command
 " Plug 'dhruvasagar/vim-zoom' " zoom toggle. Can kind of do the same thing with <c-w>_ or <c-w><bar>
 Plug 'lifepillar/vim-cheat40' " Customizable cheatsheet. Mine is in ~/.vim/plugged/cheat40.txt. Open cheatsheet with <leader>? . I use this to avoid written cheatsheets on my desk for refactor tools and vdebug.
-Plug 'auwsmit/vim-active-numbers' " Only show line numbers on active window. Helps to show which is active.
+" Plug 'auwsmit/vim-active-numbers' " Only show line numbers on active window. Helps to show which is active.
 " }}}
 
 " Php {{{
@@ -165,7 +165,7 @@ Plug 'tpope/vim-projectionist' " link tests and classes together
 " Plug 'editorconfig/editorconfig-vim' " use per-project editor settings
 Plug 'sgur/vim-editorconfig' " faster version of editorconfig
 " Plug 'scrooloose/vim-orgymode' " kind of like emacs org-mode. <c-c> will toggle markdown checkbox. Also some syntax highlighting and ultisnips snippets.
-Plug 'dkarter/bullets.vim' " does cool stuff with numbered and bullet lists in markdown, etc. <c-t> to indent, <c-d> to outdent.
+" Plug 'dkarter/bullets.vim' " does cool stuff with numbered and bullet lists in markdown, etc. <c-t> to indent, <c-d> to outdent.
 " }}}
 
 " Git {{{
@@ -241,7 +241,7 @@ Plug 'Yggdroot/indentLine' " show vertical lines for levels of indentions
 Plug 'itchyny/vim-cursorword' " highlight matching words. What I like about this one is it keeps the same color and bold/italic.
 " Plug 'elqatib/remaining-todos.vim' " when remaining todos in a file, flash a message before closing a buffer
 Plug 'ap/vim-css-color', { 'for': ['scss', 'css'] } " colorize css colors e.g. #333 with the actual color in the background
-Plug 'chrisbra/NrrwRgn' " work in a separate window with a sub-region of a document. :NR
+" Plug 'chrisbra/NrrwRgn' " work in a separate window with a sub-region of a document. :NR
 
 " color schemes: 256-friendly {{{
 " Plug 'MarioRicalde/vim-lucius'

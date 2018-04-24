@@ -42,11 +42,11 @@ window legacy
 1111111111111111111111111
 1111111111111111111111111
 1111111111111111111111111
-0000000000442222222222222
-0000000000332222222222222
+0000000000222222222222244
+0000000000222222222222233
 
 dir ~/Code/saatchi/saatchiart
-0 run tig status
+0 run ts
 1 run vim -S
 # 2 run wd xdocker
 2 run puw
@@ -77,7 +77,7 @@ window gallery
 
 dir ~/Code/saatchi/gallery
 1 run vim -S
-0 run tig status
+0 run ts
 # 2 run saatchi-docker-gallery
 # 2 run tail -f /data/gallery/current/storage/logs/*.log /var/log/nginx/*.log
 3 run wd gallery
@@ -102,7 +102,7 @@ dir ~/Code/saatchi/easel
 2 run saatchi-attach-easel-node
 # 2 run yarn dev
 1 run vim -S
-0 run tig status
+0 run ts
 
 window palette
 
@@ -121,7 +121,7 @@ window palette
 
 dir ~/Code/saatchi/palette
 1 run vim -S
-0 run tig status
+0 run ts
 # 2 run wd xdocker
 2 run psw
 # 2 run saatchi-docker-palette
@@ -144,7 +144,7 @@ window zed
 
 dir ~/Code/saatchi/yzed
 1 run vim -S
-0 run tig status
+0 run ts
 2 run wd xdocker
 # 2 run saatchi-docker-zed
 # 2 run tail -f /scratch/yzed/data/US/logs/ZED/* /scratch/yzed/data/US/logs/YVES/*
@@ -166,7 +166,7 @@ dir ~/Code/saatchi/yzed
 
 # dir ~/Code/saatchi/couchbase-views
 # 1 run vim -S
-# 0 run tig status
+# 0 run ts
 
 window xdocker
 
@@ -185,7 +185,7 @@ window xdocker
 
 dir ~/Code/saatchi/xdocker
 1 run vim -S
-# 0 run tig status
+# 0 run ts
 0 run dms; saatchi-docker-start
 
 window xpuppet
@@ -205,7 +205,7 @@ window xpuppet
 
 dir ~/Code/saatchi/gitlab-puppet
 1 run vim -S
-0 run tig status
+0 run ts
 
 window mysql
 00000000000011111111111111
@@ -287,7 +287,7 @@ dir ~
 
 # dir ~/Code/saatchi/catalog
 # 1 run vim -S
-# 0 run tig status
+# 0 run ts
 # 2 run wd xdocker
 # # 2 run saatchi-docker-catalog
 # # 2 run tail -f /data/catalog/shared/log/*.log /data/catalog/current/log/*.log
@@ -309,7 +309,7 @@ dir ~
 
 # dir ~/Code/saatchi/api
 # 1 run vim -S
-# 0 run tig status
+# 0 run ts
 # 2 run wd xdocker
 # # 2 run saatchi-docker-catalog
 # # 2 run tail -f /data/api/shared/log/*.log /data/api/current/log/*.log
@@ -331,7 +331,7 @@ dir ~
 
 # dir ~/Code/saatchi/puppet
 # 1 run vim -S
-# 0 run tig status
+# 0 run ts
 
 # window builder
 
@@ -368,7 +368,7 @@ dir ~
 # 1111111111111111111111111
 
 # dir ~/Code/saatchi/local-scripts
-# 1 run tig status
+# 1 run ts
 # 0 run vim -S
 
 # window ios
