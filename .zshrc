@@ -1,5 +1,7 @@
 #!/bin/zsh
 # vim: set foldmethod=marker ft=zsh:
+# https://code.joejag.com/2014/why-zsh.html
+# https://til.hashrocket.com/posts/alk38eeu8r-use-fc-to-fix-commands-in-the-shell
 
 # zplug {{{
 
@@ -16,6 +18,7 @@ zplug "plugins/colored-man-pages", from:oh-my-zsh
 zplug "plugins/colorize", from:oh-my-zsh # Plugin for highlighting file content
 zplug 'mfaerevaag/wd', as:command, use:"wd.sh", hook-load:"wd() { . $ZPLUG_REPOS/mfaerevaag/wd/wd.sh }"
 zplug "plugins/gitfast", from:oh-my-zsh, if:"which git" # fix git completion issues https://unix.stackexchange.com/a/204308
+zplug "plugins/rake-fast", from:oh-my-zsh # rake task completion
 zplug "marzocchi/zsh-notify" # notify when a command fails or lasts longer than 30 seconds and the terminal is in the background (requires terminal-notifier)
 zplug "zsh-users/zsh-autosuggestions" # buggy if enabled along with zsh-syntax-highlighting. crashes the shell regularly.
 zplug "zsh-users/zsh-completions" # do-everything argument completions
@@ -170,7 +173,7 @@ alias yb="yadm bootstrap"
 alias upgrades="yb"
 alias save-dotfiles="yadm encrypt && yadm add -u && yadm ci -m working && yadm pu"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # fuzzy finder - installed and managed via vim-plug
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # fuzzy finder - installed and managed via vim-plug https://github.com/junegunn/fzf
 export CLICOLOR=1 # ls colors by default
 export NODE_PATH="/usr/local/lib/node_modules" # zombie.js doesn't work without this
 [[ "$(builtin type -p direnv)" ]] && eval "$(direnv hook zsh)" # allow .envrc on each prompt start
@@ -393,6 +396,16 @@ function pux() {
 # zsh options {{{
 # most basic options are now set up by vanilla zplug plugin
 # zstyle ':completion:*' use-cache true
-# fix git completion to only complete local branches
-zstyle :completion::complete:git-checkout:argument-rest:headrefs command "git for-each-ref --format='%(refname)' refs/heads 2>/dev/null"
+
+# fuzzy completion: cd ~/Cde -> ~/Code
+# https://superuser.com/a/815317
+# 0 -- vanilla completion (abc => abc)
+# 1 -- smart case completion (abc => Abc)
+# 2 -- word flex completion (abc => A-big-Car)
+# 3 -- full flex completion (abc => ABraCadabra)
+zstyle ':completion:*' matcher-list '' \
+  'm:{a-z\-}={A-Z\_}' \
+  'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
+  'r:|?=** m:{a-z\-}={A-Z\_}'
+autoload -U edit-command-line
 # }}}
