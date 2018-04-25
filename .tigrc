@@ -1,6 +1,8 @@
 # vim:set filetype=dosini foldmethod=marker:
 
 # settings {{{
+# all refresh modes are broken right now :(
+# https://github.com/jonas/tig/issues/794
 # set refresh-mode = periodic
 # set refresh-interval = 1
 set refresh-mode = auto

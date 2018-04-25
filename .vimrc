@@ -161,8 +161,11 @@ set infercase " smarter, case-aware completion in insert mode.
 set lazyredraw " to speed up rendering
 set smartcase " Case sensitive when uc present
 " https://vi.stackexchange.com/a/11413
-au InsertEnter * set noignorecase
-au InsertLeave * set ignorecase
+augroup ignorecase_augroup
+    autocmd!
+    autocmd InsertEnter * set noignorecase
+    autocmd InsertLeave * set ignorecase
+augroup END
 set number " turn on line numbering
 set iskeyword-=. " '.' is an end of word designator
 set iskeyword-=- " '-' is an end of word designator
@@ -231,7 +234,7 @@ augroup END
 " if the last window is a quickfix, close it
 augroup quickfixclosegroup
     autocmd!
-    au WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"|q|endif
+    autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"|q|endif
 augroup END
 
 if has('clipboard')
@@ -245,7 +248,10 @@ endif
 " https://vi.stackexchange.com/a/13012
 " Per default, netrw leaves unmodified buffers open. This autocommand
 " deletes netrw's buffer once it's hidden (using ':q', for example)
-autocmd FileType netrw setl bufhidden=delete
+augroup netrw_delete_hidden_augroup
+    autocmd!
+    autocmd FileType netrw setl bufhidden=delete
+augroup END
 
 " disable Ex mode
 nnoremap Q <nop>
@@ -285,7 +291,7 @@ let g:netrw_winsize = -40 " percent of the split size for :Sex and :Vex . Negati
 let g:netrw_banner = 0 " remove that silly shortcut banner/header at the top, even without vim-vinegar
 " https://github.com/vim/vim/issues/2329#issuecomment-350294641
 augroup netrw_fix
-    au!
+    autocmd!
     autocmd BufRead scp://* :set bt=acwrite
 augroup END
 
@@ -301,7 +307,7 @@ augroup END
 " noremap <leader>nt :Lex %:p:h<cr>
 " noremap <c-e> :Lex<cr>
 " after opening the file browser with :Le , use this mapping to open the file in the previous split and close the explorer
-" au! FileType netrw nmap <buffer> <leader>o <cr>:Lexplore<cr>
+" autocmd! FileType netrw nmap <buffer> <leader>o <cr>:Lexplore<cr>
 
 " Lexplore has a bug where if you change directories you can't :Lex to close
 " it. This fixes it! https://www.reddit.com/r/vim/comments/6jcyfj/toggle_lexplore_properly/
@@ -329,25 +335,25 @@ augroup END
 " open quickfix in vsplit, tab, split
 augroup qfmaps
     autocmd!
-    au FileType qf nmap <buffer> s <C-w><Enter>
-    au FileType qf nmap <buffer> v <C-w><Enter><C-w>L
-    au FileType qf nmap <buffer> t <C-W><Enter><C-W>T
+    autocmd FileType qf nmap <buffer> s <C-w><Enter>
+    autocmd FileType qf nmap <buffer> v <C-w><Enter><C-w>L
+    autocmd FileType qf nmap <buffer> t <C-W><Enter><C-W>T
     " move the quickfix to the bottom, stretched from left to right whenever
     " it opens. Without this, if you have 2 vertical splits and you grep
     " something, it will show up at the bottom of the current split only. This
     " is frustrating when you have 3 or 4 splits as it makes the results
     " difficult to read and navigate to.
-    au FileType qf wincmd J
+    autocmd FileType qf wincmd J
 augroup END
 
 " web-based documentation with shift-K
 if executable('devdocs')
     augroup filetypesgroup
         autocmd!
-        au FileType javascript set keywordprg=devdocs\ javascript
-        au FileType html set keywordprg=devdocs\ html
-        au FileType ruby set keywordprg=devdocs\ ruby
-        au FileType css set keywordprg=devdocs\ css
+        autocmd FileType javascript set keywordprg=devdocs\ javascript
+        autocmd FileType html set keywordprg=devdocs\ html
+        autocmd FileType ruby set keywordprg=devdocs\ ruby
+        autocmd FileType css set keywordprg=devdocs\ css
     augroup END
 endif
 
@@ -378,7 +384,7 @@ if has("autocmd") && exists("+omnifunc")
 endif
 augroup csscompletegroup
     autocmd!
-    au FileType scss setlocal omnifunc=csscomplete#CompleteCSS
+    autocmd FileType scss setlocal omnifunc=csscomplete#CompleteCSS
 augroup END
 
 set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png,*.ico,*.pdf,*.psd,node_modules/*.git/*,Session.vim
@@ -470,7 +476,7 @@ let g:lasttab = 1
 nnoremap <Leader>tl :exe "tabn ".g:lasttab<CR>
 augroup tableavegroup
     autocmd!
-    au TabLeave * let g:lasttab = tabpagenr()
+    autocmd TabLeave * let g:lasttab = tabpagenr()
 augroup END
 
 " format all
@@ -479,13 +485,13 @@ nnoremap <leader>fa mzggVG=`z :delmarks z<cr>hh :echo "formatted file"<cr>
 " sort use statements alphabetically
 augroup phpsortusegroup
     autocmd!
-    au FileType php nnoremap <leader>su :call PhpSortUse()<cr>
+    autocmd FileType php nnoremap <leader>su :call PhpSortUse()<cr>
 augroup END
 
 " array() to []
 augroup phpfixarray
     autocmd!
-    au FileType php nmap <leader>xa mv?array(f(mz%r]`zr[hvFa;d`v
+    autocmd FileType php nmap <leader>xa mv?array(f(mz%r]`zr[hvFa;d`v
 augroup END
 
 " when copying php interface methods over, this turns interface stubs into
@@ -502,8 +508,8 @@ augroup END
 " }
 augroup phpexpendinterfacegroup
     autocmd!
-    au FileType php command! PhpExpandInterfaceMethods :%s/\v(\w+\sfunction\s\w+\(.*\))(\: \w+)?;/\1\2\r    {\r        \/\/\r    }/g
-    au FileType php nnoremap <leader>ei :PhpExpandInterfaceMethods<cr>
+    autocmd FileType php command! PhpExpandInterfaceMethods :%s/\v(\w+\sfunction\s\w+\(.*\))(\: \w+)?;/\1\2\r    {\r        \/\/\r    }/g
+    autocmd FileType php nnoremap <leader>ei :PhpExpandInterfaceMethods<cr>
 augroup END
 
 " use vim grepprg
@@ -556,7 +562,7 @@ let g:airline_theme = 'base16_ocean'
 set listchars=tab:▸•,trail:•,extends:»,precedes:« " prettier hidden chars. turn on with :set list (without line ending symbols)
 augroup isbashgroup
     autocmd!
-    au BufRead,BufNewFile *bash* let b:is_bash=1 " fix syntax highlighting for bash files
+    autocmd BufRead,BufNewFile *bash* let b:is_bash=1 " fix syntax highlighting for bash files
 augroup END
 
 let php_htmlInStrings = 1 " neat! :h php.vim
@@ -564,13 +570,13 @@ let php_htmlInStrings = 1 " neat! :h php.vim
 " https://stackoverflow.com/questions/3494435/vimrc-make-comments-italic
 augroup italic_comments_group
     autocmd!
-    au FileType * hi! Comment cterm=italic
+    autocmd FileType * hi! Comment cterm=italic
 augroup END
 
 augroup italic_comments_group_javascript
     autocmd!
     " jsdoc docblock @param, etc. in italic
-    au FileType javascript hi! Special cterm=italic
+    autocmd FileType javascript hi! Special cterm=italic
 augroup END
 
 " Gui {{{
@@ -596,16 +602,16 @@ command! ClearHighlights :call clearmatches() | IndentGuidesEnable
 " Commands and Functions {{{
 augroup formattersgroup
     autocmd!
-    " au FileType json command! FormatJSON %!python -m json.tool
-    " au FileType json nnoremap <leader>fj :FormatJSON<cr>
+    " autocmd FileType json command! FormatJSON %!python -m json.tool
+    " autocmd FileType json nnoremap <leader>fj :FormatJSON<cr>
     " use jdaddy instead! gqaj
-    au FileType xml command! FormatXML %!xmllint --format --recover -
-    au FileType xml nnoremap <leader>fx :FormatXML<cr>
+    autocmd FileType xml command! FormatXML %!xmllint --format --recover -
+    autocmd FileType xml nnoremap <leader>fx :FormatXML<cr>
 augroup END
 augroup gotousegroup
     autocmd!
-    au FileType php command! GoToUseBlock execute ":normal! mmgg/use\ <cr>}:nohlsearch<cr>"
-    " au FileType php nnoremap <leader>gu :GoToUseBlock<cr>
+    autocmd FileType php command! GoToUseBlock execute ":normal! mmgg/use\ <cr>}:nohlsearch<cr>"
+    " autocmd FileType php nnoremap <leader>gu :GoToUseBlock<cr>
 augroup END
 command! Source :source ~/.vimrc | if filereadable('.vimrc') | :source .vimrc | endif | AirlineRefresh
 nnoremap <leader>so :Source<cr>
@@ -616,14 +622,12 @@ command! FixSyntax :filetype detect
 " fix issue with netrw {{{
 " https://github.com/tpope/vim-vinegar/issues/13#issuecomment-315584214
 augroup netrw_buf_hidden_fix
-autocmd!
-
-" Set all non-netrw buffers to bufhidden=hide
-autocmd BufWinEnter *
-            \  if &ft != 'netrw'
-            \|     set bufhidden=hide
-            \| endif
-
+    autocmd!
+    " Set all non-netrw buffers to bufhidden=hide
+    autocmd BufWinEnter *
+                \  if &ft != 'netrw'
+                \|     set bufhidden=hide
+                \| endif
 augroup end
 " }}}
 
@@ -679,7 +683,7 @@ function! HeadersToHttp() abort
 endfunction
 augroup headerstohttpgroup
     autocmd!
-    au FileType rest command! HeadersToHttp :call HeadersToHttp()<cr>
+    autocmd FileType rest command! HeadersToHttp :call HeadersToHttp()<cr>
 augroup END
 " }}}
 

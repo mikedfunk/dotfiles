@@ -30,14 +30,18 @@ let g:vdebug_options['path_maps'] = {
 " }}}
 
 " ale {{{
+" NOTE: moved to main .vimrc.pluginconfig.vim
 " If I don't do this, phpcbf fails on any file in the exclude-pattern :/
 " let g:ale_php_phpcbf_executable = 'php ' . getcwd() . '/vendor/bin/phpcbf -q'
-let g:ale_php_phpcbf_executable = '/Users/mikefunk/.support/phpcbf-helper.sh'
-let g:ale_php_phpcbf_use_global = 1
+" let g:ale_php_phpcbf_executable = '~/.support/phpcbf-helper.sh'
+" let g:ale_php_phpcbf_use_global = 1
 " }}}
 
 " javascript-libraries-syntax {{{
-autocmd BufReadPre *.js let b:javascript_lib_use_react = 1
+augroup jslibsyn_augroup
+    autocmd!
+    autocmd BufReadPre *.js let b:javascript_lib_use_react = 1
+augroup END
 " }}}
 
 " commands {{{

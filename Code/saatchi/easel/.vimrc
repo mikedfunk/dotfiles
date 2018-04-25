@@ -20,8 +20,11 @@ autocmd BufReadPre *.js let b:javascript_lib_use_react = 1
 " }}}
 
 " ale {{{
-let g:ale_fixers['javascript'] = ['importjs', 'prettier', 'eslint']
-" call add(g:ale_fixers['javascript'], 'prettier_eslint')
-" let g:javascript_prettier_eslint_use_global = 1
-" call add(g:ale_fixers['javascript'], 'prettier')
+" let js_fixers = ['importjs']
+" call add(js_fixers, 'prettier')
+" call add(js_fixers, 'eslint')
+" let js_fixers = ['importjs', 'prettier', 'eslint']
+" let g:ale_javascript_prettier_eslint_use_global = 1 " because we don't have a local one :/
+" call add(js_fixers, 'prettier_eslint')
+" let g:ale_fixers['javascript'] = js_fixers
 " }}}

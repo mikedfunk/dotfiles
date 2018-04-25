@@ -6,4 +6,7 @@ out="$(phpcbf -q $@)"
 if [[ "$( echo \"$out\" | grep 'No fixable' )" ]]; then
     exit
 fi
+if [[ "$( echo \"$out\" | grep 'Warning: ' )" ]]; then
+    exit
+fi
 echo "$out"

@@ -15,6 +15,7 @@ zplug "djui/alias-tips" # tell you when an alias would shorten the command you r
 zplug "plugins/colored-man-pages", from:oh-my-zsh
 zplug "plugins/colorize", from:oh-my-zsh # Plugin for highlighting file content
 zplug 'mfaerevaag/wd', as:command, use:"wd.sh", hook-load:"wd() { . $ZPLUG_REPOS/mfaerevaag/wd/wd.sh }"
+zplug "plugins/gitfast", from:oh-my-zsh, if:"which git" # fix git completion issues https://unix.stackexchange.com/a/204308
 zplug "marzocchi/zsh-notify" # notify when a command fails or lasts longer than 30 seconds and the terminal is in the background (requires terminal-notifier)
 zplug "zsh-users/zsh-autosuggestions" # buggy if enabled along with zsh-syntax-highlighting. crashes the shell regularly.
 zplug "zsh-users/zsh-completions" # do-everything argument completions
@@ -265,7 +266,7 @@ alias pipu="pip-review --local --auto"
 
 # vim {{{
 alias v="vim"
-compdef v="vim"
+# compdef v="vim"
 export EDITOR=vim # aww yeah
 export LANG=en_US.UTF-8
 KEYTIMEOUT=1 # no vim delay entering normal mode
@@ -392,4 +393,6 @@ function pux() {
 # zsh options {{{
 # most basic options are now set up by vanilla zplug plugin
 # zstyle ':completion:*' use-cache true
+# fix git completion to only complete local branches
+zstyle :completion::complete:git-checkout:argument-rest:headrefs command "git for-each-ref --format='%(refname)' refs/heads 2>/dev/null"
 # }}}

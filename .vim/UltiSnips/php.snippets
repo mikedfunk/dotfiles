@@ -184,12 +184,8 @@ endsnippet
 
 snippet cstr "laravel 4 DI construct"
 
-/**
- * Dependency injection.
- *
- * @param \\${1/\w+\s*/\u$0/}Interface $$1
- */
-public function __construct(${1/\w+\s*/\u$0/}Interface $$1)
+/** Dependency injection. */
+public function __construct(${1/\w+\s*/\u$0/} $${1:myClass})
 {
     $this->$1 = $$1;
 }
@@ -1947,15 +1943,15 @@ $this->doctrine->getRepository('DemandMediaAirlinersAppBundle:${1:EntityName}')$
 endsnippet
 
 snippet prp "PRophet Prophesize"
-$this->prophesize($1::class);
+$this->prophesize(${1:MyClass}::class);
 endsnippet
 
 snippet prpt "PRophet Prophesize to property"
-$this->$1 = $this->prophesize(${1/\w+\s*/\u$0/}::class);
+$this->${1:myClass} = $this->prophesize(${1/\w+\s*/\u$0/}::class);
 endsnippet
 
 snippet rvl "reveal a prophesized object"
-$this->$1->reveal()
+$this->${1:myClass}->reveal()
 endsnippet
 
 snippet prs "PRophet Should be called"

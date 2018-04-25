@@ -8,86 +8,78 @@ let g:ac_smooth_scroll_min_limit_msec = 80 " confusiong option to speed up scrol
 " ale {{{
 " NOTE: not working with rubocop for some reason. Fails silently
 
-let g:ale_lint_on_save = 1 | let g:ale_lint_on_text_changed = 0 " syntastic-style - on save only
+" https://github.com/w0rp/ale/issues/1176#issuecomment-348149374
+" I have added an option for caching failing executable checks. Use let
+" g:ale_cache_executable_check_failures = 1 in vimrc, and failing executable
+" checks will be cached, along with successful ones.
+" This behaviour is off by default, because it means you have to restart Vim
+" to run linters after you install them.
+let g:ale_cache_executable_check_failures = 1
+
+" Set this setting in vimrc if you want to fix files automatically on save.
+" This is off by default. You could do it manually with :ALEFix
+let g:ale_fix_on_save = 1
+
+" let g:ale_lint_on_save = 1 | let g:ale_lint_on_text_changed = 0 " syntastic-style - lint on save only
 let g:ale_sign_column_always = 1 " otherwise screen keeps jumping left and right
 let airline#extensions#ale#error_symbol = 'Errors:' " default is a bit sparse: E
 let airline#extensions#ale#warning_symbol = 'Warnings:' " default is W
-let js_linters = []
-if executable('./node_modules/.bin/flow') | call add(js_linters, 'flow') | endif
-if executable('./node_modules/.bin/eslint') | call add(js_linters, 'eslint') | endif
-" defining linters and fixers is only required if you want to use only a
-" subset of available linters or fixers. Otherwise it uses all available
-" linters or fixers in separate processes asynchronously.
-let g:ale_linters = {
-            \ 'javascript': js_linters,
-            \ 'php': ['phpmd', 'phpcs', 'phpstan', 'php']
-            \ } " no jshint
-" let g:ale_php_phpstan_level = 0 " default is 4
-if (filereadable('phpstan.neon')) | let g:ale_php_phpstan_configuration = getcwd() . '/phpstan.neon' | endif
-" let g:ale_fixers = {
-" \   'javascript': ['eslint'],
-" \   'php': ['phpcbf'],
-" \   'ruby': ['rubocop']
-" \}
-
-" If I don't do this, phpcbf fails on any file in the exclude-pattern :/
-let g:ale_php_phpcbf_executable = '/Users/mikefunk/.support/phpcbf-helper.sh'
-" in order to get the alternate executable working you have to declare it as
-" use global, even though it's not global :/
-let g:ale_php_phpcbf_use_global = 1
 
 if isdirectory(expand("~/.vim/plugged/ale"))
     nmap <silent> [w <Plug>(ale_previous_wrap)
     nmap <silent> ]w <Plug>(ale_next_wrap)
 endif
-if filereadable('phpcs.xml') | let g:ale_php_phpcs_standard = getcwd() . '/phpcs.xml' | let g:ale_php_phpcbf_standard = getcwd() . '/phpcs.xml' | endif
-if filereadable('phpmd.xml') | let g:ale_php_phpmd_ruleset = getcwd() . ('/phpmd.xml') | endif
 
-if isdirectory(expand("~/.vim/plugged/ale"))
-    if (filereadable('.php_cs'))
-        " use .php_cs if available
-        function! Ale_fixers_php_cs_fixer_Fix(buffer) abort
-            return {'command': 'cp %s %s.tmp && php-cs-fixer fix -q --config=.php_cs %s.tmp && cat %s.tmp && rm %s.tmp || cat %s'}
-        endfunction
-        call ale#fix#registry#Add('php_cs_fixer', 'Ale_fixers_php_cs_fixer_Fix', ['php'], 'Run extra fixers that phpcbf doesnt have with php-cs-fixer')
-    else
-        " add a php-cs-fixer rule to fix unused use statements automatically
-        " because php-cs-fixer does not support echoing fixed code to stdout, I have
-        " to copy it to a tmp file, fix it, then echo it. If it fails, just fail
-        " silently and echo the original.
-        function! Ale_fixers_fix_unused_use_Fix(buffer) abort
-            return {'command': 'cp %s %s.tmp && php-cs-fixer fix -q --rules=no_unused_imports %s.tmp && cat %s.tmp && rm %s.tmp || cat %s'}
-        endfunction
-        " if exists('g:loaded_ale')
-            call ale#fix#registry#Add('php_cs_fixer', 'Ale_fixers_fix_unused_use_Fix', ['php'], 'Remove unused use statements with php-cs-fixer')
-        " endif
-    endif
-endif
-
-" let g:ale_sign_warning='●'
-" let g:ale_sign_error='●'
-" Put this in vimrc or a plugin file of your own.
-" After this is configured, :ALEFix will try and fix your JS code with ESLint.
-"
-" prettier-eslint is not working for some reason :/
-" \   'javascript': ['eslint', 'prettier-eslint'],
-"
-" let g:ale_fixers = {
-" \   'javascript': ['eslint'],
-" \   'php': ['phpcbf'],
-" \   'ruby': ['rubocop']
-" \}
+" Set up fixers and linters
+" defining linters and fixers is only required if you want to use only a
+" subset of available linters or fixers. Otherwise it uses all available
+" linters or fixers in separate processes asynchronously.
+let js_linters = []
 let js_fixers = ['importjs']
+let php_linters = ['php']
+let php_fixers = []
+
+if executable('./node_modules/.bin/flow') | call add(js_linters, 'flow') | endif
+if executable('./node_modules/.bin/eslint') | call add(js_linters, 'eslint') | endif
+
+if filereadable('phpcs.xml')
+    let g:ale_php_phpcs_standard = getcwd() . '/phpcs.xml'
+    let g:ale_php_phpcbf_standard = getcwd() . '/phpcs.xml'
+    call add(php_linters, 'phpcs')
+    call add(php_fixers, 'phpcbf')
+endif
+if filereadable('phpmd.xml')
+    let g:ale_php_phpmd_ruleset = getcwd() . ('/phpmd.xml')
+    call add(php_linters, 'phpmd')
+endif
+if (filereadable('phpstan.neon'))
+    let g:ale_php_phpstan_configuration = getcwd() . '/phpstan.neon'
+    call add(php_linters, 'phpstan')
+endif
 if executable('./node_modules/.bin/eslint') | call add(js_linters, 'eslint') | endif
 if executable('./node_modules/.bin/prettier-eslint') | call add(js_linters, 'prettier_eslint') | endif
-let g:ale_fixers = {
-\   'javascript': js_fixers,
-\   'php': ['php_cs_fixer', 'phpcbf'],
-\   'ruby': ['rubocop']
-\}
 
-" Set this setting in vimrc if you want to fix files automatically on save. This is off by default. You could do it manually with :ALEFix
-let g:ale_fix_on_save = 1
+" If I don't do this, phpcbf fails on any file in the exclude-pattern :/
+" let g:ale_php_phpcbf_executable = '/Users/mikefunk/.support/phpcbf-helper.sh'
+let g:ale_php_phpcbf_executable = '~/.support/phpcbf-helper.sh'
+" in order to get the alternate executable working you have to declare it as
+" use global, even though it's not 'global' :/
+let g:ale_php_phpcbf_use_global = 1
+
+if (filereadable('.php_cs'))
+    let g:ale_php_cs_fixer_options = '--config=.php_cs'
+    call add(php_fixers, 'php_cs_fixer')
+endif
+
+let g:ale_linters = {
+\     'javascript': js_linters,
+\     'php': php_linters,
+\ }
+let g:ale_fixers = {
+\    'javascript': js_fixers,
+\    'php': php_fixers,
+\    'ruby': ['rubocop']
+\ }
 " }}}
 
 " asyncrun.vim {{{
@@ -121,7 +113,7 @@ let g:challenger_deep_termcolors = 16
 " }}}
 
 " echodoc.vim {{{
-if has("autocmd") && isdirectory(expand("~/.vim/plugged/echodoc.vim"))
+if has("autocmd") && isdirectory(expand("~/.vim/plugged/echodoc.vim")) && exists(":EchoDocEnable")
     augroup echodocgroup
         autocmd!
         autocmd Filetype php EchoDocEnable
@@ -186,7 +178,10 @@ let g:LanguageClient_serverCommands = {
     \ 'php': ['php', '~/.composer/vendor/bin/php-language-server.php']
 \ }
 if isdirectory(expand("~/.vim/plugged/LanguageClient-neovim"))
-    au filetype php set omnifunc=LanguageClient#complete
+    augroup language_client_neovim_augroup
+        autocmd!
+        autocmd filetype php set omnifunc=LanguageClient#complete
+    augroup END
 endif
 " }}}
 
@@ -194,7 +189,7 @@ endif
 if isdirectory(expand("~/.vim/plugged/MatchTagAlways"))
     augroup mta_group
         autocmd!
-        au FileType phtml,html,html.twig,xml nnoremap <leader>% :MtaJumpToOtherTag<cr>
+        autocmd FileType phtml,html,html.twig,xml nnoremap <leader>% :MtaJumpToOtherTag<cr>
     augroup END
 endif
 let g:mta_filetypes = {
@@ -268,7 +263,7 @@ if isdirectory(expand("~/.vim/plugged/pdv"))
     " document the current element with php documentor for vim
     augroup pdvgroup
         autocmd!
-        au FileType php nnoremap <leader>pd :call pdv#DocumentWithSnip()<CR>
+        autocmd FileType php nnoremap <leader>pd :call pdv#DocumentWithSnip()<CR>
     augroup END
 endif
 " }}}
@@ -279,9 +274,9 @@ if isdirectory(expand("~/.vim/plugged/php.vim"))
     augroup phpdoctagsgroup
         autocmd!
         " docblock color
-        au FileType php hi! def link phpDocTags phpDefine
+        autocmd FileType php hi! def link phpDocTags phpDefine
         " docblock comments italic
-        au FileType php hi! PreProc cterm=italic
+        autocmd FileType php hi! PreProc cterm=italic
     augroup END
 endif
 " }}}
@@ -289,7 +284,7 @@ endif
 " phpcomplete {{{
 augroup mycompletephp
     autocmd!
-    au FileType php setlocal omnifunc=phpcomplete#CompletePHP
+    autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 augroup END
 " default: 0. show more info in the preview window and return types. Slower.
 " this also fails to parse the docblock sometimes which kills the whole
@@ -508,7 +503,10 @@ if isdirectory(expand("~/.vim/plugged/vim-airline"))
             "     \ g:airline_section_z
             " \ ])
         endfunction
-        autocmd User AirlineAfterInit call AsyncrunAirlineInit()
+        augroup asyncrun_airline_augroup
+            autocmd!
+            autocmd User AirlineAfterInit call AsyncrunAirlineInit()
+        augroup END
     endif
 endif
 
@@ -672,7 +670,7 @@ let g:javascript_plugin_flow = 1 " enable flowtype syntax highlighting
 " vim-lost {{{
 augroup lostgrp
     autocmd!
-    au FileType php let b:lost_regex = '\v^    \w+.*function'
+    autocmd FileType php let b:lost_regex = '\v^    \w+.*function'
 augroup END
 " }}}
 
@@ -683,8 +681,8 @@ if isdirectory(expand("~/.vim/plugged/vim-lotr")) | nnoremap <leader>ll :LOTRTog
 " vim-lsp {{{
 if isdirectory(expand("~/.vim/plugged/vim-lsp"))
     augroup lsp_group
-        au!
-        au User lsp_setup call lsp#register_server({
+        autocmd!
+        autocmd User lsp_setup call lsp#register_server({
             \ 'name': 'php-language-server',
             \ 'cmd': {server_info->[&shell, &shellcmdflag, 'php ~/.composer/vendor/bin/php-language-server.php', '--stdio']},
             \ 'whitelist': ['php'],
@@ -720,11 +718,11 @@ if isdirectory(expand("~/.vim/plugged/vim-php-namespace"))
     " php add use statement for current class
     augroup phpnamespacegroup
         autocmd!
-        au FileType php inoremap <Leader><Leader>u <C-O>:call PhpInsertUse()<CR>
-        au FileType php nnoremap <Leader><Leader>u :call PhpInsertUse()<CR>
+        autocmd FileType php inoremap <Leader><Leader>u <C-O>:call PhpInsertUse()<CR>
+        autocmd FileType php nnoremap <Leader><Leader>u :call PhpInsertUse()<CR>
         " expand the namespace for the current class name
-        au FileType php inoremap <Leader><Leader>e <C-O>:call PhpExpandClass()<CR>
-        au FileType php nnoremap <Leader><Leader>e :call PhpExpandClass()<CR>
+        autocmd FileType php inoremap <Leader><Leader>e <C-O>:call PhpExpandClass()<CR>
+        autocmd FileType php nnoremap <Leader><Leader>e :call PhpExpandClass()<CR>
     augroup END
 endif
 " }}}
