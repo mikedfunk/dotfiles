@@ -6,6 +6,13 @@ parameters:
     - ~/.composer/vendor-bin/main/vendor/jangregor/phpstan-prophecy/src/extension.neon
   excludes_analyse:
     - tests
+    - library/Saatchi/Model/Base/Print/Offering.php
+    - library/Catalog/History
+    - library/Saatchi/Service/Mailchimp.php
+    - library/Saatchi/Drip/Campaign/Abstract.php
+    - library/Saatchi/Model/Base/Art/Taxonomy/Type
+    - library/Saatchi/View/Helper
+    - library/Saatchi/Service/Offer/MockOfferService.php
   autoload_directories:
     - src
     - application/modules/curation/models

@@ -20,7 +20,7 @@ let g:ale_cache_executable_check_failures = 1
 " This is off by default. You could do it manually with :ALEFix
 let g:ale_fix_on_save = 1
 
-" let g:ale_lint_on_save = 1 | let g:ale_lint_on_text_changed = 0 " syntastic-style - lint on save only
+let g:ale_lint_on_save = 1 | let g:ale_lint_on_text_changed = 0 " syntastic-style - lint on save only
 let g:ale_sign_column_always = 1 " otherwise screen keeps jumping left and right
 let airline#extensions#ale#error_symbol = 'Errors:' " default is a bit sparse: E
 let airline#extensions#ale#warning_symbol = 'Warnings:' " default is W
@@ -60,8 +60,8 @@ if executable('./node_modules/.bin/eslint') | call add(js_linters, 'eslint') | e
 if executable('./node_modules/.bin/prettier-eslint') | call add(js_linters, 'prettier_eslint') | endif
 
 " If I don't do this, phpcbf fails on any file in the exclude-pattern :/
-" let g:ale_php_phpcbf_executable = '/Users/mikefunk/.support/phpcbf-helper.sh'
-let g:ale_php_phpcbf_executable = '~/.support/phpcbf-helper.sh'
+let g:ale_php_phpcbf_executable = '/Users/mikefunk/.support/phpcbf-helper.sh'
+" let g:ale_php_phpcbf_executable = '~/.support/phpcbf-helper.sh'
 " in order to get the alternate executable working you have to declare it as
 " use global, even though it's not 'global' :/
 let g:ale_php_phpcbf_use_global = 1

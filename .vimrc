@@ -679,7 +679,7 @@ command! JsonToPhp :call JsonToPhp()<cr>
 
 " convert copied chrome headers to http request {{{
 function! HeadersToHttp() abort
-    :normal! ggjddkOPdaWihttp://jj$daWojVGdkPGddO
+    :normal! ggjddkOPdaWihttp://jj$daWojVGdkPGddOGA?XDEBUG_SESSION_START=mikedfunkxd
 endfunction
 augroup headerstohttpgroup
     autocmd!

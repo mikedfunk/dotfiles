@@ -18,7 +18,6 @@ zplug "plugins/colored-man-pages", from:oh-my-zsh
 zplug "plugins/colorize", from:oh-my-zsh # Plugin for highlighting file content
 zplug 'mfaerevaag/wd', as:command, use:"wd.sh", hook-load:"wd() { . $ZPLUG_REPOS/mfaerevaag/wd/wd.sh }"
 zplug "plugins/gitfast", from:oh-my-zsh, if:"which git" # fix git completion issues https://unix.stackexchange.com/a/204308
-zplug "plugins/rake-fast", from:oh-my-zsh # rake task completion
 zplug "marzocchi/zsh-notify" # notify when a command fails or lasts longer than 30 seconds and the terminal is in the background (requires terminal-notifier)
 zplug "zsh-users/zsh-autosuggestions" # buggy if enabled along with zsh-syntax-highlighting. crashes the shell regularly.
 zplug "zsh-users/zsh-completions" # do-everything argument completions
@@ -39,6 +38,7 @@ zplug "TheLocehiliosan/yadm", rename-to:_yadm, use:"completion/yadm.zsh_completi
 # zplug "plugins/git-extras", from:oh-my-zsh, if:"which git" # I have this in brew already
 # zplug "plugins/npm", from:oh-my-zsh, if:"which npm"
 # zplug "plugins/phing", from:oh-my-zsh, if:"which phing"
+# zplug "plugins/rake-fast", from:oh-my-zsh # rake task completion
 # zplug "plugins/vagrant", from:oh-my-zsh, if:"which vagrant"
 # zplug "plugins/vi-mode", from:oh-my-zsh
 # zplug "plugins/wd", from:oh-my-zsh # "warp directory" bookmarking tool
