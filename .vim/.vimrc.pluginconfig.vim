@@ -16,11 +16,11 @@ let g:ac_smooth_scroll_min_limit_msec = 80 " confusiong option to speed up scrol
 " to run linters after you install them.
 let g:ale_cache_executable_check_failures = 1
 
-" Set this setting in vimrc if you want to fix files automatically on save.
+" Active mode - turn these off in .vimrc if it's too slow (use manual maps instead)
 " This is off by default. You could do it manually with :ALEFix
 let g:ale_fix_on_save = 1
-
 let g:ale_lint_on_save = 1 | let g:ale_lint_on_text_changed = 0 " syntastic-style - lint on save only
+
 let g:ale_sign_column_always = 1 " otherwise screen keeps jumping left and right
 let airline#extensions#ale#error_symbol = 'Errors:' " default is a bit sparse: E
 let airline#extensions#ale#warning_symbol = 'Warnings:' " default is W
@@ -28,6 +28,8 @@ let airline#extensions#ale#warning_symbol = 'Warnings:' " default is W
 if isdirectory(expand("~/.vim/plugged/ale"))
     nmap <silent> [w <Plug>(ale_previous_wrap)
     nmap <silent> ]w <Plug>(ale_next_wrap)
+    nnoremap <leader>al :ALELint<cr>
+    nnoremap <leader>af :ALEFix<cr>
 endif
 
 " Set up fixers and linters
@@ -110,6 +112,10 @@ let g:challenger_deep_termcolors = 16
 " enabling this slows down completion. just use c-x c-o when you want omni.
 " let g:completor_php_omni_trigger = '([$\w]+|use\s*|->[$\w]*|::[$\w]*|implements\s*|extends\s*|class\s+[$\w]+|new\s*)$'
 
+" }}}
+
+" deoplete.nvim {{{
+let g:deoplete#enable_at_startup = 1
 " }}}
 
 " echodoc.vim {{{
@@ -266,6 +272,12 @@ if isdirectory(expand("~/.vim/plugged/pdv"))
         autocmd FileType php nnoremap <leader>pd :call pdv#DocumentWithSnip()<CR>
     augroup END
 endif
+" }}}
+
+" phpcd {{{
+let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
+let g:deoplete#ignore_sources.php = ['omni']
+" let g:deoplete#ignore_sources.php = ['phpcd', 'omni'] " will disable phpcd from deoplete
 " }}}
 
 " php.vim {{{

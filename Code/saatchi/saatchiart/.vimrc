@@ -35,6 +35,12 @@ let g:vdebug_options['path_maps'] = {
 " let g:ale_php_phpcbf_executable = 'php ' . getcwd() . '/vendor/bin/phpcbf -q'
 " let g:ale_php_phpcbf_executable = '~/.support/phpcbf-helper.sh'
 " let g:ale_php_phpcbf_use_global = 1
+"
+
+" tradeoff to make saatchi not dead slow. <leader>af to fix, <leader>al to lint.
+let g:ale_lint_on_save = 0
+" let g:ale_lint_on_text_changed = 0 " (already off)
+let g:ale_fix_on_save = 0
 " }}}
 
 " javascript-libraries-syntax {{{

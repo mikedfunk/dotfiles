@@ -244,14 +244,37 @@ endsnippet
 
 snippet snp "jest snapshot test"
 import React from 'react'
-import ${1:MyComponent} from '../$1'
-import ShallowRenderer from 'react-test-renderer/shallow'
-// import 'jest-styled-components'
-// be sure to pass in an actual theme if this uses styled components
 
-const renderer = new ShallowRenderer()
-it('renders correctly', () => {
-  const tree = renderer.render(<$1 />)
-  expect(tree).toMatchSnapshot()
+import { shallow } from 'enzyme'
+import { saatchiart as theme } from 'lib/theme'
+
+import ${1:MyDumbComponent} from '../$1'
+
+describe('<$1 />', () => {
+  it('renders correctly', () => {
+    const tree = shallow(<$1 theme={theme} />)
+    expect(tree).toMatchSnapshot()
+  })
 })
+endsnippet
+
+snippet scp "jest spec test"
+import ${1:myModule} from '../$1'
+// const myMock = jest.mock('path/to/my/dependency')
+
+describe('${2:my context for my module}', () => {
+  it('${3:does something}', () => {
+    // myMock.mockReturnValueOnce(10)
+    // when(myMock).calledWith('arg').mockReturnValue(10)
+    // expect(myMock).toBeCalledWith(1, 2)
+
+    // expected = {}
+    // actual = myModule.doSomething()
+    // expect(actual).toEqual(expected)
+  })
+})
+endsnippet
+
+snippet asr "jest assert equals"
+        expect(actual).toEqual(expected)
 endsnippet

@@ -1023,11 +1023,11 @@ saatchi-couchbase-get-catalog-xdev () {
 }
 saatchi-couchbase-get-catalog-xqa () {
     if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-get-catalog-xqa {key}"; return; fi;
-    saatchi-couchbase-get "catalog" "$1" "$SAATCHI_XQA_COUCHBASE_SERVER" "xdev" "saatchi-xqa-legacy-services-01";
+    _saatchi-couchbase-get "catalog" "$1" "$SAATCHI_XQA_COUCHBASE_SERVER" "xqa" "saatchi-xqa-legacy-services-01";
 }
 saatchi-couchbase-get-catalog-xprod () {
     if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-get-catalog-xprod {key}"; return; fi;
-    _saatchi-couchbase-get "catalog" "$1" "$SAATCHI_XPROD_COUCHBASE_SERVER" "xdev" "saatchi-xprod-legacy-services-02";
+    _saatchi-couchbase-get "catalog" "$1" "$SAATCHI_XPROD_COUCHBASE_SERVER" "xprod" "saatchi-xprod-legacy-services-02";
 }
 
 
@@ -1037,11 +1037,11 @@ saatchi-couchbase-get-art-xdev () {
 }
 saatchi-couchbase-get-art-xqa () {
     if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-get-art-xqa {key}"; return; fi;
-    _saatchi-couchbase-get "art" "$1" "$SAATCHI_XQA_COUCHBASE_SERVER" "xdev" "saatchi-xqa-legacy-services-01";
+    _saatchi-couchbase-get "art" "$1" "$SAATCHI_XQA_COUCHBASE_SERVER" "xqa" "saatchi-xqa-legacy-services-01";
 }
 saatchi-couchbase-get-art-xprod () {
     if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-get-art-xprod {key}"; return; fi;
-    _saatchi-couchbase-get "art" "$1" "$SAATCHI_XPROD_COUCHBASE_SERVER" "xdev" "saatchi-xprod-legacy-services-02";
+    _saatchi-couchbase-get "art" "$1" "$SAATCHI_XPROD_COUCHBASE_SERVER" "xprod" "saatchi-xprod-legacy-services-02";
 }
 
 
@@ -1051,11 +1051,11 @@ saatchi-couchbase-get-user-xdev () {
 }
 saatchi-couchbase-get-user-xqa () {
     if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-get-user-xqa {key}"; return; fi;
-    _saatchi-couchbase-get "user" "$1" "$SAATCHI_XQA_COUCHBASE_SERVER" "xdev" "saatchi-xqa-legacy-services-01";
+    _saatchi-couchbase-get "user" "$1" "$SAATCHI_XQA_COUCHBASE_SERVER" "xqa" "saatchi-xqa-legacy-services-01";
 }
 saatchi-couchbase-get-user-xprod () {
     if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-get-user-xprod {key}"; return; fi;
-    _saatchi-couchbase-get "user" "$1" "$SAATCHI_XPROD_COUCHBASE_SERVER" "xdev" "saatchi-xprod-legacy-services-02";
+    _saatchi-couchbase-get "user" "$1" "$SAATCHI_XPROD_COUCHBASE_SERVER" "xprod" "saatchi-xprod-legacy-services-02";
 }
 
 
@@ -1065,11 +1065,11 @@ saatchi-couchbase-get-collection-xdev () {
 }
 saatchi-couchbase-get-collection-xqa () {
     if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-get-collection-xqa {key}"; return; fi;
-    _saatchi-couchbase-get "collection" "$1" "$SAATCHI_XQA_COUCHBASE_SERVER" "xdev" "saatchi-xqa-legacy-services-01";
+    _saatchi-couchbase-get "collection" "$1" "$SAATCHI_XQA_COUCHBASE_SERVER" "xqa" "saatchi-xqa-legacy-services-01";
 }
 saatchi-couchbase-get-collection-xprod () {
     if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-couchbase-get-collection-xprod {key}"; return; fi;
-    _saatchi-couchbase-get "collection" "$1" "$SAATCHI_XPROD_COUCHBASE_SERVER" "xdev" "saatchi-xprod-legacy-services-02";
+    _saatchi-couchbase-get "collection" "$1" "$SAATCHI_XPROD_COUCHBASE_SERVER" "xprod" "saatchi-xprod-legacy-services-02";
 }
 # }}}
 

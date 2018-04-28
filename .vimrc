@@ -198,8 +198,8 @@ set shortmess+=I " hide the launch screen
 
 " https://stackoverflow.com/questions/3494435/vimrc-make-comments-italic
 " escape codes for italic fonts
-set t_ZH=[3m
-set t_ZR=[23m
+let &t_ZH="\<Esc>[3m"
+let &t_ZR="\<Esc>[23m"
 
 " let php_baselib = 1 " highlight php builtin functions
 " let g:php_folding = 1 " fold methods, control structures, etc.
