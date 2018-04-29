@@ -151,7 +151,7 @@ Plug 'lifepillar/vim-cheat40' " Customizable cheatsheet. Mine is in ~/.vim/plugg
 " if has("python3") | Plug 'vim-vdebug/vdebug' | endif " xdebug (dbgp) client. To load with other filetypes do :PlugStatus and L over vdebug. temporarily disabled due to UnicodeError and vim.error on breaking :/ last tested 04-21-2018
 if has("python") | Plug 'vim-vdebug/vdebug', { 'for': 'php', 'tag': 'v1.5.2' } | endif " python2 compatible version
 Plug 'arnaud-lb/vim-php-namespace', { 'for': 'php' } " insert use statements
-Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' } " better php omnicomplete. This is included with vim8 but the package keeps it up-to-date.
+" Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' } " better php omnicomplete. This is included with vim8 but the package keeps it up-to-date.
 " Plug 'mkusher/padawan.vim', { 'for': 'php', 'do': 'command -v padawan >/dev/null 2>&1 && cgr update mkusher/padawan \|\| cgr mkusher/padawan' } " better php omnicomplete... but it doesn't complete at all for me
 Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install'  } " based on phpcomplete but supposedly faster. IT WORKS! GOOD! EVEN ON LEGACY!
 Plug 'alvan/vim-php-manual', { 'for': ['php', 'blade', 'phtml'] } " contextual php manual with shift-K
@@ -195,7 +195,6 @@ if has('python') | Plug 'euclio/gitignore.vim' | endif " automatically populate 
 " }}}
 
 " Javascript {{{
-Plug 'ternjs/tern_for_vim', { 'for': 'javascript', 'do': 'npm install' } " javascript omnifunc and jump to def. requires a .tern-project file. http://ternjs.net/doc/manual.html#configuration
 " Plug 'othree/jspc.vim', { 'for': 'javascript' } " javascript parameter completion
 " Plug 'moll/vim-node', { 'for': ['javascript', 'typescript', 'jsx'] } " node tools - go to module def, etc.
 " Plug 'ruanyl/vim-fixmyjs', { 'for': ['javascript', 'jsx', 'vue'] } " runs eslint fix via :Fixmyjs
@@ -203,12 +202,8 @@ Plug 'ternjs/tern_for_vim', { 'for': 'javascript', 'do': 'npm install' } " javas
 " Plug 'sekel/vim-vue-syntastic' " let syntastic play nice with vue files
 Plug 'tpope/vim-jdaddy' "`gqaj` to pretty-print json, `gwaj` to merge the json object in the clipboard with the one under the cursor
 " Plug 'chemzqm/vim-jsx-improve' " better jsx formatting
-if filereadable('.flowconfig')
-    Plug 'flowtype/vim-flow' " flowtype omnicompletion
-    " Plug 'jez/vim-flow' " fork that adds --quiet
-else
-    Plug 'ternjs/tern_for_vim', { 'for': 'javascript', 'do': 'npm install' } " javascript omnifunc and jump to def. requires a .tern-project file. http://ternjs.net/doc/manual.html#configuration
-endif
+Plug 'flowtype/vim-flow' " flowtype omnicompletion. If not using flow in a project, add this to project .vimrc: let g:flow#enable = 0
+Plug 'ternjs/tern_for_vim', { 'for': 'javascript', 'do': 'npm install' } " javascript omnifunc and jump to def. requires a .tern-project file. http://ternjs.net/doc/manual.html#configuration
 Plug 'othree/javascript-libraries-syntax.vim' " syntax completion for common libraries (react, lodash, jquery, etc.)
 Plug 'kristijanhusak/vim-js-file-import' " Go to definition: <leader>ig Import file: <Leader>if
 " }}}

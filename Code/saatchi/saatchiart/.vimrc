@@ -22,6 +22,10 @@ let g:airline_theme = 'base16_monokai'
 " let g:airline_theme = 'challenger_deep'
 " }}}
 
+" vim-flow {{{
+let g:flow#enable = 0
+" }}}
+
 " vdebug {{{
 let g:vdebug_options['port'] = 9000
 let g:vdebug_options['path_maps'] = {
