@@ -115,17 +115,11 @@ let g:challenger_deep_termcolors = 16
 " }}}
 
 " deoplete.nvim {{{
-let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_at_startup = 1
 " }}}
 
 " echodoc.vim {{{
-if has("autocmd") && isdirectory(expand("~/.vim/plugged/echodoc.vim")) && exists(":EchoDocEnable")
-    augroup echodocgroup
-        autocmd!
-        autocmd Filetype php EchoDocEnable
-        autocmd Filetype ruby EchoDocEnable
-    augroup END
-endif
+let g:echodoc#enable_at_startup = 1
 " }}}
 
 " editorconfig-vim {{{
@@ -275,9 +269,11 @@ endif
 " }}}
 
 " phpcd {{{
-let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
-let g:deoplete#ignore_sources.php = ['omni']
-" let g:deoplete#ignore_sources.php = ['phpcd', 'omni'] " will disable phpcd from deoplete
+if isdirectory(expand("~/.vim/plugged/deoplete.nvim")) && isdirectory(expand("~/.vim/plugged/phpcd.vim"))
+    let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
+    let g:deoplete#ignore_sources.php = ['omni']
+    " let g:deoplete#ignore_sources.php = ['phpcd', 'omni'] " will disable phpcd from deoplete
+endif
 " }}}
 
 " php.vim {{{

@@ -55,6 +55,7 @@
     "stylelint-config-standard": "^18.2.0",
     "syntastic-react": "^1.0.3",
     "tern": "^0.21.0",
+    "tern-react": "^0.1.0",
     "vue-cli": "^2.9.1",
     "webdriverio": "^4.9.9",
     "webpack": "^3.8.1",
