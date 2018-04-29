@@ -204,7 +204,7 @@ Plug 'tpope/vim-jdaddy' "`gqaj` to pretty-print json, `gwaj` to merge the json o
 " Plug 'chemzqm/vim-jsx-improve' " better jsx formatting
 " Plug 'flowtype/vim-flow' " flowtype omnicompletion. If not using flow in a project, add this to project .vimrc: let g:flow#enable = 0
 Plug 'jez/vim-flow' " fork that adds --quiet
-Plug 'ternjs/tern_for_vim', { 'for': 'javascript', 'do': 'npm install' } " javascript omnifunc and jump to def. requires a .tern-project file. http://ternjs.net/doc/manual.html#configuration
+if has('python') || has('python3') | Plug 'ternjs/tern_for_vim', { 'for': 'javascript', 'do': 'npm install' } | endif " javascript omnifunc and jump to def. requires a .tern-project file. http://ternjs.net/doc/manual.html#configuration
 Plug 'othree/javascript-libraries-syntax.vim' " syntax completion for common libraries (react, lodash, jquery, etc.)
 Plug 'kristijanhusak/vim-js-file-import' " Go to definition: <leader>ig Import file: <Leader>if
 " }}}

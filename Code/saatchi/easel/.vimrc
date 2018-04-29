@@ -28,3 +28,8 @@ autocmd BufReadPre *.js let b:javascript_lib_use_react = 1
 " call add(js_fixers, 'prettier_eslint')
 " let g:ale_fixers['javascript'] = js_fixers
 " }}}
+
+" tern {{{
+" I use vim-flow instead for completion
+let g:tern_set_omni_function = 0
+" }}}
