@@ -3,10 +3,11 @@
     "browser",
     "ecma5",
     "ecma6",
-    "react",
-    "jquery"
+    "react"
   ],
   "plugins": {
+    "node": {},
+    "node_resolve": {},
     "es_modules": {},
     "webpack": {}
   },

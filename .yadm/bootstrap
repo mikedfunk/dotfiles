@@ -113,7 +113,7 @@ fi
 # and extensions right now.
 if [[ ! "$(phpenv versions | grep 7.0.29)" ]]; then
     log_info "Installing php 7.0.29"
-    phpenv install 7.0.29 && phpenv rehash && php global 7.0.29
+    phpenv install 7.0.29 && php global 7.0.29 && phpenv rehash
 
     # install pear so we can use pecl to install extensions
     # TODO do this in a way where each php version has its own pear :/
@@ -135,14 +135,15 @@ fi
 
 if [[ ! "$(phpenv version | grep 7.2.4)" ]]; then
     log_info "Installing php 7.2.4"
-    phpenv install 7.2.4 && phpenv rehash && php global 7.2.4
+    phpenv install 7.2.4
+    # phpenv install 7.2.4 && php global 7.2.4 && phpenv rehash
 
     # install pear so we can use pecl to install extensions
     # TODO do this in a way where each php version has its own pear :/
-    log_info "Installing pear"
-    [ -f "$HOME/.phpenv/bin/go-pear.phar" ] || wget -O "$HOME/.phpenv/bin/go-pear.phar" http://pear.php.net/go-pear.phar
-    cd $HOME && ./.support/install-pear.sh && cd -
-    [ -f "$HOME/.phpenv/bin/go-pear.phar" ] && rm "$HOME/.phpenv/bin/go-pear.phar"
+    # log_info "Installing pear"
+    # [ -f "$HOME/.phpenv/bin/go-pear.phar" ] || wget -O "$HOME/.phpenv/bin/go-pear.phar" http://pear.php.net/go-pear.phar
+    # cd $HOME && ./.support/install-pear.sh && cd -
+    # [ -f "$HOME/.phpenv/bin/go-pear.phar" ] && rm "$HOME/.phpenv/bin/go-pear.phar"
 fi
 # }}}
 
