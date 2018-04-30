@@ -35,12 +35,14 @@ fi
 # and extensions right now.
 if [[ ! "$(builtin type -p phpenv)" ]]; then
     log_info "Installing phpenv"
-    curl -L http://git.io/phpenv-installer | bash
+    # curl -L http://git.io/phpenv-installer | bash
 else
     log_info "Updating phpenv"
-    phpenv update
+    # this breaks all of the sed replacements to turn rbenv into phpenv :/
+    # phpenv update
     # to uninstall: rm -rf $(phpenv root)
 fi
+curl -L http://git.io/phpenv-installer | bash
 # }}}
 
 # update yarn {{{
@@ -111,7 +113,7 @@ fi
 # install php version {{{
 # I only use phpenv because homebrew is making it difficult to install php 7.0
 # and extensions right now.
-if [[ ! "$(phpenv versions | grep 7.0.29)" ]]; then
+if [[ ! "$(phpenv version | grep 7.0.29)" ]]; then
     log_info "Installing php 7.0.29"
     phpenv install 7.0.29 && php global 7.0.29 && phpenv rehash
 
@@ -133,7 +135,7 @@ if [[ ! "$(phpenv versions | grep 7.0.29)" ]]; then
     # $HOME/.phpenv/pear/bin/pecl install xdebug && ( echo 'zend_extension="xdebug.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/xdebug.ini )
 fi
 
-if [[ ! "$(phpenv version | grep 7.2.4)" ]]; then
+if [[ ! "$(phpenv versions | grep 7.2.4)" ]]; then
     log_info "Installing php 7.2.4"
     phpenv install 7.2.4
     # phpenv install 7.2.4 && php global 7.2.4 && phpenv rehash
