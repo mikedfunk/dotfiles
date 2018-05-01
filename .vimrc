@@ -693,28 +693,6 @@ augroup headerstohttpgroup
 augroup END
 " }}}
 
-" focus mode {{{
-function! FocusModeToggle() abort
-    if (&foldcolumn != 12)
-        set showtabline=0
-        set laststatus=0
-        set foldcolumn=12
-        set noruler
-        hi FoldColumn ctermbg=none
-        if (exists(':GitGutterDisable')) | :GitGutterDisable | endif
-        let g:ale_sign_column_always=0
-    else
-        set showtabline=1
-        set laststatus=2
-        set foldcolumn=0
-        set ruler
-        if (exists(':GitGutterEnable')) | :GitGutterEnable | endif
-        let g:ale_sign_column_always=1
-    endif
-endfunc
-command! FocusModeToggle :call FocusModeToggle()
-" }}}
-
 " }}}
 
 " Plugin Configuration {{{

@@ -47,6 +47,7 @@ brew "intltool" # needed for php intl extension
 # brew "irssi" # irc client
 # brew "jsawk" # parse json in bash
 brew "joplin" # powerful note-taking app
+brew "jsonlint" # used by vim ale to lint json
 brew "jq" # simple json pretty-printer `echo '{"my" => "json"}' | jq .`
 # brew "keychain" # manage ssh agent and adding keys to it automatically
 # brew "libcaca" # image previewing in ASCII. used by ranger
@@ -89,7 +90,8 @@ brew "reattach-to-user-namespace" # used to fix mac issues with copy/paste in tm
 # brew "rvm" # ruby version manager
 # brew "s3cmd" # amazon s3 uploader
 # brew "selenium-server-standalone" # controls a browser for automated testing
-# brew "shellcheck" # hooks in with syntastic to style-check and lint bash. DISABLED because vim dies in shell files with this installed
+brew "shellcheck" # Checks shell syntax (used by vim ALE)
+brew "shfmt" # formats shell scripts (vim ALE)
 brew "ssh-copy-id" # copies ssh keys to remote servers
 brew "sshrc" # use ~/.sshrc and ~/.sshrc.d on remote servers
 # brew "sshfs" # mounts ssh servers as file systems in the local fs. requires osxfuse.
