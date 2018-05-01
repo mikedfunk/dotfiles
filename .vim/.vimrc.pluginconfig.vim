@@ -50,10 +50,11 @@ if filereadable('phpcs.xml')
     call add(php_linters, 'phpcs')
     call add(php_fixers, 'phpcbf')
 endif
-if filereadable('phpmd.xml')
-    let g:ale_php_phpmd_ruleset = getcwd() . ('/phpmd.xml')
-    call add(php_linters, 'phpmd')
-endif
+" really I don't need to lint phpmd on every save :/
+" if filereadable('phpmd.xml')
+"     let g:ale_php_phpmd_ruleset = getcwd() . ('/phpmd.xml')
+"     call add(php_linters, 'phpmd')
+" endif
 if (filereadable('phpstan.neon'))
     let g:ale_php_phpstan_configuration = getcwd() . '/phpstan.neon'
     call add(php_linters, 'phpstan')

@@ -42,10 +42,15 @@ let g:vdebug_options['path_maps'] = {
 "
 
 " tradeoff to make saatchi not dead slow. <leader>af to fix, <leader>al to lint.
-let g:ale_lint_on_save = 0
+" let g:ale_lint_on_save = 0
+let g:ale_lint_on_save = 1 " acceptable speed
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_filetype_changed = 0
+let g:ale_lint_on_text_changed = 'never'
 let g:ale_fix_on_save = 0
-let g:ale_lint_on_text_changed = 0
-if (exists(':ALEDisable')) | ALEDisable | endif
+" if (exists(':ALEDisable'))
+"     :ALEDisable
+" endif
 " }}}
 
 " javascript-libraries-syntax {{{
