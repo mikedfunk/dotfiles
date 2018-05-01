@@ -21,3 +21,5 @@ set keymap vi-insert
 "\ep": yank-last-arg
 Control-l: clear-screen
 $endif
+
+set bell-style none
