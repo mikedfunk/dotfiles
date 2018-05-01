@@ -21,6 +21,9 @@ REMOTE=$(git rev-parse @{u} 2> /dev/null)
 BASE=$(git merge-base @ @{u} 2> /dev/null)
 
 function changed {
+  if ! [ -f "$1" ]; then
+      return
+  fi
   git diff --name-only $oldRef $newRef | grep "^$1" > /dev/null 2>&1
 }
 

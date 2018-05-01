@@ -765,6 +765,7 @@ let g:vrc_curl_opts = {
             \ '--connect-timeout': 9999,
             \ '-sS': '',
             \ '-i': '',
+            \ '': '-L',
             \ }
 let g:vrc_response_default_content_type = "json"
 " let g:vrc_auto_format_response_enabled = 1 " enabled by default

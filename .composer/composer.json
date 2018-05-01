@@ -1,5 +1,11 @@
 {
-    "require": {
-        "consolidation/cgr": "^2.0"
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/mikedfunk/phpunit-watcher.git"
     }
+  ],
+  "require": {
+    "consolidation/cgr": "^2.0"
+  }
 }
