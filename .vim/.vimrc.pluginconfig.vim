@@ -78,7 +78,13 @@ let g:ale_linters = {
 \     'javascript': js_linters,
 \     'php': php_linters,
 \ }
+" let g:ale_css_stylelint_use_global = 1
+" let g:ale_scss_stylelint_use_global = 1
+" let g:ale_json_jq_use_global = 1
 let g:ale_fixers = {
+\    'css': ['stylelint'],
+\    'scss': ['stylelint'],
+\    'json': ['jq'],
 \    'javascript': js_fixers,
 \    'php': php_fixers,
 \    'ruby': ['rubocop']

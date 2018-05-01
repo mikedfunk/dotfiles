@@ -196,13 +196,19 @@ set noswapfile " swap files are a pain in the ass. I have git.
 set shortmess+=I " hide the launch screen
 " set gdefault " search/replace 'globally' (on a line) by default NOTE: this just swaps the functionality of /g, so if you add /g it will only replace the first match :/ not what I expected
 
-" https://stackoverflow.com/questions/3494435/vimrc-make-comments-italic
 " escape codes for italic fonts
+" https://stackoverflow.com/questions/3494435/vimrc-make-comments-italic
 let &t_ZH="\<Esc>[3m"
 let &t_ZR="\<Esc>[23m"
 
-" let php_baselib = 1 " highlight php builtin functions
-" let g:php_folding = 1 " fold methods, control structures, etc.
+" php settings {{{
+let php_baselib = 1 " highlight php builtin functions
+let php_folding = 1 " fold methods, control structures, etc.
+let php_noShortTags = 1
+let php_parent_error_close = 1 " highlight missing closing ] or )
+let php_parent_error_open = 1 " highlight missing opening [ or (
+let php_syncmethod = 10 " :help :syn-sync https://stackoverflow.com/a/30732393/557215
+" }}}
 
 " 'Rolodex Vim' http://vim.wikia.com/wiki/Window_zooming_convenience
 " set noequalalways winminheight=0 winheight=9999 helpheight=9999
