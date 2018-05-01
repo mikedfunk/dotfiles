@@ -6,6 +6,7 @@
     }
   ],
   "require": {
-    "consolidation/cgr": "^2.0"
+    "consolidation/cgr": "^2.0",
+    "spatie/phpunit-watcher": "dev-php70"
   }
 }
