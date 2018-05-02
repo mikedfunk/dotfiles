@@ -10,13 +10,17 @@ return PhpCsFixer\Config::create()
         'combine_consecutive_issets' => true, // Using isset($var) && multiple times should be done in one call.
         'combine_consecutive_unsets' => true, // Calling unset on multiple items should be done in one call.
         'comment_to_phpdoc' => true, // Comments with annotation should be docblock. @risky
+        // 'header_comment' => [
+        //     'header' => '',
+        //     'separate' => 'none',
+        // ], // remove header comment (We only need class-level comment)
         'lowercase_cast' => true,
         'lowercase_constants' => true, // The PHP constants true, false, and null MUST be in lower case.
         'method_chaining_indentation' => true, // Method chaining MUST be properly indented. Method chaining with different levels of indentation is not supported.
         'multiline_comment_opening_closing' => true, // DocBlocks must start with two asterisks, multiline comments must start with a single asterisk, after the opening slash. Both must end with a single asterisk before the closing slash.
         'native_function_casing' => true,
         // 'new_with_braces' => true, // matt doesn't like this
-        'no_blank_lines_after_phpdoc' => true, // There should not be blank lines between docblock and the documented element.
+        // 'no_blank_lines_after_phpdoc' => true, // There should not be blank lines between docblock and the documented element.
         'no_empty_comment' => true,
         'no_empty_phpdoc' => true,
         'no_empty_statement' => true,

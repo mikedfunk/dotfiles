@@ -3,6 +3,9 @@
 # https://code.joejag.com/2014/why-zsh.html
 # https://til.hashrocket.com/posts/alk38eeu8r-use-fc-to-fix-commands-in-the-shell
 
+# ctrl-z won't work? remove ~/.zsh/log/jog.lock
+# https://github.com/zplug/zplug/issues/322#issuecomment-274557883
+
 # zplug {{{
 
 # setup {{{
@@ -22,8 +25,8 @@ zplug "marzocchi/zsh-notify" # notify when a command fails or lasts longer than 
 zplug "zsh-users/zsh-autosuggestions" # buggy if enabled along with zsh-syntax-highlighting. crashes the shell regularly.
 zplug "zsh-users/zsh-completions" # do-everything argument completions
 zplug "zsh-users/zsh-syntax-highlighting", defer:2 # colored input... see above
-zplug 'zplug/zplug', hook-build:'zplug --self-manage' # manage itself
 zplug "TheLocehiliosan/yadm", rename-to:_yadm, use:"completion/yadm.zsh_completion", as:command, defer:2 # yadm completion
+zplug 'zplug/zplug', hook-build:'zplug --self-manage' # manage itself
 
 # DISABLED
 # zplug "jamesob/desk", from:github, as:command, use:"desk" # shell workspace manager
