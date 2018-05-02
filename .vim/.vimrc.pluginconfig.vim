@@ -1,5 +1,6 @@
 " vim: set foldmethod=marker ft=vim:
 " configuration for plugins I use
+scriptencoding utf-8
 
 " accelerated-smooth-scroll {{{
 let g:ac_smooth_scroll_min_limit_msec = 80 " confusiong option to speed up scrolling with slow rendering. default is 50.

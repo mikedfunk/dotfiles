@@ -8,33 +8,33 @@ runtime .vimrc.plugins.vim
 " Initialize directories {{{
 " put everything in ~/.vim to avoid inline backup and swap files.
 function! InitializeDirectories() abort
-    let parent = $HOME
-    let prefix = 'vim'
-    let dir_list = {
+    let l:parent = $HOME
+    let l:prefix = 'vim'
+    let l:dir_list = {
         \ 'backup': 'backupdir',
         \ 'views': 'viewdir',
         \ 'swap': 'directory'
     \ }
 
     if has('persistent_undo')
-        let dir_list['undo'] = 'undodir'
+        let l:dir_list['undo'] = 'undodir'
     endif
 
-    let common_dir = parent . '/.' . prefix
+    let l:common_dir = l:parent . '/.' . l:prefix
 
-    for [dirname, settingname] in items(dir_list)
-        let directory = common_dir . dirname . '/'
-        if exists("*mkdir")
-            if !isdirectory(directory)
-                call mkdir(directory)
+    for [l:dirname, l:settingname] in items(l:dir_list)
+        let l:directory = l:common_dir . l:dirname . '/'
+        if exists('*mkdir')
+            if !isdirectory(l:directory)
+                call mkdir(l:directory)
             endif
         endif
-        if !isdirectory(directory)
-            echo "Warning: Unable to create backup directory: " . directory
-            echo "Try: mkdir -p " . directory
+        if !isdirectory(l:directory)
+            echo 'Warning: Unable to create backup directory: ' . l:directory
+            echo 'Try: mkdir -p ' . l:directory
         else
-            let directory = substitute(directory, " ", "\\\\ ", "g")
-            exec "set " . settingname . "=" . directory
+            let l:directory = substitute(l:directory, ' ', '\\\\ ', 'g')
+            exec 'set ' . l:settingname . '=' . l:directory
         endif
     endfor
 endfunction
@@ -94,13 +94,14 @@ set display+=lastline
 
 if &encoding ==# 'latin1' && has('gui_running')
   set encoding=utf-8
+  scriptencoding utf-8
 endif
 
 " if &listchars ==# 'eol:$'
 "   set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 " endif
 
-if v:version > 703 || v:version == 703 && has("patch541")
+if v:version > 703 || v:version == 703 && has('patch541')
   set formatoptions+=j " Delete comment character when joining commented lines
 endif
 
@@ -152,7 +153,7 @@ set secure " Always append set secure when exrc option is enabled!
 set completeopt-=preview " turn off omnicomplete preview window
 set completeopt+=longest " only autofill the common text between all completion options
 set completeopt-=menu | set completeopt+=menuone " display completion even if there is one result. Useful for echodoc.
-set ff=unix " Any non-unix line endings are converted to unix
+set fileformat=unix " Any non-unix line endings are converted to unix
 set nojoinspaces " Prevents inserting two spaces after punctuation on a join (J)
 set splitright " Puts new vsplit windows to the right of the current
 set splitbelow " Puts new split windows to the bottom of the current
@@ -180,9 +181,9 @@ set modelines=5 " enable modeline
 set noshowmode " don't show the mode in the command area. it's already in airline.
 " set synmaxcol=200 " avoid performance problems syntax highlighting very long lines
 set ttyfast " speeds up terminal vim rendering
-let undodir="$HOME/.vimundo" | set undofile " persistent undo
-set backupdir=$HOME/.vimbackup " set custom swap file dir
-let viewdir="$HOME/.vimviews" " custom dir for :mkview output
+set undodir='$HOME/.vimundo' | set undofile " persistent undo
+set backupdir='$HOME/.vimbackup' " set custom swap file dir
+set viewdir='$HOME/.vimviews' " custom dir for :mkview output
 " usage: :grep! my_term<cr>
 if executable('ag')
     set grepprg=ag\ --vimgrep\ $* " allow :grep to use ag
@@ -221,11 +222,11 @@ augroup quickfixcmdgroup
     autocmd QuickFixCmdPost *grep* cwindow
 augroup END
 
-if has("mouse")
+if has('mouse')
     set mouse+=a " Automatically enable mouse usage
     set mousehide " Hide the mouse cursor while typing
 endif
-if &term =~ '^screen' " enable split dragging
+if &term =~# '^screen' " enable split dragging
     set ttymouse=sgr " @link https://stackoverflow.com/questions/7000960/in-vim-why-doesnt-my-mouse-work-past-the-220th-column
     " set ttymouse=xterm2
 endif
@@ -375,7 +376,7 @@ onoremap il :normal vil<CR>
 " set shell=/usr/local/bin/zsh\ -l
 
 " https://laracasts.com/series/vim-mastery/episodes/4#comment-2487013283
-if has("gui_running")
+if has('gui_running')
     set macligatures
 endif
 " https://github.com/tonsky/FiraCode/issues/462
@@ -384,7 +385,7 @@ endif
 " }}}
 
 " Completion {{{
-if has("autocmd") && exists("+omnifunc")
+if has('autocmd') && exists('+omnifunc')
     augroup omnifuncgroup
         autocmd!
         autocmd Filetype * if &omnifunc == "" | setlocal omnifunc=syntaxcomplete#Complete | endif
@@ -412,7 +413,7 @@ cabbrev snote: ~/Notes/saatchiart/
 
 " Mappings {{{
 " @link https://superuser.com/questions/401926/how-to-get-shiftarrows-and-ctrlarrows-working-in-vim-in-tmux
-if &term =~ '^screen'
+if &term =~# '^screen'
     " tmux will send xterm-style keys when its xterm-keys option is on
     execute "set <xUp>=\e[1;*A"
     execute "set <xDown>=\e[1;*B"
@@ -561,7 +562,7 @@ set background=dark
 " set cursorline " highlight current line. this is really slow!
 set colorcolumn=80,120 " show vert lines at the psr-2 suggested column limits
 " silent! colorscheme lucius " set the default color scheme
-if (isdirectory(expand("~/.vim/plugged/vim-hybrid-material")))
+if (isdirectory(expand('~/.vim/plugged/vim-hybrid-material')))
     silent! colorscheme hybrid_material
 endif
 let g:airline_theme = 'base16_ocean'
@@ -586,7 +587,7 @@ augroup italic_comments_group_javascript
 augroup END
 
 " Gui {{{
-if has("gui_running") | set guifont=Meslo\ LG\ M\ Regular\ for\ Powerline:h11 | endif
+if has('gui_running') | set guifont=Meslo\ LG\ M\ Regular\ for\ Powerline:h11 | endif
 " }}}
 
 " @link https://github.com/vim/vim/issues/981#issuecomment-241941032
@@ -641,20 +642,20 @@ augroup end
 " @link http://stackoverflow.com/a/7321131/557215
 function! DeleteInactiveBufs() abort
     "From tabpagebuflist() help, get a list of all buffers in all tabs
-    let tablist = []
-    for i in range(tabpagenr('$'))
-        call extend(tablist, tabpagebuflist(i + 1))
+    let l:tablist = []
+    for l:i in range(tabpagenr('$'))
+        call extend(l:tablist, tabpagebuflist(l:i + 1))
     endfor
 
-    let nWipeouts = 0
-    for i in range(1, bufnr('$'))
-        if bufexists(i) && !getbufvar(i,"&mod") && index(tablist, i) == -1
+    let l:nWipeouts = 0
+    for l:i in range(1, bufnr('$'))
+        if bufexists(l:i) && !getbufvar(l:i, '&mod') && index(l:tablist, l:i) == -1
         "bufno exists AND isn't modified AND isn't in the list of buffers open in windows and tabs
-            silent exec 'bwipeout' i
-            let nWipeouts = nWipeouts + 1
+            silent exec 'bwipeout' l:i
+            let l:nWipeouts = l:nWipeouts + 1
         endif
     endfor
-    echomsg nWipeouts . ' buffer(s) wiped out'
+    echomsg l:nWipeouts . ' buffer(s) wiped out'
 endfunction
 command! Bdi :call DeleteInactiveBufs()
 " }}}

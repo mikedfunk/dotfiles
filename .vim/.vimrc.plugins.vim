@@ -1,12 +1,16 @@
 " vim: set foldmethod=marker filetype=vim:
 " my vim plugins
+scriptencoding utf-8
 "
 " Vim-plug setup {{{
 " Install Vim-plug and packages on new systems
-if empty(glob("~/.vim/autoload/plug.vim"))
+if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
       \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall | source $MYVIMRC
+    augroup pluginstallgroup
+        autocmd!
+        autocmd VimEnter * PlugInstall | source $MYVIMRC
+    augroup END
 endif
 call plug#begin('~/.vim/plugged')
 " }}}
@@ -14,10 +18,10 @@ call plug#begin('~/.vim/plugged')
 " Unplug {{{
 " https://github.com/junegunn/vim-plug/issues/469
 function! s:deregister(repo)
-    let repo = substitute(a:repo, '[\/]\+$', '', '')
-    let name = fnamemodify(repo, ':t:s?\.git$??')
-    call remove(g:plugs, name)
-    call remove(g:plugs_order, index(g:plugs_order, name))
+    let l:repo = substitute(a:repo, '[\/]\+$', '', '')
+    let l:name = fnamemodify(l:repo, ':t:s?\.git$??')
+    call remove(g:plugs, l:name)
+    call remove(g:plugs_order, index(g:plugs_order, l:name))
 endfunction
 command! -nargs=1 -bar UnPlug call s:deregister(<args>)
 " }}}
@@ -68,7 +72,9 @@ Plug 'tpope/vim-commentary' " toggle comment with gcc. in my case I use <leader>
 " Plug 'junegunn/vim-easy-align' " align on = with ga=
 Plug 'tpope/vim-unimpaired' " lots of cool keyboard shortcuts
 " if has("python") || has("python3") | Plug 'SirVer/ultisnips' | endif " dynamic snippet completion
-if has("python") || has("python3") | Plug 'SirVer/ultisnips' | endif " dynamic snippet completion
+if has('python') || has('python3')
+    Plug 'SirVer/ultisnips' " dynamic snippet completion
+endif
 " if has("python") | Plug 'robertbasic/snipbar' | endif " show available snips
 Plug 'jiangmiao/auto-pairs' " Auto insert closing brackets and parens
 Plug 'sickill/vim-pasta' " paste with context-sensitive indenting
@@ -95,7 +101,9 @@ Plug 'tpope/vim-endwise' " auto add end/endif for vimscript/ruby. no lazy load o
 " Plug 'mattn/emmet-vim', { 'for': ['phtml', 'html', 'html.twig', 'twig', 'blade', 'xml'] } " html shorthand expander <c-y>, <c-y>n
 Plug 'docunext/closetag.vim', { 'for': ['html', 'xml', 'html.twig', 'blade', 'php', 'phtml'] } " auto close tags by typing </ . different from auto-pairs.
 " if has("python") || has("python3") | Plug 'Valloric/MatchTagAlways' | endif " highlight matching tag
-if has("python") || has("python3") | Plug 'Valloric/MatchTagAlways' | endif " highlight matching tag
+if has('python') || has('python3')
+    Plug 'Valloric/MatchTagAlways' " highlight matching tag
+endif
 " Plug 'Seb-C/better-indent-support-for-php-with-html' " fix god-awful phtml indentation
 " runtime macros/matchit.vim " jump to matching html tag
 " }}}
@@ -149,7 +157,9 @@ Plug 'lifepillar/vim-cheat40' " Customizable cheatsheet. Mine is in ~/.vim/plugg
 
 " Php {{{
 " if has("python3") | Plug 'vim-vdebug/vdebug' | endif " xdebug (dbgp) client. To load with other filetypes do :PlugStatus and L over vdebug. temporarily disabled due to UnicodeError and vim.error on breaking :/ last tested 04-21-2018
-if has("python") | Plug 'vim-vdebug/vdebug', { 'for': 'php', 'tag': 'v1.5.2' } | endif " python2 compatible version
+if has('python')
+    Plug 'vim-vdebug/vdebug', { 'for': 'php', 'tag': 'v1.5.2' } " python2 compatible version
+endif
 Plug 'arnaud-lb/vim-php-namespace', { 'for': 'php' } " insert use statements
 " Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' } " better php omnicomplete. This is included with vim8 but the package keeps it up-to-date.
 " Plug 'mkusher/padawan.vim', { 'for': 'php', 'do': 'command -v padawan >/dev/null 2>&1 && cgr update mkusher/padawan \|\| cgr mkusher/padawan' } " better php omnicomplete... but it doesn't complete at all for me
@@ -183,30 +193,32 @@ Plug 'sgur/vim-editorconfig' " faster version of editorconfig
 " Git {{{
 " temporarily disabled due to bug with vim-php-namespace
 " if executable('git') | Plug 'airblade/vim-gitgutter' | endif " show git changes in sidebar
-if executable('git') | Plug 'mhinz/vim-signify' | endif " show git changes in sidebar
+if executable('git')
+    Plug 'mhinz/vim-signify' " show git changes in sidebar
 " if executable('git') | Plug 'tpope/vim-fugitive' | Plug 'shumphrey/fugitive-gitlab.vim' | Plug 'tpope/vim-dispatch' | endif " git integration
-if executable('git') | Plug 'tpope/vim-fugitive' | Plug 'shumphrey/fugitive-gitlab.vim' | Plug 'tommcdo/vim-fubitive' | Plug 'tpope/vim-rhubarb' | endif " git integration
-if executable('git') | Plug 'esneider/YUNOcommit.vim' | endif " u save lot but no commit. Y u no commit??
-if executable('git') | Plug 'rhysd/committia.vim' | endif " prettier commit editor. Really cool!
-if executable('git') | Plug 'junegunn/gv.vim', { 'on': 'GV' } | endif " :GV for git/tig-style log
-if executable('git') | Plug 'mmozuras/vim-github-comment', { 'on': 'GHComment' } | Plug 'mattn/webapi-vim' | endif " :GHComment my comment goes to latest commit on github
-if executable('git') | Plug 'hotwatermorning/auto-git-diff' | endif " cool git rebase diffs per commit
-" if has('python') | Plug 'euclio/gitignore.vim' | endif " automatically populate wildignore from gitignore. Why would I not want to do this? Because it's buggy with no gitignore :/
-" Plug 'vim-scripts/gitignore' " simpler version with no python
-Plug 'octref/rootignore' " yet another gitignore -> wildignore
+    Plug 'tpope/vim-fugitive' | Plug 'shumphrey/fugitive-gitlab.vim' | Plug 'tommcdo/vim-fubitive' | Plug 'tpope/vim-rhubarb' " git integration
+    Plug 'esneider/YUNOcommit.vim' " u save lot but no commit. Y u no commit??
+    Plug 'rhysd/committia.vim' " prettier commit editor. Really cool!
+    Plug 'junegunn/gv.vim', { 'on': 'GV' } " :GV for git/tig-style log
+    Plug 'mmozuras/vim-github-comment', { 'on': 'GHComment' } | Plug 'mattn/webapi-vim' " :GHComment my comment goes to latest commit on github
+    Plug 'hotwatermorning/auto-git-diff' " cool git rebase diffs per commit
+    " if has('python') | Plug 'euclio/gitignore.vim' | endif " automatically populate wildignore from gitignore. Why would I not want to do this? Because it's buggy with no gitignore :/
+    " Plug 'vim-scripts/gitignore' " simpler version with no python
+    Plug 'octref/rootignore' " yet another gitignore -> wildignore
+endif
 " }}}
 
 " Javascript {{{
 " Plug 'othree/jspc.vim', { 'for': 'javascript' } " javascript parameter completion
 " Plug 'moll/vim-node', { 'for': ['javascript', 'typescript', 'jsx'] } " node tools - go to module def, etc.
-" Plug 'ruanyl/vim-fixmyjs', { 'for': ['javascript', 'jsx', 'vue'] } " runs eslint fix via :Fixmyjs
 " if executable('tsc') | Plug 'Shougo/vimproc.vim', { 'do': 'make', 'for': 'typescript' } | Plug 'Quramy/tsuquyomi', { 'for': 'typescript' } | endif " typescript omnicompletion, custom jump to def, custom syntax erroring
-" Plug 'sekel/vim-vue-syntastic' " let syntastic play nice with vue files
 Plug 'tpope/vim-jdaddy' "`gqaj` to pretty-print json, `gwaj` to merge the json object in the clipboard with the one under the cursor
 " Plug 'chemzqm/vim-jsx-improve' " better jsx formatting
 " Plug 'flowtype/vim-flow' " flowtype omnicompletion. If not using flow in a project, add this to project .vimrc: let g:flow#enable = 0
 Plug 'jez/vim-flow' " fork that adds --quiet
-if has('python') || has('python3') | Plug 'ternjs/tern_for_vim', { 'for': 'javascript', 'do': 'npm install' } | endif " javascript omnifunc and jump to def. requires a .tern-project file. http://ternjs.net/doc/manual.html#configuration
+if has('python') || has('python3')
+    Plug 'ternjs/tern_for_vim', { 'for': 'javascript', 'do': 'npm install' }
+endif " javascript omnifunc and jump to def. requires a .tern-project file. http://ternjs.net/doc/manual.html#configuration
 Plug 'othree/javascript-libraries-syntax.vim' " syntax completion for common libraries (react, lodash, jquery, etc.)
 Plug 'kristijanhusak/vim-js-file-import' " Go to definition: <leader>ig Import file: <Leader>if
 " }}}
