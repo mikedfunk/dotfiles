@@ -180,7 +180,6 @@ set modelines=5 " enable modeline
 set noshowmode " don't show the mode in the command area. it's already in airline.
 " set synmaxcol=200 " avoid performance problems syntax highlighting very long lines
 set ttyfast " speeds up terminal vim rendering
-let g:PHP_outdentphpescape = 0 " means that PHP tags will match the indent of the HTML around them in files that a mix of PHP and HTML
 let undodir="$HOME/.vimundo" | set undofile " persistent undo
 set backupdir=$HOME/.vimbackup " set custom swap file dir
 let viewdir="$HOME/.vimviews" " custom dir for :mkview output
@@ -202,12 +201,15 @@ let &t_ZH="\<Esc>[3m"
 let &t_ZR="\<Esc>[23m"
 
 " php settings {{{
-let php_baselib = 1 " highlight php builtin functions
-let php_folding = 1 " fold methods, control structures, etc.
-let php_noShortTags = 1
-let php_parent_error_close = 1 " highlight missing closing ] or )
-let php_parent_error_open = 1 " highlight missing opening [ or (
-let php_syncmethod = 10 " :help :syn-sync https://stackoverflow.com/a/30732393/557215
+let g:PHP_removeCRwhenUnix = 1
+let g:PHP_outdentphpescape = 0 " means that PHP tags will match the indent of the HTML around them in files that a mix of PHP and HTML
+let g:php_htmlInStrings = 1 " neat! :h php.vim
+let g:php_baselib = 1 " highlight php builtin functions
+let g:php_folding = 1 " fold methods, control structures, etc.
+let g:php_noShortTags = 1
+" let g:php_parent_error_close = 1 " highlight missing closing ] or )
+" let g:php_parent_error_open = 1 " highlight missing opening [ or (
+let g:php_syncmethod = 10 " :help :syn-sync https://stackoverflow.com/a/30732393/557215
 " }}}
 
 " 'Rolodex Vim' http://vim.wikia.com/wiki/Window_zooming_convenience
@@ -570,8 +572,6 @@ augroup isbashgroup
     autocmd!
     autocmd BufRead,BufNewFile *bash* let b:is_bash=1 " fix syntax highlighting for bash files
 augroup END
-
-let php_htmlInStrings = 1 " neat! :h php.vim
 
 " https://stackoverflow.com/questions/3494435/vimrc-make-comments-italic
 augroup italic_comments_group

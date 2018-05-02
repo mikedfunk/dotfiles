@@ -83,11 +83,12 @@ path=(
   $HOME/.bin
   # global ruby gems
   $HOME/bin
-  $HOME/.{php,rb,pl,nod,py}env/bin
+  # this needs to be first so rbenv from homebrew can take precedence
+  $(brew --prefix)/{bin,sbin}
+  $HOME/.{php,pl,nod,py}env/bin
   $HOME/.phpenv/pear/bin
   $HOME/.composer/vendor/bin
   $(gem env home)
-  $(brew --prefix)/{bin,sbin}
   # pip bin
   $HOME/.local/bin
   $ZPLUG_ROOT/bin
@@ -112,10 +113,10 @@ fpath=(
 [ -f /usr/local/etc/openssl/cert.pem ] && export SSL_CERT_FILE=/usr/local/etc/openssl/cert.pem
 [ -d "$HOME/.zsh/completion" ] && find "$HOME/.zsh/completion" | while read f; do source "$f"; done
 [[ "$(builtin type -p plenv)" ]] && eval "$(plenv init -)"
-[[ "$(builtin type -p rbenv)" ]] && eval "$(rbenv init -)"
 [[ "$(builtin type -p nodenv)" ]] && eval "$(nodenv init -)"
 [[ "$(builtin type -p pyenv)" ]] && eval "$(pyenv init -)"
 [[ -f "$HOME/.phpenv/bin/phpenv" ]] && eval "$($HOME/.phpenv/bin/phpenv init -)"
+[[ "$(builtin type -p rbenv)" ]] && eval "$(rbenv init -)"
 # [ -n "$DESK_ENV" ] && source "$DESK_ENV" || true # Hook for desk activation
 # tabtab source for yo package
 # uninstall by removing these lines or running `tabtab uninstall yo`
@@ -175,10 +176,11 @@ compdef y="yadm"
 alias yb="yadm bootstrap"
 alias upgrades="yb"
 alias save-dotfiles="yadm encrypt && yadm add -u && yadm ci -m working && yadm pu"
+alias joplin="/usr/local/bin/node `which joplin`"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # fuzzy finder - installed and managed via vim-plug https://github.com/junegunn/fzf
 export CLICOLOR=1 # ls colors by default
-export NODE_PATH="/usr/local/lib/node_modules" # zombie.js doesn't work without this
+# export NODE_PATH="/usr/local/lib/node_modules" # zombie.js doesn't work without this
 [[ "$(builtin type -p direnv)" ]] && eval "$(direnv hook zsh)" # allow .envrc on each prompt start
 
 function phpcbf-wrapper () {

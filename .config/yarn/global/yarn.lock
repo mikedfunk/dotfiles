@@ -14497,7 +14497,7 @@ term-size@^1.2.0:
   dependencies:
     execa "^0.7.0"
 
-tern-jsx@ramitos/tern-jsx#bb32547:
+"tern-jsx@github:ramitos/tern-jsx#bb32547":
   version "1.0.0"
   resolved "https://codeload.github.com/ramitos/tern-jsx/tar.gz/bb3254740484f26b6fc61b1d5e1bf3c08d8c30ad"
   dependencies:
