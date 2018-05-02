@@ -1,4 +1,16 @@
 <?php
+$finder = PhpCsFixer\Finder::create()
+    ->exclude('vendor')
+    ->exclude('tests')
+    ->exclude('spec')
+    ->exclude('coverage')
+    ->exclude('resources')
+    ->exclude('bootstrap')
+    ->exclude('storage')
+    ->notPath('tags')
+    ->notPath('composer.phar')
+    ->notPath('_ide_helper.php')
+    ;
 
 return PhpCsFixer\Config::create()
     ->setRules([
@@ -42,4 +54,6 @@ return PhpCsFixer\Config::create()
         // 'trailing_comma_in_multiline_array' => true, // likewise - good but really fills the commit
         'visibility_required' => true, // Visibility MUST be declared on all properties and methods; abstract and final MUST be declared before the visibility; static MUST be declared after the visibility.
     ])
-    ->setRiskyAllowed(true);
+    ->setRiskyAllowed(true)
+    ->setFinder($finder)
+    ;
