@@ -22,19 +22,19 @@ function! InitializeDirectories() abort
 
     let l:common_dir = l:parent . '/.' . l:prefix
 
-    for [l:dirname, l:settingname] in items(l:dir_list)
-        let l:directory = l:common_dir . l:dirname . '/'
+    for [dirname, settingname] in items(l:dir_list)
+        let directory = l:common_dir . dirname . '/'
         if exists('*mkdir')
-            if !isdirectory(l:directory)
-                call mkdir(l:directory)
+            if !isdirectory(directory)
+                call mkdir(directory)
             endif
         endif
-        if !isdirectory(l:directory)
-            echo 'Warning: Unable to create backup directory: ' . l:directory
-            echo 'Try: mkdir -p ' . l:directory
+        if !isdirectory(directory)
+            echo 'Warning: Unable to create backup directory: ' . directory
+            echo 'Try: mkdir -p ' . directory
         else
-            let l:directory = substitute(l:directory, ' ', '\\\\ ', 'g')
-            exec 'set ' . l:settingname . '=' . l:directory
+            let directory = substitute(directory, ' ', '\\\\ ', 'g')
+            exec 'set ' . settingname . '=' . directory
         endif
     endfor
 endfunction
@@ -94,7 +94,6 @@ set display+=lastline
 
 if &encoding ==# 'latin1' && has('gui_running')
   set encoding=utf-8
-  scriptencoding utf-8
 endif
 
 " if &listchars ==# 'eol:$'
@@ -181,9 +180,9 @@ set modelines=5 " enable modeline
 set noshowmode " don't show the mode in the command area. it's already in airline.
 " set synmaxcol=200 " avoid performance problems syntax highlighting very long lines
 set ttyfast " speeds up terminal vim rendering
-set undodir='$HOME/.vimundo' | set undofile " persistent undo
-set backupdir='$HOME/.vimbackup' " set custom swap file dir
-set viewdir='$HOME/.vimviews' " custom dir for :mkview output
+let undodir='$HOME/.vimundo' | set undofile " persistent undo
+set backupdir=$HOME/.vimbackup " set custom swap file dir
+let viewdir='$HOME/.vimviews' " custom dir for :mkview output
 " usage: :grep! my_term<cr>
 if executable('ag')
     set grepprg=ag\ --vimgrep\ $* " allow :grep to use ag
@@ -643,15 +642,15 @@ augroup end
 function! DeleteInactiveBufs() abort
     "From tabpagebuflist() help, get a list of all buffers in all tabs
     let l:tablist = []
-    for l:i in range(tabpagenr('$'))
-        call extend(l:tablist, tabpagebuflist(l:i + 1))
+    for i in range(tabpagenr('$'))
+        call extend(l:tablist, tabpagebuflist(i + 1))
     endfor
 
     let l:nWipeouts = 0
-    for l:i in range(1, bufnr('$'))
-        if bufexists(l:i) && !getbufvar(l:i, '&mod') && index(l:tablist, l:i) == -1
+    for i in range(1, bufnr('$'))
+        if bufexists(i) && !getbufvar(i,"&mod") && index(l:tablist, i) == -1
         "bufno exists AND isn't modified AND isn't in the list of buffers open in windows and tabs
-            silent exec 'bwipeout' l:i
+            silent exec 'bwipeout' i
             let l:nWipeouts = l:nWipeouts + 1
         endif
     endfor
