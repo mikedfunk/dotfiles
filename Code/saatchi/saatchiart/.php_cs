@@ -1,5 +1,24 @@
 <?php
 
+$finder = PhpCsFixer\Finder::create()
+    ->exclude('library')
+    ->exclude('application')
+    ->exclude('scripts')
+    ->exclude('vendor')
+    ->exclude('tests')
+    ->exclude('composer.phar<')
+    ->exclude('tags<')
+    ->exclude('library')
+    ->exclude('application')
+    ->exclude('scripts')
+    ->exclude('vendor')
+    ->exclude('tests')
+    ->exclude('composer.phar<')
+    ->exclude('uploader')
+    ->exclude('public')
+    ->exclude('console')
+    ;
+
 return PhpCsFixer\Config::create()
     ->setRules([
         // "array_syntax" => ["syntax" => 'short'], // this would mean a ton of changes
@@ -42,4 +61,6 @@ return PhpCsFixer\Config::create()
         // 'trailing_comma_in_multiline_array' => true, // likewise - good but really fills the commit
         'visibility_required' => true, // Visibility MUST be declared on all properties and methods; abstract and final MUST be declared before the visibility; static MUST be declared after the visibility.
     ])
-    ->setRiskyAllowed(true);
+    ->setRiskyAllowed(true)
+    ->setFinder($finder)
+    ;
