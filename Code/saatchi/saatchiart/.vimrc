@@ -66,3 +66,7 @@ command! RunCurrentScript :AsyncRun eval `docker-machine env default` && docker 
 command! -nargs=1 Edev execute "e scp://appdeploy@saatchi-xdev-legacy-services-01//data/code_base/current/" . <f-args>
 command! -nargs=1 Eqa execute "e scp://appdeploy@saatchi-xqa-legacy-services-01//data/code_base/current/" . <f-args>
 " }}}
+
+" phpcd {{{
+" let g:phpcd_autoload_path = 'application/command_line_bootstrap.php'
+" }}}

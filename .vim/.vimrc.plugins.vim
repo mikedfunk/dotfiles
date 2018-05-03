@@ -163,7 +163,7 @@ endif
 Plug 'arnaud-lb/vim-php-namespace', { 'for': 'php' } " insert use statements
 " Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' } " better php omnicomplete. This is included with vim8 but the package keeps it up-to-date.
 " Plug 'mkusher/padawan.vim', { 'for': 'php', 'do': 'command -v padawan >/dev/null 2>&1 && cgr update mkusher/padawan \|\| cgr mkusher/padawan' } " better php omnicomplete... but it doesn't complete at all for me
-Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install'  } " based on phpcomplete but supposedly faster. IT WORKS! GOOD! EVEN ON LEGACY!
+Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install'  } " based on phpcomplete but supposedly faster. Problem with legacy :/
 Plug 'alvan/vim-php-manual', { 'for': ['php', 'blade', 'phtml'] } " contextual php manual with shift-K
 " Plug 'rayburgemeestre/phpfolding.vim' " php syntax folding with :EnableFastPhpFolds
 " Plug 'Plug 'swekaj/php-foldexpr.vim' " better php folding recommended here https://stackoverflow.com/questions/792886/vim-syntax-based-folding-with-php#comment46149243_11859632
@@ -322,6 +322,12 @@ Plug 'kristijanhusak/vim-hybrid-material'
 " Plug 'tyrannicaltoucan/vim-quantum'
 " Plug 'cocopon/iceberg.vim'
 " }}}
+" }}}
+
+" local plugin changes {{{
+if filereadable('.vimrc.pluginconfig.vim')
+    source .vimrc.pluginconfig.vim
+endif
 " }}}
 
 " Vim-plug close {{{
