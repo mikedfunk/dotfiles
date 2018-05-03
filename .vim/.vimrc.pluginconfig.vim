@@ -17,10 +17,14 @@ let g:ac_smooth_scroll_min_limit_msec = 80 " confusiong option to speed up scrol
 " to run linters after you install them.
 let g:ale_cache_executable_check_failures = 1
 
+" syntastic-style - lint on save only
 " Active mode - turn these off in .vimrc if it's too slow (use manual maps instead)
-" This is off by default. You could do it manually with :ALEFix
-let g:ale_fix_on_save = 1
-let g:ale_lint_on_save = 1 | let g:ale_lint_on_text_changed = 0 " syntastic-style - lint on save only
+let g:ale_lint_on_save = 1 " acceptable speed
+" let g:ale_lint_on_enter = 0
+let g:ale_lint_on_filetype_changed = 0
+let g:ale_lint_on_text_changed = 'never'
+
+let g:ale_fix_on_save = 1 " This is off by default. You could do it manually with :ALEFix
 
 let g:ale_sign_column_always = 1 " otherwise screen keeps jumping left and right
 let g:airline#extensions#ale#error_symbol = 'Errors:' " default is a bit sparse: E
@@ -107,6 +111,7 @@ if isdirectory(expand('~/.vim/plugged/asyncrun.vim'))
                 \ yadm add -u && yadm commit -m 'updates';
                 \ yadm push;
     nnoremap <leader>ta :AllUpdates<cr>
+    nnoremap <leader>gu :AsyncRun git ctags a<cr>
 endif
 " }}}
 
