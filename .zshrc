@@ -6,63 +6,6 @@
 # ctrl-z won't work? remove ~/.zsh/log/jog.lock
 # https://github.com/zplug/zplug/issues/322#issuecomment-274557883
 
-# zplug {{{
-
-# setup {{{
-# unset ZPLUG_SHALLOW # shut up zplug!!
-# export DISABLE_AUTO_TITLE="true" # prevent zsh from auto-updating tmux window title
-source $HOME/.zplug/init.zsh
-# }}}
-
-# plugin definitions {{{
-zplug "yous/vanilli.sh" # sensible zsh defaults
-zplug "djui/alias-tips" # tell you when an alias would shorten the command you ran
-zplug "plugins/colored-man-pages", from:oh-my-zsh
-zplug "plugins/colorize", from:oh-my-zsh # Plugin for highlighting file content
-zplug 'mfaerevaag/wd', as:command, use:"wd.sh", hook-load:"wd() { . $ZPLUG_REPOS/mfaerevaag/wd/wd.sh }"
-zplug "plugins/gitfast", from:oh-my-zsh, if:"which git" # fix git completion issues https://unix.stackexchange.com/a/204308
-zplug "marzocchi/zsh-notify" # notify when a command fails or lasts longer than 30 seconds and the terminal is in the background (requires terminal-notifier)
-zplug "zsh-users/zsh-autosuggestions" # buggy if enabled along with zsh-syntax-highlighting. crashes the shell regularly.
-zplug "zsh-users/zsh-completions" # do-everything argument completions
-zplug "zsh-users/zsh-syntax-highlighting", defer:2 # colored input... see above
-zplug "TheLocehiliosan/yadm", rename-to:_yadm, use:"completion/yadm.zsh_completion", as:command, defer:2 # yadm completion
-zplug 'zplug/zplug', hook-build:'zplug --self-manage' # manage itself
-
-# DISABLED
-# zplug "jamesob/desk", from:github, as:command, use:"desk" # shell workspace manager
-# zplug "hchbaw/auto-fu.zsh", at:pu
-# zplug "b4b4r07/enhancd", use:init.sh # enhanced cd
-# zplug "felixr/docker-zsh-completion" # docker completion (deprecated)
-# zplug "gko/ssh-connect", use:ssh-connect.sh # ssh-connect to get a ssh session manager
-# zplug "hchbaw/auto-fu.zsh", use:"auto-fu.zsh" # autocompletion and suggestions
-# zplug "peterhurford/up.zsh" # `up 2` to cd ../..
-# zplug "plugins/docker", from:oh-my-zsh
-# zplug "plugins/git", from:oh-my-zsh, if:"which git" # alias g to git and include completion. and other stuff.
-# zplug "plugins/git-extras", from:oh-my-zsh, if:"which git" # I have this in brew already
-# zplug "plugins/npm", from:oh-my-zsh, if:"which npm"
-# zplug "plugins/phing", from:oh-my-zsh, if:"which phing"
-# zplug "plugins/rake-fast", from:oh-my-zsh # rake task completion
-# zplug "plugins/vagrant", from:oh-my-zsh, if:"which vagrant"
-# zplug "plugins/vi-mode", from:oh-my-zsh
-# zplug "plugins/wd", from:oh-my-zsh # "warp directory" bookmarking tool
-# zplug "sharat87/zsh-vim-mode"
-# zplug "supercrabtree/k" # pretty ls with git, filesize, and date features
-# zplug "zplug/zplug" # zplugception!
-# zplug "zsh-users/zaw" # completer with aliases, git branches, etc. <ctrl-x> to open
-# }}}
-
-# Install plugins if there are plugins that have not been installed {{{
-if ! zplug check; then
-    printf "Install zplug plugins? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
-
-zplug load
-# }}}
-# }}}
-
 # Paths {{{
 cdpath=(
   $HOME/Code
@@ -103,8 +46,67 @@ path=(
 
 fpath=(
   "$ZPLUG_HOME/bin"
+  # homebrew zsh completions
+  "/usr/local/share/zsh/site-functions"
   $fpath
 )
+# }}}
+
+# zplug {{{
+
+# setup {{{
+# unset ZPLUG_SHALLOW # shut up zplug!!
+# export DISABLE_AUTO_TITLE="true" # prevent zsh from auto-updating tmux window title
+source $HOME/.zplug/init.zsh
+# }}}
+
+# plugin definitions {{{
+zplug "yous/vanilli.sh" # sensible zsh defaults
+zplug "djui/alias-tips" # tell you when an alias would shorten the command you ran
+zplug "plugins/colored-man-pages", from:oh-my-zsh
+zplug "plugins/colorize", from:oh-my-zsh # Plugin for highlighting file content
+zplug 'mfaerevaag/wd', as:command, use:"wd.sh", hook-load:"wd() { . $ZPLUG_REPOS/mfaerevaag/wd/wd.sh }"
+zplug "plugins/gitfast", from:oh-my-zsh, if:"which git" # fix git completion issues https://unix.stackexchange.com/a/204308
+zplug "marzocchi/zsh-notify" # notify when a command fails or lasts longer than 30 seconds and the terminal is in the background (requires terminal-notifier)
+zplug "zsh-users/zsh-autosuggestions" # buggy if enabled along with zsh-syntax-highlighting. crashes the shell regularly.
+zplug "zsh-users/zsh-completions" # do-everything argument completions
+zplug "zsh-users/zsh-syntax-highlighting", defer:2 # colored input... see above
+zplug 'zplug/zplug', hook-build:'zplug --self-manage' # manage itself
+
+# DISABLED
+# zplug "TheLocehiliosan/yadm", rename-to:_yadm, use:"completion/yadm.zsh_completion", as:command, defer:2 # yadm completion (not needed - comes with brew installation)
+# zplug "jamesob/desk", from:github, as:command, use:"desk" # shell workspace manager
+# zplug "hchbaw/auto-fu.zsh", at:pu
+# zplug "b4b4r07/enhancd", use:init.sh # enhanced cd
+# zplug "felixr/docker-zsh-completion" # docker completion (deprecated)
+# zplug "gko/ssh-connect", use:ssh-connect.sh # ssh-connect to get a ssh session manager
+# zplug "hchbaw/auto-fu.zsh", use:"auto-fu.zsh" # autocompletion and suggestions
+# zplug "peterhurford/up.zsh" # `up 2` to cd ../..
+# zplug "plugins/docker", from:oh-my-zsh
+# zplug "plugins/git", from:oh-my-zsh, if:"which git" # alias g to git and include completion. and other stuff.
+# zplug "plugins/git-extras", from:oh-my-zsh, if:"which git" # I have this in brew already
+# zplug "plugins/npm", from:oh-my-zsh, if:"which npm"
+# zplug "plugins/phing", from:oh-my-zsh, if:"which phing"
+# zplug "plugins/rake-fast", from:oh-my-zsh # rake task completion
+# zplug "plugins/vagrant", from:oh-my-zsh, if:"which vagrant"
+# zplug "plugins/vi-mode", from:oh-my-zsh
+# zplug "plugins/wd", from:oh-my-zsh # "warp directory" bookmarking tool
+# zplug "sharat87/zsh-vim-mode"
+# zplug "supercrabtree/k" # pretty ls with git, filesize, and date features
+# zplug "zplug/zplug" # zplugception!
+# zplug "zsh-users/zaw" # completer with aliases, git branches, etc. <ctrl-x> to open
+# }}}
+
+# Install plugins if there are plugins that have not been installed {{{
+if ! zplug check; then
+    printf "Install zplug plugins? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+zplug load
+# }}}
 # }}}
 
 # source additional files and env vars {{{
