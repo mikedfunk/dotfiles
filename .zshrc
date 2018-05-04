@@ -183,6 +183,7 @@ alias yb="yadm bootstrap"
 alias upgrades="yb"
 alias save-dotfiles="yadm encrypt && yadm add -u && yadm ci -m working && yadm pu"
 alias joplin="/usr/local/bin/node `which joplin`"
+alias jsc="/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # fuzzy finder - installed and managed via vim-plug https://github.com/junegunn/fzf
 export CLICOLOR=1 # ls colors by default

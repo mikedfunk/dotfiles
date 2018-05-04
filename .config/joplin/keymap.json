@@ -18,5 +18,5 @@
   { "keys": ["yy", "yn"], "type": "prompt", "command": "cp $n \"\"", "cursorPosition": -2 },
   { "keys": ["M", "dn"], "type": "prompt", "command": "mv $n \"\"", "cursorPosition": -2 },
   { "keys": ["R"], "type": "prompt", "command": "ren $n \"\"", "cursorPosition": -2 },
-  { "keys": ["qt"], "type": "prompt", "command": "tag add \"\" $n", "cursorPosition": 9 }
+  { "keys": ["qt", "gt"], "type": "prompt", "command": "tag add \"\" $n", "cursorPosition": 9 }
 ]
