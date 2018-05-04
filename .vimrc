@@ -205,7 +205,7 @@ let g:PHP_removeCRwhenUnix = 1
 let g:PHP_outdentphpescape = 0 " means that PHP tags will match the indent of the HTML around them in files that a mix of PHP and HTML
 let g:php_htmlInStrings = 1 " neat! :h php.vim
 let g:php_baselib = 1 " highlight php builtin functions
-let g:php_folding = 1 " fold methods, control structures, etc.
+" let g:php_folding = 1 " fold methods, control structures, etc.
 let g:php_noShortTags = 1
 " let g:php_parent_error_close = 1 " highlight missing closing ] or )
 " let g:php_parent_error_open = 1 " highlight missing opening [ or (
@@ -549,8 +549,8 @@ command! PreviewInBrowser :call PreviewInBrowser()
 
 " prefix php namespaces
 function! PhpPrefixNamespaces() abort
-    %s/@\([a-z]\+\) \([A-Z]\)/@\1 \\\2/g
-    %s/@author \\/@author /g
+    silent! %s/@\([a-z]\+\) \([A-Z]\)/@\1 \\\2/g
+    silent! %s/@author \\/@author /g
     nohlsearch
 endfunction
 command! PhpPrefixNamespaces :call PhpPrefixNamespaces()
