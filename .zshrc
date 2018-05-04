@@ -68,7 +68,7 @@ zplug "plugins/colorize", from:oh-my-zsh # Plugin for highlighting file content
 zplug 'mfaerevaag/wd', as:command, use:"wd.sh", hook-load:"wd() { . $ZPLUG_REPOS/mfaerevaag/wd/wd.sh }"
 zplug "plugins/gitfast", from:oh-my-zsh, if:"which git" # fix git completion issues https://unix.stackexchange.com/a/204308
 zplug "marzocchi/zsh-notify" # notify when a command fails or lasts longer than 30 seconds and the terminal is in the background (requires terminal-notifier)
-zplug "zsh-users/zsh-autosuggestions" # buggy if enabled along with zsh-syntax-highlighting. crashes the shell regularly.
+zplug "zsh-users/zsh-autosuggestions" # OLD COMMENT: buggy if enabled along with zsh-syntax-highlighting. crashes the shell regularly.
 zplug "zsh-users/zsh-completions" # do-everything argument completions
 zplug "zsh-users/zsh-syntax-highlighting", defer:2 # colored input... see above
 zplug 'zplug/zplug', hook-build:'zplug --self-manage' # manage itself
@@ -420,4 +420,9 @@ zstyle ':completion:*' matcher-list '' \
   'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
   'r:|?=** m:{a-z\-}={A-Z\_}'
 autoload -U edit-command-line
+
+# https://wrotenwrites.com/a_modern_terminal_workflow_3/#Spellcheck-Typo-Correction
+setopt correctall
+alias git status='nocorrect git status'
+
 # }}}

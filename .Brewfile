@@ -1,5 +1,6 @@
-tap "caskroom/cask"
+# vim: set foldmethod=marker:
 
+# brew {{{
 brew "autoconf" # needed to build some php70 libs from source
 brew "autossh" # ssh that reconnects
 brew "chromedriver" # like selenium for chrome.
@@ -122,9 +123,10 @@ brew "yadm" # yet another dotfiles manager
 # brew "zplug" # zsh plugin manager like composer. bash installer crashes for some reason. works fine via homebrew. (switched to installer - see bootstrap)
 brew "zsh" # awesome bash shell replacement
 # brew "zsh-completions" # tab completions. I install this via zplug instead.
+# }}}
 
-
-
+# cask {{{
+tap "caskroom/cask"
 # cask "dashlane" # password manager like lastpass
 # cask "bitbar" # use any cli command to show stuff in the menubar with colors and icons and provide menu options
 # cask "beardedspice" # keyboard media controls for media sites (I now use streamkeys chrome extension) - goes together with bubo.app
@@ -171,10 +173,10 @@ cask "steam"
 # cask "webpquicklook" # quicklook plugin
 cask "wireshark" # analyze network data
 # cask "xquartz" # needed to install xclip, which is needed to copy text from multitail
+# }}}
 
-
-
-# MAC APP STORE
+# mac app store {{{
 # Do I really need these?
 # mas "Xcode", id: 497799835
 # mas "GIPHY CAPTURE", id: 668208984
+# }}}
