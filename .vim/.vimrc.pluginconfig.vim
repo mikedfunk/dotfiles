@@ -55,6 +55,12 @@ if filereadable('phpcs.xml')
     call add(s:php_linters, 'phpcs')
     call add(s:php_fixers, 'phpcbf')
 endif
+
+if (filereadable('.php_cs'))
+    let g:ale_php_cs_fixer_options = '--config=.php_cs'
+    call add(s:php_fixers, 'php_cs_fixer')
+endif
+
 " really I don't need to lint phpmd on every save :/
 " if filereadable('phpmd.xml')
 "     let g:ale_php_phpmd_ruleset = getcwd() . ('/phpmd.xml')
@@ -65,7 +71,7 @@ if (filereadable('phpstan.neon'))
     call add(s:php_linters, 'phpstan')
 endif
 if executable('./node_modules/.bin/eslint') | call add(s:js_linters, 'eslint') | endif
-if executable('./node_modules/.bin/prettier-eslint') | call add(s:js_linters, 'prettier_eslint') | endif
+if executable('./node_modules/.bin/prettier-eslint') | call add(s:js_fixers, 'prettier_eslint') | endif
 
 " If I don't do this, phpcbf fails on any file in the exclude-pattern :/
 let g:ale_php_phpcbf_executable = '/Users/mikefunk/.support/phpcbf-helper.sh'
@@ -73,11 +79,6 @@ let g:ale_php_phpcbf_executable = '/Users/mikefunk/.support/phpcbf-helper.sh'
 " in order to get the alternate executable working you have to declare it as
 " use global, even though it's not 'global' :/
 let g:ale_php_phpcbf_use_global = 1
-
-if (filereadable('.php_cs'))
-    let g:ale_php_cs_fixer_options = '--config=.php_cs'
-    call add(s:php_fixers, 'php_cs_fixer')
-endif
 
 let g:ale_linters = {
 \    'sh': ['shellcheck'],

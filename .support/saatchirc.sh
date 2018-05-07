@@ -1381,7 +1381,7 @@ saatchi-matchback () {
 # saatchi docker {{{
 
 saatchi-docker-start () {
-    dme
+    dms
     wd xdocker
     ./start_all
     builtin cd -

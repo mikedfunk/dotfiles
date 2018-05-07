@@ -98,14 +98,14 @@ Plug 'tpope/vim-endwise' " auto add end/endif for vimscript/ruby. no lazy load o
 " }}}
 
 " Html {{{
-" Plug 'mattn/emmet-vim', { 'for': ['phtml', 'html', 'html.twig', 'twig', 'blade', 'xml'] } " html shorthand expander <c-y>, <c-y>n
-Plug 'docunext/closetag.vim', { 'for': ['html', 'xml', 'html.twig', 'blade', 'php', 'phtml'] } " auto close tags by typing </ . different from auto-pairs.
+" Plug 'mattn/emmet-vim', { 'for': ['phtml', 'html', 'html.twig', 'twig', 'blade', 'xml', 'javascript.jsx'] } " html shorthand expander <c-y>, <c-y>n
+Plug 'docunext/closetag.vim', { 'for': ['html', 'xml', 'html.twig', 'blade', 'php', 'phtml', 'javascript.jsx'] } " auto close tags by typing </ . different from auto-pairs.
 " if has("python") || has("python3") | Plug 'Valloric/MatchTagAlways' | endif " highlight matching tag
 if has('python') || has('python3')
     Plug 'Valloric/MatchTagAlways' " highlight matching tag
 endif
 " Plug 'Seb-C/better-indent-support-for-php-with-html' " fix god-awful phtml indentation
-" runtime macros/matchit.vim " jump to matching html tag
+" runtime macros/matchit.vim " jump to matching html tag (moved to .vimrc)
 " }}}
 
 " Navigation and Search {{{
@@ -156,10 +156,13 @@ Plug 'lifepillar/vim-cheat40' " Customizable cheatsheet. Mine is in ~/.vim/plugg
 " }}}
 
 " Php {{{
-" if has("python3") | Plug 'vim-vdebug/vdebug' | endif " xdebug (dbgp) client. To load with other filetypes do :PlugStatus and L over vdebug. temporarily disabled due to UnicodeError and vim.error on breaking :/ last tested 04-21-2018
-if has('python')
-    Plug 'vim-vdebug/vdebug', { 'for': 'php', 'tag': 'v1.5.2' } " python2 compatible version
+" xdebug (dbgp) client. To load with other filetypes do :PlugStatus and L over vdebug. temporarily disabled due to UnicodeError and vim.error on breaking :/ works as of 5-7-2018
+if has("python3")
+    Plug 'vim-vdebug/vdebug', { 'for': 'php' }
 endif
+" if has('python')
+"     Plug 'vim-vdebug/vdebug', { 'for': 'php', 'tag': 'v1.5.2' }
+" endif
 Plug 'arnaud-lb/vim-php-namespace', { 'for': 'php' } " insert use statements
 " Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' } " better php omnicomplete. This is included with vim8 but the package keeps it up-to-date.
 " Plug 'mkusher/padawan.vim', { 'for': 'php', 'do': 'command -v padawan >/dev/null 2>&1 && cgr update mkusher/padawan \|\| cgr mkusher/padawan' } " better php omnicomplete... but it doesn't complete at all for me

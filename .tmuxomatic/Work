@@ -95,10 +95,12 @@ window easel
 1111111111111111111111111
 1111111111111111111111111
 1111111111111111111111111
-0000000000022222222222222
-0000000000022222222222222
+0000003333333444444222222
+0000003333333444444222222
 
 dir ~/Code/saatchi/easel
+4 glow --watch
+3 yarn jest --watch
 2 run saatchi-attach-easel-node
 # 2 run yarn dev
 1 run vim -S
@@ -186,7 +188,7 @@ window xdocker
 dir ~/Code/saatchi/xdocker
 1 run vim -S
 # 0 run ts
-0 run g pl && dms; saatchi-docker-start
+0 run g pl && saatchi-docker-start
 
 window xpuppet
 

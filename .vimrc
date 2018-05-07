@@ -95,6 +95,7 @@ set display+=lastline
 if &encoding ==# 'latin1' && has('gui_running')
   set encoding=utf-8
 endif
+scriptencoding utf-8
 
 " if &listchars ==# 'eol:$'
 "   set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
@@ -140,6 +141,7 @@ inoremap <C-U> <C-G>u<C-U>
 
 " General {{{
 " use bram's defaults https://github.com/vim/vim/blob/master/runtime/defaults.vim
+runtime macros/matchit.vim " jump to matching html tag
 " unlet! skip_defaults_vim
 " if filereadable($VIMRUNTIME . "/defaults.vim") | source $VIMRUNTIME/defaults.vim | endif
 " set t_ut=
@@ -642,15 +644,15 @@ augroup end
 function! DeleteInactiveBufs() abort
     "From tabpagebuflist() help, get a list of all buffers in all tabs
     let l:tablist = []
-    for i in range(tabpagenr('$'))
-        call extend(l:tablist, tabpagebuflist(i + 1))
+    for l:i in range(tabpagenr('$'))
+        call extend(l:tablist, tabpagebuflist(l:i + 1))
     endfor
 
     let l:nWipeouts = 0
-    for i in range(1, bufnr('$'))
-        if bufexists(i) && !getbufvar(i,"&mod") && index(l:tablist, i) == -1
+    for l:i in range(1, bufnr('$'))
+        if bufexists(l:i) && !getbufvar(l:i,'&mod') && index(l:tablist, l:i) == -1
         "bufno exists AND isn't modified AND isn't in the list of buffers open in windows and tabs
-            silent exec 'bwipeout' i
+            silent exec 'bwipeout' l:i
             let l:nWipeouts = l:nWipeouts + 1
         endif
     endfor
