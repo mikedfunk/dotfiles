@@ -79,7 +79,7 @@ zplug 'zplug/zplug', hook-build:'zplug --self-manage' # manage itself
 # zplug "hchbaw/auto-fu.zsh", at:pu
 # zplug "b4b4r07/enhancd", use:init.sh # enhanced cd
 # zplug "felixr/docker-zsh-completion" # docker completion (deprecated)
-# zplug "gko/ssh-connect", use:ssh-connect.sh # ssh-connect to get a ssh session manager
+# zplug "gko/ssh-connect", use:ssh-connect.sh # ssh-connect to get a ssh session manager (broken - prefixes with an integer for some reason)
 # zplug "hchbaw/auto-fu.zsh", use:"auto-fu.zsh" # autocompletion and suggestions
 # zplug "peterhurford/up.zsh" # `up 2` to cd ../..
 # zplug "plugins/docker", from:oh-my-zsh
