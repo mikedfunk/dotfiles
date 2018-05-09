@@ -247,7 +247,7 @@ $HOME/.support/install-update-zplug.zsh
 
 # apply hosts file {{{
 log_info "Syncing hosts file"
-hostess apply "$HOME/.hosts.json"
+hostess apply "$HOME/.support/hosts.json"
 # }}}
 
 # let iterm see italics {{{

@@ -4,7 +4,7 @@
 " colo base16-grayscale-dark
 " let g:airline_theme="base16_grayscale"
 colo base16-circus
-let g:airline_theme="base16"
+let g:airline_theme="tomorrow"
 " }}}
 
 " jsx {{{
