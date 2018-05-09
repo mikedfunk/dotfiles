@@ -1,16 +1,26 @@
 # for scrollbar in tmux
 termcapinfo xterm*|xs|rxvt|terminal ti@:te@
 
-# remap to c-b
-escape b
+# Same as the utf8 command except that the default setting for new windows is
+# changed. Initial setting is `on' if screen was started with "-U", otherwise
+# `off'.
+defutf8 on
 
-# always show the window bar in the footer
+escape b # remap meta key so I can use this from tmux
+
+# status bar
 hardstatus on
 hardstatus alwayslastline
-hardstatus string "%w"
+# LC_SSH_ALIAS is set in my *sh alias/function before sshing in
+# I only use screen for remote servers anyway
+hardstatus string "%{c} ${LC_SSH_ALIAS} | %w%=%{-}"
+# powerline symbol breaks display
+# hardstatus string "%{c} ${LC_SSH_ALIAS}  %w%=%{-}"
 
-# ensure vim doesn't stay in the scrollback when exiting
+# If set to on, "alternate screen" support is enabled in virtual terminals,
+# just like in xterm.  Initial setting is `off'. Without this, screen won't
+# respond to the escape sequences, even if they're defined in terminfo or
+# termcap.
 altscreen on
 
-# Enable mouse scrolling and scroll bar history scrolling
-termcapinfo xterm* ti@:te@
+termcapinfo xterm* ti@:te@ # Enable mouse scrolling and scroll bar history scrolling

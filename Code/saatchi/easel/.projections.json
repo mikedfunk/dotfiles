@@ -35,6 +35,8 @@
   "apps/saatchi/feature/components/specs/*.spec.js": {"alternate": "apps/saatchi/feature/components/{}.js"},
   "apps/saatchi/ios-help/components/*.js": {"alternate": "apps/saatchi/ios-help/components/specs/{}.spec.js"},
   "apps/saatchi/ios-help/components/specs/*.spec.js": {"alternate": "apps/saatchi/ios-help/components/{}.js"},
+  "apps/saatchi/artadvisory/components/*.js": {"alternate": "apps/saatchi/artadvisory/components/specs/{}.spec.js"},
+  "apps/saatchi/artadvisory/components/specs/*.spec.js": {"alternate": "apps/saatchi/artadvisory/components/{}.js"},
   "lib/browse/mapping/*.js": {"alternate": "lib/browse/mapping/specs/{}.spec.js"},
   "lib/browse/mapping/specs/*.spec.js": {"alternate": "lib/browse/mapping/{}.js"},
   "apps/limited/browse/mapping/*.js": {"alternate": "apps/limited/browse/mapping/specs/{}.spec.js"},

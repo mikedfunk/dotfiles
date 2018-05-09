@@ -12,6 +12,10 @@ augroup jsxgrp
     autocmd!
     autocmd BufRead,BufNewFile *.js set ft=javascript.jsx
 augroup END
+
+" TODO set up contextual commenting based on region
+command! JsComments setlocal commentstring=//\ %s
+command! JsxComments setlocal commentstring={/*\ %s\ */}
 " }}}
 
 " javascript-libraries-syntax {{{

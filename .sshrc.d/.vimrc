@@ -1,1 +1,1 @@
-../.vimrc
+/Users/mikefunk/.vimrc

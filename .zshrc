@@ -135,15 +135,17 @@ export LC_CTYPE=en_US.UTF-8 # https://unix.stackexchange.com/a/302418/287898
 # https://www.everythingcli.org/ssh-tunnelling-for-fun-and-profit-autossh/
 export AUTOSSH_PORT=0
 
-# pass the current ssh alias. Used by my promptline theme to show the alias in the PS1.
-function assh () { LC_SSH_ALIAS=$1 sshrc $1; } # ass H :D
-compdef assh="ssh"
-# I tried this but it broke my deploy function :/
-# alias ssh="alias-ssh"
+# pass the current ssh alias. Used by my promptline theme and .screenrc to show the alias in the PS1.
+function ssh () { LC_SSH_ALIAS=$1 /usr/bin/ssh $1; }
+function autossh () { LC_SSH_ALIAS=$1 /usr/local/bin/autossh $1; }
+function assh () { LC_SSH_ALIAS=$1 /usr/local/bin/sshrc $1; } # ass H :D
+alias sshrc="assh"
 
-ssh-add -A 2>/dev/null # add all keys stored in keychain if they haven't been added yet
+compdef assh="ssh"
 compdef autossh="ssh"
 compdef sshrc="ssh"
+
+ssh-add -A 2>/dev/null # add all keys stored in keychain if they haven't been added yet
 # }}}
 
 # gpg {{{
