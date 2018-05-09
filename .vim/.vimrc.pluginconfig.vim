@@ -417,20 +417,22 @@ let g:airline#extensions#tmuxline#enabled = 0 " use current airline theme stuff 
 " cwin: current tab
 " y: battery, docker machine status, haproxy status, socks proxy status
 " z: date/time info
+" \ 'b': ['#h'],
+" \ 'options': {'status-justify': 'center'},
 let g:tmuxline_preset = {
     \ 'a': ['❏ #S'],
-    \ 'b': ['#h'],
+    \ 'b': ["🔋 #(pmset -g batt | egrep '\d+%' | awk '{print $3}' | awk -F';' '{print $1}')"],
+    \ 'c': ['#(~/.bin/saatchi-haproxy-status.sh)'],
     \ 'win': [ '#I', '#W'],
     \ 'cwin': ['#I', '#W#F'],
-    \ 'y': ["⚡ #(pmset -g batt | egrep '\d+%' | awk '{print $3}' | awk -F';' '{print $1}')", '#(~/.saatchi-haproxy-status.sh)'],
-    \ 'z': ['%a', '%b %d', "#(TZ=Etc/UTC date '+%%R UTC')", '%I:%M %p'],
-    \ 'options': {'status-justify': 'center'},
+    \ 'y': ["#(TZ=Etc/UTC date '+%%R UTC')", ],
+    \ 'z': ['%a', '%b %d', '%I:%M %p'],
 \}
 let g:airline#extensions#tmuxline#snapshot_file = '~/.tmuxline.conf'
 
 if executable('tmux') && isdirectory(expand('~/.vim/plugged/tmuxline.vim'))
     " apply tmuxline settings and snapshot to file
-    command! MyTmuxline :Tmuxline | TmuxlineSnapshot! ~/.tmuxline.conf
+    command! MyTmuxline :Tmuxline | TmuxlineSnapshot! ~/.support/tmuxline.conf
 endif
 " }}}
 
