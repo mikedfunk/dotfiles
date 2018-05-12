@@ -1,4 +1,4 @@
-# vim:set filetype=dosini foldmethod=marker:
+# vim:foldmethod=marker:
 
 # settings {{{
 # all refresh modes are broken right now :(
@@ -11,4 +11,22 @@ set mailmap = true
 
 # bindings {{{
 bind status P !git push
+# https://github.com/jonas/tig/wiki/Bindings
+# move in diff view with arrow keys (up or down in diff view)
+# bind diff <Up> move-up
+# bind diff <Down> move-down
+# revert (! in main view)
+# bind main ! !git revert %(commit)
+# create a new branch (b in refs view)
+bind refs n !@git branch "%(prompt Enter branch name: )"
+# amend last commit  (+ in any view)
+bind generic + !git commit --amend
+# open the commit on github (B in main view)
+bind generic B @sh -c "open 'https://'$(git remote -v | grep -Eo 'github.com[:/][^.]+' | head -1 | tr : /)'/commit/%(commit)'"
+# quickly jump to the next diff chunk in the stage view (Enter in stage view)
+bind stage <Enter> :/^@@
+# Cherry-pick current commit onto current branch (C in any view)
+bind generic C !git cherry-pick %(commit)
+# Reload ~/.tigrc when 'S' is pressed
+bind generic S :source .tigrc
 # }}}

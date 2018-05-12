@@ -90,13 +90,13 @@ let g:ale_linters = {
 \    'vim': ['vint']
 \ }
 let g:ale_fixers = {
-\    'sh': ['shfmt'],
 \    'scss': ['stylelint'],
-\    'json': ['jq'],
 \    'javascript': s:js_fixers,
 \    'php': s:php_fixers,
 \    'ruby': ['rubocop']
 \ }
+" \    'json': ['jq'],
+" \    'sh': ['shfmt'],
 " }}}
 
 " asyncrun.vim {{{
@@ -567,6 +567,7 @@ augroup commentstring
     autocmd FileType php setlocal commentstring=//\ %s
     autocmd FileType haproxy setlocal commentstring=#\ %s
     autocmd FileType neon setlocal commentstring=#\ %s
+    autocmd FileType gitconfig setlocal commentstring=#\ %s
 augroup END
 if isdirectory(expand('~/.vim/plugged/vim-commentary'))
     " this is for my muscle memory from nerd-commenter, but try to get used to

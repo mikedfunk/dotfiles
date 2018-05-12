@@ -80,7 +80,7 @@
     # git flow feature shortcuts
     ffc = flow feature checkout
     ffd = flow feature diff
-    ; fff = flow feature finish
+    # fff = flow feature finish
     fff = "!f() { git flow feature finish $1 && git push; }; f"
     ffl = flow feature list
     ffp = flow feature publish
@@ -119,10 +119,11 @@
     # show latest commits on all branches by most recent
     latest = for-each-ref --sort=-committerdate refs/heads --format='%(committerdate:relative) %(refname:short)'
     # my go-to log format
-    lg = log --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
-    lgdate = log --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset'
-    ld = log --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' develop..HEAD --no-merges
-    lm = log --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' master..HEAD --no-merges
+    # lg = log --pretty=format:'commit %Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+    lg = log --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+    lgdate = log --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cd) %C(bold blue)<%an>%Creset'
+    ld = log --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' develop..HEAD --no-merges
+    lm = log --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' master..HEAD --no-merges
     lmn = "!git log --pretty=format:'%h - %s (%cr) <%an>' master..HEAD --no-merges | pbcopy"
     # graphy log format with the visual branching on the left
     lol = log --graph --decorate --pretty=oneline --abbrev-commit
@@ -190,12 +191,15 @@
 # }}}
 
 # Color and visual settings {{{
-; [color]
-;     branch = true
-;     diff = true
-;     status = true
-;     showbranch = true
-;     ui = true
+[color]
+    # https://ericjmritz.wordpress.com/2015/11/10/using-tig-as-the-pager-for-git/
+    # pager = false
+# [color]
+#     branch = true
+#     diff = true
+#     status = true
+#     showbranch = true
+#     ui = true
 [color "branch"]
     current = yellow reverse
     local = yellow
@@ -220,8 +224,8 @@
 [commit]
     verbose = true
 [format]
-    ; sets the git log format to be one line
-    ; pretty = '%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+    # sets the git log format to be one line
+    # pretty = '%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
 [log]
     date = short
 	mailmap = true
@@ -230,56 +234,59 @@
 # Core settings {{{
 [core]
     editor = vim
-    ;editor = nvim
+    #editor = nvim
     whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
     trustctime = false
-    ; if you want to specify a custom global gitignore location
-    ; I don't use this, I use ~/.config/git/ignore now
-    ; excludesfile = ~/.gitignore
-    ; autocrlf = input
-    ; autocrlf = true
+    # if you want to specify a custom global gitignore location
+    # I don't use this, I use ~/.config/git/ignore now
+    # excludesfile = ~/.gitignore
+    # autocrlf = input
+    # autocrlf = true
     excludesfile = ~/.config/git/ignore
     autocrlf = false
     ignorecase = false
     preloadindex = true
-    ; pager = diff-highlight | diff-so-fancy | less --tabs=1,5 -R
-    ; use diff-so-fancy and diff-highlight together
+    # pager = diff-highlight | diff-so-fancy | less --tabs=1,5 -R
+    # use diff-so-fancy and diff-highlight together
     pager = diff-highlight | diff-so-fancy | less --tabs=4 -RFX
-    ; pager = less -FRSX
-    ; excludesfile = /Users/mikefunk/.config/git/ignore
+    # use tig as git pager
+    # pager = tig --pretty=fuller
+    # pager = tig
+    # pager = less -FRSX
+    # excludesfile = /Users/mikefunk/.config/git/ignore
 # }}}
 
 # diff and mergetool {{{
 [diff]
-    ; tool = opendiff
+    # tool = opendiff
     tool = vimdiff
     compactionHeuristic = 1
-    ; tool = "nvim"
+    # tool = "nvim"
 [merge]
-    ; tool = opendiff
+    # tool = opendiff
     tool = vimdiff
-    ; tool = "nvim -d"
-    ; shows local, parent, then remote
-    ; conflictstyle = diff3
+    # tool = "nvim -d"
+    # shows local, parent, then remote
+    # conflictstyle = diff3
 [mergetool "vimdiff"]
-    ; cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
-    ; use the neovim/macvim/vim switch to use whichever vim is configured
-    ; cmd = source ~/.bash_aliases && ${vim} -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+    # cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+    # use the neovim/macvim/vim switch to use whichever vim is configured
+    # cmd = source ~/.bash_aliases && ${vim} -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 [difftool "vimdiff"]
-    ; cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
-    ; use the neovim/macvim/vim switch to use whichever vim is configured
-    ; cmd = source ~/.bash_aliases && ${vim} -d $LOCAL $REMOTE
+    # cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+    # use the neovim/macvim/vim switch to use whichever vim is configured
+    # cmd = source ~/.bash_aliases && ${vim} -d $LOCAL $REMOTE
 [mergetool]
     keepBackup = false
 [pager]
-    ; this lets you skip to the next/prev file with `n` and `N`
-    ; diff = diff-so-fancy | less --tabs=4 -RFX --pattern '^(Date|added|deleted|modified): '
+    # this lets you skip to the next/prev file with `n` and `N`
+    # diff = diff-so-fancy | less --tabs=4 -RFX --pattern '^(Date|added|deleted|modified): '
 # }}}
 
 # rebasing, squashing, pushing, fetching {{{
 [branch]
-    ; this breaks git flow hotfix finish. Just use git purr or sync to rebase.
-    ; autosetuprebase = always
+    # this breaks git flow hotfix finish. Just use git purr or sync to rebase.
+    # autosetuprebase = always
 [rebase]
     autosquash = true
     autostash = true

@@ -127,6 +127,7 @@ zplug load
 # uninstall by removing these lines or running `tabtab uninstall yo`
 [[ -f /Users/mikefunk/.config/yarn/global/node_modules/tabtab/.completions/yo.zsh ]] && . /Users/mikefunk/.config/yarn/global/node_modules/tabtab/.completions/yo.zsh
 export LC_CTYPE=en_US.UTF-8 # https://unix.stackexchange.com/a/302418/287898
+export LC_ALL=en_US.UTF-8 # https://unix.stackexchange.com/a/302418/287898
 # }}}
 
 # ssh {{{

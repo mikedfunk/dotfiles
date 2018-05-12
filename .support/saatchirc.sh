@@ -508,8 +508,8 @@ alias saatchi-tail-palette-nginx-xprod="multitail -CS palette \
 
 # FIREHOSE! Note: needs sudo to access log, but sudo prevents process from being stopped automatically. Be sure to stop process afterward!
 alias saatchi-tail-lb-xprod="multitail -CS lb \
--l 'ssh -t appdeploy@saatchi-xprod-lb-01 sudo tail -n500 -f /var/log/haproxy.log' \
--L 'ssh -t appdeploy@saatchi-xprod-lb-02 sudo tail -n500 -f /var/log/haproxy.log' \
+-l '/usr/bin/ssh -t appdeploy@saatchi-xprod-lb-01 sudo tail -n500 -f /var/log/haproxy.log' \
+-L '/usr/bin/ssh -t appdeploy@saatchi-xprod-lb-02 sudo tail -n500 -f /var/log/haproxy.log' \
 -ts -M 3000"
 
 # no access to apache logs
@@ -635,7 +635,7 @@ saatchi-id-user-collection-xprod-copy () { ( saatchi-id-user-collection-xprod $1
 # saatchi socks proxies {{{
 # used to connect to web admins for solr and couchbase via switchyomega chrome extension
 # should not need this any more now that it's a launchd service
-alias saatchi-proxy="autossh saatchi-console-proxy -N &"
+# alias saatchi-proxy="autossh saatchi-console-proxy -N &"
 # }}}
 
 # saatchi mycli aliases {{{
@@ -697,9 +697,15 @@ mycli -h localhost \
 #}}}
 
 # xqa {{{
-alias saatchi-mycli-legacy-xqa="autossh -f saatchi-console-01 -L $SAATCHI_XQA_TUNNEL_PORT:$SAATCHI_XQA_HOST:$SAATCHI_XQA_PORT -N && export MYSQL_PWD=$SAATCHI_XQA_PASSWORD && mycli -h localhost -u $SAATCHI_XQA_USERNAME -D $SAATCHI_XQA_DB --port=$SAATCHI_XQA_TUNNEL_PORT --prompt 'saatchi[xqa]> ' --auto-vertical-output --warn"
-alias saatchi-mycli-zed-xqa="autossh -f saatchi-console-01 -L $ZED_XQA_TUNNEL_PORT:$ZED_XQA_HOST:3306 -N && export MYSQL_PWD=$ZED_XQA_PASSWORD && mycli -h127.0.0.1 -P$ZED_XQA_TUNNEL_PORT -u$ZED_XQA_USERNAME -D$ZED_XQA_DB --prompt 'zed[xqa]> ' --auto-vertical-output --warn"
-alias saatchi-mycli-palette-xqa="autossh -f saatchi-console-01 -L $PALETTE_XQA_TUNNEL_PORT:$PALETTE_XQA_HOST:$PALETTE_XQA_PORT -N && export MYSQL_PWD=$PALETTE_XQA_PASSWORD && mycli -h localhost -u $PALETTE_XQA_USERNAME -D $PALETTE_XQA_DB --port=$PALETTE_XQA_TUNNEL_PORT --prompt 'palette[xqa]> ' --auto-vertical-output --warn"
+alias saatchi-mycli-legacy-xqa="autossh -f saatchi-console-01 -L $SAATCHI_XQA_TUNNEL_PORT:$SAATCHI_XQA_HOST:$SAATCHI_XQA_PORT -N && \
+    export MYSQL_PWD=$SAATCHI_XQA_PASSWORD && \
+    mycli -h localhost -u $SAATCHI_XQA_USERNAME -D $SAATCHI_XQA_DB --port=$SAATCHI_XQA_TUNNEL_PORT --prompt 'saatchi[xqa]> ' --auto-vertical-output --warn"
+alias saatchi-mycli-zed-xqa="autossh -f saatchi-console-01 -L $ZED_XQA_TUNNEL_PORT:$ZED_XQA_HOST:3306 -N && \
+    export MYSQL_PWD=$ZED_XQA_PASSWORD && \
+    mycli -h127.0.0.1 -P$ZED_XQA_TUNNEL_PORT -u$ZED_XQA_USERNAME -D$ZED_XQA_DB --prompt 'zed[xqa]> ' --auto-vertical-output --warn"
+alias saatchi-mycli-palette-xqa="autossh -f saatchi-console-01 -L $PALETTE_XQA_TUNNEL_PORT:$PALETTE_XQA_HOST:$PALETTE_XQA_PORT -N && \
+    export MYSQL_PWD=$PALETTE_XQA_PASSWORD && \
+    mycli -h localhost -u $PALETTE_XQA_USERNAME -D $PALETTE_XQA_DB --port=$PALETTE_XQA_TUNNEL_PORT --prompt 'palette[xqa]> ' --auto-vertical-output --warn"
 #}}}
 
 # prod {{{
@@ -767,37 +773,37 @@ function _saatchi-release-color () {
     # sed version
     echo "$1" | sed -E -e "s/^Branch ([a-zA-Z0-9\.\/\-]+) \(at ([0-9a-z]{7})[0-9a-z\)]+ deployed as release ([0-9]{4})([0-9]{2})([0-9]{2})([0-9]{2})([0-9]{2})[0-9]{2} by ([a-z\.]+).*/${BLUE}\1 ${RED}\2${NORMAL} deployed by ${GREEN}\8${NORMAL} on ${YELLOW}\3-\4-\5${NORMAL} at ${PINK}\6:\7${NORMAL} UTC/"
 }
-alias saatchi-release-legacy-xqa='_saatchi-release-color "$(autossh saatchi-xqa-legacy-01 tail -n 1 /data/code_base/revisions.log)"'
-alias saatchi-release-legacy-xdev='_saatchi-release-color "$(autossh saatchi-xdev-legacy-01 tail -n 1 /data/code_base/revisions.log)"'
-alias saatchi-release-legacy-xprod='_saatchi-release-color "$(autossh saatchi-xprod-legacy-01 tail -n 1 /data/code_base/revisions.log)"'
+alias saatchi-release-legacy-xqa='_saatchi-release-color "$(/usr/bin/ssh saatchi-xqa-legacy-01 tail -n 1 /data/code_base/revisions.log)"'
+alias saatchi-release-legacy-xdev='_saatchi-release-color "$(/usr/bin/ssh saatchi-xdev-legacy-01 tail -n 1 /data/code_base/revisions.log)"'
+alias saatchi-release-legacy-xprod='_saatchi-release-color "$(/usr/bin/ssh saatchi-xprod-legacy-01 tail -n 1 /data/code_base/revisions.log)"'
 
-alias saatchi-release-gallery-xqa='_saatchi-release-color "$(autossh saatchi-xqa-gallery-01 tail -n 1 /data/gallery/revisions.log)"'
-alias saatchi-release-gallery-xdev='_saatchi-release-color "$(autossh saatchi-xdev-gallery-01 tail -n 1 /data/gallery/revisions.log)"'
-alias saatchi-release-gallery-xprod='_saatchi-release-color "$(autossh saatchi-xprod-gallery-01 tail -n 1 /data/gallery/revisions.log)"'
+alias saatchi-release-gallery-xqa='_saatchi-release-color "$(/usr/bin/ssh saatchi-xqa-gallery-01 tail -n 1 /data/gallery/revisions.log)"'
+alias saatchi-release-gallery-xdev='_saatchi-release-color "$(/usr/bin/ssh saatchi-xdev-gallery-01 tail -n 1 /data/gallery/revisions.log)"'
+alias saatchi-release-gallery-xprod='_saatchi-release-color "$(/usr/bin/ssh saatchi-xprod-gallery-01 tail -n 1 /data/gallery/revisions.log)"'
 
-alias saatchi-release-easel-xqa='_saatchi-release-color "$(autossh saatchi-xqa-gallery-01 tail -n 1 /data/easel/revisions.log)"'
-alias saatchi-release-easel-xdev='_saatchi-release-color "$(autossh saatchi-xdev-gallery-01 tail -n 1 /data/easel/revisions.log)"'
-alias saatchi-release-easel-xprod='_saatchi-release-color "$(autossh saatchi-xprod-gallery-01 tail -n 1 /data/easel/revisions.log)"'
+alias saatchi-release-easel-xqa='_saatchi-release-color "$(/usr/bin/ssh saatchi-xqa-gallery-01 tail -n 1 /data/easel/revisions.log)"'
+alias saatchi-release-easel-xdev='_saatchi-release-color "$(/usr/bin/ssh saatchi-xdev-gallery-01 tail -n 1 /data/easel/revisions.log)"'
+alias saatchi-release-easel-xprod='_saatchi-release-color "$(/usr/bin/ssh saatchi-xprod-gallery-01 tail -n 1 /data/easel/revisions.log)"'
 
-alias saatchi-release-palette-xqa='_saatchi-release-color "$(autossh saatchi-xqa-palette-01 tail -n 1 /data/palette/revisions.log)"'
-alias saatchi-release-palette-xdev='_saatchi-release-color "$(autossh saatchi-xdev-palette-01 tail -n 1 /data/palette/revisions.log)"'
-alias saatchi-release-palette-xprod='_saatchi-release-color "$(autossh saatchi-xprod-palette-01 tail -n 1 /data/palette/revisions.log)"'
+alias saatchi-release-palette-xqa='_saatchi-release-color "$(/usr/bin/ssh saatchi-xqa-palette-01 tail -n 1 /data/palette/revisions.log)"'
+alias saatchi-release-palette-xdev='_saatchi-release-color "$(/usr/bin/ssh saatchi-xdev-palette-01 tail -n 1 /data/palette/revisions.log)"'
+alias saatchi-release-palette-xprod='_saatchi-release-color "$(/usr/bin/ssh saatchi-xprod-palette-01 tail -n 1 /data/palette/revisions.log)"'
 
-alias saatchi-release-zed-xqa='_saatchi-release-color "$(autossh saatchi-xqa-zed-01 tail -n 1 /data/shop/revisions.log)"'
-alias saatchi-release-zed-xdev='_saatchi-release-color "$(autossh saatchi-xdev-zed-01 tail -n 1 /data/shop/revisions.log)"'
-alias saatchi-release-zed-xprod='_saatchi-release-color "$(autossh saatchi-xprod-zed-01 tail -n 1 /data/shop/revisions.log)"'
+alias saatchi-release-zed-xqa='_saatchi-release-color "$(/usr/bin/ssh saatchi-xqa-zed-01 tail -n 1 /data/shop/revisions.log)"'
+alias saatchi-release-zed-xdev='_saatchi-release-color "$(/usr/bin/ssh saatchi-xdev-zed-01 tail -n 1 /data/shop/revisions.log)"'
+alias saatchi-release-zed-xprod='_saatchi-release-color "$(/usr/bin/ssh saatchi-xprod-zed-01 tail -n 1 /data/shop/revisions.log)"'
 
-alias saatchi-release-catalog-xqa='_saatchi-release-color "$(autossh saatchi-xqa-catalog-01 tail -n 1 /data/catalog/revisions.log)"'
-alias saatchi-release-catalog-xdev='_saatchi-release-color "$(autossh saatchi-xdev-catalog-01 tail -n 1 /data/catalog/revisions.log)"'
-alias saatchi-release-catalog-xprod='_saatchi-release-color "$(autossh saatchi-xprod-catalog-01 tail -n 1 /data/catalog/revisions.log)"'
+alias saatchi-release-catalog-xqa='_saatchi-release-color "$(/usr/bin/ssh saatchi-xqa-catalog-01 tail -n 1 /data/catalog/revisions.log)"'
+alias saatchi-release-catalog-xdev='_saatchi-release-color "$(/usr/bin/ssh saatchi-xdev-catalog-01 tail -n 1 /data/catalog/revisions.log)"'
+alias saatchi-release-catalog-xprod='_saatchi-release-color "$(/usr/bin/ssh saatchi-xprod-catalog-01 tail -n 1 /data/catalog/revisions.log)"'
 
-alias saatchi-release-api-xqa='_saatchi-release-color "$(autossh saatchi-xqa-catalog-01 tail -n 1 /data/api/revisions.log)"'
-alias saatchi-release-api-xdev='_saatchi-release-color "$(autossh saatchi-xdev-catalog-01 tail -n 1 /data/api/revisions.log)"'
-alias saatchi-release-api-xprod='_saatchi-release-color "$(autossh saatchi-xprod-catalog-01 tail -n 1 /data/api/revisions.log)"'
+alias saatchi-release-api-xqa='_saatchi-release-color "$(/usr/bin/ssh saatchi-xqa-catalog-01 tail -n 1 /data/api/revisions.log)"'
+alias saatchi-release-api-xdev='_saatchi-release-color "$(/usr/bin/ssh saatchi-xdev-catalog-01 tail -n 1 /data/api/revisions.log)"'
+alias saatchi-release-api-xprod='_saatchi-release-color "$(/usr/bin/ssh saatchi-xprod-catalog-01 tail -n 1 /data/api/revisions.log)"'
 
-alias saatchi-release-imgproc-xqa='_saatchi-release-color "$(autossh saatchi-xqa-origin-01 tail -n 1 /data/imgproc/revisions.log)"'
-alias saatchi-release-imgproc-xdev='_saatchi-release-color "$(autossh saatchi-xdev-origin-01 tail -n 1 /data/imgproc/revisions.log)"'
-alias saatchi-release-imgproc-xprod='_saatchi-release-color "$(autossh saatchi-xprod-origin-01 tail -n 1 /data/imgproc/revisions.log)"'
+alias saatchi-release-imgproc-xqa='_saatchi-release-color "$(/usr/bin/ssh saatchi-xqa-origin-01 tail -n 1 /data/imgproc/revisions.log)"'
+alias saatchi-release-imgproc-xdev='_saatchi-release-color "$(/usr/bin/ssh saatchi-xdev-origin-01 tail -n 1 /data/imgproc/revisions.log)"'
+alias saatchi-release-imgproc-xprod='_saatchi-release-color "$(/usr/bin/ssh saatchi-xprod-origin-01 tail -n 1 /data/imgproc/revisions.log)"'
 
 function saatchi-releases-xdev () {
     out="\n"
@@ -905,15 +911,15 @@ function saatchi-command-legacy-local() {
 }
 function saatchi-command-legacy-xdev() {
     if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-command-legacy-xdev art/my-script --my-arg=1"; return; fi;
-    autossh -t saatchi-xdev-legacy-services-01 "php -ddisplay_errors=on /data/code_base/current/scripts/$1.php development -v ${@:2}";
+    /usr/bin/ssh -t saatchi-xdev-legacy-services-01 "php -ddisplay_errors=on /data/code_base/current/scripts/$1.php development -v ${@:2}";
 }
 function saatchi-command-legacy-xqa() {
     if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-command-legacy-xqa art/my-script --my-arg=1"; return; fi;
-    autossh -t saatchi-xqa-legacy-services-01 "php -ddisplay_errors=on /data/code_base/current/scripts/$1.php qa -v ${@:2}";
+    /usr/bin/ssh -t saatchi-xqa-legacy-services-01 "php -ddisplay_errors=on /data/code_base/current/scripts/$1.php qa -v ${@:2}";
 }
 function saatchi-command-legacy-xprod() {
     if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-command-legacy-xprod art/my-script --my-arg=1"; return; fi;
-    autossh -t saatchi-xprod-legacy-services-02 "php -ddisplay_errors=on /data/code_base/current/scripts/$1.php production -v ${@:2}";
+    /usr/bin/ssh -t saatchi-xprod-legacy-services-02 "php -ddisplay_errors=on /data/code_base/current/scripts/$1.php production -v ${@:2}";
 }
 # }}}
 
@@ -924,15 +930,15 @@ function saatchi-command-palette-local() {
 }
 function saatchi-command-palette-xdev() {
     if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-command-palette-xdev my:command --my-arg=1"; return; fi;
-    autossh -t saatchi-xdev-palette-services-01 "cd /data/palette/current && php artisan $@";
+    /usr/bin/ssh -t saatchi-xdev-palette-services-01 "cd /data/palette/current && php artisan $@";
 }
 function saatchi-command-palette-xqa() {
     if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-command-palette-xqa my:command --my-arg=1"; return; fi;
-    autossh -t saatchi-xqa-palette-services-01 "cd /data/palette/current && php artisan $@";
+    /usr/bin/ssh -t saatchi-xqa-palette-services-01 "cd /data/palette/current && php artisan $@";
 }
 function saatchi-command-palette-xprod() {
     if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-command-palette-xprod my:command --my-arg=1"; return; fi;
-    autossh -t saatchi-xprod-palette-services-01 "cd /data/palette/current && php artisan $@";
+    /usr/bin/ssh -t saatchi-xprod-palette-services-01 "cd /data/palette/current && php artisan $@";
 }
 # }}}
 
@@ -1145,7 +1151,7 @@ _saatchi-couchbase-update () {
     CB_TMP_FILE="/tmp/couchbase-$BUCKET-$KEY.json"
     SSH_COMMAND="php -r \"\\\$result = (new CouchbaseCluster('$COUCHBASE_SERVER'))->openBucket('$BUCKET')->get('$KEY')->value; file_put_contents('$CB_TMP_FILE', is_string(\\\$result) ? json_encode(json_decode(\\\$result), JSON_PRETTY_PRINT) : json_encode(\\\$result, JSON_PRETTY_PRINT));\""
 
-    if ! ssh $SERVICES "$SSH_COMMAND"; then
+    if ! /usr/bin/ssh $SERVICES "$SSH_COMMAND"; then
         echo 'Document Not Found'
         return
     fi
@@ -1157,7 +1163,7 @@ _saatchi-couchbase-update () {
         scp $CB_TMP_FILE $SERVICES:$CB_TMP_FILE
         rm "$CB_TMP_FILE"
         SSH_COMMAND="php -r \"(new CouchbaseCluster('$COUCHBASE_SERVER'))->openBucket('$BUCKET')->upsert('$KEY', json_decode(file_get_contents('$CB_TMP_FILE'), true));\" && rm $CB_TMP_FILE"
-        ssh $SERVICES "$SSH_COMMAND"
+        /usr/bin/ssh $SERVICES "$SSH_COMMAND"
         echo "done"
     else
         echo "no data to insert"
@@ -1235,7 +1241,7 @@ saatchi-solr-query-art-xqa () {
 }
 saatchi-solr-query-art-xprod () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-query-art-xprod q==\"*:*\" sort==\"random asc\" ..."; return; fi;
-    ssh -f saatchi-console-01 -L 8397:$SAATCHI_XPROD_SOLR:8080 -N && http --pretty=all http://localhost:8397/solr/ap_art/select wt==json $@ -j | less -R;
+    /usr/bin/ssh -f saatchi-console-01 -L 8397:$SAATCHI_XPROD_SOLR:8080 -N && http --pretty=all http://localhost:8397/solr/ap_art/select wt==json $@ -j | less -R;
 }
 # }}}
 
@@ -1254,7 +1260,7 @@ saatchi-solr-query-collection-xqa () {
 }
 saatchi-solr-query-collection-xprod () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-query-collection-xprod q==\"*:*\" sort==\"random asc\" ..."; return; fi;
-    ssh -f saatchi-console-01 -L 8397:$SAATCHI_XPROD_SOLR:8080 -N && http --pretty=all http://localhost:8397/solr/ap_collection/select wt==json $@ -j | less -R;
+    /usr/bin/ssh -f saatchi-console-01 -L 8397:$SAATCHI_XPROD_SOLR:8080 -N && http --pretty=all http://localhost:8397/solr/ap_collection/select wt==json $@ -j | less -R;
 }
 # }}}
 
@@ -1273,7 +1279,7 @@ saatchi-solr-query-user-xqa () {
 }
 saatchi-solr-query-user-xprod () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-query-user-xprod q==\"*:*\" sort==\"random asc\" ..."; return; fi;
-    ssh -f saatchi-console-01 -L 8397:$SAATCHI_XPROD_SOLR:8080 -N && http --pretty=all http://localhost:8397/solr/ap/select wt==json $@ -j | less -R;
+    /usr/bin/ssh -f saatchi-console-01 -L 8397:$SAATCHI_XPROD_SOLR:8080 -N && http --pretty=all http://localhost:8397/solr/ap/select wt==json $@ -j | less -R;
 }
 # }}}
 
@@ -1284,15 +1290,15 @@ saatchi-solr-index-art-local () {
 }
 saatchi-solr-index-art-xdev () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-index-art-xdev {id_user_art}"; return; fi;
-    ssh saatchi-xdev-legacy-services-01 -t "php -ddisplay_errors=on /data/code_base/current/scripts/solr/index-art-by-id.php development -v -minId=$1 -maxId=$1;"
+    /usr/bin/ssh saatchi-xdev-legacy-services-01 -t "php -ddisplay_errors=on /data/code_base/current/scripts/solr/index-art-by-id.php development -v -minId=$1 -maxId=$1;"
 }
 saatchi-solr-index-art-xqa () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-index-art-xqa {id_user_art}"; return; fi;
-    ssh saatchi-xqa-legacy-services-01 -t "php -ddisplay_errors=on /data/code_base/current/scripts/solr/index-art-by-id.php qa -v -minId=$1 -maxId=$1;"
+    /usr/bin/ssh saatchi-xqa-legacy-services-01 -t "php -ddisplay_errors=on /data/code_base/current/scripts/solr/index-art-by-id.php qa -v -minId=$1 -maxId=$1;"
 }
 saatchi-solr-index-art-xprod () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-index-art-xprod {id_user_art}"; return; fi;
-    ssh saatchi-xprod-legacy-services-02 -t "php -ddisplay_errors=on /data/code_base/current/scripts/solr/index-art-by-id.php production -v -minId=$1 -maxId=$1;"
+    /usr/bin/ssh saatchi-xprod-legacy-services-02 -t "php -ddisplay_errors=on /data/code_base/current/scripts/solr/index-art-by-id.php production -v -minId=$1 -maxId=$1;"
 }
 # }}}
 
@@ -1303,15 +1309,15 @@ saatchi-solr-index-art-by-artist-local () {
 }
 saatchi-solr-index-art-by-artist-xdev () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-index-art-xdev {id_user_art}"; return; fi;
-    ssh saatchi-xdev-legacy-services-01 -t "php -ddisplay_errors=on /data/code_base/current/scripts/solr/index-art-by-artist-id.php development -v --artist-id=$1;"
+    /usr/bin/ssh saatchi-xdev-legacy-services-01 -t "php -ddisplay_errors=on /data/code_base/current/scripts/solr/index-art-by-artist-id.php development -v --artist-id=$1;"
 }
 saatchi-solr-index-art-by-artist-xqa () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-index-art-xqa {id_user_art}"; return; fi;
-    ssh saatchi-xqa-legacy-services-01 -t "php -ddisplay_errors=on /data/code_base/current/scripts/solr/index-art-by-artist-id.php qa -v --artist-id=$1;"
+    /usr/bin/ssh saatchi-xqa-legacy-services-01 -t "php -ddisplay_errors=on /data/code_base/current/scripts/solr/index-art-by-artist-id.php qa -v --artist-id=$1;"
 }
 saatchi-solr-index-art-by-artist-xprod () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-index-art-xprod {id_user_art}"; return; fi;
-    ssh saatchi-xprod-legacy-services-02 -t "php -ddisplay_errors=on /data/code_base/current/scripts/solr/index-art-by-artist-id.php production -v --artist-id=$1;"
+    /usr/bin/ssh saatchi-xprod-legacy-services-02 -t "php -ddisplay_errors=on /data/code_base/current/scripts/solr/index-art-by-artist-id.php production -v --artist-id=$1;"
 }
 # }}}
 
@@ -1322,15 +1328,15 @@ saatchi-solr-index-collections-by-user-id-local () {
 }
 saatchi-solr-index-collections-by-user-id-xdev () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-index-collections-by-user-id-xdev {user_id}"; return; fi;
-    ssh saatchi-xdev-legacy-services-01 -t "php -ddisplay_errors=on /data/code_base/current/scripts/solr/index-collection-data.php development -v -minId=$1 -maxId=$1;"
+    /usr/bin/ssh saatchi-xdev-legacy-services-01 -t "php -ddisplay_errors=on /data/code_base/current/scripts/solr/index-collection-data.php development -v -minId=$1 -maxId=$1;"
 }
 saatchi-solr-index-collections-by-user-id-xqa () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-index-collections-by-user-id-xqa {user_id}"; return; fi;
-    ssh saatchi-xqa-legacy-services-01 -t "php -ddisplay_errors=on /data/code_base/current/scripts/solr/index-collection-data.php qa -v -minId=$1 -maxId=$1;"
+    /usr/bin/ssh saatchi-xqa-legacy-services-01 -t "php -ddisplay_errors=on /data/code_base/current/scripts/solr/index-collection-data.php qa -v -minId=$1 -maxId=$1;"
 }
 saatchi-solr-index-collections-by-user-id-xprod () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-solr-index-collections-by-user-id-xprod {user_id}"; return; fi;
-    ssh saatchi-xprod-legacy-services-02 -t "php -ddisplay_errors=on /data/code_base/current/scripts/solr/index-collection-data.php production -v -minId=$1 -maxId=$1;"
+    /usr/bin/ssh saatchi-xprod-legacy-services-02 -t "php -ddisplay_errors=on /data/code_base/current/scripts/solr/index-collection-data.php production -v -minId=$1 -maxId=$1;"
 }
 # }}}
 
@@ -1361,28 +1367,12 @@ saatchi-add-artwork-to-collection-xprod () { saatchi-add-artwork-to-collection-i
 
 # }}}
 
-# saatchi local-scripts {{{
-
-# Lauren's "matchback" files - order items in a csv with details. {{{
-#
-saatchi-matchback () {
-    if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-matchback --date-from=2017-01-20 --date-to=2017-02-01 --only-country=USA --with-category"; return; fi;
-    autossh mike.funk@saatchi-xprod-legacy-services-02 -t "cd local-scripts && ( [ -f output.csv ] && rm output.csv ); ./bin/app order-items-to-csv $@" && \
-        scp mike.funk@saatchi-xprod-legacy-services-02:local-scripts/output.csv $HOME/output.csv && \
-        wc -l $HOME/output.csv && \
-        open $HOME && \
-        osascript -e 'tell application "System Events" to key code 123 using control down'
-    # ^ ctrl-left to go to the finder space
-}
-# }}}
-
-# }}}
-
 # saatchi docker {{{
 
 saatchi-docker-start () {
     dms
     wd xdocker
+    dme
     ./start_all
     builtin cd -
 }
@@ -1446,7 +1436,7 @@ saatchi-flatten-collection-local () {
 
 saatchi-flatten-user-xdev () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-flatten-user-xdev {user_id}"; return; fi;
-        ssh appdeploy@saatchi-xdev-catalog-01 -t "bash -c \"\
+        /usr/bin/ssh appdeploy@saatchi-xdev-catalog-01 -t "bash -c \"\
             source /etc/profile && \
             export SAATCHI_ENV=development && \
             export RAILS_ENV=development && \
@@ -1457,7 +1447,7 @@ saatchi-flatten-user-xdev () {
 
 saatchi-flatten-artwork-xdev () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-flatten-artwork-xdev {id_user_art}"; return; fi;
-    ssh appdeploy@saatchi-xdev-catalog-01 -t "bash -c \"\
+    /usr/bin/ssh appdeploy@saatchi-xdev-catalog-01 -t "bash -c \"\
         source /etc/profile && \
         export SAATCHI_ENV=development && \
         export RAILS_ENV=development && \
@@ -1468,7 +1458,7 @@ saatchi-flatten-artwork-xdev () {
 
 saatchi-flatten-art-for-user-xdev () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-flatten-art-for-user-xdev {user_id}"; return; fi;
-    ssh appdeploy@saatchi-xdev-catalog-01 -t "bash -c \"\
+    /usr/bin/ssh appdeploy@saatchi-xdev-catalog-01 -t "bash -c \"\
         source /etc/profile && \
         export SAATCHI_ENV=development && \
         export RAILS_ENV=development && \
@@ -1480,7 +1470,7 @@ saatchi-flatten-art-for-user-xdev () {
 
 saatchi-flatten-collection-xdev () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-flatten-collection-xdev {id_user_collection}"; return; fi;
-    ssh appdeploy@saatchi-xdev-catalog-01 -t "bash -c \"\
+    /usr/bin/ssh appdeploy@saatchi-xdev-catalog-01 -t "bash -c \"\
         source /etc/profile && \
         export SAATCHI_ENV=development && \
         export RAILS_ENV=development && \
@@ -1491,7 +1481,7 @@ saatchi-flatten-collection-xdev () {
 
 saatchi-flatten-user-xqa () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-flatten-user-xqa {user_id}"; return; fi;
-    ssh appdeploy@saatchi-xqa-catalog-01 -t "bash -c \"\
+    /usr/bin/ssh appdeploy@saatchi-xqa-catalog-01 -t "bash -c \"\
         source /etc/profile && \
         export SAATCHI_ENV=qa && \
         export RAILS_ENV=qa && \
@@ -1502,7 +1492,7 @@ saatchi-flatten-user-xqa () {
 
 saatchi-flatten-artwork-xqa () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-flatten-artwork-xqa {id_user_art}"; return; fi;
-    ssh appdeploy@saatchi-xqa-catalog-01 -t "bash -c \"\
+    /usr/bin/ssh appdeploy@saatchi-xqa-catalog-01 -t "bash -c \"\
         source /etc/profile && \
         export SAATCHI_ENV=qa && \
         export RAILS_ENV=qa && \
@@ -1513,7 +1503,7 @@ saatchi-flatten-artwork-xqa () {
 
 saatchi-flatten-art-for-user-xqa () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-flatten-art-for-user-xqa {user_id}"; return; fi;
-    ssh appdeploy@saatchi-xqa-catalog-01 -t "bash -c \"\
+    /usr/bin/ssh appdeploy@saatchi-xqa-catalog-01 -t "bash -c \"\
         source /etc/profile && \
         export SAATCHI_ENV=qa && \
         export RAILS_ENV=qa && \
@@ -1525,7 +1515,7 @@ saatchi-flatten-art-for-user-xqa () {
 
 saatchi-flatten-collection-xqa () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-flatten-collection-xqa {id_user_collection}"; return; fi;
-    ssh appdeploy@saatchi-xqa-catalog-01 -t "bash -c \"\
+    /usr/bin/ssh appdeploy@saatchi-xqa-catalog-01 -t "bash -c \"\
         source /etc/profile && \
         export SAATCHI_ENV=qa && \
         export RAILS_ENV=qa && \
@@ -1536,7 +1526,7 @@ saatchi-flatten-collection-xqa () {
 
 saatchi-flatten-user-xprod () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-flatten-user-xprod {user_id}"; return; fi;
-    ssh appdeploy@saatchi-xprod-catalog-01 -t "bash -c \"\
+    /usr/bin/ssh appdeploy@saatchi-xprod-catalog-01 -t "bash -c \"\
         source /etc/profile && \
         export SAATCHI_ENV=production && \
         export RAILS_ENV=production && \
@@ -1547,7 +1537,7 @@ saatchi-flatten-user-xprod () {
 
 saatchi-flatten-artwork-xprod () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-flatten-artwork-xprod {id_user_art}"; return; fi;
-    ssh appdeploy@saatchi-xprod-catalog-01 -t "bash -c \"\
+    /usr/bin/ssh appdeploy@saatchi-xprod-catalog-01 -t "bash -c \"\
         source /etc/profile && \
         export SAATCHI_ENV=production && \
         export RAILS_ENV=production && \
@@ -1558,7 +1548,7 @@ saatchi-flatten-artwork-xprod () {
 
 saatchi-flatten-art-for-user-xprod () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-flatten-art-for-user-xprod {user_id}"; return; fi;
-    ssh appdeploy@saatchi-xprod-catalog-01 -t "bash -c \"\
+    /usr/bin/ssh appdeploy@saatchi-xprod-catalog-01 -t "bash -c \"\
         source /etc/profile && \
         export SAATCHI_ENV=production && \
         export RAILS_ENV=production && \
@@ -1570,7 +1560,7 @@ saatchi-flatten-art-for-user-xprod () {
 
 saatchi-flatten-collection-xprod () {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-flatten-collection-xprod {id_user_collection}"; return; fi;
-    ssh appdeploy@saatchi-xprod-catalog-01 -t "bash -c \"\
+    /usr/bin/ssh appdeploy@saatchi-xprod-catalog-01 -t "bash -c \"\
         source /etc/profile && \
         export SAATCHI_ENV=production && \
         export RAILS_ENV=production && \
@@ -1585,7 +1575,7 @@ saatchi-flatten-collection-xprod () {
 #
 # modified to ssh first
 #
-_mc_sendmsg() { ssh $MCPROXYSERVER "echo -e \"$*\r\" | nc $MCSERVER $MCPORT;"}
+_mc_sendmsg() { /usr/bin/ssh $MCPROXYSERVER "echo -e \"$*\r\" | nc $MCSERVER $MCPORT;"}
 _mc_doset() {
     command="$1"
     shift

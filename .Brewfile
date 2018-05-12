@@ -66,7 +66,7 @@ brew "multitail" # tail multiple files in splits with pretty colors
 brew "mysql"
 # brew "nano" # text editor. This gets the latest version: 2.2.6 rather than 2.2.0 that comes with osx.
 # brew "neovim" # vim re-imagining
-brew "node", link: false # nodejs and npm (required by joplin, yarn)
+brew "node" # nodejs and npm (required by joplin, yarn)
 brew "nodenv" # node version manager
 brew "noti" # simple terminal notifier
 # brew "openssl@1.1" # not sure if this is still needed...

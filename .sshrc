@@ -2,4 +2,4 @@ export VIMINIT="let \$MYVIMRC='$SSHHOME/.sshrc.d/.vimrc' | source \$MYVIMRC"
 [ -f $SSHHOME/.sshrc.d/promptline.theme.bash ] && source $SSHHOME/.sshrc.d/promptline.theme.bash
 function screen () { /usr/bin/screen -U -c "$SSHHOME/.sshrc.d/.screenrc" -dAR mike.funk; }
 export LC_ALL="en_US.UTF-8"
-export LANGUAGE=en_US.UTF-8
+export LANGUAGE="en_US.UTF-8"
