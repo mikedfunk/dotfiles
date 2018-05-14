@@ -58,8 +58,8 @@ Plug 'wellle/tmux-complete.vim' " add tmux as a completion source with user-defi
 
 " General {{{
 " Plug 'tpope/vim-sensible' " sensible defaults (I copied these to my base vimrc)
-" Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' } " redo another branch
-Plug 'simnalamburt/vim-mundo', { 'on': 'MundoToggle' } " nicer undotree
+Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' } " redo another branch
+" Plug 'simnalamburt/vim-mundo', { 'on': 'MundoToggle' } " nicer undotree
 " Plug 'dahu/vim-lotr', { 'on': 'LOTRToggle' } " yankring-like
 " Plug 'scrooloose/syntastic' " syntax checker (no lazy load)
 " Plug 'mtscout6/syntastic-local-eslint.vim' " tell syntastic to prefer project node bin eslint executable over global one

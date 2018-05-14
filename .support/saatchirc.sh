@@ -1964,7 +1964,8 @@ function saatchi-zed-fix-quantity-local () {
 
 # get all open saatchi pull requests {{{
 alias saatchi-pull-requests="gh pr --list --org=saatchiart --all --sort long-running --direction desc"
-alias saatchi-pull-requests-me="gh pr --list --org=saatchiart --all --me --sort long-running --direction desc"
+alias saatchi-pull-requests-me="saatchi-pull-requests --me"
+alias saatchi-pull-requests-assigned-to-me="saatchi-pull-requests --assignee=\"Mike Funk\""
 function saatchi-pull-request() {
     if [[ "$1" == "--help" ]]; then echo "usage: saatchi-pull-request {first_or_last_name_of_coworker}"; return; fi;
     declare -A usernameMap

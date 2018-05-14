@@ -469,11 +469,13 @@ endif
 " the next step unless you make it stick with `:VdebugEval! $x + 2`. In that
 " case will re-evaluate at every step.
 " NOTE: for repeating requests `:VdebugOpt continuous_mode 1`
-let g:vdebug_options = {
-    \ 'timeout': 30,
-    \ 'watch_window_style': 'compact'
-\ }
-" let g:vdebug_options["break_on_open"] = 0 " (default = 1)
+let g:vdebug_options = {}
+let g:vdebug_options['timeout'] = 30
+let g:vdebug_options['watch_window_style'] = 'compact'
+let g:vdebug_options['continuous_mode'] = 1
+let g:vdebug_options['debug_file'] = '/tmp/xdebug.log'
+let g:vdebug_options["break_on_open"] = 0 " (default = 1)
+
 let g:vdebug_keymap = { 'eval_visual': '<leader>ev' }
 
 " @link https://vi.stackexchange.com/questions/3355/why-do-custom-highlights-in-my-vimrc-get-cleared-or-reset-to-default
