@@ -126,6 +126,9 @@ if !empty(&viminfo)
 endif
 set sessionoptions-=options
 
+" http://vim.wikia.com/wiki/Fix_syntax_highlighting
+" syntax sync minlines=200
+
 " Allow color schemes to do bright colors without forcing bold.
 if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
   set t_Co=16
@@ -151,7 +154,7 @@ noremap \ ,
 " set autoread " update files changed outside of vim. This works well with `set noswapfile`(in sensible.vim)
 set exrc " enables reading .exrc or .vimrc from current directory
 set secure " Always append set secure when exrc option is enabled!
-set completeopt-=preview " turn off omnicomplete preview window
+" set completeopt-=preview " turn off omnicomplete preview window
 set completeopt+=longest " only autofill the common text between all completion options
 set completeopt-=menu | set completeopt+=menuone " display completion even if there is one result. Useful for echodoc.
 set fileformat=unix " Any non-unix line endings are converted to unix

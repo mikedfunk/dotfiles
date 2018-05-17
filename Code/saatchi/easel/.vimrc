@@ -1,10 +1,20 @@
 " vim: set foldmethod=marker:
 
 " color {{{
+"
 " colo base16-grayscale-dark
 " let g:airline_theme="base16_grayscale"
-colo base16-circus
-let g:airline_theme="tomorrow"
+"
+" colo base16-circus
+" let g:airline_theme="tomorrow"
+"
+" BRIGHT O_O
+" colo base16-irblack
+" let g:airline_theme="powerlineish"
+
+" bright with blue split lines and blue/green/teal colors
+colo base16-seti
+let g:airline_theme="base16_seti"
 " }}}
 
 " jsx {{{

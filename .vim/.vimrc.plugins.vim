@@ -128,7 +128,7 @@ Plug 'michaeljsmith/vim-indent-object' " select in indentation level e.g. vii
 " Plug 'kana/vim-textobj-entire' " select in entire document
 " Plug 'coderifous/textobj-word-column.vim' " add a text object c and C for a column - visual block mode for current indentation level
 " Plug 'wellle/visual-split.vim' " adds mappings and commands to split out the visual selection vertically
-" Plug 'tpope/vim-vinegar' " netrw helper
+Plug 'tpope/vim-vinegar' " netrw helper
 " Plug 'matthewd/vim-vinegar', { 'branch': 'netrw-plug' } " temporary fork that fixes a bug
 Plug 'justinmk/vim-ipmotion' " makes blank line with spaces only the end of a paragraph
 Plug 'machakann/vim-swap' " move args left/right with g< g> or gs for interactive mode
@@ -164,7 +164,7 @@ endif
 "     Plug 'vim-vdebug/vdebug', { 'for': 'php', 'tag': 'v1.5.2' }
 " endif
 Plug 'arnaud-lb/vim-php-namespace', { 'for': 'php' } " insert use statements
-" Plug 'shawncplus/phpcomplete.vim' " better php omnicomplete. This is included with vim8 but the package keeps it up-to-date.
+Plug 'shawncplus/phpcomplete.vim' " better php omnicomplete. This is included with vim8 but the package keeps it up-to-date.
 " Plug 'mkusher/padawan.vim', { 'for': 'php', 'do': 'command -v padawan >/dev/null 2>&1 && cgr update mkusher/padawan \|\| cgr mkusher/padawan' } " better php omnicomplete... but it doesn't complete at all for me
 " Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install'  } " based on phpcomplete but supposedly faster. Problem with legacy :/ SEE BELOW
 " Plug 'mikedfunk/phpcd.vim', { 'for': 'php', 'do': 'composer install'  } " fork to make it actually work with php 7.0. I still have problems with php errors on this. This probably expects a newer api than the old versions of the dependencies I had to use.
@@ -224,7 +224,8 @@ if has('python') || has('python3')
     Plug 'ternjs/tern_for_vim', { 'for': 'javascript', 'do': 'npm install' }
 endif " javascript omnifunc and jump to def. requires a .tern-project file. http://ternjs.net/doc/manual.html#configuration
 Plug 'othree/javascript-libraries-syntax.vim' " syntax completion for common libraries (react, lodash, jquery, etc.)
-Plug 'kristijanhusak/vim-js-file-import' " Go to definition: <leader>ig Import file: <Leader>if
+" Plug 'kristijanhusak/vim-js-file-import' " Go to definition: <leader>ig Import file: <Leader>if
+Plug 'tpope/vim-apathy' " tweak built-in vim features to allow jumping to module location
 " }}}
 
 " Syntax highlighting {{{
