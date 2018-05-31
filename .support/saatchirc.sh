@@ -1018,7 +1018,7 @@ _saatchi-couchbase-get () {
     SERVICES=$5
 
     SSH_COMMAND="php -r \"\\\$result = (new CouchbaseCluster('$COUCHBASE_SERVER'))->openBucket('$BUCKET')->get('$KEY')->value; echo is_string(\\\$result) ? \\\$result : json_encode(\\\$result, JSON_PRETTY_PRINT);\""
-    RESULT=$(ssh $SERVICES "$SSH_COMMAND")
+    RESULT=$(/usr/bin/ssh $SERVICES "$SSH_COMMAND")
     echo "$RESULT" | python -m json.tool | rougify -l javascript | less -R
 }
 
@@ -1373,7 +1373,7 @@ saatchi-docker-start () {
     dms
     wd xdocker
     dme
-    ./start_all
+    ./start_all --without-pull
     builtin cd -
 }
 alias saatchi-docker-restart="saatchi-docker-start"
@@ -1717,6 +1717,7 @@ function saatchi-memcached-clear-user-cache-xqa() {
     saatchi-memcached-delete-xqa "Saatchi_Model_Base_User_Acl_Roles_$1"
 }
 # }}}
+
 # }}}
 
 # saatchi deploy {{{

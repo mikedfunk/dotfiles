@@ -52,7 +52,10 @@
 # php {{{
 # docs: https://github.com/universal-ctags/ctags/blob/master/parsers/php.c#L125-L142
 # classes, functions, namespaces, interfaces, traits, variables
---PHP-kinds=cfnitv
+# --PHP-kinds=cfnitv
+# the problem with v is that when I jump to the source of a dependency it jumps
+# to the class property instead of the actual dependency class.
+--PHP-kinds=cfnit
 # fixes double backslashes in php namespaces in use completion
 # https://github.com/universal-ctags/ctags/issues/787#issuecomment-197138526
 --regex-php=/^use .*[ \\]([A-Z0-9a-z]+);/\1/a,alias,aliases/'' ]

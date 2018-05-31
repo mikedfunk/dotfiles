@@ -13,13 +13,15 @@ cdpath=(
 )
 
 infopath=(
-  $(brew --prefix)/share/info
+  # $(brew --prefix)/share/info
+  /usr/local/share/info
   /usr/share/info
   $infopath
 )
 
 manpath=(
-  $(brew --prefix)/share/man
+  # $(brew --prefix)/share/man
+  /usr/local/share/man
   /usr/share/man
   $manpath
 )
@@ -30,7 +32,8 @@ path=(
   # global ruby gems
   $HOME/bin
   # this needs to be first so rbenv from homebrew can take precedence
-  $(brew --prefix)/{bin,sbin}
+  # $(brew --prefix)/{bin,sbin}
+  /usr/local/{bin,sbin}
   $HOME/.{php,pl,nod,py}env/bin
   $HOME/.phpenv/pear/bin
   $HOME/.composer/vendor/bin
@@ -196,6 +199,9 @@ export CLICOLOR=1 # ls colors by default
 function phpcbf-wrapper () {
     php ' . getcwd() . '/vendor/bin/phpcbf -q  $@ > /dev/null || true
 }
+
+# pretty-print PATH with line breaks
+function pretty-path () { tr : '\n' <<<"$PATH"; }
 # }}}
 
 # suffix aliases {{{

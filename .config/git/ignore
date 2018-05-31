@@ -26,3 +26,4 @@ yarn-error.log
 .tern-project
 .php-version
 .netrwhist
+sonar-project.properties

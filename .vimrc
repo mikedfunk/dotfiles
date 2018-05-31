@@ -528,6 +528,8 @@ augroup END
 
 " use vim grepprg
 nnoremap <leader>gg :grep!<space>
+nnoremap <leader>wg :grep! <cword> .<cr>
+nnoremap <leader>Wg :grep! '\b<cword>\b' .<cr>
 " fzf provides this
 " nnoremap <leader>gg :Ag<cr>
 
@@ -544,7 +546,11 @@ nnoremap <leader>jv :vsp tag<space>
 nnoremap <leader>jt :tab tag<space>
 
 " poor man's vim-vinegar
-nnoremap - :Ex<cr>
+" The thing I hate about this is that it doesn't preserve the last line it was
+" on, so I often have to scroll back down. Vinegar does this. TODO look at
+" vinegar's code for this since that's the only thing I really use in vinegar
+" that I can't get with netrw config.
+" nnoremap - :Ex<cr>
 
 " open current file in browser (useful for markdown preview)
 function! PreviewInBrowser() abort

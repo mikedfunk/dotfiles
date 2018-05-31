@@ -231,6 +231,7 @@ Plug 'tpope/vim-apathy' " tweak built-in vim features to allow jumping to module
 " Syntax highlighting {{{
 " Plug 'sheerun/vim-polyglot' " just about every filetype under the sun in one package
 Plug 'zimbatm/haproxy.vim' " haproxy syntax
+Plug 'amadeus/vim-mjml' " mjml email syntax
 Plug 'stephpy/vim-yaml' " faster yaml syntax highlighting
 Plug 'fpob/nette.vim' " .neon format
 Plug 'pangloss/vim-javascript' " Vastly improved Javascript indentation and syntax support in Vim.

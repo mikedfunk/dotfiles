@@ -54,6 +54,7 @@
     "serve": "^6.4.1",
     "stylelint": "^8.4.0",
     "stylelint-config-standard": "^18.2.0",
+    "stylelint-scss": "^3.1.0",
     "syntastic-react": "^1.0.3",
     "tern": "^0.21.0",
     "tern-react": "^0.1.0",

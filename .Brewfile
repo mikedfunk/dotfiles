@@ -3,6 +3,7 @@
 # brew {{{
 brew "autoconf" # needed to build some php70 libs from source
 brew "autossh" # ssh that reconnects
+brew "awscli" # aws command - used to upload to s3, etc. `aws configure` to set up credentials. (set up access keys here https://console.aws.amazon.com/iam/home?region=us-west-1#/users/mike.funk?section=security_credentials)
 brew "chromedriver" # like selenium for chrome.
 # brew "colortail" # tail with support for colors
 # brew "coreutils" # used by k zsh plugin
@@ -146,6 +147,7 @@ cask "iterm2"
 cask "kap" # screen capture to gif
 # cask "keycastr" for screencasts - show keys pressed on the screen
 cask "kitematic" # docker container browser
+cask "kitty" # fast terminal emulator
 cask "lastpass" # password manager
 # cask "licecap" # another gif screen cap tool
 # cask "macfusion" # other half of tool to mount ssh directories in the finder
