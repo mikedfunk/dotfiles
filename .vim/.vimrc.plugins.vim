@@ -29,7 +29,7 @@ command! -nargs=1 -bar UnPlug call s:deregister(<args>)
 " Ctags and completion {{{
 if executable('ctags')
     " evaluating https://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
-    " Plug 'ludovicchabant/vim-gutentags' " auto ctags runner. no lazy load.
+    Plug 'ludovicchabant/vim-gutentags' " auto ctags runner. no lazy load.
     Plug 'majutsushi/tagbar' "Shows methods/properties. no lazy load.
     " Plug 'vim-php/tagbar-phpctags.vim', { 'do': 'make' } " Better php support for tagbar. Without this tagbar will show nothing if you use a trait. However, the php parser used is not updated for php 7, so it will fail on null coalesce! The first problem is now fixed in majutsushi/tagbar.
 endif
@@ -69,6 +69,7 @@ Plug 'tpope/vim-surround' | Plug 'tpope/vim-repeat' " surround text in quotes or
 " Plug 'machakann/vim-sandwich' " A better alternative to vim-surround... according to the internet
 Plug 'vim-scripts/BufOnly.vim', { 'on': ['BufOnly', 'Bufonly'] } " close all buffers but the current one
 Plug 'tpope/vim-commentary' " toggle comment with gcc. in my case I use <leader>c<space>
+" Plug 'jbgutierrez/vim-better-comments' " fancy comments
 " Plug 'junegunn/vim-easy-align' " align on = with ga=
 Plug 'tpope/vim-unimpaired' " lots of cool keyboard shortcuts
 " if has("python") || has("python3") | Plug 'SirVer/ultisnips' | endif " dynamic snippet completion

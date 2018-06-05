@@ -152,6 +152,7 @@ cask "lastpass" # password manager
 # cask "licecap" # another gif screen cap tool
 # cask "macfusion" # other half of tool to mount ssh directories in the finder
 # cask "macgdbp" # xdebug gui client
+cask "multifirefox" # profile picker until firefox fixes this glaring omission
 # cask "noti" # mac native pushbullet notifications
 # cask "osxfuse" # half of tool to mount ssh directories in the finder (useful if working on a shared dev environment)
 # cask "pdftotext" # used by ranger to preview pdfs

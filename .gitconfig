@@ -63,6 +63,7 @@
     # Fire up your difftool (e.g. Kaleidescope) with all the changes that
     # are on the current branch.
     code-review = difftool origin/develop...
+    committers = shortlog --nse --no-merges
     dc = diff --cached
     dd = diff develop..HEAD
     df = diff
