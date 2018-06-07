@@ -86,3 +86,13 @@ Token.Toolbar.Search.Text = nobold
 Token.Toolbar.System = noinherit bold
 Token.Toolbar.Arg = noinherit bold
 Token.Toolbar.Arg.Text = nobold
+
+# Favorite queries.
+# [favorite_queries]
+# oi = select * from pac_sales_order_item order by id_sales_order_item desc limit 5
+# o = select * from pac_sales_order order by id_sales_order desc limit 5
+# u = select * from users order by id desc limit 5
+
+# Use the -d option to reference a DSN.
+[alias_dsn]
+# example_dsn = mysql://[user[:password]@][host][:port][/dbname]
