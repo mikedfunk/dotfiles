@@ -643,94 +643,168 @@ saatchi-id-user-collection-xprod-copy () { ( saatchi-id-user-collection-xprod $1
 
 ### local {{{
 alias saatchi-mycli-legacy-local="mycli -h $SAATCHI_LOCAL_HOST \
--u $SAATCHI_LOCAL_USERNAME \
--D $SAATCHI_LOCAL_DB \
---password="" \
---prompt 'saatchi[local]> ' \
---auto-vertical-output"
+    -u $SAATCHI_LOCAL_USERNAME \
+    -D $SAATCHI_LOCAL_DB \
+    --password="" \
+    --prompt 'saatchi[local]> ' \
+    --auto-vertical-output \
+    --myclirc <(cat $HOME/.myclirc $HOME/.myclirc.saatchi)"
 
 alias saatchi-mycli-zed-local="mycli -h $ZED_LOCAL_HOST \
--u $ZED_LOCAL_USERNAME \
--D $ZED_LOCAL_DB \
---password="" \
---prompt 'zed[local]> ' \
---auto-vertical-output"
+    -u $ZED_LOCAL_USERNAME \
+    -D $ZED_LOCAL_DB \
+    --password="" \
+    --prompt 'zed[local]> ' \
+    --auto-vertical-output \
+    --myclirc <(cat $HOME/.myclirc $HOME/.myclirc.saatchi)"
 
 alias saatchi-mycli-palette-local="mycli -h $PALETTE_LOCAL_HOST \
--u $PALETTE_LOCAL_USERNAME \
--D $PALETTE_LOCAL_DB \
---password="" \
---prompt 'palette[local]> ' \
---auto-vertical-output"
+    -u $PALETTE_LOCAL_USERNAME \
+    -D $PALETTE_LOCAL_DB \
+    --password="" \
+    --prompt 'palette[local]> ' \
+    --auto-vertical-output \
+    --myclirc <(cat $HOME/.myclirc $HOME/.myclirc.saatchi)"
 #}}}
 
 # xdev {{{
 alias saatchi-mycli-legacy-xdev="autossh -f saatchi-console-01 \
--L $SAATCHI_XDEV_TUNNEL_PORT:$SAATCHI_XDEV_HOST:$SAATCHI_XDEV_PORT \
--N && export MYSQL_PWD=$SAATCHI_XDEV_PASSWORD && \
-mycli -h localhost \
--u $SAATCHI_XDEV_USERNAME \
--D $SAATCHI_XDEV_DB \
---port=$SAATCHI_XDEV_TUNNEL_PORT \
---prompt 'saatchi[xdev]> ' \
---auto-vertical-output --warn"
+    -L $SAATCHI_XDEV_TUNNEL_PORT:$SAATCHI_XDEV_HOST:$SAATCHI_XDEV_PORT \
+    -N && export MYSQL_PWD=$SAATCHI_XDEV_PASSWORD && \
+    mycli -h localhost \
+    -u $SAATCHI_XDEV_USERNAME \
+    -D $SAATCHI_XDEV_DB \
+    --port=$SAATCHI_XDEV_TUNNEL_PORT \
+    --prompt 'saatchi[xdev]> ' \
+    --auto-vertical-output --warn"
 
 alias saatchi-mycli-palette-xdev="autossh -f saatchi-console-01 \
--L $PALETTE_XDEV_TUNNEL_PORT:$PALETTE_XDEV_HOST:$PALETTE_XDEV_PORT \
--N && export MYSQL_PWD=$PALETTE_XDEV_PASSWORD && \
-mycli -h localhost \
--u $PALETTE_XDEV_USERNAME \
--D $PALETTE_XDEV_DB \
---port=$PALETTE_XDEV_TUNNEL_PORT \
---prompt 'palette[xdev]> ' \
---auto-vertical-output --warn"
+    -L $PALETTE_XDEV_TUNNEL_PORT:$PALETTE_XDEV_HOST:$PALETTE_XDEV_PORT \
+    -N && export MYSQL_PWD=$PALETTE_XDEV_PASSWORD && \
+    mycli -h localhost \
+    -u $PALETTE_XDEV_USERNAME \
+    -D $PALETTE_XDEV_DB \
+    --port=$PALETTE_XDEV_TUNNEL_PORT \
+    --prompt 'palette[xdev]> ' \
+    --auto-vertical-output --warn \
+    --myclirc <(cat $HOME/.myclirc $HOME/.myclirc.saatchi)"
 
 alias saatchi-mycli-zed-xdev="autossh -f saatchi-console-01 \
--L $ZED_XDEV_TUNNEL_PORT:$ZED_XDEV_HOST:$ZED_XDEV_PORT \
--N && export MYSQL_PWD=$ZED_XDEV_PASSWORD && \
-mycli -h localhost \
--u $ZED_XDEV_USERNAME \
--D $ZED_XDEV_DB \
---port=$ZED_XDEV_TUNNEL_PORT \
---prompt 'zed[xdev]> ' \
---auto-vertical-output --warn"
+    -L $ZED_XDEV_TUNNEL_PORT:$ZED_XDEV_HOST:$ZED_XDEV_PORT \
+    -N && export MYSQL_PWD=$ZED_XDEV_PASSWORD && \
+    mycli -h localhost \
+    -u $ZED_XDEV_USERNAME \
+    -D $ZED_XDEV_DB \
+    --port=$ZED_XDEV_TUNNEL_PORT \
+    --prompt 'zed[xdev]> ' \
+    --auto-vertical-output --warn \
+    --myclirc <(cat $HOME/.myclirc $HOME/.myclirc.saatchi)"
 #}}}
 
 # xqa {{{
 alias saatchi-mycli-legacy-xqa="autossh -f saatchi-console-01 -L $SAATCHI_XQA_TUNNEL_PORT:$SAATCHI_XQA_HOST:$SAATCHI_XQA_PORT -N && \
     export MYSQL_PWD=$SAATCHI_XQA_PASSWORD && \
-    mycli -h localhost -u $SAATCHI_XQA_USERNAME -D $SAATCHI_XQA_DB --port=$SAATCHI_XQA_TUNNEL_PORT --prompt 'saatchi[xqa]> ' --auto-vertical-output --warn"
+    mycli -h localhost \
+    -u $SAATCHI_XQA_USERNAME \
+    -D $SAATCHI_XQA_DB \
+    --port=$SAATCHI_XQA_TUNNEL_PORT \
+    --prompt 'saatchi[xqa]> ' \
+    --auto-vertical-output --warn \
+    --myclirc <(cat $HOME/.myclirc $HOME/.myclirc.saatchi)"
 alias saatchi-mycli-zed-xqa="autossh -f saatchi-console-01 -L $ZED_XQA_TUNNEL_PORT:$ZED_XQA_HOST:3306 -N && \
     export MYSQL_PWD=$ZED_XQA_PASSWORD && \
-    mycli -h127.0.0.1 -P$ZED_XQA_TUNNEL_PORT -u$ZED_XQA_USERNAME -D$ZED_XQA_DB --prompt 'zed[xqa]> ' --auto-vertical-output --warn"
+    mycli \
+    -h127.0.0.1 \
+    -P$ZED_XQA_TUNNEL_PORT \
+    -u$ZED_XQA_USERNAME \
+    -D$ZED_XQA_DB \
+    --prompt 'zed[xqa]> ' \
+    --auto-vertical-output --warn \
+    --myclirc <(cat $HOME/.myclirc $HOME/.myclirc.saatchi)"
 alias saatchi-mycli-palette-xqa="autossh -f saatchi-console-01 -L $PALETTE_XQA_TUNNEL_PORT:$PALETTE_XQA_HOST:$PALETTE_XQA_PORT -N && \
     export MYSQL_PWD=$PALETTE_XQA_PASSWORD && \
-    mycli -h localhost -u $PALETTE_XQA_USERNAME -D $PALETTE_XQA_DB --port=$PALETTE_XQA_TUNNEL_PORT --prompt 'palette[xqa]> ' --auto-vertical-output --warn"
+    mycli \
+    -h localhost \
+    -u $PALETTE_XQA_USERNAME \
+    -D $PALETTE_XQA_DB \
+    --port=$PALETTE_XQA_TUNNEL_PORT \
+    --prompt 'palette[xqa]> ' \
+    --auto-vertical-output --warn \
+    --myclirc <(cat $HOME/.myclirc $HOME/.myclirc.saatchi)"
 #}}}
 
 # prod {{{
 alias saatchi-mycli-legacy-xprod="autossh -f saatchi-console-01 -L 5381:$SAATCHI_XPROD_HOST:$SAATCHI_XPROD_PORT -N && \
     export MYSQL_PWD=$SAATCHI_XPROD_PASSWORD && \
-    mycli -h localhost -u $SAATCHI_XPROD_USERNAME -D $SAATCHI_XPROD_DB --port=5381 --prompt 'legacy[PRODUCTION]> ' --auto-vertical-output --warn"
+    mycli \
+    -h localhost \
+    -u $SAATCHI_XPROD_USERNAME \
+    -D $SAATCHI_XPROD_DB \
+    --port=5381 \
+    --prompt 'legacy[PRODUCTION]> ' \
+    --auto-vertical-output --warn \
+    --myclirc <(cat $HOME/.myclirc $HOME/.myclirc.saatchi)"
 alias saatchi-mycli-legacy-xprod-read-only="autossh -f saatchi-console-01 -L 5381:$SAATCHI_REPLICA_HOST:$SAATCHI_REPLICA_PORT -N && \
     export MYSQL_PWD=$SAATCHI_REPLICA_PASSWORD && \
-    mycli -h localhost -u $SAATCHI_REPLICA_USERNAME -D $SAATCHI_REPLICA_DB --port=5381 --prompt 'legacy[PRODUCTION:READ-ONLY]> ' --auto-vertical-output --warn"
+    mycli \
+    -h localhost \
+    -u $SAATCHI_REPLICA_USERNAME \
+    -D $SAATCHI_REPLICA_DB \
+    --port=5381 \
+    --prompt 'legacy[PRODUCTION:READ-ONLY]> ' \
+    --auto-vertical-output --warn \
+    --myclirc <(cat $HOME/.myclirc $HOME/.myclirc.saatchi)"
 alias saatchi-mycli-zed-xprod="autossh -f saatchi-console-01 -L 6783:$ZED_XPROD_HOST:$ZED_XPROD_PORT -N && \
-    export MYSQL_PWD=$ZED_XPROD_PASSWORD && mycli -h localhost -u $ZED_XPROD_USERNAME -D $ZED_XPROD_DB --port=6783 --prompt 'zed[PRODUCTION]> ' --auto-vertical-output --warn"
+    export MYSQL_PWD=$ZED_XPROD_PASSWORD && mycli \
+    -h localhost \
+    -u $ZED_XPROD_USERNAME \
+    -D $ZED_XPROD_DB \
+    --port=6783 \
+    --prompt 'zed[PRODUCTION]> ' \
+    --auto-vertical-output --warn \
+    --myclirc <(cat $HOME/.myclirc $HOME/.myclirc.saatchi)"
 alias saatchi-mycli-zed-xprod-read-only="autossh -f saatchi-console-01 -L 7733:$ZED_REPLICA_HOST:$ZED_REPLICA_PORT -N && \
     export MYSQL_PWD=$ZED_REPLICA_PASSWORD && \
-    mycli -h localhost -u $ZED_REPLICA_USERNAME -D $ZED_REPLICA_DB --port=7733 --prompt 'zed[PRODUCTION:READ-ONLY]> ' --auto-vertical-output --warn"
+    mycli \
+    -h localhost \
+    -u $ZED_REPLICA_USERNAME \
+    -D $ZED_REPLICA_DB \
+    --port=7733 \
+    --prompt 'zed[PRODUCTION:READ-ONLY]> ' \
+    --auto-vertical-output --warn \
+    --myclirc <(cat $HOME/.myclirc $HOME/.myclirc.saatchi)"
 alias saatchi-mycli-palette-xprod="autossh -f saatchi-console-01 -L 4913:$PALETTE_PROD_HOST:3306 -N && \
     export MYSQL_PWD=$PALETTE_PROD_PASSWORD && \
-    mycli -h127.0.0.1 -P4913 -u$PALETTE_PROD_USERNAME -D$PALETTE_PROD_DB --prompt 'palette[PRODUCTION]> ' --auto-vertical-output --warn"
+    mycli \
+    -h127.0.0.1 \
+    -P4913 \
+    -u$PALETTE_PROD_USERNAME \
+    -D$PALETTE_PROD_DB \
+    --prompt 'palette[PRODUCTION]> ' \
+    --auto-vertical-output --warn \
+    --myclirc <(cat $HOME/.myclirc $HOME/.myclirc.saatchi)"
 alias saatchi-mycli-palette-xreplica-ready-only="autossh -f saatchi-console-01 -L 4913:$PALETTE_REPLICA_HOST:3306 -N && \
     export MYSQL_PWD=$PALETTE_REPLICA_PASSWORD && \
-    mycli -h127.0.0.1 -P4913 -u$PALETTE_REPLICA_USERNAME -D$PALETTE_REPLICA_DB --prompt 'palette[PRODUCTION:READ-ONLY]> ' --auto-vertical-output --warn"
+    mycli \
+    -h127.0.0.1 \
+    -P4913 \
+    -u$PALETTE_REPLICA_USERNAME \
+    -D$PALETTE_REPLICA_DB \
+    --prompt 'palette[PRODUCTION:READ-ONLY]> ' \
+    --auto-vertical-output --warn \
+    --myclirc <(cat $HOME/.myclirc $HOME/.myclirc.saatchi)"
 
 # do we have a xsaatchi version of this?
 alias saatchi-mycli-legacy-xprod-greensql="autossh -f saatchi-console-01 -L 8948:$SAATCHI_GREENSQL_HOST:3306 -N && \
     export MYSQL_PWD=$SAATCHI_GREENSQL_PASSWORD && \
-    mycli -h127.0.0.1 -P8948 -u$SAATCHI_GREENSQL_USERNAME -D$SAATCHI_GREENSQL_DB --prompt 'Saatchi[GREENSQL]> ' --auto-vertical-output --warn"
+    mycli \
+    -h127.0.0.1 \
+    -P8948 \
+    -u$SAATCHI_GREENSQL_USERNAME \
+    -D$SAATCHI_GREENSQL_DB \
+    --prompt 'Saatchi[GREENSQL]> ' \
+    --auto-vertical-output --warn \
+    --myclirc <(cat $HOME/.myclirc $HOME/.myclirc.saatchi)"
 #}}}
 #}}}
 
@@ -740,33 +814,45 @@ LOG_OFF_SQL="SET GLOBAL general_log = 'OFF';"
 # create this file first and chmod +w it
 SQL_LOG_FILE="/var/log/mysql/saatchi.log"
 LOG_ON_SQL="SET GLOBAL general_log_file='$SQL_LOG_FILE'; SET GLOBAL general_log = 'ON';"
-alias saatchi-mysql-saatchi-log-on-local="mysql -h$SAATCHI_LOCAL_HOST -u$SAATCHI_LOCAL_USERNAME --execute=\"$LOG_ON_SQL\" && echo 'query logging enabled at $SQL_LOG_FILE'"
-alias saatchi-mysql-saatchi-log-off-local="mysql -h$SAATCHI_LOCAL_HOST -u$SAATCHI_LOCAL_USERNAME --execute=\"$LOG_OFF_SQL\" && echo 'query logging disabled'"
+alias saatchi-mysql-saatchi-log-on-local="mysql \
+    -h$SAATCHI_LOCAL_HOST \
+    -u$SAATCHI_LOCAL_USERNAME \
+    --execute=\"$LOG_ON_SQL\" && echo 'query logging enabled at $SQL_LOG_FILE'"
+alias saatchi-mysql-saatchi-log-off-local="mysql \
+    -h$SAATCHI_LOCAL_HOST \
+    -u$SAATCHI_LOCAL_USERNAME \
+    --execute=\"$LOG_OFF_SQL\" && echo 'query logging disabled'"
 
 # create this file first and chmod +w it
 SQL_LOG_FILE="/var/log/mysql/zed.log"
 LOG_ON_SQL="SET GLOBAL general_log_file='$SQL_LOG_FILE'; SET GLOBAL general_log = 'ON';"
-alias saatchi-mysql-zed-log-on-local="touch $SQL_LOG_FILE && mysql -h$ZED_LOCAL_HOST -u$ZED_LOCAL_USERNAME --execute=\"$LOG_ON_SQL\" && echo 'query logging enabled at $SQL_LOG_FILE'"
-alias saatchi-mysql-zed-log-off-local="mysql -h$ZED_LOCAL_HOST -u$ZED_LOCAL_USERNAME --execute=\"$LOG_OFF_SQL\" && echo 'query logging disabled'"
+alias saatchi-mysql-zed-log-on-local="touch $SQL_LOG_FILE && mysql \
+    -h$ZED_LOCAL_HOST \
+    -u$ZED_LOCAL_USERNAME \
+    --execute=\"$LOG_ON_SQL\" && echo 'query logging enabled at $SQL_LOG_FILE'"
+alias saatchi-mysql-zed-log-off-local="mysql \
+    -h$ZED_LOCAL_HOST \
+    -u$ZED_LOCAL_USERNAME \
+    --execute=\"$LOG_OFF_SQL\" && echo 'query logging disabled'"
 # }}}
 
 # saatchi - retrieve key names for common cache keys {{{
-function saatchi-memcached-art-key () { if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-memcached-art-key {user_id} {art_id}"; return; fi; echo "Saatchi_Model_Base_User_Art-$2-$1"; }
-function saatchi-memcached-user-key () { if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-memcached-user-key {user_id}"; return; fi; echo "Saatchi_Model_Base_User-$1"; }
-function saatchi-memcached-acl-key () { if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-memcached-acl-key {user_id}"; return; fi; echo "Saatchi_Model_Base_User_Acl_Roles_$1"; }
+# function saatchi-memcached-art-key () { if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-memcached-art-key {user_id} {art_id}"; return; fi; echo "Saatchi_Model_Base_User_Art-$2-$1"; }
+# function saatchi-memcached-user-key () { if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-memcached-user-key {user_id}"; return; fi; echo "Saatchi_Model_Base_User-$1"; }
+# function saatchi-memcached-acl-key () { if [[ "$1" == "--help" ]]; then echo "Usage: saatchi-memcached-acl-key {user_id}"; return; fi; echo "Saatchi_Model_Base_User_Acl_Roles_$1"; }
 # }}}
 
 # saatchi latest deployed versions {{{
 # colorize release output
-BLACK="[1;30m"
-RED="[1;31m"
-GREEN="[1;32m"
-YELLOW="[1;33m"
-BLUE="[1;34m"
-PINK="[1;35m"
-CYAN="[1;36m"
-WHITE="[1;37m"
-NORMAL="[1;0m"
+BLACK="$(tput setaf 0)"
+RED="$(tput setaf 1)"
+GREEN="$(tput setaf 2)"
+YELLOW="$(tput setaf 3)"
+BLUE="$(tput setaf 4)"
+PINK="$(tput setaf 5)"
+CYAN="$(tput setaf 6)"
+WHITE="$(tput setaf 7)"
+NORMAL="$(tput sgr0)"
 function _saatchi-release-color () {
     # awk version
     # echo "$1" | awk -F' ' '{print $1" ""\033[34m"$2"\033[0m"" "$3" ""\033[32m"$4"\033[0m"" "$5" "$6" "$7" ""\033[33m"$8"\033[0m"" "$9" ""\033[35m"$10"\033[0m";}'

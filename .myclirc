@@ -49,7 +49,7 @@ syntax_style = monokai
 # key_bindings = emacs
 key_bindings = vi
 
-# Enabling this option will show the suggestions in a wider menu. Thus more items are suggested. 
+# Enabling this option will show the suggestions in a wider menu. Thus more items are suggested.
 wider_completion_menu = False
 
 # MySQL prompt
@@ -86,9 +86,3 @@ Token.Toolbar.Search.Text = nobold
 Token.Toolbar.System = noinherit bold
 Token.Toolbar.Arg = noinherit bold
 Token.Toolbar.Arg.Text = nobold
-
-# Favorite queries.
-[favorite_queries]
-oi = select * from pac_sales_order_item order by id_sales_order_item desc limit 5
-o = select * from pac_sales_order order by id_sales_order desc limit 5
-u = select * from users order by id desc limit 5
