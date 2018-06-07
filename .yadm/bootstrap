@@ -268,3 +268,8 @@ if [[ $(defaults read com.apple.finder AppleShowAllFiles) != "TRUE" ]]; then
 	killall Finder
 fi
 # }}}
+
+# launchctl jobs {{{
+launchctl load ~/Library/LaunchAgents/mike.saatchi-mysql-tunnel.autossh.plist
+launchctl load ~/Library/LaunchAgents/mike.saatchi-proxy.autossh.plist
+# }}}
