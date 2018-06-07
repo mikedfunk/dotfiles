@@ -64,7 +64,7 @@ brew "memcached" # needed by php70
 # brew "mono" # .NET compiler for mac. Useful for OmniSharp.
 brew "multitail" # tail multiple files in splits with pretty colors
 # brew "mycli"
-brew "mysql"
+brew "mysql" # I haven't been using the server lately but I use it to connect and I use mysql_config_editor
 # brew "nano" # text editor. This gets the latest version: 2.2.6 rather than 2.2.0 that comes with osx.
 # brew "neovim" # vim re-imagining
 brew "node" # nodejs and npm (required by joplin, yarn)
