@@ -282,6 +282,7 @@ augroup filetypessetgroup
     autocmd BufRead,BufNewFile {site.conf,default.conf} set ft=nginx
     autocmd BufRead,BufNewFile {.curlrc,.gitignore,.gitattributes,.hgignore,.jshintignore} set ft=conf
     autocmd BufRead,BufNewFile .editorconfig set ft=dosini
+    autocmd BufRead,BufNewFile .myclirc* set ft=dosini
     autocmd BufRead,BufNewFile .Brewfile set ft=sh
     autocmd BufRead,BufNewFile .tigrc set ft=gitconfig
     autocmd BufRead,BufNewFile {.env,.env.*} set ft=dosini

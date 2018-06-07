@@ -411,7 +411,7 @@ function pux() {
 # }}}
 
 # source more files {{{
-[ -e ~/.support/saatchirc.sh ] && source ~/.support/saatchirc.sh
+[ -e ~/.saatchirc.sh ] && source ~/.saatchirc.sh
 # }}}
 
 # zsh options {{{
