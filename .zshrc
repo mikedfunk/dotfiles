@@ -142,10 +142,8 @@ export AUTOSSH_PORT=0
 # pass the current ssh alias. Used by my promptline theme and .screenrc to show the alias in the PS1.
 function ssh () { LC_SSH_ALIAS=$1 /usr/bin/ssh $1; }
 function autossh () { LC_SSH_ALIAS=$1 /usr/local/bin/autossh $1; }
-function assh () { LC_SSH_ALIAS=$1 /usr/local/bin/sshrc $1; } # ass H :D
-alias sshrc="assh"
+function sshrc () { LC_SSH_ALIAS=$1 /usr/local/bin/sshrc $1; }
 
-compdef assh="ssh"
 compdef autossh="ssh"
 compdef sshrc="ssh"
 

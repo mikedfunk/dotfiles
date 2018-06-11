@@ -1,44 +1,31 @@
 {
-  "components/*.js": {"alternate": "components/specs/{}.spec.js"},
-  "components/specs/*.spec.js": {"alternate": "components/{}.js"},
-  "components/Accordion/*.js": {"alternate": "components/Accordion/specs/{}.spec.js"},
-  "components/Accordion/specs/*.spec.js": {"alternate": "components/Accordion/{}.js"},
-  "components/ActionIcons/*.js": {"alternate": "components/ActionIcons/specs/{}.spec.js"},
-  "components/ActionIcons/specs/*.spec.js": {"alternate": "components/ActionIcons/{}.js"},
-  "components/Collection/*.js": {"alternate": "components/Collection/specs/{}.spec.js"},
-  "components/Collection/specs/*.spec.js": {"alternate": "components/Collection/{}.js"},
-  "components/Footer/*.js": {"alternate": "components/Footer/specs/{}.spec.js"},
-  "components/Footer/specs/*.spec.js": {"alternate": "components/Footer/{}.js"},
-  "components/Input/*.js": {"alternate": "components/Input/specs/{}.spec.js"},
-  "components/Input/specs/*.spec.js": {"alternate": "components/Input/{}.js"},
-  "components/Navigation/*.js": {"alternate": "components/Navigation/specs/{}.spec.js"},
-  "components/Navigation/specs/*.spec.js": {"alternate": "components/Navigation/{}.js"},
-  "components/Navigation/Desktop/*.js": {"alternate": "components/Navigation/Desktop/specs/{}.spec.js"},
-  "components/Navigation/Desktop/specs/*.spec.js": {"alternate": "components/Navigation/Desktop/{}.js"},
-  "components/Polaroid/*.js": {"alternate": "components/Polaroid/specs/{}.spec.js"},
-  "components/Polaroid/specs/*.spec.js": {"alternate": "components/Polaroid/{}.js"},
-  "components/ProgressBreadcrumb/*.js": {"alternate": "components/ProgressBreadcrumb/specs/{}.spec.js"},
-  "components/ProgressBreadcrumb/specs/*.spec.js": {"alternate": "components/ProgressBreadcrumb/{}.js"},
-  "components/Tabs/*.js": {"alternate": "components/Tabs/specs/{}.spec.js"},
-  "components/Tabs/specs/*.spec.js": {"alternate": "components/Tabs/{}.js"},
-  "apps/limited/about/components/*.js": {"alternate": "apps/limited/about/components/specs/{}.spec.js"},
-  "apps/limited/about/components/specs/*.spec.js": {"alternate": "apps/limited/about/components/{}.js"},
-  "apps/limited/browse/components/*.js": {"alternate": "apps/limited/browse/components/specs/{}.spec.js"},
-  "apps/limited/browse/components/specs/*.spec.js": {"alternate": "apps/limited/browse/components/{}.js"},
-  "apps/limited/homepage/components/*.js": {"alternate": "apps/limited/homepage/components/specs/{}.spec.js"},
-  "apps/limited/homepage/components/specs/*.spec.js": {"alternate": "apps/limited/homepage/components/{}.js"},
-  "apps/limited/printDetail/components/*.js": {"alternate": "apps/limited/printDetail/components/specs/{}.spec.js"},
-  "apps/limited/printDetail/components/specs/*.spec.js": {"alternate": "apps/limited/printDetail/components/{}.js"},
-  "apps/saatchi/browse/components/*.js": {"alternate": "apps/saatchi/browse/components/specs/{}.spec.js"},
-  "apps/saatchi/browse/components/specs/*.spec.js": {"alternate": "apps/saatchi/browse/components/{}.js"},
-  "apps/saatchi/feature/components/*.js": {"alternate": "apps/saatchi/feature/components/specs/{}.spec.js"},
-  "apps/saatchi/feature/components/specs/*.spec.js": {"alternate": "apps/saatchi/feature/components/{}.js"},
-  "apps/saatchi/ios-help/components/*.js": {"alternate": "apps/saatchi/ios-help/components/specs/{}.spec.js"},
-  "apps/saatchi/ios-help/components/specs/*.spec.js": {"alternate": "apps/saatchi/ios-help/components/{}.js"},
-  "apps/saatchi/artadvisory/components/*.js": {"alternate": "apps/saatchi/artadvisory/components/specs/{}.spec.js"},
-  "apps/saatchi/artadvisory/components/specs/*.spec.js": {"alternate": "apps/saatchi/artadvisory/components/{}.js"},
-  "lib/browse/mapping/*.js": {"alternate": "lib/browse/mapping/specs/{}.spec.js"},
-  "lib/browse/mapping/specs/*.spec.js": {"alternate": "lib/browse/mapping/{}.js"},
-  "apps/limited/browse/mapping/*.js": {"alternate": "apps/limited/browse/mapping/specs/{}.spec.js"},
-  "apps/limited/browse/mapping/specs/*.spec.js": {"alternate": "apps/limited/browse/mapping/{}.js"}
+  "**/containers/*.js": {
+    "alternate": [
+      "{dirname}/specs/{basename}.spec.js",
+      "{}.spec.js",
+      "{dirname}/../components/{basename}.js"
+    ],
+    "type": "container"
+  },
+  "**/components/*.js": {
+    "alternate": [
+      "{dirname}/specs/{basename}.spec.js",
+      "{}.spec.js",
+      "{dirname}/../containers/{basename}.js"
+    ],
+    "type": "component"
+  },
+  "*.spec.js": {
+    "alternate": [
+      "{dirname}/../{basename}.js",
+      "{}.js"
+    ],
+    "type": "spec"
+  },
+  "*.js": {
+    "alternate": [
+      "{dirname}/specs/{basename}.spec.js",
+      "{}.spec.js"
+    ]
+  }
 }

@@ -126,8 +126,11 @@ if !empty(&viminfo)
 endif
 set sessionoptions-=options
 
+" improve syntax highlighting performance
 " http://vim.wikia.com/wiki/Fix_syntax_highlighting
-" syntax sync minlines=200
+" https://stackoverflow.com/questions/4775605/vim-syntax-highlight-improve-performance
+syntax sync minlines=200
+set synmaxcol=200 " avoid performance problems syntax highlighting very long lines
 
 " Allow color schemes to do bright colors without forcing bold.
 if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
@@ -163,7 +166,7 @@ set splitright " Puts new vsplit windows to the right of the current
 set splitbelow " Puts new split windows to the bottom of the current
 set ignorecase " Case insensitive search. Needed for smartcase to work.
 set infercase " smarter, case-aware completion in insert mode.
-set lazyredraw " to speed up rendering
+set lazyredraw " to speed up rendering and avoid scrolling problems
 set smartcase " Case sensitive when uc present
 " https://vi.stackexchange.com/a/11413
 augroup ignorecase_augroup
@@ -183,8 +186,8 @@ set hlsearch " highlight search results
 set modeline " enable modeline
 set modelines=5 " enable modeline
 set noshowmode " don't show the mode in the command area. it's already in airline.
-" set synmaxcol=200 " avoid performance problems syntax highlighting very long lines
 set ttyfast " speeds up terminal vim rendering
+set ttyscroll=3 " faster scrolling
 let undodir='$HOME/.vimundo' | set undofile " persistent undo
 set backupdir=$HOME/.vimbackup " set custom swap file dir
 let viewdir='$HOME/.vimviews' " custom dir for :mkview output
