@@ -1,71 +1,3 @@
-# vim: set foldmethod=marker:
-# see https://github.com/shawncplus/phpcomplete.vim/wiki/Getting-better-tags
-#
-# general {{{
---recurse=yes
---tag-relative=yes
---sort=foldcase
---fields=+aimlS
-# fixes double backslash in namespaces https://github.com/universal-ctags/ctags/issues/815
-# BUT this breaks phpcomplete.vim omnicomplete! (as of 2018-03-21 still broken)
-# It's not really a problem though - I can still complete namespaced classes,
-# expand and import classes with vim-php-namespace
-# --output-format=etags
-# strangely this defaults to TAGS
-# -ftags
-# WHY
---languages=-html
-# }}}
-
-# additional excludes (ignores) {{{
---exclude=*.coffee
---exclude=*.log
---exclude=*.min.js
---exclude=.git
---exclude=.next/bundles
---exclude=.next/dist
---exclude=__TwigTemplate_*
---exclude=_ide_helper.php
---exclude=app/cache
---exclude=app/storage
---exclude=assets/react/node_modules
---exclude=bootstrap.php.cache
---exclude=classes.php.cache
---exclude=composer.phar
---exclude=*.spec.js
---exclude=__mocks__/*
---exclude=__snapshots__/*
---exclude=node_modules
---exclude=tests
---exclude=yarn-error.log
---exclude=*.phar
-# --exclude=vendor/**/installed.json
-# --exclude=vendor/**/composer.json
-
-# from files
---exclude=@.git/info/exclude
---exclude=@.ignore
---exclude=@/Users/mikefunk/.config/git/ignore
---exclude=@/Users/mikefunk/.ignore
-# }}}
-
-# php {{{
-# docs: https://github.com/universal-ctags/ctags/blob/master/parsers/php.c#L125-L142
-# classes, functions, namespaces, interfaces, traits, variables
-# --PHP-kinds=cfnitv
-# the problem with v is that when I jump to the source of a dependency it jumps
-# to the class property instead of the actual dependency class.
---PHP-kinds=cfnit
-# fixes double backslashes in php namespaces in use completion
-# https://github.com/universal-ctags/ctags/issues/787#issuecomment-197138526
---regex-php=/^use .*[ \\]([A-Z0-9a-z]+);/\1/a,alias,aliases/'' ]
-# }}}
-
-# ruby {{{
---regex-ruby=/(^|;)[ \t]*(class|module)[ \t]+([A-Z][[:alnum:]_]+(::[A-Z][[:alnum:]_]+)+)/\3/c,class,constant/
-# }}}
-
-# javascript {{{
 # https://medium.com/adorableio/modern-javascript-ctags-configuration-199884dbcc1
 # this doesn't work with kristijanhusak/vim-js-file-import
 #
@@ -102,4 +34,3 @@
 
 # https://github.com/romainl/ctags-patterns-for-javascript
 # ^ doesn't work with universal ctags :/
-# }}}

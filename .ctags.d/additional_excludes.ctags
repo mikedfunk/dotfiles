@@ -1,0 +1,29 @@
+--exclude=*.coffee
+--exclude=*.log
+--exclude=*.min.js
+--exclude=.git
+--exclude=.next/bundles
+--exclude=.next/dist
+--exclude=__TwigTemplate_*
+--exclude=_ide_helper.php
+--exclude=app/cache
+--exclude=app/storage
+--exclude=assets/react/node_modules
+--exclude=bootstrap.php.cache
+--exclude=classes.php.cache
+--exclude=composer.phar
+--exclude=*.spec.js
+--exclude=__mocks__/*
+--exclude=__snapshots__/*
+--exclude=node_modules
+--exclude=tests
+--exclude=yarn-error.log
+--exclude=*.phar
+# --exclude=vendor/**/installed.json
+# --exclude=vendor/**/composer.json
+
+# from files
+--exclude=@.git/info/exclude
+--exclude=@.ignore
+--exclude=@/Users/mikefunk/.config/git/ignore
+--exclude=@/Users/mikefunk/.ignore
