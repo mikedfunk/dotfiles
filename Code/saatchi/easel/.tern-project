@@ -1,0 +1,13 @@
+{
+  "libs": [
+    "browser",
+    "ecma5",
+    "ecma6",
+    "react"
+  ],
+  "plugins": {
+    "es_modules": {},
+    "webpack": {}
+  },
+  "ecmaVersion": 6
+}

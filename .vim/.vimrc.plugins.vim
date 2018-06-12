@@ -158,7 +158,7 @@ Plug 'lifepillar/vim-cheat40' " Customizable cheatsheet. Mine is in ~/.vim/plugg
 
 " Php {{{
 " xdebug (dbgp) client. To load with other filetypes do :PlugStatus and L over vdebug. temporarily disabled due to UnicodeError and vim.error on breaking :/ works as of 5-7-2018
-if has("python3")
+if has('python3')
     Plug 'vim-vdebug/vdebug', { 'for': 'php' }
 endif
 " if has('python')
@@ -220,9 +220,15 @@ endif
 Plug 'tpope/vim-jdaddy' "`gqaj` to pretty-print json, `gwaj` to merge the json object in the clipboard with the one under the cursor
 " Plug 'chemzqm/vim-jsx-improve' " better jsx formatting
 " Plug 'flowtype/vim-flow' " flowtype omnicompletion. If not using flow in a project, add this to project .vimrc: let g:flow#enable = 0
-Plug 'jez/vim-flow' " fork that adds --quiet
+Plug 'jez/vim-flow' " fork that adds --quiet. without --quite doesn't work still as of may 2018
 if has('python') || has('python3')
-    Plug 'ternjs/tern_for_vim', { 'for': 'javascript', 'do': 'npm install' }
+    Plug 'ternjs/tern_for_vim', { 'do': '/usr/local/bin/npm install' }
+    " https://github.com/ternjs/tern_for_vim
+    " TernDef: Jump to the definition of the thing under the cursor.
+    " TernDoc: Look up the documentation of something.
+    " TernType: Find the type of the thing under the cursor.
+    " TernRefs: Show all references to the variable or property under the cursor.
+    " TernRename: Rename the variable under the cursor.
 endif " javascript omnifunc and jump to def. requires a .tern-project file. http://ternjs.net/doc/manual.html#configuration
 Plug 'othree/javascript-libraries-syntax.vim' " syntax completion for common libraries (react, lodash, jquery, etc.)
 " Plug 'kristijanhusak/vim-js-file-import' " Go to definition: <leader>ig Import file: <Leader>if

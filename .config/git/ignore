@@ -8,7 +8,7 @@
 .php_cs.cache
 .phpspec
 .pre-commit-config.yaml
-# .projections.json
+.projections.json
 /.envrc
 /.exrc
 /.ignore
