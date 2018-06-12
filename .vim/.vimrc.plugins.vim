@@ -223,13 +223,7 @@ Plug 'tpope/vim-jdaddy' "`gqaj` to pretty-print json, `gwaj` to merge the json o
 Plug 'jez/vim-flow' " fork that adds --quiet. without --quite doesn't work still as of may 2018
 if has('python') || has('python3')
     Plug 'ternjs/tern_for_vim', { 'do': '/usr/local/bin/npm install' }
-    " https://github.com/ternjs/tern_for_vim
-    " TernDef: Jump to the definition of the thing under the cursor.
-    " TernDoc: Look up the documentation of something.
-    " TernType: Find the type of the thing under the cursor.
-    " TernRefs: Show all references to the variable or property under the cursor.
-    " TernRename: Rename the variable under the cursor.
-endif " javascript omnifunc and jump to def. requires a .tern-project file. http://ternjs.net/doc/manual.html#configuration
+endif " javascript omnifunc and jump to def. requires a .tern-project or ~/.tern-config file. http://ternjs.net/doc/manual.html#configuration
 Plug 'othree/javascript-libraries-syntax.vim' " syntax completion for common libraries (react, lodash, jquery, etc.)
 " Plug 'kristijanhusak/vim-js-file-import' " Go to definition: <leader>ig Import file: <Leader>if
 Plug 'tpope/vim-apathy' " tweak built-in vim features to allow jumping to module location
