@@ -1,12 +1,12 @@
 {
   "libs": [
     "browser",
-    "ecma5",
-    "ecma6",
+    "ecmascript",
     "react"
   ],
   "plugins": {
     "es_modules": {},
+    "complete_strings": {},
     "webpack": {}
   },
   "ecmaVersion": 6

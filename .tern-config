@@ -2,13 +2,11 @@
   "libs": [
     "browser",
     "ecmascript",
-    "react",
-    "jquery"
+    "react"
   ],
   "plugins": {
     "es_modules": {},
     "complete_strings": {},
     "webpack": {}
-  },
-  "ecmaVersion": 6
+  }
 }
