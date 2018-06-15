@@ -10,8 +10,6 @@ use Prophecy\Argument;
  * Specification unit test
  *
  * @see \%subject%
- *
- * @author Michael Funk <mike.funk@leafgroup.com>
  */
 class %name% extends ObjectBehavior
 {
