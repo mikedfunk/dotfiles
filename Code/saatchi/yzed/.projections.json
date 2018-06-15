@@ -1,1 +1,13 @@
-/Users/mikefunk/.private-stuff/zed-projections.json
+
+{
+  "project/Zed/*.php": {"alternate": "project/Zed/tests/{}Test.php"},
+  "project/Zed/tests/*Test.php": {"alternate": "project/Zed/{}.php"},
+  "project/Shared/*.php": {"alternate": "project/Shared/tests/{}Test.php"},
+  "project/Shared/tests/*Test.php": {"alternate": "project/Shared/{}.php"},
+  "lib/src/*.php": {"alternate": "lib/tests/{}Test.php"},
+  "lib/tests/*Test.php": {"alternate": "lib/src/{}.php"},
+  "lib/component/Pac/*.php": {"alternate": "lib/tests/Pac/{}Test.php"},
+  "lib/tests/Pac/*Test.php": {"alternate": "lib/component/Pac/{}.php"},
+  "lib/persistence/Sales/Propel/*.php": {"alternate": "lib/tests/Sales/Propel/{}Test.php"},
+  "lib/tests/Sales/Propel/*Test.php": {"alternate": "lib/persistence/Sales/Propel/{}.php"}
+}
