@@ -188,7 +188,7 @@ window xdocker
 dir ~/Code/saatchi/xdocker
 1 run vim -S
 # 0 run ts
-0 run g pl && saatchi-docker-start
+0 run dms && g pl && saatchi-docker-start
 
 window xpuppet
 

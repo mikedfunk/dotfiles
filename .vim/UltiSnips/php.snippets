@@ -25,6 +25,22 @@ def pathToNamespace(path):
 
 endglobal
 
+snippet cgt "IoT container get"
+$container->get($1);
+endsnippet
+
+snippet dst "declare strict types"
+declare(strict_types=1);
+endsnippet
+
+snippet shp "php shape"
+use const Shape\arr;
+use const Shape\bool;
+use const Shape\int;
+use const Shape\string;
+use function Shape\shape;
+endsnippet
+
 snippet al "require composer autoloader"
 // get composer autoloader
 require __DIR__ . '/vendor/autoload.php';
@@ -156,17 +172,6 @@ snippet codingStandardsIgnore "magical docblock to make phpcs shut up!"
  */
 endsnippet
 
-snippet authr
-
-/**
- * ${1}
- *
- * @author Michael Funk <`!v g:snips_author`>
- * @copyright Leaf Group, Ltd. All Rights Reserved.
- */
-
-endsnippet
-
 snippet top "File-level PHP docblock"
 /**
  * ${1:Description}
@@ -230,11 +235,7 @@ snippet cla "mike's class with namespace, file and class docblocks"
 <?php
 declare(strict_types=1);
 `!p snip.rv = namespace(snip, path)`
-/**
- * ${1:Description}
- *
- * @author `!v g:snips_author`
- */
+/** ${1:Description} */
 class `!v expand("%:t:r")`$4
 {
     $6
@@ -253,8 +254,6 @@ use Zend_Controller_Front as FrontController;
 
 /**
  * ${1:Description}
- *
- * @author `!v g:snips_author`
  *
  * usage: php /data/code_base/current/`!v @%` {environment} -v {--dry-run}
  */
@@ -323,8 +322,6 @@ use Zend_Controller_Front as FrontController;
 /**
  * ${1:Description}
  *
- * @author `!v g:snips_author`
- *
  * usage: php /data/code_base/current/`!v @%` {environment} -v {--dry-run}
  */
 class ${2:MyScript} extends QueueProcessAbstract
@@ -387,11 +384,7 @@ snippet trt "mike's trait with namespace, file and class docblocks"
  */
 declare(strict_types=1);
 `!p snip.rv = namespace(snip, path)`
-/**
- * ${1:Description}
- *
- * @author `!v g:snips_author`
- */
+/** ${1:Description} */
 trait `!v expand("%:t:r")`
 {
     $6
@@ -408,11 +401,6 @@ snippet mdl "ACP laravel model"
 use DemandMedia\Common\Models\BaseModel;
 use DemandMedia\\${2:PackageName}\Interfaces\\$1ModelInterface;
 
-/**
- * `!v expand("%:t:r")`
- *
- * @author `!v g:snips_author`
- */
 class `!v expand("%:t:r")` extends BaseModel implements `!v expand("%:t:r")`ModelInterface
 {
     /**
@@ -458,11 +446,6 @@ snippet mdli "ACP laravel model interface"
  */`!p snip.rv = namespace(snip, path)`
 use DemandMedia\Common\Interfaces\BaseModelInterface;
 
-/**
- * `!v expand("%:t:r")`
- *
- * @author `!v g:snips_author`
- */
 interface `!v expand("%:t:r")` extends BaseModelInterface
 {
     $6
@@ -480,11 +463,6 @@ use DemandMedia\Common\Repositories\EloquentRepository;
 use DemandMedia\\${2:PackageName}\Interfaces\\$1ModelInterface;
 use DemandMedia\\$2\Interfaces\\$1RepositoryInterface;
 
-/**
- * `!v expand("%:t:r")`
- *
- * @author `!v g:snips_author`
- */
 class `!v expand("%:t:r")` extends EloquentRepository implements `!v expand("%:t:r")`Interface
 {
 
@@ -519,11 +497,6 @@ snippet rpsi "ACP laravel repository interface"
  */`!p snip.rv = namespace(snip, path)`
 use DemandMedia\Common\Interfaces\EloquentRepositoryInterface;
 
-/**
- * `!v expand("%:t:r")`
- *
- * @author `!v g:snips_author`
- */
 interface `!v expand("%:t:r")` extends EloquentRepositoryInterface
 {
     $6
@@ -551,11 +524,6 @@ use DemandMedia\\$2\Repositories\\$1Repository;
 use DemandMedia\\$2\Models\\$1;
 use Mockery;
 
-/**
- * `!v expand("%:t:r")`
- *
- * @author `!v g:snips_author`
- */
 class `!v expand("%:t:r")` extends BaseRepositoryTest
 {
 
@@ -634,11 +602,6 @@ snippet sp "ACP Service Provider"
  */`!p snip.rv = namespace(snip, path)`
 use Illuminate\Support\ServiceProvider;
 
-/**
- * `!v expand("%:t:r")`
- *
- * @author `!v g:snips_author`
- */
 class `!v expand("%:t:r")` extends ServiceProvider
 {
 
@@ -715,11 +678,6 @@ use URL;
 use Validator;
 use View;
 
-/**
- * `!v expand("%:t:r")`
- *
- * @author `!v g:snips_author`
- */
 class `!v expand("%:t:r")` extends BaseController implements `!v expand("%:t:r")`Interface
 {
 
@@ -759,12 +717,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
-/**
-* ${1:Whatever} controller
- *
- * @author `!v g:snips_author`
- * @Route(service="app.${1/\w+/\l$0/}_controller")
- */
+/** @Route(service="app.${1/\w+/\l$0/}_controller") */
 class `!v expand("%:t:r")` extends Controller
 {
     /**
@@ -788,11 +741,6 @@ snippet ctli "ACP laravel controller interface"
  */`!p snip.rv = namespace(snip, path)`
 use DemandMedia\Common\Interfaces\BaseControllerInterface;
 
-/**
- * `!v expand("%:t:r")`
- *
- * @author `!v g:snips_author`
- */
 interface `!v expand("%:t:r")` extends BaseControllerInterface
 {
     $6
@@ -821,11 +769,6 @@ use URL;
 use Validator;
 use View;
 
-/**
- * `!v expand("%:t:r")`
- *
- * @author `!v g:snips_author`
- */
 class `!v expand("%:t:r")` extends BaseControllerTest
 {
 
@@ -888,11 +831,6 @@ snippet mgt "laravel migration"
 
 use Illuminate\Database\Migrations\Migration;
 
-/**
- * Create${1:Whatever}Table
- *
- * @author `!v g:snips_author`
- */
 class Create$1Table extends Migration
 {
 
@@ -948,11 +886,6 @@ snippet sdr "Auto Classifieds Platform laravel seeder"
 use DemandMedia\Common\Seeds\BaseSeeder;
 use Str;
 
-/**
- * ${4:`!v expand("%:t:r")`}
- *
- * @author `!v g:snips_author`
- */
 class $4 extends BaseSeeder
 {
 
@@ -1005,11 +938,9 @@ declare(strict_types=1);
 use PHPUnit_Framework_TestCase as TestCase;
 
 /**
- * Unit Tests.
+ * Unit Tests
  *
  * @see \\`!p snip.rv = pathToNamespace(path)`\\$2
- *
- * @author `!v g:snips_author`
  *
  * @group unit
  */
@@ -1045,8 +976,6 @@ use Prophecy\Argument;
  * Specification unit test for \\Palette\\`!p snip.rv = pathToNamespace(path)`\\$2.
  *
  * @see \\Palette\\`!p snip.rv = pathToNamespace(path)`\\$2
- *
- * @author `!v g:snips_author`
  */
 class `!v expand("%:t:r")` extends ObjectBehavior
 {
@@ -1068,11 +997,7 @@ snippet pupcla "mike's phpunit prophecy test template with docblocks"
  */`!p snip.rv = namespace(snip, path)`
 use DemandMedia\Test\AbstractProphecyTest;
 
-/**
- * Unit Tests
- *
- * @author `!v g:snips_author`
- */
+/** Unit Tests */
 class `!v expand("%:t:r")` extends AbstractProphecyTest
 {
 
@@ -1157,11 +1082,7 @@ snippet inte
 <?php
 declare(strict_types=1);
 `!p snip.rv = namespace(snip, path)`
-/**
- * ${3:Description}
- *
- * @author `!v g:snips_author`
- */
+/** ${3:Description} */
 interface $4
 {
     $6
@@ -1235,14 +1156,6 @@ snippet pageblock "page level docblock"
  * @copyright `date +%Y` Leaf Group, Ltd. All Rights Reserved.
  */
 $3
-endsnippet
-
-snippet classblock "class level docblock"
-/**
- * ${1:title}
- *
- * @author `!v g:snips_author`
- */
 endsnippet
 
 snippet rn "nullable return type"
@@ -1350,11 +1263,6 @@ snippet zmodule "Zend Framework Module class"
  */
 namespace ${2:Namespace};
 
-/**
- * Module
- *
- * @author Michael Funk <`!v g:snips_author`>
- */
 class Module
 {
 
@@ -1586,11 +1494,7 @@ use Illuminate\Console\Command;
 use DemandMedia\Common\Interfaces\ArtisanCommandInterface;
 use Symfony\Component\Console\Input\InputOption;
 
-/**
- * $1
- *
- * @author `!v g:snips_author`
- */
+/** $1 */
 class ${1:`!v expand("%:t:r")`} extends Command implements
     ArtisanCommandInterface
 {
@@ -1659,11 +1563,6 @@ use DemandMedia\Common\Tests\Support\BaseTest;
 use DemandMedia\\$2\Commands\\$1Command;
 use Mockery;
 
-/**
- * ${8:`!v expand("%:t:r")`}
- *
- * @author `!v g:snips_author`
- */
 class $8 extends BaseTest
 {
 
@@ -1877,11 +1776,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-/**
-* ${1:Whatever} form type
- *
- * @author `!v g:snips_author`
- */
 class `!v expand("%:t:r")` extends AbstractType
 {
 

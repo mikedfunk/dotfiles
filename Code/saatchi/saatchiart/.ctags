@@ -1,0 +1,5 @@
+# vim: set foldmethod=marker:
+
+# additional excludes (ignores) {{{
+--exclude=assets/react/node_modules
+# }}}

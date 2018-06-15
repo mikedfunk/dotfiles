@@ -74,7 +74,7 @@ enable_pager = True
 # \h - Hostname of the server
 # \d - Database name
 # \n - Newline
-prompt = "\t \u@\h:\d> "
+prompt = " \t \u@\h:\d  "
 
 # Custom colors for the completion menu, toolbar, etc.
 [colors]
@@ -102,6 +102,9 @@ Token.Toolbar.Search.Text = nobold
 Token.Toolbar.System = noinherit bold
 Token.Toolbar.Arg = noinherit bold
 Token.Toolbar.Arg.Text = nobold
+
+# COLOR PROMPT
+Token.Prompt = '#ffffff bg:#4444aa'
 
 # Favorite queries.
 # [favorite_queries]

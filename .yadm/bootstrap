@@ -270,6 +270,6 @@ fi
 # }}}
 
 # launchctl jobs {{{
-launchctl load ~/Library/LaunchAgents/mike.saatchi-mysql-tunnel.autossh.plist
+launchctl load ~/Library/LaunchAgents/mike.saatchi-tunnel.autossh.plist
 launchctl load ~/Library/LaunchAgents/mike.saatchi-proxy.autossh.plist
 # }}}
