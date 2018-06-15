@@ -636,6 +636,10 @@ let g:gitgutter_realtime = 0 | let g:gitgutter_eager = 0 " trade accuracy for sp
 " let g:gutentags_ctags_executable_php = '( ag -l | ctags --links=no -L- )'
 let g:gutentags_ctags_executable_ruby = 'ripper-tags -R'
 
+" I pass gitignore to wildignore with another plugin. This defaults to 1, so
+" if I left it in the default, gutentags would not tag any vendor files :/
+let g:gutentags_ctags_exclude_wildignore = 0
+
 " only tag stuff that is not in gitignore
 " downside: you have to commit a file for it to be tagged
 " let g:gutentags_file_list_command = {
