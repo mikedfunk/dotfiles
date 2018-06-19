@@ -203,6 +203,7 @@ function pretty-path () { tr : '\n' <<<"$PATH"; }
 # }}}
 
 # suffix aliases {{{
+# https://unix.stackexchange.com/questions/354960/zsh-suffix-alias-alternative-in-bash
 alias -s css=vim
 alias -s html=vim
 alias -s js=vim

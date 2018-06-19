@@ -188,7 +188,7 @@ window xdocker
 dir ~/Code/saatchi/xdocker
 1 run vim -S
 # 0 run ts
-0 run dms && g pl && saatchi-docker-start
+0 run saatchi-docker-start
 
 window xpuppet
 
@@ -213,17 +213,19 @@ window mysql
 00000000000011111111111111
 00000000000011111111111111
 00000000000011111111111111
-00000000000011111111111111
 00000000000022222222222222
 00000000000022222222222222
 00000000000022222222222222
-00000000000022222222222222
+00000000000033333333333333
+00000000000033333333333333
+00000000000033333333333333
 
 dir ~/Code/saatchi/queries
 0 run vim -S
 1 run saatchi-mycli-legacy-local
+2 run saatchi-mycli-palette-local
 2 run saatchi-mycli-zed-local
-# 1 run saatchi-mycli-legacy-xprod-read-only
+# 1 run saatchi-mycli-legacy-replica
 
 window http
 

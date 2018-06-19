@@ -590,6 +590,13 @@ augroup isbashgroup
     autocmd BufRead,BufNewFile *bash* let b:is_bash=1 " fix syntax highlighting for bash files
 augroup END
 
+" do not conceal quotes and stuff on the current line! Why would I even want
+" that?? It's worse than no formatting if I can't even see the quotes.
+augroup jsonformat
+    autocmd!
+    autocmd FileType json set concealcursor-=n
+augroup END
+
 " https://stackoverflow.com/questions/3494435/vimrc-make-comments-italic
 augroup italic_comments_group
     autocmd!
@@ -609,6 +616,7 @@ if has('gui_running') | set guifont=Meslo\ LG\ M\ Regular\ for\ Powerline:h11 | 
 " @link https://github.com/vim/vim/issues/981#issuecomment-241941032
 " ensure tmux and terminal are set to screen-256color, then apply this for
 " true color neovim and vim 8.0 that doesn't have background transparency
+" (uses escape character ^[)
 if (has('termguicolors'))
     set t_8f=[38;2;%lu;%lu;%lum
     set t_8b=[48;2;%lu;%lu;%lum

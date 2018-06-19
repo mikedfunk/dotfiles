@@ -496,6 +496,11 @@ augroup fixvdebughighlights
     autocmd ColorScheme * call FixVdebugHighlights()
 augroup END
 
+augroup vdebugwatchpanellarger
+    autocmd!
+    autocmd BufRead,BufNewFile DebuggerWatch resize 100
+augroup END
+
 " didn't work as just a command
 function! ZendRoutingParams() abort
     :VdebugEval $this->getRequest()->getParams()
@@ -782,7 +787,8 @@ let g:polyglot_disabled=['php'] " I use a different php syntax plugin
 
 " vim-rest-console {{{
 " aka vim-rest-client
-" let g:vrc_show_command = 1 " display the actual curl command being run when firing http requests
+" let g:vrc_show_command = 1 " display the actual curl command being run when
+" firing http requests
 " let g:vrc_connect_timeout = 9999 " ignore timeout for xdebug (v2.x.x version)
 " -sS is to keep it from showing the progress bar
 " -i is to show response headers
@@ -793,6 +799,12 @@ let g:vrc_curl_opts = {
             \ '': '-L',
             \ }
 let g:vrc_response_default_content_type = 'json'
+" sometimes the output is html but the default type is json so it looks like
+" crap.
+if isdirectory(expand('~/.vim/plugged/vim-rest-console'))
+    command! RestJson let b:vrc_response_default_content_type = 'application/json'
+    command! RestXml let g:vrc_response_default_content_type = 'text/xml'
+endif
 " let g:vrc_auto_format_response_enabled = 1 " enabled by default
 " let g:vrc_split_request_body = 1 " allow each line to be key=value after GET /my/url. NOTE: this breaks PUT requests with bodies!
 " let g:vrc_cookie_jar = '/tmp/vrc_cookie_jar'
