@@ -147,9 +147,9 @@ inoremap <C-U> <C-G>u<C-U>
 
 " General {{{
 " use bram's defaults https://github.com/vim/vim/blob/master/runtime/defaults.vim
-runtime macros/matchit.vim " jump to matching html tag
 " unlet! skip_defaults_vim
 " if filereadable($VIMRUNTIME . "/defaults.vim") | source $VIMRUNTIME/defaults.vim | endif
+runtime macros/matchit.vim " jump to matching html tag
 " set t_ut=
 let g:mapleader = ',' " use comma for leader
 " since , replaces leader, use \ to go back in a [f]ind
@@ -491,7 +491,7 @@ nmap <f1> <nop>
 imap <f1> <nop>
 
 " maximize height of split - useful for vdebug especially
-nnoremap <leader>++ :resize 999<cr>
+" nnoremap <leader>++ :resize 999<cr>
 
 " switch to the last active tab
 let g:lasttab = 1

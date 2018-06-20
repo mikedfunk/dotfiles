@@ -501,9 +501,14 @@ augroup fixvdebughighlights
     autocmd ColorScheme * call FixVdebugHighlights()
 augroup END
 
+" maximize vertically either the watch window or the stack trace window on
+" enter. VDebug is nearly unusable for monitoring state without this because
+" the damn watch window is so small! It's tedious to maximize it manually.
 augroup vdebugwatchpanellarger
     autocmd!
-    autocmd BufRead,BufNewFile DebuggerWatch resize 100
+    " TODO do this on loading the buffer... not sure how to do that yet
+    autocmd BufEnter DebuggerWatch resize 100
+    autocmd BufEnter DebuggerStack resize 100
 augroup END
 
 " didn't work as just a command
