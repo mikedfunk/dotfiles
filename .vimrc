@@ -490,6 +490,9 @@ command! -nargs=1 Vtselect vsp | exec 'tselect ' . <f-args> " like stselect but 
 nmap <f1> <nop>
 imap <f1> <nop>
 
+" maximize height of split - useful for vdebug especially
+nnoremap <leader>++ :resize 999<cr>
+
 " switch to the last active tab
 let g:lasttab = 1
 nnoremap <Leader>tl :exe "tabn ".g:lasttab<CR>

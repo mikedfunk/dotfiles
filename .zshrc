@@ -115,6 +115,7 @@ zplug load
 # source additional files and env vars {{{
 [ -f ~/.private_vars.sh ] && source ~/.private_vars.sh # where I store my secret env vars
 [ -f ~/.support/promptline.theme.bash ] && source ~/.support/promptline.theme.bash # vim plugin generates this tmux status line file
+[[ "$(builtin type -p direnv)" ]] && eval "$(direnv hook zsh)" # allow .envrc on each prompt start
 # [ -f /usr/local/etc/grc.bashrc ] && source "/usr/local/etc/grc.bashrc" # generic colorizer
 [ -f /usr/local/etc/grc.zsh ] && source "/usr/local/etc/grc.zsh" # generic colorizer
 # https://github.com/google/google-api-ruby-client/issues/235#issuecomment-169956795
@@ -189,10 +190,8 @@ alias save-dotfiles="yadm encrypt && yadm add -u && yadm ci -m working && yadm p
 alias joplin="/usr/local/bin/node `which joplin`"
 alias jsc="/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # fuzzy finder - installed and managed via vim-plug https://github.com/junegunn/fzf
 export CLICOLOR=1 # ls colors by default
 # export NODE_PATH="/usr/local/lib/node_modules" # zombie.js doesn't work without this
-[[ "$(builtin type -p direnv)" ]] && eval "$(direnv hook zsh)" # allow .envrc on each prompt start
 
 function phpcbf-wrapper () {
     php ' . getcwd() . '/vendor/bin/phpcbf -q  $@ > /dev/null || true
@@ -411,6 +410,7 @@ function pux() {
 
 # source more files {{{
 [ -e ~/.saatchirc.sh ] && source ~/.saatchirc.sh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # fuzzy finder - installed and managed via vim-plug https://github.com/junegunn/fzf
 # }}}
 
 # zsh options {{{

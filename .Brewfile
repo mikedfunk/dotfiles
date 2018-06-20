@@ -144,12 +144,12 @@ cask "font-meslo-for-powerline" # whoa there are a ton of fonts on brew "cask"!
 cask "google-chrome"
 # cask "google-drive"
 cask "iterm2"
-cask "kap" # screen capture to gif
+# cask "kap" # screen capture to gif (Trying out licecap instead)
 # cask "keycastr" for screencasts - show keys pressed on the screen
 cask "kitematic" # docker container browser
 cask "kitty" # fast terminal emulator
 cask "lastpass" # password manager
-# cask "licecap" # another gif screen cap tool
+cask "licecap" # another gif screen cap tool. It's ancient but very fast at exporting gifs!
 # cask "macfusion" # other half of tool to mount ssh directories in the finder
 # cask "macgdbp" # xdebug gui client
 cask "multifirefox" # profile picker until firefox fixes this glaring omission
