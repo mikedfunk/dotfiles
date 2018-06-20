@@ -66,7 +66,7 @@ Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' } " redo another branch
 Plug 'w0rp/ale' " as-you-type syntax checker
 " Plug 'w0rp/ale', { 'commit': '2f9869d' } " as-you-type syntax checker
 Plug 'tpope/vim-surround' | Plug 'tpope/vim-repeat' " surround text in quotes or something. repeatable.
-" Plug 'kreskij/Repeatable.vim', { 'on': 'Repeatable' } " Extra functionality to make mappings repeatable easily
+Plug 'kreskij/Repeatable.vim', { 'on': 'Repeatable' } " Extra functionality to make mappings repeatable easily
 " Plug 'machakann/vim-sandwich' " A better alternative to vim-surround... according to the internet
 Plug 'vim-scripts/BufOnly.vim', { 'on': ['BufOnly', 'Bufonly'] } " close all buffers but the current one
 Plug 'tpope/vim-commentary' " toggle comment with gcc. in my case I use <leader>c<space>

@@ -512,11 +512,17 @@ function! ZendRoutingParams() abort
 endfunction
 command! ZendRoutingParams :call ZendRoutingParams()
 
-" if isdirectory(expand('~/.vim/plugged/vim-airline')) && isdirectory(expand('~/.vim/plugged/Repeatable.vim'))
-"     " expand or collapse context trees
-"     Repeatable nnoremap <leader>v+ :exe 'g/'.g:vdebug_options["marker_closed_tree"]."/normal \<cr><cr>"
-"     Repeatable nnoremap <leader>v- :exe 'g/'.g:vdebug_options["marker_open_tree"]."/normal \<cr><cr>"
-" endif
+if isdirectory(expand('~/.vim/plugged/vdebug')) && isdirectory(expand('~/.vim/plugged/Repeatable.vim'))
+    " expand or collapse context trees
+    function! OpenVdebugTrees() abort
+        :silent! exe 'g/'.g:vdebug_options["marker_closed_tree"]."/normal \<cr><cr>"
+    endfunction
+    function! CloseVdebugTrees() abort
+        :silent! exe 'g/'.g:vdebug_options["marker_open_tree"]."/normal \<cr><cr>"
+    endfunction
+    Repeatable nnoremap <leader>v+ :silent! call OpenVdebugTrees()<cr>
+    Repeatable nnoremap <leader>v- :silent! call CloseVdebugTrees()<cr>
+endif
 " }}}
 
 " {{{ vim-airline
