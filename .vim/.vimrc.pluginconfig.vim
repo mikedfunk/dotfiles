@@ -370,6 +370,11 @@ let g:qfenter_topen_map = ['t']
 let g:qfenter_keep_quickfixfocus = 0
 " }}}
 
+" RootIgnore.vim {{{
+let g:RootIgnoreAgignore=1
+let g:RootIgnoreUseHome=1
+" }}}
+
 " snipbar {{{
 if exists(':SnipBar') | nnoremap <leader>ss :SnipBar<CR> | endif
 " }}}
@@ -506,6 +511,12 @@ function! ZendRoutingParams() abort
     :VdebugEval $this->getRequest()->getParams()
 endfunction
 command! ZendRoutingParams :call ZendRoutingParams()
+
+" if isdirectory(expand('~/.vim/plugged/vim-airline')) && isdirectory(expand('~/.vim/plugged/Repeatable.vim'))
+"     " expand or collapse context trees
+"     Repeatable nnoremap <leader>v+ :exe 'g/'.g:vdebug_options["marker_closed_tree"]."/normal \<cr><cr>"
+"     Repeatable nnoremap <leader>v- :exe 'g/'.g:vdebug_options["marker_open_tree"]."/normal \<cr><cr>"
+" endif
 " }}}
 
 " {{{ vim-airline

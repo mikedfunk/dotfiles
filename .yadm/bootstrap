@@ -257,6 +257,7 @@ tic -o "$HOME/.terminfo/78/" "$HOME/.support/screen-256color.terminfo.txt"
 # }}}
 
 # Mac preferences {{{
+# TODO write a function to abstract the repetition here
 if [[ $(defaults read com.apple.finder NewWindowTargetPath) != "file:/$HOME/" ]]; then
 	log_info "Setting finder default location"
 	defaults write com.apple.finder NewWindowTargetPath "file:/$HOME/"
@@ -266,6 +267,27 @@ if [[ $(defaults read com.apple.finder AppleShowAllFiles) != "TRUE" ]]; then
 	log_info "Setting finder to show hidden files"
 	defaults write com.apple.finder AppleShowAllFiles TRUE
 	killall Finder
+fi
+if [[ $(defaults read com.apple.dock orientation) != "left" ]]; then
+    log_info "Moving dock to left side"
+    defaults write com.apple.dock orientation -string 'left'
+    killall Dock
+fi
+if [[ $(defaults read NSGlobalDomain AppleInterfaceStyle) != "Dark" ]]; then
+    log_info "Mac dark mode"
+    defaults write NSGlobalDomain AppleInterfaceStyle -string 'Dark'
+    killall Dock
+    killall SystemUIServer
+fi
+if [[ $(defaults read NSGlobalDomain AppleAquaColorVariant) != 6 ]]; then
+    log_info "Graphite color theme"
+    defaults write NSGlobalDomain AppleAquaColorVariant -int 6
+    killall Finder
+fi
+if [[ $(defaults read com.apple.dashboard dashboard-enabled-state) != 1 ]]; then
+    log_info "Disable dashboard"
+    defaults write com.apple.dashboard dashboard-enabled-state -int 1
+    killall Finder
 fi
 # }}}
 
