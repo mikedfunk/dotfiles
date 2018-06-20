@@ -506,9 +506,10 @@ augroup END
 " the damn watch window is so small! It's tedious to maximize it manually.
 augroup vdebugwatchpanellarger
     autocmd!
-    " TODO do this on loading the buffer... not sure how to do that yet
-    autocmd BufEnter DebuggerWatch resize 100
-    autocmd BufEnter DebuggerStack resize 100
+    " TODO do this on loading the buffer... not sure how to do that yet. Tried
+    " BufEnter, BufRead, BufNew, BufAdd, etc.
+    autocmd BufEnter DebuggerWatch resize 999
+    autocmd BufEnter DebuggerStack resize 999
 augroup END
 
 " didn't work as just a command
