@@ -33,7 +33,7 @@ brew "gnu-tar" # linux version of tar so stuff actually works
 # brew "googlecl" # google command line tool
 # brew "graphviz" # useful for xdebug profiler class maps
 brew "grc" # generic colorizer
-# brew "go" # go programming language. used for mailhog.
+brew "go" # go programming language. used for mailhog and rtop.
 brew "gpg" # used by s3cmd and to encrypt stuff
 # brew "heroku-toolbelt" # heroku deploy tools
 # brew "hg" # mercurial

@@ -33,6 +33,7 @@ path=(
   $HOME/bin
   # this needs to be first so rbenv from homebrew can take precedence
   # $(brew --prefix)/{bin,sbin}
+  $HOME/go/bin
   /usr/local/{bin,sbin}
   $HOME/.{php,pl,nod,py}env/bin
   $HOME/.phpenv/pear/bin
@@ -141,9 +142,9 @@ export LC_ALL=en_US.UTF-8 # https://unix.stackexchange.com/a/302418/287898
 export AUTOSSH_PORT=0
 
 # pass the current ssh alias. Used by my promptline theme and .screenrc to show the alias in the PS1.
-function ssh () { LC_SSH_ALIAS=$1 /usr/bin/ssh $1; }
-function autossh () { LC_SSH_ALIAS=$1 /usr/local/bin/autossh $1; }
-function sshrc () { LC_SSH_ALIAS=$1 /usr/local/bin/sshrc $1; }
+function ssh () { LC_SSH_ALIAS=$1 /usr/bin/ssh $@; }
+function autossh () { LC_SSH_ALIAS=$1 /usr/local/bin/autossh $@; }
+function sshrc () { LC_SSH_ALIAS=$1 /usr/local/bin/sshrc $@; }
 
 compdef autossh="ssh"
 compdef sshrc="ssh"
