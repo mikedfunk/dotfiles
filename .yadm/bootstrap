@@ -233,19 +233,6 @@ else
 fi
 # }}}
 
-# install golang packages {{{
-if [[ ! "$(builtin type -p go)" ]]; then
-    if [[ -f "$HOME/go_packages.txt" ]]; then
-        log_info "installing go packages"
-        while read package; do
-            go get $package
-        done <$HOME/go_packages.txt
-    fi
-    log_info "updating golang packages"
-    go get -u all
-fi
-# }}}
-
 # zplug {{{
 if [[ ! -d "$HOME/.zplug" ]]; then
 	log_info "Installing zplug"

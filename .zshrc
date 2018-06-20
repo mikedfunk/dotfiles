@@ -33,7 +33,6 @@ path=(
   $HOME/bin
   # this needs to be first so rbenv from homebrew can take precedence
   # $(brew --prefix)/{bin,sbin}
-  $HOME/go/bin
   /usr/local/{bin,sbin}
   $HOME/.{php,pl,nod,py}env/bin
   $HOME/.phpenv/pear/bin
