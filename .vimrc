@@ -130,7 +130,7 @@ set sessionoptions-=options
 " http://vim.wikia.com/wiki/Fix_syntax_highlighting
 " https://stackoverflow.com/questions/4775605/vim-syntax-highlight-improve-performance
 syntax sync minlines=200
-set synmaxcol=200 " avoid performance problems syntax highlighting very long lines
+" set synmaxcol=200 " avoid performance problems syntax highlighting very long lines
 
 " Allow color schemes to do bright colors without forcing bold.
 if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
@@ -447,6 +447,8 @@ endif
 " in ex mode %% is current dir
 cabbr <expr> %% expand('%:p:h')
 
+nnoremap <leader>tt :tabe<cr>
+
 " put cursor at end of text on y and p
 vnoremap <silent> y y`]
 vnoremap <silent> p p`]
@@ -516,22 +518,39 @@ augroup phpfixarray
     autocmd FileType php nmap <leader>xa mv?array(f(mz%r]`zr[hvFa;d`v
 augroup END
 
-" when copying php interface methods over, this turns interface stubs into
-" empty php methods. e.g. turns
-" public function myMethod($whatever);
-" or
-" public function myMethod($whatever): MyReturnValue;
-" into
-" public function myMethod($whatever)
-" or
-" public function myMethod($whatever): MyReturnValue
+" when copying methods over to an interface this turns them to the signature
+" version
+" e.g.
+" public function myMethod($whatever): string
 " {
-"     //
+"     // ...
 " }
-augroup phpexpendinterfacegroup
+" to:
+" public function myMethod($whatever): string;
+"
+function! PhpMethodsToInterfaceSignatures() abort
+    :%g/    public function/normal! jd%kA;
+    :nohlsearch
+endfunction
+
+augroup phphelpersgroup
     autocmd!
+    " when copying php interface methods over, this turns interface stubs into
+    " empty php methods. e.g. turns
+    " public function myMethod($whatever);
+    " or
+    " public function myMethod($whatever): MyReturnValue;
+    " into
+    " public function myMethod($whatever)
+    " or
+    " public function myMethod($whatever): MyReturnValue
+    " {
+    "     //
+    " }
     autocmd FileType php command! PhpExpandInterfaceMethods :%s/\v(\w+\sfunction\s\w+\(.*\))(\: \w+)?;/\1\2\r    {\r        \/\/\r    }/g
     autocmd FileType php nnoremap <leader>ei :PhpExpandInterfaceMethods<cr>
+    autocmd FileType php command! PhpMethodsToInterfaceSignatures :call PhpMethodsToInterfaceSignatures()
+    autocmd FileType php nnoremap <leader>em :PhpMethodsToInterfaceSignatures<cr>
 augroup END
 
 " use vim grepprg

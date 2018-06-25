@@ -27,3 +27,5 @@ yarn-error.log
 .php-version
 .netrwhist
 sonar-project.properties
+.ctags
+.notags

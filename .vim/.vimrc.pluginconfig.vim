@@ -384,7 +384,7 @@ let g:tagbar_autofocus = 1
 let g:tagbar_autoclose = 1
 " let g:tagbar_left = 1
 " tagbar autofocus is the whole point of tagbar
-if isdirectory(expand('~/.vim/plugged/tagbar')) | nnoremap <silent> <leader>tt :TagbarToggle<CR> | endif
+if isdirectory(expand('~/.vim/plugged/tagbar')) | nnoremap <silent> <leader>bb :TagbarToggle<CR> | endif
 " Configure Tagbar to user ripper-tags with ruby
 let g:tagbar_type_ruby = {
     \ 'kinds' : [
@@ -506,8 +506,11 @@ augroup END
 " the damn watch window is so small! It's tedious to maximize it manually.
 augroup vdebugwatchpanellarger
     autocmd!
-    " TODO do this on loading the buffer... not sure how to do that yet. Tried
-    " BufEnter, BufRead, BufNew, BufAdd, etc.
+    " to start with make the debugger watch window max height
+    " autocmd Syntax debugger_watch resize 999
+    " autocmd Filetype debugger_watch resize 999
+    " if I navigate into the stack or the watch, resize that window to max
+    " height
     autocmd BufEnter DebuggerWatch resize 999
     autocmd BufEnter DebuggerStack resize 999
 augroup END

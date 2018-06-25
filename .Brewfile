@@ -102,6 +102,7 @@ brew "sshrc" # use ~/.sshrc and ~/.sshrc.d on remote servers
 # brew "spark" # used for rainbarf to show spiffy cli graphs
 # brew "stormssh" # interact with ssh config
 # brew "stow" # http://brandon.invergo.net/news/2012-05-26-using-gnu-stow-to-manage-your-dotfiles.html
+brew "task" # taskwarrior https://taskwarrior.org
 # brew "teleconsole" # share your console with others easily
 brew "terminal-notifier" # used by tmux plugin marzocchi/zsh-notify
 brew "the_silver_searcher" # awesome fast grep replacement: ag

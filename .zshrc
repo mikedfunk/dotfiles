@@ -272,7 +272,7 @@ alias ygu="yarn global upgrade"
 alias psr="phpspecnotify"
 alias psd="phpspec describe"
 # alias psw="phpspec-watcher watch"
-alias psw="noglob ag -l -g '.*\\.php' | entr -r -c noti --message \"PHPSpec passed 👍\" phpspec run"
+alias psw="noglob ag -l -g '.*\\.php' | entr -r -c noti --message \"PHPSpec passed 👍\" phpspec run -vvv"
 # function phpspecnotify () {
 #     php -dmemory_limit=2048M -ddisplay_errors=on ./vendor/bin/phpspec "${@}"
 #     [[ $? == 0 ]] && noti --message "PHPSpec specs passed 👍" ||
