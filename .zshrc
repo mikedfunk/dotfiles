@@ -4,6 +4,7 @@
 # https://til.hashrocket.com/posts/alk38eeu8r-use-fc-to-fix-commands-in-the-shell
 
 # ctrl-z won't work? remove ~/.zsh/log/jog.lock
+# if using zplug, just `rm $_zplug_lock`
 # https://github.com/zplug/zplug/issues/322#issuecomment-274557883
 
 # Paths {{{

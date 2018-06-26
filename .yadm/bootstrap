@@ -292,6 +292,10 @@ fi
 # }}}
 
 # launchctl jobs {{{
+# debug launchd jobs https://stackoverflow.com/q/6337513/557215
+# use this form to easily generate a launchd plist: http://launched.zerowidth.com/
 launchctl load ~/Library/LaunchAgents/mike.saatchi-tunnel.autossh.plist
 launchctl load ~/Library/LaunchAgents/mike.saatchi-proxy.autossh.plist
+launchctl load ~/Library/LaunchAgents/com.zerowidth.launched.bugwarrior-pull-from-jira.plist
+
 # }}}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>com.zerowidth.launched.bugwarrior-pull-from-jira</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/mycommand.err</string>
+    <key>StandardOutPath</key>
+    <string>/tmp/mycommand.out</string>
+	<key>ProgramArguments</key>
+	<array>
+        <string>/usr/local/bin/zsh</string>
+        <string>/Users/mikefunk/.bin/bugwarrior-pull.zsh</string>
+	</array>
+	<key>StartInterval</key>
+	<integer>900</integer>
+	<key>UserName</key>
+	<string>mikefunk</string>
+</dict>
+</plist>
