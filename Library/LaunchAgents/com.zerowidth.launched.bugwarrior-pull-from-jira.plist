@@ -4,10 +4,6 @@
 <dict>
 	<key>Label</key>
 	<string>com.zerowidth.launched.bugwarrior-pull-from-jira</string>
-    <key>StandardErrorPath</key>
-    <string>/tmp/mycommand.err</string>
-    <key>StandardOutPath</key>
-    <string>/tmp/mycommand.out</string>
 	<key>ProgramArguments</key>
 	<array>
         <string>/usr/local/bin/zsh</string>
