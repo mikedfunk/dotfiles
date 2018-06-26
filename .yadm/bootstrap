@@ -291,6 +291,13 @@ if [[ $(defaults read com.apple.dashboard dashboard-enabled-state) != 1 ]]; then
 fi
 # }}}
 
+# symlink stuff into dropbox {{{
+if [[ -d "$HOME/Dropbox" ]]; then
+    log_info "Linking dropbox files and folders"
+    [[ -d "$HOME/.task" ]] && ln -sf "$HOME/.task" "$HOME/Dropbox/.task"
+fi
+# }}}
+
 # launchctl jobs {{{
 # debug launchd jobs https://stackoverflow.com/q/6337513/557215
 # use this form to easily generate a launchd plist: http://launched.zerowidth.com/

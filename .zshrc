@@ -287,6 +287,11 @@ alias psw="noglob ag -l -g '.*\\.php' | entr -r -c noti --message \"PHPSpec pass
 alias pipu="pip-review --local --auto"
 # }}}
 
+# taskwarrior {{{
+alias tl="task list"
+alias ta="task add"
+# }}}
+
 # vim {{{
 alias v="vim"
 # compdef v="vim"
