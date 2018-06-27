@@ -258,7 +258,8 @@ function grt () { cd `g root`; }
 alias cdg="grt"
 alias git-standup="$HOME/.config/yarn/global/node_modules/.bin/git-standup" # use this instead of the one in brew git-extras
 # alias standup="tig --since='2 days ago' --author='Mike Funk' --no-merges"
-alias t="tig"
+# Experimenting with using taskwarrior for this instead
+# alias t="tig"
 alias ts="tig status"
 # }}}
 
@@ -288,6 +289,8 @@ alias pipu="pip-review --local --auto"
 # }}}
 
 # taskwarrior {{{
+# note: this conflicts with tig
+alias t="task"
 alias tl="task list"
 alias ta="task add"
 # }}}

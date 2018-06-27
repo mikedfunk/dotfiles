@@ -6,6 +6,7 @@ runtime .vimrc.plugins.vim
 " }}}
 
 " Initialize directories {{{
+" (originally from spf13-vim)
 " put everything in ~/.vim to avoid inline backup and swap files.
 function! InitializeDirectories() abort
     let l:parent = $HOME
@@ -406,7 +407,7 @@ augroup csscompletegroup
     autocmd FileType scss setlocal omnifunc=csscomplete#CompleteCSS
 augroup END
 
-set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png,*.ico,*.pdf,*.psd,node_modules/*.git/*,Session.vim
+set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png,*.ico,*.pdf,*.psd,node_modules/*,.git/*,Session.vim
 " }}}
 
 " Abbreviations {{{
