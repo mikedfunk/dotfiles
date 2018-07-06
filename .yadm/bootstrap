@@ -180,7 +180,6 @@ fi
 # }}}
 
 # install/update ruby gems {{{
-# TODO: switch from rvm to rbenv
 # Installs from ~/Gemfile
 log_info "Installing/upgrading ruby gems"
 gem install bundler

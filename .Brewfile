@@ -35,7 +35,7 @@ brew "gnu-tar" # linux version of tar so stuff actually works
 # brew "graphviz" # useful for xdebug profiler class maps
 brew "grc" # generic colorizer
 # brew "go" # go programming language. used for mailhog and rtop.
-brew "gpg" # used by s3cmd and to encrypt stuff
+brew "gpg" # used by s3cmd and yadm to encrypt stuff
 # brew "heroku-toolbelt" # heroku deploy tools
 # brew "hg" # mercurial
 # brew "highlight" # colorizes html and other output on the command line. used by ranger.
@@ -88,13 +88,13 @@ brew "pyenv" # python version manager
 # brew "python" # updated version of python with updated pip. Useful for installing pip packages without root. NOTE: homebrew "pip" breaks neovim.
 # brew "python3" # required for tmuxomatic
 # brew "ranger" # vim-like file system browser
-# brew "rbenv" # ruby environment switcher
+brew "rbenv" # ruby environment switcher
 brew "reattach-to-user-namespace" # used to fix mac issues with copy/paste in tmux
 # brew "redis" # key/value store used by a project I am working on
 # brew "ruby"
 # brew "ruby-build" # an rbenv plugin that provides an rbenv install command to compile and install different versions of ruby
-# brew "rvm" # ruby version manager
-# brew "s3cmd" # amazon s3 uploader
+# brew "rvm" # ruby version manager. I use rbenv instead.
+# brew "s3cmd" # amazon s3 uploader. I use awscli instead.
 # brew "selenium-server-standalone" # controls a browser for automated testing
 brew "shellcheck" # Checks shell syntax (used by vim ALE)
 brew "shfmt" # formats shell scripts (vim ALE)
@@ -104,8 +104,8 @@ brew "sshrc" # use ~/.sshrc and ~/.sshrc.d on remote servers
 # brew "sshuttle" # poor mans vpn. doesnt work on yosemite at the moment
 # brew "solr" # search data server
 # brew "spark" # used for rainbarf to show spiffy cli graphs
-# brew "stormssh" # interact with ssh config
-# brew "stow" # http://brandon.invergo.net/news/2012-05-26-using-gnu-stow-to-manage-your-dotfiles.html
+# brew "stormssh" # interact with ssh config. I have yet to find a net positive use for this. It makes my ssh config less readable because it doesn't put them in comment fold groups like I do. just so I can `storm add ...`. `storm list` and `storm search` are kind of useless as I can do that with `ssh <tab>`. It lets you edit multiple ssh entries at once, but I can do that in vim. It provides a web interface, but I don't want that.
+# brew "stow" # http://brandon.invergo.net/news/2012-05-26-using-gnu-stow-to-manage-your-dotfiles.html <- I use yadm instead
 brew "task" # taskwarrior https://taskwarrior.org
 # brew "teleconsole" # share your console with others easily
 brew "terminal-notifier" # used by tmux plugin marzocchi/zsh-notify
