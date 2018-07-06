@@ -19,6 +19,7 @@ brew "docker-compose" # manage multiple docker images and how they interact
 brew "docker-machine" # virtualbox VM for your docker images
 brew "docker-machine-nfs" # enables nfs mounts for docker-machine via `docker-machine-nfs default --mount-opts="async,noatime,actimeo=1,nolock,vers=3,udp" --force`
 # brew "dos"2unix # converts dos line endings to unix in a file
+# brew "dtrx" # do the right extraction - so you don't have to remember tar args
 brew "entr" # file watcher
 # brew "fasd" # Command-line productivity booster, offers quick access to files and directories, inspired by autojump, z and v.
 brew "fd" # prettier alternative to find that respects gitignore
@@ -52,6 +53,7 @@ brew "joplin" # powerful note-taking app
 brew "jsonlint" # used by vim ale to lint json
 brew "jq" # simple json pretty-printer `echo '{"my" => "json"}' | jq .`
 # brew "keychain" # manage ssh agent and adding keys to it automatically
+# brew "lftp" # fancy scp, torrent, http, ftp download and upload client with queues, backgrounding, and more
 # brew "libcaca" # image previewing in ASCII. used by ranger
 brew "libcouchbase" # nosql fast data storage similar to mongo. Used at Saatchi. Includes cli tool cbc
 brew "libmemcached" # needed by php70
@@ -74,12 +76,14 @@ brew "noti" # simple terminal notifier
 brew "pandoc" # used for inline vim php documentation
 # brew "pass" # unix password manager using gpg
 brew "percona-toolkit" # mysql schema migrator among other things
+# brew "pgcli" # like mycli for postgres
 # php has been moved to homebrew-php. In the process, php70 was removed >:( I've switched to phpenv and pecl instead. I don't even know how extensions work in the new homebrew php.
 # brew "php@7.1", args: ["--with-pear"], link: true
 brew "pinentry-mac" # gpg pin entry for yadm and others
 brew "plenv" # perl version manager. better than perlbrew. used to get percona-toolkit working.
 # brew "postgresql"
 # brew "pre-commit" # yelp git pre-commit framework (I manage this via pip)
+brew "pv" # pipe something to pv to see progress of data through a pipeline
 brew "pyenv" # python version manager
 # brew "python" # updated version of python with updated pip. Useful for installing pip packages without root. NOTE: homebrew "pip" breaks neovim.
 # brew "python3" # required for tmuxomatic

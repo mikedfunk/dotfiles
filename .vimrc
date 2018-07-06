@@ -184,7 +184,9 @@ set tags=./tags " avoid searching for other tags files
 set path=** " only search in git root
 " disabled due to this: Adding ** to 'path' is also a bad idea. Instead create a mapping that pre-fills :find **/, etc.
 " set path+=** " search everywhere in current git root https://robots.thoughtbot.com/how-to-do-90-of-what-plugins-do-with-just-vim
-set hlsearch " highlight search results
+" turning this off but keeping incsearch on so I can use search for navigation
+" more easily on recommendation from practical vim
+" set hlsearch " highlight search results
 set modeline " enable modeline
 set modelines=5 " enable modeline
 set noshowmode " don't show the mode in the command area. it's already in airline.
@@ -447,6 +449,10 @@ endif
 
 " in ex mode %% is current dir
 cabbr <expr> %% expand('%:p:h')
+
+" from practical vim recommendation
+cnoremap <c-p> <Up>
+cnoremap <c-n> <Down>
 
 nnoremap <leader>tt :tabe<cr>
 
