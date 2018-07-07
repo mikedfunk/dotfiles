@@ -42,7 +42,7 @@ brew "hostess" # manage hosts file
 brew "htop" # prettier, more powerful version of top. gets the top running processes
 brew "httpie" # a cool alternative to curl (http --help)
 brew "hub", args: ["--devel"] # github tool is a superset of git. 2.0 needs to be installed via --HEAD
-# brew "icu4c" # needed for php70-intl extension
+# brew "icu4c" # needed for php70-intl extension (it seems this is included with node https://stackoverflow.com/questions/27896229/library-not-loaded-error-after-brew-install-php56)
 brew "ievms" # internet explorer VMs to test a site in various IE versions
 brew "imagemagick@6" # image transformation tool - needed by php imagemagick extension (v6 needed for catalog)
 brew "intltool" # needed for php intl extension
