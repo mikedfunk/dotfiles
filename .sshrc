@@ -8,3 +8,5 @@ export LC_ALL="en_US.UTF-8"
 export LANGUAGE="en_US.UTF-8"
 # tell top to use my config file
 top () { HOME="$SSHHOME/.sshrc.d" /usr/bin/top; }
+# tell htop to use my config file
+htop () { HOME="$SSHHOME/.sshrc.d" /usr/bin/htop; }
