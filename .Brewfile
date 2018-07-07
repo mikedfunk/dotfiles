@@ -31,7 +31,6 @@ brew "git-extras" # adds some cool additional git commands
 brew "git-flow-avh" # adds first class git commands for the git-flow workflow. This version will delete remote feature, release, and hotfix branches on finishing.
 brew "gnu-sed" # linux version of sed - saves as gsed (required for diff-so-fancy)
 brew "gnu-tar" # linux version of tar so stuff actually works
-# brew "googlecl" # google command line tool
 # brew "graphviz" # useful for xdebug profiler class maps
 brew "grc" # generic colorizer
 # brew "go" # go programming language. used for mailhog and rtop.
@@ -97,9 +96,9 @@ brew "reattach-to-user-namespace" # used to fix mac issues with copy/paste in tm
 # brew "s3cmd" # amazon s3 uploader. I use awscli instead.
 # brew "selenium-server-standalone" # controls a browser for automated testing
 brew "shellcheck" # Checks shell syntax (used by vim ALE)
-brew "shfmt" # formats shell scripts (vim ALE)
+brew "shfmt" # formats shell scripts (used by vim ALE)
 brew "ssh-copy-id" # copies ssh keys to remote servers
-brew "sshrc" # use ~/.sshrc and ~/.sshrc.d on remote servers
+brew "sshrc" # use ~/.sshrc and ~/.sshrc.d on remote servers. bring your dotfiles with you!
 # brew "sshfs" # mounts ssh servers as file systems in the local fs. requires osxfuse.
 # brew "sshuttle" # poor mans vpn. doesnt work on yosemite at the moment
 # brew "solr" # search data server
@@ -172,7 +171,7 @@ cask "betterzipql" # quicklook plugin
 # cask "qlimagesize" # quicklook plugin
 cask "sequel-pro" # mysql gui client
 cask "spectacle" # keyboard window splitter/resizer/mover
-cask "steam"
+cask "steam" # yep
 # cask "suspicious-package" # quicklook plugin
 # cask "tinygrab" # simple screenshot uploader
 # cask "vagrant" # development VM maker/manager
