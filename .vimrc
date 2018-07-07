@@ -395,6 +395,12 @@ endif
 " https://github.com/tonsky/FiraCode/issues/462
 " set renderoptions=type:directx
 " set encoding=utf-8
+
+" avoid python deprecation warnings
+" https://github.com/vim/vim/issues/3117#issuecomment-402622616
+if has('python3')
+    silent! python3 1
+endif
 " }}}
 
 " Completion {{{
