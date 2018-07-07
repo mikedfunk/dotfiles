@@ -9,4 +9,5 @@ export LANGUAGE="en_US.UTF-8"
 # tell top to use my config file
 top () { HOME="$SSHHOME/.sshrc.d" /usr/bin/top; }
 # tell htop to use my config file
+# NOTE: this htop config is for 1.0.2 which is used on remote servers I ssh into
 htop () { HOME="$SSHHOME/.sshrc.d" /usr/bin/htop; }

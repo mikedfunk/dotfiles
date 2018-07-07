@@ -10,3 +10,5 @@ curl -fLo /usr/local/bin/yadm https://github.com/TheLocehiliosan/yadm/raw/master
 My Bash, Vim, Git, and other dotfiles. Managed by [yadm](https://thelocehiliosan.github.io/yadm/docs).
 
 ![screenshot](https://i.imgur.com/p0TTKI5.jpg)
+
+* [Homebrew packages I use](.Brewfile)
