@@ -291,6 +291,7 @@ augroup filetypessetgroup
     autocmd BufRead,BufNewFile .editorconfig set ft=dosini
     autocmd BufRead,BufNewFile .myclirc* set ft=dosini
     autocmd BufRead,BufNewFile .Brewfile set ft=sh
+    autocmd BufRead,BufNewFile .sshrc set ft=sh
     autocmd BufRead,BufNewFile .tigrc set ft=gitconfig
     autocmd BufRead,BufNewFile {.env,.env.*} set ft=dosini
 augroup END
