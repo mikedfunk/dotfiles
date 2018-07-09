@@ -249,27 +249,6 @@ log_info "Syncing hosts file"
 hostess apply "$HOME/.support/hosts.json"
 # }}}
 
-# install locally trusted cert {{{
-if [[ "$(builtin type -p mkcert)" ]]; then
-    log_info "installing locally trusted cert"
-    mkcert -install
-    # apply certs for all saatchi domains
-    mkcert \
-        api.local.saatchiart.com \
-        assets.local.saatchiart.com \
-        couch.local.saatchiart.com \
-        gallery.local.saatchiart.com \
-        imgproc.local.saatchiart.com \
-        limited.local.saatchiart.com \
-        local.saatchiart.com \
-        palette.local.saatchiart.com \
-        solr.local.saatchiart.com \
-        upload.local.saatchiart.com \
-        www.local.saatchiart.com \
-        zed.local.saatchiart.com
-fi
-# }}}
-
 # let iterm see italics {{{
 log_info "Enabling italic terminal"
 mkdir -p "$HOME/.terminfo/78"

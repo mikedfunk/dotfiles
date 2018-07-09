@@ -62,14 +62,12 @@ brew "libxml2" # needed by php70
 # brew "macvim" # mac gui vim client
 brew "mas" # mac app store cli. e.g. `mas install Xcode`
 brew "memcached" # needed by php70
-Brew "mkcert" # mkcert is a simple tool for making locally-trusted development certificates. It requires no configuration.
 # brew "mono" # .NET compiler for mac. Useful for OmniSharp.
 brew "multitail" # tail multiple files in splits with pretty colors
 # brew "mycli"
 brew "mysql" # I haven't been using the server lately but I use it to connect and I use mysql_config_editor
 # brew "nano" # text editor. This gets the latest version: 2.2.6 rather than 2.2.0 that comes with osx.
 # brew "neovim" # vim re-imagining
-brew "nss" # needed for mkcert to install certs for firefox
 brew "node" # nodejs and npm (required by joplin, yarn)
 brew "nodenv" # node version manager
 brew "noti" # simple terminal notifier
