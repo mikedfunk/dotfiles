@@ -231,7 +231,8 @@ if has('python') || has('python3')
 endif " javascript omnifunc and jump to def. requires a .tern-project or ~/.tern-config file. http://ternjs.net/doc/manual.html#configuration
 Plug 'othree/javascript-libraries-syntax.vim' " syntax completion for common libraries (react, lodash, jquery, etc.)
 " Plug 'kristijanhusak/vim-js-file-import' " Go to definition: <leader>ig Import file: <Leader>if
-Plug 'tpope/vim-apathy' " tweak built-in vim features to allow jumping to module location
+Plug 'tpope/vim-apathy' " tweak built-in vim features to allow jumping to javascript (and others) module location with gf
+" vim-apathy is useful to replace something like this https://stackoverflow.com/questions/33093491/vim-gf-with-file-extension-based-on-current-filetype#33096831
 " }}}
 
 " Syntax highlighting {{{

@@ -302,7 +302,7 @@ cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
 noremap <c-e> :silent! Lex <C-R>=fnameescape(expand('%:h')).'/'<cr><cr>
 
 " TIP: to cd to the directory of the current file:
-" `:cd %%` (or on generic vim: `:cd %:p:h`)
+" `:cd %%` (or on generic vim: `:cd %:h`)
 " Then to cd back to git root:
 " `:Gcd` (or `:cd -`)
 " Useful for <c-x><c-f> for javascript imports
