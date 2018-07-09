@@ -232,7 +232,7 @@ alias puf="pu --filter="
 #     (application\/controllers|application\/modules\/*\/controllers|application\/models|library|src|tests)/.*\\.php\
 #     ' | entr -r -c ./vendor/bin/phpunit --colors"
 # alias puw="puwatch"
-alias puw="php -derror_reporting='E_ALL & ~E_NOTICE' $(which phpunit-watcher) watch"
+alias puw="php -dmemory_limit=2048M -ddisplay_errors=on -derror_reporting='E_ALL & ~E_NOTICE' $(which phpunit-watcher) watch"
 # }}}
 
 # composer {{{
