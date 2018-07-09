@@ -224,7 +224,7 @@ dir ~/Code/saatchi/queries
 0 run vim -S
 1 run saatchi-mycli-legacy-local
 2 run saatchi-mycli-palette-local
-2 run saatchi-mycli-zed-local
+3 run saatchi-mycli-zed-local
 # 1 run saatchi-mycli-legacy-replica
 
 window http
