@@ -431,7 +431,7 @@ let g:tmuxline_preset = {
     \ 'win': [ '#I', '#W'],
     \ 'cwin': ['#I', '#W#F'],
     \ 'y': ["⏱ #(TZ=Etc/UTC date '+%%R UTC')", ],
-    \ 'z': ['%a', '%b %d', '%I:%M %p'],
+    \ 'z': [' 📆 %a', '%b %d', '%I:%M %p'],
 \}
 let g:airline#extensions#tmuxline#snapshot_file = '~/.tmuxline.conf'
 
