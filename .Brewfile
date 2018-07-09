@@ -145,6 +145,7 @@ cask "font-iosevka"
 cask "font-meslo-for-powerline" # whoa there are a ton of fonts on brew "cask"!
 # cask "gifox" # menubar app to record 10-second gifs with cmd-shift-6
 # cask "gifrocket" # video to gif converter
+cask "gog-galaxy" # good old games
 cask "google-chrome"
 # cask "google-drive"
 cask "iterm2"
