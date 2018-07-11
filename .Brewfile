@@ -79,6 +79,7 @@ brew "percona-toolkit" # mysql schema migrator among other things
 # php has been moved to homebrew-php. In the process, php70 was removed >:( I've switched to phpenv and pecl instead. I don't even know how extensions work in the new homebrew php.
 # brew "php@7.1", args: ["--with-pear"], link: true
 brew "pinentry-mac" # gpg pin entry for yadm and others
+brew "plantuml" # uml generation from text
 brew "plenv" # perl version manager. better than perlbrew. used to get percona-toolkit working.
 # brew "postgresql"
 # brew "pre-commit" # yelp git pre-commit framework (I manage this via pip)
