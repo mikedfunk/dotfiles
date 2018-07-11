@@ -430,8 +430,9 @@ let g:tmuxline_preset = {
     \ 'c': ['#(~/.bin/saatchi-haproxy-status.sh)'],
     \ 'win': [ '#I', '#W'],
     \ 'cwin': ['#I', '#W#F'],
-    \ 'y': ["⏱ #(TZ=Etc/UTC date '+%%R UTC')", ],
-    \ 'z': [' 📆 %a', '%b %d', '%I:%M %p'],
+    \ 'x': ["#(TZ=Etc/UTC date '+%%R UTC')", ],
+    \ 'y': ['%I:%M %p'],
+    \ 'z': ['%a', '%b %d'],
 \}
 let g:airline#extensions#tmuxline#snapshot_file = '~/.tmuxline.conf'
 
