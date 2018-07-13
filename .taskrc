@@ -29,7 +29,7 @@ include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/dark-16.theme
 #include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/solarized-light-256.theme
 #include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/no-color.theme
 
-# Bugwarrior UDAs
+# Bugwarrior UDAs for jira
 uda.jirasummary.type=string
 uda.jirasummary.label=Jira Summary
 uda.jiraurl.type=string

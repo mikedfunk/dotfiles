@@ -1,6 +1,8 @@
 # vim: set foldmethod=marker:
 
 # brew {{{
+brew "akamai" # interact with akamai caching
+brew "angband"
 brew "autoconf" # needed to build some php70 libs from source
 brew "autossh" # ssh that reconnects
 brew "awscli" # aws command - used to upload to s3, etc. `aws configure` to set up credentials. (set up access keys here https://console.aws.amazon.com/iam/home?region=us-west-1#/users/mike.funk?section=security_credentials)
@@ -146,7 +148,7 @@ cask "font-iosevka"
 cask "font-meslo-for-powerline" # whoa there are a ton of fonts on brew "cask"!
 # cask "gifox" # menubar app to record 10-second gifs with cmd-shift-6
 # cask "gifrocket" # video to gif converter
-cask "gog-galaxy" # good old games
+# cask "gog-galaxy" # good old games
 cask "google-chrome"
 # cask "google-drive"
 cask "iterm2"
@@ -173,6 +175,7 @@ cask "betterzipql" # quicklook plugin
 # cask "qlimagesize" # quicklook plugin
 cask "sequel-pro" # mysql gui client
 cask "spectacle" # keyboard window splitter/resizer/mover
+# cask "spotify" # their web app has been broken for a bit https://community.spotify.com/t5/Other-Partners-Web-Player-etc/Web-Player-Not-Working/td-p/1070938
 cask "steam" # yep
 # cask "suspicious-package" # quicklook plugin
 # cask "tinygrab" # simple screenshot uploader

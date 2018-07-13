@@ -127,6 +127,7 @@ zplug load
 [[ "$(builtin type -p pyenv)" ]] && eval "$(pyenv init -)"
 [[ -f "$HOME/.phpenv/bin/phpenv" ]] && eval "$($HOME/.phpenv/bin/phpenv init -)"
 [[ "$(builtin type -p rbenv)" ]] && eval "$(rbenv init -)"
+[[ "$(builtin type -p akamai)" ]] && eval "$(akamai --zsh)"
 # [ -n "$DESK_ENV" ] && source "$DESK_ENV" || true # Hook for desk activation
 # tabtab source for yo package
 # uninstall by removing these lines or running `tabtab uninstall yo`

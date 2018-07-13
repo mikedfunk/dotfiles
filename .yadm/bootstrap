@@ -30,6 +30,13 @@ if [ -e "$HOME/.Brewfile" ]; then
 fi
 # }}}
 
+# akamai {{{
+if [[ "$(builtin type -p akamai)" ]]; then
+    [[ "$(akamai list | grep -q purge)" ]] || akamai install purge
+    akamai update
+fi
+# }}}
+
 # phpenv {{{
 # I only use this because homebrew is making it difficult to install php 7.0
 # and extensions right now.
@@ -302,6 +309,7 @@ fi
 # use this form to easily generate a launchd plist: http://launched.zerowidth.com/
 launchctl load ~/Library/LaunchAgents/mike.saatchi-tunnel.autossh.plist
 launchctl load ~/Library/LaunchAgents/mike.saatchi-proxy.autossh.plist
-launchctl load ~/Library/LaunchAgents/com.zerowidth.launched.bugwarrior-pull-from-jira.plist
+# I have a job that pulls tasks from jira to taskwarrior... but it's kind of lame and pointless.
+# launchctl load ~/Library/LaunchAgents/com.zerowidth.launched.bugwarrior-pull-from-jira.plist
 
 # }}}
