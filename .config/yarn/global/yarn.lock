@@ -2804,6 +2804,13 @@ buffer@^4.3.0:
     ieee754 "^1.1.4"
     isarray "^1.0.0"
 
+buffer@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/buffer/-/buffer-5.1.0.tgz#c913e43678c7cb7c8bd16afbcddb6c5505e8f9fe"
+  dependencies:
+    base64-js "^1.0.2"
+    ieee754 "^1.1.4"
+
 buffers@~0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/buffers/-/buffers-0.1.1.tgz#b24579c3bed4d6d396aeee6d9a8ae7f5482ab7bb"
@@ -3945,8 +3952,10 @@ crc32-stream@^2.0.0:
     readable-stream "^2.0.0"
 
 crc@^3.4.4:
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/crc/-/crc-3.5.0.tgz#98b8ba7d489665ba3979f59b21381374101a1964"
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/crc/-/crc-3.6.0.tgz#50cf87e2601f9bf5e482a1575f006a1138a3ad37"
+  dependencies:
+    buffer "^5.1.0"
 
 create-ecdh@^4.0.0:
   version "4.0.3"
@@ -4261,8 +4270,8 @@ cssnano@^3.10.0, cssnano@^3.4.0:
     postcss-zindex "^2.0.1"
 
 cssnano@^4.0.0:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/cssnano/-/cssnano-4.0.1.tgz#2c611d3375be46d8908d8e1fb28b8ed875376a10"
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/cssnano/-/cssnano-4.0.2.tgz#0e79a1829afb6583744ba705fd62516fbfd4fda7"
   dependencies:
     cosmiconfig "^5.0.0"
     cssnano-preset-default "^4.0.0"
@@ -5415,8 +5424,8 @@ eslint-plugin-import@^2.12.0:
     resolve "^1.6.0"
 
 eslint-plugin-jsx-a11y@^6.0.2:
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jsx-a11y/-/eslint-plugin-jsx-a11y-6.1.0.tgz#569f6f2d29546cab82cedaa077ec829693b0c42d"
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jsx-a11y/-/eslint-plugin-jsx-a11y-6.1.1.tgz#7bf56dbe7d47d811d14dbb3ddff644aa656ce8e1"
   dependencies:
     aria-query "^3.0.0"
     array-includes "^3.0.3"
@@ -5541,8 +5550,8 @@ esprima@^3.1.3:
   resolved "https://registry.yarnpkg.com/esprima/-/esprima-3.1.3.tgz#fdca51cee6133895e3c88d535ce49dbff62a4633"
 
 esprima@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/esprima/-/esprima-4.0.0.tgz#4499eddcd1110e0b218bacf2fa7f7f59f55ca804"
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/esprima/-/esprima-4.0.1.tgz#13b04cdb3e6c5d19df91ab6987a8695619b0aa71"
 
 esquery@^1.0.0:
   version "1.0.1"
@@ -7569,8 +7578,8 @@ html-entities@^1.2.0:
   resolved "https://registry.yarnpkg.com/html-entities/-/html-entities-1.2.1.tgz#0df29351f0721163515dfb9e5543e5f6eed5162f"
 
 html-minifier@^3.2.3:
-  version "3.5.18"
-  resolved "https://registry.yarnpkg.com/html-minifier/-/html-minifier-3.5.18.tgz#fc8b02826cbbafc6de19a103c41c830a91cffe5a"
+  version "3.5.19"
+  resolved "https://registry.yarnpkg.com/html-minifier/-/html-minifier-3.5.19.tgz#ed53c4b7326fe507bc3a1adbcc3bbb56660a2ebd"
   dependencies:
     camel-case "3.0.x"
     clean-css "4.1.x"
@@ -12006,8 +12015,8 @@ postcss-colormin@^2.1.8:
     postcss-value-parser "^3.2.3"
 
 postcss-colormin@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/postcss-colormin/-/postcss-colormin-4.0.0.tgz#8a21f10b3843590d181eedf2a6a109617b6553ec"
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/postcss-colormin/-/postcss-colormin-4.0.1.tgz#6f1c18a0155bc69613f2ff13843e2e4ae8ff0bbe"
   dependencies:
     browserslist "^4.0.0"
     color "^3.0.0"
@@ -12162,8 +12171,8 @@ postcss-merge-longhand@^2.0.1:
     postcss "^5.0.4"
 
 postcss-merge-longhand@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/postcss-merge-longhand/-/postcss-merge-longhand-4.0.0.tgz#a4541b668a0a6ac25aa21d930142fd02b41a717c"
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/postcss-merge-longhand/-/postcss-merge-longhand-4.0.1.tgz#98cdebda7cc1bada4ae03c76ed1c44c97a574019"
   dependencies:
     postcss "^6.0.0"
     postcss-value-parser "^3.0.0"
