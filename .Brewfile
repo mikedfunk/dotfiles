@@ -58,7 +58,7 @@ brew "jq" # simple json pretty-printer `echo '{"my" => "json"}' | jq .`
 # brew "libcaca" # image previewing in ASCII. used by ranger
 brew "libcouchbase" # nosql fast data storage similar to mongo. Used at Saatchi. Includes cli tool cbc
 brew "libmemcached" # needed by php70
-brew "libmcrypt" # needed by php-build
+brew "libmcrypt" # needed by php-build DO NOT DELETE php will break
 brew "libxml2" # needed by php70
 # brew "lynx" # console web browser. used by ranger to preview html.
 # brew "macvim" # mac gui vim client

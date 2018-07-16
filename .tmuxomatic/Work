@@ -51,7 +51,7 @@ dir ~/Code/saatchi/saatchiart
 2 run puw
 # 2 run wd xdocker
 # 2 run saatchi-docker-legacy
-3 run saatchi-tail-legacy-local
+3 sleep 180 && run saatchi-tail-legacy-local
 # 3 run grunt build
 # 3 run grunt watch
 4 run cd assets/react
@@ -101,7 +101,7 @@ window easel
 dir ~/Code/saatchi/easel
 4 run glow --watch
 3 run yarn jest --watch
-2 run saatchi-attach-easel-node
+2 sleep 180 && run saatchi-attach-easel-node
 # 2 run yarn dev
 1 run vim -S
 0 run ts
@@ -148,8 +148,8 @@ dir ~/Code/saatchi/yzed
 1 run vim -S
 0 run ts
 2 run wd xdocker
-# 2 run saatchi-docker-zed
-# 2 run tail -f /scratch/yzed/data/US/logs/ZED/* /scratch/yzed/data/US/logs/YVES/*
+# 2 sleep 180 && run saatchi-docker-zed
+2 sleep 180 && run saatchi-tail-zed-local
 
 # window views
 
@@ -222,9 +222,9 @@ window mysql
 
 dir ~/Code/saatchi/queries
 0 run vim -S
-1 run saatchi-mycli-legacy-local
-2 run saatchi-mycli-palette-local
-3 run saatchi-mycli-zed-local
+1 sleep 180 && run saatchi-mycli-legacy-local
+2 sleep 180 && run saatchi-mycli-palette-local
+3 sleep 180 && run saatchi-mycli-zed-local
 # 1 run saatchi-mycli-legacy-replica
 
 window http
@@ -274,21 +274,21 @@ dir ~
 2 run while true; do saatchi-releases-xqa --clear; sleep 60; done
 3 run while true; do saatchi-releases-xprod --clear; sleep 60; done
 
-window uml
-1111111111111111111111111
-1111111111111111111111111
-1111111111111111111111111
-1111111111111111111111111
-1111111111111111111111111
-1111111111111111111111111
-2222222222223333333333333
-2222222222223333333333333
-2222222222223333333333333
+# window uml
+# 1111111111111111111111111
+# 1111111111111111111111111
+# 1111111111111111111111111
+# 1111111111111111111111111
+# 1111111111111111111111111
+# 1111111111111111111111111
+# 2222222222223333333333333
+# 2222222222223333333333333
+# 2222222222223333333333333
 
-dir ~/Code/uml
-1 run v -S
-2 run g st
-3 run ./watch.sh
+# dir ~/Code/uml
+# 1 run v -S
+# 2 run g st
+# 3 run ./watch.sh
 
 # window catalog
 
