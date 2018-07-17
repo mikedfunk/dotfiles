@@ -315,7 +315,7 @@ let g:netrw_banner = 0 " remove that silly shortcut banner/header at the top, ev
 " https://github.com/vim/vim/issues/2329#issuecomment-350294641
 augroup netrw_fix
     autocmd!
-    autocmd BufRead scp://* :set bt=acwrite
+    autocmd BufRead,BufWritePost scp://* :set bt=acwrite
 augroup END
 
 " sublime-style filebrowser in sidebar workflow

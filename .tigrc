@@ -7,6 +7,7 @@
 # set refresh-interval = 1
 set refresh-mode = auto
 set mailmap = true
+    set line_graphics = utf-8
 # }}}
 
 # bindings {{{
