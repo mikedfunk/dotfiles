@@ -156,6 +156,7 @@ Plug 'frioux/vim-lost' " gL to see what function you're in. I use this in php so
 Plug 'lifepillar/vim-cheat40' " Customizable cheatsheet. Mine is in ~/.vim/plugged/cheat40.txt. Open cheatsheet with <leader>? . I use this to avoid written cheatsheets on my desk for refactor tools and vdebug.
 " Plug 'auwsmit/vim-active-numbers' " Only show line numbers on active window. Helps to show which is active.
 " Plug 'dyng/ctrlsf.vim' " Contextual search plugin ala sublime.
+Plug 'andymass/vim-tradewinds' " <c-w>gh to move the current split one to the left, etc. in other directions
 " }}}
 
 " Php {{{
