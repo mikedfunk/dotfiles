@@ -9,7 +9,6 @@ aspy.yaml==1.1.0
 awesome-slugify==1.6.5
 Babel==2.5.3
 backports.csv==1.0.5
-bugwarrior==1.5.1
 cached-property==1.4.2
 certifi==2018.4.16
 cffi==1.11.5

@@ -1,4 +1,5 @@
 #!/usr/bin/expect
+# TODO this is very brittle currently - sometimes I get the offer to alter php.ini.
 spawn php ".phpenv/bin/go-pear.phar"
 
 expect "1-12, 'all' or Enter to continue:"

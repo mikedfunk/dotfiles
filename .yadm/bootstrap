@@ -168,7 +168,10 @@ if [[ ! "$(phpenv versions | grep 7.0.29)" ]]; then
 	$HOME/.phpenv/pear/bin/pecl install couchbase-2.2.2 && (echo 'extension="couchbase.so"' >$HOME/.phpenv/versions/7.0.29/etc/conf.d/couchbase.ini) # their sdk has breaking changes all the time
 	# $HOME/.phpenv/pear/bin/pecl install pcntl && ( echo 'zend_extension="pcntl.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/pcntl.ini )
 	# $HOME/.phpenv/pear/bin/pecl install intl && ( echo 'zend_extension="intl.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/intl.ini ) # needed for phpstan build
+
+    # I'm having trouble installing this via pecl - missing php_smart_str_public.h. It's not worth it - I'll just run php in zed's docker container when I need to.
 	# $HOME/.phpenv/pear/bin/pecl install memcache && ( echo 'zend_extension="memcache.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/memcache.ini ) # needed for zed
+
 	$HOME/.phpenv/pear/bin/pecl install memcached && (echo 'extension="memcached.so"' >$HOME/.phpenv/versions/7.0.29/etc/conf.d/memcached.ini)
 	# $HOME/.phpenv/pear/bin/pecl install mongodb && ( echo 'extension="mongodb.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/mongodb.ini )
 	# $HOME/.phpenv/pear/bin/pecl install xdebug && ( echo 'zend_extension="xdebug.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/xdebug.ini )
