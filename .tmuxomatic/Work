@@ -149,7 +149,7 @@ dir ~/Code/saatchi/yzed
 2 run wd xdocker
 # 2 run sleep 180 && saatchi-docker-zed
 2 run sleep 180 && saatchi-tail-zed-local
-3 run noglob ag -l -g '.php' | entr -r -c /usr/local/bin/docker exec -i xsaatchi_zed_fpm_instance /data/shop/current/vendor/bin/phpunit --group=unit
+3 run sleep 180 && saatchi-phpunit-watch-zed
 
 # window views
 

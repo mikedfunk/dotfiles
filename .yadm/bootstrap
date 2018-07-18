@@ -7,6 +7,35 @@ function log_error() { echo -e "$(tput setaf 1)$(tput rev)$(tput bold) \xE2\x9C\
 function log_notice() { echo -e "$(tput setaf 3)$(tput rev)$(tput bold) \xE2\x9A\xa0 $1 $(tput sgr0)"; }
 # }}}
 
+# clone repos {{{
+
+log_info "Cloning repos"
+mkdir -p "$HOME/Code"
+cd "$HOME/Code"
+[[ -d "$HOME/Code/mikedfunk.github.io" ]] || git clone git@github.com:mikedfunk/mikedfunk.github.io.git
+cd -
+
+# saatchi repos {{{
+mkdir -p "$HOME/Code/saatchi"
+cd "$HOME/Code/saatchi"
+[[ -d "$HOME/Code/saatchi/api" ]] || git clone git@github.com:saatchiart/api.git
+[[ -d "$HOME/Code/saatchi/catalog" ]] || git clone git@github.com:saatchiart/catalog.git
+[[ -d "$HOME/Code/saatchi/couchbase-views" ]] || git clone git@github.com:saatchiart/couchbase-views.git
+[[ -d "$HOME/Code/saatchi/easel" ]] || git clone git@github.com:saatchiart/easel.git
+[[ -d "$HOME/Code/saatchi/gallery" ]] || git clone git@github.com:saatchiart/gallery.git
+[[ -d "$HOME/Code/saatchi/gitlab-puppet" ]] || git clone ab.dmdmedia.net:mike.funk/saatchi.git
+[[ -d "$HOME/Code/saatchi/imgproc" ]] || git clone git@github.com:saatchiart/imgproc.git
+[[ -d "$HOME/Code/saatchi/maropost-php-sdk" ]] || git clone git@github.com:saatchiart/maropost-php-sdk.git
+[[ -d "$HOME/Code/saatchi/palette" ]] || git clone git@github.com:saatchiart/palette.git
+[[ -d "$HOME/Code/saatchi/potato" ]] || git clone git@github.com:saatchiart/potato.git
+[[ -d "$HOME/Code/saatchi/saatchiart" ]] || git clone git@github.com:saatchiart/saatchiart.git
+[[ -d "$HOME/Code/saatchi/xdocker" ]] || git clone git@github.com:saatchiart/xdocker.git
+[[ -d "$HOME/Code/saatchi/yzed" ]] || git clone git@github.com:saatchiart/yzed.git
+cd -
+# }}}
+
+# }}}
+
 # decrypt yadm files {{{
 # log_info "Decrypting yadm files"
 # yadm decrypt
