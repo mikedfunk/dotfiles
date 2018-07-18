@@ -12,7 +12,7 @@ set wildignore+=*/build/*,cscope.out,tags,.git/*,Session.vim
 " below and add another. remote is first, local is second.
 " NOTE: You can't change this after loading because of a bug currently.
 let g:vdebug_options['path_maps'] = {
-\   '/data/palette/current': '/Users/mikefunk/Sites/saatchi/palette'
+\   '/data/palette/current': '/Users/mikefunk/Code/saatchi/palette'
 \}
 let g:vdebug_options['port'] = 9015
 " }}}

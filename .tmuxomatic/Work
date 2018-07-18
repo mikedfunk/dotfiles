@@ -51,14 +51,13 @@ dir ~/Code/saatchi/saatchiart
 2 run puw
 # 2 run wd xdocker
 # 2 run saatchi-docker-legacy
-3 sleep 180 && run saatchi-tail-legacy-local
+3 run sleep 180 && saatchi-tail-legacy-local
 # 3 run grunt build
 # 3 run grunt watch
 4 run cd assets/react
 4 run yarn
 4 run yarn start
 # 5 run saatchi-docker-legacy
-# 5 run tail -f /data/temp/saatchi.log /var/log/nginx/*error.log
 
 window gallery
 
@@ -79,7 +78,7 @@ dir ~/Code/saatchi/gallery
 1 run vim -S
 0 run ts
 # 2 run saatchi-docker-gallery
-# 2 run tail -f /data/gallery/current/storage/logs/*.log /var/log/nginx/*.log
+2 run saatchi-tail-gallery-local
 3 run wd gallery
 3 run yarn gulp
 
@@ -101,7 +100,7 @@ window easel
 dir ~/Code/saatchi/easel
 4 run glow --watch
 3 run yarn jest --watch
-2 sleep 180 && run saatchi-attach-easel-node
+2 run sleep 180 && saatchi-attach-easel-node
 # 2 run yarn dev
 1 run vim -S
 0 run ts
@@ -127,7 +126,6 @@ dir ~/Code/saatchi/palette
 # 2 run wd xdocker
 2 run psw
 # 2 run saatchi-docker-palette
-# 2 run tail -f /scratch/palette/log/*.log /var/log/nginx/*.log
 3 run sleep 180 && saatchi-tail-palette-local
 
 window zed
@@ -142,15 +140,16 @@ window zed
 1111111111111111111111111
 1111111111111111111111111
 1111111111111111111111111
-0000000000022222222222222
-0000000000022222222222222
+0000000333333333322222222
+0000000333333333322222222
 
 dir ~/Code/saatchi/yzed
 1 run vim -S
 0 run ts
 2 run wd xdocker
-# 2 sleep 180 && run saatchi-docker-zed
-2 sleep 180 && run saatchi-tail-zed-local
+# 2 run sleep 180 && saatchi-docker-zed
+2 run sleep 180 && saatchi-tail-zed-local
+3 run noglob ag -l -g '.php' | entr -r -c /usr/local/bin/docker exec -i xsaatchi_zed_fpm_instance /data/shop/current/vendor/bin/phpunit --group=unit
 
 # window views
 
@@ -223,9 +222,9 @@ window mysql
 
 dir ~/Code/saatchi/queries
 0 run vim -S
-1 sleep 180 && run saatchi-mycli-legacy-local
-2 sleep 180 && run saatchi-mycli-palette-local
-3 sleep 180 && run saatchi-mycli-zed-local
+1 run sleep 180 && saatchi-mycli-legacy-local
+2 run sleep 180 && saatchi-mycli-palette-local
+3 run sleep 180 && saatchi-mycli-zed-local
 # 1 run saatchi-mycli-legacy-replica
 
 window http
@@ -311,7 +310,6 @@ dir ~
 # 0 run ts
 # 2 run wd xdocker
 # # 2 run saatchi-docker-catalog
-# # 2 run tail -f /data/catalog/shared/log/*.log /data/catalog/current/log/*.log
 
 # window api
 
@@ -333,7 +331,6 @@ dir ~
 # 0 run ts
 # 2 run wd xdocker
 # # 2 run saatchi-docker-catalog
-# # 2 run tail -f /data/api/shared/log/*.log /data/api/current/log/*.log
 
 # window puppet
 
