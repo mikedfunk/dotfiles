@@ -51,12 +51,12 @@ dir ~/Code/saatchi/saatchiart
 2 run puw
 # 2 run wd xdocker
 # 2 run saatchi-docker-legacy
-3 run sleep 180 && saatchi-tail-legacy-local
+4 run sleep 180 && saatchi-tail-legacy-local
 # 3 run grunt build
 # 3 run grunt watch
-4 run cd assets/react
-4 run yarn
-4 run yarn start
+3 run cd assets/react
+3 run yarn
+3 run yarn start
 # 5 run saatchi-docker-legacy
 
 window gallery

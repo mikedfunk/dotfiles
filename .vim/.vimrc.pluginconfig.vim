@@ -672,6 +672,10 @@ let g:gutentags_ctags_executable_ruby = 'ripper-tags -R'
 " if I left it in the default, gutentags would not tag any vendor files :/
 let g:gutentags_ctags_exclude_wildignore = 0
 
+" Some debugging/troubleshooting commands are also available if the
+" |gutentags_define_advanced_commands| global setting is set to 1.
+let gutentags_define_advanced_commands = 1
+
 " only tag stuff that is not in gitignore
 " downside: you have to commit a file for it to be tagged
 " let g:gutentags_file_list_command = {

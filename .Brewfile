@@ -6,8 +6,10 @@ brew "angband"
 brew "autoconf" # needed to build some php70 libs from source
 brew "autossh" # ssh that reconnects
 brew "awscli" # aws command - used to upload to s3, etc. `aws configure` to set up credentials. (set up access keys here https://console.aws.amazon.com/iam/home?region=us-west-1#/users/mike.funk?section=security_credentials)
+brew "bat" # much cooler looking cat
 # brew "chromedriver" # like selenium for chrome.
 # brew "colortail" # tail with support for colors
+brew "composer" # php dependency management
 # brew "coreutils" # used by k zsh plugin
 # brew "cmake" # used by youcompleteme
 # brew "ctags" # allows jumping to function/class definitions, etc. in vim
