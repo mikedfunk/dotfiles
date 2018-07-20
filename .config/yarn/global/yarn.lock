@@ -2112,8 +2112,8 @@ base-engines@^0.2.0:
     lazy-cache "^2.0.1"
 
 base-env@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/base-env/-/base-env-0.3.0.tgz#6bab79673293326df85fa61f551686f4c2f1f472"
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/base-env/-/base-env-0.3.1.tgz#a959341fef13ac1cd372a3fe2d6eee11d11061bb"
   dependencies:
     base-namespace "^0.2.0"
     contains-path "^0.1.0"
@@ -2125,9 +2125,8 @@ base-env@^0.3.0:
     is-valid-app "^0.1.0"
     is-valid-instance "^0.1.0"
     kind-of "^3.0.3"
-    lazy-cache "^2.0.1"
     os-homedir "^1.0.1"
-    resolve-file "github:jonschlinkert/resolve-file"
+    resolve-file "^0.3.0"
 
 base-fs-conflicts@^0.1.9:
   version "0.1.9"
@@ -3021,8 +3020,8 @@ caniuse-api@^3.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-db@^1.0.30000529, caniuse-db@^1.0.30000634, caniuse-db@^1.0.30000639:
-  version "1.0.30000867"
-  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000867.tgz#b55a6ecfac3107988940c9c7dfe1866315312c97"
+  version "1.0.30000869"
+  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000869.tgz#c3da59fa8d9456df88a24bb292ede0e3798798cb"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000792, caniuse-lite@^1.0.30000805, caniuse-lite@^1.0.30000844, caniuse-lite@^1.0.30000865:
   version "1.0.30000865"
@@ -4280,8 +4279,8 @@ cssnano@^3.10.0, cssnano@^3.4.0:
     postcss-zindex "^2.0.1"
 
 cssnano@^4.0.0:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/cssnano/-/cssnano-4.0.2.tgz#0e79a1829afb6583744ba705fd62516fbfd4fda7"
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/cssnano/-/cssnano-4.0.3.tgz#b694d626906bf1844f573465ecc166b2240b8699"
   dependencies:
     cosmiconfig "^5.0.0"
     cssnano-preset-default "^4.0.0"
@@ -10470,7 +10469,7 @@ miller-rabin@^4.0.0:
     bn.js "^4.0.0"
     brorand "^1.0.1"
 
-"mime-db@>= 1.34.0 < 2":
+"mime-db@>= 1.34.0 < 2", mime-db@~1.35.0:
   version "1.35.0"
   resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.35.0.tgz#0569d657466491283709663ad379a99b90d9ab47"
 
@@ -10478,11 +10477,17 @@ mime-db@~1.33.0:
   version "1.33.0"
   resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.33.0.tgz#a3492050a5cb9b63450541e39d9788d2272783db"
 
-mime-types@2.1.18, mime-types@^2.1.12, mime-types@~2.1.17, mime-types@~2.1.18, mime-types@~2.1.7:
+mime-types@2.1.18:
   version "2.1.18"
   resolved "https://registry.yarnpkg.com/mime-types/-/mime-types-2.1.18.tgz#6f323f60a83d11146f831ff11fd66e2fe5503bb8"
   dependencies:
     mime-db "~1.33.0"
+
+mime-types@^2.1.12, mime-types@~2.1.17, mime-types@~2.1.18, mime-types@~2.1.7:
+  version "2.1.19"
+  resolved "https://registry.yarnpkg.com/mime-types/-/mime-types-2.1.19.tgz#71e464537a7ef81c15f2db9d97e913fc0ff606f0"
+  dependencies:
+    mime-db "~1.35.0"
 
 mime@1.4.1:
   version "1.4.1"
@@ -11178,8 +11183,8 @@ number-is-nan@^1.0.0:
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
 
 nwsapi@^2.0.0:
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/nwsapi/-/nwsapi-2.0.5.tgz#3998cfe7a014600e5e30dedb1fef2a4404b2871f"
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/nwsapi/-/nwsapi-2.0.6.tgz#5fb7f5b828b97fe1de47eb2a6f8703036b6cb71a"
 
 oauth-sign@~0.8.1, oauth-sign@~0.8.2:
   version "0.8.2"
@@ -12293,8 +12298,8 @@ postcss-merge-longhand@^2.0.1:
     postcss "^5.0.4"
 
 postcss-merge-longhand@^4.0.0:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/postcss-merge-longhand/-/postcss-merge-longhand-4.0.1.tgz#98cdebda7cc1bada4ae03c76ed1c44c97a574019"
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/postcss-merge-longhand/-/postcss-merge-longhand-4.0.2.tgz#a2bcd7b0f9dca41ee84ba0cee23a5e6cb465ec3a"
   dependencies:
     postcss "^6.0.0"
     postcss-value-parser "^3.0.0"
@@ -13900,19 +13905,6 @@ resolve-file@^0.3.0:
     lazy-cache "^2.0.2"
     resolve "^1.2.0"
 
-"resolve-file@github:jonschlinkert/resolve-file":
-  version "0.1.0"
-  resolved "https://codeload.github.com/jonschlinkert/resolve-file/tar.gz/261082c95a5f407c43d82797c13bae3527462842"
-  dependencies:
-    cwd "^0.10.0"
-    expand-tilde "^1.2.2"
-    extend-shallow "^2.0.1"
-    fs-exists-sync "^0.1.0"
-    global-modules "^0.2.2"
-    lazy-cache "^2.0.1"
-    os-homedir "^1.0.1"
-    resolve "^1.1.7"
-
 resolve-from@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/resolve-from/-/resolve-from-2.0.0.tgz#9480ab20e94ffa1d9e80a804c7ea147611966b57"
@@ -14007,8 +13999,8 @@ rgb-regex@^1.0.1:
   resolved "https://registry.yarnpkg.com/rgb-regex/-/rgb-regex-1.0.1.tgz#c0e0d6882df0e23be254a475e8edd41915feaeb1"
 
 rgb2hex@~0.1.4:
-  version "0.1.8"
-  resolved "https://registry.yarnpkg.com/rgb2hex/-/rgb2hex-0.1.8.tgz#c0daf2427b7e9d1cc017143f2ca2b69c4fa93c7d"
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/rgb2hex/-/rgb2hex-0.1.9.tgz#5d3e0e14b0177b568e6f0d5b43e34fbfdb670346"
 
 rgba-regex@^1.0.0:
   version "1.0.0"

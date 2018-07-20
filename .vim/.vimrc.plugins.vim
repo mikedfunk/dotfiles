@@ -145,7 +145,8 @@ Plug 'machakann/vim-swap' " move args left/right with g< g> or gs for interactiv
 " Plug 'wellle/targets.vim' " Adds selection targets like vi2) or vI} to avoid whitespace
 Plug 'tpope/vim-obsession' " auto save sessions if you :Obsess
 " Plug 'chrisbra/Recover.vim' " show diff when recovering a file
-Plug 'tyru/undoclosewin.vim' " reopen closed window with <leader>uc
+" Plug 'tyru/undoclosewin.vim' " reopen closed window with <leader>uc
+Plug 'AndrewRadev/undoquit.vim' " another one to reopen closed buffers/windows/tabs: <c-w>u
 " Plug 'google/vim-searchindex' " show search index in cmd area e.g. [4/7]
 " Plug 'henrik/vim-indexed-search' " works better with vim-slash
 " Plug 'matze/vim-move' " move lines up/down with <a-j> and <a-k>

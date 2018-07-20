@@ -246,9 +246,9 @@ snippet scr "saatchi process abstract script"
 <?php
 declare(strict_types=1);
 
-require_once(__DIR__ . '/../../vendor/autoload.php');
-require_once(__DIR__ . '/../../application/command_line_bootstrap.php');
-require_once dirname(__DIR__) . '/ProcessAbstract.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '/../../application/command_line_bootstrap.php';
+require_once __DIR__ . '/../ProcessAbstract.php';
 
 use Zend_Controller_Front as FrontController;
 
