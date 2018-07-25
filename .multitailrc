@@ -2,6 +2,7 @@
 # vim: set foldmethod=marker ft=conf:
 # defaultcscheme:zend
 # php examples: https://gist.github.com/homeyjd/5861617
+# another example https://github.com/flok99/multitail/blob/master/multitail.conf
 # more cool stuff: https://www.pantz.org/software/multitail/multitailconfig.html
 
 # whether to abbreviate filesizes to xKB/MB/GB
@@ -9,6 +10,12 @@ abbreviate_filesize:on
 
 # Turn off mail check
 check_mail:0
+
+# time format (man strftime)
+ts_format:%Y-%m-%d %l:%M:%S %p
+cnv_ts_format:%Y-%m-%d %l:%M:%S %p
+# this one is not showing the am/pm at the end :/
+statusline_ts_format:%Y-%m-%d %l:%M:%S %p
 
 # catalog {{{
 colorscheme:catalog

@@ -428,10 +428,10 @@ let g:tmuxline_preset = {
     \ 'a': ['❏ #S'],
     \ 'b': ["🔋 #(pmset -g batt | egrep '\d+%' | awk '{print $3}' | awk -F';' '{print $1}')"],
     \ 'c': ['#(~/.bin/saatchi-haproxy-status.sh)'],
-    \ 'win': [ '#I', '#W'],
+    \ 'win': ['#I', '#W'],
     \ 'cwin': ['#I', '#W#F'],
-    \ 'x': ["#(TZ=Etc/UTC date '+%%R UTC')", ],
-    \ 'y': ['%I:%M %p'],
+    \ 'x': ["#(TZ=Etc/UTC date '+%%R UTC')"],
+    \ 'y': ['%l:%M %p'],
     \ 'z': ['%a', '%b %d'],
 \}
 let g:airline#extensions#tmuxline#snapshot_file = '~/.tmuxline.conf'
@@ -635,7 +635,8 @@ if isdirectory(expand('~/.vim/plugged/vim-fugitive'))
     nnoremap <leader>gbr :Gbrowse<cr>
     nnoremap <leader>gl :Glog<cr>
     nnoremap <leader>gm :Gmove<space>
-    nnoremap <leader>go :Git co<space>
+    nnoremap <leader>gco :Git co<space>
+    nnoremap <leader>go :Git open<space>
     nnoremap <leader>ge :Gedit<cr>
     nnoremap <Leader>g- :Git stash<CR>:e<CR>
     nnoremap <Leader>g+ :Git stash apply<CR>:e<CR>
