@@ -36,3 +36,7 @@ let b:jiracomplete_username = 'mike.funk'
 command! -nargs=1 Edev execute "e scp://appdeploy@saatchi-xdev-zed-01//data/shop/current/" . <f-args>
 command! -nargs=1 Eqa execute "e scp://appdeploy@saatchi-xqa-zed-01//data/shop/current/" . <f-args>
 " }}}
+
+" gutentags {{{
+" let g:gutentags_project_info = [{"type": "php"}]
+" }}}

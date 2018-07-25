@@ -66,10 +66,12 @@
     committers = shortlog --nse --no-merges
     dc = diff --cached
     dd = diff develop..HEAD
+    ddn = diff develop..HEAD --name-only
     df = diff
     dl = diff --cached HEAD~1 --name-only # show modified files _only_ in the last commit
     dlc = diff --cached HEAD~1 # show a diff of _only_ the last commit
     dm = diff master..HEAD
+    dmn = diff master..HEAD --name-only
     ds = diff --stat # show files changed (only slightly different than git status)
     # show diffs one-by-one of each file that has changed. Takes a branch or hash or HEAD~1 or something.
     # e.g. g dt HEAD~1
