@@ -113,7 +113,7 @@ brew "task" # taskwarrior https://taskwarrior.org
 # brew "teleconsole" # share your console with others easily
 brew "terminal-notifier" # used by tmux plugin marzocchi/zsh-notify
 brew "the_silver_searcher" # awesome fast grep replacement: ag
-brew "tig" # git? tig!
+brew "tig" # git? tig! (note: this requires asciidoc)
 brew "tmux" # terminal multiplexer similar to screen.
 # brew "tofrodos" # line endings
 # brew "trash" # a trash can for the terminal
@@ -138,7 +138,7 @@ brew "zsh" # awesome bash shell replacement
 # cask {{{
 tap "caskroom/cask"
 # cask "dashlane" # password manager like lastpass
-# cask "bitbar" # use any cli command to show stuff in the menubar with colors and icons and provide menu options (This is really cool but I don't currently use it. I put most of that stuff in my tmux statusbar.)
+cask "bitbar" # use any cli command to show stuff in the menubar with colors and icons and provide menu options
 # cask "beardedspice" # keyboard media controls for media sites (I now use streamkeys chrome extension) - goes together with bubo.app
 # cask "docker" # docker for mac desktop app (I use docker-machine)
 cask "dropbox" # I especially use this for synching my notes so I can view them in the joplin mobile app
