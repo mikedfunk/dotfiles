@@ -69,7 +69,7 @@ brew "memcached" # needed by php70
 brew "multitail" # tail multiple files in splits with pretty colors
 # brew "mycli"
 brew "mysql" # I haven't been using the server lately but I use it to connect and I use mysql_config_editor
-# brew "mysql-client" # If I ever need mysql client without mysql on local...
+# brew "mysql-client" # If I ever need mysql client without mysql on local... downside: it doesn't link automatically - you have to brew link --force even if mysql isn't installed :/
 # brew "nano" # text editor. This gets the latest version: 2.2.6 rather than 2.2.0 that comes with osx.
 # brew "neovim" # vim re-imagining
 brew "node" # nodejs and npm (required by joplin, yarn)

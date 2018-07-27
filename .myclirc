@@ -1,4 +1,7 @@
 # vi: ft=dosini
+
+# TIP: my mycli aliases start in the queries dir so I can run \. ./<tab>,
+# complete to a file, and run it as sql.
 [main]
 
 # Enables context sensitive auto-completion. If this is disabled the all
@@ -104,7 +107,7 @@ Token.Toolbar.Arg = noinherit bold
 Token.Toolbar.Arg.Text = nobold
 
 # COLOR PROMPT
-Token.Prompt = '#ffffff bg:#4444aa'
+Token.Prompt = "#ffffff bg:#4444aa"
 
 # Favorite queries.
 # [favorite_queries]
@@ -114,4 +117,5 @@ Token.Prompt = '#ffffff bg:#4444aa'
 
 # Use the -d option to reference a DSN.
 [alias_dsn]
+[favorite_queries]
 # example_dsn = mysql://[user[:password]@][host][:port][/dbname]

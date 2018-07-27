@@ -138,7 +138,7 @@ Plug 'machakann/vim-swap' " move args left/right with g< g> or gs for interactiv
 " Plug 'unblevable/quick-scope' " highlights chars for f, F, t, T
 " Plug 'severin-lemaignan/vim-minimap' " sublime-style minimap with <leader>mm (no lazy load)
 " Plug 'terryma/vim-multiple-cursors' " sublime-style with <c-n>
-" if has('signs') | Plug 'MattesGroeger/vim-bookmarks' | endif " bookmark lines with annotations and navigate them globally
+" if has('signs') | Plug 'MattesGroeger/vim-bookmarks' | endif " bookmark lines with annotations and navigate them globally. especially useful for taking inline notes on a file without adding a comment.
 " Plug 'brooth/far.vim', { 'on': ['Far', 'Fardo', 'Farundo', 'Farp', 'Refar', 'F'] } " find and replace
 " Plug 'yonchu/accelerated-smooth-scroll' " animated scroll on c-d, c-u, c-f, c-b
 " Plug 'yuttie/comfortable-motion.vim' " smooth scroll using timer and shit
