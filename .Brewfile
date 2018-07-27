@@ -69,6 +69,7 @@ brew "memcached" # needed by php70
 brew "multitail" # tail multiple files in splits with pretty colors
 # brew "mycli"
 brew "mysql" # I haven't been using the server lately but I use it to connect and I use mysql_config_editor
+# brew "mysql-client" # If I ever need mysql client without mysql on local...
 # brew "nano" # text editor. This gets the latest version: 2.2.6 rather than 2.2.0 that comes with osx.
 # brew "neovim" # vim re-imagining
 brew "node" # nodejs and npm (required by joplin, yarn)
@@ -140,6 +141,7 @@ tap "caskroom/cask"
 # cask "dashlane" # password manager like lastpass
 cask "bitbar" # use any cli command to show stuff in the menubar with colors and icons and provide menu options
 # cask "beardedspice" # keyboard media controls for media sites (I now use streamkeys chrome extension) - goes together with bubo.app
+cask "cheatsheet" # hold <cmd> for a bit to get a modal of available keyboard shortcuts (kind of annoying - rarely comes up when I actually want it to, too much info)
 # cask "docker" # docker for mac desktop app (I use docker-machine)
 cask "dropbox" # I especially use this for synching my notes so I can view them in the joplin mobile app
 # cask "firefox"
