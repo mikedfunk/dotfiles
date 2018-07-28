@@ -52,7 +52,7 @@
     "redux-cli": "^1.9.0",
     "release": "^2.5.6",
     "scsslint": "^0.0.3",
-    "serve": "^6.4.1",
+    "serve": "^9.4.0",
     "stylelint": "^8.4.0",
     "stylelint-config-standard": "^18.2.0",
     "stylelint-scss": "^3.1.0",
