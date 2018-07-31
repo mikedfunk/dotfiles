@@ -14,3 +14,14 @@ top () { HOME="$SSHHOME/.sshrc.d" /usr/bin/top; }
 # tell htop to use my config file
 # NOTE: this htop config is for 1.0.2 which is used on remote servers I ssh into
 htop () { HOME="$SSHHOME/.sshrc.d" /usr/bin/htop; }
+# if joining a tmux session on a remote server you access with sshrc https://github.com/Russell91/sshrc
+# tmuxrc() {
+#     local TMUXDIR=/tmp/russelltmuxserver
+#     if ! [ -d $TMUXDIR ]; then
+#         rm -rf $TMUXDIR
+#         mkdir -p $TMUXDIR
+#     fi
+#     rm -rf $TMUXDIR/.sshrc.d
+#     cp -r $SSHHOME/.sshrc $SSHHOME/bashsshrc $SSHHOME/sshrc $SSHHOME/.sshrc.d $TMUXDIR
+#     SSHHOME=$TMUXDIR SHELL=$TMUXDIR/bashsshrc /usr/bin/tmux -S $TMUXDIR/tmuxserver $@
+# }
