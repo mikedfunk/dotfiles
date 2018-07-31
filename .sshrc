@@ -1,4 +1,7 @@
+# tell vim how to start up with my .vimrc from sshrc
 export VIMINIT="let \$MYVIMRC='$SSHHOME/.sshrc.d/.vimrc' | source \$MYVIMRC"
+# vim mode https://sanctum.geek.nz/arabesque/vi-mode-in-bash/
+set -o vi
 # source my promptline theme on remote
 [ -f "$SSHHOME/.sshrc.d/promptline.theme.bash" ] && source "$SSHHOME/.sshrc.d/promptline.theme.bash"
 # tell screen to use my config file

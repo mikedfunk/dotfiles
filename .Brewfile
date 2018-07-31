@@ -158,15 +158,16 @@ cask "iterm2"
 # cask "kitematic" # docker container browser
 # cask "kitty" # fast terminal emulator
 cask "lastpass" # password manager
-cask "licecap" # another gif screen cap tool. It's ancient but very fast at exporting gifs!
+cask "licecap" # another gif screen cap tool. It's ancient but _very fast_ at exporting gifs! It's also designed to run in the foreground rather than as a menubar app, which encourages me to keep it closed when I'm not using it.
 # cask "macfusion" # other half of tool to mount ssh directories in the finder
 # cask "macgdbp" # xdebug gui client (I use vdebug)
+# cask "monosnap" # really slick screenshot handler and screencast maker. Runs in the menubar.
 # cask "multifirefox" # profile picker until firefox fixes this glaring omission
 # cask "noti" # mac native pushbullet notifications
 # cask "osxfuse" # half of tool to mount ssh directories in the finder (useful if working on a shared dev environment)
 # cask "pdftotext" # used by ranger to preview pdfs
 # cask "see" https://github.com/sindresorhus/quick-look-plugins
-# cask "qlcolorcode" # quicklook plugin
+cask "qlcolorcode" # quicklook plugin to provide syntax highlighting to code files
 # cask "qlstephen" # quicklook plugin
 cask "qlmarkdown" # quicklook plugin
 cask "quicklook-json" # quicklook plugin
