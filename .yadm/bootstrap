@@ -399,3 +399,5 @@ launchctl load ~/Library/LaunchAgents/mike.saatchi-proxy.autossh.plist
 # launchctl load ~/Library/LaunchAgents/com.zerowidth.launched.bugwarrior-pull-from-jira.plist
 
 # }}}
+
+log_info "Don't forget to upgrade your docker-machine once in a while!"

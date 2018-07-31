@@ -21,7 +21,7 @@ let g:airline_theme = 'base16'
 " below and add another. remote is first, local is second.
 " NOTE: You can't change this after loading because of a bug currently.
 let g:vdebug_options['path_maps'] = {
-\   '/data/shop/current': '/Users/mikefunk/Sites/saatchi/yzed'
+\   '/data/shop/current': '/Users/mikefunk/Code/saatchi/yzed'
 \}
 let g:vdebug_options['port'] = 9005
 " }}}
