@@ -551,6 +551,27 @@ let g:airline#extensions#tabline#show_splits = 0 " shows how many splits are in 
 let g:airline#extensions#tabline#show_tab_type = 0 " right side says either 'buffers' or 'tabs'
 let g:airline#extensions#tagbar#enabled = 0 " cool but slows down php
 
+" vim-obsession indicator - show current session name {{{
+" e.g. '$ my-session-name.vim'
+let g:this_session = get(g:, 'this_session', '')
+let g:current_session_text = ''
+
+" cache current session text
+function! GetCurrentSessionText() abort
+    if g:current_session_text !=# ''
+        return g:current_session_text
+    endif
+    let g:current_session_text = '$ ' . fnamemodify(g:this_session, ':t')
+    return g:current_session_text
+endfunction
+
+" after the obsession session loads, set the airline obsession text
+augroup obsession_current
+    autocmd!
+    autocmd SessionLoadPost * let g:airline#extensions#obsession#indicator_text = GetCurrentSessionText()
+augroup end
+" }}}
+
 if isdirectory(expand('~/.vim/plugged/vim-airline'))
     " add asyncrun status for async tasks e.g. 'running' 'failure' 'success'
     if isdirectory(expand('~/.vim/plugged/asyncrun.vim'))
