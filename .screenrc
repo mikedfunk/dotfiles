@@ -24,3 +24,7 @@ hardstatus string "%{c} ${LC_SSH_ALIAS} | %w%=%{-}"
 altscreen on
 
 termcapinfo xterm* ti@:te@ # Enable mouse scrolling and scroll bar history scrolling
+
+# unbind the x key which is gnu screen's lockscreen function.
+bind ^x
+bind x

@@ -12,10 +12,21 @@ abbreviate_filesize:on
 check_mail:0
 
 # time format (man strftime)
-ts_format:%Y-%m-%d %l:%M:%S %p
-cnv_ts_format:%Y-%m-%d %l:%M:%S %p
+ts_format:%Y-%m-%d %r
+cnv_ts_format:%Y-%m-%d %r
 # this one is not showing the am/pm at the end :/
-statusline_ts_format:%Y-%m-%d %l:%M:%S %p
+statusline_ts_format:%Y-%m-%d %r
+# statusline_attrs:blue,white,reverse
+
+# https://www.pantz.org/software/multitail/multitailconfig.html
+# enable things with the xterm title bar
+# %f  changed file
+# %h  hostname
+# %l  system load
+# %m  "New mail" or nothing
+# %u  username
+# %t  date + time
+# titlebar:%u@%h %f (%t) [%l]
 
 # catalog {{{
 colorscheme:catalog

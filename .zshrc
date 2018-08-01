@@ -436,7 +436,7 @@ zstyle ':completion:*' matcher-list '' \
 autoload -U edit-command-line
 
 # https://wrotenwrites.com/a_modern_terminal_workflow_3/#Spellcheck-Typo-Correction
-setopt correctall
-alias git status='nocorrect git status'
+# setopt correctall
+# alias git-status='nocorrect git status'
 
 # }}}
