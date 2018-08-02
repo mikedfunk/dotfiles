@@ -78,7 +78,7 @@ dir ~/Code/saatchi/gallery
 1 run vim -S
 0 run ts
 # 2 run saatchi-docker-gallery
-2 run saatchi-tail-gallery-local
+2 run sleep 180 && saatchi-tail-gallery-local
 3 run wd gallery
 3 run yarn gulp
 

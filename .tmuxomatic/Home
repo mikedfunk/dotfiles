@@ -35,7 +35,7 @@ window blog
 dir ~/Code/mikedfunk.github.io
 1 run vim -S
 0 run g st
-2 run bundle exec jekyll serve --watch
+2 run bundle install && bundle exec jekyll serve --watch
 
 window notes
 
