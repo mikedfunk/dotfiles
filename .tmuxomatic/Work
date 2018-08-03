@@ -49,14 +49,14 @@ dir ~/Code/saatchi/saatchiart
 0 run vim -S
 1 run ts
 2 run puw
-# 2 run wd xdocker
-# 2 run saatchi-docker-legacy
 4 run sleep 180 && saatchi-tail-legacy-local
-# 3 run grunt build
-# 3 run grunt watch
 3 run cd assets/react
 3 run yarn
 3 run yarn start
+# 2 run wd xdocker
+# 2 run saatchi-docker-legacy
+# 3 run grunt build
+# 3 run grunt watch
 # 5 run saatchi-docker-legacy
 
 window gallery
