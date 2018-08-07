@@ -13,35 +13,36 @@
 # Files
 data.location=~/.task
 
-# Color theme (uncomment one to use)
-#include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/light-16.theme
-#include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/light-256.theme
-include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/dark-16.theme
-# include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/dark-256.theme
-#include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/dark-red-256.theme
-#include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/dark-green-256.theme
-#include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/dark-blue-256.theme
-#include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/dark-violets-256.theme
-#include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/dark-yellow-green.theme
+# Color theme (uncomment one to use) https://taskwarrior.org/docs/themes.html
+# include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/light-16.theme
+# include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/light-256.theme
+# the 16 theme doesn't have zebra stripes and doesn't differentiate between blocking and blocked well enough. :/
+# include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/dark-16.theme
+include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/dark-256.theme
+# include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/dark-red-256.theme
+# include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/dark-green-256.theme
+# include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/dark-blue-256.theme
+# include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/dark-violets-256.theme
+# include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/dark-yellow-green.theme
 # include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/dark-gray-256.theme
-#include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/dark-gray-blue-256.theme
-#include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/solarized-dark-256.theme
-#include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/solarized-light-256.theme
-#include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/no-color.theme
+# include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/dark-gray-blue-256.theme
+# include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/solarized-dark-256.theme
+# include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/solarized-light-256.theme
+# include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/no-color.theme
 
-# Bugwarrior UDAs for jira
-uda.jirasummary.type=string
-uda.jirasummary.label=Jira Summary
-uda.jiraurl.type=string
-uda.jiraurl.label=Jira URL
-uda.jiradescription.type=string
-uda.jiradescription.label=Jira Description
-uda.jiraid.type=string
-uda.jiraid.label=Jira Issue ID
-uda.jiraestimate.type=numeric
-uda.jiraestimate.label=Estimate
-uda.jirafixversion.type=string
-uda.jirafixversion.label=Fix Version
-uda.jiracreatedts.type=date
-uda.jiracreatedts.label=Created At
+# Bugwarrior UDAs for jira (I no longer use bugwarrior)
+# uda.jirasummary.type=string
+# uda.jirasummary.label=Jira Summary
+# uda.jiraurl.type=string
+# uda.jiraurl.label=Jira URL
+# uda.jiradescription.type=string
+# uda.jiradescription.label=Jira Description
+# uda.jiraid.type=string
+# uda.jiraid.label=Jira Issue ID
+# uda.jiraestimate.type=numeric
+# uda.jiraestimate.label=Estimate
+# uda.jirafixversion.type=string
+# uda.jirafixversion.label=Fix Version
+# uda.jiracreatedts.type=date
+# uda.jiracreatedts.label=Created At
 # END Bugwarrior UDAs

@@ -14,6 +14,7 @@ gem 'github_changelog_generator' # generate changelogs from tags, issues, and me
 gem 'jekyll' # blogging platform used by github
 # gem "json_pure"
 # gem "kramdown" # another markdown parser option that can be used by Jekyll.
+gem 'lunchy' # launchctl wrapper to make it more developer-friendly
 # gem "mailcatcher" # catches outgoing mail and displays it from a local server to a web-based view
 # gem "mysql"2xxxx # export mysql to json, etc.
 # gem "observr" # watches the file system and does stuff when things change

@@ -393,11 +393,9 @@ fi
 # debug launchd jobs https://stackoverflow.com/q/6337513/557215
 # use this form to easily generate a launchd plist: http://launched.zerowidth.com/
 log_info "starting launch agents"
-launchctl load ~/Library/LaunchAgents/mike.saatchi-tunnel.autossh.plist
-launchctl load ~/Library/LaunchAgents/mike.saatchi-proxy.autossh.plist
-# I have a job that pulls tasks from jira to taskwarrior... but it's kind of lame and pointless.
-# launchctl load ~/Library/LaunchAgents/com.zerowidth.launched.bugwarrior-pull-from-jira.plist
-
+# let's use lunchy instead of launchctl! https://github.com/eddiezane/lunchy
+lunchy start -w mike.saatchi-tunnel.autossh.plist
+lunchy start -w mike.saatchi-proxy.autossh.plist
 # }}}
 
 log_info "Don't forget to upgrade your docker-machine once in a while!"
