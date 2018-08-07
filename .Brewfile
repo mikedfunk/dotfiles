@@ -55,6 +55,7 @@ brew "intltool" # needed for php intl extension
 brew "joplin" # powerful note-taking app
 brew "jsonlint" # used by vim ale to lint json
 brew "jq" # simple json pretty-printer `echo '{"my" => "json"}' | jq .`
+brew "jrnl" # simple journaling wrapper
 # brew "keychain" # manage ssh agent and adding keys to it automatically. (I don't use this now that I have an ssh config directive to store passphrases for ssh agent in my osx keychain, which is different from this project's "keychain". Confusing, I know.)
 # brew "lftp" # fancy scp, torrent, http, ftp download and upload client with queues, backgrounding, and more
 brew "libcouchbase" # nosql fast data storage similar to mongo. Used at Saatchi. Includes cli tool cbc
