@@ -305,11 +305,22 @@ if isdirectory(expand('~/.vim/plugged/php.vim'))
 endif
 " }}}
 
+" phpactor {{{
+" current phpenv version of php
+let g:phpactorPhpBin = $HOME . "/.phpenv/shims/php"
+if (isdirectory(expand('~/.vim/plugged/phpactor')))
+    augroup phpactorcompletephp
+        autocmd!
+        autocmd FileType php setlocal omnifunc=phpactor#Complete
+    augroup END
+endif
+" }}}
+
 " phpcomplete {{{
-augroup mycompletephp
-    autocmd!
-    autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
-augroup END
+" augroup mycompletephp
+"     autocmd!
+"     autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
+" augroup END
 " default: 0. show more info in the preview window and return types. Slower.
 " this also fails to parse the docblock sometimes which kills the whole
 " completion

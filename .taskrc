@@ -30,7 +30,7 @@ include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/dark-256.theme
 # include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/solarized-light-256.theme
 # include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/no-color.theme
 
-# Bugwarrior UDAs for jira (I no longer use bugwarrior)
+# Bugwarrior UDAs (user-defined attributes) for jira (I no longer use bugwarrior)
 # uda.jirasummary.type=string
 # uda.jirasummary.label=Jira Summary
 # uda.jiraurl.type=string
@@ -46,3 +46,19 @@ include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/dark-256.theme
 # uda.jiracreatedts.type=date
 # uda.jiracreatedts.label=Created At
 # END Bugwarrior UDAs
+
+# tasksh review config https://taskwarrior.org/docs/review.html
+uda.reviewed.type=date
+uda.reviewed.label=Reviewed
+report._reviewed.description=Tasksh review report.  Adjust the filter to your needs.
+report._reviewed.columns=uuid
+report._reviewed.sort=reviewed+,modified+
+report._reviewed.filter=( reviewed.none: or reviewed.before:now-6days ) and ( +PENDING or +WAITING )
+
+# sync config for free sync server https://inthe.am/getting-started
+taskd.certificate=/Users/mikefunk/.task/certs/private.certificate.pem
+taskd.key=/Users/mikefunk/.task/certs/private.key.pem
+taskd.ca=/Users/mikefunk/.task/certs/ca.cert.pem
+taskd.server=taskwarrior.inthe.am:53589
+taskd.credentials=inthe_am/mikedfunk/ece74eaf-7fcf-4f76-9f3c-e37492e41360
+taskd.trust=ignore hostname

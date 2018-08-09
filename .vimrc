@@ -244,6 +244,11 @@ endif
 " if filereadable("cscope.out") && has('cscope')
 "     cs add cscope.out
 " endif
+if has('cscope')
+    " recommended here to improve cscope quickfix results
+    " https://www.reddit.com/r/vim/comments/95jxk7/big_list_of_tagsctags_matches_how_to_navigate_in/
+    set cscopequickfix=s-,c-,d-,i-,t-,e-,a-
+endif
 
 " Automatically equalize splits when Vim is resized https://vi.stackexchange.com/a/206/11130
 augroup resizeequalize

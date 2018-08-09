@@ -145,7 +145,7 @@ cask "bitbar" # use any cli command to show stuff in the menubar with colors and
 cask "cheatsheet" # hold <cmd> for a bit to get a modal of available keyboard shortcuts (kind of annoying - rarely comes up when I actually want it to, too much info)
 # cask "docker" # docker for mac desktop app (I use docker-machine)
 cask "dropbox" # I especially use this for synching my notes so I can view them in the joplin mobile app
-# cask "firefox"
+cask "firefox"
 tap "caskroom/fonts"
 # cask "font-fira-code"
 cask "font-iosevka"
@@ -154,21 +154,23 @@ cask "font-iosevka"
 cask "google-chrome"
 # cask "google-drive"
 cask "iterm2"
+# cask "joplin" # desktop joplin
 # cask "kap" # screen capture to gif (Trying out licecap instead)
 # cask "keycastr" for screencasts - show keys pressed on the screen
-# cask "kitematic" # docker container browser
+cask "kitematic" # docker container browser
 # cask "kitty" # fast terminal emulator
 cask "lastpass" # password manager
+# cask "launchcontrol" # launchctl gui. I use lunchy gem instead.
 cask "licecap" # another gif screen cap tool. It's ancient but _very fast_ at exporting gifs! It's also designed to run in the foreground rather than as a menubar app, which encourages me to keep it closed when I'm not using it.
 # cask "macfusion" # other half of tool to mount ssh directories in the finder
 # cask "macgdbp" # xdebug gui client (I use vdebug)
 # cask "monosnap" # really slick screenshot handler and screencast maker. Runs in the menubar.
-# cask "multifirefox" # profile picker until firefox fixes this glaring omission
+cask "multifirefox" # profile picker until firefox fixes this glaring omission
 # cask "noti" # mac native pushbullet notifications
 # cask "osxfuse" # half of tool to mount ssh directories in the finder (useful if working on a shared dev environment)
 # cask "pdftotext" # used by ranger to preview pdfs
 # cask "see" https://github.com/sindresorhus/quick-look-plugins
-cask "qlcolorcode" # quicklook plugin to provide syntax highlighting to code files
+# cask "qlcolorcode" # quicklook plugin to provide syntax highlighting to code files (fails to install)
 # cask "qlstephen" # quicklook plugin
 cask "qlmarkdown" # quicklook plugin
 cask "quicklook-json" # quicklook plugin
