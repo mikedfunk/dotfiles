@@ -30,4 +30,6 @@ bind stage <Enter> :/^@@
 bind generic C !git cherry-pick %(commit)
 # Reload ~/.tigrc when 'S' is pressed
 bind generic S :source .tigrc
+# Go to the first file in the status view
+bind status <Ctrl-n> :/.
 # }}}
