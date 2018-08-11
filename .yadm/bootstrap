@@ -400,3 +400,4 @@ lunchy start -w com.zerowidth.launched.taskwarrior_sync
 # }}}
 
 log_info "Don't forget to upgrade your docker-machine once in a while!"
+log_info "Don't forget to ''brew cask upgrade virtualbox virtualbox-extension-pack' once in a while!"
