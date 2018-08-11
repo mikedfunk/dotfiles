@@ -244,6 +244,7 @@ endif
 " if filereadable("cscope.out") && has('cscope')
 "     cs add cscope.out
 " endif
+
 if has('cscope')
     " recommended here to improve cscope quickfix results
     " https://www.reddit.com/r/vim/comments/95jxk7/big_list_of_tagsctags_matches_how_to_navigate_in/

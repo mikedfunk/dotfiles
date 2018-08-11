@@ -394,8 +394,8 @@ fi
 # use this form to easily generate a launchd plist: http://launched.zerowidth.com/
 log_info "starting launch agents"
 # let's use lunchy instead of launchctl! https://github.com/eddiezane/lunchy
-lunchy start -w mike.saatchi-tunnel.autossh.plist
-lunchy start -w mike.saatchi-proxy.autossh.plist
+lunchy start -w mike.saatchi-tunnel.autossh
+lunchy start -w mike.saatchi-proxy.autossh
 lunchy start -w com.zerowidth.launched.taskwarrior_sync
 # }}}
 
