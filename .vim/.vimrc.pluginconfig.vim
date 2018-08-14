@@ -936,6 +936,10 @@ let g:startify_skiplist = [ 'COMMIT_EDITMSG', '\.DS_Store' ]
 " let g:startify_session_persistence = 1 " auto save session on exit like obsession
 " }}}"
 
+" vim-taskwarrior {{{
+let g:task_highlight_field = 0
+" }}}
+
 " vim-tbone {{{
 if isdirectory(expand('~/.vim/plugged/vim-tbone'))
     " highlight text and g> to send text to bottom right split. Useful for sql window.
