@@ -432,6 +432,47 @@ Current directory        :pwd          N
 Change directory         :cd …         N
 Show the value of ‹Var›  :echo ‹Var›   N
 Show value of option     :set ‹Var›?   N
+}}}
+TaskWarrior {{{1
+add annotation           A             N
+delete annotation        x             N
+open annotation as file  x             N
+create new task          a             N
+finish current task      d             N
+delete current task      D             N
+delete field/anno/task   <del>         N
+move task to list        <Space>       N
+modify current field     m             N
+modify current task      M             N
+change filter            f             N
+change report type       r             N
+exec command for task    c             N
+quit buffer              q             N
+clear completed tasks    X             N
+duplicate selected tasks p             N
+undo last change         u             N
+start task               +             N
+stop task                -             N
+sync with taskd server   S             N
+sort by this col         s             N
+sort by this col asc     <             N
+sort by this col desc    >             N
+cycle col format left    H             N
+cycle col format right   L             N
+next historical entry    J             N
+prev historical entry    K             N
+bookmark current combo   B             N
+view the docs            <F1>          N
+show task info           <CR>          N
+jump to next col         <TAB>         N
+jump to prev col         <S-TAB>       N
+jump next non-empty col  <right>       N
+jump prev non-empty col  <left>        N
+set done all vis tasks   d             V
+delete all vis tasks     D             V
+info on vis tasks        <CR>          V
+add vis tasks to select  <Space>       V
+}}}
 Vdebug {{{1
 Step over                F2            N
 Step into                F3            N
@@ -450,3 +491,4 @@ Eval under cursor        F12           N
 Eval expression          :VdebugEval … N
 Eval expression persist  :VdebugEval! …N
 Trace variable           :VdebugTrace …N
+}}}

@@ -199,6 +199,7 @@ Plug 'tpope/vim-projectionist' " link tests and classes together
 Plug 'sgur/vim-editorconfig' " faster version of editorconfig
 " Plug 'scrooloose/vim-orgymode' " kind of like emacs org-mode. <c-c> will toggle markdown checkbox. Also some syntax highlighting and ultisnips snippets.
 " Plug 'dkarter/bullets.vim' " does cool stuff with numbered and bullet lists in markdown, etc. <c-t> to indent, <c-d> to outdent.
+Plug 'blindFS/vim-taskwarrior' " vim taskwarrior integration. :TW to interact with tasks
 " }}}
 
 " Git {{{
