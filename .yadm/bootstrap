@@ -88,6 +88,7 @@ fi
 
 # akamai {{{
 if [[ "$(builtin type -p akamai)" ]]; then
+    log_info "Updating akamai commands"
     [[ "$(akamai list | grep purge)" ]] || akamai install purge
     akamai update
 fi

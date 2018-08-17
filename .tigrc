@@ -11,7 +11,8 @@ set mailmap = true
 # }}}
 
 # bindings {{{
-bind status P !git push
+bind status S !git push
+bind status L !git pull
 # https://github.com/jonas/tig/wiki/Bindings
 # move in diff view with arrow keys (up or down in diff view)
 # bind diff <Up> move-up
@@ -29,7 +30,7 @@ bind stage <Enter> :/^@@
 # Cherry-pick current commit onto current branch (C in any view)
 bind generic C !git cherry-pick %(commit)
 # Reload ~/.tigrc when 'S' is pressed
-bind generic S :source .tigrc
+# bind generic S :source .tigrc
 # Go to the first file in the status view
 bind status <Ctrl-n> :/.
 # }}}
