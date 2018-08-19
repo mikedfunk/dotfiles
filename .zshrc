@@ -122,7 +122,7 @@ zplug load
 # https://github.com/google/google-api-ruby-client/issues/235#issuecomment-169956795
 [ -f /usr/local/etc/openssl/cert.pem ] && export SSL_CERT_FILE=/usr/local/etc/openssl/cert.pem
 [ -d "$HOME/.zsh/completion" ] && find "$HOME/.zsh/completion" | while read f; do source "$f"; done
-[[ "$(builtin type -p plenv)" ]] && eval "$(plenv init -)"
+# [[ "$(builtin type -p plenv)" ]] && eval "$(plenv init -)"
 [[ "$(builtin type -p nodenv)" ]] && eval "$(nodenv init -)"
 [[ "$(builtin type -p pyenv)" ]] && eval "$(pyenv init -)"
 [[ -f "$HOME/.phpenv/bin/phpenv" ]] && eval "$($HOME/.phpenv/bin/phpenv init -)"
@@ -197,6 +197,7 @@ export CLICOLOR=1 # ls colors by default
 
 # pretty-print PATH with line breaks
 function pretty-path () { tr : '\n' <<<"$PATH"; }
+alias vit="vim +TW" # until vit gets its act together
 # }}}
 
 # suffix aliases {{{

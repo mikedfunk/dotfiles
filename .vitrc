@@ -1,0 +1,3 @@
+map S=:!wr task sync<Return>
+map +=!wr task %TASKID start<Return>
+map -=!wr task %TASKID stop<Return>

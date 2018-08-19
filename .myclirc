@@ -56,10 +56,12 @@ key_bindings = vi
 wider_completion_menu = False
 
 # Skip intro info on startup and outro info on exit
-less_chatty = False
+; less_chatty = False
+less_chatty = True
 
 # Use alias from --login-path instead of host name in prompt
-login_path_as_host = False
+; login_path_as_host = False
+login_path_as_host = True
 
 # Cause result sets to be displayed vertically if they are too wide for the current window,
 # and using normal tabular format otherwise. (This applies to statements terminated by ; or \G.)
@@ -109,13 +111,12 @@ Token.Toolbar.Arg.Text = nobold
 # COLOR PROMPT
 Token.Prompt = "#ffffff bg:#4444aa"
 
+# Use the -d option to reference a DSN.
+[alias_dsn]
+
 # Favorite queries.
-# [favorite_queries]
+[favorite_queries]
+# example_dsn = mysql://[user[:password]@][host][:port][/dbname]
 # oi = select * from pac_sales_order_item order by id_sales_order_item desc limit 5
 # o = select * from pac_sales_order order by id_sales_order desc limit 5
 # u = select * from users order by id desc limit 5
-
-# Use the -d option to reference a DSN.
-[alias_dsn]
-[favorite_queries]
-# example_dsn = mysql://[user[:password]@][host][:port][/dbname]
