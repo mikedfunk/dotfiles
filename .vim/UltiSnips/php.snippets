@@ -1932,3 +1932,11 @@ endsnippet
 snippet dvd "die and var_dump. useful for testing on remote"
 die(var_dump($1));
 endsnippet
+
+snippet stacktrace "throw an exception with a stack trace as the message"
+try {
+    throw new \Exception('here');
+} catch (\Exception $e) {
+    throw new \Exception($e->getTraceAsString());
+}
+endsnippet

@@ -265,7 +265,7 @@ Plug 'qnighy/vim-ssh-annex' " ssh files syntax coloring e.g. ssh config
 " Plug 'darfink/vim-plist' " plist syntax
 Plug 'rodjek/vim-puppet'
 Plug 'aklt/plantuml-syntax'
-Plug 'framallo/taskwarrior.vim' " taskwarrior config and task edit syntax
+" Plug 'framallo/taskwarrior.vim' " taskwarrior config and task edit syntax
 " }}}
 
 " Visuals {{{

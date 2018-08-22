@@ -156,6 +156,7 @@ cask "google-chrome"
 # cask "google-drive"
 cask "iterm2"
 # cask "joplin" # desktop joplin
+cask "jumpcut" # clipboard manager recommended by Michael Zick
 # cask "kap" # screen capture to gif (Trying out licecap instead)
 # cask "keycastr" for screencasts - show keys pressed on the screen
 cask "kitematic" # docker container browser
