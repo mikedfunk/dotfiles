@@ -26,7 +26,7 @@ brew "docker-machine-nfs" # enables nfs mounts for docker-machine via `docker-ma
 # brew "dtrx" # do the right extraction - so you don't have to remember tar args
 brew "entr" # file watcher
 # brew "fasd" # Command-line productivity booster, offers quick access to files and directories, inspired by autojump, z and v.
-# brew "fd" # prettier alternative to find that respects gitignore
+brew "fd" # prettier alternative to find that respects gitignore
 # brew "fpp" # facebook path picker. Used with tmux-fpp to easily open files in an editor.
 # brew "fzf" # fuzzy file finder
 brew "git"
@@ -72,6 +72,7 @@ brew "multitail" # tail multiple files in splits with pretty colors
 brew "mysql" # I haven't been using the server lately but I use it to connect and I use mysql_config_editor
 # brew "mysql-client" # If I ever need mysql client without mysql on local... downside: it doesn't link automatically - you have to brew link --force even if mysql isn't installed :/
 # brew "nano" # text editor. This gets the latest version: 2.2.6 rather than 2.2.0 that comes with osx.
+brew "ncdu" # interactive du
 # brew "neovim" # vim re-imagining
 brew "node" # nodejs and npm (required by joplin, yarn)
 brew "nodenv" # node version manager
@@ -88,6 +89,7 @@ brew "plantuml" # uml generation from text
 brew "plenv" # perl version manager. better than perlbrew. used to get percona-toolkit working.
 # brew "postgresql"
 # brew "pre-commit" # yelp git pre-commit framework (I manage this via pip)
+brew "prettyping" # ping with a cool sparkline graph of status
 # brew "pv" # pipe something to pv to see progress of data through a pipeline
 brew "pyenv" # python version manager
 # brew "python" # updated version of python with updated pip. Useful for installing pip packages without root. NOTE: homebrew "pip" breaks neovim.
@@ -116,6 +118,7 @@ brew "task" # taskwarrior https://taskwarrior.org
 brew "terminal-notifier" # used by tmux plugin marzocchi/zsh-notify
 brew "the_silver_searcher" # awesome fast grep replacement: ag
 brew "tig" # git? tig! (note: this requires asciidoc)
+brew "tldr" # more consise community man pages
 brew "tmux" # terminal multiplexer similar to screen.
 # brew "tofrodos" # line endings
 # brew "trash" # a trash can for the terminal
@@ -170,6 +173,7 @@ cask "licecap" # another gif screen cap tool. It's ancient but _very fast_ at ex
 cask "multifirefox" # profile picker until firefox fixes this glaring omission
 # cask "noti" # mac native pushbullet notifications
 # cask "osxfuse" # half of tool to mount ssh directories in the finder (useful if working on a shared dev environment)
+cask "openemu" # multi emulator
 # cask "pdftotext" # used by ranger to preview pdfs
 # cask "see" https://github.com/sindresorhus/quick-look-plugins
 # cask "qlcolorcode" # quicklook plugin to provide syntax highlighting to code files (fails to install)
