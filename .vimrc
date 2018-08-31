@@ -616,6 +616,7 @@ command! PhpPrefixNamespaces :call PhpPrefixNamespaces()
 " }}}
 
 " Visuals {{{
+set redrawtime=10000 " avoid problem with losting syntax highlighting https://github.com/vim/vim/issues/2790#issuecomment-400547834
 set background=dark
 " set cursorline " highlight current line. this is really slow!
 set colorcolumn=80,120 " show vert lines at the psr-2 suggested column limits

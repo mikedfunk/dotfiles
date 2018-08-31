@@ -71,7 +71,7 @@ Plug 'kreskij/Repeatable.vim', { 'on': 'Repeatable' } " Extra functionality to m
 Plug 'vim-scripts/BufOnly.vim', { 'on': ['BufOnly', 'Bufonly'] } " close all buffers but the current one
 Plug 'tpope/vim-commentary' " toggle comment with gcc. in my case I use <leader>c<space>
 " Plug 'jbgutierrez/vim-better-comments' " fancy comments
-" Plug 'junegunn/vim-easy-align' " align on = with ga=
+Plug 'junegunn/vim-easy-align' " align on = with ga=
 Plug 'tpope/vim-unimpaired' " lots of cool keyboard shortcuts
 " if has("python") || has("python3") | Plug 'SirVer/ultisnips' | endif " dynamic snippet completion
 if has('python') || has('python3')
