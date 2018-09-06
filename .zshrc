@@ -190,8 +190,8 @@ alias yb="yadm bootstrap"
 alias upgrades="yb"
 alias save-dotfiles="yadm encrypt && yadm add -u && yadm ci -m working && yadm pu"
 alias joplin="/usr/local/bin/node `which joplin`" # joplin and nodenv do not mix. this uses homebrew node.
-alias jsc="/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc" # javascript repl for testing javascript wonkiness
-alias ncdu="ncdu --color dark -rr -x --exclude .git --exclude vendor"
+# alias jsc="/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc" # javascript repl for testing javascript wonkiness
+alias ncdu="ncdu --color dark -rr -x --exclude .git --exclude vendor" # enhanced interactive disk usage command
 
 export CLICOLOR=1 # ls colors by default
 # export NODE_PATH="/usr/local/lib/node_modules" # zombie.js doesn't work without this

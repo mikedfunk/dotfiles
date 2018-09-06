@@ -798,6 +798,17 @@ if isdirectory(expand('~/.vim/plugged/vim-lsp'))
 endif
 " }}}
 
+" vim-markbar {{{
+if isdirectory(expand('~/.vim/plugged/vim-markbar'))
+    " tried nnoremap but didn't work for some reason :/
+    nmap <leader>mm <Plug>ToggleMarkbar
+    augroup markbar-grp
+        autocmd!
+        autocmd FileType markbar nnoremap q :q<cr>
+    augroup END
+endif
+" }}}
+
 " vim-mundo {{{
 let g:mundo_close_on_revert = 1
 if isdirectory(expand('~/.vim/plugged/vim-mundo'))
