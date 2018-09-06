@@ -157,7 +157,7 @@ Plug 'frioux/vim-lost' " gL to see what function you're in. I use this in php so
 Plug 'lifepillar/vim-cheat40' " Customizable cheatsheet. Mine is in ~/.vim/plugged/cheat40.txt. Open cheatsheet with <leader>? . I use this to avoid written cheatsheets on my desk for refactor tools and vdebug.
 " Plug 'auwsmit/vim-active-numbers' " Only show line numbers on active window. Helps to show which is active.
 " Plug 'dyng/ctrlsf.vim' " Contextual search plugin ala sublime.
-Plug 'andymass/vim-tradewinds' " <c-w>gh to move the current split one to the left, etc. in other directions
+" Plug 'andymass/vim-tradewinds' " <c-w>gh to move the current split one to the left, etc. in other directions
 Plug 'Yilin-Yang/vim-markbar' " <leader>mm to show marks
 " }}}
 
@@ -195,12 +195,13 @@ Plug 'alvan/vim-php-manual', { 'for': ['php', 'blade', 'phtml'] } " contextual p
 " Plug 'DarwinSenior/vim-notes' | Plug 'xolox/vim-misc' " maintained fork
 " Plug 'vimwiki/vimwiki' " now that xolox notes seems to be the one killing my syntax highlighting, it's time to try something else
 " Plug 'timgreen/vimwiki' " bugfix for markdown tags, should switch back when merged
+" if has('python') | Plug 'vim-voom/VOoM' | endif " `:Voom markdown` to get a left navbar for markdown structure hierarchy.
 Plug 'tpope/vim-projectionist' " link tests and classes together
 " Plug 'editorconfig/editorconfig-vim' " use per-project editor settings
 Plug 'sgur/vim-editorconfig' " faster version of editorconfig
 " Plug 'scrooloose/vim-orgymode' " kind of like emacs org-mode. <c-c> will toggle markdown checkbox. Also some syntax highlighting and ultisnips snippets.
 " Plug 'dkarter/bullets.vim' " does cool stuff with numbered and bullet lists in markdown, etc. <c-t> to indent, <c-d> to outdent.
-Plug 'blindFS/vim-taskwarrior' " vim taskwarrior integration. :TW to interact with tasks
+" Plug 'blindFS/vim-taskwarrior' " vim taskwarrior integration. :TW to interact with tasks
 " }}}
 
 " Git {{{
