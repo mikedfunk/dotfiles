@@ -157,13 +157,13 @@ cask "font-iosevka"
 # cask "gog-galaxy" # good old games
 cask "google-chrome"
 # cask "google-drive"
-cask "iterm2"
+# cask "iterm2"
 # cask "joplin" # desktop joplin
 cask "jumpcut" # clipboard manager recommended by Michael Zick
 # cask "kap" # screen capture to gif (Trying out licecap instead)
 # cask "keycastr" for screencasts - show keys pressed on the screen
 cask "kitematic" # docker container browser
-# cask "kitty" # fast terminal emulator
+cask "kitty" # fast terminal emulator
 cask "lastpass" # password manager
 # cask "launchcontrol" # launchctl gui. I use lunchy gem instead.
 cask "licecap" # another gif screen cap tool. It's ancient but _very fast_ at exporting gifs! It's also designed to run in the foreground rather than as a menubar app, which encourages me to keep it closed when I'm not using it.
