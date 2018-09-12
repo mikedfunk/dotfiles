@@ -399,5 +399,15 @@ lunchy start -w mike.saatchi-tunnel.autossh
 lunchy start -w mike.saatchi-proxy.autossh
 # }}}
 
+# fix file size limit for watching with entr {{{
+# http://entrproject.org/limits.html
+if ! [ -f /Library/LaunchDaemons/limit.maxfiles.plist ]; then
+    log_info "Installing max files limit fixer for watching with entr"
+    cd /Library/LaunchDaemons
+    sudo curl -sO http://entrproject.org/etc/limit.maxfiles.plist
+    cd -
+fi
+# }}}
+
 log_info "Don't forget to upgrade your docker-machine once in a while!"
 log_info "Don't forget to ''brew cask upgrade virtualbox virtualbox-extension-pack' once in a while!"
