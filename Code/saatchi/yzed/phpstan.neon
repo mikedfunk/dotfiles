@@ -15,3 +15,4 @@ parameters:
     - lib/shared
     - lib/src
     - lib/tests/Pac
+    - project/Zed/application/components

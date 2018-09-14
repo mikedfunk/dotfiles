@@ -229,7 +229,7 @@ alias bri="brew install"
 
 # phpunit {{{
 alias pu="phpunitnotify"
-alias coverage="pu --coverage-html=./coverage && open coverage/index.html"
+function coverage () { pu --coverage-html=./coverage $@ && open coverage/index.html; }
 alias puf="pu --filter="
 # alias puwatch="noglob ag -l -g '\
 #     (application\/controllers|application\/modules\/*\/controllers|application\/models|library|src|tests)/.*\\.php\
@@ -390,6 +390,7 @@ function saatchi-mount-dir() {
 function phpunitnotify() {
     # xdebug-off > /dev/null
     php -dmemory_limit=2048M -ddisplay_errors=on ./vendor/bin/phpunit --colors "${@}"
+    # phpdbg -qrr -dmemory_limit=2048M -ddisplay_errors=on ./vendor/bin/phpunit --colors "${@}"
     [[ $? == 0 ]] && noti --message "PHPUnit tests passed 👍" ||
         noti --message "PHPUnit tests failed 👎"
     # xdebug-on > /dev/null

@@ -179,13 +179,12 @@ Plug 'shawncplus/phpcomplete.vim' " better php omnicomplete. This is included wi
 Plug 'alvan/vim-php-manual', { 'for': ['php', 'blade', 'phtml'] } " contextual php manual with shift-K
 " Plug 'rayburgemeestre/phpfolding.vim' " php syntax folding with :EnableFastPhpFolds
 " Plug 'Plug 'swekaj/php-foldexpr.vim' " better php folding recommended here https://stackoverflow.com/questions/792886/vim-syntax-based-folding-with-php#comment46149243_11859632
-" Plug 'stephpy/vim-php-cs-fixer', { 'for': 'php' } " fix coding standards for current file/dir. Disabled: I use vim-phpfmt instead so it uses phpcbf.
-" Plug 'beanworks/vim-phpfmt', { 'for': 'php', 'on': 'PhpFmt' } " automatically fixes coding standards which phpcbf on save or via :PhpFmt
 " Plug 'sbdchd/neoformat' " auto format code using prettier, phpcbf, etc. :Neoformat
 " Plug 'tobyS/vmustache', { 'for': 'php' } | Plug 'FlickerBean/pdv', { 'for': 'php' } " phpdoc generator
 " Plug '2072/PHP-Indenting-for-VIm', { 'for': ['php', 'phtml'] } " apparently better php indenting for PHP 5.4+
 " Plug 'janko-m/vim-test', { 'for': 'php' } | Plug 'benmills/vimux', { 'for': 'php' } " test runner :TestNearest :TestFile :TestLast in tmux split
 " if has("python") | Plug 'joonty/vim-phpqa', { 'for': 'php' } | endif " Only used for code coverage markers :Phpcc
+" if has("python3") | Plug 'trendfischer/vim-phpqa', { 'for': 'php' } | endif " maintained fork
 " Plug 'adoy/vim-php-refactoring-toolbox'
 " Plug 'vim-php/vim-php-refactoring' " requires refactor.phar <leader>r to show available refactors DO NOT USE. (php parser is horribly outdated and composer dependency is broken.)
 " }}}
@@ -261,6 +260,7 @@ Plug 'posva/vim-vue' " vue.js syntax
 " Plug 'digitaltoad/vim-pug', { 'for': ['pug', 'jade'] } " pug (formerly jade) highlighting
 " Plug 'heavenshell/vim-syntax-flowtype' " js flowtype (included in pangloss/vim-javascript)
 Plug 'rhysd/vim-gfm-syntax' " github-flavored markdown. yum!
+Plug 'nelstrom/vim-markdown-folding' " just markdown folding
 Plug 'osyo-manga/vim-precious' | Plug 'Shougo/context_filetype.vim' " code block syntax highlighting for markdown
 Plug 'qnighy/vim-ssh-annex' " ssh files syntax coloring e.g. ssh config
 " Plug 'evanmiller/nginx-vim-syntax' " nginx conf syntax

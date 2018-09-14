@@ -849,6 +849,7 @@ let g:phpqa_messdetector_autorun = 0 "default: 1
 let g:phpqa_codesniffer_autorun = 0 "default: 1
 let g:phpqa_codecoverage_autorun = 0 "default: 1
 let g:phpqa_open_loc = 0 "default: 1
+let g:phpqa_codecoverage_file = 'coverage/clover.xml'
 " }}}
 
 " vim-plug {{{
