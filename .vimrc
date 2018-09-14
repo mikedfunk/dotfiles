@@ -217,11 +217,18 @@ let g:PHP_removeCRwhenUnix = 1
 let g:PHP_outdentphpescape = 0 " means that PHP tags will match the indent of the HTML around them in files that a mix of PHP and HTML
 let g:php_htmlInStrings = 1 " neat! :h php.vim
 let g:php_baselib = 1 " highlight php builtin functions
-" let g:php_folding = 1 " fold methods, control structures, etc.
+let g:php_folding = 1 " fold methods, control structures, etc.
 let g:php_noShortTags = 1
-" let g:php_parent_error_close = 1 " highlight missing closing ] or )
-" let g:php_parent_error_open = 1 " highlight missing opening [ or (
+let g:php_parent_error_close = 1 " highlight missing closing ] or )
+let g:php_parent_error_open = 1 " highlight missing opening [ or (
 let g:php_syncmethod = 10 " :help :syn-sync https://stackoverflow.com/a/30732393/557215
+
+augroup phpfoldnestmax
+    autocmd!
+    " start out with php methods folded
+    " only fold methods in php - not structures, etc.
+    autocmd FileType php set foldlevelstart=1 foldnestmax=1
+augroup END
 " }}}
 
 " 'Rolodex Vim' http://vim.wikia.com/wiki/Window_zooming_convenience
