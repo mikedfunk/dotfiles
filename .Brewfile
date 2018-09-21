@@ -147,9 +147,9 @@ tap "caskroom/cask"
 # cask "dashlane" # password manager like lastpass
 cask "bitbar" # use any cli command to show stuff in the menubar with colors and icons and provide menu options
 # cask "beardedspice" # keyboard media controls for media sites (I now use streamkeys chrome extension) - goes together with bubo.app
-cask "cheatsheet" # hold <cmd> for a bit to get a modal of available keyboard shortcuts (kind of annoying - rarely comes up when I actually want it to, too much info)
+# cask "cheatsheet" # hold <cmd> for a bit to get a modal of available keyboard shortcuts (kind of annoying - rarely comes up when I actually want it to, too much info)
 # cask "docker" # docker for mac desktop app (I use docker-machine)
-cask "dropbox" # I especially use this for synching my notes so I can view them in the joplin mobile app
+# cask "dropbox" # I especially use this for synching my notes so I can view them in the joplin mobile app
 cask "firefox"
 tap "caskroom/fonts"
 # cask "font-fira-code"
@@ -160,7 +160,7 @@ cask "google-chrome"
 # cask "google-drive"
 # cask "iterm2"
 # cask "joplin" # desktop joplin
-cask "jumpcut" # clipboard manager recommended by Michael Zick
+cask "jumpcut" # clipboard manager recommended by Michael Zick (slightly annoying interface but I haven't found any better on brew) ctrl-opt-v (forward) or ctrl-opt-shift-v (backward)
 # cask "kap" # screen capture to gif (Trying out licecap instead)
 # cask "keycastr" for screencasts - show keys pressed on the screen
 cask "kitematic" # docker container browser

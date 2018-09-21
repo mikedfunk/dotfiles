@@ -59,7 +59,7 @@ Plug 'wellle/tmux-complete.vim' " add tmux as a completion source with user-defi
 " General {{{
 " Plug 'tpope/vim-sensible' " sensible defaults (I copied these to my base vimrc)
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' } " redo another branch
-" Plug 'simnalamburt/vim-mundo', { 'on': 'MundoToggle' } " nicer undotree
+" Plug 'simnalamburt/vim-mundo', { 'on': 'MundoToggle' } " nicer undotree... but MUCH slower
 " Plug 'dahu/vim-lotr', { 'on': 'LOTRToggle' } " yankring-like
 " Plug 'scrooloose/syntastic' " syntax checker (no lazy load)
 " Plug 'mtscout6/syntastic-local-eslint.vim' " tell syntastic to prefer project node bin eslint executable over global one
@@ -198,7 +198,7 @@ Plug 'alvan/vim-php-manual', { 'for': ['php', 'blade', 'phtml'] } " contextual p
 Plug 'tpope/vim-projectionist' " link tests and classes together
 " Plug 'editorconfig/editorconfig-vim' " use per-project editor settings
 Plug 'sgur/vim-editorconfig' " faster version of editorconfig
-" Plug 'scrooloose/vim-orgymode' " kind of like emacs org-mode. <c-c> will toggle markdown checkbox. Also some syntax highlighting and ultisnips snippets.
+Plug 'scrooloose/vim-orgymode' " kind of like emacs org-mode. <c-c> will toggle markdown checkbox. Also some syntax highlighting and ultisnips snippets.
 " Plug 'dkarter/bullets.vim' " does cool stuff with numbered and bullet lists in markdown, etc. <c-t> to indent, <c-d> to outdent.
 " Plug 'blindFS/vim-taskwarrior' " vim taskwarrior integration. :TW to interact with tasks
 " }}}
@@ -290,6 +290,7 @@ Plug 'itchyny/vim-cursorword' " highlight matching words. What I like about this
 " Plug 'elqatib/remaining-todos.vim' " when remaining todos in a file, flash a message before closing a buffer
 Plug 'ap/vim-css-color', { 'for': ['scss', 'css'] } " colorize css colors e.g. #333 with the actual color in the background
 " Plug 'chrisbra/NrrwRgn' " work in a separate window with a sub-region of a document. :NR
+" Plug 'scrooloose/vim-slumlord' " plantuml live preview for sequence diagrams
 
 " color schemes: 256-friendly {{{
 " Plug 'MarioRicalde/vim-lucius'

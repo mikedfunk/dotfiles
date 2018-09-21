@@ -270,7 +270,7 @@
     tool = vimdiff
     # tool = "nvim -d"
     # shows local, parent, then remote
-    # conflictstyle = diff3
+    conflictstyle = diff3
 [mergetool "vimdiff"]
     # cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
     # use the neovim/macvim/vim switch to use whichever vim is configured
@@ -281,6 +281,7 @@
     # cmd = source ~/.bash_aliases && ${vim} -d $LOCAL $REMOTE
 [mergetool]
     keepBackup = false
+    prompt = false
 [pager]
     # this lets you skip to the next/prev file with `n` and `N`
     # diff = diff-so-fancy | less --tabs=4 -RFX --pattern '^(Date|added|deleted|modified): '
