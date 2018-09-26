@@ -62,7 +62,7 @@ if [ -f /usr/local/share/antigen/antigen.zsh ]; then
     source /usr/local/share/antigen/antigen.zsh
 
     antigen use oh-my-zsh # load oh-my-zsh
-    # antigen bundle yous/vanilli.sh # sensible zsh defaults
+    antigen bundle yous/vanilli.sh # sensible zsh defaults
     antigen bundle djui/alias-tips # tell you when an alias would shorten the command you ran
     antigen bundle colored-man-pages
     antigen bundle colorize # Plugin for highlighting file content
@@ -146,7 +146,6 @@ alias jobs="jobs -l"
 alias pso="ps -o pid,command"
 # alias add-keys="ssh-add -K ~/.ssh/keys/githubkey ~/.ssh/keys/bitbucketkey ~/.ssh/keys/saatchiartkey"
 alias art="php artisan"
-alias zpu="zplug update"
 alias pc="phing -logger phing.listener.DefaultLogger"
 # compdef pc="phing"
 alias pg="phing"
@@ -397,7 +396,7 @@ wd() {
 # }}}
 
 # zsh options {{{
-# most basic options are now set up by vanilla zplug plugin
+# most basic options are now set up by vanilla zsh plugin
 # zstyle ':completion:*' use-cache true
 
 # fuzzy completion: cd ~/Cde -> ~/Code

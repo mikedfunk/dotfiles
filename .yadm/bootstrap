@@ -259,8 +259,16 @@ cd -
 # update python3 pip packages {{{
 log_info "Installing/upgrading pip packages"
 pip install -r "$HOME/requirements.txt" --user
-pip-review --local --auto &&
-	pip freeze >"$HOME/requirements.txt"
+# pip-review broke recently:
+# zsh: /usr/local/bin/pip-review: bad interpreter: /usr/local/opt/python/bin/python3.6: no such file or directory
+# pip-review --local --auto &&
+# 	pip freeze >"$HOME/requirements.txt"
+# pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U
+function pip-update () {
+    pip list --outdated | grep -v 'Package' | grep -v -e '\-\-\-\-\-' | cut -d' ' -f1 | xargs -n1 pip install -U
+}
+pip-update
+pip freeze >"$HOME/requirements.txt"
 # }}}
 
 # install/update composer and packages {{{
