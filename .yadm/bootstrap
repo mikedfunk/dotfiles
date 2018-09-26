@@ -299,16 +299,9 @@ else
 fi
 # }}}
 
-# zplug {{{
-if [[ ! -d "$HOME/.zplug" ]]; then
-	log_info "Installing zplug"
-	curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
-else
-	log_info "Upgrading zplug"
-	cd $ZPLUG_HOME && git pull && cd -
-fi
-log_info "Installing/upgrading zplug plugins"
-$HOME/.support/install-update-zplug.zsh
+# antigen {{{
+log_info "Updating antigen plugins"
+antigen update
 # }}}
 
 # apply hosts file {{{
@@ -323,6 +316,9 @@ tic -o "$HOME/.terminfo/78/" "$HOME/.support/screen-256color.terminfo.txt"
 # }}}
 
 # Mac preferences {{{
+# https://www.reddit.com/r/MacOS/comments/9ijy88/font_antialiasing_on_mojave/?utm_content=title&utm_medium=front&utm_source=reddit&utm_name=MacOS
+# defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
+
 # TODO write a function to abstract the repetition here
 log_info "Setting general mac preferences"
 # Disable “natural” (Lion-style) scrolling
@@ -409,5 +405,8 @@ if ! [ -f /Library/LaunchDaemons/limit.maxfiles.plist ]; then
 fi
 # }}}
 
+# reminders {{{
 log_info "Don't forget to upgrade your docker-machine once in a while!"
 log_info "Don't forget to ''brew cask upgrade virtualbox virtualbox-extension-pack' once in a while!"
+log_info "Don't forget to update tmux plugins via <c-a>U once in a while!"
+# }}}

@@ -1,7 +1,3 @@
-dotfiles:~/.dotfiles
-private:~/.private-stuff
-sites:~/Sites
-react:~/Sites/react-subjects
 yadm:~/.yadm
 legacy:~/Code/saatchi/saatchiart
 saatchi:~/Code/saatchi/saatchiart
@@ -24,7 +20,6 @@ queries:~/Code/saatchi/queries
 http:~/Code/saatchi/http
 easel:~/Code/saatchi/easel
 code:~/Code
-yo:~/Code/generator-testmike
 phpenv:~/.phpenv
 geasel:~/Code/saatchi/generator-easel
 gatsby:~/Code/gatsby-site

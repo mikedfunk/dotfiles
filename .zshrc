@@ -4,8 +4,6 @@
 # https://til.hashrocket.com/posts/alk38eeu8r-use-fc-to-fix-commands-in-the-shell
 
 # ctrl-z won't work? remove ~/.zsh/log/jog.lock
-# if using zplug, just `rm $_zplug_lock`
-# https://github.com/zplug/zplug/issues/322#issuecomment-274557883
 
 # Paths {{{
 cdpath=(
@@ -41,76 +39,46 @@ path=(
   $(gem env home)
   # pip bin
   $HOME/.local/bin
-  $ZPLUG_ROOT/bin
   /usr/{bin,sbin}
   /{bin,sbin}
   # /usr/local/opt/icu4c/{bin,sbin}
   $path
 )
 
+# weird that I have to specify zsh functions. That should work out of the box,
+# but it doesn't. If I don't source that I get compdef undefined.
 fpath=(
-  "$ZPLUG_HOME/bin"
   # homebrew zsh completions
+  "/usr/local/share/zsh/functions"
   "/usr/local/share/zsh/site-functions"
   $fpath
 )
 # }}}
 
-# zplug {{{
+# antigen {{{
+# I used to use zplug which is really cool but I got tired of errors and issues. Let's see if antigen is less error-prone.
+# problems? rm $ANTIGEN_COMPDUMP
+if [ -f /usr/local/share/antigen/antigen.zsh ]; then
+    source /usr/local/share/antigen/antigen.zsh
 
-# setup {{{
-# unset ZPLUG_SHALLOW # shut up zplug!!
-# export DISABLE_AUTO_TITLE="true" # prevent zsh from auto-updating tmux window title
-source $HOME/.zplug/init.zsh
-# }}}
+    antigen use oh-my-zsh # load oh-my-zsh
+    # antigen bundle yous/vanilli.sh # sensible zsh defaults
+    antigen bundle djui/alias-tips # tell you when an alias would shorten the command you ran
+    antigen bundle colored-man-pages
+    antigen bundle colorize # Plugin for highlighting file content
+    antigen bundle wd
+    antigen bundle vi-mode
+    # antigen bundle mfaerevaag/wd # antigen doesn't like this. It dies.
+    # # antigen 'mfaerevaag/wd', as:command, use:"wd.sh", hook-load:"wd() { . $ZPLUG_REPOS/mfaerevaag/wd/wd.sh }"
+    antigen bundle gitfast # fix git completion issues https://unix.stackexchange.com/a/204308
+    antigen bundle marzocchi/zsh-notify # notify when a command fails or lasts longer than 30 seconds and the terminal is in the background (requires terminal-notifier)
+    antigen bundle zsh-users/zsh-autosuggestions # OLD COMMENT: buggy if enabled along with zsh-syntax-highlighting. crashes the shell regularly.
+    antigen bundle zsh-users/zsh-completions # do-everything argument completions
+    antigen bundle zsh-users/zsh-syntax-highlighting # colored input... see above
+    # antigen bundle zsh-users/zsh-history-substring-search # up arrow after typing part of command
 
-# plugin definitions {{{
-zplug "yous/vanilli.sh" # sensible zsh defaults
-zplug "djui/alias-tips" # tell you when an alias would shorten the command you ran
-zplug "plugins/colored-man-pages", from:oh-my-zsh
-zplug "plugins/colorize", from:oh-my-zsh # Plugin for highlighting file content
-zplug 'mfaerevaag/wd', as:command, use:"wd.sh", hook-load:"wd() { . $ZPLUG_REPOS/mfaerevaag/wd/wd.sh }"
-zplug "plugins/gitfast", from:oh-my-zsh, if:"which git" # fix git completion issues https://unix.stackexchange.com/a/204308
-zplug "marzocchi/zsh-notify" # notify when a command fails or lasts longer than 30 seconds and the terminal is in the background (requires terminal-notifier)
-zplug "zsh-users/zsh-autosuggestions" # OLD COMMENT: buggy if enabled along with zsh-syntax-highlighting. crashes the shell regularly.
-zplug "zsh-users/zsh-completions" # do-everything argument completions
-zplug "zsh-users/zsh-syntax-highlighting", defer:2 # colored input... see above
-zplug 'zplug/zplug', hook-build:'zplug --self-manage' # manage itself
-
-# DISABLED
-# zplug "TheLocehiliosan/yadm", rename-to:_yadm, use:"completion/yadm.zsh_completion", as:command, defer:2 # yadm completion (not needed - comes with brew installation)
-# zplug "jamesob/desk", from:github, as:command, use:"desk" # shell workspace manager
-# zplug "hchbaw/auto-fu.zsh", at:pu
-# zplug "b4b4r07/enhancd", use:init.sh # enhanced cd
-# zplug "felixr/docker-zsh-completion" # docker completion (deprecated)
-# zplug "gko/ssh-connect", use:ssh-connect.sh # ssh-connect to get a ssh session manager (broken - prefixes with an integer for some reason)
-# zplug "hchbaw/auto-fu.zsh", use:"auto-fu.zsh" # autocompletion and suggestions
-# zplug "peterhurford/up.zsh" # `up 2` to cd ../..
-# zplug "plugins/docker", from:oh-my-zsh
-# zplug "plugins/git", from:oh-my-zsh, if:"which git" # alias g to git and include completion. and other stuff.
-# zplug "plugins/git-extras", from:oh-my-zsh, if:"which git" # I have this in brew already
-# zplug "plugins/npm", from:oh-my-zsh, if:"which npm"
-# zplug "plugins/phing", from:oh-my-zsh, if:"which phing"
-# zplug "plugins/rake-fast", from:oh-my-zsh # rake task completion
-# zplug "plugins/vagrant", from:oh-my-zsh, if:"which vagrant"
-# zplug "plugins/vi-mode", from:oh-my-zsh
-# zplug "plugins/wd", from:oh-my-zsh # "warp directory" bookmarking tool
-# zplug "sharat87/zsh-vim-mode"
-# zplug "supercrabtree/k" # pretty ls with git, filesize, and date features
-# zplug "zplug/zplug" # zplugception!
-# zplug "zsh-users/zaw" # completer with aliases, git branches, etc. <ctrl-x> to open
-# }}}
-
-# Install plugins if there are plugins that have not been installed {{{
-if ! zplug check; then
-    printf "Install zplug plugins? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
+    antigen apply
 fi
-
-zplug load
-# }}}
 # }}}
 
 # source additional files and env vars {{{
@@ -127,7 +95,7 @@ zplug load
 [[ "$(builtin type -p pyenv)" ]] && eval "$(pyenv init -)"
 [[ -f "$HOME/.phpenv/bin/phpenv" ]] && eval "$($HOME/.phpenv/bin/phpenv init -)"
 [[ "$(builtin type -p rbenv)" ]] && eval "$(rbenv init -)"
-[[ "$(builtin type -p akamai)" ]] && eval "$(akamai --zsh)"
+[[ "$(builtin type -p akamai)" ]] && eval "$(akamai --zsh)" # compinit: function definition file not found
 # [ -n "$DESK_ENV" ] && source "$DESK_ENV" || true # Hook for desk activation
 # tabtab source for yo package
 # uninstall by removing these lines or running `tabtab uninstall yo`
@@ -180,9 +148,9 @@ alias pso="ps -o pid,command"
 alias art="php artisan"
 alias zpu="zplug update"
 alias pc="phing -logger phing.listener.DefaultLogger"
-compdef pc="phing"
+# compdef pc="phing"
 alias pg="phing"
-compdef pg="phing"
+# compdef pg="phing"
 
 alias y="yadm"
 compdef y="yadm"
@@ -415,6 +383,12 @@ function pux() {
 # }}}
 # }}}
 
+# wd {{{
+wd() {
+  . /Users/mikefunk/bin/wd/wd.sh
+}
+# }}}
+
 # }}}
 
 # source more files {{{
@@ -441,5 +415,12 @@ autoload -U edit-command-line
 # https://wrotenwrites.com/a_modern_terminal_workflow_3/#Spellcheck-Typo-Correction
 # setopt correctall
 # alias git-status='nocorrect git status'
+
+# zsh keybinds {{{
+# up/down allows searching history by prefix e.g. `cd {up}`
+# https://unix.stackexchange.com/questions/16101/zsh-search-history-on-up-and-down-keys#100860
+# bindkey "[A" history-beginning-search-backward
+# bindkey "[B" history-beginning-search-forward
+# }}}
 
 # }}}

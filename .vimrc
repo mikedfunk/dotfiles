@@ -270,13 +270,13 @@ augroup quickfixclosegroup
     autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"|q|endif
 augroup END
 
-if has('clipboard')
-    if has('unnamedplus') && !has('nvim')  " When possible use + register for copy-paste
-        set clipboard=unnamed,unnamedplus
-    else
-        set clipboard=unnamed
-    endif
-endif
+" if has('clipboard')
+"     if has('unnamedplus') && !has('nvim')  " When possible use + register for copy-paste
+"         set clipboard=unnamed,unnamedplus
+"     else
+"         set clipboard=unnamed
+"     endif
+" endif
 
 " https://vi.stackexchange.com/a/13012
 " Per default, netrw leaves unmodified buffers open. This autocommand
