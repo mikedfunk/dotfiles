@@ -269,8 +269,11 @@
     # tool = opendiff
     tool = vimdiff
     # tool = "nvim -d"
+
     # shows local, parent, then remote
-    conflictstyle = diff3
+    # http://psung.blogspot.com/2011/02/reducing-merge-headaches-git-meets.html
+    # diff3 includes the ||||||| markers to give context, allowing us to deduce whether a change was an addition or a deletion.
+    # conflictstyle = diff3
 [mergetool "vimdiff"]
     # cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
     # use the neovim/macvim/vim switch to use whichever vim is configured

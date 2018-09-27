@@ -110,16 +110,16 @@ brew "shfmt" # formats shell scripts (used by vim ALE)
 brew "ssh-copy-id" # copies ssh keys to remote servers
 brew "sshrc" # use ~/.sshrc and ~/.sshrc.d on remote servers. bring your dotfiles with you!
 # brew "sshfs" # mounts ssh servers as file systems in the local fs. requires osxfuse.
-# brew "sshuttle" # poor mans vpn. doesnt work on yosemite at the moment
 # brew "solr" # search data server
 # brew "spark" # used for rainbarf to show spiffy cli graphs
 # brew "stormssh" # interact with ssh config. I have yet to find a net positive use for this. It makes my ssh config less readable because it doesn't put them in comment fold groups like I do. just so I can `storm add ...`. `storm list` and `storm search` are kind of useless as I can do that with `ssh <tab>`. It lets you edit multiple ssh entries at once, but I can do that in vim. It provides a web interface, but I don't want that.
 # brew "stow" # http://brandon.invergo.net/news/2012-05-26-using-gnu-stow-to-manage-your-dotfiles.html <- I use yadm instead
-brew "task" # taskwarrior https://taskwarrior.org
+# brew "task" # taskwarrior https://taskwarrior.org
 # brew "teleconsole" # share your console with others easily
 brew "terminal-notifier" # used by tmux plugin marzocchi/zsh-notify
 brew "the_silver_searcher" # awesome fast grep replacement: ag
 brew "tig" # git? tig! (note: this requires asciidoc)
+# brew "timewarrior" # taskwarrior-like interface for tracking time
 brew "tldr" # more consise community man pages
 brew "tmux" # terminal multiplexer similar to screen.
 # brew "tofrodos" # line endings
@@ -162,20 +162,16 @@ cask "google-chrome"
 # cask "iterm2"
 # cask "joplin" # desktop joplin
 cask "jumpcut" # clipboard manager recommended by Michael Zick (slightly annoying interface but I haven't found any better on brew) ctrl-opt-v (forward) or ctrl-opt-shift-v (backward)
-# cask "kap" # screen capture to gif (Trying out licecap instead)
-# cask "keycastr" for screencasts - show keys pressed on the screen
-cask "kitematic" # docker container browser
+# cask "kitematic" # docker container browser
 cask "kitty" # fast terminal emulator
 cask "lastpass" # password manager
 # cask "launchcontrol" # launchctl gui. I use lunchy gem instead.
-cask "licecap" # another gif screen cap tool. It's ancient but _very fast_ at exporting gifs! It's also designed to run in the foreground rather than as a menubar app, which encourages me to keep it closed when I'm not using it.
 # cask "macfusion" # other half of tool to mount ssh directories in the finder
 # cask "macgdbp" # xdebug gui client (I use vdebug)
-# cask "monosnap" # really slick screenshot handler and screencast maker. Runs in the menubar.
 cask "multifirefox" # profile picker until firefox fixes this glaring omission
 # cask "noti" # mac native pushbullet notifications
 # cask "osxfuse" # half of tool to mount ssh directories in the finder (useful if working on a shared dev environment)
-cask "openemu" # multi emulator
+cask "openemu" # multi game system emulator
 # cask "pdftotext" # used by ranger to preview pdfs
 # cask "see" https://github.com/sindresorhus/quick-look-plugins
 # cask "qlcolorcode" # quicklook plugin to provide syntax highlighting to code files (fails to install)
@@ -191,11 +187,12 @@ cask "spectacle" # keyboard window splitter/resizer/mover
 # cask "spotify" # their web app has been broken for a bit https://community.spotify.com/t5/Other-Partners-Web-Player-etc/Web-Player-Not-Working/td-p/1070938
 cask "steam" # yep
 # cask "suspicious-package" # quicklook plugin
-# cask "tinygrab" # simple screenshot uploader
 # cask "vagrant" # development VM maker/manager (I use docker now)
+#
 # TODO these can't just be upgraded while virtualbox is running :/
 # cask "virtualbox" # virtual machine software
 # cask "virtualbox-extension-pack" # add-on to do stuff you'll always want
+#
 # cask "webpquicklook" # quicklook plugin
 # cask "wireshark" # analyze network data
 # cask "xquartz" # needed to install xclip, which is needed to copy text from multitail (I installed all of that, copy still didn't work :/ )
