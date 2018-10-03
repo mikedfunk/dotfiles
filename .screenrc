@@ -28,3 +28,13 @@ termcapinfo xterm* ti@:te@ # Enable mouse scrolling and scroll bar history scrol
 # unbind the x key which is gnu screen's lockscreen function.
 bind ^x
 bind x
+
+startup_message off
+
+# mouse tracking allows to switch region focus by clicking
+mousetrack on
+
+# get rid of silly xoff stuff
+bind s split
+
+layout autosave on
