@@ -242,6 +242,31 @@ class `!v expand("%:t:r")`$4
 }
 endsnippet
 
+snippet req "laravel validating request"
+<?php
+declare(strict_types=1);
+`!p snip.rv = namespace(snip, path)`
+use Palette\Http\Requests\ApiRequest;
+
+/** ${1:Description} */
+class `!v expand("%:t:r")`$4 extends ApiRequest
+{
+    public function rules()
+    {
+        return [
+            ${1://}
+        ];
+    }
+
+    public function authorize()
+    {
+        return true;
+        // oauth2, request validation ...
+        // either here or middleware or mix ...
+    }
+}
+endsnippet
+
 snippet scr "saatchi process abstract script"
 <?php
 declare(strict_types=1);
