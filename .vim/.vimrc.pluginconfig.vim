@@ -406,9 +406,11 @@ let g:tagbar_type_ruby = {
         \ 'C:constants',
         \ 'a:aliases'
     \ ],
-    \ 'ctagsbin':  'ripper-tags',
-    \ 'ctagsargs': ['-f', '-']
+    \ 'ctagsbin':  '/Users/mikefunk/.bin/rtags'
 \ }
+" \ 'ctagsbin':  'ripper-tags',
+" \ 'ctagsargs': ['-f', '-', '--ignore-unsupported-options']
+let g:gutentags_ctags_executable_ruby = 'rtags'
 " }}}
 
 " terminus {{{
@@ -711,7 +713,7 @@ let g:gutentags_ctags_exclude_wildignore = 0
 
 " Some debugging/troubleshooting commands are also available if the
 " |gutentags_define_advanced_commands| global setting is set to 1.
-" let g:gutentags_define_advanced_commands = 1
+let g:gutentags_define_advanced_commands = 1
 
 " only tag stuff that is not in gitignore
 " downside: you have to commit a file for it to be tagged
@@ -863,6 +865,10 @@ if exists(':PlugUpdate') | nnoremap <leader>bu :Source<cr> :PlugUpdate<cr> :Plug
 
 " vim-polyglot {{{
 let g:polyglot_disabled=['php'] " I use a different php syntax plugin
+" }}}
+
+" vim-puppet {{{
+let g:tagbar_type_puppet = {} " disable puppet ctags integration - it doesn't work with universal ctags
 " }}}
 
 " vim-rest-console {{{
