@@ -66,6 +66,7 @@ py-pretty==1
 py-yacc==3.0.0
 pycparser==2.19
 pycrypto==2.6.1
+pydf==12
 Pygments==2.2.0
 PyJWT==1.6.4
 PyMySQL==0.9.2

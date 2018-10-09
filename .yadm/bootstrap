@@ -309,7 +309,8 @@ fi
 
 # antigen {{{
 log_info "Updating antigen plugins"
-antigen update
+# antigen selfupdate # antigen is managed by homebrew
+antigen update # update all packages
 # }}}
 
 # apply hosts file {{{

@@ -26,7 +26,7 @@ gem 'pygments.rb' # syntax highlighting - used by jekyll
 # gem 'rake' # do I need this as a gem??
 gem 'rainbow' # needed by scss-lint
 gem 'redcarpet' # used by jekyll to convert markdown to html. also used by vim-instant-markdown
-gem 'ripper-tags' # ctags for ruby
+gem 'ripper-tags' # ctags for ruby, used by vim tagbar and gutentags
 gem 'rouge' # syntax higlighter (rougify in bin) themes: http://www.rubydoc.info/gems/rouge/frames
 gem 'rubocop' # ruby syntax checker. works with vim syntastic
 # gem "rdiscount" # another markdown option for jekyll.

@@ -56,8 +56,10 @@ fpath=(
 # }}}
 
 # antigen {{{
+# other possibility: fresh https://github.com/freshshell/fresh/wiki/Directory#zsh
 # I used to use zplug which is really cool but I got tired of errors and issues. Let's see if antigen is less error-prone.
 # problems? rm $ANTIGEN_COMPDUMP
+# So far I have seen zero errors or issues and it's fast!
 if [ -f /usr/local/share/antigen/antigen.zsh ]; then
     source /usr/local/share/antigen/antigen.zsh
 
