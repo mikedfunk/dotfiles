@@ -393,6 +393,8 @@ if exists(':SnipBar') | nnoremap <leader>ss :SnipBar<CR> | endif
 " {{{ tagbar
 let g:tagbar_autofocus = 1
 let g:tagbar_autoclose = 1
+let g:tagbar_previewwin_pos = "botright"
+" let g:tagbar_autopreview = 1
 " let g:tagbar_hide_nonpublic=1 " hide non-public methods. Now tagbar looks more like an interface!
 " let g:tagbar_left = 1
 " tagbar autofocus is the whole point of tagbar

@@ -2,7 +2,7 @@ agate==1.6.1
 agate-dbf==0.2.0
 agate-excel==0.2.2
 agate-sql==0.5.3
-alabaster==0.7.11
+alabaster==0.7.12
 ansicolor==0.2.6
 asn1crypto==0.24.0
 aspy.yaml==1.1.1
@@ -54,12 +54,12 @@ oauthlib==2.1.0
 openpyxl==2.5.8
 packaging==18.0
 parsedatetime==2.4
-pbr==4.2.0
+pbr==4.3.0
 pexpect==4.6.0
 pip-review==1.0
-pipenv==2018.7.1
+pipenv==2018.10.9
 ply==3.11
-prompt-toolkit==1.0.15
+prompt-toolkit==2.0.5
 psutil==5.4.7
 ptyprocess==0.6.0
 py-pretty==1
