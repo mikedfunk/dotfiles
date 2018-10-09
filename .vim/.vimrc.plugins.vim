@@ -220,7 +220,7 @@ if executable('git')
     "
     " if has('python') | Plug 'euclio/gitignore.vim' | endif " automatically populate wildignore from gitignore. Why would I not want to do this? Because it's buggy with no gitignore :/
     " Plug 'vim-scripts/gitignore' " simpler version with no python
-    Plug 'octref/rootignore' " yet another gitignore -> wildignore
+    " Plug 'octref/rootignore' " yet another gitignore -> wildignore
 endif
 " }}}
 

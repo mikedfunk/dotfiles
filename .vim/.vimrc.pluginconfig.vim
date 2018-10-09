@@ -393,6 +393,7 @@ if exists(':SnipBar') | nnoremap <leader>ss :SnipBar<CR> | endif
 " {{{ tagbar
 let g:tagbar_autofocus = 1
 let g:tagbar_autoclose = 1
+" let g:tagbar_hide_nonpublic=1 " hide non-public methods. Now tagbar looks more like an interface!
 " let g:tagbar_left = 1
 " tagbar autofocus is the whole point of tagbar
 if isdirectory(expand('~/.vim/plugged/tagbar')) | nnoremap <silent> <leader>bb :TagbarToggle<CR> | endif
@@ -406,11 +407,9 @@ let g:tagbar_type_ruby = {
         \ 'C:constants',
         \ 'a:aliases'
     \ ],
-    \ 'ctagsbin':  '/Users/mikefunk/.bin/rtags'
+    \ 'ctagsbin':  'ripper-tags',
+    \ 'ctagsargs': ['-f', '-']
 \ }
-" \ 'ctagsbin':  'ripper-tags',
-" \ 'ctagsargs': ['-f', '-', '--ignore-unsupported-options']
-let g:gutentags_ctags_executable_ruby = 'rtags'
 " }}}
 
 " terminus {{{
@@ -701,7 +700,7 @@ let g:gitgutter_realtime = 0 | let g:gitgutter_eager = 0 " trade accuracy for sp
 " endif
 " let g:gutentags_ctags_executable_php = '( git ls-files --ignored --exclude-standard | ctags --links=no -L- )'
 " let g:gutentags_ctags_executable_php = '( ag -l | ctags --links=no -L- )'
-let g:gutentags_ctags_executable_ruby = 'ripper-tags -R'
+let g:gutentags_ctags_executable_ruby = 'ripper-tags -R --ignore-unsupported-options'
 
 " guess the project type based on these files. More will be added later
 " automatically by gutentags.
@@ -865,10 +864,6 @@ if exists(':PlugUpdate') | nnoremap <leader>bu :Source<cr> :PlugUpdate<cr> :Plug
 
 " vim-polyglot {{{
 let g:polyglot_disabled=['php'] " I use a different php syntax plugin
-" }}}
-
-" vim-puppet {{{
-let g:tagbar_type_puppet = {} " disable puppet ctags integration - it doesn't work with universal ctags
 " }}}
 
 " vim-rest-console {{{
