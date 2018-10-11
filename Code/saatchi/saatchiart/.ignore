@@ -18,3 +18,4 @@ tests/library/Dhl/UnitTestPlan/ShipmentValidation/Response/AP/*.xml
 tags
 assets/react/node_modules
 node_modules
+public/js/core.min.js
