@@ -112,6 +112,7 @@ brew "sshrc" # use ~/.sshrc and ~/.sshrc.d on remote servers. bring your dotfile
 # brew "sshfs" # mounts ssh servers as file systems in the local fs. requires osxfuse.
 # brew "solr" # search data server
 # brew "spark" # used for rainbarf to show spiffy cli graphs
+# brew "sqlparse" # sql formatter (managed by pip in ~/requirements.txt)
 # brew "stormssh" # interact with ssh config. I have yet to find a net positive use for this. It makes my ssh config less readable because it doesn't put them in comment fold groups like I do. just so I can `storm add ...`. `storm list` and `storm search` are kind of useless as I can do that with `ssh <tab>`. It lets you edit multiple ssh entries at once, but I can do that in vim. It provides a web interface, but I don't want that.
 # brew "stow" # http://brandon.invergo.net/news/2012-05-26-using-gnu-stow-to-manage-your-dotfiles.html <- I use yadm instead
 # brew "task" # taskwarrior https://taskwarrior.org

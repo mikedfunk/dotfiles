@@ -65,7 +65,9 @@ endif
 
 set autoindent
 set backspace=indent,eol,start
-set complete-=i
+" disable some completion sources for faster completion
+set complete-=i " included files
+set complete-=t " tag completion
 set smarttab
 
 set nrformats-=octal
