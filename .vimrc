@@ -272,13 +272,16 @@ augroup quickfixclosegroup
     autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"|q|endif
 augroup END
 
-" if has('clipboard')
-"     if has('unnamedplus') && !has('nvim')  " When possible use + register for copy-paste
-"         set clipboard=unnamed,unnamedplus
-"     else
-"         set clipboard=unnamed
-"     endif
-" endif
+" use system clipboard. If this isn't here you have to \"* before every
+" yank/delete/paste command. Really annoying. Leader commands are tricky too
+" if you want to make them work with motions and visual selections.
+if has('clipboard')
+    if has('unnamedplus') && !has('nvim')  " When possible use + register for copy-paste
+        set clipboard^=unnamedplus
+    else
+        set clipboard=unnamed
+    endif
+endif
 
 " https://vi.stackexchange.com/a/13012
 " Per default, netrw leaves unmodified buffers open. This autocommand

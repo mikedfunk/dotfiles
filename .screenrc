@@ -1,5 +1,6 @@
 # for scrollbar in tmux
 termcapinfo xterm*|xs|rxvt|terminal ti@:te@
+# termcapinfo xterm* ti@:te@ # Enable mouse scrolling and scroll bar history scrolling
 
 # Same as the utf8 command except that the default setting for new windows is
 # changed. Initial setting is `on' if screen was started with "-U", otherwise
@@ -23,18 +24,18 @@ hardstatus string "%{c} ${LC_SSH_ALIAS} | %w%=%{-}"
 # termcap.
 altscreen on
 
-termcapinfo xterm* ti@:te@ # Enable mouse scrolling and scroll bar history scrolling
-
 # unbind the x key which is gnu screen's lockscreen function.
 bind ^x
 bind x
 
 startup_message off
 
-# mouse tracking allows to switch region focus by clicking
+# mouse tracking allows to switch region focus by clicking (may not work on older versions of screen)
 mousetrack on
 
 # get rid of silly xoff stuff
 bind s split
 
+# screen and layouts https://superuser.com/questions/687348/how-to-persist-gnu-screen-layout-after-restart#963169
+# (may not work on older versions of screen)
 layout autosave on
