@@ -172,6 +172,7 @@ cask "lastpass" # password manager
 # cask "macgdbp" # xdebug gui client (I use vdebug)
 cask "multifirefox" # profile picker until firefox fixes this glaring omission
 # cask "noti" # mac native pushbullet notifications
+cask "ngrok" # securely expose your local site to the internet and inspect and repeat traffic
 # cask "osxfuse" # half of tool to mount ssh directories in the finder (useful if working on a shared dev environment)
 cask "openemu" # multi game system emulator
 # cask "pdftotext" # used by ranger to preview pdfs

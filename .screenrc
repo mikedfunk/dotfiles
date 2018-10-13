@@ -33,9 +33,17 @@ startup_message off
 # mouse tracking allows to switch region focus by clicking (may not work on older versions of screen)
 mousetrack on
 
+# increase scrollback size
+defscrollback 1000
+
 # get rid of silly xoff stuff
 bind s split
 
 # screen and layouts https://superuser.com/questions/687348/how-to-persist-gnu-screen-layout-after-restart#963169
 # (may not work on older versions of screen)
+# "layout autosave on" works only for explicitly named layouts in .screenrc.
+# Namely, if you specified some layout as ABC, switched to it within Screen
+# session and detached, this last layout will be restored after the session is
+# resumed. If you did not specify any layout in the configuration file, you
+# have to run internal command "layout save your_layout_name" before detaching.
 layout autosave on
