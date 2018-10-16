@@ -97,6 +97,13 @@ let g:ale_fixers = {
 \ }
 " \    'json': ['jq'],
 " \    'sh': ['shfmt'],
+
+" :h ale-hover
+" Example mouse settings.
+" You will need to try different settings, depending on your terminal.
+" set mouse=a
+" set ttymouse=xterm
+let g:ale_set_balloons = 1
 " }}}
 
 " asyncrun.vim {{{
@@ -309,6 +316,7 @@ endif
 " current phpenv version of php
 let g:phpactorPhpBin = $HOME . "/.phpenv/shims/php"
 if (isdirectory(expand('~/.vim/plugged/phpactor')))
+    let g:phpactorOmniError = v:true " enable debugging for failed completions
     augroup phpactorcompletephp
         autocmd!
         autocmd FileType php setlocal omnifunc=phpactor#Complete
@@ -317,10 +325,12 @@ endif
 " }}}
 
 " phpcomplete {{{
-" augroup mycompletephp
-"     autocmd!
-"     autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
-" augroup END
+if (isdirectory(expand('~/.vim/plugged/phpcomplete.vim')))
+    augroup mycompletephp
+        autocmd!
+        autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
+    augroup END
+endif
 " default: 0. show more info in the preview window and return types. Slower.
 " this also fails to parse the docblock sometimes which kills the whole
 " completion

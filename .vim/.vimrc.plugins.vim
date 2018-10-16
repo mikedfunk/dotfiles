@@ -172,7 +172,7 @@ endif
 Plug 'arnaud-lb/vim-php-namespace', { 'for': 'php' } " insert use statements
 Plug 'shawncplus/phpcomplete.vim' " better php omnicomplete. This is included with vim8 but the package keeps it up-to-date.
 " this doesn't work very well - it only jumps/completes to psr-7 namespaced classes. I fucking hate working on this piece of dogshit codebase.
-" Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install'} " recommended here to improve php completion https://www.reddit.com/r/vim/comments/95jxk7/big_list_of_tagsctags_matches_how_to_navigate_in/
+" Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install'} " recommended here to improve php completion https://www.reddit.com/r/vim/comments/95jxk7/big_list_of_tagsctags_matches_how_to_navigate_in/ PROBLEM: It _only_ works for classes in the composer autoloader.
 " Plug 'mkusher/padawan.vim', { 'for': 'php', 'do': 'command -v padawan >/dev/null 2>&1 && cgr update mkusher/padawan \|\| cgr mkusher/padawan' } " better php omnicomplete... but it doesn't complete at all for me
 " Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install'  } " based on phpcomplete but supposedly faster. Problem with legacy :/ SEE BELOW
 " Plug 'mikedfunk/phpcd.vim', { 'for': 'php', 'do': 'composer install'  } " fork to make it actually work with php 7.0. I still have problems with php errors on this. This probably expects a newer api than the old versions of the dependencies I had to use.
