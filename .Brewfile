@@ -188,6 +188,7 @@ cask "betterzipql" # quicklook plugin
 cask "sequel-pro" # mysql gui client
 cask "spectacle" # keyboard window splitter/resizer/mover
 # cask "spotify" # their web app has been broken for a bit https://community.spotify.com/t5/Other-Partners-Web-Player-etc/Web-Player-Not-Working/td-p/1070938
+# cask "ssh-tunnel-manager" # gui to manage running ssh tunnels
 cask "steam" # yep
 # cask "suspicious-package" # quicklook plugin
 # cask "vagrant" # development VM maker/manager (I use docker now)

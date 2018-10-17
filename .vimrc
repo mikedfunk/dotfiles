@@ -193,7 +193,9 @@ set modeline " enable modeline
 set modelines=5 " enable modeline
 set noshowmode " don't show the mode in the command area. it's already in airline.
 set ttyfast " speeds up terminal vim rendering
-set ttyscroll=3 " faster scrolling
+if !has('nvim')
+    set ttyscroll=3 " faster scrolling
+endif
 let undodir='$HOME/.vimundo' | set undofile " persistent undo
 set backupdir=$HOME/.vimbackup " set custom swap file dir
 let viewdir='$HOME/.vimviews' " custom dir for :mkview output
