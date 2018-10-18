@@ -314,6 +314,7 @@ augroup filetypessetgroup
     autocmd BufRead,BufNewFile .sshrc set ft=sh
     autocmd BufRead,BufNewFile .tigrc set ft=gitconfig
     autocmd BufRead,BufNewFile {.env,.env.*} set ft=dosini
+    autocmd BufRead,BufNewFile *.cnf set ft=dosini
 augroup END
 
 let g:netrw_liststyle=3 " tree style

@@ -1,0 +1,8 @@
+ignore_case = false
+ignore_lower_case = false
+no_sound = false
+less_status_bar = false
+no_highlight_search = false
+no_highlight_lines = false
+force_uniborder = true
+theme = 6

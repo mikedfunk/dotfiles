@@ -92,6 +92,7 @@ brew "plenv" # perl version manager. better than perlbrew. used to get percona-t
 # brew "postgresql"
 # brew "pre-commit" # yelp git pre-commit framework (I manage this via pip)
 brew "prettyping" # ping with a cool sparkline graph of status
+brew "pspg" # "postgres pager" also useful for mysql, etc.
 # brew "pv" # pipe something to pv to see progress of data through a pipeline
 brew "pyenv" # python version manager
 # brew "python" # updated version of python with updated pip. Useful for installing pip packages without root. NOTE: homebrew "pip" breaks neovim.
