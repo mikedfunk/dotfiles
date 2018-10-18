@@ -15,7 +15,12 @@ parameters:
     - library/Saatchi/Service/Offer/MockOfferService.php
   autoload_directories:
     - src
+    - application/models
+    - application/modules/account/models
+    - application/modules/art/models
+    - application/modules/shows/models
     - application/modules/curation/models
+
     - application/modules/curation/controllers
     # - application/modules/art-advisory/models <-- there is no models
     - application/modules/art-advisory/controllers
@@ -27,7 +32,6 @@ parameters:
 
     # workaround due to conflicting namespace/class with library/Catalog/User/Attribute and a dynamodb class
     # - library/Catalog
-    - library/Catalog/ImageUrl.php
     - library/Catalog/Art
     - library/Catalog/Collection
     - library/Catalog/Data
@@ -51,14 +55,14 @@ parameters:
     # tried to include everything but catalog user attribute but there is a source order autoload issue
     # - library/PdfCrowd.php
     # - library/recaptchalib.php
-    # - library/Catalog/ApiCall.php
+    - library/Catalog/ApiCall.php
     # - library/Catalog/ApiClient.php
     # - library/Catalog/ApiClientAdapter.php
     # - library/Catalog/Constants.php
     # - library/Catalog/Art.php
     # - library/Catalog/Base.php
     - library/Catalog/ContentDeliveryUrl.php
-    # - library/Catalog/ImageUrl.php
+    - library/Catalog/ImageUrl.php
     # - library/Catalog/Offer.php
     # - library/Catalog/ServiceProvider.php
     # - library/Catalog/Version1ApiClient.php
