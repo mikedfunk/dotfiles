@@ -10,7 +10,7 @@ awesome-slugify==1.6.5
 Babel==2.6.0
 backports.csv==1.0.6
 cached-property==1.5.1
-certifi==2018.8.24
+certifi==2018.10.15
 cffi==1.11.5
 chardet==3.0.4
 cli-helpers==1.0.2
@@ -54,10 +54,10 @@ oauthlib==2.1.0
 openpyxl==2.5.8
 packaging==18.0
 parsedatetime==2.4
-pbr==4.3.0
+pbr==5.0.0
 pexpect==4.6.0
 pip-review==1.0
-pipenv==2018.10.9
+pipenv==2018.10.13
 ply==3.11
 prompt-toolkit==2.0.6
 psutil==5.4.7
@@ -95,10 +95,10 @@ trollius==2.2
 Unidecode==1.0.22
 uritemplate==3.0.0
 uritemplate.py==3.0.2
-urllib3==1.23
+urllib3==1.24
 vim-vint==0.3.19
 virtualenv==16.0.0
-virtualenv-clone==0.3.0
+virtualenv-clone==0.4.0
 wcwidth==0.1.7
 websocket-client==0.53.0
 xlrd==1.1.0
