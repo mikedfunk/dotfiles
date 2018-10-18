@@ -7,7 +7,7 @@ let g:ac_smooth_scroll_min_limit_msec = 80 " confusiong option to speed up scrol
 " }}}
 
 " ale {{{
-" NOTE: not working with rubocop for some reason. Fails silently
+" aka vim-ale or ale.vim
 
 " https://github.com/w0rp/ale/issues/1176#issuecomment-348149374
 " I have added an option for caching failing executable checks. Use let
@@ -74,7 +74,8 @@ if executable('./node_modules/.bin/eslint') | call add(s:js_linters, 'eslint') |
 if executable('./node_modules/.bin/prettier-eslint') | call add(s:js_fixers, 'prettier_eslint') | endif
 
 " If I don't do this, phpcbf fails on any file in the exclude-pattern :/
-let g:ale_php_phpcbf_executable = '/Users/mikefunk/.support/phpcbf-helper.sh'
+let g:ale_php_phpcbf_executable = $HOME.'/.support/phpcbf-helper.sh'
+" let g:ale_php_phpcbf_executable = '/Users/mikefunk/.support/phpcbf-helper.sh'
 " let g:ale_php_phpcbf_executable = '~/.support/phpcbf-helper.sh'
 " in order to get the alternate executable working you have to declare it as
 " use global, even though it's not 'global' :/
