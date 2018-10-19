@@ -305,6 +305,8 @@ augroup filetypessetgroup
     autocmd BufRead,BufNewFile *.eyaml set ft=yaml
     autocmd BufRead,BufNewFile .babelrc set ft=json
     autocmd BufRead,BufNewFile .php_cs set ft=php
+    autocmd BufRead,BufNewFile *.php.sample set ft=php
+    autocmd BufRead,BufNewFile *.php.dist set ft=php
     autocmd BufRead,BufNewFile {haproxy.cfg,ssl-haproxy.cfg} set ft=haproxy
     autocmd BufRead,BufNewFile {site.conf,default.conf} set ft=nginx
     autocmd BufRead,BufNewFile {.curlrc,.gitignore,.gitattributes,.hgignore,.jshintignore} set ft=conf

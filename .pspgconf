@@ -5,4 +5,6 @@ less_status_bar = false
 no_highlight_search = false
 no_highlight_lines = false
 force_uniborder = true
-theme = 6
+theme = 17
+without_commandbar = false
+without_topbar = true

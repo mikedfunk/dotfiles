@@ -49,7 +49,8 @@ dir ~/Code/saatchi/saatchiart
 0 run vim -S
 1 run ts
 2 run puw
-4 run sleep 180 && saatchi-tail-legacy-local
+# 4 run sleep 180 && saatchi-tail-legacy-local
+4 run wait-on http://www.local.saatchiart.com && saatchi-tail-legacy-local
 3 run cd assets/react
 3 run yarn
 3 run yarn start
@@ -79,7 +80,7 @@ dir ~/Code/saatchi/gallery
 1 run vim -S
 0 run ts
 # 2 run saatchi-docker-gallery
-2 run sleep 180 && saatchi-tail-gallery-local
+2 run wait-on http://www.local.saatchiart.com && saatchi-tail-gallery-local
 3 run wd gallery
 3 run yarn gulp
 4 run yarn jest --watch
@@ -102,7 +103,7 @@ window easel
 dir ~/Code/saatchi/easel
 4 run glow --watch
 3 run yarn jest --watch
-2 run sleep 180 && saatchi-attach-easel-node
+2 run wait-on http://www.local.saatchiart.com && saatchi-attach-easel-node
 # 2 run yarn dev
 1 run vim -S
 0 run ts
@@ -128,7 +129,7 @@ dir ~/Code/saatchi/palette
 # 2 run wd xdocker
 2 run psw
 # 2 run saatchi-docker-palette
-3 run sleep 180 && saatchi-tail-palette-local
+3 run wait-on http://www.local.saatchiart.com && saatchi-tail-palette-local
 
 window zed
 
@@ -149,9 +150,9 @@ dir ~/Code/saatchi/yzed
 1 run vim -S
 0 run ts
 2 run wd xdocker
-# 2 run sleep 180 && saatchi-docker-zed
-2 run sleep 180 && saatchi-tail-zed-local
-3 run sleep 180 && saatchi-phpunit-watch-zed
+# 2 run wait-on http://www.local.saatchiart.com && saatchi-docker-zed
+2 run wait-on http://www.local.saatchiart.com && saatchi-tail-zed-local
+3 run wait-on http://www.local.saatchiart.com && saatchi-phpunit-watch-zed
 4 run saatchi-grunt-watch-zed
 
 # window views
@@ -225,9 +226,9 @@ window mysql
 
 dir ~/Code/saatchi/queries
 0 run vim -S
-1 run sleep 180 && saatchi-mycli-legacy-local
-2 run sleep 180 && saatchi-mycli-palette-local
-3 run sleep 180 && saatchi-mycli-zed-local
+1 run wait-on http://www.local.saatchiart.com && saatchi-mycli-legacy-local
+2 run wait-on http://www.local.saatchiart.com && saatchi-mycli-palette-local
+3 run wait-on http://www.local.saatchiart.com && saatchi-mycli-zed-local
 # 1 run saatchi-mycli-legacy-replica
 
 window http
