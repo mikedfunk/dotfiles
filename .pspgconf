@@ -1,3 +1,5 @@
+# vim: set ft=dosini:
+# postgres pager config https://github.com/okbob/pspg
 ignore_case = false
 ignore_lower_case = false
 no_sound = false
