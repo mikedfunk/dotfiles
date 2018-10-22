@@ -17,3 +17,4 @@ project/Zed/public/scripts/ui.core.min.js
 project/Zed/public/scripts/ui.datepicker.min.js
 project/Zed/tests/MJMIntegrationTest.php
 /project/Zed/public/scripts/components/jquery/*
+coverage

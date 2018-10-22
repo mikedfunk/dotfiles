@@ -172,17 +172,17 @@ endif
 Plug 'arnaud-lb/vim-php-namespace', { 'for': 'php' } " insert use statements
 Plug 'shawncplus/phpcomplete.vim' " better php omnicomplete. This is included with vim8 but the package keeps it up-to-date.
 " this doesn't work very well - it only jumps/completes to psr-7 namespaced classes. I fucking hate working on this piece of dogshit codebase.
-" Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install'} " recommended here to improve php completion https://www.reddit.com/r/vim/comments/95jxk7/big_list_of_tagsctags_matches_how_to_navigate_in/ PROBLEM: It _only_ works for classes in the composer autoloader.
+" Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install'} " recommended here to improve php completion https://www.reddit.com/r/vim/comments/95jxk7/big_list_of_tagsctags_matches_how_to_navigate_in/ PROBLEM: It _only_ works for classes in the composer autoloader, which makes it nearly useless on legacy until we merge simpler autoloading :/.
 " Plug 'mkusher/padawan.vim', { 'for': 'php', 'do': 'command -v padawan >/dev/null 2>&1 && cgr update mkusher/padawan \|\| cgr mkusher/padawan' } " better php omnicomplete... but it doesn't complete at all for me
 " Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install'  } " based on phpcomplete but supposedly faster. Problem with legacy :/ SEE BELOW
 " Plug 'mikedfunk/phpcd.vim', { 'for': 'php', 'do': 'composer install'  } " fork to make it actually work with php 7.0. I still have problems with php errors on this. This probably expects a newer api than the old versions of the dependencies I had to use.
 Plug 'alvan/vim-php-manual', { 'for': ['php', 'blade', 'phtml'] } " contextual php manual with shift-K
 " Plug 'rayburgemeestre/phpfolding.vim' " php syntax folding with :EnableFastPhpFolds
 " Plug 'Plug 'swekaj/php-foldexpr.vim' " better php folding recommended here https://stackoverflow.com/questions/792886/vim-syntax-based-folding-with-php#comment46149243_11859632
-" Plug 'sbdchd/neoformat' " auto format code using prettier, phpcbf, etc. :Neoformat
-" Plug 'tobyS/vmustache', { 'for': 'php' } | Plug 'FlickerBean/pdv', { 'for': 'php' } " phpdoc generator
-" Plug '2072/PHP-Indenting-for-VIm', { 'for': ['php', 'phtml'] } " apparently better php indenting for PHP 5.4+
-" Plug 'janko-m/vim-test', { 'for': 'php' } | Plug 'benmills/vimux', { 'for': 'php' } " test runner :TestNearest :TestFile :TestLast in tmux split
+" Plug 'sbdchd/neoformat' " auto format code using prettier, phpcbf, etc. :Neoformat (I use ale fixing instead)
+" Plug 'tobyS/vmustache', { 'for': 'php' } | Plug 'FlickerBean/pdv', { 'for': 'php' } " phpdoc generator (I just use ultisnips)
+" Plug '2072/PHP-Indenting-for-VIm', { 'for': ['php', 'phtml'] } " apparently better php indenting for PHP 5.4+ (Is it though?)
+" Plug 'janko-m/vim-test', { 'for': 'php' } | Plug 'benmills/vimux', { 'for': 'php' } " test runner :TestNearest :TestFile :TestLast in tmux split (I had a problem with the characters being sent to tmux VERY slowly)
 " if has("python") | Plug 'joonty/vim-phpqa', { 'for': 'php' } | endif " Only used for code coverage markers :Phpcc
 " if has("python3") | Plug 'trendfischer/vim-phpqa', { 'for': 'php' } | endif " maintained fork
 " Plug 'adoy/vim-php-refactoring-toolbox'

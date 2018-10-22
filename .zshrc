@@ -170,6 +170,7 @@ export CLICOLOR=1 # ls colors by default
 # pretty-print PATH with line breaks
 function pretty-path () { tr : '\n' <<<"$PATH"; }
 alias vit="vim +TW" # until vit gets its act together
+alias tree="alder" # colorized tree from npm
 # }}}
 
 # suffix aliases {{{
