@@ -2,7 +2,7 @@
 " my vim config
 
 " Use plugins config {{{
-set runtimepath+=$HOME
+if has('nvim') | set runtimepath+=$HOME/.vim | endif
 runtime .vimrc.plugins.vim
 " }}}
 
