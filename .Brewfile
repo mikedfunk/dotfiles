@@ -25,6 +25,8 @@ brew "docker-compose" # manage multiple docker images and how they interact
 brew "docker-machine" # virtualbox VM for your docker images
 brew "docker-machine-nfs" # enables nfs mounts for docker-machine via `docker-machine-nfs default --mount-opts="async,noatime,actimeo=1,nolock,vers=3,udp" --force`
 # brew "dos"2unix # converts dos line endings to unix in a file
+# tap "moncho/dry"
+# brew "dry" # docker monitoring (trouble getting it working with docker-machine)
 # brew "dtrx" # do the right extraction - so you don't have to remember tar args
 brew "entr" # file watcher
 # brew "fasd" # Command-line productivity booster, offers quick access to files and directories, inspired by autojump, z and v.
