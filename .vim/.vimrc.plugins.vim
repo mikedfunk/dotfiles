@@ -291,6 +291,7 @@ Plug 'itchyny/vim-cursorword' " highlight matching words. What I like about this
 Plug 'ap/vim-css-color', { 'for': ['scss', 'css'] } " colorize css colors e.g. #333 with the actual color in the background
 " Plug 'chrisbra/NrrwRgn' " work in a separate window with a sub-region of a document. :NR
 " Plug 'scrooloose/vim-slumlord' " plantuml live preview for sequence diagrams
+" Plug 'ryanoasis/vim-devicons' " file type icons in netrw, etc.
 
 " color schemes: 256-friendly {{{
 " Plug 'MarioRicalde/vim-lucius'

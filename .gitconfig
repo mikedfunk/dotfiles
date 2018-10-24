@@ -80,6 +80,8 @@
     # like git exec make. This works because shell aliases are always executed in
     # the top-level directory.
     exec = "!exec "
+    # "fuzzy checkout"
+    fco = "!f() { ( git branch | fzf | xargs git co ); }; f"
     # git flow feature shortcuts
     ffc = flow feature checkout
     ffd = flow feature diff
@@ -111,6 +113,8 @@
     # show change for one file
     filelog = log -u
     fl = log -u
+    # fuzzy stash apply
+    fsa = "!f() { ( git stash list | fzf | awk -F':' '{print $1}' | xargs git stash apply ); }; f"
     ft = fetch --tags
     # show the sha ref of the current HEAD
     headref = "!git show-ref --head -s | awk 'NR==1'"
