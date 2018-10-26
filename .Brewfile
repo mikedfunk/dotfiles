@@ -41,7 +41,7 @@ brew "gnu-sed" # linux version of sed - saves as gsed (required for diff-so-fanc
 # brew "gnu-tar" # linux version of tar so stuff actually works
 # brew "graphviz" # useful for xdebug profiler class maps
 brew "grc" # generic colorizer
-# brew "go" # go programming language. used for mailhog and rtop.
+# brew "go" # go programming language. used for mailhog and rtop and wuzz.
 brew "gpg" # used by s3cmd and yadm to encrypt stuff
 # brew "heroku-toolbelt" # heroku deploy tools
 # brew "hg" # mercurial
@@ -202,7 +202,7 @@ cask "steam" # yep
 # cask "virtualbox-extension-pack" # add-on to do stuff you'll always want
 #
 # cask "webpquicklook" # quicklook plugin
-# cask "wireshark" # analyze network data
+cask "wireshark" # analyze network data
 # cask "xquartz" # needed to install xclip, which is needed to copy text from multitail (I installed all of that, copy still didn't work :/ )
 # }}}
 

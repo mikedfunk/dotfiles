@@ -33,6 +33,10 @@ path=(
   # this needs to be first so rbenv from homebrew can take precedence
   # $(brew --prefix)/{bin,sbin}
   /usr/local/{bin,sbin}
+  # golang packages
+  $HOME/go/bin
+  # golang executables
+  /usr/local/opt/go/libexec/bin
   $HOME/.{php,pl,nod,py}env/bin
   $HOME/.phpenv/pear/bin
   $HOME/.composer/vendor/bin

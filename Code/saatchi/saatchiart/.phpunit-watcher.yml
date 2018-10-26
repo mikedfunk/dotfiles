@@ -16,7 +16,7 @@ watch:
     - application/controllers
       # - application/modules/account
       # - application/modules/admin
-      # - application/modules/art
+    - application/modules/art
     - application/modules/art-advisory
       # - application/modules/browse
       # - application/modules/catalog

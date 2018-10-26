@@ -71,7 +71,7 @@ Plug 'kreskij/Repeatable.vim', { 'on': 'Repeatable' } " Extra functionality to m
 Plug 'vim-scripts/BufOnly.vim', { 'on': ['BufOnly', 'Bufonly'] } " close all buffers but the current one
 Plug 'tpope/vim-commentary' " toggle comment with gcc. in my case I use <leader>c<space>
 " Plug 'jbgutierrez/vim-better-comments' " fancy comments
-Plug 'junegunn/vim-easy-align' " align on = with ga=
+" Plug 'junegunn/vim-easy-align' " align on = with ga=
 Plug 'tpope/vim-unimpaired' " lots of cool keyboard shortcuts
 " if has("python") || has("python3") | Plug 'SirVer/ultisnips' | endif " dynamic snippet completion
 if has('python') || has('python3')
@@ -158,7 +158,7 @@ Plug 'lifepillar/vim-cheat40' " Customizable cheatsheet. Mine is in ~/.vim/plugg
 " Plug 'auwsmit/vim-active-numbers' " Only show line numbers on active window. Helps to show which is active.
 " Plug 'dyng/ctrlsf.vim' " Contextual search plugin ala sublime.
 " Plug 'andymass/vim-tradewinds' " <c-w>gh to move the current split one to the left, etc. in other directions
-Plug 'Yilin-Yang/vim-markbar' " <leader>mm to show marks
+" Plug 'Yilin-Yang/vim-markbar' " <leader>mm to show marks
 " }}}
 
 " Php {{{
@@ -212,8 +212,8 @@ if executable('git')
     Plug 'tpope/vim-fugitive' | Plug 'shumphrey/fugitive-gitlab.vim' | Plug 'tommcdo/vim-fubitive' | Plug 'tpope/vim-rhubarb' " git integration
     Plug 'esneider/YUNOcommit.vim' " u save lot but no commit. Y u no commit??
     Plug 'rhysd/committia.vim' " prettier commit editor. Really cool!
-    Plug 'junegunn/gv.vim', { 'on': 'GV' } " :GV for git/tig-style log
-    Plug 'mmozuras/vim-github-comment', { 'on': 'GHComment' } | Plug 'mattn/webapi-vim' " :GHComment my comment goes to latest commit on github
+    " Plug 'junegunn/gv.vim', { 'on': 'GV' } " :GV for git/tig-style log
+    " Plug 'mmozuras/vim-github-comment', { 'on': 'GHComment' } | Plug 'mattn/webapi-vim' " :GHComment my comment goes to latest commit on github
     Plug 'hotwatermorning/auto-git-diff' " cool git rebase diffs per commit
 
     " NOTE: gutentags by default does not tag files in wildignore!
@@ -244,7 +244,7 @@ Plug 'tpope/vim-apathy' " tweak built-in vim features to allow jumping to javasc
 " Syntax highlighting {{{
 " Plug 'sheerun/vim-polyglot' " just about every filetype under the sun in one package
 Plug 'zimbatm/haproxy.vim' " haproxy syntax
-Plug 'amadeus/vim-mjml' " mjml email syntax
+" Plug 'amadeus/vim-mjml' " mjml email syntax
 Plug 'stephpy/vim-yaml' " faster yaml syntax highlighting
 Plug 'fpob/nette.vim' " .neon format
 Plug 'pangloss/vim-javascript' " Vastly improved Javascript indentation and syntax support in Vim.
@@ -277,7 +277,7 @@ Plug 'vim-airline/vim-airline-themes' " pretty colors for airline
 " Plug 'mikedfunk/vim-indent-guides' " my fork to enable color guessing with termguicolors
 Plug 'Yggdroot/indentLine' " show vertical lines for levels of indentions
 " Plug 'thaerkh/vim-indentguides' " faster indent guides (lately it's only been showing every other one. Also they disappear when reloading vimrc.)
-Plug 'edkolev/tmuxline.vim' " tmux statusline file generator
+" Plug 'edkolev/tmuxline.vim' " tmux statusline file generator
 " Plug 'edkolev/promptline.vim', { 'on': ['Promptline', 'PromptlineSnapshot'] } " custom bash prompt in sync with airline
 " Plug 'ntpeters/vim-better-whitespace' " highlight tabs and trailing whitespace. Slows down typing considerably though!
 " Plug 'thirtythreeforty/lessspace.vim' " remove trailing whitespace only on lines you edit. Messes up paste indent!

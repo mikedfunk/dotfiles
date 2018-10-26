@@ -63,9 +63,10 @@ wider_completion_menu = False
 # \d - Database name
 # \n - Newline
 # prompt = '\t \u@\h:\d > '
-prompt = '\h [\d] > '
-# stopped working recently!
+# prompt = '\h [\d] > '
 # prompt = " \t \u@\h:\d  "
+prompt = "\h [\d]  "
+# prompt = "\x1b[31m\h [\d]  "
 
 # Skip intro info on startup and outro info on exit
 # less_chatty = False
@@ -87,9 +88,9 @@ enable_pager = True
 
 # Custom colors for the completion menu, toolbar, etc.
 [colors]
-Token.Prompt = "#ffffff bg:#4444aa"
 # COLOR PROMPT
 # no longer works :/
+Token.Prompt = "#ffffff bg:#4444aa"
 
 # Completion menus.
 Token.Menu.Completions.Completion.Current = 'bg:#00aaaa #000000'
