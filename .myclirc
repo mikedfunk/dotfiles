@@ -90,6 +90,7 @@ enable_pager = True
 [colors]
 # COLOR PROMPT
 # no longer works :/
+# https://github.com/dbcli/mycli/issues/394#issuecomment-432024890
 Token.Prompt = "#ffffff bg:#4444aa"
 
 # Completion menus.
