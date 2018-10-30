@@ -54,6 +54,7 @@ Plug 'wellle/tmux-complete.vim' " add tmux as a completion source with user-defi
 
 " completion not working currently with this...
 " Plug 'prabirshrestha/asyncomplete.vim' | Plug 'prabirshrestha/asyncomplete-lsp.vim' | Plug 'prabirshrestha/async.vim' | Plug 'prabirshrestha/vim-lsp' " Async Language Server Protocol plugin for vim8 and neovim.
+" Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}} " language server completion
 " }}}
 
 " General {{{

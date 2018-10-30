@@ -1,4 +1,6 @@
 {
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "repositories": [
     {
       "type": "vcs",
@@ -7,6 +9,7 @@
   ],
   "require": {
     "consolidation/cgr": "^2.0",
-    "spatie/phpunit-watcher": "dev-php70"
+    "spatie/phpunit-watcher": "dev-php70",
+    "felixfbecker/language-server": "dev-master"
   }
 }

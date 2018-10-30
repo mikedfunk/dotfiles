@@ -23,7 +23,7 @@ window config
 0000000000022222222222222
 
 dir ~/.yadm
-1 run vim -S
+1 run v -S
 0 run tmux rename-session Work
 0 run yadm st
 2 run wait-on http://www.local.saatchiart.com && dme && sen
@@ -47,7 +47,7 @@ window legacy
 1111122222225555555444444
 
 dir ~/Code/saatchi/saatchiart
-0 run vim -S
+0 run v -S
 1 run ts
 2 run puw
 # 4 run sleep 180 && saatchi-tail-legacy-local
@@ -78,7 +78,7 @@ window gallery
 0000004444443333332222222
 
 dir ~/Code/saatchi/gallery
-1 run vim -S
+1 run v -S
 0 run ts
 # 2 run saatchi-docker-gallery
 2 run wait-on http://www.local.saatchiart.com && saatchi-tail-gallery-local
@@ -106,7 +106,7 @@ dir ~/Code/saatchi/easel
 3 run yarn jest --watch
 2 run wait-on http://www.local.saatchiart.com && saatchi-attach-easel-node
 # 2 run yarn dev
-1 run vim -S
+1 run v -S
 0 run ts
 
 window palette
@@ -125,7 +125,7 @@ window palette
 0000002222222222233333333
 
 dir ~/Code/saatchi/palette
-1 run vim -S
+1 run v -S
 0 run ts
 # 2 run wd xdocker
 2 run psw
@@ -148,7 +148,7 @@ window zed
 0000003333333444442222222
 
 dir ~/Code/saatchi/yzed
-1 run vim -S
+1 run v -S
 0 run ts
 2 run wd xdocker
 # 2 run wait-on http://www.local.saatchiart.com && saatchi-docker-zed
@@ -172,7 +172,7 @@ dir ~/Code/saatchi/yzed
 # 0000000000000000000000000
 
 # dir ~/Code/saatchi/couchbase-views
-# 1 run vim -S
+# 1 run v -S
 # 0 run ts
 
 window xdocker
@@ -191,7 +191,7 @@ window xdocker
 0000000000022222222222222
 
 dir ~/Code/saatchi/xdocker
-1 run vim -S
+1 run v -S
 # 0 run ts
 0 run saatchi-docker-start
 
@@ -211,7 +211,7 @@ dir ~/Code/saatchi/xdocker
 # 0000000000000000000000000
 
 # dir ~/Code/saatchi/gitlab-puppet
-# 1 run vim -S
+# 1 run v -S
 # 0 run ts
 
 window mysql
@@ -226,7 +226,7 @@ window mysql
 00000000000033333333333333
 
 dir ~/Code/saatchi/queries
-0 run vim -S
+0 run v -S
 1 run wait-on http://www.local.saatchiart.com && saatchi-mycli-legacy-local
 2 run wait-on http://www.local.saatchiart.com && saatchi-mycli-palette-local
 3 run wait-on http://www.local.saatchiart.com && saatchi-mycli-zed-local
@@ -245,7 +245,7 @@ window http
 1111111111111111111111111
 
 dir ~/Code/saatchi/http
-1 run vim -S
+1 run v -S
 
 window notes
 
@@ -311,7 +311,7 @@ dir ~/Code/uml
 # 0000000000022222222222222
 
 # dir ~/Code/saatchi/catalog
-# 1 run vim -S
+# 1 run v -S
 # 0 run ts
 # 2 run wd xdocker
 # # 2 run saatchi-docker-catalog
@@ -332,7 +332,7 @@ dir ~/Code/uml
 # 0000000000022222222222222
 
 # dir ~/Code/saatchi/api
-# 1 run vim -S
+# 1 run v -S
 # 0 run ts
 # 2 run wd xdocker
 # # 2 run saatchi-docker-catalog
@@ -353,7 +353,7 @@ dir ~/Code/uml
 # 0000000000000000000000000
 
 # dir ~/Code/saatchi/puppet
-# 1 run vim -S
+# 1 run v -S
 # 0 run ts
 
 # window builder
@@ -392,7 +392,7 @@ dir ~/Code/uml
 
 # dir ~/Code/saatchi/local-scripts
 # 1 run ts
-# 0 run vim -S
+# 0 run v -S
 
 # window ios
 
@@ -407,7 +407,7 @@ dir ~/Code/uml
 # 1111111111111111111111111
 
 # dir ~/Code/saatchi/discover
-# 1 run vim -S
+# 1 run v -S
 
 # window maropost
 
@@ -422,4 +422,4 @@ dir ~/Code/uml
 # 1111111111111111111111111
 
 # dir ~/Code/saatchi/maropost-php-sdk
-# 1 run vim -S
+# 1 run v -S
