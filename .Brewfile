@@ -78,7 +78,7 @@ brew "mysql" # I haven't been using the server lately but I use it to connect an
 # brew "m-cli" # mac cli tools e.g. restart, screensaver, bluetooth, etc.
 # brew "nano" # text editor. This gets the latest version: 2.2.6 rather than 2.2.0 that comes with osx.
 brew "ncdu" # interactive du
-# brew "neovim" # vim re-imagining
+brew "neovim" # vim re-imagining
 brew "node" # nodejs and npm (required by joplin, yarn)
 brew "nodenv" # node version manager
 brew "noti" # simple terminal notifier

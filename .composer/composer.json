@@ -9,7 +9,6 @@
   ],
   "require": {
     "consolidation/cgr": "^2.0",
-    "spatie/phpunit-watcher": "dev-php70",
-    "felixfbecker/language-server": "dev-master"
+    "spatie/phpunit-watcher": "dev-php70"
   }
 }
