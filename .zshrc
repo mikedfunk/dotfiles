@@ -271,9 +271,12 @@ alias ta="task add"
 # }}}
 
 # vim {{{
-alias v="vim"
+# alias v="vim"
 # compdef v="vim"
-export EDITOR=vim # aww yeah
+alias v="nvim"
+compdef v="nvim"
+# export EDITOR=vim # aww yeah
+export EDITOR=nvim # aww yeah
 export LANG=en_US.UTF-8
 KEYTIMEOUT=1 # no vim delay entering normal mode
 # }}}
