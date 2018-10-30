@@ -1,0 +1,9 @@
+{
+  "languageserver": {
+    "phplang": {
+      "command": "php",
+      "args": ["/Users/mikefunk/php-language-server/bin/php-language-server.php"],
+      "filetypes": ["php"]
+    }
+  }
+}
