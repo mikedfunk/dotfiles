@@ -18,6 +18,7 @@ brew "composer" # php dependency management
 brew "ctop" # like top for docker containers
 brew "curl" # http cli tool
 # brew "desk" # shell workspace manager. I use direnv instead.
+brew "diff-so-fancy" # better git diff viewer (note: diff-highlight is in pip)
 brew "direnv" # allow .envrc in directories to be loaded at every prompt to add relative bins to PATH, etc. easy.
 # brew "dnsmasq" # easily set up dynamic dev domains such as myproject.dev
 brew "docker" # virtualization software
@@ -129,9 +130,9 @@ brew "tldr" # more consise community man pages
 brew "tmux" # terminal multiplexer similar to screen.
 # brew "tofrodos" # line endings
 # brew "trash" # a trash can for the terminal
-tap "universal-ctags/universal-ctags", args: ["--HEAD"] # head only
+tap "universal-ctags/universal-ctags"
 brew "tree" # display file/folder hierarchies in a visual tree format
-brew "universal-ctags", args: ["--HEAD"] # tag creator for use by vim to navigate by symbols
+brew "universal-ctags", args: ["--HEAD"] # tag creator for use by vim to navigate by symbols. head only.
 brew "unixodbc" # needed by php70
 # brew "virtualhost".sh # crappy virtualhost management script
 brew "watch" # contains some tools: free, kill, ps, uptime, etc.
@@ -144,6 +145,7 @@ brew "vim" # macvim requires xcode. This also allows you to get vim 8 without us
 # brew "vit" # ncurses taskwarrior interface - like tig for taskwarrior TODO: upgrade to 1.3 when it passes beta! I can't install it from source because it requires current perl version be from /usr/bin/perl, among other problems. https://www.mankier.com/5/vitrc
 brew "yarn" # wrapper for npm with real lock files and caching
 brew "yadm" # yet another dotfiles manager
+brew "zlib" # needed for pyenv
 # brew "zplug" # zsh plugin manager like composer. bash installer crashes for some reason. works fine via homebrew. (switched to installer - see bootstrap)
 brew "zsh" # awesome bash shell replacement
 # brew "zsh-completions" # tab completions. I install this via zplug instead.
