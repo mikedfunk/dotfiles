@@ -2,7 +2,7 @@
 
 # brew {{{
 brew "akamai" # interact with akamai caching
-brew "angband"
+brew "angband" # requires java
 brew "ant" # apache build tool used to build plantuml
 brew "antigen" # I switched from zplug due to stability issues and errors.
 brew "autoconf" # needed to build some php70 libs from source
@@ -85,17 +85,17 @@ brew "noti" # simple terminal notifier
 # brew "openssl@1.1" # not sure if this is still needed...
 brew "pandoc" # used for inline vim php documentation
 # brew "pass" # unix password manager using gpg
-brew "percona-toolkit" # mysql schema migrator among other things
+brew "percona-toolkit" # mysql schema migrator among other things. requires java
 # brew "pgcli" # like mycli for postgres
 # php has been moved to homebrew-php. In the process, php70 was removed >:( I've switched to phpenv and pecl instead. I don't even know how extensions work in the new homebrew php.
 # brew "php@7.1", args: ["--with-pear"], link: true
 # brew "pinentry-mac" # native gpg pin entry for yadm and others
-brew "plantuml" # uml generation from text
+brew "plantuml" # uml generation from text. requires java
 brew "plenv" # perl version manager. better than perlbrew. used to get percona-toolkit working.
 # brew "postgresql"
 # brew "pre-commit" # yelp git pre-commit framework (I manage this via pip)
 brew "prettyping" # ping with a cool sparkline graph of status
-brew "pspg" args: ["--HEAD"] # "postgres pager" also useful for mysql, etc.
+brew "pspg", args: ["--HEAD"] # "postgres pager" also useful for mysql, etc.
 # brew "pv" # pipe something to pv to see progress of data through a pipeline
 brew "pyenv" # python version manager
 # brew "python" # updated version of python with updated pip. Useful for installing pip packages without root. NOTE: homebrew "pip" breaks neovim.
@@ -129,8 +129,8 @@ brew "tldr" # more consise community man pages
 brew "tmux" # terminal multiplexer similar to screen.
 # brew "tofrodos" # line endings
 # brew "trash" # a trash can for the terminal
+tap "universal-ctags/universal-ctags", args: ["--HEAD"] # head only
 brew "tree" # display file/folder hierarchies in a visual tree format
-tap "universal-ctags/universal-ctags"
 brew "universal-ctags", args: ["--HEAD"] # tag creator for use by vim to navigate by symbols
 brew "unixodbc" # needed by php70
 # brew "virtualhost".sh # crappy virtualhost management script
@@ -166,6 +166,7 @@ cask "font-iosevka"
 cask "google-chrome"
 # cask "google-drive"
 # cask "iterm2"
+cask "java" # required for plantuml, etc.
 # cask "joplin" # desktop joplin
 cask "jumpcut" # clipboard manager recommended by Michael Zick (slightly annoying interface but I haven't found any better on brew) ctrl-opt-v (forward) or ctrl-opt-shift-v (backward)
 # cask "kitematic" # docker container browser
