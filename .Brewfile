@@ -171,7 +171,6 @@ cask "java" # required for plantuml, etc.
 cask "jumpcut" # clipboard manager recommended by Michael Zick (slightly annoying interface but I haven't found any better on brew) ctrl-opt-v (forward) or ctrl-opt-shift-v (backward)
 # cask "kitematic" # docker container browser
 cask "kitty" # fast terminal emulator
-cask "lastpass" # password manager
 # cask "launchcontrol" # launchctl gui. I use lunchy gem instead.
 # cask "macfusion" # other half of tool to mount ssh directories in the finder
 # cask "macgdbp" # xdebug gui client (I use vdebug)
@@ -188,7 +187,6 @@ cask "qlmarkdown" # quicklook plugin
 cask "quicklook-json" # quicklook plugin
 # cask "qlprettypatch" # quicklook plugin
 cask "quicklook-csv" # quicklook plugin
-cask "betterzipql" # quicklook plugin
 # cask "qlimagesize" # quicklook plugin
 cask "sequel-pro" # mysql gui client
 cask "spectacle" # keyboard window splitter/resizer/mover
