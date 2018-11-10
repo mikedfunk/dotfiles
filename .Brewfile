@@ -86,6 +86,7 @@ brew "noti" # simple terminal notifier
 # brew "openssl@1.1" # not sure if this is still needed...
 brew "pandoc" # used for inline vim php documentation
 # brew "pass" # unix password manager using gpg
+brew "perl-build" # needed for perlenv
 brew "percona-toolkit" # mysql schema migrator among other things. requires java
 # brew "pgcli" # like mycli for postgres
 # php has been moved to homebrew-php. In the process, php70 was removed >:( I've switched to phpenv and pecl instead. I don't even know how extensions work in the new homebrew php.
