@@ -825,6 +825,10 @@ if isdirectory(expand('~/.vim/plugged/vim-markbar'))
 endif
 " }}}
 
+" vim-matchup {{{
+let g:matchup_matchparen_status_offscreen = 0
+" }}}
+
 " vim-mundo {{{
 let g:mundo_close_on_revert = 1
 if isdirectory(expand('~/.vim/plugged/vim-mundo'))

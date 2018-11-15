@@ -152,7 +152,7 @@ inoremap <C-U> <C-G>u<C-U>
 " use bram's defaults https://github.com/vim/vim/blob/master/runtime/defaults.vim
 " unlet! skip_defaults_vim
 " if filereadable($VIMRUNTIME . "/defaults.vim") | source $VIMRUNTIME/defaults.vim | endif
-runtime macros/matchit.vim " jump to matching html tag
+" runtime macros/matchit.vim " jump to matching html tag (switched to vim-matchup)
 " set t_ut=
 let g:mapleader = ',' " use comma for leader
 " since , replaces leader, use \ to go back in a [f]ind

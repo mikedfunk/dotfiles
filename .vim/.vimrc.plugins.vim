@@ -104,11 +104,9 @@ Plug 'tpope/vim-endwise' " auto add end/endif for vimscript/ruby. no lazy load o
 " Plug 'mattn/emmet-vim', { 'for': ['phtml', 'html', 'html.twig', 'twig', 'blade', 'xml', 'javascript.jsx'] } " html shorthand expander <c-y>, <c-y>n
 Plug 'docunext/closetag.vim', { 'for': ['html', 'xml', 'html.twig', 'blade', 'php', 'phtml', 'javascript.jsx'] } " auto close tags by typing </ . different from auto-pairs.
 " if has("python") || has("python3") | Plug 'Valloric/MatchTagAlways' | endif " highlight matching tag
-if has('python') || has('python3')
-    Plug 'Valloric/MatchTagAlways' " highlight matching tag
-endif
 " Plug 'Seb-C/better-indent-support-for-php-with-html' " fix god-awful phtml indentation
 " runtime macros/matchit.vim " jump to matching html tag (moved to .vimrc)
+Plug 'andymass/vim-matchup' " better matchit and match highlighter
 " }}}
 
 " Navigation and Search {{{

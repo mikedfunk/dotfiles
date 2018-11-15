@@ -24,3 +24,4 @@ phpenv:~/.phpenv
 geasel:~/Code/saatchi/generator-easel
 gatsby:~/Code/gatsby-site
 uml:~/Code/uml
+imgproc:~/Code/saatchi/imgproc
