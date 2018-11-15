@@ -138,6 +138,7 @@ brew "universal-ctags", args: ["--HEAD"] # tag creator for use by vim to navigat
 brew "unixodbc" # needed by php70
 # brew "virtualhost".sh # crappy virtualhost management script
 brew "watch" # contains some tools: free, kill, ps, uptime, etc.
+brew "watchman" # https://github.com/cm-pliser-tdd-by-example/tdd-by-example-js/issues/10
 # brew "w3m" # full color image previewer for ranger but doesnt work in tmux
 brew "wget" # latest version
 brew "wifi-password" # get your current wifi password quickly without mucking about with keychain access.
@@ -201,8 +202,8 @@ cask "steam" # yep
 # cask "vagrant" # development VM maker/manager (I use docker now)
 #
 # TODO these can't just be upgraded while virtualbox is running :/
-# cask "virtualbox" # virtual machine software
-# cask "virtualbox-extension-pack" # add-on to do stuff you'll always want
+cask "virtualbox" # virtual machine software
+cask "virtualbox-extension-pack" # add-on to do stuff you'll always want
 #
 # cask "webpquicklook" # quicklook plugin
 cask "wireshark" # analyze network data
