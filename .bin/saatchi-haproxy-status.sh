@@ -6,7 +6,15 @@
 #
 # e.g. L+++S++++
 CURRENT_SESSION=$(tmux display-message -p '#S')
-status=$(docker-machine status)
+# status=$(docker-machine status) # docker-machine version
+
+# docker for mac version:
+if [ "$(docker ps -q)" ]; then
+    status="Running"
+else
+    status="Down"
+fi
+
 DOCKER="🐳"
 GOOD="+"
 if [[ $CURRENT_SESSION == 'Work' ]]; then

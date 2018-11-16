@@ -26,7 +26,7 @@ dir ~/.yadm
 1 run v -S
 0 run tmux rename-session Work
 0 run yadm st
-2 run wait-on http://www.local.saatchiart.com && dme && sen
+2 run wait-on http://www.local.saatchiart.com && dry --monitor
 
 ## Window added by tmuxomatic flex 2.17
 

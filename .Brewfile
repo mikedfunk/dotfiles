@@ -21,13 +21,13 @@ brew "curl" # http cli tool
 brew "diff-so-fancy" # better git diff viewer (note: diff-highlight is in pip)
 brew "direnv" # allow .envrc in directories to be loaded at every prompt to add relative bins to PATH, etc. easy.
 # brew "dnsmasq" # easily set up dynamic dev domains such as myproject.dev
-brew "docker" # virtualization software
-brew "docker-compose" # manage multiple docker images and how they interact
-brew "docker-machine" # virtualbox VM for your docker images
-brew "docker-machine-nfs" # enables nfs mounts for docker-machine via `docker-machine-nfs default --mount-opts="async,noatime,actimeo=1,nolock,vers=3,udp" --force`
+# brew "docker" # virtualization software (I use docker for mac now - see docker cask)
+# brew "docker-compose" # manage multiple docker images and how they interact
+# brew "docker-machine" # virtualbox VM for your docker images
+# brew "docker-machine-nfs" # enables nfs mounts for docker-machine via `docker-machine-nfs default --mount-opts="async,noatime,actimeo=1,nolock,vers=3,udp" --force`
 # brew "dos"2unix # converts dos line endings to unix in a file
-# tap "moncho/dry"
-# brew "dry" # docker monitoring (trouble getting it working with docker-machine)
+tap "moncho/dry"
+brew "dry" # docker monitoring
 # brew "dtrx" # do the right extraction - so you don't have to remember tar args
 brew "entr" # file watcher
 # brew "fasd" # Command-line productivity booster, offers quick access to files and directories, inspired by autojump, z and v.
@@ -160,7 +160,7 @@ tap "caskroom/cask"
 cask "bitbar" # use any cli command to show stuff in the menubar with colors and icons and provide menu options
 # cask "beardedspice" # keyboard media controls for media sites (I now use streamkeys chrome extension) - goes together with bubo.app
 # cask "cheatsheet" # hold <cmd> for a bit to get a modal of available keyboard shortcuts (kind of annoying - rarely comes up when I actually want it to, too much info)
-# cask "docker" # docker for mac desktop app (I use docker-machine)
+cask "docker" # docker for mac desktop app
 # cask "dropbox" # I especially use this for synching my notes so I can view them in the joplin mobile app
 cask "firefox"
 tap "caskroom/fonts"

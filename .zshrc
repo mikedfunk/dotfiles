@@ -319,7 +319,8 @@ function xdebug-status () {
 
 # docker {{{
 # docker-machine
-alias dme="eval \$(docker-machine env default)"
+# alias dme="eval \$(docker-machine env default)"
+alias dme=":" # no-op because I don't use docker-machine any more
 alias dmc="docker-machine create --driver=virtualbox --virtualbox-memory=4096 --virtualbox-disk-size=40000 default" # 40gb hard drive, 4gb memory
 alias dmd="VBoxManage discardstate default" # the virtualbox vm doesn't like to come back up when suspended.
 alias dmi="dme && docker-machine ip"
