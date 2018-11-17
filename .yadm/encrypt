@@ -1,0 +1,15 @@
+.private_vars.sh
+Library/Application Support/Sequel Pro/Data/Favorites.plist
+.config/joplin/database.sqlite
+.ssh/keys
+.ssh/config
+.saatchirc.sh
+Code/saatchi/queries
+Code/saatchi/http
+Code/uml
+.mailmap
+.bin/saatchi-haproxy-status.sh
+.support/OmegaOptions.bak
+.mylogin.cnf
+.edgerc
+.support/saatchi

@@ -73,9 +73,9 @@ if [ -f /usr/local/share/antigen/antigen.zsh ]; then
     antigen bundle djui/alias-tips # tell you when an alias would shorten the command you ran
     antigen bundle colored-man-pages
     antigen bundle colorize # Plugin for highlighting file content
+    # antigen bundle mfaerevaag/wd # antigen doesn't like this. It dies.
     antigen bundle wd
     antigen bundle vi-mode
-    # antigen bundle mfaerevaag/wd # antigen doesn't like this. It dies.
     # # antigen 'mfaerevaag/wd', as:command, use:"wd.sh", hook-load:"wd() { . $ZPLUG_REPOS/mfaerevaag/wd/wd.sh }"
     antigen bundle gitfast # fix git completion issues https://unix.stackexchange.com/a/204308 downside: this also adds a TON of gxx aliases https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/gitfast it also adds MORE git aliases and functions from the main git plugin https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/git/git.plugin.zsh
     antigen bundle marzocchi/zsh-notify # notify when a command fails or lasts longer than 30 seconds and the terminal is in the background (requires terminal-notifier)
