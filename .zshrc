@@ -38,6 +38,7 @@ path=(
   # golang executables
   /usr/local/opt/go/libexec/bin
   $HOME/.{php,pl,nod,py}env/bin
+  $HOME/.pyenv/shims
   $HOME/.phpenv/pear/bin
   $HOME/.composer/vendor/bin
   $(gem env home)
