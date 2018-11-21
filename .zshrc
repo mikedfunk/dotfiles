@@ -99,7 +99,7 @@ fi
 [ -d "$HOME/.zsh/completion" ] && find "$HOME/.zsh/completion" | while read f; do source "$f"; done
 # [[ "$(builtin type -p plenv)" ]] && eval "$(plenv init -)"
 [[ "$(builtin type -p nodenv)" ]] && eval "$(nodenv init -)"
-[[ "$(builtin type -p pyenv)" ]] && eval "$(pyenv init -)"
+[[ "$(builtin type -p pyenv)" ]] && PYENV_VERSION="$(cat $HOME/.pyenv/version)" eval "$(pyenv init -)"
 [[ -f "$HOME/.phpenv/bin/phpenv" ]] && eval "$($HOME/.phpenv/bin/phpenv init -)"
 [[ "$(builtin type -p rbenv)" ]] && eval "$(rbenv init -)"
 [[ "$(builtin type -p akamai)" ]] && eval "$(akamai --zsh)" # compinit: function definition file not found
