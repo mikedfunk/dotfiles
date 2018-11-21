@@ -273,14 +273,23 @@ alias ta="task add"
 # }}}
 
 # vim {{{
+
+# vim 8 {{{
 # alias v="vim"
 # compdef v="vim"
+# export EDITOR=vim # aww yeah
+# }}}
+
+# neovim {{{
 alias v="nvim"
 compdef v="nvim"
-# export EDITOR=vim # aww yeah
+alias vim="nvim"
+compdef vim="nvim"
 export EDITOR=nvim # aww yeah
 export LANG=en_US.UTF-8
 KEYTIMEOUT=1 # no vim delay entering normal mode
+# }}}
+
 # }}}
 
 # xdebug-toggle {{{

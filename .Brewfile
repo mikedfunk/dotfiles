@@ -144,7 +144,7 @@ brew "wget" # latest version
 brew "wifi-password" # get your current wifi password quickly without mucking about with keychain access.
 # brew "xdebug-osx" # xdebug toggler
 # brew "vim", args: ["--with-python@2"] # macvim requires xcode. This also allows you to get vim 8 without using a separate tap. I install with python 2 because vdebug 2.x is broken for me and 1.5.x does not work with python 3.
-brew "vim" # macvim requires xcode. This also allows you to get vim 8 without using a separate tap. (vdebug 2.x now working with python 3!)
+# brew "vim" # macvim requires xcode. This also allows you to get vim 8 without using a separate tap. (vdebug 2.x now working with python 3!) (trying neovim again)
 # brew "vit" # ncurses taskwarrior interface - like tig for taskwarrior TODO: upgrade to 1.3 when it passes beta! I can't install it from source because it requires current perl version be from /usr/bin/perl, among other problems. https://www.mankier.com/5/vitrc
 brew "yarn" # wrapper for npm with real lock files and caching
 brew "yadm" # yet another dotfiles manager

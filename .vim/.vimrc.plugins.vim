@@ -75,7 +75,7 @@ Plug 'tpope/vim-commentary' " toggle comment with gcc. in my case I use <leader>
 " Plug 'junegunn/vim-easy-align' " align on = with ga=
 Plug 'tpope/vim-unimpaired' " lots of cool keyboard shortcuts
 " if has("python") || has("python3") | Plug 'SirVer/ultisnips' | endif " dynamic snippet completion
-if has('python') || has('python3')
+if has('python3')
     Plug 'SirVer/ultisnips' " dynamic snippet completion
 endif
 " if has("python") | Plug 'robertbasic/snipbar' | endif " show available snips
@@ -158,6 +158,7 @@ Plug 'lifepillar/vim-cheat40' " Customizable cheatsheet. Mine is in ~/.vim/plugg
 " Plug 'dyng/ctrlsf.vim' " Contextual search plugin ala sublime.
 " Plug 'andymass/vim-tradewinds' " <c-w>gh to move the current split one to the left, etc. in other directions
 " Plug 'Yilin-Yang/vim-markbar' " <leader>mm to show marks
+Plug 'simeji/winresizer' " ctrl-E to go to resize mode, hjkl, enter to finish, simple
 " }}}
 
 " Php {{{
@@ -231,7 +232,7 @@ Plug 'tpope/vim-jdaddy' "`gqaj` to pretty-print json, `gwaj` to merge the json o
 " Plug 'chemzqm/vim-jsx-improve' " better jsx formatting
 " Plug 'flowtype/vim-flow' " flowtype omnicompletion. If not using flow in a project, add this to project .vimrc: let g:flow#enable = 0
 Plug 'jez/vim-flow' " fork that adds --quiet. without --quite doesn't work still as of may 2018
-if has('python') || has('python3')
+if has('python3')
     Plug 'ternjs/tern_for_vim', { 'do': '/usr/local/bin/npm install' }
 endif " javascript omnifunc and jump to def. requires a .tern-project or ~/.tern-config file. http://ternjs.net/doc/manual.html#configuration
 Plug 'othree/javascript-libraries-syntax.vim' " syntax completion for common libraries (react, lodash, jquery, etc.)

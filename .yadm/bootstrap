@@ -231,7 +231,7 @@ fi
 # install python3 version {{{
 if [[ ! "$(pyenv version | grep 3.7.1)" ]]; then
     log_info "Installing python 3.7.1"
-    pyenv install 3.7.1 && pyenv rehash && pyenv global 3.7.1
+    CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" pyenv install 3.7.1 && pyenv rehash && pyenv global 3.7.1
 fi
 # }}}
 
