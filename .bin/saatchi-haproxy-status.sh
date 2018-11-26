@@ -9,6 +9,7 @@ CURRENT_SESSION=$(tmux display-message -p '#S')
 # status=$(docker-machine status) # docker-machine version
 
 # docker for mac version:
+if [ "$(docker run hello-world)" ]; then
 if [ "$(docker ps -q)" ]; then
     status="Running"
 else

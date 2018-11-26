@@ -4,7 +4,8 @@
 brew "akamai" # interact with akamai caching
 brew "angband" # requires java
 brew "ant" # apache build tool used to build plantuml
-brew "antigen" # I switched from zplug due to stability issues and errors.
+brew "getantibody/tap/antibody" # like antigen but faster!
+# brew "antigen" # I switched from zplug due to stability issues and errors.
 brew "autoconf" # needed to build some php70 libs from source
 brew "autossh" # ssh that reconnects
 brew "awscli" # aws command - used to upload to s3, etc. `aws configure` to set up credentials. (set up access keys here https://console.aws.amazon.com/iam/home?region=us-west-1#/users/mike.funk?section=security_credentials)

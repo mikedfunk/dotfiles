@@ -852,9 +852,9 @@
   integrity sha512-k2tWTQU8G4+iSMvqKi0Q9IIsWAp/n8xzdZS4Q4YVIltApoMA00wFBFdlJnmoaK1/z7B0Cy0yPe6GgXteSmdUNw==
 
 "@types/node@*", "@types/node@^10.11.7":
-  version "10.12.9"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.9.tgz#a07bfa74331471e1dc22a47eb72026843f7b95c8"
-  integrity sha512-eajkMXG812/w3w4a1OcBlaTwsFPO5F7fJ/amy+tieQxEMWBlbV1JGSjkFM+zkHNf81Cad+dfIRA+IBkvmvdAeA==
+  version "10.12.10"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.10.tgz#4fa76e6598b7de3f0cb6ec3abacc4f59e5b3a2ce"
+  integrity sha512-8xZEYckCbUVgK8Eg7lf5Iy4COKJ5uXlnIOnePN0WUwSQggy9tolM+tDJf7wMOnT/JT/W9xDYIaYggt3mRV2O5w==
 
 "@types/node@^8.0.24":
   version "8.10.38"
@@ -1422,9 +1422,9 @@ ansi-styles@~1.0.0:
   integrity sha1-yxAt8cVvUSPquLZ817mAJ6AnkXg=
 
 ansi-to-html@^0.6.4:
-  version "0.6.8"
-  resolved "https://registry.yarnpkg.com/ansi-to-html/-/ansi-to-html-0.6.8.tgz#2a4468b45a5d2a2c1a51eb1a1175eda8acb4f07a"
-  integrity sha512-wXwNl185AIu1QXuNApBiYNaWx0q+Ma1tLDVgc0HbA43GFWG8p1gcWLKKIBjQqamKe3rUkEILb6QMu9G/V14mzQ==
+  version "0.6.9"
+  resolved "https://registry.yarnpkg.com/ansi-to-html/-/ansi-to-html-0.6.9.tgz#f4f2e2361792269cc62da85944f39759fc71b1e2"
+  integrity sha512-hwNdg2DNgCzsrvaNc+LDqSxJkpxf9oEt4R7KE0IeURXhEOlontEqNpXNiGeFBpSes8TZF+ZZ9sjB85QzjPsI6A==
   dependencies:
     entities "^1.1.1"
 
@@ -4067,14 +4067,14 @@ caniuse-api@^3.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-db@^1.0.30000529, caniuse-db@^1.0.30000634, caniuse-db@^1.0.30000639:
-  version "1.0.30000909"
-  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000909.tgz#a5b5b52e30e0083836632cf87e20770e646a3a4a"
-  integrity sha512-uQ/L28utpeTyjvy7PQtGamXtfLYJrnTD3YewssFIEUfZGNRZgY8M2ttKUbTNmw5hjGfcd/NdnXXD1NBMB4P4Uw==
+  version "1.0.30000910"
+  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000910.tgz#58cca84780223291c28e92d97a9b1512260a9a8e"
+  integrity sha512-eysv5eAsXCBnfnhTZsKBtCZKdgeFaRqOlTN74kCfzdHdz0In3E5Aop7PyqPI757DsdjVwJOWrFHIrTPYzmll6g==
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000792, caniuse-lite@^1.0.30000805, caniuse-lite@^1.0.30000844, caniuse-lite@^1.0.30000899:
-  version "1.0.30000909"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000909.tgz#697e8f447ca5f758e7c6cef39ec429ce18b908d3"
-  integrity sha512-4Ix9ArKpo3s/dLGVn/el9SAk6Vn2kGhg8XeE4eRTsGEsmm9RnTkwnBsVZs7p4wA8gB+nsgP36vZWYbG8a4nYrg==
+  version "1.0.30000910"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000910.tgz#755d5181d4b006e5a2b59b1ffa05d0a0470039f5"
+  integrity sha512-u/nxtHGAzCGZzIxt3dA/tpSPOcirBZFWKwz1EPz4aaupnBI2XR0Rbr74g0zc6Hzy41OEM4uMoZ38k56TpYAWjQ==
 
 capitalize@1.0.0:
   version "1.0.0"
@@ -8336,7 +8336,7 @@ generator-generator@^4.0.2:
     yeoman-generator "^2.0.1"
     yosay "^2.0.1"
 
-generator-jest@^1.5.1:
+generator-jest@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/generator-jest/-/generator-jest-1.6.0.tgz#068a0cf5087528d33adc7a546866e055c10d48cb"
   integrity sha512-lU8OX4fnIxNXEai/oR7ZyQtFiJppL2vkZUKF7lIPYfOy+oLuzcTxzx0pMv5PV/MaXlFmbFx3wMwvaqzNvGrbPQ==
@@ -8354,23 +8354,23 @@ generator-license@^5.2.0:
     yeoman-generator "^2.0.1"
 
 generator-node@^2.3.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/generator-node/-/generator-node-2.5.0.tgz#fb916e7746bf6aeb6d1977b6895a951d7a0ec023"
-  integrity sha512-P66aMTiw2LWI93pGXROPUxF3ZN1bhiTohj/viFfUJyBoQWE2tjARoX9SM0lSRebnUD0PMNkf/WWSiXT+Mx1yhA==
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/generator-node/-/generator-node-2.6.0.tgz#7b6340ed69df969de9d80b27cf04cbccf32fa4e7"
+  integrity sha512-lwbNyjniHrB62+2J1QsQk71E7GqbVWzOuQYFwkfH+a8tYZkwT98vbGh6nfecI797rwaSQ12bc0Y1n9AFqu/KGw==
   dependencies:
     chalk "^2.3.2"
-    generator-jest "^1.5.1"
+    generator-jest "^1.6.0"
     generator-license "^5.2.0"
-    generator-travis "^1.6.0"
+    generator-travis "^1.7.0"
     git-remote-origin-url "^2.0.0"
     github-username "^4.1.0"
     inquirer-npm-name "^3.0.0"
-    lodash "^4.17.5"
+    lodash "^4.17.11"
     parse-author "^2.0.0"
     validate-npm-package-name "^3.0.0"
-    yeoman-generator "^2.0.5"
+    yeoman-generator "^3.1.1"
 
-generator-travis@^1.6.0:
+generator-travis@^1.7.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/generator-travis/-/generator-travis-1.7.0.tgz#c084d031c1e26c311f0ab06d16b76d03346fce45"
   integrity sha512-eFfps8JvwrkjU2fAhUHA/MSUewV8f9x4OpZLuP83Ovt4PK4eBamZ+k3oK4sNWNcFeFYiJ9/3J5I/pxzkklgwnA==
@@ -8550,9 +8550,9 @@ git-spawned-stream@1.0.0:
     spawn-to-readstream "~0.1.3"
 
 git-standup@^2.1.8:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/git-standup/-/git-standup-2.2.0.tgz#cc7271fba0e5cc1968b66334f31eebc762e24e0a"
-  integrity sha512-GlQib2CmkcPfPlZhelfZmFKP2AbkeAOZ9SK3Z2M+CwdsrAA62bhI6CTDYWk/bm0C3bxizlX+U86/RNSk4O9efQ==
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/git-standup/-/git-standup-2.3.0.tgz#533e088d7a63a4092119420b1787f3ab855ad2ae"
+  integrity sha512-wsXGe2dEKjeEouELTd575BRr8O0bTPdZHBjLT0ZX+erh2Mc7G6aOGqvNFE/Mf7CqVw30CZrAs9JfdWMSnvy1yA==
 
 git-state@4.0.0:
   version "4.0.0"
@@ -8769,14 +8769,14 @@ global-prefix@^1.0.1:
     which "^1.2.14"
 
 global-tunnel-ng@^2.5.3:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/global-tunnel-ng/-/global-tunnel-ng-2.6.0.tgz#2e26bddbd4272b70de9695587e1af3af69f6c98f"
-  integrity sha512-glWGTgPzsOQs0mPRxHnWIwqYrEuQcxYpUFWF7BJxJL+c2F4fW304vdn53pqgod4PzOqZKDr1cex+a/pXCwrncA==
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/global-tunnel-ng/-/global-tunnel-ng-2.7.1.tgz#d03b5102dfde3a69914f5ee7d86761ca35d57d8f"
+  integrity sha512-4s+DyciWBV0eK148wqXxcmVAbFVPqtc3sEtUE/GTQfuU80rySLcMhUmHKSHI7/LDj8q0gDYI1lIhRRB7ieRAqg==
   dependencies:
     encodeurl "^1.0.2"
     lodash "^4.17.10"
     npm-conf "^1.1.3"
-    tunnel "^0.0.5"
+    tunnel "^0.0.6"
 
 globals@^10.1.0:
   version "10.4.0"
@@ -9374,9 +9374,9 @@ hoek@5.x.x:
   integrity sha512-Alr4ZQgoMlnere5FZJsIyfIjORBqZll5POhDsF4q64dPuJR6rNxXdDxtHSQq8OXRurhmx+PWYEE8bXRROY8h0w==
 
 hoek@6.x.x:
-  version "6.0.3"
-  resolved "https://registry.yarnpkg.com/hoek/-/hoek-6.0.3.tgz#7884360426d927865a0a1251fc9c59313af5b798"
-  integrity sha512-TU6RyZ/XaQCTWRLrdqZZtZqwxUVr6PDMfi6MlWNURZ7A6czanQqX4pFE1mdOUQR9FdPCsZ0UzL8jI/izZ+eBSQ==
+  version "6.0.4"
+  resolved "https://registry.yarnpkg.com/hoek/-/hoek-6.0.4.tgz#8db638130825534575e8e4e80f97ca66108e6382"
+  integrity sha512-9D47elppcwrTx2x9B6TrovxnUtlTBYFcHGgo0+LRA1+YfUkCecT//41ovdh6zbl7whB9Hc2whRO1c6lzPoTgww==
 
 home-or-tmp@^2.0.0:
   version "2.0.0"
@@ -18857,10 +18857,10 @@ tunnel-agent@^0.6.0:
   dependencies:
     safe-buffer "^5.0.1"
 
-tunnel@^0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/tunnel/-/tunnel-0.0.5.tgz#d1532254749ed36620fcd1010865495a1fa9d0ae"
-  integrity sha512-gj5sdqherx4VZKMcBA4vewER7zdK25Td+z1npBqpbDys4eJrLx+SlYjJvq1bDXs2irkuJM5pf8ktaEQVipkrbA==
+tunnel@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/tunnel/-/tunnel-0.0.6.tgz#72f1314b34a5b192db012324df2cc587ca47f92c"
+  integrity sha512-1h/Lnq9yajKY2PEbBadPXj3VxsDDu844OnaAo52UVmIzIvwwtBPIuNvkjuzBlTWpfJyUbG3ez0KSBibQkj4ojg==
 
 tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   version "0.14.5"
@@ -20247,9 +20247,9 @@ y18n@^3.2.1:
   integrity sha512-r9S/ZyXu/Xu9q1tYlpsLIsa3EeLXXk0VwlxqTcFRfg9EhMW+17kbt9G0NrgCmhGb5vT2hyhJZLfDGx+7+5Uj/w==
 
 yallist@^3.0.0, yallist@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/yallist/-/yallist-3.0.2.tgz#8452b4bb7e83c7c188d8041c1a837c773d6d8bb9"
-  integrity sha1-hFK0u36Dx8GI2AQcGoN8dz1ti7k=
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/yallist/-/yallist-3.0.3.tgz#b4b049e314be545e3ce802236d6cd22cd91c3de9"
+  integrity sha512-S+Zk8DEWE6oKpV+vI3qWkaK+jSbIK86pCwe2IF/xwIpQ8jEuxpw9NyaGjmp9+BoJv5FV2piqCDcoCtStppiq2A==
 
 yaml-js@0.0.8:
   version "0.0.8"
@@ -20522,7 +20522,7 @@ yeoman-environment@^2.0.5, yeoman-environment@^2.3.0:
     text-table "^0.2.0"
     untildify "^3.0.3"
 
-yeoman-generator@^2.0.1, yeoman-generator@^2.0.2, yeoman-generator@^2.0.5:
+yeoman-generator@^2.0.1, yeoman-generator@^2.0.2:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/yeoman-generator/-/yeoman-generator-2.0.5.tgz#57b0b3474701293cc9ec965288f3400b00887c81"
   integrity sha512-rV6tJ8oYzm4mmdF2T3wjY+Q42jKF2YiiD0VKfJ8/0ZYwmhCKC9Xs2346HVLPj/xE13i68psnFJv7iS6gWRkeAg==

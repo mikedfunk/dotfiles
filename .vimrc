@@ -184,6 +184,7 @@ set path=** " only search in git root
 " turning this off but keeping incsearch on so I can use search for navigation
 " more easily on recommendation from practical vim
 " set hlsearch " highlight search results
+set nohlsearch " highlight search results
 set modeline " enable modeline
 set modelines=5 " enable modeline
 set noshowmode " don't show the mode in the command area. it's already in airline.

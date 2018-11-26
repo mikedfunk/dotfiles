@@ -60,31 +60,30 @@ fpath=(
 )
 # }}}
 
-# antigen {{{
-# other possibility: fresh https://github.com/freshshell/fresh/wiki/Directory#zsh
-# I used to use zplug which is really cool but I got tired of errors and issues. Let's see if antigen is less error-prone.
-# problems? rm $ANTIGEN_COMPDUMP
-# So far I have seen zero errors or issues and it's fast!
-if [ -f /usr/local/share/antigen/antigen.zsh ]; then
-    source /usr/local/share/antigen/antigen.zsh
+# antibody {{{
+# If I re-source antibody init a second time it takes MINUTES to reinit. Even
+# if I re-run antibody bundle commands it takes progressively longer each time
+# I reload. Better to just run once on load. Only takes 3 seconds the first
+# time.
+if [[ ! $ANTIBODY_LOADED ]]; then
+    source <(antibody init)
 
-    antigen use oh-my-zsh # load oh-my-zsh
-    antigen bundle yous/vanilli.sh # sensible zsh defaults
-    antigen bundle djui/alias-tips # tell you when an alias would shorten the command you ran
-    antigen bundle colored-man-pages
-    antigen bundle colorize # Plugin for highlighting file content
-    # antigen bundle mfaerevaag/wd # antigen doesn't like this. It dies.
-    antigen bundle wd
-    antigen bundle vi-mode
-    # # antigen 'mfaerevaag/wd', as:command, use:"wd.sh", hook-load:"wd() { . $ZPLUG_REPOS/mfaerevaag/wd/wd.sh }"
-    antigen bundle gitfast # fix git completion issues https://unix.stackexchange.com/a/204308 downside: this also adds a TON of gxx aliases https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/gitfast it also adds MORE git aliases and functions from the main git plugin https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/git/git.plugin.zsh
-    antigen bundle marzocchi/zsh-notify # notify when a command fails or lasts longer than 30 seconds and the terminal is in the background (requires terminal-notifier)
-    antigen bundle zsh-users/zsh-autosuggestions # OLD COMMENT: buggy if enabled along with zsh-syntax-highlighting. crashes the shell regularly.
-    antigen bundle zsh-users/zsh-completions # do-everything argument completions
-    antigen bundle zsh-users/zsh-syntax-highlighting # colored input... see above
-    # antigen bundle zsh-users/zsh-history-substring-search # up arrow after typing part of command
+    antibody bundle yous/vanilli.sh # sensible zsh defaults
+    antibody bundle djui/alias-tips # tell you when an alias would shorten the command you ran
+    antibody bundle robbyrussell/oh-my-zsh path:plugins/colored-man-pages
+    antibody bundle robbyrussell/oh-my-zsh path:plugins/colorize # Plugin for highlighting file content
+    # antibody bundle mfaerevaag/wd # antibody doesn't like this. It dies.
+    antibody bundle robbyrussell/oh-my-zsh path:plugins/wd
+    antibody bundle robbyrussell/oh-my-zsh path:plugins/vi-mode
+    # # zplug 'mfaerevaag/wd', as:command, use:"wd.sh", hook-load:"wd() { . $ZPLUG_REPOS/mfaerevaag/wd/wd.sh }"
+    antibody bundle robbyrussell/oh-my-zsh path:plugins/gitfast # fix git completion issues https://unix.stackexchange.com/a/204308 downside: this also adds a TON of gxx aliases https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/gitfast it also adds MORE git aliases and functions from the main git plugin https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/git/git.plugin.zsh
+    antibody bundle marzocchi/zsh-notify # notify when a command fails or lasts longer than 30 seconds and the terminal is in the background (requires terminal-notifier)
+    antibody bundle zsh-users/zsh-autosuggestions # OLD COMMENT: buggy if enabled along with zsh-syntax-highlighting. crashes the shell regularly.
+    antibody bundle zsh-users/zsh-completions # do-everything argument completions
+    antibody bundle zsh-users/zsh-syntax-highlighting # colored input... see above
+    # antibody bundle zsh-users/zsh-history-substring-search # up arrow after typing part of command
 
-    antigen apply
+    ANTIBODY_LOADED=1
 fi
 # }}}
 
@@ -99,7 +98,8 @@ fi
 [ -d "$HOME/.zsh/completion" ] && find "$HOME/.zsh/completion" | while read f; do source "$f"; done
 # [[ "$(builtin type -p plenv)" ]] && eval "$(plenv init -)"
 [[ "$(builtin type -p nodenv)" ]] && eval "$(nodenv init -)"
-[[ "$(builtin type -p pyenv)" ]] && PYENV_VERSION="$(cat $HOME/.pyenv/version)" eval "$(pyenv init -)"
+PYENV_VERSION="$(cat $HOME/.pyenv/version)"
+[[ "$(builtin type -p pyenv)" ]] && eval "$(pyenv init -)"
 [[ -f "$HOME/.phpenv/bin/phpenv" ]] && eval "$($HOME/.phpenv/bin/phpenv init -)"
 [[ "$(builtin type -p rbenv)" ]] && eval "$(rbenv init -)"
 [[ "$(builtin type -p akamai)" ]] && eval "$(akamai --zsh)" # compinit: function definition file not found
@@ -368,11 +368,7 @@ function _docker_exec {
     wait $PID
 }
 
-function saatchi-mount-dir() {
-    if [[ "$1" == "--help" ]]; then echo "usage: saatchi-mount-dir {/path/to/dir}"; return; fi;
-    VboxManage sharedfolder add default --name $1 --hostpath $1 --automount
-    sudo mount -t vboxsf -o uid=1000,gid=1000 $1 $1
-}
+alias docker-restart="osascript -e 'quit app \"Docker\"' && open -a Docker"
 # }}}
 
 # phpunit {{{

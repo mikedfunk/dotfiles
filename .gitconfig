@@ -240,8 +240,8 @@
 
 # Core settings {{{
 [core]
-    editor = vim
-    #editor = nvim
+    # editor = vim
+    editor = nvim
     whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
     trustctime = false
     # if you want to specify a custom global gitignore location
@@ -256,6 +256,7 @@
     # pager = diff-highlight | diff-so-fancy | less --tabs=1,5 -R
     # use diff-so-fancy and diff-highlight together
     pager = diff-highlight | diff-so-fancy | less --tabs=4 -RFX
+	# askPass =
     # use tig as git pager
     # pager = tig --pretty=fuller
     # pager = tig
@@ -349,3 +350,5 @@
     name = Mike Funk
     email = mike@mikefunk.com
 # }}}
+[credential]
+	helper = osxkeychain

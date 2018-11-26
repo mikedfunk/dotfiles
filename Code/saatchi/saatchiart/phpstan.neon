@@ -34,7 +34,6 @@ parameters:
     # - library/Catalog
     - library/Catalog/Art
     - library/Catalog/Collection
-    - library/Catalog/Constants
     - library/Catalog/Data
     - library/Catalog/History
     - library/Catalog/Product
@@ -59,7 +58,7 @@ parameters:
     - library/Catalog/ApiCall.php
     # - library/Catalog/ApiClient.php
     # - library/Catalog/ApiClientAdapter.php
-    # - library/Catalog/Constants.php
+    - library/Catalog/Constants.php
     # - library/Catalog/Art.php
     # - library/Catalog/Base.php
     - library/Catalog/ContentDeliveryUrl.php

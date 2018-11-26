@@ -163,8 +163,8 @@ fi
 
 # install vim-plug plugins {{{
 log_info "Installing/upgrading vim plugins"
-vim +PlugInstall +PlugUpdate +PlugClean! +qall
-# nvim +PlugInstall +qall
+# vim +PlugInstall +PlugUpdate +PlugClean! +qall
+nvim +PlugInstall +PlugUpdate +PlugClean! +qall
 # }}}
 
 # }}}
@@ -247,6 +247,7 @@ cd -
 
 # update python3 pip packages {{{
 log_info "Installing/upgrading pip packages"
+/usr/local/bin/pip3 install neovim --user # neovim uses this pip/python version
 pip install -r "$HOME/requirements.txt" --user
 # pip-review broke recently:
 # zsh: /usr/local/bin/pip-review: bad interpreter: /usr/local/opt/python/bin/python3.6: no such file or directory
@@ -299,10 +300,10 @@ else
 fi
 # }}}
 
-# antigen {{{
-log_info "Updating antigen plugins"
-# antigen selfupdate # antigen is managed by homebrew
-antigen update # update all packages
+# antibody {{{
+log_info "Updating antibody plugins"
+# source <(antibody init)
+antibody update # update all packages
 # }}}
 
 # apply hosts file {{{

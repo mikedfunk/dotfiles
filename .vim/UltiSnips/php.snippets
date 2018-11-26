@@ -25,6 +25,17 @@ def pathToNamespace(path):
 
 endglobal
 
+snippet itr "prophecy mock iterator functions"
+$$1->rewind()->shouldBeCalled();
+$returns = [true, false];
+$$1->valid()->will(function () use (&$returns) {
+	return array_shift($returns);
+});
+$$1->current()->willReturn($2);
+$$1->next()->shouldBeCalled();
+$$1->key()->willReturn(0);
+endsnippet
+
 snippet cgt "IoT container get"
 $container->get($1);
 endsnippet
