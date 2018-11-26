@@ -248,7 +248,8 @@ cd -
 # update python3 pip packages {{{
 log_info "Installing/upgrading pip packages"
 /usr/local/bin/pip3 install neovim --user # neovim uses this pip/python version
-pip install -r "$HOME/requirements.txt" --user
+PIP_SUCCESSFUL=1
+pip install -r "$HOME/requirements.txt" --user || PIP_SUCCESSFUL=0
 # pip-review broke recently:
 # zsh: /usr/local/bin/pip-review: bad interpreter: /usr/local/opt/python/bin/python3.6: no such file or directory
 # pip-review --local --auto &&
@@ -257,8 +258,9 @@ pip install -r "$HOME/requirements.txt" --user
 function pip-update () {
     pip list --outdated | grep -v 'Package' | grep -v -e '\-\-\-\-\-' | cut -d' ' -f1 | xargs -n1 pip install -U
 }
-pip-update
-pip freeze >"$HOME/requirements.txt"
+pip-update || PIP_SUCCESSFUL=0
+# otherwise it might freeze a failed state
+[[ $PIP_SUCCESSFUL ]] && pip freeze >"$HOME/requirements.txt"
 # }}}
 
 # install/update composer and packages {{{
