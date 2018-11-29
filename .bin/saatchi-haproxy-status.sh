@@ -6,20 +6,21 @@
 #
 # e.g. L+++S++++
 CURRENT_SESSION=$(tmux display-message -p '#S')
-# status=$(docker-machine status) # docker-machine version
+DOCKER_STATUS=$(docker-machine status) # docker-machine version
 
 # docker for mac version:
-if [ "$(docker run hello-world)" ]; then
+# if [ "$(docker run hello-world)" ]; then
 # if [ "$(docker ps -q)" ]; then
-    status="Running"
-else
-    status="Down"
-fi
+#     status="Running"
+# else
+#     status="Down"
+# fi
+
 
 DOCKER="🐳"
 GOOD="+"
 if [[ $CURRENT_SESSION == 'Work' ]]; then
-	if [[ $status == 'Running' ]]; then
+	if [[ $DOCKER_STATUS == 'Running' ]]; then
 		HTML=$(curl --user admin:admin -s 'http://local.saatchiart.com/haproxy?stats')
         status="$DOCKER "
         status+=$( (echo "$HTML" | grep -E '(active_up|active_no_check).*legacy01' >/dev/null) && echo $GOOD || echo 'L')
@@ -37,5 +38,5 @@ if [[ $CURRENT_SESSION == 'Work' ]]; then
 		echo "$DOCKER -"
 	fi
 else
-	[[ $status == 'Running' ]] && echo "$DOCKER +" || echo "$DOCKER -"
+	[[ $DOCKER_STATUS == 'Running' ]] && echo "$DOCKER +" || echo "$DOCKER -"
 fi

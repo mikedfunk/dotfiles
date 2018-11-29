@@ -45,6 +45,11 @@
     "enabled": true
   },
   {
+    "domain": "local.sourcegraph.com",
+    "ip": "127.0.0.1",
+    "enabled": true
+  },
+  {
     "domain": "palette.local.saatchiart.com",
     "ip": "127.0.0.1",
     "enabled": true
@@ -67,6 +72,11 @@
   {
     "domain": "zed.local.saatchiart.com",
     "ip": "127.0.0.1",
+    "enabled": true
+  },
+  {
+    "domain": "smo.leaf.io",
+    "ip": "23.227.28.10",
     "enabled": true
   },
   {

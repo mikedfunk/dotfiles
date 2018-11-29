@@ -330,8 +330,8 @@ function xdebug-status () {
 
 # docker {{{
 # docker-machine
-# alias dme="eval \$(docker-machine env default)"
-alias dme=":" # no-op because I don't use docker-machine any more
+alias dme="eval \$(docker-machine env default)"
+# alias dme=":" # no-op because I don't use docker-machine any more
 alias dmc="docker-machine create --driver=virtualbox --virtualbox-memory=4096 --virtualbox-disk-size=40000 default" # 40gb hard drive, 4gb memory
 alias dmd="VBoxManage discardstate default" # the virtualbox vm doesn't like to come back up when suspended.
 alias dmi="dme && docker-machine ip"
@@ -410,7 +410,7 @@ wd() {
 
 # sourcegraph {{{
 # https://about.sourcegraph.com/docs/
-alias sourcegraph="dme && docker run --publish 7080:7080 --rm --volume ~/.sourcegraph/config:/etc/sourcegraph --volume ~/.sourcegraph/data:/var/opt/sourcegraph --volume /var/run/docker.sock:/var/run/docker.sock sourcegraph/server:2.11.2"
+alias sourcegraph="dme && docker run -d --publish 7080:7080 --rm --volume ~/.sourcegraph/config:/etc/sourcegraph --volume ~/.sourcegraph/data:/var/opt/sourcegraph --volume /var/run/docker.sock:/var/run/docker.sock sourcegraph/server:2.13.5"
 # }}}
 
 # }}}
