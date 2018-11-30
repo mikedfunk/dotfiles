@@ -1,13 +1,17 @@
 #!/usr/bin/expect
-# TODO this is very brittle currently - sometimes I get the offer to alter php.ini.
-spawn php ".phpenv/bin/go-pear.phar"
+spawn php "$env(HOME)/.bin/go-pear.phar"
 
-expect "1-12, 'all' or Enter to continue:"
-send "1\r"
-# TODO get absolute path to relative path... not as easy as it sounds
-send "/Users/mikefunk/.phpenv/pear\r"
-expect "1-12, 'all' or Enter to continue:"
-# expect "Would you like to alter php.ini </Users/mikefunk/.phpenv/versions/7.0.29/etc/php.ini>? [Y/n] :"
-# send "Y\r"
-send "\r"
+expect "1-12, 'all' or Enter to continue:" {
+    exp_send "1\r"
+    exp_send "$env(HOME)/.phpenv/versions/$env(PHP_VERSION)/pear\r"
+}
+expect "1-12, 'all' or Enter to continue:" {
+    exp_send "\r"
+}
+expect "Would you like to alter php.ini <$env(HOME)/.phpenv/versions/$env(PHP_VERSION)/etc/php.ini>? \\\[Y/n\\\] : " {
+    exp_send "Y\r"
+}
+expect "Press Enter to continue:" {
+    exp_send "\r"
+}
 expect eof

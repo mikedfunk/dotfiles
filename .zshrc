@@ -300,7 +300,8 @@ KEYTIMEOUT=1 # no vim delay entering normal mode
 # xdb () { xdebug-toggle $1 --no-server-restart; }
 
 function xdebug-off () {
-    builtin cd "$(phpenv root)/versions/$( phpenv version | cut -d' ' -f1 )/etc/conf.d"
+    PHP_VERSION="$( phpenv version | cut -d' ' -f1 )"
+    builtin cd "$(phpenv root)/versions/${PHP_VERSION}/etc/conf.d"
     if ! [ -f xdebug.ini ]; then
         echo "xdebug.ini does not exist"
         return 1
@@ -311,7 +312,7 @@ function xdebug-off () {
 }
 
 function xdebug-on () {
-    builtin cd "$(phpenv root)/versions/$( phpenv version | cut -d' ' -f1 )/etc/conf.d"
+    builtin cd "$(phpenv root)/versions/${PHP_VERSION}/etc/conf.d"
     if ! [ -f xdebug.ini.DISABLED ]; then
         echo "xdebug.ini.DISABLED does not exist"
         return 1
@@ -322,7 +323,7 @@ function xdebug-on () {
 }
 
 function xdebug-status () {
-    builtin cd "$(phpenv root)/versions/$( phpenv version | cut -d' ' -f1 )/etc/conf.d"
+    builtin cd "$(phpenv root)/versions/${PHP_VERSION}/etc/conf.d"
     [ -f ./xdebug.ini  ] && echo 'xdebug enabled' || echo 'xdebug disabled'
     builtin cd -
 }

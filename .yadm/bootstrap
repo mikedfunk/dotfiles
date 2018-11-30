@@ -78,7 +78,7 @@ xcode-select --install || true
 # needed for phpenv and pyenv
 # fyi the CommandLineTools directory doesn't even exist until you run `xcode-select --install`
 # https://github.com/pyenv/pyenv/issues/1219#issuecomment-428700763
-if [ -f "/Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg" ] && [  ! -f "$HOME/.mojave-lock" ]; then
+if [ -f "/Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg" ] && ! [ -f "$HOME/.mojave-lock" ]; then
     log_info "installing additional tools needed for mojave"
     sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
     touch "$HOME/.mojave-lock"
@@ -124,7 +124,11 @@ fi
 # installing the additional headers for libz, etc., which I do in the first few
 # steps of this file
 log_info "Installing/updating phpenv"
-curl -L http://git.io/phpenv-installer | bash
+if [[ "$(builtin type -p phpenv)" ]]; then
+    phpenv update
+else
+    curl -L https://raw.githubusercontent.com/phpenv/phpenv-installer/master/bin/phpenv-installer | bash
+fi
 # }}}
 
 # update yarn {{{
@@ -191,38 +195,27 @@ fi
 # install php version {{{
 # I only use phpenv because homebrew is making it difficult to install php 7.0
 # and extensions right now.
-#
-# NOTE: This process is extremely brittle and may break on first install. If
-# so, try just running stuff manually and following the prompts. Predicting the
-# prompts with `expect` can be difficult.
-if [[ ! "$(phpenv versions | grep 7.0.29)" ]]; then
-    log_info "Installing php 7.0.29"
-    # phpenv install 7.0.29 && phpenv rehash
-
+export PHP_VERSION="7.0.29" # needs exporting for the non-interactive install script
+if [[ ! "$(phpenv version | grep $PHP_VERSION)" ]]; then
+    log_info "Installing php $PHP_VERSION"
     # NOTE if I set php 7.1+.x to global and I use directory-specific php
     # versions and I install global composer dependencies then they will fail
-    # when I have php 7.0.29 active!
-    phpenv install 7.0.29 && php global 7.0.29 && phpenv rehash
+    # when I have php 7.0.29 active! Same problem with rbenv, pyenv, and perlenv.
+    [[ ! "$(phpenv versions | grep $PHP_VERSION)" ]] || phpenv install $PHP_VERSION
+    php global $PHP_VERSION
+    phpenv rehash
 
     # install pear so we can use pecl to install extensions
-    # TODO do this in a way where each php version has its own pear :/
-    log_info "Installing pear"
-    [ -f "$HOME/.phpenv/bin/go-pear.phar" ] || wget -O "$HOME/.phpenv/bin/go-pear.phar" http://pear.php.net/go-pear.phar
-    cd $HOME && ./.support/install-pear.sh && cd -
-    [ -f "$HOME/.phpenv/bin/go-pear.phar" ] && rm "$HOME/.phpenv/bin/go-pear.phar"
+    if [[ ! "$(builtin type -p pecl)" ]]; then
+        log_info "Installing pear"
+        [ -f "$HOME/.bin/go-pear.phar" ] || wget -O "$HOME/.bin/go-pear.phar" http://pear.php.net/go-pear.phar
+        $HOME/.support/install-pear.sh # installs pear non-interactively
+        [ -f "$HOME/.bin/go-pear.phar" ] && rm "$HOME/.bin/go-pear.phar"
+    fi
 
-    log_info "Installing php extensions"
-    $HOME/.phpenv/pear/bin/pecl install igbinary && (echo 'extension="igbinary.so"' >$HOME/.phpenv/versions/7.0.29/etc/conf.d/igbinary.ini)          # needed for couchbase
-    $HOME/.phpenv/pear/bin/pecl install couchbase-2.2.2 && (echo 'extension="couchbase.so"' >$HOME/.phpenv/versions/7.0.29/etc/conf.d/couchbase.ini) # their sdk has breaking changes all the time
-    # $HOME/.phpenv/pear/bin/pecl install pcntl && ( echo 'zend_extension="pcntl.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/pcntl.ini )
-    # $HOME/.phpenv/pear/bin/pecl install intl && ( echo 'zend_extension="intl.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/intl.ini ) # needed for phpstan build
-
-    # I'm having trouble installing this via pecl - missing php_smart_str_public.h. It's not worth it - I'll just run php in zed's docker container when I need to.
-    # $HOME/.phpenv/pear/bin/pecl install memcache && ( echo 'zend_extension="memcache.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/memcache.ini ) # needed for zed
-
-    $HOME/.phpenv/pear/bin/pecl install memcached && (echo 'extension="memcached.so"' >$HOME/.phpenv/versions/7.0.29/etc/conf.d/memcached.ini)
-    # $HOME/.phpenv/pear/bin/pecl install mongodb && ( echo 'extension="mongodb.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/mongodb.ini )
-    # $HOME/.phpenv/pear/bin/pecl install xdebug && ( echo 'zend_extension="xdebug.so"' > $HOME/.phpenv/versions/7.0.29/etc/conf.d/xdebug.ini )
+    log_info "Installing additional php extensions"
+    $(phpenv root)/versions/$PHP_VERSION/pear/bin/pecl install couchbase-2.2.2 && (echo 'extension="couchbase.so"' >$HOME/.phpenv/versions/$PHP_VERSION/etc/conf.d/couchbase.ini) # their sdk has breaking changes all the time so I need a specific version
+    $(phpenv root)/versions/$PHP_VERSION/pear/bin/pecl install memcached && (echo 'extension="memcached.so"' >$HOME/.phpenv/versions/$PHP_VERSION/etc/conf.d/memcached.ini)
 fi
 # }}}
 

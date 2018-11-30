@@ -40,13 +40,13 @@ jdcal==1.4
 Jinja2==2.10
 jira==2.0.0
 jsonschema==2.6.0
-keyring==16.1.1
+keyring==17.0.0
 kitchen==1.2.5
 leather==0.3.3
 lockfile==0.12.2
 lxml==4.2.5
 MarkupSafe==1.1.0
-msgpack==0.5.6
+msgpack==0.6.0
 msgpack-python==0.5.6
 mycli==1.19.0
 neovim==0.3.1
