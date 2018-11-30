@@ -191,6 +191,10 @@ fi
 # install php version {{{
 # I only use phpenv because homebrew is making it difficult to install php 7.0
 # and extensions right now.
+#
+# NOTE: This process is extremely brittle and may break on first install. If
+# so, try just running stuff manually and following the prompts. Predicting the
+# prompts with `expect` can be difficult.
 if [[ ! "$(phpenv versions | grep 7.0.29)" ]]; then
     log_info "Installing php 7.0.29"
     # phpenv install 7.0.29 && phpenv rehash
