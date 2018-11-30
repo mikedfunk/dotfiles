@@ -229,11 +229,11 @@ fi
 # }}}
 
 # install perl version {{{
-PERL_VERSION="5.27.8"
-if [[ ! "$(plenv version | grep $PERL_VERSION)" ]]; then
-    log_info "Installing perl $PERL_VERSION"
-    plenv install $PERL_VERSION && plenv rehash && plenv global $PERL_VERSION
-fi
+# PERL_VERSION="5.27.8"
+# if [[ ! "$(plenv version | grep $PERL_VERSION)" ]]; then
+#     log_info "Installing perl $PERL_VERSION"
+#     plenv install $PERL_VERSION && plenv rehash && plenv global $PERL_VERSION
+# fi
 # }}}
 
 # install python3 version {{{
@@ -412,7 +412,7 @@ fi
 # }}}
 
 # reminders {{{
-# log_info "Don't forget to upgrade your docker-machine once in a while!"
+log_info "Don't forget to upgrade your docker-machine once in a while!"
 # log_info "Don't forget to ''brew cask upgrade virtualbox virtualbox-extension-pack' once in a while!"
 log_info "Don't forget to update tmux plugins via <c-a>U once in a while!"
 # }}}

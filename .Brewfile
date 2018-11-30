@@ -2,10 +2,10 @@
 
 # brew {{{
 brew "akamai" # interact with akamai caching
-brew "angband" # requires java
+# brew "angband" # requires java
 brew "ant" # apache build tool used to build plantuml
 brew "getantibody/tap/antibody" # like antigen but faster!
-# brew "antigen" # I switched from zplug due to stability issues and errors.
+# brew "antigen" # I switched to antibody for speed
 brew "autoconf" # needed to build some php70 libs from source
 brew "autossh" # ssh that reconnects
 brew "awscli" # aws command - used to upload to s3, etc. `aws configure` to set up credentials. (set up access keys here https://console.aws.amazon.com/iam/home?region=us-west-1#/users/mike.funk?section=security_credentials)
@@ -15,9 +15,9 @@ brew "bat" # much cooler looking cat
 brew "composer" # php dependency management
 # brew "coreutils" # used by k zsh plugin
 # brew "cmake" # used by youcompleteme
-# brew "ctags" # allows jumping to function/class definitions, etc. in vim
+# brew "ctags" # allows jumping to function/class definitions, etc. in vim (I use universal-ctags)
 brew "ctop" # like top for docker containers
-brew "curl" # http cli tool
+brew "curl" # http cli tool. Included with mac of course, but this gives me the updated version.
 # brew "desk" # shell workspace manager. I use direnv instead.
 brew "diff-so-fancy" # better git diff viewer (note: diff-highlight is in pip)
 brew "direnv" # allow .envrc in directories to be loaded at every prompt to add relative bins to PATH, etc. easy.
@@ -27,11 +27,11 @@ brew "direnv" # allow .envrc in directories to be loaded at every prompt to add 
 # brew "docker-machine" # virtualbox VM for your docker images
 # brew "docker-machine-nfs" # enables nfs mounts for docker-machine via `docker-machine-nfs default --mount-opts="async,noatime,actimeo=1,nolock,vers=3,udp" --force`
 # brew "dos"2unix # converts dos line endings to unix in a file
-tap "moncho/dry"
-brew "dry" # docker monitoring
+# tap "moncho/dry"
+# brew "dry" # docker monitoring (does not work with docker-machine. works with docker for mac.)
 # brew "dtrx" # do the right extraction - so you don't have to remember tar args
 brew "entr" # file watcher
-# brew "fasd" # Command-line productivity booster, offers quick access to files and directories, inspired by autojump, z and v.
+# brew "fasd" # Command-line productivity booster, offers quick access to files and directories, inspired by autojump, z and v. (I use wd)
 brew "fd" # prettier alternative to find that respects gitignore
 # brew "fpp" # facebook path picker. Used with tmux-fpp to easily open files in an editor.
 # brew "fzf" # fuzzy file finder
@@ -48,12 +48,12 @@ brew "gpg" # used by s3cmd and yadm to encrypt stuff
 # brew "heroku-toolbelt" # heroku deploy tools
 # brew "hg" # mercurial
 # brew "highlight" # colorizes html and other output on the command line. used by ranger.
-brew "hostess" # manage hosts file
+brew "hostess" # manage hosts file `hostess help`
 brew "htop" # prettier, more powerful version of top. gets the top running processes. (see my notes)
-brew "httpie" # a cool alternative to curl (http --help)
-brew "hub", args: ["--devel"] # github tool is a superset of git. 2.0 needs to be installed via --HEAD
+brew "httpie" # a cool alternative to curl (http --help) (NOTE: `man http` is something different :/ )
+brew "hub", args: ["--devel"] # github tool is a superset of git with extra commands. 2.0 needs to be installed via --HEAD
 # brew "icu4c" # needed for php70-intl extension (it seems this is included with node https://stackoverflow.com/questions/27896229/library-not-loaded-error-after-brew-install-php56)
-brew "ievms" # internet explorer VirtualBox VMs to test a site in various IE versions
+# brew "ievms" # internet explorer VirtualBox VMs to test a site in various IE versions
 brew "imagemagick@6" # image transformation tool - needed by php imagemagick extension (v6 needed for catalog)
 brew "intltool" # needed for php intl extension
 # brew "irssi" # irc client
@@ -64,41 +64,40 @@ brew "jq" # simple json pretty-printer `echo '{"my" => "json"}' | jq .`
 # brew "jrnl" # simple journaling wrapper
 # brew "keychain" # manage ssh agent and adding keys to it automatically. (I don't use this now that I have an ssh config directive to store passphrases for ssh agent in my osx keychain, which is different from this project's "keychain". Confusing, I know.)
 # brew "lftp" # fancy scp, torrent, http, ftp download and upload client with queues, backgrounding, and more
-brew "libcouchbase" # nosql fast data storage similar to mongo. Used at Saatchi. Includes cli tool cbc
-brew "libmemcached" # needed by php70
-brew "libmcrypt" # needed by php-build DO NOT DELETE php will break
+brew "libcouchbase" # nosql fast data storage. I install this for the cli tool `cbc`
+brew "libmemcached" # needed by php70 memcached pecl extension
+brew "libmcrypt" # needed by php-build, which is used by phpenv DO NOT DELETE php will break
 brew "libxml2" # needed by php70
 # brew "lynx" # console web browser. used by ranger to preview html.
 # brew "macvim" # mac gui vim client
 brew "mas" # mac app store cli. e.g. `mas install Xcode`
-brew "memcached" # needed by php70
+brew "memcached" # needed by php70 memcached pecl extension
 # brew "mono" # .NET compiler for mac. Useful for OmniSharp.
 brew "multitail" # tail multiple files in splits with pretty colors
-# brew "mycli"
-brew "mysql" # I haven't been using the server lately but I use it to connect and I use mysql_config_editor
+# brew "mycli" # I use the pip version - it's updated more frequently
+brew "mysql" # I haven't been using the server lately but I use the cli tool to connect and I use mysql_config_editor
 # brew "mysql-client" # If I ever need mysql client without mysql on local... downside: it doesn't link automatically - you have to brew link --force even if mysql isn't installed :/
 # brew "m-cli" # mac cli tools e.g. restart, screensaver, bluetooth, etc.
 # brew "nano" # text editor. This gets the latest version: 2.2.6 rather than 2.2.0 that comes with osx.
-brew "ncdu" # interactive du
-brew "neovim" # vim re-imagining
-brew "node" # nodejs and npm (required by joplin, yarn)
+# brew "ncdu" # interactive du
+brew "neovim" # vim re-imagined
+brew "node" # nodejs and npm (non-nodenv version required by joplin, yarn)
 brew "nodenv" # node version manager
 brew "noti" # simple terminal notifier
-# brew "openssl@1.1" # not sure if this is still needed...
 brew "pandoc" # used for inline vim php documentation
 # brew "pass" # unix password manager using gpg
-brew "perl-build" # needed for perlenv
-brew "percona-toolkit" # mysql schema migrator among other things. requires java
+# brew "perl-build" # needed for perlenv
+# brew "percona-toolkit" # mysql schema migrator among other things. requires java
 # brew "pgcli" # like mycli for postgres
-# php has been moved to homebrew-php. In the process, php70 was removed >:( I've switched to phpenv and pecl instead. I don't even know how extensions work in the new homebrew php.
+# php has been moved to homebrew-php. In the process, php70 was removed >:( I've switched to phpenv and pecl instead. I don't even know how extensions work in the new homebrew php. I now use phpenv instead.
 # brew "php@7.1", args: ["--with-pear"], link: true
 brew "pinentry" # gpg terminal pin entry
-# brew "pinentry-mac" # native gpg pin entry for yadm and others
+# brew "pinentry-mac" # native gpg pin entry for yadm and others. Opens a native window.
 brew "plantuml" # uml generation from text. requires java
-brew "plenv" # perl version manager. better than perlbrew. used to get percona-toolkit working.
-# brew "postgresql"
+# brew "plenv" # perl version manager. better than perlbrew and consistent with my other env managers (rbenv, phpenv, nodenv, pyenv). used to get percona-toolkit working.
+# brew "postgresql" # database similar to mysql
 # brew "pre-commit" # yelp git pre-commit framework (I manage this via pip)
-brew "prettyping" # ping with a cool sparkline graph of status
+# brew "prettyping" # ping with a cool sparkline graph of status
 brew "pspg", args: ["--HEAD"] # "postgres pager" also useful for mysql, etc.
 # brew "pv" # pipe something to pv to see progress of data through a pipeline
 brew "pyenv" # python version manager
@@ -129,37 +128,36 @@ brew "terminal-notifier" # used by tmux plugin marzocchi/zsh-notify
 brew "the_silver_searcher" # awesome fast grep replacement: ag
 brew "tig" # git? tig! (note: this requires asciidoc)
 # brew "timewarrior" # taskwarrior-like interface for tracking time
-brew "tldr" # more consise community man pages
+# brew "tldr" # more consise community man pages
 brew "tmux" # terminal multiplexer similar to screen.
-# brew "tofrodos" # line endings
+# brew "tofrodos" # line ending conversion
 # brew "trash" # a trash can for the terminal
+# brew "tree" # display file/folder hierarchies in a visual tree format (I alias tree to alder now)
 tap "universal-ctags/universal-ctags"
-brew "tree" # display file/folder hierarchies in a visual tree format
 brew "universal-ctags", args: ["--HEAD"] # tag creator for use by vim to navigate by symbols. head only.
 brew "unixodbc" # needed by php70
 # brew "virtualhost".sh # crappy virtualhost management script
 brew "watch" # contains some tools: free, kill, ps, uptime, etc.
-brew "watchman" # https://github.com/cm-pliser-tdd-by-example/tdd-by-example-js/issues/10
+brew "watchman" # needed for `jest --watch` https://github.com/cm-pliser-tdd-by-example/tdd-by-example-js/issues/10
 # brew "w3m" # full color image previewer for ranger but doesnt work in tmux
 brew "wget" # latest version
-brew "wifi-password" # get your current wifi password quickly without mucking about with keychain access.
-# brew "xdebug-osx" # xdebug toggler
-# brew "vim", args: ["--with-python@2"] # macvim requires xcode. This also allows you to get vim 8 without using a separate tap. I install with python 2 because vdebug 2.x is broken for me and 1.5.x does not work with python 3.
-# brew "vim" # macvim requires xcode. This also allows you to get vim 8 without using a separate tap. (vdebug 2.x now working with python 3!) (trying neovim again)
+# brew "wifi-password" # get your current wifi password quickly without mucking about with keychain access.
+# brew "xdebug-osx" # xdebug toggler for homebrew php (which I don't currently use)
+# brew "vim" # macvim requires xcode. This also allows you to get vim 8 without using a separate tap. (trying neovim again)
 # brew "vit" # ncurses taskwarrior interface - like tig for taskwarrior TODO: upgrade to 1.3 when it passes beta! I can't install it from source because it requires current perl version be from /usr/bin/perl, among other problems. https://www.mankier.com/5/vitrc
-brew "yarn" # wrapper for npm with real lock files and caching
+brew "yarn" # wrapper for npm with real lock files and caching (installing via npm is deprecated)
 brew "yadm" # yet another dotfiles manager
-brew "zlib" # needed for pyenv
-# brew "zplug" # zsh plugin manager like composer. bash installer crashes for some reason. works fine via homebrew. (switched to installer - see bootstrap)
+# brew "zlib" # needed for pyenv (but can be used from /usr/include after installing developer package)
+# brew "zplug" # zsh plugin manager like composer. bash installer crashes for some reason. works fine via homebrew. (switched to antibody)
 brew "zsh" # awesome bash shell replacement
-# brew "zsh-completions" # tab completions. I install this via zplug instead.
+# brew "zsh-completions" # tab completions. I install this via my zsh plugin manager instead.
 # }}}
 
 # cask {{{
 tap "caskroom/cask"
 # cask "dashlane" # password manager like lastpass
-cask "bitbar" # use any cli command to show stuff in the menubar with colors and icons and provide menu options
-# cask "beardedspice" # keyboard media controls for media sites (I now use streamkeys chrome extension) - goes together with bubo.app
+# cask "bitbar" # use any cli command to show stuff in the menubar with colors and icons and provide menu options
+# cask "beardedspice" # keyboard media controls for media sites. Always seems to be broken :/
 # cask "cheatsheet" # hold <cmd> for a bit to get a modal of available keyboard shortcuts (kind of annoying - rarely comes up when I actually want it to, too much info)
 cask "docker" # docker for mac desktop app
 # cask "dropbox" # I especially use this for synching my notes so I can view them in the joplin mobile app
@@ -204,7 +202,7 @@ cask "steam" # yep
 #
 # TODO these can't just be upgraded while virtualbox is running :/
 cask "virtualbox" # virtual machine software
-cask "virtualbox-extension-pack" # add-on to do stuff you'll always want
+# cask "virtualbox-extension-pack" # add-on to do stuff you'll always want... except for docker-machine
 #
 # cask "webpquicklook" # quicklook plugin
 cask "wireshark" # analyze network data
