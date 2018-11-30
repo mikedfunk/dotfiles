@@ -26,7 +26,9 @@ dir ~/.yadm
 1 run v -S
 0 run tmux rename-session Work
 0 run yadm st
-2 run wait-on http://www.local.saatchiart.com && dry --monitor
+# this only works if docker.sock is exposed in the filesystem. This doesn't happen with docker-machine :(
+# 2 run wait-on http://www.local.saatchiart.com && dry --monitor
+2 run wait-on http://www.local.saatchiart.com docker-stats
 
 ## Window added by tmuxomatic flex 2.17
 

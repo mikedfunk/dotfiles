@@ -369,6 +369,10 @@ function _docker_exec {
 }
 
 alias docker-restart="osascript -e 'quit app \"Docker\"' && open -a Docker"
+function docker-stats {
+    dme
+    docker stats --format "table $(tput setaf 2){{.Name}}\t$(tput setaf 3){{.CPUPerc}}\t$(tput setaf 4){{.MemPerc}}" | sed -E -e "s/(NAME.*)/$(tput smul)\1$(tput sgr0)/"
+}
 # }}}
 
 # phpunit {{{

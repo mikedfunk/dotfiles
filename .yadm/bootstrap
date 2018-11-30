@@ -68,6 +68,23 @@ cd -
 # TODO add .git/config/exclude for each codebase to yadm
 # }}}
 
+# install xcode command line tools {{{
+# needed for a variety of things including phpenv
+log_info "installing xcode command line tools"
+xcode-select --install || true
+# }}}
+
+# install necessary headers in /include on mojave {{{
+# needed for phpenv and pyenv
+# fyi the CommandLineTools directory doesn't even exist until you run `xcode-select --install`
+# https://github.com/pyenv/pyenv/issues/1219#issuecomment-428700763
+if [ -f "/Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg" ] && [  ! -f "$HOME/.mojave-lock" ]; then
+    log_info "installing additional tools needed for mojave"
+    sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
+    touch "$HOME/.mojave-lock"
+fi
+# }}}
+
 # install homebrew if it's missing {{{
 if ! command -v brew >/dev/null 2>&1; then
     log_info "Installing homebrew"
@@ -83,15 +100,6 @@ if [ -e "$HOME/.Brewfile" ]; then
     brew upgrade         # upgrade all homebrew packages
     brew cleanup         # remove outdated versions
     # brew bundle --global cleanup --force # remove brew packages not in ~/.Brewfile
-fi
-# }}}
-
-# install necessary headers in /include on mojave {{{
-# https://github.com/pyenv/pyenv/issues/1219#issuecomment-428700763
-if [ -f "/Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg" ] && [  ! -f "$HOME/.mojave-lock" ]; then
-    log_info "installing additional tools needed for mojave"
-    sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
-    touch "$HOME/.mojave-lock"
 fi
 # }}}
 
@@ -111,6 +119,10 @@ fi
 # instead but the php plugin is in very shoddy condition. You have to install
 # about 10 brew packages, set several env vars, and add to path before
 # building. And it doesn't handle php extensions.
+#
+# NOTE: On mojave this won't work without `xcode-select --install` and
+# installing the additional headers for libz, etc., which I do in the first few
+# steps of this file
 log_info "Installing/updating phpenv"
 curl -L http://git.io/phpenv-installer | bash
 # }}}
