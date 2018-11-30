@@ -186,9 +186,10 @@ nvim +PlugInstall +PlugUpdate +PlugClean! +qall
 # }}}
 
 # install node version {{{
-if [[ ! "$(nodenv version | grep 9.3.0)" ]]; then
-    log_info "Installing node 9.3.0"
-    nodenv install 9.3.0 && nodenv rehash && nodenv global 9.3.0
+NODE_VERSION="9.3.0"
+if [[ ! "$(nodenv version | grep $NODE_VERSION)" ]]; then
+    log_info "Installing node $NODE_VERSION"
+    nodenv install $NODE_VERSION && nodenv rehash && nodenv global $NODE_VERSION
 fi
 # }}}
 
@@ -220,27 +221,26 @@ fi
 # }}}
 
 # install ruby version {{{
-if [[ ! "$(rbenv versions | grep 2.2.2)" ]]; then
-    log_info "Installing ruby 2.2.2"
-    rbenv install 2.2.2 # for catalog
-fi
-if [[ ! "$(rbenv version | grep 2.5.1)" ]]; then
-    log_info "Installing ruby 2.5.1"
-    rbenv install 2.5.1 && rbenv global 2.5.1 && rbenv rehash
+RUBY_VERSION="2.2.2" # 2.2.2 needed for catalog
+if [[ ! "$(rbenv versions | grep $RUBY_VERSION)" ]]; then
+    log_info "Installing ruby $RUBY_VERSION"
+    rbenv install $RUBY_VERSION && rbenv global $RUBY_VERSION && rbenv rehash
 fi
 # }}}
 
 # install perl version {{{
-if [[ ! "$(plenv version | grep 5.27.8)" ]]; then
-    log_info "Installing perl 5.27.8"
-    plenv install 5.27.8 && plenv rehash && plenv global 5.27.8
+PERL_VERSION="5.27.8"
+if [[ ! "$(plenv version | grep $PERL_VERSION)" ]]; then
+    log_info "Installing perl $PERL_VERSION"
+    plenv install $PERL_VERSION && plenv rehash && plenv global $PERL_VERSION
 fi
 # }}}
 
 # install python3 version {{{
-if [[ ! "$(pyenv version | grep 3.7.1)" ]]; then
-    log_info "Installing python 3.7.1"
-    CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" pyenv install 3.7.1 && pyenv rehash && pyenv global 3.7.1
+PYTHON_VERSION="3.7.1"
+if [[ ! "$(pyenv version | grep $PYTHON_VERSION)" ]]; then
+    log_info "Installing python $PYTHON_VERSION"
+    CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" pyenv install $PYTHON_VERSION && pyenv rehash && pyenv global $PYTHON_VERSION
 fi
 # }}}
 
