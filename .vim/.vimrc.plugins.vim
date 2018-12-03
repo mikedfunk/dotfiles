@@ -54,7 +54,7 @@ Plug 'wellle/tmux-complete.vim' " add tmux as a completion source with user-defi
 
 " completion not working currently with this...
 " Plug 'prabirshrestha/asyncomplete.vim' | Plug 'prabirshrestha/asyncomplete-lsp.vim' | Plug 'prabirshrestha/async.vim' | Plug 'prabirshrestha/vim-lsp' " Async Language Server Protocol plugin for vim8 and neovim.
-" Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}} " language server completion
+" Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}} " language server completion - so far only useful for javascript (and rust and golang). php language server is total garbage right now. It's not portable as a phar, it must be installed with dev minimum stability (installing this globally is a problem without cgr), it's buggy: 153 open issues atm :/ .
 " }}}
 
 " General {{{
@@ -123,7 +123,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegu
 " unalias **<TAB>
 "
 " Plug 'junegunn/vim-slash' " after finding and moving cursor, turn off search highlights
-Plug 'tpope/vim-abolish' " search and replace for various naming types
+Plug 'tpope/vim-abolish' " search and replace for various naming types e.g. :S/someWord/someOtherWord/g
 Plug 'michaeljsmith/vim-indent-object' " select in indentation level e.g. vii
 " Plug 'kana/vim-textobj-user' | Plug 'glts/vim-textobj-comment' " change a multiline comment with cic
 " Plug 'kana/vim-textobj-entire' " select in entire document
@@ -231,7 +231,7 @@ endif
 Plug 'tpope/vim-jdaddy' "`gqaj` to pretty-print json, `gwaj` to merge the json object in the clipboard with the one under the cursor
 " Plug 'chemzqm/vim-jsx-improve' " better jsx formatting
 " Plug 'flowtype/vim-flow' " flowtype omnicompletion. If not using flow in a project, add this to project .vimrc: let g:flow#enable = 0
-Plug 'jez/vim-flow' " fork that adds --quiet. without --quite doesn't work still as of may 2018
+Plug 'jez/vim-flow' " fork that adds --quiet. without --quiet doesn't work still as of may 2018
 if has('python3')
     Plug 'ternjs/tern_for_vim', { 'do': '/usr/local/bin/npm install' }
 endif " javascript omnifunc and jump to def. requires a .tern-project or ~/.tern-config file. http://ternjs.net/doc/manual.html#configuration
