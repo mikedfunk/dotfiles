@@ -9,11 +9,11 @@ function log_notice() { echo -e "$(tput setaf 3)$(tput rev)$(tput bold) \xE2\x9A
 
 # clone repos {{{
 
-log_info "Cloning repos"
-mkdir -p "$HOME/Code"
-cd "$HOME/Code"
-[[ -d "$HOME/Code/mikedfunk.github.io" ]] || git clone git@github.com:mikedfunk/mikedfunk.github.io.git
-cd -
+# log_info "Cloning repos"
+# mkdir -p "$HOME/Code"
+# cd "$HOME/Code"
+# [[ -d "$HOME/Code/mikedfunk.github.io" ]] || git clone git@github.com:mikedfunk/mikedfunk.github.io.git
+# cd -
 
 # saatchi repos {{{
 # mkdir -p "$HOME/Code/saatchi"
@@ -69,7 +69,7 @@ cd -
 # }}}
 
 # install xcode command line tools {{{
-# needed for a variety of things including phpenv
+# needed for a variety of things including phpenv (zlib) and CommandLineTools below
 log_info "installing xcode command line tools"
 xcode-select --install || true
 # }}}

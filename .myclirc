@@ -66,7 +66,7 @@ wider_completion_menu = False
 # prompt = '\h [\d] > '
 # prompt = " \t \u@\h:\d  "
 # prompt = "\h [\d]  "
-prompt = "\h  "
+prompt = " \h  "
 # prompt = "\x1b[31m\h [\d]  "
 
 # Skip intro info on startup and outro info on exit
