@@ -39,7 +39,7 @@ let g:ale_fixers['javascript'] = ['prettier_eslint', 'eslint', 'importjs']
 " below and add another. remote is first, local is second.
 " NOTE: You can't change this after loading because of a bug currently.
 let g:vdebug_options['path_maps'] = {
-\   '/data/gallery/current': '/Users/mikefunk/Sites/saatchi/gallery'
+\   '/data/gallery/current': '/Users/mikefunk/Code/saatchi/gallery'
 \}
 let g:vdebug_options['port'] = 9010
 " }}}
