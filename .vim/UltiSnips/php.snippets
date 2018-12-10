@@ -284,7 +284,6 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 require_once __DIR__ . '/../../application/command_line_bootstrap.php';
-require_once __DIR__ . '/../ProcessAbstract.php';
 
 use Zend_Controller_Front as FrontController;
 
@@ -980,7 +979,7 @@ use PHPUnit_Framework_TestCase as TestCase;
  *
  * @group unit
  */
-class `!v expand("%:t:r")` extends TestCase
+final class `!v expand("%:t:r")` extends TestCase
 {
 
     /** @var \\`!p snip.rv = pathToNamespace(path)`\\${2:ActualClass} system under test */
@@ -1177,10 +1176,7 @@ endsnippet
 
 snippet cnst "constant with docblock"
 
-/**
- * @access protected
- * @var ${1:mixed}
- */
+/** @access ${1:protected} */
 const ${3:MY_CONST} = '$4';
 endsnippet
 
@@ -1939,8 +1935,12 @@ snippet lg "saatchi zend logger - log to file"
 \Zend_Registry::get('file_logger')->info("$1");
 endsnippet
 
-snippet zlg "Zed log to file. Isn't there an easier way?"
-(new \Zend_Log(new \Zend_Log_Writer_Stream('/scratch/yzed/data/US/logs/ZED/exception.log')))->info($1);
+# snippet zlg "Zed log to file. Isn't there an easier way?"
+# (new \Zend_Log(new \Zend_Log_Writer_Stream('/scratch/yzed/data/US/logs/ZED/exception.log')))->info($1);
+# endsnippet
+
+snippet zlg "Zed log to file"
+\PalShared_Log::log("$1", 'exception.log');
 endsnippet
 
 snippet dbg "Psysh debugger"

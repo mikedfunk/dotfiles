@@ -725,6 +725,11 @@ let g:gutentags_project_info = [{'type': 'php', 'file': 'composer.json'}]
 " if I left it in the default, gutentags would not tag any vendor files :/
 let g:gutentags_ctags_exclude_wildignore = 0
 
+" A List of file types that Gutentags should ignore. When a buffer is opened,
+" if its 'filetype' is found in this list, Gutentags features won't be
+" available for this buffer. (used to disable ctags on save)
+let g:gutentags_exclude_filetypes = ['gitcommit']
+
 " Some debugging/troubleshooting commands are also available if the
 " |gutentags_define_advanced_commands| global setting is set to 1.
 let g:gutentags_define_advanced_commands = 1

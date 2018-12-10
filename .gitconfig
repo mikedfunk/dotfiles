@@ -97,7 +97,8 @@
     fhc = flow hotfix checkout
     fhd = flow hotfix diff
     # fhf = flow hotfix finish
-    fhf = "!f() { git checkout develop && git pull && git checkout - && git checkout master && git pull && git flow hotfix finish $1 && git push && git checkout master && git push && git push --tags && git checkout develop && ( git push origin --delete hotfix/$1  || true ); }; f"
+    # fhf = "!f() { git checkout develop && git pull && git checkout - && git checkout master && git pull && git flow hotfix finish $1 && git push && git checkout master && git push && git push --tags && git checkout develop && ( git push origin --delete hotfix/$1  || true ); }; f"
+    fhf = "!f() { git checkout develop && git pull && git checkout - && git checkout master && git pull && git flow hotfix finish $1 && git push && git checkout master && git push && git push --tags && git checkout develop; }; f"
     fhl = flow hotfix list
     fhp = flow hotfix publish
     fhpl = flow hotfix pull
@@ -267,13 +268,13 @@
 # diff and mergetool {{{
 [diff]
     # tool = opendiff
-    tool = vimdiff
+    # tool = vimdiff
     compactionHeuristic = 1
-    # tool = "nvim"
+    tool = "nvim -d"
 [merge]
     # tool = opendiff
-    tool = vimdiff
-    # tool = "nvim -d"
+    # tool = vimdiff
+    tool = "nvim -d"
 
     # shows local, parent, then remote
     # http://psung.blogspot.com/2011/02/reducing-merge-headaches-git-meets.html

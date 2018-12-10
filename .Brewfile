@@ -105,7 +105,7 @@ brew "pyenv" # python version manager
 # brew "python3" # required for tmuxomatic
 # brew "ranger" # vim-like file system browser
 brew "rbenv" # ruby environment switcher
-brew "reattach-to-user-namespace" # used to fix mac issues with copy/paste in tmux
+# brew "reattach-to-user-namespace" # used to fix mac issues with copy/paste in tmux (not needed after tmux 2.6! https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard/issues/66)
 # brew "redis" # key/value store used by a project I am working on
 # brew "ruby"
 # brew "ruby-build" # an rbenv plugin that provides an rbenv install command to compile and install different versions of ruby

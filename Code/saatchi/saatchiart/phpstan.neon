@@ -63,6 +63,7 @@ parameters:
     # - library/Catalog/Base.php
     - library/Catalog/ContentDeliveryUrl.php
     - library/Catalog/ImageUrl.php
+    - library/Catalog/ImageUrlGenerator.php
     # - library/Catalog/Offer.php
     # - library/Catalog/ServiceProvider.php
     # - library/Catalog/Version1ApiClient.php

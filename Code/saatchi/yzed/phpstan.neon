@@ -16,3 +16,4 @@ parameters:
     - lib/src
     - lib/tests/Pac
     - project/Zed/application/components
+    - project/Zed/src

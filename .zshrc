@@ -95,19 +95,19 @@ fi
 [ -f /usr/local/etc/grc.zsh ] && source "/usr/local/etc/grc.zsh" # generic colorizer
 # https://github.com/google/google-api-ruby-client/issues/235#issuecomment-169956795
 [ -f /usr/local/etc/openssl/cert.pem ] && export SSL_CERT_FILE=/usr/local/etc/openssl/cert.pem
-[ -d "$HOME/.zsh/completion" ] && find "$HOME/.zsh/completion" | while read f; do source "$f"; done
+# [ -d "$HOME/.zsh/completion" ] && find "$HOME/.zsh/completion" | while read f; do source "$f"; done
 # [[ "$(builtin type -p plenv)" ]] && eval "$(plenv init -)"
 [[ "$(builtin type -p nodenv)" ]] && eval "$(nodenv init -)"
 PYENV_VERSION="$(cat $HOME/.pyenv/version)"
 [[ "$(builtin type -p pyenv)" ]] && eval "$(pyenv init -)"
 [[ -f "$HOME/.phpenv/bin/phpenv" ]] && eval "$($HOME/.phpenv/bin/phpenv init -)"
 [[ "$(builtin type -p rbenv)" ]] && eval "$(rbenv init -)"
-[[ "$(builtin type -p akamai)" ]] && eval "$(akamai --zsh)" # compinit: function definition file not found
+# [[ "$(builtin type -p akamai)" ]] && eval "$(akamai --zsh)" # compinit: function definition file not found
 # [ -f "/usr/local/opt/asdf/asdf.sh" ] && source "/usr/local/opt/asdf/asdf.sh"
 # [ -n "$DESK_ENV" ] && source "$DESK_ENV" || true # Hook for desk activation
 # tabtab source for yo package
 # uninstall by removing these lines or running `tabtab uninstall yo`
-[[ -f /Users/mikefunk/.config/yarn/global/node_modules/tabtab/.completions/yo.zsh ]] && . /Users/mikefunk/.config/yarn/global/node_modules/tabtab/.completions/yo.zsh
+# [[ -f /Users/mikefunk/.config/yarn/global/node_modules/tabtab/.completions/yo.zsh ]] && . /Users/mikefunk/.config/yarn/global/node_modules/tabtab/.completions/yo.zsh
 export LC_CTYPE=en_US.UTF-8 # https://unix.stackexchange.com/a/302418/287898
 export LC_ALL=en_US.UTF-8 # https://unix.stackexchange.com/a/302418/287898
 # https://github.com/variadico/noti/blob/master/docs/noti.md#environment
@@ -267,9 +267,9 @@ alias pipu="pip-review --local --auto"
 
 # taskwarrior {{{
 # note: this conflicts with tig
-alias t="task"
-alias tl="task list"
-alias ta="task add"
+# alias t="task"
+# alias tl="task list"
+# alias ta="task add"
 # }}}
 
 # vim {{{
@@ -408,21 +408,23 @@ function pux() {
 # }}}
 
 # wd {{{
+# load from ruby bin
 wd() {
   . /Users/mikefunk/bin/wd/wd.sh
 }
 # }}}
 
 # sourcegraph {{{
+# only works with docker-for-mac, not docker-machine :/
 # https://about.sourcegraph.com/docs/
-alias sourcegraph="dme && docker run -d --publish 7080:7080 --rm --volume ~/.sourcegraph/config:/etc/sourcegraph --volume ~/.sourcegraph/data:/var/opt/sourcegraph --volume /var/run/docker.sock:/var/run/docker.sock sourcegraph/server:2.13.5"
+# alias sourcegraph="dme && docker run -d --publish 7080:7080 --rm --volume ~/.sourcegraph/config:/etc/sourcegraph --volume ~/.sourcegraph/data:/var/opt/sourcegraph --volume /var/run/docker.sock:/var/run/docker.sock sourcegraph/server:2.13.5"
 # }}}
 
 # }}}
 
 # source more files {{{
 [ -e ~/.saatchirc.sh ] && source ~/.saatchirc.sh
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # fuzzy finder - installed and managed via vim-plug https://github.com/junegunn/fzf
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # fuzzy finder - installed and managed via vim-plug https://github.com/junegunn/fzf
 # }}}
 
 # zsh options {{{
