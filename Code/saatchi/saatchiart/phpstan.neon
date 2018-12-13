@@ -18,9 +18,12 @@ parameters:
     - application/models
     - application/modules/account/models
     - application/modules/art/models
+    - application/modules/art/controllers
+    - application/modules/art/views/helpers
     - application/modules/shows/models
     - application/modules/curation/models
 
+    - application/controllers
     - application/modules/curation/controllers
     # - application/modules/art-advisory/models <-- there is no models
     - application/modules/art-advisory/controllers

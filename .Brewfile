@@ -25,7 +25,7 @@ brew "direnv" # allow .envrc in directories to be loaded at every prompt to add 
 # brew "docker" # virtualization software (I use docker for mac now - see docker cask)
 # brew "docker-compose" # manage multiple docker images and how they interact
 # brew "docker-machine" # virtualbox VM for your docker images
-# brew "docker-machine-nfs" # enables nfs mounts for docker-machine via `docker-machine-nfs default --mount-opts="async,noatime,actimeo=1,nolock,vers=3,udp" --force`
+brew "docker-machine-nfs" # enables nfs mounts for docker-machine via `docker-machine-nfs default --mount-opts="async,noatime,actimeo=1,nolock,vers=3,udp" --force`
 # brew "dos"2unix # converts dos line endings to unix in a file
 # tap "moncho/dry"
 # brew "dry" # docker monitoring (does not work with docker-machine. works with docker for mac.)
