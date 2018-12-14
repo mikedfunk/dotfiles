@@ -28,7 +28,7 @@ dir ~/.yadm
 0 run yadm st
 # this only works if docker.sock is exposed in the filesystem. This doesn't happen with docker-machine :(
 # 2 run wait-on http://www.local.saatchiart.com && dry --monitor
-2 run wait-on http://www.local.saatchiart.com docker-stats
+2 run wait-on http://www.local.saatchiart.com && docker-stats
 
 ## Window added by tmuxomatic flex 2.17
 

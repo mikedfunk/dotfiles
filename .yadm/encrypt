@@ -3,6 +3,7 @@ Library/Application Support/Sequel Pro/Data/Favorites.plist
 .config/joplin/database.sqlite
 .ssh/keys
 .ssh/config
+.ansible-hosts.ini
 .saatchirc.sh
 Code/saatchi/queries
 Code/saatchi/http
