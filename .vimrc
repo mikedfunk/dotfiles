@@ -147,7 +147,9 @@ inoremap <C-U> <C-G>u<C-U>
 " use bram's defaults https://github.com/vim/vim/blob/master/runtime/defaults.vim
 " unlet! skip_defaults_vim
 " if filereadable($VIMRUNTIME . "/defaults.vim") | source $VIMRUNTIME/defaults.vim | endif
-" runtime macros/matchit.vim " jump to matching html tag (switched to vim-matchup)
+if !isdirectory(expand('~/.vim/plugged/vim-matchup'))
+    runtime macros/matchit.vim " jump to matching html tag (switched to vim-matchup)
+endif
 " set t_ut=
 let g:mapleader = ',' " use comma for leader
 " since , replaces leader, use \ to go back in a [f]ind
@@ -155,9 +157,10 @@ noremap \ ,
 " set autoread " update files changed outside of vim. This works well with `set noswapfile`(in sensible.vim)
 set exrc " enables reading .exrc or .vimrc from current directory
 set secure " Always append set secure when exrc option is enabled!
+" completeopt default: 'menu,preview' :h completeopt
 set completeopt-=preview " turn off omnicomplete preview window
 set completeopt+=longest " only autofill the common text between all completion options
-set completeopt-=menu | set completeopt+=menuone " display completion even if there is one result. Useful for echodoc.
+" set completeopt-=menu | set completeopt+=menuone " display completion even if there is one result. Useful for echodoc.
 set fileformat=unix " Any non-unix line endings are converted to unix
 set nojoinspaces " Prevents inserting two spaces after punctuation on a join (J)
 set splitright " Puts new vsplit windows to the right of the current
@@ -506,23 +509,17 @@ nnoremap gh gT
 nnoremap gl gt
 
 " for all tag jumps, show the menu when there are more than one result! if
-" only one result, jump away.
+" only one result, jump away. :h tjump. I don't see why I would want to do it
+" any other way!! The default sucks - it sometimes takes me to the wrong match
+" because it's the first match.
 nnoremap <c-]> :exec("tjump ".expand("<cword>"))<cr>
 " open tag in tab
 nnoremap <silent><leader><c-]> <c-w><c-]><c-w>T
-" open tag list in tab
-" nnoremap <silent><leader>g<c-]> mz:tabe %<cr>`z:exec("tselect ".expand("<cword>"))<cr>
-" nnoremap <silent><leader>g] mz:tabe %<cr>`z:exec("tselect ".expand("<cword>"))<cr>
-" nnoremap <silent><leader>g\ mz:tabe %<cr>`z:exec("tselect ".expand("<cword>"))<cr>
 " open tag in vertical split
 nnoremap <c-w><c-]> :exec("stjump ".expand("<cword>"))<CR>
 nnoremap <c-w><c-\> :vsp<CR>:exec("tjump ".expand("<cword>"))<CR>
-" open tag list in vsplit
-" nnoremap <c-w>g<c-\> :vsp<CR>:exec("tselect ".expand("<cword>"))<CR>
-" nnoremap <c-w>g\ :vsp<CR>:exec("tselect ".expand("<cword>"))<CR>
-" open tag list in hsplit
-" <c-w>g<c-]>
-" nnoremap <c-w>vf :vertical wincmd f<cr>
+" open tag in preview window (<c-w><c-z> to close)
+nnoremap <c-w>} :exec("ptjump ".expand("<cword>"))<CR>
 command! -nargs=1 Vtselect vsp | exec 'tselect ' . <f-args> " like stselect but for vertical split e.g. :Vtselect /MyPartialTag
 
 " stupid f1 help
