@@ -294,7 +294,8 @@ window uml
 
 dir ~/Code/uml
 1 run v -S
-2 run g st
+# 2 run g st
+2 run ts
 3 run ./watch.sh
 
 # window catalog
