@@ -505,20 +505,24 @@ map zh zH
 nnoremap gh gT
 nnoremap gl gt
 
+" for all tag jumps, show the menu when there are more than one result! if
+" only one result, jump away.
+nnoremap <c-]> :exec("tjump ".expand("<cword>"))<cr>
 " open tag in tab
 nnoremap <silent><leader><c-]> <c-w><c-]><c-w>T
 " open tag list in tab
-nnoremap <silent><leader>g<c-]> mz:tabe %<cr>`z:exec("tselect ".expand("<cword>"))<cr>
-nnoremap <silent><leader>g] mz:tabe %<cr>`z:exec("tselect ".expand("<cword>"))<cr>
-nnoremap <silent><leader>g\ mz:tabe %<cr>`z:exec("tselect ".expand("<cword>"))<cr>
+" nnoremap <silent><leader>g<c-]> mz:tabe %<cr>`z:exec("tselect ".expand("<cword>"))<cr>
+" nnoremap <silent><leader>g] mz:tabe %<cr>`z:exec("tselect ".expand("<cword>"))<cr>
+" nnoremap <silent><leader>g\ mz:tabe %<cr>`z:exec("tselect ".expand("<cword>"))<cr>
 " open tag in vertical split
-nnoremap <c-w><c-\> :vsp<CR>:exec("tag ".expand("<cword>"))<CR>
+nnoremap <c-w><c-]> :exec("stjump ".expand("<cword>"))<CR>
+nnoremap <c-w><c-\> :vsp<CR>:exec("tjump ".expand("<cword>"))<CR>
 " open tag list in vsplit
-nnoremap <c-w>g<c-\> :vsp<CR>:exec("tselect ".expand("<cword>"))<CR>
-nnoremap <c-w>g\ :vsp<CR>:exec("tselect ".expand("<cword>"))<CR>
+" nnoremap <c-w>g<c-\> :vsp<CR>:exec("tselect ".expand("<cword>"))<CR>
+" nnoremap <c-w>g\ :vsp<CR>:exec("tselect ".expand("<cword>"))<CR>
 " open tag list in hsplit
 " <c-w>g<c-]>
-nnoremap <c-w>vf :vertical wincmd f<cr>
+" nnoremap <c-w>vf :vertical wincmd f<cr>
 command! -nargs=1 Vtselect vsp | exec 'tselect ' . <f-args> " like stselect but for vertical split e.g. :Vtselect /MyPartialTag
 
 " stupid f1 help
