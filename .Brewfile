@@ -109,6 +109,7 @@ brew "rbenv" # ruby environment switcher
 # brew "redis" # key/value store used by a project I am working on
 # brew "ruby"
 # brew "ruby-build" # an rbenv plugin that provides an rbenv install command to compile and install different versions of ruby
+brew "rust" # used for "vivid" LS_COLORS package
 # brew "rvm" # ruby version manager. I use rbenv instead.
 # brew "s3cmd" # amazon s3 uploader. I use awscli instead.
 # brew "selenium-server-standalone" # controls a browser for automated testing

@@ -35,6 +35,8 @@ path=(
   /usr/local/{bin,sbin}
   # golang packages
   $HOME/go/bin
+  # rust cargo packages
+  $HOME/.cargo/bin
   # golang executables
   /usr/local/opt/go/libexec/bin
   $HOME/.{php,pl,nod,py}env/bin
@@ -112,6 +114,7 @@ export LC_CTYPE=en_US.UTF-8 # https://unix.stackexchange.com/a/302418/287898
 export LC_ALL=en_US.UTF-8 # https://unix.stackexchange.com/a/302418/287898
 # https://github.com/variadico/noti/blob/master/docs/noti.md#environment
 export NOTI_NSUSER_SOUNDNAME="Hero"
+[[ "$(builtin type -p vivid)" ]] && export LS_COLORS="$(vivid generate molokai)" # https://github.com/sharkdp/vivid
 # }}}
 
 # ssh {{{
@@ -176,7 +179,7 @@ export CLICOLOR=1 # ls colors by default
 # pretty-print PATH with line breaks
 function pretty-path () { tr : '\n' <<<"$PATH"; }
 alias vit="vim +TW" # until vit gets its act together
-alias tree="alder" # colorized tree from npm
+# alias tree="alder" # colorized tree from npm
 # }}}
 
 # suffix aliases {{{

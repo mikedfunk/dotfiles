@@ -43,6 +43,7 @@
     "import-js": "^2.9.0",
     "jest": "^22.0.6",
     "jsctags": "^5.2.0",
+    "jsonlint": "^1.6.3",
     "mocha": "^4.0.1",
     "nightmare": "^2.10.0",
     "nightmare-upload": "^0.1.1",
