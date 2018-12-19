@@ -161,6 +161,7 @@ tap "caskroom/cask"
 # cask "cheatsheet" # hold <cmd> for a bit to get a modal of available keyboard shortcuts (kind of annoying - rarely comes up when I actually want it to, too much info)
 cask "docker" # docker for mac desktop app
 # cask "dropbox" # I especially use this for synching my notes so I can view them in the joplin mobile app
+brew "epic-games" # game store
 cask "firefox"
 tap "caskroom/fonts"
 # cask "font-fira-code"
