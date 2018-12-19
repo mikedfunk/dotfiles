@@ -18,3 +18,4 @@ My Bash, Vim, Git, and other dotfiles. Managed by [yadm](https://thelocehiliosan
 * [Vimrc](.vimrc)
 * [Zshrc](.zshrc)
 * [Gitconfig](.gitconfig)
+* [Tmux config](.tmux.conf)
