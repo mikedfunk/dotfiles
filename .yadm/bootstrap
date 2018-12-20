@@ -311,6 +311,8 @@ else
 fi
 # }}}
 
+# TODO avoid rust and cargo, install vivid via homebrew once they add it on homebrew https://github.com/sharkdp/vivid
+
 # antibody {{{
 log_info "Updating antibody plugins"
 # source <(antibody init)
