@@ -34,12 +34,11 @@ if executable('ctags')
     " Plug 'vim-php/tagbar-phpctags.vim', { 'do': 'make' } " Better php support for tagbar. Without this tagbar will show nothing if you use a trait. However, the php parser used is not updated for php 7, so it will fail on null coalesce! The first problem is now fixed in majutsushi/tagbar.
 endif
 " use these shortcuts for completion! https://github.com/mikedfunk/learning/blob/master/vim/completion.md
-" Plug 'ajh17/VimCompletesMe' " simple tab omni completion
+Plug 'ajh17/VimCompletesMe' " simple tab omni completion
 " Plug 'maralla/completor.vim', { 'do': 'make js' } " vim 8 async autocomplete
 " if has("python") || has("python3") | Plug 'Valloric/YouCompleteMe', { 'do': './install.py' } | endif " huge autocomplete plugin
 " Plug 'maxboisvert/vim-simple-complete' " simple autocomplete in 50 lines
 " Plug 'lifepillar/vim-mucomplete' " yet another completion plugin
-" Plug 'roxma/nvim-completion-manager' | Plug 'roxma/vim-hug-neovim-rpc' " completion plugin recommended on reddit https://www.reddit.com/r/vim/comments/6zgi34/what_are_the_differences_between_vimcompletesme/?utm_content=title&utm_medium=front&utm_source=reddit&utm_name=vim
 " Plug 'Shougo/deoplete.nvim' | Plug 'roxma/nvim-yarp' | Plug 'roxma/vim-hug-neovim-rpc' " Autocomplete as you type, which is cool, but it's difficult to integrate with other completion tools. I also can't get echodoc to work with it.
 
 Plug 'Shougo/echodoc.vim' " Displays function signatures from completions in the command line. Really helpful for omnicompletion!
@@ -55,6 +54,8 @@ Plug 'wellle/tmux-complete.vim' " add tmux as a completion source with user-defi
 " completion not working currently with this...
 " Plug 'prabirshrestha/asyncomplete.vim' | Plug 'prabirshrestha/asyncomplete-lsp.vim' | Plug 'prabirshrestha/async.vim' | Plug 'prabirshrestha/vim-lsp' " Async Language Server Protocol plugin for vim8 and neovim.
 " Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}} " language server completion - so far only useful for javascript (and rust and golang). php language server is total garbage right now. It's not portable as a phar, it must be installed with dev minimum stability (installing this globally is a problem without cgr), it's buggy: 153 open issues atm :/ .
+" Plug 'roxma/nvim-completion-manager' | Plug 'roxma/vim-hug-neovim-rpc' " completion plugin recommended on reddit https://www.reddit.com/r/vim/comments/6zgi34/what_are_the_differences_between_vimcompletesme/?utm_content=title&utm_medium=front&utm_source=reddit&utm_name=vim
+" Plug 'ncm2/ncm2' | Plug 'roxma/nvim-yarp' " formerly known as nvim-completion-manager (requires language server or phpactor connector)
 " }}}
 
 " General {{{
