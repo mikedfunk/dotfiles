@@ -392,6 +392,9 @@ augroup qfmaps
 augroup END
 
 " web-based documentation with shift-K
+" https://www.reddit.com/r/vim/comments/3oo1e0/has_anyone_found_a_way_to_make_k_useful/
+" NOTE: keywordprg is not invoked silently, so you will get 'press enter to
+" continue'
 if executable('devdocs')
     augroup filetypesgroup
         autocmd!
@@ -399,6 +402,9 @@ if executable('devdocs')
         autocmd FileType html set keywordprg=devdocs\ html
         autocmd FileType ruby set keywordprg=devdocs\ ruby
         autocmd FileType css set keywordprg=devdocs\ css
+        autocmd FileType zsh set keywordprg=devdocs\ bash
+        autocmd FileType bash set keywordprg=devdocs\ bash
+        autocmd FileType sh set keywordprg=devdocs\ bash
     augroup END
 endif
 

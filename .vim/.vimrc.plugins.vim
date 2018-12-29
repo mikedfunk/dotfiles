@@ -34,7 +34,7 @@ if executable('ctags')
     " Plug 'vim-php/tagbar-phpctags.vim', { 'do': 'make' } " Better php support for tagbar. Without this tagbar will show nothing if you use a trait. However, the php parser used is not updated for php 7, so it will fail on null coalesce! The first problem is now fixed in majutsushi/tagbar.
 endif
 " use these shortcuts for completion! https://github.com/mikedfunk/learning/blob/master/vim/completion.md
-Plug 'ajh17/VimCompletesMe' " simple tab omni completion
+" Plug 'ajh17/VimCompletesMe' " simple tab omni completion
 " Plug 'maralla/completor.vim', { 'do': 'make js' } " vim 8 async autocomplete
 " if has("python") || has("python3") | Plug 'Valloric/YouCompleteMe', { 'do': './install.py' } | endif " huge autocomplete plugin
 " Plug 'maxboisvert/vim-simple-complete' " simple autocomplete in 50 lines
