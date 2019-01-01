@@ -241,6 +241,8 @@ alias git-standup="$HOME/.config/yarn/global/node_modules/.bin/git-standup" # us
 # Experimenting with using taskwarrior for this instead
 # alias t="tig"
 alias ts="tig status"
+alias td="tig develop.."
+alias tm="tig master.."
 # }}}
 
 # yarn {{{
