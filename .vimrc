@@ -1,5 +1,15 @@
 " vim: set foldmethod=marker ft=vim:
-" my vim config
+"
+" my vim config. I currently divide this into 3 files:
+"
+" * ~/.vimrc - this file, which sets general vim|neovim settings. I bring this
+" with me wish sshrc to have my basic vim settings with no plugins.
+"
+" * ~/.vim/.vimrc.plugins.vim - plugins I use, registered with vim-plug
+"
+" * ~/.vim/.vimrc.pluginconfig.vim - configuration for plugins only. This is
+" kept separate because I usually adjust config and handle installed plugins
+" separately. I don't want either to clutter up the other.
 
 " Use plugins config {{{
 runtime .vimrc.plugins.vim
