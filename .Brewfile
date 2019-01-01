@@ -87,9 +87,9 @@ brew "noti" # simple terminal notifier
 brew "pandoc" # used for inline vim php documentation
 # brew "pass" # unix password manager using gpg
 # brew "perl-build" # needed for perlenv
-# brew "percona-toolkit" # mysql schema migrator among other things. requires java
+# brew "percona-toolkit" # mysql schema migrator among other things. requires java and perl.
 # brew "pgcli" # like mycli for postgres
-# php has been moved to homebrew-php. In the process, php70 was removed >:( I've switched to phpenv and pecl instead. I don't even know how extensions work in the new homebrew php. I now use phpenv instead.
+# php has been moved to homebrew-php. In the process, php70 was removed >:( I've switched to phpenv and pecl instead. I don't even know how extensions work in the new homebrew php.
 # brew "php@7.1", args: ["--with-pear"], link: true
 brew "pinentry" # gpg terminal pin entry
 # brew "pinentry-mac" # native gpg pin entry for yadm and others. Opens a native window.
@@ -106,12 +106,12 @@ brew "pyenv" # python version manager
 # brew "ranger" # vim-like file system browser
 brew "rbenv" # ruby environment switcher
 # brew "reattach-to-user-namespace" # used to fix mac issues with copy/paste in tmux (not needed after tmux 2.6! https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard/issues/66)
-# brew "redis" # key/value store used by a project I am working on
+# brew "redis" # key/value store
 # brew "ruby"
 # brew "ruby-build" # an rbenv plugin that provides an rbenv install command to compile and install different versions of ruby
 brew "rust" # used for "vivid" LS_COLORS package
-# brew "rvm" # ruby version manager. I use rbenv instead.
-# brew "s3cmd" # amazon s3 uploader. I use awscli instead.
+# brew "rvm" # ruby version manager (I use rbenv instead)
+# brew "s3cmd" # amazon s3 uploader (I use awscli instead)
 # brew "selenium-server-standalone" # controls a browser for automated testing
 brew "shellcheck" # Checks shell syntax (used by vim ALE)
 brew "shfmt" # formats shell scripts (used by vim ALE)
@@ -156,12 +156,12 @@ brew "zsh" # awesome bash shell replacement
 
 # cask {{{
 tap "caskroom/cask"
-# cask "dashlane" # password manager like lastpass
+# cask "dashlane" # password manager like lastpass (I use lastpass)
 # cask "bitbar" # use any cli command to show stuff in the menubar with colors and icons and provide menu options
 # cask "beardedspice" # keyboard media controls for media sites. Always seems to be broken :/
 # cask "cheatsheet" # hold <cmd> for a bit to get a modal of available keyboard shortcuts (kind of annoying - rarely comes up when I actually want it to, too much info)
 cask "docker" # docker for mac desktop app
-# cask "dropbox" # I especially use this for synching my notes so I can view them in the joplin mobile app
+# cask "dropbox" # I especially use this for synching my notes so I can view them in the joplin mobile app (not using this feature right now)
 brew "epic-games" # game store
 cask "firefox"
 tap "caskroom/fonts"
@@ -171,17 +171,17 @@ cask "font-iosevka"
 # cask "gog-galaxy" # good old games
 cask "google-chrome"
 # cask "google-drive"
-# cask "iterm2"
+# cask "iterm2" (I use "kitty" now)
 cask "java" # required for plantuml, etc.
-# cask "joplin" # desktop joplin
+# cask "joplin" # desktop joplin (I use the terminal interface)
 cask "jumpcut" # clipboard manager recommended by Michael Zick (slightly annoying interface but I haven't found any better on brew) ctrl-opt-v (forward) or ctrl-opt-shift-v (backward)
-# cask "kitematic" # docker container browser
+# cask "kitematic" # mac native docker container browser (I just use docker cli tools)
 cask "kitty" # fast terminal emulator
-# cask "launchcontrol" # launchctl gui. I use lunchy gem instead.
+# cask "launchcontrol" # launchctl gui. (I use lunchy gem instead)
 # cask "macfusion" # other half of tool to mount ssh directories in the finder
 # cask "macgdbp" # xdebug gui client (I use vdebug)
 cask "multifirefox" # profile picker until firefox fixes this glaring omission
-# cask "noti" # mac native pushbullet notifications
+# cask "noti" # mac native pushbullet notifications (I use the chrome extension)
 cask "ngrok" # securely expose your local site to the internet and inspect and repeat traffic
 # cask "osxfuse" # half of tool to mount ssh directories in the finder (useful if working on a shared dev environment)
 cask "openemu" # multi game system emulator
@@ -196,8 +196,8 @@ cask "quicklook-csv" # quicklook plugin
 # cask "qlimagesize" # quicklook plugin
 cask "sequel-pro" # mysql gui client
 cask "spectacle" # keyboard window splitter/resizer/mover
-# cask "spotify" # their web app has been broken for a bit https://community.spotify.com/t5/Other-Partners-Web-Player-etc/Web-Player-Not-Working/td-p/1070938
-# cask "ssh-tunnel-manager" # gui to manage running ssh tunnels
+# cask "spotify" # mac native spotify player (I use the web app)
+# cask "ssh-tunnel-manager" # mac native gui to manage running ssh tunnels
 cask "steam" # yep
 # cask "suspicious-package" # quicklook plugin
 # cask "vagrant" # development VM maker/manager (I use docker now)
@@ -207,7 +207,7 @@ cask "virtualbox" # virtual machine software
 # cask "virtualbox-extension-pack" # add-on to do stuff you'll always want... except for docker-machine
 #
 # cask "webpquicklook" # quicklook plugin
-cask "wireshark" # analyze network data
+# cask "wireshark" # analyze network data
 # cask "xquartz" # needed to install xclip, which is needed to copy text from multitail (I installed all of that, copy still didn't work :/ )
 # }}}
 

@@ -92,19 +92,19 @@ fi
 # source additional files and env vars {{{
 [ -f ~/.private_vars.sh ] && source ~/.private_vars.sh # where I store my secret env vars
 [ -f ~/.support/promptline.theme.bash ] && source ~/.support/promptline.theme.bash # vim plugin generates this tmux status line file
-[[ "$(builtin type -p direnv)" ]] && eval "$(direnv hook zsh)" # allow .envrc on each prompt start
+command -v direnv >/dev/null 2>&1 && eval "$(direnv hook zsh)" # allow .envrc on each prompt start
 # [ -f /usr/local/etc/grc.bashrc ] && source "/usr/local/etc/grc.bashrc" # generic colorizer
 [ -f /usr/local/etc/grc.zsh ] && source "/usr/local/etc/grc.zsh" # generic colorizer
 # https://github.com/google/google-api-ruby-client/issues/235#issuecomment-169956795
 [ -f /usr/local/etc/openssl/cert.pem ] && export SSL_CERT_FILE=/usr/local/etc/openssl/cert.pem
 # [ -d "$HOME/.zsh/completion" ] && find "$HOME/.zsh/completion" | while read f; do source "$f"; done
-# [[ "$(builtin type -p plenv)" ]] && eval "$(plenv init -)"
-[[ "$(builtin type -p nodenv)" ]] && eval "$(nodenv init -)"
+# command -v plenv >/dev/null 2>&1 && eval "$(plenv init -)"
+command -v nodenv >/dev/null 2>&1 && eval "$(nodenv init -)"
 PYENV_VERSION="$(cat $HOME/.pyenv/version)"
-[[ "$(builtin type -p pyenv)" ]] && eval "$(pyenv init -)"
+command -v pyenv >/dev/null 2>&1 && eval "$(pyenv init -)"
 [[ -f "$HOME/.phpenv/bin/phpenv" ]] && eval "$($HOME/.phpenv/bin/phpenv init -)"
-[[ "$(builtin type -p rbenv)" ]] && eval "$(rbenv init -)"
-# [[ "$(builtin type -p akamai)" ]] && eval "$(akamai --zsh)" # compinit: function definition file not found
+command -v rbenv >/dev/null 2>&1 && eval "$(rbenv init -)"
+# command -v akamai >/dev/null 2>&1 && eval "$(akamai --zsh)" # compinit: function definition file not found
 # [ -f "/usr/local/opt/asdf/asdf.sh" ] && source "/usr/local/opt/asdf/asdf.sh"
 # [ -n "$DESK_ENV" ] && source "$DESK_ENV" || true # Hook for desk activation
 # tabtab source for yo package
@@ -114,7 +114,7 @@ export LC_CTYPE=en_US.UTF-8 # https://unix.stackexchange.com/a/302418/287898
 export LC_ALL=en_US.UTF-8 # https://unix.stackexchange.com/a/302418/287898
 # https://github.com/variadico/noti/blob/master/docs/noti.md#environment
 export NOTI_NSUSER_SOUNDNAME="Hero"
-[[ "$(builtin type -p vivid)" ]] && export LS_COLORS="$(vivid generate molokai)" # https://github.com/sharkdp/vivid
+command -v vivid >/dev/null 2>&1 && export LS_COLORS="$(vivid generate molokai)" # https://github.com/sharkdp/vivid
 # }}}
 
 # ssh {{{
@@ -145,7 +145,7 @@ export PINENTRY_USER_DATA="USE_CURSES=1"
 # misc {{{
 cd () { builtin cd "$@" && ls -FAG; } # auto ls on cd
 alias ..="cd .."
-alias ...="cd ..."
+alias ...="cd ../.."
 alias ll='ls -lhGFA'
 alias phpx="php -dxdebug.remote_autostart=1 -dxdebug.remote_connect_back=1 -dxdebug.idekey=${XDEBUG_IDE_KEY} -dxdebug.remote_port=9000 -ddisplay_errors=on"
 alias work="tmux attach -t Work || tmuxomatic ~/.tmuxomatic/Work"
@@ -153,6 +153,7 @@ alias home="tmux attach -t Home || tmuxomatic ~/.tmuxomatic/Home"
 alias rmf='rm -rf'
 compdef rmf="rm"
 mkcd () { mkdir $1 && cd $1; }
+compdef mkcd="mkdir"
 alias src="source ~/.zshrc"
 alias jobs="jobs -l"
 # alias k="k --no-vcs"

@@ -1,6 +1,8 @@
 #!/bin/bash
 # vim: set foldmethod=marker ft=sh:
 
+# Why did I wrap everything in functions? So I could re-run specific things when necessary without having to re-run the entire bootstrap file.
+
 # helper functions {{{
 function log_info() { echo -e "$(tput setaf 2)$(tput rev)$(tput bold) \xE2\x9C\x93 $1 $(tput sgr0)"; ${@:2}; }
 function log_error() { echo -e "$(tput setaf 1)$(tput rev)$(tput bold) \xE2\x9C\x97 $1 $(tput sgr0)"; ${@:2}; }
@@ -70,45 +72,60 @@ function log_notice() { echo -e "$(tput setaf 3)$(tput rev)$(tput bold) \xE2\x9A
 
 # install xcode command line tools {{{
 # needed for a variety of things including phpenv (zlib) and CommandLineTools below
-log_info "installing xcode command line tools"
-xcode-select --install || true
+_install_xcode_command_line_tools () {
+    log_info "installing xcode command line tools"
+    xcode-select --install || true
+}
+_install_xcode_command_line_tools
 # }}}
 
 # install necessary headers in /include on mojave {{{
 # needed for phpenv and pyenv
 # fyi the CommandLineTools directory doesn't even exist until you run `xcode-select --install`
 # https://github.com/pyenv/pyenv/issues/1219#issuecomment-428700763
-if [ -f "/Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg" ] && ! [ -f "$HOME/.mojave-lock" ]; then
-    log_info "installing additional tools needed for mojave"
-    sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
-    touch "$HOME/.mojave-lock"
-fi
+_install_necessary_headers_in_include_on_mojave () {
+    if [ -f "/Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg" ] && ! [ -f "$HOME/.mojave-lock" ]; then
+        log_info "installing additional tools needed for mojave"
+        sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
+        touch "$HOME/.mojave-lock"
+    fi
+}
+_install_necessary_headers_in_include_on_mojave
 # }}}
 
 # install homebrew if it's missing {{{
-if ! command -v brew >/dev/null 2>&1; then
-    log_info "Installing homebrew"
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-fi
+_install_homebrew_if_its_missing () {
+    if ! command -v brew >/dev/null 2>&1; then
+        log_info "Installing homebrew"
+        /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    fi
+}
+_install_homebrew_if_its_missing
 # }}}
 
 # install/update homebrew packages {{{
-if [ -e "$HOME/.Brewfile" ]; then
-    log_info "Installing/upgrading homebrew packages"
-    brew prune           # Remove dead symlinks from the homebrew prefix
-    brew bundle --global # install/upgrade from ~/.Brewfile
-    brew upgrade         # upgrade all homebrew packages
-    brew cleanup         # remove outdated versions
-    # brew bundle --global cleanup --force # remove brew packages not in ~/.Brewfile
-fi
+_install_update_homebrew_packages () {
+    if [ -e "$HOME/.Brewfile" ]; then
+        log_info "Installing/upgrading homebrew packages"
+        brew prune           # Remove dead symlinks from the homebrew prefix
+        brew bundle --global # install/upgrade from ~/.Brewfile
+        brew upgrade         # upgrade all homebrew packages
+        brew cleanup         # remove outdated versions
+        # brew bundle --global cleanup --force # remove brew packages not in ~/.Brewfile
+    fi
+}
+_install_update_homebrew_packages
 # }}}
 
 # akamai {{{
-if [[ "$(builtin type -p akamai)" ]]; then
-    log_info "Updating akamai commands"
-    [[ "$(akamai list | grep purge)" ]] || akamai install purge
-    akamai update
-fi
+_install_upgrade_akamai () {
+    if command -v akamai >/dev/null 2>&1; then
+        log_info "Updating akamai commands"
+        [[ "$(akamai list | grep purge)" ]] || akamai install purge
+        akamai update
+    fi
+}
+_install_upgrade_akamai
 # }}}
 
 # phpenv {{{
@@ -123,109 +140,141 @@ fi
 # NOTE: On mojave this won't work without `xcode-select --install` and
 # installing the additional headers for libz, etc., which I do in the first few
 # steps of this file
-log_info "Installing/updating phpenv"
-if [[ "$(builtin type -p phpenv)" ]]; then
-    phpenv update
-else
-    curl -L https://raw.githubusercontent.com/phpenv/phpenv-installer/master/bin/phpenv-installer | bash
-fi
+_install_upgrade_phpenv () {
+    log_info "Installing/updating phpenv"
+    if command -v phpenv >/dev/null 2>&1; then
+        phpenv update
+    else
+        # https://github.com/phpenv/phpenv
+        # https://github.com/phpenv/phpenv-installer
+        curl -L https://raw.githubusercontent.com/phpenv/phpenv-installer/master/bin/phpenv-installer | bash
+    fi
+}
+_install_upgrade_phpenv
 # }}}
 
 # update yarn {{{
-log_info "Installing/upgrading yarn packages"
-cd && yarn global upgrade && cd -
+_install_upgrade_yarn () {
+    log_info "Installing/upgrading yarn packages"
+    cd && yarn global upgrade && cd -
+}
+_install_upgrade_yarn
 # }}}
 
 # set zsh as shell {{{
-if [[ $(grep "/usr/local/bin/zsh" /etc/shells -c) == 0 ]]; then
-    log_info "Installing homebrew zsh to /etc/shells"
-    sudo /bin/sh -c "echo /usr/local/bin/zsh >> /etc/shells"
-fi
-if [[ "$SHELL" != "/usr/local/bin/zsh" ]]; then
-    log_info "Changing shell to homebrew zsh" chsh -s $(which zsh)
-fi
+_set_zsh_as_shell () {
+    if [[ $(grep "/usr/local/bin/zsh" /etc/shells -c) == 0 ]]; then
+        log_info "Installing homebrew zsh to /etc/shells"
+        sudo /bin/sh -c "echo /usr/local/bin/zsh >> /etc/shells"
+    fi
+    if [[ "$SHELL" != "/usr/local/bin/zsh" ]]; then
+        log_info "Changing shell to homebrew zsh" chsh -s $(which zsh)
+    fi
+}
+_set_zsh_as_shell
 # }}}
 
 # install tmux plugin manager {{{
-if [[ ! -d "$HOME/.tmux/plugins/tpm" ]]; then
-    log_info "Installing tmux plugin manager. Upgrade packages with \`<c-a>U\`."
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-fi
+_install_tmux_plugin_manager () {
+    if [[ ! -d "$HOME/.tmux/plugins/tpm" ]]; then
+        log_info "Installing tmux plugin manager. Upgrade packages with \`<c-a>U\`."
+        git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    fi
+}
+_install_tmux_plugin_manager
 # }}}
 
 # Vim {{{
 
-# {{{ Directories
-if [[ ! -d "$HOME/.vim/autoload" ]]; then
-    log_info "Creating required vim autoload directory"
-    mkdir -p "$HOME/.vim/autoload" &&
-        chmod +w "$HOME/.vim/autoload"
-fi
-if [[ ! -d "$HOME/.vim/files/info" ]]; then
-    log_info "Creating required vim info directory"
-    mkdir -p "$HOME/.vim/files/info" &&
-        chmod a+w "$HOME/.vim/files/info"
-fi
+# Directories {{{
+_create_vim_directories () {
+    if [[ ! -d "$HOME/.vim/autoload" ]]; then
+        log_info "Creating required vim autoload directory"
+        mkdir -p "$HOME/.vim/autoload" &&
+            chmod +w "$HOME/.vim/autoload"
+    fi
+    if [[ ! -d "$HOME/.vim/files/info" ]]; then
+        log_info "Creating required vim info directory"
+        mkdir -p "$HOME/.vim/files/info" &&
+            chmod a+w "$HOME/.vim/files/info"
+    fi
+}
+_create_vim_directories
 # }}}
 
 # install vim-plug {{{
-if [[ ! -f $HOME/.vim/autoload/plug.vim ]]; then
-    log_info "Installing vim-plug"
-    curl -fLo \
-        ~/.vim/autoload/plug.vim \
-        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-fi
+_install_vim_plug () {
+    if [[ ! -f $HOME/.vim/autoload/plug.vim ]]; then
+        log_info "Installing vim-plug"
+        curl -fLo \
+            ~/.vim/autoload/plug.vim \
+            https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    fi
+}
+_install_vim_plug
 # }}}
 
-# install vim-plug plugins {{{
-log_info "Installing/upgrading vim plugins"
-# vim +PlugInstall +PlugUpdate +PlugClean! +qall
-nvim +PlugInstall +PlugUpdate +PlugClean! +qall
+# install/upgrade vim plugins {{{
+_install_upgrade_vim_plugins () {
+    log_info "Installing/upgrading vim plugins"
+    # vim +PlugInstall +PlugUpdate +PlugClean! +qall
+    nvim +PlugInstall +PlugUpdate +PlugClean! +qall
+}
+_install_upgrade_vim_plugins
 # }}}
 
 # }}}
 
 # install node version {{{
-NODE_VERSION="9.3.0"
-if [[ ! "$(nodenv version | grep $NODE_VERSION)" ]]; then
-    log_info "Installing node $NODE_VERSION"
-    nodenv install $NODE_VERSION && nodenv rehash && nodenv global $NODE_VERSION
-fi
+_install_node_version () {
+    NODE_VERSION="9.3.0"
+    if [[ ! "$(nodenv version | grep $NODE_VERSION)" ]]; then
+        log_info "Installing node $NODE_VERSION"
+        nodenv install $NODE_VERSION && nodenv rehash && nodenv global $NODE_VERSION
+    fi
+}
+_install_node_version
 # }}}
 
 # install php version {{{
 # I only use phpenv because homebrew is making it difficult to install php 7.0
 # and extensions right now.
-export PHP_VERSION="7.0.29" # needs exporting for the non-interactive install script
-if [[ ! "$(phpenv version | grep $PHP_VERSION)" ]]; then
-    log_info "Installing php $PHP_VERSION"
-    # NOTE if I set php 7.1+.x to global and I use directory-specific php
-    # versions and I install global composer dependencies then they will fail
-    # when I have php 7.0.29 active! Same problem with rbenv, pyenv, and perlenv.
-    [[ ! "$(phpenv versions | grep $PHP_VERSION)" ]] || phpenv install $PHP_VERSION
-    php global $PHP_VERSION
-    phpenv rehash
+_install_php_version () {
+    export PHP_VERSION="7.0.29" # needs exporting for the non-interactive install script
+    if [[ ! "$(phpenv version | grep $PHP_VERSION)" ]]; then
+        log_info "Installing php $PHP_VERSION"
+        # NOTE if I set php 7.1+.x to global and I use directory-specific php
+        # versions and I install global composer dependencies then they will fail
+        # when I have php 7.0.29 active! Same problem with rbenv, pyenv, and perlenv.
+        [[ ! "$(phpenv versions | grep $PHP_VERSION)" ]] || phpenv install $PHP_VERSION
+        php global $PHP_VERSION
+        phpenv rehash
 
-    # install pear so we can use pecl to install extensions
-    if [[ ! "$(builtin type -p pecl)" ]]; then
-        log_info "Installing pear"
-        [ -f "$HOME/.bin/go-pear.phar" ] || wget -O "$HOME/.bin/go-pear.phar" http://pear.php.net/go-pear.phar
-        $HOME/.support/install-pear.sh # installs pear non-interactively
-        [ -f "$HOME/.bin/go-pear.phar" ] && rm "$HOME/.bin/go-pear.phar"
+        # install pear so we can use pecl to install extensions
+        if [[ ! "$(builtin type -p pecl)" ]]; then
+            log_info "Installing pear"
+            [ -f "$HOME/.bin/go-pear.phar" ] || wget -O "$HOME/.bin/go-pear.phar" http://pear.php.net/go-pear.phar
+            $HOME/.support/install-pear.sh # installs pear non-interactively
+            [ -f "$HOME/.bin/go-pear.phar" ] && rm "$HOME/.bin/go-pear.phar"
+        fi
+
+        log_info "Installing additional php extensions"
+        $(phpenv root)/versions/$PHP_VERSION/pear/bin/pecl install couchbase-2.2.2 && (echo 'extension="couchbase.so"' >$HOME/.phpenv/versions/$PHP_VERSION/etc/conf.d/couchbase.ini) # their sdk has breaking changes all the time so I need a specific version
+        $(phpenv root)/versions/$PHP_VERSION/pear/bin/pecl install memcached && (echo 'extension="memcached.so"' >$HOME/.phpenv/versions/$PHP_VERSION/etc/conf.d/memcached.ini)
     fi
-
-    log_info "Installing additional php extensions"
-    $(phpenv root)/versions/$PHP_VERSION/pear/bin/pecl install couchbase-2.2.2 && (echo 'extension="couchbase.so"' >$HOME/.phpenv/versions/$PHP_VERSION/etc/conf.d/couchbase.ini) # their sdk has breaking changes all the time so I need a specific version
-    $(phpenv root)/versions/$PHP_VERSION/pear/bin/pecl install memcached && (echo 'extension="memcached.so"' >$HOME/.phpenv/versions/$PHP_VERSION/etc/conf.d/memcached.ini)
-fi
+}
+_install_php_version
 # }}}
 
 # install ruby version {{{
-RUBY_VERSION="2.2.2" # 2.2.2 needed for catalog
-if [[ ! "$(rbenv versions | grep $RUBY_VERSION)" ]]; then
-    log_info "Installing ruby $RUBY_VERSION"
-    rbenv install $RUBY_VERSION && rbenv global $RUBY_VERSION && rbenv rehash
-fi
+_install_ruby_version () {
+    RUBY_VERSION="2.2.2" # 2.2.2 needed for catalog
+    if [[ ! "$(rbenv versions | grep $RUBY_VERSION)" ]]; then
+        log_info "Installing ruby $RUBY_VERSION"
+        rbenv install $RUBY_VERSION && rbenv global $RUBY_VERSION && rbenv rehash
+    fi
+}
+_install_ruby_version
 # }}}
 
 # install perl version {{{
@@ -237,44 +286,53 @@ fi
 # }}}
 
 # install python3 version {{{
-PYTHON_VERSION="3.7.1"
-if [[ ! "$(pyenv version | grep $PYTHON_VERSION)" ]]; then
-    log_info "Installing python $PYTHON_VERSION"
-    CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" pyenv install $PYTHON_VERSION && pyenv rehash && pyenv global $PYTHON_VERSION
-fi
+_install_python3_version () {
+    PYTHON_VERSION="3.7.1"
+    if [[ ! "$(pyenv version | grep $PYTHON_VERSION)" ]]; then
+        log_info "Installing python $PYTHON_VERSION"
+        CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" pyenv install $PYTHON_VERSION && pyenv rehash && pyenv global $PYTHON_VERSION
+    fi
+}
+_install_python3_version
 # }}}
 
 # install/update ruby gems {{{
 # Installs from ~/Gemfile
-log_info "Installing/upgrading ruby gems"
-gem install bundler
-cd
-bundle install --system --binstubs
-bundle clean --force
-cd -
+_install_update_ruby_gems () {
+    log_info "Installing/upgrading ruby gems"
+    gem install bundler
+    cd
+    bundle install --system --binstubs
+    bundle clean --force
+    cd -
+}
+_install_update_ruby_gems
 # }}}
 
 # update python3 pip packages {{{
-log_info "Installing/upgrading pip packages"
-/usr/local/bin/pip3 install neovim --user # neovim uses this pip/python version
-PIP_SUCCESSFUL=1
-pip install -r "$HOME/requirements.txt" --user || PIP_SUCCESSFUL=0
-# pip-review broke recently:
-# zsh: /usr/local/bin/pip-review: bad interpreter: /usr/local/opt/python/bin/python3.6: no such file or directory
-# pip-review --local --auto &&
-# 	pip freeze >"$HOME/requirements.txt"
-# pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U
-function pip-update () {
-    pip list --outdated | grep -v 'Package' | grep -v -e '\-\-\-\-\-' | cut -d' ' -f1 | xargs -n1 pip install -U
+_update_python3_pip_packages () {
+    log_info "Installing/upgrading pip packages"
+    /usr/local/bin/pip3 install neovim --user # neovim uses this pip/python version
+    PIP_SUCCESSFUL=1
+    pip install -r "$HOME/requirements.txt" --user || PIP_SUCCESSFUL=0
+    # pip-review broke recently:
+    # zsh: /usr/local/bin/pip-review: bad interpreter: /usr/local/opt/python/bin/python3.6: no such file or directory
+    # pip-review --local --auto &&
+    # 	pip freeze >"$HOME/requirements.txt"
+    # pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U
+    function pip-update () {
+        pip list --outdated | grep -v 'Package' | grep -v -e '\-\-\-\-\-' | cut -d' ' -f1 | xargs -n1 pip install -U
+    }
+    pip-update || PIP_SUCCESSFUL=0
+    # otherwise it might freeze a failed state
+    [[ $PIP_SUCCESSFUL ]] && pip freeze >"$HOME/requirements.txt"
 }
-pip-update || PIP_SUCCESSFUL=0
-# otherwise it might freeze a failed state
-[[ $PIP_SUCCESSFUL ]] && pip freeze >"$HOME/requirements.txt"
+_update_python3_pip_packages
 # }}}
 
 # install/update composer and packages {{{
 # https://getcomposer.org/doc/faqs/how-to-install-composer-programmatically.md
-function _install-composer () {
+_install-composer () {
     EXPECTED_SIGNATURE=$(wget -q -O - https://composer.github.io/installer.sig)
     php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
     ACTUAL_SIGNATURE=$(php -r "echo hash_file('SHA384', 'composer-setup.php');")
@@ -290,131 +348,155 @@ function _install-composer () {
     rm composer-setup.php
     exit $RESULT
 }
-if [[ ! "$(builtin type -p composer)" ]]; then
-    log_info "Installing composer"
-    _install-composer
-fi
-log_info "Installing/upgrading composer packages"
-composer global selfupdate
-composer global install
-composer global update
-if [[ ! -d $HOME/.composer/global ]]; then
-    # ^ this will install cgr. Now install cgr packages...
-    log_info "Installing cgr packages"
-    # https://github.com/consolidation/cgr
-    while read package; do
-        cgr $package
-    done <$HOME/.composer/cgr-versions.txt
-else
-    log_info "Upgrading cgr packages"
-    cgr update
-fi
+_install_update_composer_packages () {
+    if [[ ! "$(builtin type -p composer)" ]]; then
+        log_info "Installing composer"
+        _install-composer
+    fi
+    log_info "Installing/upgrading composer packages"
+    composer global selfupdate
+    composer global install
+    composer global update
+    if [[ ! -d $HOME/.composer/global ]]; then
+        # ^ this will install cgr. Now install cgr packages...
+        log_info "Installing cgr packages"
+        # https://github.com/consolidation/cgr
+        while read package; do
+            cgr $package
+        done <$HOME/.composer/cgr-versions.txt
+    else
+        log_info "Upgrading cgr packages"
+        cgr update
+    fi
+}
+_install_update_composer_packages
 # }}}
 
 # TODO avoid rust and cargo, install vivid via homebrew once they add it on homebrew https://github.com/sharkdp/vivid
 
 # antibody {{{
-log_info "Updating antibody plugins"
-# source <(antibody init)
-antibody update # update all packages
+_update_antibody_plugins () {
+    log_info "Updating antibody plugins"
+    # source <(antibody init)
+    antibody update # update all packages
+}
+_update_antibody_plugins
 # }}}
 
 # apply hosts file {{{
-log_info "Syncing hosts file"
-hostess apply "$HOME/.support/hosts.json"
+_apply_hosts_file () {
+    log_info "Syncing hosts file"
+    hostess apply "$HOME/.support/hosts.json"
+}
+_apply_hosts_file
 # }}}
 
 # let iterm see italics {{{
-log_info "Enabling italic terminal"
-mkdir -p "$HOME/.terminfo/78"
-tic -o "$HOME/.terminfo/78/" "$HOME/.support/screen-256color.terminfo.txt"
+_let_iterm_see_italics () {
+    log_info "Enabling italic terminal"
+    mkdir -p "$HOME/.terminfo/78"
+    tic -o "$HOME/.terminfo/78/" "$HOME/.support/screen-256color.terminfo.txt"
+}
+_let_iterm_see_italics
 # }}}
 
 # Mac preferences {{{
 # https://www.reddit.com/r/MacOS/comments/9ijy88/font_antialiasing_on_mojave/?utm_content=title&utm_medium=front&utm_source=reddit&utm_name=MacOS
-defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
+_apply_mac_preferences () {
+    defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
 
-# TODO write a function to abstract the repetition here
-log_info "Setting general mac preferences"
-# Disable “natural” (Lion-style) scrolling
-defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
-# dock on left side
-defaults write com.apple.dock orientation -string 'left'
-# mac dark mode
-defaults write NSGlobalDomain AppleInterfaceStyle -string 'Dark'
-# graphite color theme
-defaults write NSGlobalDomain AppleAquaColorVariant -int 6
-# disable dashboard
-defaults write com.apple.dashboard dashboard-enabled-state -int 1
-# Disable press-and-hold for keys in favor of key repeat
-# defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
-# Set a blazingly fast keyboard repeat rate
-# defaults write NSGlobalDomain KeyRepeat -int 1
-# defaults write NSGlobalDomain InitialKeyRepeat -int 10
-# Increase sound quality for Bluetooth headphones/headsets
-defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
-# Require password immediately after sleep or screen saver begins
-defaults write com.apple.screensaver askForPassword -int 1
-defaults write com.apple.screensaver askForPasswordDelay -int 0
-# Use column view in all Finder windows by default
-# Four-letter codes for the other view modes: `icnv`, `Nlsv`, `Flwv`
-defaults write com.apple.finder FXPreferredViewStyle -string "clmv"
-# Show the ~/Library folder
-chflags nohidden ~/Library
-# Chrome - Disable the all too sensitive backswipe on Magic Mouse
-defaults write com.google.Chrome AppleEnableMouseSwipeNavigateWithScrolls -bool false
-defaults write com.google.Chrome.canary AppleEnableMouseSwipeNavigateWithScrolls -bool false
-
-killall Dock
-killall Finder
-killall SystemUIServer
-
-# finder default location home
-defaults write com.apple.finder NewWindowTargetPath "file:/$HOME/"
-if [[ $(defaults read com.apple.dock orientation) != "left" ]]; then
-    log_info "Moving dock to left side"
+    # TODO write a function to abstract the repetition here
+    log_info "Setting general mac preferences"
+    # Disable “natural” (Lion-style) scrolling
+    defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
+    # dock on left side
     defaults write com.apple.dock orientation -string 'left'
-    killall Dock
-fi
-if [[ $(defaults read NSGlobalDomain AppleInterfaceStyle) != "Dark" ]]; then
-    log_info "Mac dark mode"
+    # mac dark mode
     defaults write NSGlobalDomain AppleInterfaceStyle -string 'Dark'
-    killall Dock
-    killall SystemUIServer
-fi
-if [[ $(defaults read NSGlobalDomain AppleAquaColorVariant) != 6 ]]; then
-    log_info "Graphite color theme"
+    # graphite color theme
     defaults write NSGlobalDomain AppleAquaColorVariant -int 6
-    killall Finder
-fi
-if [[ $(defaults read com.apple.dashboard dashboard-enabled-state) != 1 ]]; then
-    log_info "Disable dashboard"
+    # disable dashboard
     defaults write com.apple.dashboard dashboard-enabled-state -int 1
+    # Disable press-and-hold for keys in favor of key repeat
+    # defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+    # Set a blazingly fast keyboard repeat rate
+    # defaults write NSGlobalDomain KeyRepeat -int 1
+    # defaults write NSGlobalDomain InitialKeyRepeat -int 10
+    # Increase sound quality for Bluetooth headphones/headsets
+    defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
+    # Require password immediately after sleep or screen saver begins
+    defaults write com.apple.screensaver askForPassword -int 1
+    defaults write com.apple.screensaver askForPasswordDelay -int 0
+    # Use column view in all Finder windows by default
+    # Four-letter codes for the other view modes: `icnv`, `Nlsv`, `Flwv`
+    defaults write com.apple.finder FXPreferredViewStyle -string "clmv"
+    # Show the ~/Library folder
+    chflags nohidden ~/Library
+    # Chrome - Disable the all too sensitive backswipe on Magic Mouse
+    defaults write com.google.Chrome AppleEnableMouseSwipeNavigateWithScrolls -bool false
+    defaults write com.google.Chrome.canary AppleEnableMouseSwipeNavigateWithScrolls -bool false
+
+    killall Dock
     killall Finder
-fi
+    killall SystemUIServer
+
+    # finder default location home
+    defaults write com.apple.finder NewWindowTargetPath "file:/$HOME/"
+    if [[ $(defaults read com.apple.dock orientation) != "left" ]]; then
+        log_info "Moving dock to left side"
+        defaults write com.apple.dock orientation -string 'left'
+        killall Dock
+    fi
+    if [[ $(defaults read NSGlobalDomain AppleInterfaceStyle) != "Dark" ]]; then
+        log_info "Mac dark mode"
+        defaults write NSGlobalDomain AppleInterfaceStyle -string 'Dark'
+        killall Dock
+        killall SystemUIServer
+    fi
+    if [[ $(defaults read NSGlobalDomain AppleAquaColorVariant) != 6 ]]; then
+        log_info "Graphite color theme"
+        defaults write NSGlobalDomain AppleAquaColorVariant -int 6
+        killall Finder
+    fi
+    if [[ $(defaults read com.apple.dashboard dashboard-enabled-state) != 1 ]]; then
+        log_info "Disable dashboard"
+        defaults write com.apple.dashboard dashboard-enabled-state -int 1
+        killall Finder
+    fi
+}
+_apply_mac_preferences
 # }}}
 
 # launchctl jobs {{{
 # debug launchd jobs https://stackoverflow.com/q/6337513/557215
 # use this form to easily generate a launchd plist: http://launched.zerowidth.com/
-log_info "starting launch agents"
-# let's use lunchy instead of launchctl! https://github.com/eddiezane/lunchy
-lunchy start -w mike.saatchi-tunnel.autossh
-lunchy start -w mike.saatchi-proxy.autossh
+_start_launch_agents () {
+    log_info "starting launch agents"
+    # let's use lunchy instead of launchctl! https://github.com/eddiezane/lunchy
+    lunchy start -w mike.saatchi-tunnel.autossh
+    lunchy start -w mike.saatchi-proxy.autossh
+}
+_start_launch_agents
 # }}}
 
 # fix file size limit for watching with entr {{{
 # http://entrproject.org/limits.html
-if ! [ -f /Library/LaunchDaemons/limit.maxfiles.plist ]; then
-    log_info "Installing max files limit fixer for watching with entr"
-    cd /Library/LaunchDaemons
-    sudo curl -sO http://entrproject.org/etc/limit.maxfiles.plist
-    cd -
-fi
+_fix_file_size_limit_for_watching_with_entr () {
+    if ! [ -f /Library/LaunchDaemons/limit.maxfiles.plist ]; then
+        log_info "Installing max files limit fixer for watching with entr"
+        cd /Library/LaunchDaemons
+        sudo curl -sO http://entrproject.org/etc/limit.maxfiles.plist
+        cd -
+    fi
+}
+_fix_file_size_limit_for_watching_with_entr
 # }}}
 
 # reminders {{{
-log_info "Don't forget to upgrade your docker-machine once in a while!"
-# log_info "Don't forget to ''brew cask upgrade virtualbox virtualbox-extension-pack' once in a while!"
-log_info "Don't forget to update tmux plugins via <c-a>U once in a while!"
+_show_reminders () {
+    log_info "Don't forget to upgrade your docker-machine once in a while!"
+    # log_info "Don't forget to ''brew cask upgrade virtualbox virtualbox-extension-pack' once in a while!"
+    log_info "Don't forget to update tmux plugins via <c-a>U once in a while!"
+}
+_show_reminders
 # }}}
