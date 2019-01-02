@@ -273,24 +273,24 @@
     tool = "nvim -d"
 [merge]
     # tool = opendiff
-    # tool = vimdiff
-    tool = "nvim -d"
+    tool = vimdiff
 
     # shows local, parent, then remote
     # http://psung.blogspot.com/2011/02/reducing-merge-headaches-git-meets.html
     # diff3 includes the ||||||| markers to give context, allowing us to deduce whether a change was an addition or a deletion.
     # conflictstyle = diff3
-[mergetool "vimdiff"]
+# [mergetool "vimdiff"]
     # cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
     # use the neovim/macvim/vim switch to use whichever vim is configured
     # cmd = source ~/.bash_aliases && ${vim} -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
-[difftool "vimdiff"]
+# [difftool "vimdiff"]
     # cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
     # use the neovim/macvim/vim switch to use whichever vim is configured
     # cmd = source ~/.bash_aliases && ${vim} -d $LOCAL $REMOTE
 [mergetool]
     keepBackup = false
     prompt = false
+    path = "nvim"
 [pager]
     # this lets you skip to the next/prev file with `n` and `N`
     # diff = diff-so-fancy | less --tabs=4 -RFX --pattern '^(Date|added|deleted|modified): '
