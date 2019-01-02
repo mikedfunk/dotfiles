@@ -156,7 +156,9 @@ _install_upgrade_phpenv
 # update yarn {{{
 _install_upgrade_yarn () {
     log_info "Installing/upgrading yarn packages"
-    cd && yarn global upgrade && cd -
+    cd || return
+    yarn global upgrade
+    cd - || return
 }
 _install_upgrade_yarn
 # }}}
@@ -168,7 +170,7 @@ _set_zsh_as_shell () {
         sudo /bin/sh -c "echo /usr/local/bin/zsh >> /etc/shells"
     fi
     if [[ "$SHELL" != "/usr/local/bin/zsh" ]]; then
-        log_info "Changing shell to homebrew zsh" chsh -s $(which zsh)
+        log_info "Changing shell to homebrew zsh" chsh -s "$(command -v zsh)"
     fi
 }
 _set_zsh_as_shell
@@ -251,16 +253,16 @@ _install_php_version () {
         phpenv rehash
 
         # install pear so we can use pecl to install extensions
-        if [[ ! "$(builtin type -p pecl)" ]]; then
+        if ! command -v pecl >/dev/null 2>&1; then
             log_info "Installing pear"
             [ -f "$HOME/.bin/go-pear.phar" ] || wget -O "$HOME/.bin/go-pear.phar" http://pear.php.net/go-pear.phar
-            $HOME/.support/install-pear.sh # installs pear non-interactively
+            "$HOME"/.support/install-pear.sh # installs pear non-interactively
             [ -f "$HOME/.bin/go-pear.phar" ] && rm "$HOME/.bin/go-pear.phar"
         fi
 
         log_info "Installing additional php extensions"
-        $(phpenv root)/versions/$PHP_VERSION/pear/bin/pecl install couchbase-2.2.2 && (echo 'extension="couchbase.so"' >$HOME/.phpenv/versions/$PHP_VERSION/etc/conf.d/couchbase.ini) # their sdk has breaking changes all the time so I need a specific version
-        $(phpenv root)/versions/$PHP_VERSION/pear/bin/pecl install memcached && (echo 'extension="memcached.so"' >$HOME/.phpenv/versions/$PHP_VERSION/etc/conf.d/memcached.ini)
+        "$(phpenv root)"/versions/$PHP_VERSION/pear/bin/pecl install couchbase-2.2.2 && (echo 'extension="couchbase.so"' >"$HOME/.phpenv/versions/$PHP_VERSION/etc/conf.d/couchbase.ini") # their sdk has breaking changes all the time so I need a specific version
+        "$(phpenv root)"/versions/$PHP_VERSION/pear/bin/pecl install memcached && (echo 'extension="memcached.so"' >"$HOME/.phpenv/versions/$PHP_VERSION/etc/conf.d/memcached.ini")
     fi
 }
 _install_php_version
@@ -301,10 +303,10 @@ _install_python3_version
 _install_update_ruby_gems () {
     log_info "Installing/upgrading ruby gems"
     gem install bundler
-    cd
+    cd || return
     bundle install --system --binstubs
     bundle clean --force
-    cd -
+    cd - || return
 }
 _install_update_ruby_gems
 # }}}
@@ -349,7 +351,7 @@ _install-composer () {
     exit $RESULT
 }
 _install_update_composer_packages () {
-    if [[ ! "$(builtin type -p composer)" ]]; then
+    if ! command -v composer >/dev/null 2>&1; then
         log_info "Installing composer"
         _install-composer
     fi
@@ -361,9 +363,9 @@ _install_update_composer_packages () {
         # ^ this will install cgr. Now install cgr packages...
         log_info "Installing cgr packages"
         # https://github.com/consolidation/cgr
-        while read package; do
-            cgr $package
-        done <$HOME/.composer/cgr-versions.txt
+        while read -r package; do
+            cgr "$package"
+        done <"$HOME/.composer/cgr-versions.txt"
     else
         log_info "Upgrading cgr packages"
         cgr update
@@ -372,7 +374,22 @@ _install_update_composer_packages () {
 _install_update_composer_packages
 # }}}
 
-# TODO avoid rust and cargo, install vivid via homebrew once they add it on homebrew https://github.com/sharkdp/vivid
+# TODO install vivid via homebrew instead once they add it on homebrew https://github.com/sharkdp/vivid
+# vivid {{{
+_install_vivid () {
+    if ! command -v vivid >/dev/null 2>&1; then
+        VIVID_VERSION="0.4.0"
+        log_info "installing vivid"
+        cd || return
+        wget "https://github.com/sharkdp/vivid/releases/download/v$VIVID_VERSION/vivid-v0.4.0-x86_64-apple-darwin.tar.gz"
+        tar xzvf "vivid-v$VIVID_VERSION-x86_64-apple-darwin.tar.gz"
+        mv "vivid-v$VIVID_VERSION-x86_64-apple-darwin/vivid" "/usr/local/bin/vivid"
+        rm -rf "vivid-v$VIVID_VERSION-x86_64-apple-darwin/vivid" "vivid-v$VIVID_VERSION-x86_64-apple-darwin.tar.gz"
+        cd - || return
+    fi
+}
+_install_vivid
+# }}}
 
 # antibody {{{
 _update_antibody_plugins () {
@@ -484,9 +501,9 @@ _start_launch_agents
 _fix_file_size_limit_for_watching_with_entr () {
     if ! [ -f /Library/LaunchDaemons/limit.maxfiles.plist ]; then
         log_info "Installing max files limit fixer for watching with entr"
-        cd /Library/LaunchDaemons
+        cd /Library/LaunchDaemons || return
         sudo curl -sO http://entrproject.org/etc/limit.maxfiles.plist
-        cd -
+        cd - || return
     fi
 }
 _fix_file_size_limit_for_watching_with_entr

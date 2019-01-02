@@ -68,6 +68,7 @@ brew "libcouchbase" # nosql fast data storage. I install this for the cli tool `
 brew "libmemcached" # needed by php70 memcached pecl extension
 brew "libmcrypt" # needed by php-build, which is used by phpenv DO NOT DELETE php will break
 brew "libxml2" # needed by php70
+# brew "lockrun" # simple way to lock cron jobs with a lock file and clear them when done
 # brew "lynx" # console web browser. used by ranger to preview html.
 # brew "macvim" # mac gui vim client
 brew "mas" # mac app store cli. e.g. `mas install Xcode`
@@ -109,7 +110,7 @@ brew "rbenv" # ruby environment switcher
 # brew "redis" # key/value store
 # brew "ruby"
 # brew "ruby-build" # an rbenv plugin that provides an rbenv install command to compile and install different versions of ruby
-brew "rust" # used for "vivid" LS_COLORS package
+# brew "rust" # used for "vivid" LS_COLORS package TODO hopefully this gets put into homebrew soon
 # brew "rvm" # ruby version manager (I use rbenv instead)
 # brew "s3cmd" # amazon s3 uploader (I use awscli instead)
 # brew "selenium-server-standalone" # controls a browser for automated testing

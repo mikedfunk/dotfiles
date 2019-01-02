@@ -36,7 +36,7 @@ path=(
   # golang packages
   $HOME/go/bin
   # rust cargo packages
-  $HOME/.cargo/bin
+  # $HOME/.cargo/bin
   # golang executables
   /usr/local/opt/go/libexec/bin
   $HOME/.{php,pl,nod,py}env/bin
