@@ -350,43 +350,6 @@ augroup netrw_fix
     autocmd BufRead,BufWritePost scp://* :set bt=acwrite
 augroup END
 
-" sublime-style filebrowser in sidebar workflow
-"
-" downside of this workflow is that if you :Le and move up a directory and
-" open a file, then toggle :Le, it loses the reference to the explore window
-" and opens another one. It's easier to just use vim-vinegar and just hit - to
-" open the current dir in a split. Just use :Ex or :e . to open the :pwd in
-" netrw.
-"
-" nerdtree-style browsing. Use P to open in previous window. :on to close explorer. <-- only works if you have no other splits open
-" noremap <leader>nt :Lex %:p:h<cr>
-" noremap <c-e> :Lex<cr>
-" after opening the file browser with :Le , use this mapping to open the file in the previous split and close the explorer
-" autocmd! FileType netrw nmap <buffer> <leader>o <cr>:Lexplore<cr>
-
-" Lexplore has a bug where if you change directories you can't :Lex to close
-" it. This fixes it! https://www.reddit.com/r/vim/comments/6jcyfj/toggle_lexplore_properly/
-" You still have to toggle netrw after browsing but enter opens in the
-" previous split like NERDtree.
-" let g:NetrwIsOpen=0
-" function! ToggleNetrw(cmd)
-"     if g:NetrwIsOpen
-"         let i = bufnr("$")
-"         while (i >= 1)
-"             if (getbufvar(i, "&filetype") == "netrw")
-"                 silent exe "bwipeout " . i
-"             endif
-"             let i-=1
-"         endwhile
-"         let g:NetrwIsOpen=0
-"     else
-"         let g:NetrwIsOpen=1
-"         exec 'silent Lexplore' . a:cmd
-"     endif
-" endfunction
-" noremap <c-e> :call ToggleNetrw('')<cr>
-" noremap <leader>nt :call ToggleNetrw('%:p:h')<cr>
-
 " open quickfix in vsplit, tab, split
 augroup qfmaps
     autocmd!
@@ -421,11 +384,6 @@ endif
 " line text object e.g. vil yil
 xnoremap il 0o$h
 onoremap il :normal vil<CR>
-
-" TODO not working yet
-" https://stackoverflow.com/questions/1694599/how-do-i-get-vims-sh-command-to-source-my-bashrc
-" use my ~/.zshrc when running shell commands
-" set shell=/usr/local/bin/zsh\ -l
 
 " https://laracasts.com/series/vim-mastery/episodes/4#comment-2487013283
 if has('gui_running')
@@ -478,19 +436,6 @@ if &term =~# '^screen'
     execute "set <xRight>=\e[1;*C"
     execute "set <xLeft>=\e[1;*D"
 endif
-" dare to dream a life without jj. It just makes it really difficult in any vim instance that's not using my vimrc.
-" inoremap jj <esc>
-
-" increment with c-b since I use c-a for tmux
-" not needed now that I know - <prefix><prefix> sends <prefix> to the term from tmux!
-" nnoremap <c-b> <c-a>
-" vnoremap <c-b> <c-a>
-
-" resize splits, consistent with tmux bindings
-" nnoremap <c-w><s-j> :resize +10<cr> " this is also used to move the window to a vsplit on the bottom :/
-" nnoremap <c-w><s-k> :resize -10<cr> " this is also used to move the window to a vsplit on the top :/
-" nnoremap <c-w><s-l> :vertical resize +10<cr> " this is also used to move the window to a vsplit on the right :/
-" nnoremap <c-w><s-h> :vertical resize -10<cr> " this is also used to move the window to a vsplit on the left :/
 
 " in ex mode %% is current dir
 cabbr <expr> %% expand('%:p:h')
