@@ -1,3 +1,6 @@
+# vim: set foldmethod=marker:
+
+# general {{{
 # for scrollbar in tmux
 termcapinfo xterm*|xs|rxvt|terminal ti@:te@
 # termcapinfo xterm* ti@:te@ # Enable mouse scrolling and scroll bar history scrolling
@@ -9,24 +12,11 @@ defutf8 on
 
 escape b # remap meta key so I can use this from tmux
 
-# status bar
-hardstatus on
-hardstatus alwayslastline
-# LC_SSH_ALIAS is set in my *sh alias/function before sshing in
-# I only use screen for remote servers anyway
-hardstatus string "%{c} ${LC_SSH_ALIAS} | %w%=%{-}"
-# powerline symbol breaks display
-# hardstatus string "%{c} ${LC_SSH_ALIAS}  %w%=%{-}"
-
 # If set to on, "alternate screen" support is enabled in virtual terminals,
 # just like in xterm.  Initial setting is `off'. Without this, screen won't
 # respond to the escape sequences, even if they're defined in terminfo or
 # termcap.
 altscreen on
-
-# unbind the x key which is gnu screen's lockscreen function.
-bind ^x
-bind x
 
 startup_message off
 
@@ -36,14 +26,41 @@ mousetrack on
 # increase scrollback size
 defscrollback 1000
 
-# get rid of silly xoff stuff
-bind s split
-
 # screen and layouts https://superuser.com/questions/687348/how-to-persist-gnu-screen-layout-after-restart#963169
 # (may not work on older versions of screen)
 # "layout autosave on" works only for explicitly named layouts in .screenrc.
-# Namely, if you specified some layout as ABC, switched to it within Screen
-# session and detached, this last layout will be restored after the session is
-# resumed. If you did not specify any layout in the configuration file, you
-# have to run internal command "layout save your_layout_name" before detaching.
+# Namely, if you specified some layout as my-layout, switched to it within
+# Screen session and detached, this last layout will be restored after the
+# session is resumed. If you did not specify any layout in the configuration
+# file, you have to run internal command "layout save my-layout-name" before
+# detaching.
 layout autosave on
+# }}}
+
+# status bar {{{
+hardstatus on
+hardstatus alwayslastline
+# LC_SSH_ALIAS is set in my *sh alias/function before sshing in
+# powerline symbol breaks display
+# hardstatus string "%{c} ${LC_SSH_ALIAS}  %w%=%{-}"
+# I only use screen for remote servers anyway
+hardstatus string "%{c} ${LC_SSH_ALIAS} | %w%=%{-}"
+# }}}
+
+# splits {{{
+# Show a caption below each horizontal split with the process name
+caption splitonly
+caption string "%{c} %w%=%{-}"
+# vertical split background color
+rendition so c
+# }}}
+
+# bindings {{{
+# unbind the x key which is gnu screen's lockscreen function.
+bind ^x
+bind x
+
+# split with s and v
+bind s split
+bind v split -v
+# }}}
