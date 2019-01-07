@@ -1964,7 +1964,7 @@ Zend_Registry::get('config')->$1
 endsnippet
 
 snippet plg "Php log to debug file with no dependencies"
-file_put_contents("debug.log", "$1\n", FILE_APPEND);
+\Log::info(print_r($1), true);
 endsnippet
 
 snippet tc "try/catch block"

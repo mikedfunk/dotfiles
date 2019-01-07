@@ -45,7 +45,7 @@ keyring==17.1.1
 kitchen==1.2.5
 leather==0.3.3
 lockfile==0.12.2
-lxml==4.2.5
+lxml==4.2.6
 MarkupSafe==1.1.0
 msgpack==0.6.0
 msgpack-python==0.5.6

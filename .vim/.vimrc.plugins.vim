@@ -347,6 +347,7 @@ Plug 'chriskempson/base16-vim' " themes made of 16 colors
 Plug 'kristijanhusak/vim-hybrid-material'
 " Plug 'tyrannicaltoucan/vim-quantum'
 " Plug 'cocopon/iceberg.vim'
+" Plug 'evturn/cosmic-barf' " psychadelic solarized (comments are really hard to see)
 " }}}
 " }}}
 
