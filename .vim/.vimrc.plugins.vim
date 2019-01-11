@@ -80,7 +80,8 @@ if has('python3')
     Plug 'SirVer/ultisnips' " dynamic snippet completion
 endif
 " if has("python") | Plug 'robertbasic/snipbar' | endif " show available snips
-Plug 'jiangmiao/auto-pairs' " Auto insert closing brackets and parens
+" Plug 'jiangmiao/auto-pairs' " Auto insert closing brackets and parens
+Plug 'jeromedalbert/auto-pairs', { 'branch': 'better-auto-pairs' } " fork, see https://www.reddit.com/r/vim/comments/adv2h0/do_you_use_a_custom_fork_of_autopairs_how_is_it/
 Plug 'sickill/vim-pasta' " paste with context-sensitive indenting
 " Plug 'wincent/terminus' " auto update file changes, better mouse, insert cursor shape, bracketed paste.
 Plug 'tpope/vim-eunuch', { 'on': ['Mkdir!', 'Remove!'] } " :Mkdir!, :Remove!, and other shortcuts

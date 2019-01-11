@@ -87,6 +87,7 @@ brew "nodenv" # node version manager
 brew "noti" # simple terminal notifier
 brew "pandoc" # used for inline vim php documentation
 # brew "pass" # unix password manager using gpg
+brew "peco" # interactively filter results and print the filtered version. can be used to print filtered one or e.g. `vim $(dosomething | peco)`
 # brew "perl-build" # needed for perlenv
 # brew "percona-toolkit" # mysql schema migrator among other things. requires java and perl.
 # brew "pgcli" # like mycli for postgres
@@ -110,7 +111,7 @@ brew "rbenv" # ruby environment switcher
 # brew "redis" # key/value store
 # brew "ruby"
 # brew "ruby-build" # an rbenv plugin that provides an rbenv install command to compile and install different versions of ruby
-# brew "rust" # used for "vivid" LS_COLORS package TODO hopefully this gets put into homebrew soon
+# brew "rust" # used for "vivid" LS_COLORS package (I now download the executable until it's on homebrew)
 # brew "rvm" # ruby version manager (I use rbenv instead)
 # brew "s3cmd" # amazon s3 uploader (I use awscli instead)
 # brew "selenium-server-standalone" # controls a browser for automated testing
@@ -130,7 +131,7 @@ brew "terminal-notifier" # used by tmux plugin marzocchi/zsh-notify
 brew "the_silver_searcher" # awesome fast grep replacement: ag
 brew "tig" # git? tig! (note: this requires asciidoc)
 # brew "timewarrior" # taskwarrior-like interface for tracking time
-# brew "tldr" # more consise community man pages
+brew "tldr" # more consise community man pages
 brew "tmux" # terminal multiplexer similar to screen.
 # brew "tofrodos" # line ending conversion
 # brew "trash" # a trash can for the terminal
