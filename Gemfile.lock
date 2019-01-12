@@ -74,8 +74,12 @@ GEM
     lunchy (0.10.4)
     mercenary (0.3.6)
     minitest (5.11.3)
+    msgpack (1.2.6)
     multi_json (1.13.1)
     multipart-post (2.0.0)
+    neovim (0.8.0)
+      msgpack (~> 1.1)
+      multi_json (~> 1.0)
     octokit (4.13.0)
       sawyer (~> 0.8.0, >= 0.5.3)
     parallel (1.12.1)
@@ -129,6 +133,7 @@ DEPENDENCIES
   github_changelog_generator
   jekyll
   lunchy
+  neovim (~> 0.8.0)
   pygments.rb
   rainbow
   redcarpet
@@ -138,4 +143,4 @@ DEPENDENCIES
   scss-lint
 
 BUNDLED WITH
-   1.17.2
+   1.17.3

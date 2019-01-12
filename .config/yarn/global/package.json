@@ -33,6 +33,7 @@
     "grunt-cli": "^1.2.0",
     "jest": "^22.0.6",
     "jsonlint": "^1.6.3",
+    "neovim": "^4.2.1",
     "nightmare": "^2.10.0",
     "nightmare-upload": "^0.1.1",
     "parcel-bundler": "^1.6.1",

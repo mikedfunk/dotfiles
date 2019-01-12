@@ -33,3 +33,5 @@ gem 'rubocop' # ruby syntax checker. works with vim syntastic
 gem 'scss-lint' # for syntastic / vim-ale
 # gem "ruby-fsevent" # probably a dependency of another package I dont use anymore
 # gem "teamocil" # save tmux layouts and regenerate them with ease
+
+gem "neovim", "~> 0.8.0"
