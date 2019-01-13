@@ -289,10 +289,10 @@ _install_ruby_version
 
 # install python3 version {{{
 _install_python3_version () {
-    PYTHON_VERSION="3.7.1"
-    if [[ ! "$(pyenv version | grep $PYTHON_VERSION)" ]]; then
-        log_info "Installing python $PYTHON_VERSION"
-        CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" pyenv install $PYTHON_VERSION && pyenv rehash && pyenv global $PYTHON_VERSION
+    PYTHON_INSTALL_VERSION="3.7.2"
+    if [[ ! "$(pyenv global | grep $PYTHON_INSTALL_VERSION)" ]]; then
+        log_info "Installing python $PYTHON_INSTALL_VERSION"
+        CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" pyenv install $PYTHON_INSTALL_VERSION && pyenv rehash && pyenv global $PYTHON_INSTALL_VERSION
     fi
 }
 _install_python3_version
