@@ -618,7 +618,7 @@ augroup END
 " https://stackoverflow.com/questions/3494435/vimrc-make-comments-italic
 augroup italic_comments_group
     autocmd!
-    autocmd FileType * hi! Comment cterm=italic
+    autocmd FileType * hi! Comment cterm=italic, gui=italic
 augroup END
 
 augroup italic_comments_group_javascript
@@ -636,8 +636,9 @@ if has('gui_running') | set guifont=Meslo\ LG\ M\ Regular\ for\ Powerline:h11 | 
 " true color neovim and vim 8.0 that doesn't have background transparency
 " (uses escape character ^[)
 if (has('termguicolors'))
-    set t_8f=[38;2;%lu;%lu;%lum
-    set t_8b=[48;2;%lu;%lu;%lum
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+    " neovim bug: if you enable termguicolors it disables italics :/
     set termguicolors
 endif
 

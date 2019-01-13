@@ -100,11 +100,12 @@ command -v direnv >/dev/null 2>&1 && eval "$(direnv hook zsh)" # allow .envrc on
 # [ -d "$HOME/.zsh/completion" ] && find "$HOME/.zsh/completion" | while read f; do source "$f"; done
 # command -v plenv >/dev/null 2>&1 && eval "$(plenv init -)"
 command -v nodenv >/dev/null 2>&1 && eval "$(nodenv init -)"
-# according to the docs this is supposed to work with just the file but `pyenv versions` says it's set to 3.7.1 even when I unset it. ARGH.
 # https://github.com/pyenv/pyenv/blob/master/COMMANDS.md#pyenv-global
+# strangely this is already set BEFORE this file is sourced!
+unset PYENV_VERSION
 # PYENV_VERSION="$(cat $HOME/.pyenv/version)"
 command -v pyenv >/dev/null 2>&1 && eval "$(pyenv init -)"
-# command -v pyenv-virtualenv-init >/dev/null 2>&1 && eval "$(pyenv virtualenv-init -)"
+command -v pyenv-virtualenv-init >/dev/null 2>&1 && eval "$(pyenv virtualenv-init -)"
 [[ -f "$HOME/.phpenv/bin/phpenv" ]] && eval "$($HOME/.phpenv/bin/phpenv init -)"
 command -v rbenv >/dev/null 2>&1 && eval "$(rbenv init -)"
 # command -v akamai >/dev/null 2>&1 && eval "$(akamai --zsh)" # compinit: function definition file not found
