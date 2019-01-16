@@ -89,6 +89,7 @@ GEM
       forwardable-extended (~> 2.6)
     powerpack (0.1.2)
     public_suffix (3.0.3)
+    puppet-lint (2.3.6)
     pygments.rb (1.2.1)
       multi_json (>= 1.0.0)
     rainbow (3.0.0)
@@ -134,6 +135,7 @@ DEPENDENCIES
   jekyll
   lunchy
   neovim (~> 0.8.0)
+  puppet-lint
   pygments.rb
   rainbow
   redcarpet

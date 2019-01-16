@@ -107,10 +107,9 @@ _install_homebrew_if_its_missing
 _install_update_homebrew_packages () {
     if [ -e "$HOME/.Brewfile" ]; then
         log_info "Installing/upgrading homebrew packages"
-        brew prune           # Remove dead symlinks from the homebrew prefix
         brew bundle --global # install/upgrade from ~/.Brewfile
         brew upgrade         # upgrade all homebrew packages
-        brew cleanup         # remove outdated versions
+        brew cleanup         # remove outdated versions and dead symlinks from the homebrew prefix
         # brew bundle --global cleanup --force # remove brew packages not in ~/.Brewfile
     fi
 }

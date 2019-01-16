@@ -81,7 +81,8 @@ if has('python3')
 endif
 " if has("python") | Plug 'robertbasic/snipbar' | endif " show available snips
 " Plug 'jiangmiao/auto-pairs' " Auto insert closing brackets and parens
-Plug 'jeromedalbert/auto-pairs', { 'branch': 'better-auto-pairs' } " fork, see https://www.reddit.com/r/vim/comments/adv2h0/do_you_use_a_custom_fork_of_autopairs_how_is_it/
+" Plug 'jeromedalbert/auto-pairs', { 'branch': 'better-auto-pairs' } " fork, see https://www.reddit.com/r/vim/comments/adv2h0/do_you_use_a_custom_fork_of_autopairs_how_is_it/
+Plug 'tmsvg/pear-tree' " fancier auto-pairs alternative
 Plug 'sickill/vim-pasta' " paste with context-sensitive indenting
 " Plug 'wincent/terminus' " auto update file changes, better mouse, insert cursor shape, bracketed paste.
 Plug 'tpope/vim-eunuch', { 'on': ['Mkdir!', 'Remove!'] } " :Mkdir!, :Remove!, and other shortcuts
@@ -295,6 +296,7 @@ Plug 'ap/vim-css-color', { 'for': ['scss', 'css'] } " colorize css colors e.g. #
 " Plug 'chrisbra/NrrwRgn' " work in a separate window with a sub-region of a document. :NR
 " Plug 'scrooloose/vim-slumlord' " plantuml live preview for sequence diagrams
 " Plug 'ryanoasis/vim-devicons' " file type icons in netrw, etc.
+" Plug 'TaDaa/vimade' " fade inactive buffers, preserving color scheme (I don't really need this)
 
 " color schemes: 256-friendly {{{
 " Plug 'MarioRicalde/vim-lucius'

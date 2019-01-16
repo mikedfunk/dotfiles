@@ -1,0 +1,6 @@
+--no-arrow_alignment-check
+--no-140chars-check
+--no-double_quoted_strings-check
+--no-puppet_url_without_modules-check
+--no-ensure_first_param-check
+--no-quoted_booleans-check

@@ -215,7 +215,8 @@ alias bri="brew install"
 
 # phpunit {{{
 alias pu="phpunitnotify"
-function coverage () { pu --coverage-html=./coverage $@ && open coverage/index.html; }
+function phpunit-coverage () { pu --coverage-html=./coverage $@ && open coverage/index.html; }
+function phpspec-coverage () { phpdbg -qrr ./vendor/bin/phpspec run --config ./phpspec-coverage.yml $@ && open coverage/index.html; }
 alias puf="pu --filter="
 # alias puwatch="noglob ag -l -g '\
 #     (application\/controllers|application\/modules\/*\/controllers|application\/models|library|src|tests)/.*\\.php\

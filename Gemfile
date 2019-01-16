@@ -21,6 +21,7 @@ gem 'lunchy' # launchctl wrapper to make it more developer-friendly
 # gem "pre-commit" # install pre-commit hooks to check for all kinds of things DISABLED in favor of yelp pre-commit
 # gem "pre-commit-php"
 # gem "puppet" # virtual machine provisioning language
+gem 'puppet-lint' # used by vim-ale to lint puppet manifests
 # gem 'pygmentize' # used by jekyll and vim-instant-markdown
 gem 'pygments.rb' # syntax highlighting - used by jekyll
 # gem 'rake' # do I need this as a gem??
