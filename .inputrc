@@ -1,25 +1,43 @@
+# vim: set foldmethod=marker:
+
+# general {{{
 set show-all-if-ambiguous on
 set completion-ignore-case on
+set bell-style none
 Control-b: backward-word
 Control-f: forward-word
+# }}}
 
-# for vi mode
+# for vi mode {{{
 set editing-mode vi
 $if mode=vi
+# }}}
 
+# these are for vi-command mode {{{
 set keymap vi-command
-# these are for vi-command mode
 "\e[A": history-search-backward            # arrow up
 "\e[B": history-search-forward             # arrow down
 "\ep": yank-last-arg                       # bind to Alt-p
 Control-l: clear-screen
+# }}}
 
+# these are for vi-insert mode {{{
 set keymap vi-insert
-# these are for vi-insert mode
 "\e[A": history-search-backward
 "\e[B": history-search-forward
 "\ep": yank-last-arg
 Control-l: clear-screen
 $endif
+# }}}
 
-set bell-style none
+# https://www.topbug.net/blog/2017/07/31/inputrc-for-humans/ {{{
+"\C-p":history-search-backward
+"\C-n":history-search-forward
+set colored-stats On
+set completion-ignore-case On
+# set completion-prefix-display-length 3
+set mark-symlinked-directories On
+set show-all-if-ambiguous On
+set show-all-if-unmodified On
+set visible-stats On
+# }}}
