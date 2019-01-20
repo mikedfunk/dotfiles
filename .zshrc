@@ -431,6 +431,13 @@ wd() {
 # alias sourcegraph="dme && docker run -d --publish 7080:7080 --rm --volume ~/.sourcegraph/config:/etc/sourcegraph --volume ~/.sourcegraph/data:/var/opt/sourcegraph --volume /var/run/docker.sock:/var/run/docker.sock sourcegraph/server:2.13.5"
 # }}}
 
+# swagger {{{
+# bring up a swagger web editor that can interact with your local api
+function swagger-edit() {
+    docker run -ti --rm --volume="$(pwd)":/swagger -p 8080:8080 zixia/swagger-edit "$@"
+}
+# }}}
+
 # }}}
 
 # source more files {{{

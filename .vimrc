@@ -564,10 +564,10 @@ nnoremap <leader>Wg :grep! '\b<cword>\b' .<cr>
 " nnoremap <leader>gg :Ag<cr>
 
 " fuzzy open
-nnoremap <leader>xe :e **/*
-nnoremap <leader>xt :tabe **/*
-nnoremap <leader>xv :vsp **/*
-nnoremap <leader>xs :sp **/*
+nnoremap <leader>fe :e **/*
+nnoremap <leader>ft :tabe **/*
+nnoremap <leader>fv :vsp **/*
+nnoremap <leader>fs :sp **/*
 
 " jump to tag
 nnoremap <leader>je :tjump<space>
