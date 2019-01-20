@@ -94,7 +94,7 @@ sqlparse==0.2.4
 tabulate==0.8.2
 taskw==1.2.0
 terminaltables==3.1.0
-tmuxomatic==2.18
+-e git+https://github.com/cristianstu/tmuxomatic.git@8270114d792b5fed9e3449ea4960ecb8735da335#egg=tmuxomatic
 trollius==2.2
 Unidecode==1.0.23
 uritemplate==3.0.0
@@ -102,7 +102,7 @@ uritemplate.py==3.0.2
 urllib3==1.24.1
 vim-vint==0.3.19
 virtualenv==16.2.0
-virtualenv-clone==0.4.0
+virtualenv-clone==0.5.0
 wcwidth==0.1.7
 websocket-client==0.54.0
 xlrd==1.2.0

@@ -34,7 +34,7 @@ brew "entr" # file watcher
 # brew "fasd" # Command-line productivity booster, offers quick access to files and directories, inspired by autojump, z and v. (I use wd)
 brew "fd" # prettier alternative to find that respects gitignore
 # brew "fpp" # facebook path picker. Used with tmux-fpp to easily open files in an editor.
-# brew "fzf" # fuzzy file finder
+brew "fzf" # fuzzy file finder
 brew "git"
 brew "git-extras" # adds some cool additional git commands
 # brew "git-flow" # adds first class git commands for the git-flow workflow
@@ -87,7 +87,7 @@ brew "nodenv" # node version manager
 brew "noti" # simple terminal notifier
 brew "pandoc" # used for inline vim php documentation
 # brew "pass" # unix password manager using gpg
-brew "peco" # interactively filter results and print the filtered version. can be used to print filtered one or e.g. `vim $(dosomething | peco)`
+# brew "peco" # interactively filter results and print the filtered version. can be used to print filtered one or e.g. `vim $(dosomething | peco)` (FZF does this)
 # brew "perl-build" # needed for perlenv
 # brew "percona-toolkit" # mysql schema migrator among other things. requires java and perl.
 # brew "pgcli" # like mycli for postgres

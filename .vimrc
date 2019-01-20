@@ -475,7 +475,15 @@ nnoremap gl gt
 " because it's the first match.
 nnoremap <c-]> :exec("tjump ".expand("<cword>"))<cr>
 " open tag in tab
-nnoremap <silent><leader><c-]> <c-w><c-]><c-w>T
+" this should really just be <c-w>g<c-]> then <c-w>T but I couldn't get that
+" to work
+function! OpenTagInNewTab () abort
+    :normal! mz
+    :tabe %
+    :normal! `z
+    :exec("tjump ".expand('<cword>'))
+endfunction
+nnoremap <silent><leader><c-]> :call OpenTagInNewTab()<cr>
 " open tag in vertical split
 nnoremap <c-w><c-]> :exec("stjump ".expand("<cword>"))<CR>
 nnoremap <c-w><c-\> :vsp<CR>:exec("tjump ".expand("<cword>"))<CR>

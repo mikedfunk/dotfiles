@@ -650,6 +650,7 @@ augroup commentstring
     autocmd FileType gitconfig setlocal commentstring=#\ %s
     autocmd BufRead,BufNewFile .myclirc setlocal commentstring=#\ %s
     autocmd BufRead,BufNewFile .my.cnf setlocal commentstring=#\ %s
+    autocmd FileType plantuml setlocal commentstring='\ %s
 augroup END
 if isdirectory(expand('~/.vim/plugged/vim-commentary'))
     " this is for my muscle memory from nerd-commenter, but try to get used to
