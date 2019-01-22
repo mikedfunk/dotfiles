@@ -99,7 +99,7 @@ sqlparse==0.2.4
 tabulate==0.8.2
 taskw==1.2.0
 terminaltables==3.1.0
--e git+https://github.com/cristianstu/tmuxomatic.git@8270114d792b5fed9e3449ea4960ecb8735da335#egg=tmuxomatic
+tmuxomatic==2.18
 trollius==2.2
 Unidecode==1.0.23
 uritemplate==3.0.0
