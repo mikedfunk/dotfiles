@@ -160,6 +160,7 @@ inoremap <C-U> <C-G>u<C-U>
 if !isdirectory(expand('~/.vim/plugged/vim-matchup'))
     runtime macros/matchit.vim " jump to matching html tag (switched to vim-matchup)
 endif
+" runtime syntax/2html.vim
 " set t_ut=
 let g:mapleader = ',' " use comma for leader
 " since , replaces leader, use \ to go back in a [f]ind
