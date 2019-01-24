@@ -310,6 +310,8 @@ _install_update_ruby_gems () {
 _install_update_ruby_gems
 # }}}
 
+# TODO switch to tmuxp - tmuxomatic is broken and I have to run manual patches to get it working :(
+# https://github.com/oxidane/tmuxomatic/issues/23
 # update python3 pip packages {{{
 _update_python3_pip_packages () {
     log_info "Installing/upgrading pip packages"
