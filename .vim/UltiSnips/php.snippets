@@ -1987,3 +1987,7 @@ try {
     throw new \Exception($e->getTraceAsString());
 }
 endsnippet
+
+snippet lre "legacy php-di resolve"
+\Zend_Controller_Front::getInstance()->getDispatcher()->getContainer()->get($1::class);
+endsnippet

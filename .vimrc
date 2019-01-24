@@ -575,6 +575,10 @@ nnoremap <leader>js :sp tag<space>
 nnoremap <leader>jv :vsp tag<space>
 nnoremap <leader>jt :tab tag<space>
 
+" diffs
+nnoremap <leader>dr :diffget REMOTE<cr>
+nnoremap <leader>dl :diffget LOCAL<cr>
+
 " poor man's vim-vinegar
 " The thing I hate about this is that it doesn't preserve the last line it was
 " on, so I often have to scroll back down. Vinegar does this. TODO look at

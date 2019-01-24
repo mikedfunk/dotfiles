@@ -147,6 +147,7 @@ export PINENTRY_USER_DATA="USE_CURSES=1"
 # functions and aliases {{{
 
 # misc {{{
+alias starwars="telnet towel.blinkenlights.nl" # :)
 cd () { builtin cd "$@" && ls -FAG; } # auto ls on cd
 alias ..="cd .."
 alias ...="cd ../.."
