@@ -1526,147 +1526,31 @@ $actual = $this->${2:listingRepository}->${3:myMethod()};
 $this->assertEquals($expected, $actual);
 endsnippet
 
-snippet cmd "ACP laravel artisan command"
+snippet cmd "laravel artisan command"
 <?php
-/**
- * $1
- *
- * @copyright `date +%Y` Leaf Group, Ltd. All Rights Reserved.
- */`!p snip.rv = namespace(snip, path)`
+declare(strict_types=1);
+`!p snip.rv = namespace(snip, path)`
 use Illuminate\Console\Command;
-use DemandMedia\Common\Interfaces\ArtisanCommandInterface;
 use Symfony\Component\Console\Input\InputOption;
 
-/** $1 */
-class ${1:`!v expand("%:t:r")`} extends Command implements
-    ArtisanCommandInterface
+/** $2 */
+class ${1:`!v expand("%:t:r")`} extends Command
 {
 
-    /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = '$4';
+    /** @var string The console command description. */
+    protected $description = '$3';
+
+    /** @var string The name and signature of the console command. */
+    protected $signature = '${4:email:send {user}}';
 
     /**
-     * The console command description.
+     * Execute the console command.
      *
-     * @var string
+     * @return mixed
      */
-    protected $description = '$5';
-
-    /**
-     * fire the artisan command
-     *
-     * @return int the exit code
-     */
-    public function fire()
+    public function handle()
     {
-        $6
-    }
-
-    /**
-     * Get the console command arguments.
-     * e.g. php artisan mycommand myargument
-     *
-     * @return array
-     */
-    protected function getArguments()
-    {
-        return [
-        ];
-    }
-
-    /**
-     * Get the console command options.
-     * e.g. php artisan mycommand --myargument=999 -n=value
-     *
-     * @return array
-     */
-    protected function getOptions()
-    {
-        return [
-        ];
-    }
-}
-endsnippet
-
-snippet cmdt "ACP laravel command test"
-<?php
-/**
- * ${1:CommandName} command
- *
- * @copyright `date +%Y` Leaf Group, Ltd. All Rights Reserved.
- */
-namespace DemandMedia\\${2:PackageName}\Tests;
-
-use App;
-use DemandMedia\Common\Tests\Support\BaseTest;
-use DemandMedia\\$2\Commands\\$1Command;
-use Mockery;
-
-class $8 extends BaseTest
-{
-
-    /**
-     * fake input
-     *
-     * @var \Symfony\Component\Console\Input\InputInterface
-     */
-    protected $input;
-
-    /**
-     * fake output
-     *
-     * @var \Symfony\Component\Console\Output\OutputInterface
-     */
-    protected $output;
-
-    /**
-     * $1 command instance
-     *
-     * @var \DemandMedia\Common\Interfaces\ArtisanCommandInterface
-     */
-    protected \$${1/\w+/\l$0/}Command;
-
-    /**
-     * phpunit setup
-     */
-    public function setUp()
-    {
-        parent::setUp();
-
-        // mock symfony input
-        $ns = 'Symfony\Component\Console\Input\InputInterface';
-        $this->input = Mockery::mock($ns);
-        $this->input->shouldReceive('bind')
-            ->shouldReceive('isInteractive')
-            ->shouldReceive('validate');
-
-        // mock symfony output
-        $ns = 'Symfony\Component\Console\Output\OutputInterface';
-        $this->output = Mockery::mock($ns);
-        $this->output->shouldReceive('writeln');
-
-        // voltron assemble!
-        $this->${1/\w+/\l$0/}Command = new $1Command();
-        // $ns = 'DemandMedia\\$2'
-        // . '\Commands\\$1Command';
-        // $this->${1/\w+/\l$0/}Command = App::make($ns);
-    }
-
-    /**
-     * test$1Command
-     */
-    public function test$1Command()
-    {
-        $5
-        $expected = '${3:random string}';
-
-        // call and verify
-        $actual = $this->\$${1/\w+/\l$0/}Command->run($this->input, $this->output);
-        $this->assertEquals($expected, $actual);
+        ${6:// TODO write command}
     }
 }
 endsnippet

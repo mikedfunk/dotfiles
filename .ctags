@@ -49,6 +49,8 @@
 --exclude=tests
 --exclude=yarn-error.log
 --exclude=*.phar
+--exclude=*.json
+--exclude=vendor/**/*Test.php
 # --exclude=vendor/**/installed.json
 # --exclude=vendor/**/composer.json
 
