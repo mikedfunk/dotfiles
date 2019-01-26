@@ -35,16 +35,21 @@ defscrollback 1000
 # file, you have to run internal command "layout save my-layout-name" before
 # detaching.
 layout autosave on
+
+# https://superuser.com/questions/343541/how-to-force-gnu-screen-to-load-my-bash-profile/343543#343543
+shell -$SHELL
 # }}}
 
 # status bar {{{
 hardstatus on
-hardstatus alwayslastline
 # LC_SSH_ALIAS is set in my *sh alias/function before sshing in
 # powerline symbol breaks display
 # hardstatus string "%{c} ${LC_SSH_ALIAS}  %w%=%{-}"
 # I only use screen for remote servers anyway
-hardstatus string "%{c} ${LC_SSH_ALIAS} | %w%=%{-}"
+#
+# color codes https://www.gnu.org/software/screen/manual/html_node/String-Escapes.html
+# {ck} is cyan background, black foreground
+hardstatus lastline "%{ck} ${LC_SSH_ALIAS} | %w%=%{-}"
 # }}}
 
 # splits {{{

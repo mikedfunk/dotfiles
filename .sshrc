@@ -5,7 +5,8 @@ set -o vi
 # source my promptline theme on remote
 [ -f "$SSHHOME/.sshrc.d/promptline.theme.bash" ] && source "$SSHHOME/.sshrc.d/promptline.theme.bash"
 # tell screen to use my config file
-screen () { /usr/bin/screen -U -c "$SSHHOME/.sshrc.d/.screenrc" -dAR mike.funk; }
+# screen () { /usr/bin/screen -U -c "$SSHHOME/.sshrc.d/.screenrc" -dAR mike.funk; }
+export SCREENRC="$SSHHOME/.sshrc.d/.screenrc"
 # ensure utf-8 compat
 export LC_ALL="en_US.UTF-8"
 export LANGUAGE="en_US.UTF-8"
@@ -25,3 +26,20 @@ htop () { HOME="$SSHHOME/.sshrc.d" /usr/bin/htop; }
 #     cp -r $SSHHOME/.sshrc $SSHHOME/bashsshrc $SSHHOME/sshrc $SSHHOME/.sshrc.d $TMUXDIR
 #     SSHHOME=$TMUXDIR SHELL=$TMUXDIR/bashsshrc /usr/bin/tmux -S $TMUXDIR/tmuxserver $@
 # }
+
+# https://github.com/Russell91/sshrc/pull/57/commits/e82d31cc5879e492ac4edc0eb3fe26a3d18ca2b7
+screenrc () {
+    SCREENDIR=/tmp/sshrc_screen
+    SCREENNAME="mike_funk"
+    [ -d "$SCREENDIR" ] || mkdir -p "$SCREENDIR"
+    cp -r "$SSHHOME/bashsshrc" "$SSHHOME/sshrc" "$SSHHOME/.sshrc" "$SSHHOME/.sshrc.d" "$SCREENDIR"
+    # if screen exists, attach
+    if screen -list | grep -q "$SCREENNAME"; then
+        screen -dAR "$SCREENNAME"
+        return
+    fi
+    # create new screen, load .sshrc and clear screen, attach
+    SSHHOME="$SCREENDIR" /usr/bin/screen -dmS "$SCREENNAME" >/dev/null 2>&1
+    SSHHOME="$SCREENDIR" /usr/bin/screen -r "$SCREENNAME" -p 0 -X stuff "source $SCREENDIR/.sshrc"`printf '\015'`
+    SSHHOME="$SCREENDIR" /usr/bin/screen -r "$SCREENNAME"
+}
