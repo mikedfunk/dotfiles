@@ -314,6 +314,9 @@
     autoupdate = true
 [fetch]
     prune = true
+[sequence]
+    # https://github.com/MitMaro/git-interactive-rebase-tool
+    editor = interactive-rebase-tool
 # }}}
 
 # fix for itt tech torrance firewall and github {{{

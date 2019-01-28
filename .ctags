@@ -28,6 +28,7 @@
 
 # additional excludes (ignores) {{{
 --exclude=*.coffee
+# --exclude=*.css
 --exclude=*.log
 --exclude=*.min.js
 --exclude=.git
@@ -40,17 +41,28 @@
 --exclude=bootstrap.php.cache
 --exclude=classes.php.cache
 --exclude=composer.phar
+--exclude=node_modules
+--exclude=yarn-error.log
+--exclude=*.phar
+--exclude=*.json
+
+# I don't need to tag tests
+--exclude=tests
 --exclude=*.spec.js
 --exclude=__mocks__/*
 --exclude=__snapshots__/*
 --exclude=__tests__/*
 --exclude=__specs__/*
---exclude=node_modules
---exclude=tests
---exclude=yarn-error.log
---exclude=*.phar
---exclude=*.json
 --exclude=vendor/**/*Test.php
+--exclude=vendor/**/*Spec.php
+--exclude=vendor/test/*
+--exclude=vendor/test/**/*
+--exclude=vendor/tests/*
+--exclude=vendor/tests/**/*
+--exclude=vendor/spec/*
+--exclude=vendor/spec/**/*
+--exclude=vendor/specs/*
+--exclude=vendor/specs/**/*
 # --exclude=vendor/**/installed.json
 # --exclude=vendor/**/composer.json
 

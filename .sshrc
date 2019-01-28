@@ -1,45 +1,31 @@
-# tell vim how to start up with my .vimrc from sshrc
-export VIMINIT="let \$MYVIMRC='$SSHHOME/.sshrc.d/.vimrc' | source \$MYVIMRC"
+# vim: set foldmethod=marker:
+
+# config {{{
+
 # vim mode https://sanctum.geek.nz/arabesque/vi-mode-in-bash/
 set -o vi
+# tell vim how to start up with my .vimrc from sshrc
+export VIMINIT="let \$MYVIMRC='$SSHHOME/.sshrc.d/.vimrc' | source \$MYVIMRC"
+
 # source my promptline theme on remote
 [ -f "$SSHHOME/.sshrc.d/promptline.theme.bash" ] && source "$SSHHOME/.sshrc.d/promptline.theme.bash"
+
 # tell screen to use my config file
 # screen () { /usr/bin/screen -U -c "$SSHHOME/.sshrc.d/.screenrc" -dAR mike.funk; }
 export SCREENRC="$SSHHOME/.sshrc.d/.screenrc"
+
 # ensure utf-8 compat
 export LC_ALL="en_US.UTF-8"
 export LANGUAGE="en_US.UTF-8"
-# tell top to use my config file
+
+# tell top/htop to use my config file
 top () { HOME="$SSHHOME/.sshrc.d" /usr/bin/top; }
-# tell htop to use my config file
 # NOTE: this htop config is for 1.0.2 which is used on remote servers I ssh into
 htop () { HOME="$SSHHOME/.sshrc.d" /usr/bin/htop; }
-# if joining a tmux session on a remote server you access with sshrc https://github.com/Russell91/sshrc
-# tmuxrc() {
-#     local TMUXDIR=/tmp/russelltmuxserver
-#     if ! [ -d $TMUXDIR ]; then
-#         rm -rf $TMUXDIR
-#         mkdir -p $TMUXDIR
-#     fi
-#     rm -rf $TMUXDIR/.sshrc.d
-#     cp -r $SSHHOME/.sshrc $SSHHOME/bashsshrc $SSHHOME/sshrc $SSHHOME/.sshrc.d $TMUXDIR
-#     SSHHOME=$TMUXDIR SHELL=$TMUXDIR/bashsshrc /usr/bin/tmux -S $TMUXDIR/tmuxserver $@
-# }
 
-# https://github.com/Russell91/sshrc/pull/57/commits/e82d31cc5879e492ac4edc0eb3fe26a3d18ca2b7
-screenrc () {
-    SCREENDIR=/tmp/sshrc_screen
-    SCREENNAME="mike_funk"
-    [ -d "$SCREENDIR" ] || mkdir -p "$SCREENDIR"
-    cp -r "$SSHHOME/bashsshrc" "$SSHHOME/sshrc" "$SSHHOME/.sshrc" "$SSHHOME/.sshrc.d" "$SCREENDIR"
-    # if screen exists, attach
-    if screen -list | grep -q "$SCREENNAME"; then
-        screen -dAR "$SCREENNAME"
-        return
-    fi
-    # create new screen, load .sshrc and clear screen, attach
-    SSHHOME="$SCREENDIR" /usr/bin/screen -dmS "$SCREENNAME" >/dev/null 2>&1
-    SSHHOME="$SCREENDIR" /usr/bin/screen -r "$SCREENNAME" -p 0 -X stuff "source $SCREENDIR/.sshrc"`printf '\015'`
-    SSHHOME="$SCREENDIR" /usr/bin/screen -r "$SCREENNAME"
-}
+# }}}
+
+# set up bashrc to source .sshrc if in screen so I don't have to do shitty workarounds for screen {{{
+_SCREENCMD='[[ $TERM -eq "screen" && -f $SSHHOME/.sshrc ]] && source $SSHHOME/.sshrc # mike f. was here :)'
+grep -q 'sshrc' "$HOME/.bashrc" || echo "$_SCREENCMD" >> "$HOME/.bashrc"
+# }}}
