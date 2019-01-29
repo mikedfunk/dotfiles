@@ -147,6 +147,7 @@ export PINENTRY_USER_DATA="USE_CURSES=1"
 # functions and aliases {{{
 
 # misc {{{
+alias info="info --vi-keys"
 alias starwars="telnet towel.blinkenlights.nl" # :)
 cd () { builtin cd "$@" && ls -FAG; } # auto ls on cd
 alias ..="cd .."
@@ -434,8 +435,9 @@ wd() {
 
 # swagger {{{
 # bring up a swagger web editor that can interact with your local api
+# https://github.com/huan/swagger-edit
 function swagger-edit() {
-    docker run -ti --rm --volume="$(pwd)":/swagger -p 8080:8080 zixia/swagger-edit "$@"
+    dme && docker run -ti --rm --volume="$(pwd)":/swagger -p 8080:8080 zixia/swagger-edit "$@"
 }
 # }}}
 

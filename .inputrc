@@ -15,10 +15,20 @@ $if mode=vi
 
 # these are for vi-command mode {{{
 set keymap vi-command
-"\e[A": history-search-backward            # arrow up
-"\e[B": history-search-forward             # arrow down
-"\ep": yank-last-arg                       # bind to Alt-p
+# arrow up | arrow down | alt-p
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+# "\ep": yank-last-arg
 Control-l: clear-screen
+# j and k should search for the string of characters preceding the cursor
+"k": history-search-backward
+"j": history-search-forward
+# }}}
+
+# change cursor shape by vi mode in prompt {{{
+set show-mode-in-prompt on
+set vi-ins-mode-string "\1\e[5 q\2"
+set vi-cmd-mode-string "\1\e[2 q\2"
 # }}}
 
 # these are for vi-insert mode {{{
