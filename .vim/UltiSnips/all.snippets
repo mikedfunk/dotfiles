@@ -2,6 +2,32 @@ snippet urlto
 {{ URL::to('$1') }}$2
 endsnippet
 
+snippet sm "bash unofficial strict mode"
+#!/bin/bash
+# unofficial bash strict mode
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -euo pipefail
+IFS=$'\n\t'
+
+
+endsnippet
+
+snippet pd "perldoc in bash"
+: <<=cut
+=pod
+
+${1:=head1 USAGE
+
+=head2 MYHEAD2
+
+=item bullet point 1
+=item bullet point 2
+
+=over blockquote (indented)}
+
+=cut
+endsnippet
+
 snippet mike
 @author Michael Funk <mike.funk@demandmedia.com>
 endsnippet
