@@ -1,14 +1,7 @@
 # vim: set foldmethod=marker filetype=sh:
 # tmux window layout setup
 
-##------------------------------------------------------------------------------
-##
-## Session file created by tmuxomatic flex 2.17
-##
-##------------------------------------------------------------------------------
-
-## Window added by tmuxomatic flex 2.17
-
+# config {{{
 window config
 
 1111111111111111111111111
@@ -29,9 +22,9 @@ dir ~/.yadm
 # this only works if docker.sock is exposed in the filesystem. This doesn't happen with docker-machine :(
 # 2 run wait-on http://www.local.saatchiart.com && dry --monitor
 2 run wait-on http://www.local.saatchiart.com && docker-stats
+# }}}
 
-## Window added by tmuxomatic flex 2.17
-
+# legacy {{{
 window legacy
 
 0000000000000000000000000
@@ -65,7 +58,9 @@ dir ~/Code/saatchi/saatchiart
 # 3 run grunt build
 # 3 run grunt watch
 # 5 run saatchi-docker-legacy
+# }}}
 
+# gallery {{{
 window gallery
 
 1111111111111111111111111
@@ -89,7 +84,9 @@ dir ~/Code/saatchi/gallery
 3 run wd gallery
 3 run yarn gulp
 4 run yarn jest --watch
+# }}}
 
+# easel {{{
 window easel
 
 1111111111111111111111111
@@ -112,7 +109,9 @@ dir ~/Code/saatchi/easel
 # 2 run yarn dev
 1 run v -S
 0 run ts
+# }}}
 
+# palette {{{
 window palette
 
 1111111111111111111111111
@@ -135,7 +134,9 @@ dir ~/Code/saatchi/palette
 2 run psw
 # 2 run saatchi-docker-palette
 3 run wait-on http://www.local.saatchiart.com && saatchi-tail-palette-local
+# }}}
 
+# zed {{{
 window zed
 
 1111111111111111111111111
@@ -159,7 +160,9 @@ dir ~/Code/saatchi/yzed
 2 run wait-on http://www.local.saatchiart.com && saatchi-tail-zed-local
 3 run wait-on http://www.local.saatchiart.com && saatchi-phpunit-watch-zed
 4 run saatchi-grunt-watch-zed
+# }}}
 
+# views {{{
 # window views
 
 # 1111111111111111111111111
@@ -178,7 +181,9 @@ dir ~/Code/saatchi/yzed
 # dir ~/Code/saatchi/couchbase-views
 # 1 run v -S
 # 0 run ts
+# }}}
 
+# xdocker {{{
 window xdocker
 
 1111111111111111111111111
@@ -198,7 +203,9 @@ dir ~/Code/saatchi/xdocker
 1 run v -S
 # 0 run ts
 0 run saatchi-docker-start
+# }}}
 
+# xpuppet {{{
 window xpuppet
 
 1111111111111111111111111
@@ -217,7 +224,9 @@ window xpuppet
 dir ~/Code/saatchi/gitlab-puppet
 1 run v -S
 0 run ts
+# }}}
 
+# mysql {{{
 window mysql
 00000000000011111111111111
 00000000000011111111111111
@@ -235,7 +244,9 @@ dir ~/Code/saatchi/queries
 2 run wait-on http://www.local.saatchiart.com && saatchi-mycli-palette-local
 3 run wait-on http://www.local.saatchiart.com && saatchi-mycli-zed-local
 # 1 run saatchi-mycli-legacy-replica
+# }}}
 
+# http {{{
 window http
 
 1111111111111111111111111
@@ -250,7 +261,9 @@ window http
 
 dir ~/Code/saatchi/http
 1 run v -S
+# }}}
 
+# notes {{{
 window notes
 
 1111111111111111111111111
@@ -265,7 +278,9 @@ window notes
 
 dir ~/Code
 1 run joplin
+# }}}
 
+# releases {{{
 window releases
 
 1111111122222222233333333
@@ -282,7 +297,9 @@ dir ~
 1 run while true; do saatchi-releases-xdev --clear; sleep 60; done
 2 run while true; do saatchi-releases-xqa --clear; sleep 60; done
 3 run while true; do saatchi-releases-xprod --clear; sleep 60; done
+# }}}
 
+# uml {{{
 window uml
 1111111111111111111111111
 1111111111111111111111111
@@ -299,7 +316,9 @@ dir ~/Code/uml
 # 2 run g st
 2 run ts
 3 run ./watch.sh
+# }}}
 
+# catalog {{{
 # window catalog
 
 # 1111111111111111111111111
@@ -320,100 +339,9 @@ dir ~/Code/uml
 # 0 run ts
 # 2 run wd xdocker
 # # 2 run saatchi-docker-catalog
+# }}}
 
-# window api
-
-# 1111111111111111111111111
-# 1111111111111111111111111
-# 1111111111111111111111111
-# 1111111111111111111111111
-# 1111111111111111111111111
-# 1111111111111111111111111
-# 1111111111111111111111111
-# 1111111111111111111111111
-# 1111111111111111111111111
-# 1111111111111111111111111
-# 0000000000022222222222222
-# 0000000000022222222222222
-
-# dir ~/Code/saatchi/api
-# 1 run v -S
-# 0 run ts
-# 2 run wd xdocker
-# # 2 run saatchi-docker-catalog
-
-# window puppet
-
-# 1111111111111111111111111
-# 1111111111111111111111111
-# 1111111111111111111111111
-# 1111111111111111111111111
-# 1111111111111111111111111
-# 1111111111111111111111111
-# 1111111111111111111111111
-# 1111111111111111111111111
-# 1111111111111111111111111
-# 0000000000000000000000000
-# 0000000000000000000000000
-# 0000000000000000000000000
-
-# dir ~/Code/saatchi/puppet
-# 1 run v -S
-# 0 run ts
-
-# window builder
-
-# 1111111111111111111111111
-# 1111111111111111111111111
-# 1111111111111111111111111
-# 1111111111111111111111111
-# 1111111111111111111111111
-# 1111111111111111111111111
-# 1111111111111111111111111
-# 1111111111111111111111111
-# 1111111111111111111111111
-# 1111111111111111111111111
-# 1111111111111111111111111
-# 1111111111111111111111111
-
-# dir ~
-# # 1 run ssh saatchi-builder-01 -t "screen -AR mike.funk"
-# 1 run ssh saatchi-builder-01
-
-# window local-scripts
-
-# 0000000000000000000000000
-# 0000000000000000000000000
-# 0000000000000000000000000
-# 0000000000000000000000000
-# 0000000000000000000000000
-# 0000000000000000000000000
-# 0000000000000000000000000
-# 0000000000000000000000000
-# 0000000000000000000000000
-# 0000000000000000000000000
-# 1111111111111111111111111
-# 1111111111111111111111111
-
-# dir ~/Code/saatchi/local-scripts
-# 1 run ts
-# 0 run v -S
-
-# window ios
-
-# 1111111111111111111111111
-# 1111111111111111111111111
-# 1111111111111111111111111
-# 1111111111111111111111111
-# 1111111111111111111111111
-# 1111111111111111111111111
-# 1111111111111111111111111
-# 1111111111111111111111111
-# 1111111111111111111111111
-
-# dir ~/Code/saatchi/discover
-# 1 run v -S
-
+# maropost {{{
 # window maropost
 
 # 1111111111111111111111111
@@ -428,3 +356,4 @@ dir ~/Code/uml
 
 # dir ~/Code/saatchi/maropost-php-sdk
 # 1 run v -S
+# }}}
