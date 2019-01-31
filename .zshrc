@@ -1,9 +1,11 @@
 #!/bin/zsh
 # vim: set foldmethod=marker ft=zsh:
+
+# notes {{{
 # https://code.joejag.com/2014/why-zsh.html
 # https://til.hashrocket.com/posts/alk38eeu8r-use-fc-to-fix-commands-in-the-shell
-
 # ctrl-z won't work? remove ~/.zsh/log/jog.lock
+# }}}
 
 # Paths {{{
 cdpath=(

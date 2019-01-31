@@ -1,6 +1,5 @@
 yadm:~/.yadm
 legacy:~/Code/saatchi/saatchiart
-saatchi:~/Code/saatchi/saatchiart
 ios:~/Code/saatchi/discover
 airliners:~/Code/airliners
 test:~/Code/test
@@ -25,3 +24,4 @@ geasel:~/Code/saatchi/generator-easel
 gatsby:~/Code/gatsby-site
 uml:~/Code/uml
 imgproc:~/Code/saatchi/imgproc
+saatchi:~/Code/saatchi
