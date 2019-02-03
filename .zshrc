@@ -432,12 +432,18 @@ function pux() {
 # bring up a swagger web editor that can interact with your local api
 # https://github.com/huan/swagger-edit
 function swagger-edit() {
-    dme && docker run -ti --rm --volume="$(pwd)":/swagger -p 8080:8080 zixia/swagger-edit "$@"
+    if [ "$1" -e "--help" ]; then echo "Usage: $0 {my-api-spec.yaml}"; return; fi
+    dme && docker run --publish 8080:8080 --env SWAGGER_JSON=/tmp/$1 --volume $(pwd)/$1:/tmp/$1 swaggerapi/swagger-editor
+}
+
+function swagger-ui() {
+    if [ "$1" -e "--help" ]; then echo "Usage: $0 {my-api-spec.yaml}"; return; fi
+    dme && docker run --publish 8090:8080 --env SWAGGER_JSON=/tmp/$1 --volume $(pwd)/$1:/tmp/$1 swaggerapi/swagger-ui
 }
 # convert doctrine php docblocks to openapi spec yaml
 # https://github.com/zircote/swagger-php
 function swagger-php-gen() {
-    dme && docker run -v $(pwd):/app -it tico/swagger-php --help
+    dme && docker run -v $(pwd):/app -it tico/swagger-php
 }
 # }}}
 
