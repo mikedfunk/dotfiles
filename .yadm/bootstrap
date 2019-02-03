@@ -76,7 +76,6 @@ _install_xcode_command_line_tools () {
     log_info "installing xcode command line tools"
     xcode-select --install || true
 }
-_install_xcode_command_line_tools
 # }}}
 
 # install necessary headers in /include on mojave {{{
@@ -90,7 +89,6 @@ _install_necessary_headers_in_include_on_mojave () {
         touch "$HOME/.mojave-lock"
     fi
 }
-_install_necessary_headers_in_include_on_mojave
 # }}}
 
 # install homebrew if it's missing {{{
@@ -100,7 +98,6 @@ _install_homebrew_if_its_missing () {
         /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     fi
 }
-_install_homebrew_if_its_missing
 # }}}
 
 # install/update homebrew packages {{{
@@ -113,7 +110,6 @@ _install_update_homebrew_packages () {
         # brew bundle --global cleanup --force # remove brew packages not in ~/.Brewfile
     fi
 }
-_install_update_homebrew_packages
 # }}}
 
 # akamai {{{
@@ -124,7 +120,6 @@ _install_upgrade_akamai () {
         akamai update
     fi
 }
-_install_upgrade_akamai
 # }}}
 
 # phpenv {{{
@@ -149,7 +144,6 @@ _install_upgrade_phpenv () {
         curl -L https://raw.githubusercontent.com/phpenv/phpenv-installer/master/bin/phpenv-installer | bash
     fi
 }
-_install_upgrade_phpenv
 # }}}
 
 # update yarn {{{
@@ -159,7 +153,6 @@ _install_upgrade_yarn () {
     yarn global upgrade
     cd - || return
 }
-_install_upgrade_yarn
 # }}}
 
 # set zsh as shell {{{
@@ -172,7 +165,6 @@ _set_zsh_as_shell () {
         log_info "Changing shell to homebrew zsh" chsh -s "$(command -v zsh)"
     fi
 }
-_set_zsh_as_shell
 # }}}
 
 # install tmux plugin manager {{{
@@ -182,7 +174,6 @@ _install_tmux_plugin_manager () {
         git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
     fi
 }
-_install_tmux_plugin_manager
 # }}}
 
 # Vim {{{
@@ -200,7 +191,6 @@ _create_vim_directories () {
             chmod a+w "$HOME/.vim/files/info"
     fi
 }
-_create_vim_directories
 # }}}
 
 # install vim-plug {{{
@@ -212,7 +202,6 @@ _install_vim_plug () {
             https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     fi
 }
-_install_vim_plug
 # }}}
 
 # install/upgrade vim plugins {{{
@@ -221,7 +210,6 @@ _install_upgrade_vim_plugins () {
     # vim +PlugInstall +PlugUpdate +PlugClean! +qall
     nvim +PlugInstall +PlugUpdate +PlugClean! +qall
 }
-_install_upgrade_vim_plugins
 # }}}
 
 # }}}
@@ -234,7 +222,6 @@ _install_node_version () {
         nodenv install $NODE_VERSION && nodenv rehash && nodenv global $NODE_VERSION
     fi
 }
-_install_node_version
 # }}}
 
 # install php version {{{
@@ -264,7 +251,6 @@ _install_php_version () {
         "$(phpenv root)"/versions/$PHP_VERSION/pear/bin/pecl install memcached && (echo 'extension="memcached.so"' >"$HOME/.phpenv/versions/$PHP_VERSION/etc/conf.d/memcached.ini")
     fi
 }
-_install_php_version
 # }}}
 
 # install ruby version {{{
@@ -275,7 +261,6 @@ _install_ruby_version () {
         rbenv install $RUBY_VERSION && rbenv global $RUBY_VERSION && rbenv rehash
     fi
 }
-_install_ruby_version
 # }}}
 
 # install perl version {{{
@@ -294,7 +279,6 @@ _install_python3_version () {
         CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" pyenv install $PYTHON_INSTALL_VERSION && pyenv rehash && pyenv global $PYTHON_INSTALL_VERSION
     fi
 }
-_install_python3_version
 # }}}
 
 # install/update ruby gems {{{
@@ -307,7 +291,6 @@ _install_update_ruby_gems () {
     bundle clean --force
     cd - || return
 }
-_install_update_ruby_gems
 # }}}
 
 # update python3 pip packages {{{
@@ -330,7 +313,6 @@ _update_python3_pip_packages () {
     # otherwise it might freeze a failed state
     [[ $PIP_SUCCESSFUL ]] && pip freeze >"$HOME/requirements.txt"
 }
-_update_python3_pip_packages
 # }}}
 
 # install/update composer and packages {{{
@@ -372,7 +354,6 @@ _install_update_composer_packages () {
         cgr update
     fi
 }
-_install_update_composer_packages
 # }}}
 
 # vivid {{{
@@ -389,7 +370,6 @@ _install_vivid () {
         cd - || return
     fi
 }
-_install_vivid
 # }}}
 
 # antibody {{{
@@ -398,7 +378,6 @@ _update_antibody_plugins () {
     # source <(antibody init)
     antibody update # update all packages
 }
-_update_antibody_plugins
 # }}}
 
 # apply hosts file {{{
@@ -406,7 +385,6 @@ _apply_hosts_file () {
     log_info "Syncing hosts file"
     hostess apply "$HOME/.support/hosts.json"
 }
-_apply_hosts_file
 # }}}
 
 # let iterm see italics {{{
@@ -415,7 +393,6 @@ _let_iterm_see_italics () {
     mkdir -p "$HOME/.terminfo/78"
     tic -o "$HOME/.terminfo/78/" "$HOME/.support/screen-256color.terminfo.txt"
 }
-_let_iterm_see_italics
 # }}}
 
 # Mac preferences {{{
@@ -482,7 +459,6 @@ _apply_mac_preferences () {
         killall Finder
     fi
 }
-_apply_mac_preferences
 # }}}
 
 # launchctl jobs {{{
@@ -494,7 +470,6 @@ _start_launch_agents () {
     lunchy start -w mike.saatchi-tunnel.autossh
     lunchy start -w mike.saatchi-proxy.autossh
 }
-_start_launch_agents
 # }}}
 
 # fix file size limit for watching with entr {{{
@@ -507,7 +482,6 @@ _fix_file_size_limit_for_watching_with_entr () {
         cd - || return
     fi
 }
-_fix_file_size_limit_for_watching_with_entr
 # }}}
 
 # reminders {{{
@@ -516,5 +490,35 @@ _show_reminders () {
     # log_info "Don't forget to ''brew cask upgrade virtualbox virtualbox-extension-pack' once in a while!"
     log_info "Don't forget to update tmux plugins via <c-a>U once in a while!"
 }
+# }}}
+
+# run functions {{{
+# this way I can still source this file but comment out these function calls and run one or more independently
+_install_xcode_command_line_tools
+_install_necessary_headers_in_include_on_mojave
+_install_homebrew_if_its_missing
+_install_update_homebrew_packages
+_install_upgrade_akamai
+_install_upgrade_phpenv
+_install_upgrade_yarn
+_set_zsh_as_shell
+_install_tmux_plugin_manager
+_create_vim_directories
+_install_vim_plug
+_install_upgrade_vim_plugins
+_install_node_version
+_install_php_version
+_install_ruby_version
+_install_python3_version
+_install_update_ruby_gems
+_update_python3_pip_packages
+_install_update_composer_packages
+_install_vivid
+_update_antibody_plugins
+_apply_hosts_file
+_let_iterm_see_italics
+_apply_mac_preferences
+_start_launch_agents
+_fix_file_size_limit_for_watching_with_entr
 _show_reminders
 # }}}

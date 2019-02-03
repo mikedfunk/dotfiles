@@ -5,7 +5,7 @@ brew "akamai" # interact with akamai caching
 # brew "angband" # requires java
 brew "ant" # apache build tool used to build plantuml
 brew "getantibody/tap/antibody" # like antigen but faster!
-# brew "antigen" # I switched to antibody for speed
+# brew "antigen" # zsh package manager. I switched to antibody for speed
 brew "autoconf" # needed to build some php70 libs from source
 brew "autossh" # ssh that reconnects
 brew "awscli" # aws command - used to upload to s3, etc. `aws configure` to set up credentials. (set up access keys here https://console.aws.amazon.com/iam/home?region=us-west-1#/users/mike.funk?section=security_credentials)
@@ -16,33 +16,33 @@ brew "composer" # php dependency management
 # brew "coreutils" # used by k zsh plugin
 # brew "cmake" # used by youcompleteme
 # brew "ctags" # allows jumping to function/class definitions, etc. in vim (I use universal-ctags)
-brew "ctop" # like top for docker containers
+# brew "ctop" # like top for docker containers (doesn't work with docker-machine, only docker-for-mac due to docker.sock)
 brew "curl" # http cli tool. Included with mac of course, but this gives me the updated version.
 # brew "desk" # shell workspace manager. I use direnv instead.
 brew "diff-so-fancy" # better git diff viewer (note: diff-highlight is in pip)
 brew "direnv" # allow .envrc in directories to be loaded at every prompt to add relative bins to PATH, etc. easy.
 # brew "dnsmasq" # easily set up dynamic dev domains such as myproject.dev
 # brew "docker" # virtualization software (I use docker for mac now - see docker cask)
-# brew "docker-compose" # manage multiple docker images and how they interact
-# brew "docker-machine" # virtualbox VM for your docker images
+# brew "docker-compose" # manage multiple docker images and how they interact (I get this via docker-for-mac)
+# brew "docker-machine" # virtualbox VM for your docker images (I get this via docker-for-mac)
 brew "docker-machine-nfs" # enables nfs mounts for docker-machine via `docker-machine-nfs default --mount-opts="async,noatime,actimeo=1,nolock,vers=3,udp" --force`
-# brew "dos"2unix # converts dos line endings to unix in a file
+# brew "dos2unix" # converts dos line endings to unix in a file
 # tap "moncho/dry"
-# brew "dry" # docker monitoring (does not work with docker-machine. works with docker for mac.)
-# brew "dtrx" # do the right extraction - so you don't have to remember tar args
+# brew "dry" # docker monitoring (does not work with docker-machine. works with docker for mac because needs access to docker.sock.)
+# brew "dtrx" # do the right extraction - so you don't have to remember tar args (I found a helpful pneumonic to remember tar args: eXtract Ze Vucking Files, Compress Ze Vucking Files)
 brew "entr" # file watcher
 # brew "fasd" # Command-line productivity booster, offers quick access to files and directories, inspired by autojump, z and v. (I use wd)
 brew "fd" # prettier alternative to find that respects gitignore
-# brew "fpp" # facebook path picker. Used with tmux-fpp to easily open files in an editor.
-brew "fzf" # fuzzy file finder
+# brew "fpp" # facebook path picker. Used with tmux-fpp to easily open files in an editor. (I don't use it)
+brew "fzf" # fuzzy file finder `git branch | fzf | xargs git checkout`
 brew "git"
 brew "git-extras" # adds some cool additional git commands
-# brew "git-flow" # adds first class git commands for the git-flow workflow
+# brew "git-flow" # adds first class git commands for the git-flow workflow (I use avh version below)
 brew "git-flow-avh" # adds first class git commands for the git-flow workflow. This version will delete remote feature, release, and hotfix branches on finishing.
 brew "gnu-sed" # linux version of sed - saves as gsed (required for diff-so-fancy)
 # brew "gnu-tar" # linux version of tar so stuff actually works
 # brew "graphviz" # useful for xdebug profiler class maps
-brew "grc" # generic colorizer
+brew "grc" # generic colorizer - used to colorize ps, ls, netstat, etc.
 # brew "go" # go programming language. used for mailhog and rtop and wuzz.
 brew "gpg" # used by s3cmd and yadm to encrypt stuff
 # brew "heroku-toolbelt" # heroku deploy tools
@@ -59,7 +59,7 @@ brew "interactive-rebase-tool" # awesome ncurses tool to spiff up interactive re
 brew "intltool" # needed for php intl extension
 # brew "irssi" # irc client
 # brew "jsawk" # parse json in bash
-brew "joplin" # powerful note-taking app
+brew "joplin" # powerful note-taking app with cli version
 brew "jsonlint" # used by vim ale to lint json
 brew "jq" # simple json pretty-printer `echo '{"my" => "json"}' | jq .`
 # brew "jrnl" # simple journaling wrapper
@@ -84,7 +84,7 @@ brew "mysql" # I haven't been using the server lately but I use the cli tool to 
 # brew "ncdu" # interactive du
 brew "neovim" # vim re-imagined
 brew "node" # nodejs and npm (non-nodenv version required by joplin, yarn)
-brew "nodenv" # node version manager
+brew "nodenv" # node version manager (same api as rbenv)
 brew "noti" # simple terminal notifier
 brew "pandoc" # used for inline vim php documentation
 # brew "pass" # unix password manager using gpg
@@ -94,19 +94,19 @@ brew "pandoc" # used for inline vim php documentation
 # brew "pgcli" # like mycli for postgres
 # php has been moved to homebrew-php. In the process, php70 was removed >:( I've switched to phpenv and pecl instead. I don't even know how extensions work in the new homebrew php.
 # brew "php@7.1", args: ["--with-pear"], link: true
-brew "pinentry" # gpg terminal pin entry
+brew "pinentry" # gpg terminal pin entry (used by yadm encrypt/decrypt)
 # brew "pinentry-mac" # native gpg pin entry for yadm and others. Opens a native window.
-brew "plantuml" # uml generation from text. requires java
+brew "plantuml" # uml generation from text. requires java (I use regularly for diagramming processes and sometimes uml class diagrams)
 # brew "plenv" # perl version manager. better than perlbrew and consistent with my other env managers (rbenv, phpenv, nodenv, pyenv). used to get percona-toolkit working.
-# brew "postgresql" # database similar to mysql
+# brew "postgresql" # database similar to mysql (install if needed)
 # brew "pre-commit" # yelp git pre-commit framework (I manage this via pip)
 # brew "prettyping" # ping with a cool sparkline graph of status
 brew "pspg", args: ["--HEAD"] # "postgres pager" also useful for mysql, etc.
 # brew "pv" # pipe something to pv to see progress of data through a pipeline
-brew "pyenv" # python version manager
+brew "pyenv" # python version manager (same api as rbenv)
 # brew "python" # updated version of python with updated pip. Useful for installing pip packages without root. NOTE: homebrew "pip" breaks neovim.
-# brew "python3" # required for tmuxomatic
-# brew "ranger" # vim-like file system browser
+# brew "python3" # required for tmuxomatic (but I use pyenv)
+# brew "ranger" # vim-like file system browser (cool but I don't use it)
 brew "rbenv" # ruby environment switcher
 # brew "reattach-to-user-namespace" # used to fix mac issues with copy/paste in tmux (not needed after tmux 2.6! https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard/issues/66)
 # brew "redis" # key/value store
@@ -126,36 +126,36 @@ brew "sshrc" # use ~/.sshrc and ~/.sshrc.d on remote servers. bring your dotfile
 # brew "spark" # used for rainbarf to show spiffy cli graphs
 # brew "sqlparse" # sql formatter (managed by pip in ~/requirements.txt)
 # brew "stormssh" # interact with ssh config. I have yet to find a net positive use for this. It makes my ssh config less readable because it doesn't put them in comment fold groups like I do. just so I can `storm add ...`. `storm list` and `storm search` are kind of useless as I can do that with `ssh <tab>`. It lets you edit multiple ssh entries at once, but I can do that in vim. It provides a web interface, but I don't want that.
-# brew "stow" # http://brandon.invergo.net/news/2012-05-26-using-gnu-stow-to-manage-your-dotfiles.html <- I use yadm instead
-# brew "task" # taskwarrior https://taskwarrior.org
+# brew "stow" # http://brandon.invergo.net/news/2012-05-26-using-gnu-stow-to-manage-your-dotfiles.html (I use yadm instead)
+# brew "task" # taskwarrior https://taskwarrior.org (I don't need this unless I don't have jira)
 # brew "teleconsole" # share your console with others easily
 brew "terminal-notifier" # used by tmux plugin marzocchi/zsh-notify
-brew "the_silver_searcher" # awesome fast grep replacement: ag
+brew "the_silver_searcher" # awesome fast grep replacement: `ag --help`
 brew "tig" # git? tig! (note: this requires asciidoc)
-# brew "timewarrior" # taskwarrior-like interface for tracking time
+# brew "timewarrior" # taskwarrior-like interface for tracking time (I don't use this)
 brew "tldr" # more consise community man pages
 brew "tmux" # terminal multiplexer similar to screen.
-# brew "tofrodos" # line ending conversion
+# brew "tofrodos" # line ending conversion (install if needed)
 # brew "trash" # a trash can for the terminal
 # brew "tree" # display file/folder hierarchies in a visual tree format (I alias tree to alder now)
 tap "universal-ctags/universal-ctags"
 brew "universal-ctags", args: ["--HEAD"] # tag creator for use by vim to navigate by symbols. head only.
 brew "unixodbc" # needed by php70
-# brew "virtualhost".sh # crappy virtualhost management script
+# brew "virtualhost".sh # (crappy) virtualhost management script
 brew "watch" # contains some tools: free, kill, ps, uptime, etc.
 brew "watchman" # needed for `jest --watch` https://github.com/cm-pliser-tdd-by-example/tdd-by-example-js/issues/10
-# brew "w3m" # full color image previewer for ranger but doesnt work in tmux
+# brew "w3m" # full color image previewer for ranger (but doesnt work in tmux)
 brew "wget" # latest version
-# brew "wifi-password" # get your current wifi password quickly without mucking about with keychain access.
+# brew "wifi-password" # get your current wifi password quickly without mucking about with keychain access (install if needed)
 # brew "xdebug-osx" # xdebug toggler for homebrew php (which I don't currently use)
 # brew "vim" # macvim requires xcode. This also allows you to get vim 8 without using a separate tap. (trying neovim again)
-# brew "vit" # ncurses taskwarrior interface - like tig for taskwarrior TODO: upgrade to 1.3 when it passes beta! I can't install it from source because it requires current perl version be from /usr/bin/perl, among other problems. https://www.mankier.com/5/vitrc
+# brew "vit" # ncurses taskwarrior interface - like tig for taskwarrior TODO: upgrade to 1.3 when it passes beta! I can't install it from source because it requires current perl version be from /usr/bin/perl, among other problems. https://www.mankier.com/5/vitrc (also I don't use taskwarrior anymore)
 brew "yarn" # wrapper for npm with real lock files and caching (installing via npm is deprecated)
 brew "yadm" # yet another dotfiles manager
 # brew "zlib" # needed for pyenv (but can be used from /usr/include after installing developer package)
 # brew "zplug" # zsh plugin manager like composer. bash installer crashes for some reason. works fine via homebrew. (switched to antibody)
 brew "zsh" # awesome bash shell replacement
-# brew "zsh-completions" # tab completions. I install this via my zsh plugin manager instead.
+# brew "zsh-completions" # tab completions (I install this via my zsh plugin manager instead)
 # }}}
 
 # cask {{{
