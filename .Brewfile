@@ -150,6 +150,7 @@ brew "wget" # latest version
 # brew "xdebug-osx" # xdebug toggler for homebrew php (which I don't currently use)
 # brew "vim" # macvim requires xcode. This also allows you to get vim 8 without using a separate tap. (trying neovim again)
 # brew "vit" # ncurses taskwarrior interface - like tig for taskwarrior TODO: upgrade to 1.3 when it passes beta! I can't install it from source because it requires current perl version be from /usr/bin/perl, among other problems. https://www.mankier.com/5/vitrc (also I don't use taskwarrior anymore)
+brew "yamllint" # used by vim-ale
 brew "yarn" # wrapper for npm with real lock files and caching (installing via npm is deprecated)
 brew "yadm" # yet another dotfiles manager
 # brew "zlib" # needed for pyenv (but can be used from /usr/include after installing developer package)

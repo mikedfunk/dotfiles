@@ -9,3 +9,24 @@ default:
         javascript:
           selenium2: ~
 endsnippet
+
+snippet oa "openApi 3.0 starter"
+---
+openapi: 3.0.0
+info:
+  title: ${1:My Api}
+  description: ${2:My Description}
+  version: ${3:1.0.0}
+
+servers:
+  - url: ${4:http://api.whatever.com}
+    description: ${5:My Api - Production}
+
+paths:
+
+components:
+
+  schemas:
+
+  responses:
+endsnippet

@@ -65,6 +65,8 @@ fpath=(
 # }}}
 
 # antibody {{{
+# make oh-my-zsh plugins work with antibody... this is kind of crazy
+ZSH="$HOME/Library/Caches/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh"
 # If I re-source antibody init a second time it takes MINUTES to reinit. Even
 # if I re-run antibody bundle commands it takes progressively longer each time
 # I reload. Better to just run once on load. Only takes 3 seconds the first
@@ -76,10 +78,8 @@ if [[ ! $ANTIBODY_LOADED ]]; then
     antibody bundle djui/alias-tips # tell you when an alias would shorten the command you ran
     antibody bundle robbyrussell/oh-my-zsh path:plugins/colored-man-pages
     antibody bundle robbyrussell/oh-my-zsh path:plugins/colorize # Plugin for highlighting file content
-    # antibody bundle mfaerevaag/wd # antibody doesn't like this. It dies.
-    antibody bundle robbyrussell/oh-my-zsh path:plugins/wd
+    antibody bundle robbyrussell/oh-my-zsh path:plugins/wd/wd.plugin.zsh # warp directory
     antibody bundle robbyrussell/oh-my-zsh path:plugins/vi-mode
-    # # zplug 'mfaerevaag/wd', as:command, use:"wd.sh", hook-load:"wd() { . $ZPLUG_REPOS/mfaerevaag/wd/wd.sh }"
     antibody bundle robbyrussell/oh-my-zsh path:plugins/gitfast # fix git completion issues https://unix.stackexchange.com/a/204308 downside: this also adds a TON of gxx aliases https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/gitfast it also adds MORE git aliases and functions from the main git plugin https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/git/git.plugin.zsh
     antibody bundle marzocchi/zsh-notify # notify when a command fails or lasts longer than 30 seconds and the terminal is in the background (requires terminal-notifier)
     antibody bundle zsh-users/zsh-autosuggestions # OLD COMMENT: buggy if enabled along with zsh-syntax-highlighting. crashes the shell regularly.
@@ -422,13 +422,6 @@ function pux() {
 # }}}
 # }}}
 
-# wd {{{
-# load from ruby bin
-wd() {
-  . /Users/mikefunk/bin/wd/wd.sh
-}
-# }}}
-
 # sourcegraph {{{
 # only works with docker-for-mac, not docker-machine :/
 # https://about.sourcegraph.com/docs/
@@ -440,6 +433,11 @@ wd() {
 # https://github.com/huan/swagger-edit
 function swagger-edit() {
     dme && docker run -ti --rm --volume="$(pwd)":/swagger -p 8080:8080 zixia/swagger-edit "$@"
+}
+# convert doctrine php docblocks to openapi spec yaml
+# https://github.com/zircote/swagger-php
+function swagger-php-gen() {
+    dme && docker run -v $(pwd):/app -it tico/swagger-php --help
 }
 # }}}
 
