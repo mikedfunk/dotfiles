@@ -51,7 +51,7 @@ brew "gpg" # used by s3cmd and yadm to encrypt stuff
 brew "hostess" # manage hosts file `hostess help`
 brew "htop" # prettier, more powerful version of top. gets the top running processes. (see my notes)
 brew "httpie" # a cool alternative to curl (http --help) (NOTE: `man http` is something different :/ )
-brew "hub", args: ["--devel"] # github tool is a superset of git with extra commands. 2.0 needs to be installed via --HEAD
+brew "hub", args: ["--HEAD"] # github tool is a superset of git with extra commands. 2.0 needs to be installed via --HEAD
 # brew "icu4c" # needed for php70-intl extension (it seems this is included with node https://stackoverflow.com/questions/27896229/library-not-loaded-error-after-brew-install-php56)
 # brew "ievms" # internet explorer VirtualBox VMs to test a site in various IE versions
 brew "imagemagick@6" # image transformation tool - needed by php imagemagick extension (v6 needed for catalog)
