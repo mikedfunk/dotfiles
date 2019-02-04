@@ -397,6 +397,7 @@ function docker-stats {
 function phpunitnotify() {
     # xdebug-off > /dev/null
     php -dmemory_limit=2048M -ddisplay_errors=on ./vendor/bin/phpunit --colors "${@}"
+    # autoloader is failing :(
     # phpdbg -qrr -dmemory_limit=2048M -ddisplay_errors=on ./vendor/bin/phpunit --colors "${@}"
     [[ $? == 0 ]] && noti --message "PHPUnit tests passed 👍" ||
         noti --message "PHPUnit tests failed 👎"

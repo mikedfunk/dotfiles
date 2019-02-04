@@ -102,6 +102,8 @@ Plug 'tpope/vim-endwise' " auto add end/endif for vimscript/ruby. no lazy load o
 " Plug 'tpope/vim-tbone', { 'on': ['Twrite', 'Tmux', 'Tattach'] } " do stuff with tmux like send visual text to a split
 " Plug 'mtth/scratch.vim' " :Scratch to open scratch buffer in split
 Plug 'tpope/vim-rsi' " readline mappings for insert and command modes
+" Plug 'google/vim-maktaba' | Plug 'google/vim-coverage' " coverage for python
+" Plug 'revolvingcow/vim-umbrella' " vague coverage displayer
 " }}}
 
 " Html {{{

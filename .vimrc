@@ -555,6 +555,15 @@ augroup phphelpersgroup
     autocmd FileType php nnoremap <leader>ei :PhpExpandInterfaceMethods<cr>
     autocmd FileType php command! PhpMethodsToInterfaceSignatures :call PhpMethodsToInterfaceSignatures()
     autocmd FileType php nnoremap <leader>em :PhpMethodsToInterfaceSignatures<cr>
+    function! PhpToggleFolding () abort
+        if g:php_folding
+            :let g:php_folding = 0
+        else
+            :let g:php_folding = 1
+        endif
+        :e!
+    endfunction
+    autocmd FileType php command! PhpToggleFolding :call PhpToggleFolding()
 augroup END
 
 " use vim grepprg
