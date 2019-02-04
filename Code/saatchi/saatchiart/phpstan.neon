@@ -6,6 +6,7 @@ parameters:
     - ~/.composer/vendor-bin/main/vendor/jangregor/phpstan-prophecy/src/extension.neon
   excludes_analyse:
     - tests
+    - vendor
     - library/Saatchi/Model/Base/Print/Offering.php
     - library/Catalog/History
     - library/Saatchi/Service/Mailchimp.php
