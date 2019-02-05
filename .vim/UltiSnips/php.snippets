@@ -1772,6 +1772,19 @@ snippet prpt "PRophet Prophesize to property"
 $this->${1:myClass} = $this->prophesize(${1/\w+\s*/\u$0/}::class);
 endsnippet
 
+snippet prpr "PRophesize Rowset (Zend_Db_Table_Rowset)"
+$${1:user}Row = $this->prophesize(${1/\w+/\u$0/}Row::class);
+$$1Rowset = $this->prophesize(${1/\w+/\u$0/}Rowset::class);
+$$1Rowset->rewind()->shouldBeCalled();
+$returns = [true, false];
+$$1Rowset->valid()->will(function () use (&$returns) {
+    return array_shift($returns);
+});
+$$1Rowset->current()->willReturn($$1Row);
+$$1Rowset->next()->shouldBeCalled();
+$$1Rowset->key()->willReturn(0);
+endsnippet
+
 snippet rvl "reveal a prophesized object"
 $this->${1:myClass}->reveal()
 endsnippet

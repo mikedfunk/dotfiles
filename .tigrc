@@ -7,7 +7,10 @@
 # set refresh-interval = 1
 set refresh-mode = auto
 set mailmap = true
-    set line_graphics = utf-8
+set line-graphics = utf-8
+set diff-highlight = true
+set mouse = true
+set mouse-wheel-cursor = true
 # }}}
 
 # bindings {{{
