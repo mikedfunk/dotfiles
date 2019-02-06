@@ -1,3 +1,4 @@
+arrow==0.13.0
 asn1crypto==0.24.0
 astroid==2.1.0
 cffi==1.11.5
@@ -6,6 +7,8 @@ Click==7.0
 colorama==0.4.1
 configobj==5.0.6
 cryptography==2.5
+gita==0.6.6
+gitlint==0.10.0
 greenlet==0.4.15
 isort==4.3.4
 kaptan==0.5.11
@@ -21,12 +24,14 @@ Pygments==2.3.1
 pylint==2.2.2
 PyMySQL==0.9.3
 pynvim==0.3.2
+python-dateutil==2.8.0
 PyYAML==3.13
+sh==1.12.14
 six==1.12.0
 sqlparse==0.2.4
 tabulate==0.8.3
 terminaltables==3.1.0
-git+https://github.com/cristianstu/tmuxomatic.git@tmux-2.5
+tmuxomatic==2.19.dev0
 virtualenv==16.3.0
 wcwidth==0.1.7
 wrapt==1.11.1

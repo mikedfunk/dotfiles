@@ -26,6 +26,6 @@ htop () { HOME="$SSHHOME/.sshrc.d" /usr/bin/htop; }
 # }}}
 
 # set up bashrc to source .sshrc if in screen so I don't have to do shitty workarounds for screen {{{
-_SCREENCMD='[[ $TERM -eq "screen" && -f $SSHHOME/.sshrc ]] && source $SSHHOME/.sshrc # mike f. was here :)'
+_SCREENCMD='[[ "$TERM" == "screen" && -f "$SSHHOME/.sshrc" ]] && source "$SSHHOME/.sshrc" # mike f. was here :)'
 grep -q 'sshrc' "$HOME/.bashrc" || echo "$_SCREENCMD" >> "$HOME/.bashrc"
 # }}}

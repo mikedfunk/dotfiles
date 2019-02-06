@@ -222,11 +222,18 @@ alias pu="phpunitnotify"
 function phpunit-coverage () { pu --coverage-html=./coverage $@ && open coverage/index.html; }
 function phpspec-coverage () { phpdbg -qrr ./vendor/bin/phpspec run --config ./phpspec-coverage.yml $@ && open coverage/index.html; }
 alias puf="pu --filter="
-# alias puwatch="noglob ag -l -g '\
-#     (application\/controllers|application\/modules\/*\/controllers|application\/models|library|src|tests)/.*\\.php\
-#     ' | entr -r -c ./vendor/bin/phpunit --colors"
-# alias puw="puwatch"
-alias puw="php -dmemory_limit=2048M -ddisplay_errors=on -derror_reporting='E_ALL & ~E_NOTICE' $(which phpunit-watcher) watch"
+function puw () {
+    noglob ag -l -g \
+        '(application\/controllers|application\/modules\/*\/controllers|application\/models|library|src|tests)/.*\.php' \
+        | entr -r -c \
+        "$HOME/.phpenv/shims/phpdbg" -qrr \
+        -dmemory_limit=2048M \
+        -ddisplay_errors=on \
+        ./vendor/bin/phpunit \
+        --colors=always \
+        $@
+}
+# alias puw="php -dmemory_limit=2048M -ddisplay_errors=on -derror_reporting='E_ALL & ~E_NOTICE' $(which phpunit-watcher) watch"
 # }}}
 
 # composer {{{
@@ -396,16 +403,17 @@ function docker-stats {
 # runs phpunit/phpspec and uses noti to show the results {{{
 function phpunitnotify() {
     # xdebug-off > /dev/null
-    php -dmemory_limit=2048M -ddisplay_errors=on ./vendor/bin/phpunit --colors "${@}"
+    # php -dmemory_limit=2048M -ddisplay_errors=on ./vendor/bin/phpunit --colors "${@}"
     # autoloader is failing :(
-    # phpdbg -qrr -dmemory_limit=2048M -ddisplay_errors=on ./vendor/bin/phpunit --colors "${@}"
+    phpdbg -qrr -dmemory_limit=2048M -ddisplay_errors=on ./vendor/bin/phpunit --colors "${@}"
     [[ $? == 0 ]] && noti --message "PHPUnit tests passed 👍" ||
         noti --message "PHPUnit tests failed 👎"
     # xdebug-on > /dev/null
 }
 function phpspecnotify() {
     # xdebug-off > /dev/null
-    php -dmemory_limit=2048M -ddisplay_errors=on ./vendor/bin/phpspec run "${@}"
+    # php -dmemory_limit=2048M -ddisplay_errors=on ./vendor/bin/phpspec run "${@}"
+    phpdbg -qrr -dmemory_limit=2048M -ddisplay_errors=on ./vendor/bin/phpspec run "${@}"
     # php -dxdebug.remote_autostart=1 -dxdebug.remote_connect_back=1 -dxdebug.idekey=${XDEBUG_IDE_KEY} -dxdebug.remote_port=9015 -dmemory_limit=2048M -ddisplay_errors=on ./vendor/bin/phpspec run "${@}"
     [[ $? == 0 ]] && noti --message "Specs passed 👍" ||
         noti --message "Specs failed 👎"
@@ -426,7 +434,16 @@ function pux() {
 # sourcegraph {{{
 # only works with docker-for-mac, not docker-machine :/
 # https://about.sourcegraph.com/docs/
-# alias sourcegraph="dme && docker run -d --publish 7080:7080 --rm --volume ~/.sourcegraph/config:/etc/sourcegraph --volume ~/.sourcegraph/data:/var/opt/sourcegraph --volume /var/run/docker.sock:/var/run/docker.sock sourcegraph/server:2.13.5"
+function sourcegraph() {
+    docker run \
+        # -d \
+        --publish 7080:7080 \
+        --rm \
+        --volume ~/.sourcegraph/config:/etc/sourcegraph \
+        --volume ~/.sourcegraph/data:/var/opt/sourcegraph \
+        --volume /var/run/docker.sock:/var/run/docker.sock \
+        sourcegraph/server:2.13.5
+}
 # }}}
 
 # swagger {{{
@@ -434,18 +451,34 @@ function pux() {
 # https://github.com/huan/swagger-edit
 function swagger-edit() {
     if [ "$1" -e "--help" ]; then echo "Usage: $0 {my-api-spec.yaml}"; return; fi
-    dme && docker run --publish 8080:8080 --env SWAGGER_JSON=/tmp/$1 --volume $(pwd)/$1:/tmp/$1 swaggerapi/swagger-editor
+    docker run \
+        --publish 8080:8080 \
+        --env SWAGGER_JSON=/tmp/$1 \
+        --volume $(pwd)/$1:/tmp/$1 \
+        swaggerapi/swagger-editor
 }
 
 function swagger-ui() {
     if [ "$1" -e "--help" ]; then echo "Usage: $0 {my-api-spec.yaml}"; return; fi
-    dme && docker run --publish 8090:8080 --env SWAGGER_JSON=/tmp/$1 --volume $(pwd)/$1:/tmp/$1 swaggerapi/swagger-ui
+    docker run \
+        --publish 8090:8080 \
+        --env SWAGGER_JSON=/tmp/$1 \
+        --volume $(pwd)/$1:/tmp/$1 \
+        swaggerapi/swagger-ui
 }
 # convert doctrine php docblocks to openapi spec yaml
 # https://github.com/zircote/swagger-php
 function swagger-php-gen() {
-    dme && docker run -v $(pwd):/app -it tico/swagger-php
+    docker run \
+        --volume $(pwd):/app \
+        -it \
+        tico/swagger-php
 }
+# }}}
+
+# pahout {{{
+# https://github.com/wata727/pahout
+pahout () { docker run --rm -t -v $(pwd):/workdir wata727/pahout; }
 # }}}
 
 # }}}
