@@ -74,6 +74,7 @@ brew "libxml2" # needed by php70
 # brew "macvim" # mac gui vim client
 brew "mas" # mac app store cli. e.g. `mas install Xcode`
 brew "memcached" # needed by php70 memcached pecl extension
+brew "mkcert" # create a certificate, create a local CA, add the cert as trusted in the CA
 # brew "mono" # .NET compiler for mac. Useful for OmniSharp.
 brew "multitail" # tail multiple files in splits with pretty colors
 # brew "mycli" # I use the pip version - it's updated more frequently
@@ -86,6 +87,7 @@ brew "neovim" # vim re-imagined
 brew "node" # nodejs and npm (non-nodenv version required by joplin, yarn)
 brew "nodenv" # node version manager (same api as rbenv)
 brew "noti" # simple terminal notifier
+brew "nss" # required by mkcert to make certs trusted in firefox
 brew "pandoc" # used for inline vim php documentation
 # brew "pass" # unix password manager using gpg
 # brew "peco" # interactively filter results and print the filtered version. can be used to print filtered one or e.g. `vim $(dosomething | peco)` (FZF does this)
