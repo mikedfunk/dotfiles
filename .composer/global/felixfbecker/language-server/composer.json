@@ -1,0 +1,6 @@
+{
+  "minimum-stability": "dev",
+  "require": {
+    "felixfbecker/language-server": "dev-master"
+  }
+}

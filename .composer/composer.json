@@ -1,14 +1,5 @@
 {
-  "minimum-stability": "dev",
-  "prefer-stable": true,
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/mikedfunk/phpunit-watcher.git"
-    }
-  ],
   "require": {
-    "consolidation/cgr": "^2.0",
-    "spatie/phpunit-watcher": "dev-php70"
+    "consolidation/cgr": "^2.0"
   }
 }
