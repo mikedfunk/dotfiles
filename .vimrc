@@ -401,6 +401,12 @@ endif
 if has('python3')
     silent! python3 1
 endif
+
+" preview susbstitute in neovim
+" https://dev.to/petermbenjamin/comment/7ng0
+if has('nvim')
+    set inccommand=split
+endif
 " }}}
 
 " Completion {{{

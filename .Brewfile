@@ -171,7 +171,8 @@ cask "docker" # docker for mac desktop app
 # cask "dropbox" # I especially use this for synching my notes so I can view them in the joplin mobile app (not using this feature right now)
 cask "epic-games" # game store
 cask "firefox"
-tap "caskroom/fonts"
+tap "homebrew/cask-fonts"
+# tap "caskroom/fonts"
 # cask "font-fira-code"
 cask "font-iosevka"
 # cask "font-meslo-for-powerline" # whoa there are a ton of fonts on brew "cask"!

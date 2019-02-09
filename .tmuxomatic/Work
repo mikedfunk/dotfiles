@@ -32,27 +32,20 @@ window legacy
 0000000000000000000000000
 0000000000000000000000000
 0000000000000000000000000
-0000000000000000000000000
-0000000000000000000000000
-0000000000000000000000000
-0000000000000000000000000
-0000000000000000000000000
-0000000000000000000000000
-1111122222223333333444444
-1111166666665555555444444
+1111122222222233333355555
+1111122222222233333355555
+1111122222222244444455555
+1111122222222244444455555
 
 dir ~/Code/saatchi/saatchiart
 0 run v -S
 1 run ts
 2 run puw
-# 4 run sleep 180 && saatchi-tail-legacy-local
-4 run wait-on http://www.local.saatchiart.com && saatchi-tail-legacy-local
-3 run cd assets/react
-3 run yarn
-3 run yarn start
-5 run saatchi-grunt-watch-legacy
-6 run cd assets/react
-6 run saatchi-eslint-watch-legacy
+3 run cd assets/react && yarn && yarn start
+4 run saatchi-grunt-watch-legacy
+5 run wait-on http://www.local.saatchiart.com && saatchi-tail-legacy-local
+# 6 run cd assets/react
+# 6 run saatchi-eslint-watch-legacy
 # 2 run wd xdocker
 # 2 run saatchi-docker-legacy
 # 3 run grunt build

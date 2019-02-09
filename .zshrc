@@ -219,8 +219,10 @@ alias bri="brew install"
 
 # phpunit {{{
 alias pu="phpunitnotify"
-function phpunit-coverage () { pu --coverage-html=./coverage $@ && open coverage/index.html; }
-function phpspec-coverage () { phpdbg -qrr ./vendor/bin/phpspec run --config ./phpspec-coverage.yml $@ && open coverage/index.html; }
+# PhpUnitCoverage
+function puc () { pu --coverage-html=./coverage $@ && open coverage/index.html; }
+# PhpSpecCoverage
+function psc () { phpdbg -qrr ./vendor/bin/phpspec run --config ./phpspec-coverage.yml $@ && open coverage/index.html; }
 alias puf="pu --filter="
 function puw () {
     noglob ag -l -g \
@@ -358,7 +360,19 @@ alias dme="eval \$(docker-machine env default)"
 alias dmc="docker-machine create --driver=virtualbox --virtualbox-memory=4096 --virtualbox-disk-size=40000 default" # 40gb hard drive, 4gb memory
 alias dmd="VBoxManage discardstate default" # the virtualbox vm doesn't like to come back up when suspended.
 alias dmi="dme && docker-machine ip"
-alias dms="docker-machine start && dme"
+# alias dms="docker-machine start && dme"
+
+# docker-machine can get hung up by virtualbox sometimes during startup. Try
+# again after 15 seconds up to 5 times.
+# https://unix.stackexchange.com/a/82610/287898
+function dms () {
+    for i in {1..5}; do
+        docker-machine start && \
+            dme && \
+            break || \
+            sleep 15
+    done
+}
 # alias dmr="docker-machine regenerate-certs default"
 alias dmr="dme && docker-machine restart && dme"
 alias dps="dme && docker ps"
@@ -479,6 +493,11 @@ function swagger-php-gen() {
 # pahout {{{
 # https://github.com/wata727/pahout
 pahout () { docker run --rm -t -v $(pwd):/workdir wata727/pahout; }
+# }}}
+
+# couchbase {{{
+function couchbase-php-sdk-version () { php --re couchbase | head -1 | awk '{print $6, $7, $8}'; }
+function couchbase-php-extension-version () { php -i | grep couchbase | grep "libcouchbase runtime"; }
 # }}}
 
 # }}}
