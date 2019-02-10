@@ -2,8 +2,28 @@
   "languageserver": {
     "phplang": {
       "command": "php",
-      "args": ["/Users/mikefunk/php-language-server/bin/php-language-server.php"],
+      "args": ["/Users/mikefunk/composer/vendor/bin/php-language-server.php"],
       "filetypes": ["php"]
+    },
+    "flow": {
+      "command": "flow",
+      "args": ["lsp"],
+      "filetypes": ["javascript", "javascriptreact"],
+      "initializationOptions": {},
+      "requireRootPattern": true,
+      "settings": {},
+      "rootPatterns": [".flowconfig"]
+    },
+    "bash": {
+      "command": "bash-language-server",
+      "args": ["start"],
+      "filetypes": ["sh"],
+      "ignoredRootPaths": ["~"]
+    },
+    "dockerfile": {
+      "command": "docker-langserver",
+      "filetypes": ["dockerfile"],
+      "args": ["--stdio"]
     }
   }
 }

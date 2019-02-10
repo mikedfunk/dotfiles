@@ -500,6 +500,14 @@ function couchbase-php-sdk-version () { php --re couchbase | head -1 | awk '{pri
 function couchbase-php-extension-version () { php -i | grep couchbase | grep "libcouchbase runtime"; }
 # }}}
 
+# php-language-server {{{
+function php-language-server-script () {
+    if [ "$1" -e "--help" ]; then echo "Usage: $0 with no args lists scripts, $0 {script-name} to run"; return; fi
+    [ -z $@ ] && ARG='-l' || ARG="$@"
+    composer global run-script --working-dir=$HOME/.composer/global/felixfbecker/language-server/vendor/felixfbecker/language-server $ARG
+}
+# }}}
+
 # }}}
 
 # source more files {{{

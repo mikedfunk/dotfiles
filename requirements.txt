@@ -7,7 +7,7 @@ Click==7.0
 colorama==0.4.1
 configobj==5.0.6
 cryptography==2.5
-gita==0.7.1
+gita==0.7.2
 gitlint==0.10.0
 greenlet==0.4.15
 isort==4.3.4
@@ -32,6 +32,6 @@ sqlparse==0.2.4
 tabulate==0.8.3
 terminaltables==3.1.0
 tmuxomatic==2.19.dev0
-virtualenv==16.3.0
+virtualenv==16.4.0
 wcwidth==0.1.7
 wrapt==1.11.1

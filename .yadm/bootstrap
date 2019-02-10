@@ -4,9 +4,9 @@
 # Why did I wrap everything in functions? So I could re-run specific things when necessary without having to re-run the entire bootstrap file.
 
 # helper functions {{{
-function log_info() { echo -e "$(tput setaf 2)$(tput rev)$(tput bold) \xE2\x9C\x93 $1 $(tput sgr0)"; ${@:2}; }
-function log_error() { echo -e "$(tput setaf 1)$(tput rev)$(tput bold) \xE2\x9C\x97 $1 $(tput sgr0)"; ${@:2}; }
-function log_notice() { echo -e "$(tput setaf 3)$(tput rev)$(tput bold) \xE2\x9A\xa0 $1 $(tput sgr0)"; ${@:2}; }
+function log_info() { echo -e "$(tput setaf 2)$(tput rev)$(tput bold) \xE2\x9C\x93 $1 $(tput sgr0)"; "${@:2}"; }
+function log_error() { echo -e "$(tput setaf 1)$(tput rev)$(tput bold) \xE2\x9C\x97 $1 $(tput sgr0)"; "${@:2}"; }
+function log_notice() { echo -e "$(tput setaf 3)$(tput rev)$(tput bold) \xE2\x9A\xa0 $1 $(tput sgr0)"; "${@:2}"; }
 # }}}
 
 # clone repos {{{
@@ -335,12 +335,13 @@ _install-composer () {
     exit $RESULT
 }
 _install_update_composer_packages () {
+    cd $HOME/.composer >/dev/null || return
     if ! command -v composer >/dev/null 2>&1; then
         log_info "Installing composer"
         _install-composer
     fi
     log_info "Installing/upgrading composer packages"
-    composer global selfupdate
+    composer selfupdate
     composer global install
     composer global update
     if [[ ! -d $HOME/.composer/global ]]; then
@@ -354,6 +355,16 @@ _install_update_composer_packages () {
         log_info "Upgrading cgr packages"
         cgr update
     fi
+    cd - >/dev/null || return
+}
+# }}}
+
+# php-language-server {{{
+_parse_php_language_server_stubs () {
+    cd "$HOME/.composer" || return
+    log_info "parsing php-language-server stubs"
+    composer global run-script --working-dir="$HOME/.composer/global/felixfbecker/language-server/vendor/felixfbecker/language-server"
+    cd - || return
 }
 # }}}
 
@@ -514,6 +525,7 @@ _install_python3_version
 _install_update_ruby_gems
 _update_python3_pip_packages
 _install_update_composer_packages
+_parse_php_language_server_stubs
 _install_vivid
 _update_antibody_plugins
 _apply_hosts_file

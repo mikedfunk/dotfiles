@@ -43,10 +43,11 @@ endif
 " linters or fixers in separate processes asynchronously.
 let s:js_linters = []
 let s:js_fixers = ['importjs']
+" let s:php_linters = ['php', 'langserver'] " langserver is useful for completion
 let s:php_linters = ['php']
 let s:php_fixers = []
 
-if executable('./node_modules/.bin/flow') | call add(s:js_linters, 'flow') | endif
+if executable('./node_modules/.bin/flow') | call add(s:js_linters, 'flow_ls') | endif
 if executable('./node_modules/.bin/eslint') | call add(s:js_linters, 'eslint') | endif
 
 if filereadable('phpcs.xml')
@@ -105,6 +106,15 @@ let g:ale_fixers = {
 " set mouse=a
 " set ttymouse=xterm
 let g:ale_set_balloons = 1
+
+" completion {{{
+" :h ale-completion
+" let g:ale_completion_enabled = 1
+" set completeopt=menu,menuone,preview,noselect,noinsert
+let g:ale_php_langserver_use_global = 1
+let g:ale_php_langserver_executable = $HOME.'/.composer/vendor/bin/php-language-server.php'
+" }}}
+
 " }}}
 
 " asyncrun.vim {{{
@@ -130,6 +140,56 @@ endif
 
 " challenger-deep-theme {{{
 let g:challenger_deep_termcolors = 16
+" }}}
+
+" coc.nvim {{{
+if isdirectory(expand('~/.vim/plugged/coc.nvim'))
+
+    " tab completion {{{
+    " Use tab for trigger completion with characters ahead and navigate.
+    " Use command ':verbose imap <tab>' to make sure tab is not mapped by
+    " other plugin.
+    inoremap <silent><expr> <TAB>
+          \ pumvisible() ? "\<C-n>" :
+          \ <SID>check_back_space() ? "\<TAB>" :
+          \ coc#refresh()
+    inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+    function! s:check_back_space() abort
+        let col = col('.') - 1
+        return !col || getline('.')[col - 1]  =~# '\s'
+    endfunction
+
+    " Use <cr> for confirm completion, `<C-g>u` means break undo chain at
+    " current position. Coc only does snippet and additional edit on confirm.
+    inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+    " }}}
+
+    " Remap keys for gotos
+    nnoremap <silent> gd <Plug>(coc-definition)
+    nnoremap <silent> gy <Plug>(coc-type-definition)
+    nnoremap <silent> gi <Plug>(coc-implementation)
+    nnoremap <silent> gr <Plug>(coc-references)
+
+    " Remap for rename current word
+    nnoremap <leader>rn <Plug>(coc-rename)
+
+    augroup cocgroup
+        autocmd!
+        " Setup formatexpr specified filetype(s).
+        autocmd FileType php,json,javascript setl formatexpr=CocAction('formatSelected')
+        " Update signature help on jump placeholder
+        autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+    augroup end
+endif
+" }}}
+
+" coc-sources {{{
+" if isdirectory(expand('~/.vim/plugged/coc-sources'))
+"     :CocInstall coc-omni
+"     :CocInstall coc-tag
+"     :CocInstall coc-ultisnips
+" endif
 " }}}
 
 " completor.vim {{{
@@ -233,9 +293,9 @@ let g:minimap_toggle = '<leader>mm'
 " mucomplete {{{
 let g:mucomplete#enable_auto_at_startup = 1
 if isdirectory(expand('~/.vim/plugged/vim-mucomplete'))
-    set completeopt+=menuone
+    " set completeopt+=menuone
     set shortmess+=c
-    set completeopt+=noinsert,noselect " For automatic completion
+    " set completeopt+=noinsert,noselect " For automatic completion
 endif
 " }}}
 

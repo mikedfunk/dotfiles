@@ -170,10 +170,43 @@ noremap \ ,
 " set autoread " update files changed outside of vim. This works well with `set noswapfile`(in sensible.vim)
 set exrc " enables reading .exrc or .vimrc from current directory
 set secure " Always append set secure when exrc option is enabled!
+
+" completeopt {{{
 " completeopt default: 'menu,preview' :h completeopt
-set completeopt-=preview " turn off omnicomplete preview window
+set completeopt-=preview " turn off omnicomplete preview window because it is a bit slow and flashes the completion tooltip between selections
 set completeopt+=longest " only autofill the common text between all completion options
-" set completeopt-=menu | set completeopt+=menuone " display completion even if there is one result. Useful for echodoc.
+" set completeopt+=noinsert,noselect " For as-you-type completion. avoids automatically inserting text as you type.
+" set completeopt-=menu | set completeopt+=menuone " display completion even if there is one result. Useful for as-you-type completion.
+"
+" all completeopt options:
+" menu	    Use a popup menu to show the possible completions.  The
+"      menu is only shown when there is more than one match and
+"      sufficient colors are available.  |ins-completion-menu|
+
+" menuone  Use the popup menu also when there is only one match.
+"      Useful when there is additional information about the
+"      match, e.g., what file it comes from.
+
+" longest  Only insert the longest common text of the matches.  If
+"      the menu is displayed you can use CTRL-L to add more
+"      characters.  Whether case is ignored depends on the kind
+"      of completion.  For buffer text the 'ignorecase' option is
+"      used.
+
+" preview  Show extra information about the currently selected
+"      completion in the preview window.  Only works in
+"      combination with 'menu' or 'menuone'.
+
+" noinsert  Do not insert any text for a match until the user selects
+"      a match from the menu. Only works in combination with
+"      'menu' or 'menuone'. No effect if 'longest' is present.
+
+" noselect  Do not select a match in the menu, force the user to
+"      select one from the menu. Only works in combination with
+"      'menu' or 'menuone'.
+"
+" }}}
+
 set fileformat=unix " Any non-unix line endings are converted to unix
 set nojoinspaces " Prevents inserting two spaces after punctuation on a join (J)
 set splitright " Puts new vsplit windows to the right of the current
@@ -422,6 +455,7 @@ augroup csscompletegroup
 augroup END
 
 set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png,*.ico,*.pdf,*.psd,node_modules/*,.git/*,Session.vim
+
 " }}}
 
 " Abbreviations {{{
@@ -643,6 +677,8 @@ augroup END
 augroup jsonformat
     autocmd!
     autocmd FileType json set concealcursor-=n
+    " jsonc - json with // comments
+    autocmd FileType json syntax match Comment +\/\/.\+$+
 augroup END
 
 " https://stackoverflow.com/questions/3494435/vimrc-make-comments-italic

@@ -36,7 +36,7 @@ brew "fd" # prettier alternative to find that respects gitignore
 # brew "fpp" # facebook path picker. Used with tmux-fpp to easily open files in an editor. (I don't use it)
 brew "fzf" # fuzzy file finder `git branch | fzf | xargs git checkout`
 brew "git"
-brew "git-extras" # adds some cool additional git commands
+# brew "git-extras" # adds some cool additional git commands (conflicts with npm git-standup)
 # brew "git-flow" # adds first class git commands for the git-flow workflow (I use avh version below)
 brew "git-flow-avh" # adds first class git commands for the git-flow workflow. This version will delete remote feature, release, and hotfix branches on finishing.
 brew "gnu-sed" # linux version of sed - saves as gsed (required for diff-so-fancy)
