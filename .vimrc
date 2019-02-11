@@ -178,7 +178,7 @@ set secure " Always append set secure when exrc option is enabled!
 " completeopt default: 'menu,preview' :h completeopt
 set completeopt-=preview " turn off omnicomplete preview window because it is a bit slow and flashes the completion tooltip between selections
 set completeopt+=longest " only autofill the common text between all completion options
-set completeopt+=noinsert,noselect " For as-you-type completion. avoids automatically inserting text as you type.
+" set completeopt+=noinsert,noselect " For as-you-type completion. avoids automatically inserting text as you type.
 " set completeopt-=menu | set completeopt+=menuone " display completion even if there is one result. Useful for as-you-type completion.
 "
 " all completeopt options:
@@ -309,11 +309,12 @@ if has('cscope')
     " https://www.reddit.com/r/vim/comments/95jxk7/big_list_of_tagsctags_matches_how_to_navigate_in/
     " set cscopequickfix=s-,c-,d-,i-,t-,e-,a-
     set cscopetag " use cscope db as well as tags db for tag operations
+    " set nocscopetag " use cscope db as well as tags db for tag operations
 
     " open usage list here
-    nnoremap <c-[> :exec("cscope find c ".expand("<cword>"))<cr>
+    nnoremap <c-\> :exec("cscope find c ".expand("<cword>"))<cr>
     " open usage list in vertical split
-    nnoremap <c-w><c-[> :vsp<CR>:exec("cscope find c ".expand("<cword>"))<cr>
+    nnoremap <c-w><c-\> :vsp<CR>:exec("cscope find c ".expand("<cword>"))<cr>
     " I don't use horizontal splits much... but if I need it I can just `:scs find c something`
     " open usage list in new tab
     function! FindUsagesInNewTab () abort
@@ -322,7 +323,7 @@ if has('cscope')
         :normal! `z
         :exec("cscope find c ".expand('<cword>'))
     endfunction
-    nnoremap <silent><leader><c-[> :call FindUsagesInNewTab()<cr>
+    nnoremap <silent><leader><c-\> :call FindUsagesInNewTab()<cr>
 endif
 " }}}
 
@@ -548,8 +549,8 @@ function! OpenTagInNewTab () abort
 endfunction
 nnoremap <silent><leader><c-]> :call OpenTagInNewTab()<cr>
 " open tag in vertical split
-nnoremap <c-w><c-]> :exec("stjump ".expand("<cword>"))<CR>
-nnoremap <c-w><c-\> :vsp<CR>:exec("tjump ".expand("<cword>"))<CR>
+" nnoremap <c-w><c-]> :exec("stjump ".expand("<cword>"))<CR>
+nnoremap <c-w><c-]> :vsp<CR>:exec("tjump ".expand("<cword>"))<CR>
 " open tag in preview window (<c-w><c-z> to close)
 nnoremap <c-w>} :exec("ptjump ".expand("<cword>"))<CR>
 command! -nargs=1 Vtselect vsp | exec 'tselect ' . <f-args> " like stselect but for vertical split e.g. :Vtselect /MyPartialTag
