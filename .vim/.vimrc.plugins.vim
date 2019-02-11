@@ -53,9 +53,9 @@ Plug 'wellle/tmux-complete.vim' " add tmux as a completion source with user-defi
 
 " completion not working currently with this...
 " Plug 'prabirshrestha/asyncomplete.vim' | Plug 'prabirshrestha/asyncomplete-lsp.vim' | Plug 'prabirshrestha/async.vim' | Plug 'prabirshrestha/vim-lsp' " Async Language Server Protocol plugin for vim8 and neovim.
-" Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}} " language server completion - so far only useful for javascript (and rust and golang). php language server is total garbage right now. It's not portable as a phar, it must be installed with dev minimum stability (installing this globally is a problem without cgr), it's buggy: 153 open issues atm :/ .
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}} " language server completion
 " Plug 'neoclide/coc-sources' " more coc completion sources
-" Plug 'Shougo/neco-vim' | Plug 'neoclide/coc-neco' " viml coc completion
+Plug 'Shougo/neco-vim' | Plug 'neoclide/coc-neco' " viml coc completion
 " Plug 'roxma/nvim-completion-manager' | Plug 'roxma/vim-hug-neovim-rpc' " completion plugin recommended on reddit https://www.reddit.com/r/vim/comments/6zgi34/what_are_the_differences_between_vimcompletesme/?utm_content=title&utm_medium=front&utm_source=reddit&utm_name=vim
 " Plug 'ncm2/ncm2' | Plug 'roxma/nvim-yarp' " formerly known as nvim-completion-manager (requires language server or phpactor connector)
 " }}}
