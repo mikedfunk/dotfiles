@@ -1,5 +1,10 @@
 {
   "languageserver": {
+    "phplang": {
+      "command": "php",
+      "args": ["/Users/mikefunk/.composer/vendor/bin/php-language-server.php"],
+      "filetypes": ["php"]
+    },
     "flow": {
       "command": "flow",
       "args": ["lsp"],
