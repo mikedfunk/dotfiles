@@ -99,9 +99,12 @@ set laststatus=2
 set ruler
 set wildmenu
 
+" distance H goes from the top of screen (or L, or zt, zb)
 if !&scrolloff
-  set scrolloff=1
+  " set scrolloff=1
+  set scrolloff=3
 endif
+
 if !&sidescrolloff
   set sidescrolloff=5
 endif
@@ -378,6 +381,7 @@ augroup filetypessetgroup
     autocmd BufRead,BufNewFile .tigrc set ft=gitconfig
     autocmd BufRead,BufNewFile {.env,.env.*} set ft=dosini
     autocmd BufRead,BufNewFile *.cnf set ft=dosini
+    autocmd BufRead,BufNewFile .spacemacs set ft=lisp
 augroup END
 
 let g:netrw_liststyle=3 " tree style
