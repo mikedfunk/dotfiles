@@ -99,7 +99,7 @@ set laststatus=2
 set ruler
 set wildmenu
 
-" distance H goes from the top of screen (or L, or zt, zb)
+" distance H goes from the top of screen (or L from bottom, or zt, zb)
 if !&scrolloff
   " set scrolloff=1
   set scrolloff=3
