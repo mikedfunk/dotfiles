@@ -178,7 +178,7 @@ set secure " Always append set secure when exrc option is enabled!
 " completeopt default: 'menu,preview' :h completeopt
 set completeopt-=preview " turn off omnicomplete preview window because it is a bit slow and flashes the completion tooltip between selections
 set completeopt+=longest " only autofill the common text between all completion options
-" set completeopt+=noinsert,noselect " For as-you-type completion. avoids automatically inserting text as you type.
+set completeopt+=noinsert,noselect " For as-you-type completion. avoids automatically inserting text as you type.
 " set completeopt-=menu | set completeopt+=menuone " display completion even if there is one result. Useful for as-you-type completion.
 "
 " all completeopt options:

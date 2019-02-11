@@ -210,6 +210,8 @@ _install_upgrade_vim_plugins () {
     log_info "Installing/upgrading vim plugins"
     # vim +PlugInstall +PlugUpdate +PlugClean! +qall
     nvim +PlugInstall +PlugUpdate +PlugClean! +qall
+    # coc.nvim extension updates
+    nvim +"CocInstall coc-phpls" +CocUpdate +qall
 }
 # }}}
 
