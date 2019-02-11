@@ -776,6 +776,7 @@ let g:gitgutter_realtime = 0 | let g:gitgutter_eager = 0 " trade accuracy for sp
 " endif
 " let g:gutentags_ctags_executable_php = '( git ls-files --ignored --exclude-standard | ctags --links=no -L- )'
 " let g:gutentags_ctags_executable_php = '( ag -l | ctags --links=no -L- )'
+
 let g:gutentags_ctags_executable_ruby = 'ripper-tags -R --ignore-unsupported-options'
 
 " guess the project type based on these files. More will be added later
@@ -793,16 +794,7 @@ let g:gutentags_exclude_filetypes = ['gitcommit']
 
 " Some debugging/troubleshooting commands are also available if the
 " |gutentags_define_advanced_commands| global setting is set to 1.
-let g:gutentags_define_advanced_commands = 1
-
-" only tag stuff that is not in gitignore
-" downside: you have to commit a file for it to be tagged
-" let g:gutentags_file_list_command = {
-"     \ 'markers': {
-"         \ '.git': 'git ls-files',
-"         \ '.hg': 'hg files',
-"         \ },
-"     \ }
+" let g:gutentags_define_advanced_commands = 1 | let g:gutentags_trace=1
 
 " this is because of the following comment by phpcomplete project owner
 " shawncplus: I'd advise against regenerating tag files on every save or
@@ -816,9 +808,11 @@ let g:gutentags_define_advanced_commands = 1
 " let g:gutentags_generate_on_new = 0
 " let g:gutentags_generate_on_empty_buffer = 0
 
-" cscope module doesn't work yet
-" let g:gutentags_modules = ['ctags']
-" if executable('cscope') && has('cscope') | call add(g:gutentags_modules, 'cscope') | endif
+let g:gutentags_modules = ['ctags']
+if executable('cscope') && has('cscope')
+    call add(g:gutentags_modules, 'cscope')
+    " set cscopetag " this is set in ~/.vimrc
+endif
 let g:gutentags_ctags_exclude = [
     \ '.git',
     \ '*.log',
@@ -829,6 +823,19 @@ let g:gutentags_ctags_exclude = [
     \ 'app/cache',
     \ '__TwigTemplate_*'
 \]
+
+" tells cscope to only index php files
+" let g:gutentags_file_list_command = 'find . -type f -name *.php'
+"
+" tells cscope to respect the same exclude settings in ~/.ctags
+let g:gutentags_file_list_command = $HOME.'/.support/cscope_find.sh'
+"
+" lets cscope ignore files in gitignore
+" let g:gutentags_file_list_command = {
+"     \ 'markers': {
+"         \ '.git': 'git ls-files',
+"         \ },
+"     \ }
 " }}}
 
 " vim-indent-guides {{{
@@ -1076,7 +1083,7 @@ if isdirectory(expand('~/.vim/plugged/vimux')) && executable('tmux')
 
     " poor man's phpunit runner for current test file
     nnoremap <leader>pw :call VimuxRunCommand("clear; puwatch " . bufname("%"))<CR>
-    nnoremap <leader>pf :call VimuxRunCommand("clear; puwatch --filter=" . <c-r><c-w><CR>
+    nnoremap <leader>pf :call VimuxRunCommand("clear; puwatch --filter=" . <c-r><c-w>."")<CR>
     nnoremap <leader>sw :call VimuxRunCommand("clear; pswatch " . bufname("%"))<CR>
     nnoremap <leader>sl :call VimuxRunCommand("clear; pswatch " . bufname("%") . ":" . (line(".") + 1))<CR>
 endif

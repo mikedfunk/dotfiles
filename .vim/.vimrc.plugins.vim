@@ -160,9 +160,9 @@ Plug 'AndrewRadev/undoquit.vim' " another one to reopen closed buffers/windows/t
 Plug 'frioux/vim-lost' " gL to see what function you're in. I use this in php sometimes to avoid expensive similar functionality in vim-airline.
 " Plug 'ramele/agrep' " async grep that shows found context in a split. Cool!
 " Plug 'wincent/ferret' " enhances search, quickfix window, etc. with :Ack command
-" Plug 'dhruvasagar/vim-zoom' " zoom toggle. Can kind of do the same thing with <c-w>_ or <c-w><bar>
+" Plug 'dhruvasagar/vim-zoom' " zoom toggle. Can kind of do the same thing with <c-w>_ or <c-w><bar> or permanently with :only
 Plug 'lifepillar/vim-cheat40' " Customizable cheatsheet. Mine is in ~/.vim/plugged/cheat40.txt. Open cheatsheet with <leader>? . I use this to avoid written cheatsheets on my desk for refactor tools and vdebug.
-" Plug 'auwsmit/vim-active-numbers' " Only show line numbers on active window. Helps to show which is active.
+" Plug 'auwsmit/vim-active-numbers' " Only show line numbers on active window. Helps to show which is active. (but... doesn't let you see line numbers of unfocused windows, which I often want to do)
 " Plug 'dyng/ctrlsf.vim' " Contextual search plugin ala sublime.
 " Plug 'andymass/vim-tradewinds' " <c-w>gh to move the current split one to the left, etc. in other directions
 " Plug 'Yilin-Yang/vim-markbar' " <leader>mm to show marks
@@ -281,12 +281,16 @@ Plug 'aklt/plantuml-syntax'
 " Visuals {{{
 Plug 'vim-airline/vim-airline' " better status bar
 Plug 'vim-airline/vim-airline-themes' " pretty colors for airline
+
+" Indent Guides {{{
 " Plug 'nathanaelkane/vim-indent-guides' " show vertical indent guides for levels of indentations
 " Plug 'mikedfunk/vim-indent-guides' " my fork to enable color guessing with termguicolors
-Plug 'Yggdroot/indentLine' " show vertical lines for levels of indentions
 " Plug 'thaerkh/vim-indentguides' " faster indent guides (lately it's only been showing every other one. Also they disappear when reloading vimrc.)
+Plug 'Yggdroot/indentLine' " show vertical lines for levels of indentions
+" }}}
+
 " Plug 'edkolev/tmuxline.vim' " tmux statusline file generator
-" Plug 'edkolev/promptline.vim', { 'on': ['Promptline', 'PromptlineSnapshot'] } " custom bash prompt in sync with airline
+" Plug 'edkolev/promptline.vim', { 'on': ['Promptline', 'PromptlineSnapshot'] } " custom bash prompt creation in sync with airline
 " Plug 'ntpeters/vim-better-whitespace' " highlight tabs and trailing whitespace. Slows down typing considerably though!
 " Plug 'thirtythreeforty/lessspace.vim' " remove trailing whitespace only on lines you edit. Messes up paste indent!
 " Plug 'dodie/vim-disapprove-deep-indentation', { 'for': ['php', 'ruby'] } " too much indentation = ಠ_ಠ . messes up the quantum theme I use for saatchi

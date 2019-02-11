@@ -39,6 +39,7 @@ brew "git"
 # brew "git-extras" # adds some cool additional git commands (conflicts with npm git-standup)
 # brew "git-flow" # adds first class git commands for the git-flow workflow (I use avh version below)
 brew "git-flow-avh" # adds first class git commands for the git-flow workflow. This version will delete remote feature, release, and hotfix branches on finishing.
+# brew "global" # gnu global tags aka gtags. More powerful than ctags but has a different interface with a learning curve. Also depends on ctags which conflicts with universal-ctags.
 brew "gnu-sed" # linux version of sed - saves as gsed (required for diff-so-fancy)
 # brew "gnu-tar" # linux version of tar so stuff actually works
 # brew "graphviz" # useful for xdebug profiler class maps
@@ -169,6 +170,7 @@ tap "caskroom/cask"
 # cask "cheatsheet" # hold <cmd> for a bit to get a modal of available keyboard shortcuts (kind of annoying - rarely comes up when I actually want it to, too much info)
 cask "docker" # docker for mac desktop app
 # cask "dropbox" # I especially use this for synching my notes so I can view them in the joplin mobile app (not using this feature right now)
+cask "emacs" # this actually makes sense as a cask. It becomes tmux, vim, and kitty all in one.
 cask "epic-games" # game store
 cask "firefox"
 tap "homebrew/cask-fonts"
