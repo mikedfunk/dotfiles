@@ -145,7 +145,7 @@ window zed
 0000003333333444442222222
 0000003333333444442222222
 
-dir ~/Code/saatchi/yzed
+dir ~/Code/saatchi/zed
 1 run v -S
 0 run ts
 2 run wd xdocker

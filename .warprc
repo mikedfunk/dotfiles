@@ -1,5 +1,4 @@
 yadm:~/.yadm
-legacy:~/Code/saatchi/saatchiart
 ios:~/Code/saatchi/discover
 airliners:~/Code/airliners
 test:~/Code/test
@@ -8,7 +7,6 @@ catalog:~/Code/saatchi/catalog
 api:~/Code/saatchi/api
 potato:~/Code/saatchi/potato
 local:~/Code/saatchi/local-scripts
-zed:~/Code/saatchi/yzed
 views:~/Code/saatchi/couchbase-views
 gallery:~/Code/saatchi/gallery
 palette:~/Code/saatchi/palette
@@ -24,4 +22,6 @@ geasel:~/Code/saatchi/generator-easel
 gatsby:~/Code/gatsby-site
 uml:~/Code/uml
 imgproc:~/Code/saatchi/imgproc
+legacy:~/Code/saatchi/legacy
 saatchi:~/Code/saatchi
+zed:~/Code/saatchi/zed
