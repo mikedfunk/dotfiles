@@ -30,7 +30,7 @@ function log_notice() { echo -e "$(tput setaf 3)$(tput rev)$(tput bold) \xE2\x9A
 # [[ -d "$HOME/Code/saatchi/maropost-php-sdk" ]] || git clone git@github.com:saatchiart/maropost-php-sdk.git
 # [[ -d "$HOME/Code/saatchi/palette" ]] || git clone git@github.com:saatchiart/palette.git
 # [[ -d "$HOME/Code/saatchi/potato" ]] || git clone git@github.com:saatchiart/potato.git
-# [[ -d "$HOME/Code/saatchi/saatchiart" ]] || git clone git@github.com:saatchiart/saatchiart.git
+# [[ -d "$HOME/Code/saatchi/saatchiart" ]] || git clone git@github.com:saatchiart/saatchiart.git legacy
 # [[ -d "$HOME/Code/saatchi/xdocker" ]] || git clone git@github.com:saatchiart/xdocker.git
 # [[ -d "$HOME/Code/saatchi/yzed" ]] || git clone git@github.com:saatchiart/yzed.git
 # cd -

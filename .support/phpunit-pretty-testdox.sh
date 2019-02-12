@@ -1,4 +1,11 @@
 #!/bin/bash
+# From the phpunit testdox output, print passing lines in green, failing in red
+#vim:set foldmethod=marker:
+
+# unofficial bash strict mode http://redsymbol.net/articles/unofficial-bash-strict-mode/ {{{
+set -euo pipefail
+# IFS=$'\n\t' # messes up colors
+# }}}
 
 # colors {{{
 BLACK="$(tput setaf 0)"

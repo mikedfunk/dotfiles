@@ -324,6 +324,20 @@ if has('cscope')
         :exec("cscope find c ".expand('<cword>'))
     endfunction
     nnoremap <silent><leader><c-\> :call FindUsagesInNewTab()<cr>
+
+    " can also :cs find {type} {string}
+    " types:
+    " 0 or s: Find this C symbol
+    " 1 or g: Find this definition
+    " 2 or d: Find functions called by this function
+    " 3 or c: Find functions calling this function
+    " 4 or t: Find this text string
+    " 6 or e: Find this egrep pattern
+    " 7 or f: Find this file
+    " 8 or i: Find files #including this file
+    " 9 or a: Find places where this symbol is assigned a value
+    "
+    " really I don't see the point of any of these except 'c'
 endif
 " }}}
 

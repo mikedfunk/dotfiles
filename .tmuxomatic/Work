@@ -37,7 +37,7 @@ window legacy
 1111122222222244444455555
 1111122222222244444455555
 
-dir ~/Code/saatchi/saatchiart
+dir ~/Code/saatchi/legacy
 0 run v -S
 1 run ts
 2 run puw
