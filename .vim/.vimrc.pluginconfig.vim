@@ -691,6 +691,19 @@ let g:current_line_whitespace_disabled_soft = 1
 let g:bookmark_no_default_key_mappings = 1
 " }}}
 
+" vim-closer {{{
+augroup phpvimclosergroup
+    autocmd!
+    autocmd FileType php
+                \ let b:closer = 1 |
+                " ; will add a ; after if closing bracket e.g. `if (true) {\n};`
+                " \ let b:closer_flags = '([{;' |
+                \ let b:closer_flags = '([{' |
+                \ let b:closer_no_semi = '^\s*\(function\|class\|if\|else\)' |
+                \ let b:closer_semi_ctx = ')\s*{$'
+augroup END
+" }}}
+
 " vim-colorscheme-switcher {{{
 let g:colorscheme_switcher_exclude_builtins = 1
 " only because shift-F8 is already mapped
@@ -852,7 +865,8 @@ endif
 " }}}
 
 " {{{ vim-indentline
-let g:indentLine_char = '┆'
+" let g:indentLine_char = '┆'
+let g:indentLine_char = '│'
 let g:indentLine_faster = 1
 let g:indentLine_fileTypeExclude = ['fzf']
 " let g:indentLine_setConceal = 0

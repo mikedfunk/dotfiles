@@ -5,3 +5,5 @@ tags*
 bootstrap.php.cache
 app/cache
 *.min.*
+cscope.*
+ncscope.*

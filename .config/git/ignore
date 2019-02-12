@@ -21,6 +21,7 @@ cscope.out
 cscope.out.files
 cscope.out.lock
 cscope.out.temp
+ncscope.out.temp
 *.tags
 tags
 tags*
