@@ -235,6 +235,13 @@ function puw () {
         --colors=always \
         $@
 }
+function puw-pretty () {
+    noglob ag -l -g \
+        '(application\/controllers|application\/modules\/*\/controllers|application\/models|library|src|tests)/.*\.php' \
+        | entr -r -c \
+        "$HOME/.bin/pu-pretty" \
+        $@
+}
 # }}}
 
 # composer {{{
