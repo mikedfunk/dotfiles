@@ -687,6 +687,10 @@ function! PhpPrefixNamespaces() abort
     nohlsearch
 endfunction
 command! PhpPrefixNamespaces :call PhpPrefixNamespaces()
+
+" http://vim.wikia.com/wiki/Highlight_current_line
+nnoremap <silent> <leader>hl ml:execute 'match Search /\%'.line('.').'l/'<CR>
+" `:match` to clear highlighting when finished
 " }}}
 
 " Visuals {{{
