@@ -235,17 +235,6 @@ function puw () {
         --colors=always \
         $@
 }
-# pretty print with testdox - red is failed, green is passed. Phpunit, why don't you already do this? Phpspec does :)
-function pu-pretty () {
-    "$HOME/.phpenv/shims/phpdbg" -qrr \
-        -dmemory_limit=2048M \
-        -ddisplay_errors=on \
-        ./vendor/bin/phpunit \
-        --testdox \
-        --verbose \
-        $@ | $HOME/.support/phpunit-pretty-testdox.sh
-}
-# alias puw="php -dmemory_limit=2048M -ddisplay_errors=on -derror_reporting='E_ALL & ~E_NOTICE' $(which phpunit-watcher) watch"
 # }}}
 
 # composer {{{
