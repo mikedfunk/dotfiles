@@ -1,0 +1,6 @@
+{
+    "telemetry.enableTelemetry": false,
+    "telemetry.enableCrashReporter": false,
+    "terminal.integrated.fontFamily": "Iosevka Term",
+    "editor.fontFamily": "Iosevka Term, Menlo, Monaco, 'Courier New', monospace"
+}

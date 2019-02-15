@@ -183,14 +183,6 @@ snippet codingStandardsIgnore "magical docblock to make phpcs shut up!"
  */
 endsnippet
 
-snippet top "File-level PHP docblock"
-/**
- * ${1:Description}
- *
- * @copyright Leaf Group, Ltd. All Rights Reserved.
- */
-endsnippet
-
 snippet mck
 $$1Mock = Mockery::mock('${1/\w+\s*/\u$0/}');
 $$1Mock->shouldReceive('$3')
@@ -282,6 +274,8 @@ snippet scr "saatchi process abstract script"
 <?php
 declare(strict_types=1);
 
+require_once __DIR__ . '/../../vendor/autoload.php';
+
 use Zend_Controller_Front as FrontController;
 
 /**
@@ -314,10 +308,10 @@ class ${2:MyScript} extends ProcessAbstract
         ${4:// $this->_getParam('-param1', 'default val');}
         $this->isDryRun = $this->_isFlagSet('dry-run');
         if ($this->isDryRun) {
-            $this->logMsg("DRY RUN ONLY no changes will be made");
+            $this->output->success("DRY RUN ONLY no changes will be made");
         }
         ${5:// TODO write script...}
-        $this->logMsg('All done processing.');
+        $this->output->success('All done processing.');
     }
 }
 
@@ -338,11 +332,8 @@ endsnippet
 snippet qscr "saatchi queue process abstract script"
 <?php
 declare(strict_types=1);
-/**
- * $2
- *
- * @copyright `date +%Y` Leaf Group, Ltd. All Rights Reserved.
- */
+
+require_once __DIR__ . '/../../vendor/autoload.php';
 
 use Zend_Controller_Front as FrontController;
 
@@ -377,14 +368,14 @@ class ${2:MyScript} extends QueueProcessAbstract
 	{
         $this->isDryRun = $this->_isFlagSet('dry-run');
         if ($this->isDryRun) {
-            $this->logMsg("DRY RUN ONLY no changes will be made");
+            $this->output->success("DRY RUN ONLY no changes will be made");
         }
         ${4:// $this->_getParam('-param1', 'default val');}
 		/** @var array $event */
 		foreach ($this->updateData as $event) {
             ${5:// TODO write script...}
 		}
-		$this->logMsg('All done processing');
+		$this->output->success('All done processing.');
 	}
 }
 
@@ -404,11 +395,6 @@ endsnippet
 
 snippet trt "mike's trait with namespace, file and class docblocks"
 <?php
-/**
- * `!v expand("%:t:r")`
- *
- * @copyright `date +%Y` Leaf Group, Ltd. All Rights Reserved.
- */
 declare(strict_types=1);
 `!p snip.rv = namespace(snip, path)`
 /** ${1:Description} */
@@ -418,327 +404,9 @@ trait `!v expand("%:t:r")`
 }
 endsnippet
 
-snippet mdl "ACP laravel model"
-<?php
-/**
- * ${1:`!v expand("%:t:r")`} model
- *
- * @copyright `date +%Y` Leaf Group, Ltd. All Rights Reserved.
- */`!p snip.rv = namespace(snip, path)`
-use DemandMedia\Common\Models\BaseModel;
-use DemandMedia\\${2:PackageName}\Interfaces\\$1ModelInterface;
-
-class `!v expand("%:t:r")` extends BaseModel implements `!v expand("%:t:r")`ModelInterface
-{
-    /**
-     * the name of the table this model represents
-     *
-     * @var string
-     */
-    protected $table = '${4:table_name}';
-
-    /**
-     * whether to use created_at and updated_at
-     *
-     * @var boolean
-     */
-    public $timestamps = false;
-
-    /**
-     * fillable fields whitelist
-     *
-     * @var array
-     */
-    protected $fillable = [
-        $5
-    ];
-
-    /**
-     * these fields should return a Carbon date object
-     *
-     * @var array
-     */
-    protected $dates = [
-        $6
-    ];
-}
-endsnippet
-
-snippet mdli "ACP laravel model interface"
-<?php
-/**
- * ${1:Listing} model interface
- *
- * @copyright `date +%Y` Leaf Group, Ltd. All Rights Reserved.
- */`!p snip.rv = namespace(snip, path)`
-use DemandMedia\Common\Interfaces\BaseModelInterface;
-
-interface `!v expand("%:t:r")` extends BaseModelInterface
-{
-    $6
-}
-endsnippet
-
-snippet rps "ACP laravel repository"
-<?php
-/**
- * ${1:Listing} repository for data access
- *
- * @copyright `date +%Y` Leaf Group, Ltd. All Rights Reserved.
- */`!p snip.rv = namespace(snip, path)`
-use DemandMedia\Common\Repositories\EloquentRepository;
-use DemandMedia\\${2:PackageName}\Interfaces\\$1ModelInterface;
-use DemandMedia\\$2\Interfaces\\$1RepositoryInterface;
-
-class `!v expand("%:t:r")` extends EloquentRepository implements `!v expand("%:t:r")`Interface
-{
-
-    /**
-     * validation rules
-     *
-     * @var array
-     */
-    public $rules = array(
-        ${3:'title' => 'required',}
-    );
-
-    /**
-     * Dependency injection.
-     *
-     * @param \\$1ModelInterface \$${1/\w+/\l$0/}Model
-     */
-    public function __construct(
-        $1ModelInterface \$${1/\w+/\l$0/}Model
-    ) {
-        $this->setModel(\$${1/\w+/\l$0/}Model);
-    }
-}
-endsnippet
-
-snippet rpsi "ACP laravel repository interface"
-<?php
-/**
- * ${1:Listing} repository interface
- *
- * @copyright `date +%Y` Leaf Group, Ltd. All Rights Reserved.
- */`!p snip.rv = namespace(snip, path)`
-use DemandMedia\Common\Interfaces\EloquentRepositoryInterface;
-
-interface `!v expand("%:t:r")` extends EloquentRepositoryInterface
-{
-    $6
-}
-endsnippet
-
-snippet asp "Add service providers to orchestra testbench"
-$newProviders = [
-    'DemandMedia\\${1:PackageName}\\${2:Whatever}ServiceProvider',
-];
-$this->addServiceProviders($newProviders);
-endsnippet
-
-snippet rpst "ACP laravel repository test"
-<?php
-/**
- * ${1:Listing} repository test
- *
- * @copyright `date +%Y` Leaf Group, Ltd. All Rights Reserved.
- */
-namespace DemandMedia\\${2:PackageName}\Tests;
-
-use DemandMedia\Common\Tests\Support\BaseRepositoryTest;
-use DemandMedia\\$2\Repositories\\$1Repository;
-use DemandMedia\\$2\Models\\$1;
-use Mockery;
-
-class `!v expand("%:t:r")` extends BaseRepositoryTest
-{
-
-    /**
-     * $1 model instance
-     *
-     * @var \\$1
-     */
-    protected \$${1/\w+/\l$0/}Model;
-
-    /**
-     * $1 repository instance
-     *
-     * @var \\$1RepositoryInterface
-     */
-    protected \$${1/\w+/\l$0/}Repository;
-
-    /**
-     * phpunit setup
-     */
-    public function setUp()
-    {
-        parent::setUp();
-
-        // set up some shared mocks and dependencies
-        $ns = "DemandMedia\\$2\Models\\$1";
-        $this->${1/\w+/\l$0/}Model = Mockery::mock($ns);
-
-        // voltron assemble!
-        $this->${1/\w+/\l$0/}Repository = new $1Repository(
-            $this->${1/\w+/\l$0/}Model
-        );
-    }
-
-    /**
-     * data that will successfully update
-     *
-     * @return array
-     */
-    public function tryUpdateSuccessDataProvider()
-    {
-        return [
-            [
-                ${3:'name' => 'Hyundai',
-                'aces_name_id' => 1,}
-            ],
-        ];
-    }
-
-    /**
-     * data that will fail validation
-     *
-     * @return array
-     */
-    public function invalidValuesDataProvider()
-    {
-        return [
-            [
-                'values' => [
-                    ${4:'name' => '',}
-                ],
-            ],
-        ];
-    }
-    $5
-}
-endsnippet
-
-snippet sp "ACP Service Provider"
-<?php
-/**
- * ${1:Listing} service provider. Used for defining IoC bindings, event
- * listeners, etc.
- *
- * @copyright `date +%Y` Leaf Group, Ltd. All Rights Reserved.
- */`!p snip.rv = namespace(snip, path)`
-use Illuminate\Support\ServiceProvider;
-
-class `!v expand("%:t:r")` extends ServiceProvider
-{
-
-    /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = false;
-
-    /**
-     * Bootstrap the application events.
-     */
-    public function boot()
-    {
-        // manually defined the real path of the package
-        $this->package('demand-media/${1/\w+\s*/\l$0/}', null, __DIR__.'/../../../');
-    }
-
-    /**
-     * Register the service provider.
-     */
-    public function register()
-    {
-
-        // bind the controller
-        $this->app->bind(
-            'DemandMedia\\$1\Interfaces\\$1ControllerInterface',
-            'DemandMedia\\$1\Controllers\\$1Controller'
-        );
-
-        // bind the repository
-        $this->app->bind(
-            'DemandMedia\\$1\Interfaces\\$1RepositoryInterface',
-            'DemandMedia\\$1\Repositories\\$1Repository'
-        );
-
-        // bind the model
-        $this->app->bind(
-            'DemandMedia\\$1\Interfaces\\$1ModelInterface',
-            'DemandMedia\\$1\Models\\$1'
-        );
-    }
-
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
-    public function provides()
-    {
-        return array();
-    }
-}
-endsnippet
-
-snippet ctl "ACP laravel controller"
-<?php
-/**
- * ${1:Listing} controller
- *
- * @copyright `date +%Y` Leaf Group, Ltd. All Rights Reserved.
- */`!p snip.rv = namespace(snip, path)`
-use Config;
-use DemandMedia\Common\Controllers\BaseController;
-use DemandMedia\\$1\Interfaces\\$1RepositoryInterface;
-use DemandMedia\\$1\Interfaces\\$1ControllerInterface;
-use Input;
-use Lang;
-use MikeFunk\BustersPhp\BustersPhpInterface;
-use Notification;
-use Redirect;
-use URL;
-use Validator;
-use View;
-
-class `!v expand("%:t:r")` extends BaseController implements `!v expand("%:t:r")`Interface
-{
-
-    /**
-     * $1 repository instance
-     *
-     * @var \\$1RepositoryInterface
-     */
-    protected \$${1/\w+/\l$0/}Repository;
-
-    /**
-     * Dependency Injection.
-     *
-     * @param \\BustersPhpInterface $bustersPhp
-     * @param \\$1RepositoryInterface \$${1/\w+/\l$0/}Repository
-     */
-    public function __construct(
-        BustersPhpInterface $bustersPhp,
-        $1RepositoryInterface \$${1/\w+/\l$0/}Repository
-    ) {
-        parent::__construct($bustersPhp);
-        $this->${1/\w+/\l$0/}Repository = \$${1/\w+/\l$0/}Repository;
-    }
-    $5
-}
-endsnippet
-
 snippet sfctl "symfony controller"
 <?php
-/**
-* `!v expand("%:t:r")`
- *
- * @copyright `date +%Y` Leaf Group, Ltd. All Rights Reserved.
- */`!p snip.rv = namespace(snip, path)`
+declare(strict_types=1);`!p snip.rv = namespace(snip, path)`
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -759,89 +427,6 @@ class `!v expand("%:t:r")` extends Controller
 }
 endsnippet
 
-snippet ctli "ACP laravel controller interface"
-<?php
-/**
- * `!v expand("%:t:r")`
- *
- * @copyright `date +%Y` Leaf Group, Ltd. All Rights Reserved.
- */`!p snip.rv = namespace(snip, path)`
-use DemandMedia\Common\Interfaces\BaseControllerInterface;
-
-interface `!v expand("%:t:r")` extends BaseControllerInterface
-{
-    $6
-}
-endsnippet
-
-snippet ctlt "ACP laravel controller test"
-<?php
-/**
- * ${1:Listing} controller test
- *
- * @copyright `date +%Y` Leaf Group, Ltd. All Rights Reserved.
- */
-namespace DemandMedia\\${2:Package}\Tests;
-
-use Auth;
-use Config;
-use Input;
-use DemandMedia\Common\Tests\Support\BaseControllerTest;
-use DemandMedia\\$2\Controllers\\$1Controller;
-use Lang;
-use Mockery;
-use Notification;
-use Redirect;
-use URL;
-use Validator;
-use View;
-
-class `!v expand("%:t:r")` extends BaseControllerTest
-{
-
-    /**
-     * $1 repository instance
-     *
-     * @var \\$1RepositoryInterface
-     */
-    protected \$${1/\w+/\l$0/}Repository;
-
-    /**
-     * $1 controller instance
-     *
-     * @var \\$1ControllerInterface
-     */
-    protected \$${1/\w+/\l$0/}Controller;
-
-    /**
-     * phpunit setup
-     */
-    public function setUp()
-    {
-
-        // add some new package providers
-        $newProvider = 'DemandMedia\\$2\\$2ServiceProvider';
-        $this->addServiceProviders($newProvider);
-
-        parent::setUp();
-
-        // set up some shared mocks and dependencies
-        $ns = 'MikeFunk\BustersPhp\BustersPhpInterface';
-        $bustersPhp = Mockery::mock($ns);
-
-        $ns = "DemandMedia\\$1\Interfaces\\$1RepositoryInterface";
-        $this->${1/\w+/\l$0/}Repository = Mockery::mock($ns);
-
-        // voltron assemble!
-        $this->${1/\w+/\l$0/}Controller = new $1Controller(
-            $bustersPhp,
-            $this->${1/\w+/\l$0/}Repository
-        );
-    }
-    $3
-}
-endsnippet
-
 snippet fe "php foreach as"
 foreach ($$1s as $${1:thing}) {
     $2
@@ -850,11 +435,7 @@ endsnippet
 
 snippet mgt "laravel migration"
 <?php
-/**
- * $1 initial migration
- *
- * @copyright `date +%Y` Leaf Group, Ltd. All Rights Reserved.
- */
+declare(strict_types=1);
 
 use Illuminate\Database\Migrations\Migration;
 
@@ -899,21 +480,14 @@ class Create$1Table extends Migration
 }
 endsnippet
 
-snippet sdr "Auto Classifieds Platform laravel seeder"
+snippet sdr "Laravel seeder"
 <?php
-
-/**
- * $4
- *
- * @link https://github.com/fzaninotto/Faker use this library to provide fake
- * data to the seeder
- *
- * @copyright `date +%Y` Leaf Group, Ltd. All Rights Reserved.
- */`!p snip.rv = namespace(snip, path)`
-use DemandMedia\Common\Seeds\BaseSeeder;
+declare(strict_types=1);
+`!p snip.rv = namespace(snip, path)`
+use Illuminate\Database\Seeder;
 use Str;
 
-class $4 extends BaseSeeder
+class $4 extends Seeder
 {
 
     /**
@@ -1019,11 +593,8 @@ endsnippet
 
 snippet pupcla "mike's phpunit prophecy test template with docblocks"
 <?php
-/**
- * `!v expand("%:t:r")`
- *
- * @copyright `date +%Y` Leaf Group, Ltd. All Rights Reserved.
- */`!p snip.rv = namespace(snip, path)`
+declare(strict_types=1);
+`!p snip.rv = namespace(snip, path)`
 use DemandMedia\Test\AbstractProphecyTest;
 
 /** Unit Tests */
@@ -1188,13 +759,6 @@ snippet varblock "var docblock"
  */
 endsnippet
 
-snippet pageblock "page level docblock"
-/**
- * @copyright `date +%Y` Leaf Group, Ltd. All Rights Reserved.
- */
-$3
-endsnippet
-
 snippet rn "nullable return type"
 /**
  * @return $1|null
@@ -1295,9 +859,8 @@ endsnippet
 
 snippet zmodule "Zend Framework Module class"
 <?php
-/**
- * @copyright `date +%Y` Leaf Group, Ltd. All Rights Reserved.
- */
+declare(strict_types=1);
+
 namespace ${2:Namespace};
 
 class Module
@@ -1319,7 +882,7 @@ class Module
      */
     public function getConfig()
     {
-        return include __DIR__ . '/config/module.config.php';
+        return require_once __DIR__ . '/config/module.config.php';
     }
 }
 endsnippet
@@ -1688,11 +1251,8 @@ endsnippet
 
 snippet sfft "symfony form type"
 <?php
-/**
-* `!v expand("%:t:r")`
- *
- * @copyright `date +%Y` Leaf Group, Ltd. All Rights Reserved.
- */`!p snip.rv = namespace(snip, path)`
+declare(strict_types=1);
+`!p snip.rv = namespace(snip, path)`
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;

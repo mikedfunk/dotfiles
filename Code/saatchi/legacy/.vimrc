@@ -29,7 +29,7 @@ let g:flow#enable = 0
 " vdebug {{{
 let g:vdebug_options['port'] = 9000
 let g:vdebug_options['path_maps'] = {
-\   '/data/code_base/current': '/Users/mikefunk/Code/saatchi/saatchiart'
+\   '/data/code_base/current': '/Users/mikefunk/Code/saatchi/legacy'
 \}
 " }}}
 
