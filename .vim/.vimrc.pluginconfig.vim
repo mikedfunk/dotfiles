@@ -883,7 +883,7 @@ endif
 " let g:indentLine_char = '┆'
 let g:indentLine_char = '│'
 let g:indentLine_faster = 1
-let g:indentLine_fileTypeExclude = ['fzf']
+let g:indentLine_fileTypeExclude = ['fzf', 'help', 'startify']
 " let g:indentLine_setConceal = 0
 " }}}
 
@@ -981,7 +981,7 @@ if exists(':PlugInstall') | nnoremap <leader>bi :Source<cr> :PlugInstall<cr> | e
 " Remove any newly removed plugins in ~/.vimrc.plugins
 if exists(':PlugClean') | nnoremap <leader>bc :Source<cr> :PlugClean!<cr> | endif
 " Upgrade all installed plugins in ~/.vimrc.plugins
-if exists(':PlugUpdate') | nnoremap <leader>bu :Source<cr> :PlugUpdate<cr> :PlugUpgrade<cr> silent! :UpdateRemotePlugins<cr> | endif
+if exists(':PlugUpdate') | nnoremap <leader>bu :Source<cr> :silent! :UpdateRemotePlugins<cr> :PlugUpdate<cr> :PlugUpgrade<cr> | endif
 " }}}
 
 " vim-polyglot {{{
@@ -1032,43 +1032,75 @@ if isdirectory(expand('~/.vim/plugged/vim-slash')) && isdirectory(expand('~/.vim
 endif
 " }}}
 
-" {{{ vim-startify
+" vim-startify {{{
 if (has('nvim'))
-    let g:startify_custom_header = [
-        \ '                             _',
-        \ '      ____  ___  ____ _   __(_)___ ___',
-        \ '     / __ \/ _ \/ __ \ | / / / __ `__ \',
-        \ '    / / / /  __/ /_/ / |/ / / / / / / /',
-        \ '   /_/ /_/\___/\____/|___/_/_/ /_/ /_/',
-        \ '',
-        \ '',
-        \ ]
-else
-    let g:startify_custom_header = [
-        \ '                                  __         __',
-        \ '            __                  /''_ `\     /''__`\',
-        \ '    __  __ /\_\    ___ ___     /\ \L\ \   /\ \/\ \',
-        \ '   /\ \/\ \\/\ \ /'' __` __`\   \/_> _ <_  \ \ \ \ \',
-        \ '   \ \ \_/ |\ \ \/\ \/\ \/\ \    /\ \L\ \__\ \ \_\ \',
-        \ '    \ \___/  \ \_\ \_\ \_\ \_\   \ \____/\_\\ \____/',
-        \ '     \/__/    \/_/\/_/\/_/\/_/    \/___/\/_/ \/___/',
-        \ '',
-        \ '',
-        \ ]
+    " let g:ascii = [
+    "     \ '                             _',
+    "     \ '      ____  ___  ____ _   __(_)___ ___',
+    "     \ '     / __ \/ _ \/ __ \ | / / / __ `__ \',
+    "     \ '    / / / /  __/ /_/ / |/ / / / / / / /',
+    "     \ '   /_/ /_/\___/\____/|___/_/_/ /_/ /_/',
+    "     \ '',
+    "     \ '',
+    "     \ ]
+    " let g:startify_custom_header = g:ascii + startify#fortune#boxed()
+    " let g:startify_custom_header = g:ascii + startify#fortune#cowsay('', '═','║','╔','╗','╝','╚')
+    " let g:startify_custom_header = g:ascii + startify#fortune#quote()
 
+else
+    " let g:startify_custom_header = [
+    "     \ '                                  __         __',
+    "     \ '            __                  /''_ `\     /''__`\',
+    "     \ '    __  __ /\_\    ___ ___     /\ \L\ \   /\ \/\ \',
+    "     \ '   /\ \/\ \\/\ \ /'' __` __`\   \/_> _ <_  \ \ \ \ \',
+    "     \ '   \ \ \_/ |\ \ \/\ \/\ \/\ \    /\ \L\ \__\ \ \_\ \',
+    "     \ '    \ \___/  \ \_\ \_\ \_\ \_\   \ \____/\_\\ \____/',
+    "     \ '     \/__/    \/_/\/_/\/_/\/_/    \/___/\/_/ \/___/',
+    "     \ '',
+    "     \ '',
+    "     \ ]
 
 endif
+
+" New quote every time. Indented 3 spaces.
+let g:ascii = []
+let g:startify_custom_header =
+            \ 'map(g:ascii + startify#fortune#boxed(), "\"   \".v:val")'
 
 " a list if files to always bookmark. Will be shown at bottom
 " of the startify screen.
 let g:startify_bookmarks = [ '~/.vimrc', '~/.vimrc.plugins' ]
-let g:startify_change_to_vcs_root = 1 " always cd to git root on startup
+" let g:startify_change_to_vcs_root = 1 " always cd to git root on startup
 
+" show empty buffer and quit
+let g:startify_enable_special = 0
+" speeds up startify but sacrifices some accuracy
+let g:startify_enable_unsafe = 1
+" sort descending by last used
+let g:startify_session_sort = 1
 " disable common but unimportant files
 let g:startify_skiplist = [ 'COMMIT_EDITMSG', '\.DS_Store' ]
+let g:startify_files_number = 9 " recently used
 " below disabled because I now use vim-obsession
 " let g:startify_session_autoload = 1 " autoload Session.vim in the current dir
-" let g:startify_session_persistence = 1 " auto save session on exit like obsession
+let g:startify_session_persistence = 0 " auto save session on exit like obsession
+" save/load sessions from the current dir
+let g:startify_session_dir = getcwd().'/sessions'
+
+" reorder and whitelist certain groups
+let g:startify_lists = [
+            \ { 'type': 'sessions',  'header': ['   Sessions']       },
+            \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+            \ { 'type': 'commands',  'header': ['   Commands']       },
+            \ ]
+" \ { 'type': 'files',     'header': ['   MRU']            },
+" \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+
+if isdirectory(expand('~/.vim/plugged/vim-startify'))
+    nnoremap <leader>ss :SSave<cr>
+    nnoremap <leader>sl :SLoad<cr>
+    nnoremap <leader>sd :SDelete<cr>
+endif
 " }}}"
 
 " vim-taskwarrior {{{

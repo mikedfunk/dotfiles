@@ -119,7 +119,7 @@ Plug 'andymass/vim-matchup' " better matchit and match highlighter
 " }}}
 
 " Navigation and Search {{{
-" Plug 'mhinz/vim-startify' " better vim start screen. Strangely includes session management, which I don't use. I use vim-obsession for that.
+Plug 'mhinz/vim-startify' " better vim start screen. Strangely includes session management, which I don't use. I use vim-obsession for that.
 " NOTE: this also installs ~/.fzf and stuff
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim' " fuzzy finder. lazy load will prevent other commands from being loaded unless you add them all.
 " FZF TERMINAL TIPS!
