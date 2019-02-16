@@ -776,6 +776,21 @@ let g:http_client_focus_output_window = 0
 " endif
 " }}}
 
+" vim-git {{{
+if isdirectory(expand('~/.vim/plugged/vim-git'))
+    augroup vimgitautocmd
+        autocmd!
+        " NOTE: these work on multiple lines at once! (a range)
+        autocmd FileType gitrebase noremap <buffer> <silent> I :Pick<CR>
+        autocmd FileType gitrebase noremap <buffer> <silent> R :Reword<CR>
+        autocmd FileType gitrebase noremap <buffer> <silent> E :Edit<CR>
+        " autocmd FileType gitrebase noremap <buffer> <silent> S :Squash<CR>
+        autocmd FileType gitrebase noremap <buffer> <silent> F :Fixup<CR>
+        autocmd FileType gitrebase noremap <buffer> <silent> D :Drop<CR>
+    augroup END
+endif
+" }}}
+
 " vim-gitgutter {{{
 " let g:gitgutter_sign_column_always = 1
 let g:gitgutter_realtime = 0 | let g:gitgutter_eager = 0 " trade accuracy for speed. Only on save.

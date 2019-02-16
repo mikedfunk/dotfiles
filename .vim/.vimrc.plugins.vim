@@ -230,6 +230,7 @@ if executable('git')
     " if has('python') | Plug 'euclio/gitignore.vim' | endif " automatically populate wildignore from gitignore. Why would I not want to do this? Because it's buggy with no gitignore :/
     " Plug 'vim-scripts/gitignore' " simpler version with no python
     " Plug 'octref/rootignore' " yet another gitignore -> wildignore
+    Plug 'tpope/vim-git' " Git file mappings and functions (e.g. rebase helpers) and syntax highlighting, etc.
 endif
 " }}}
 
@@ -264,7 +265,6 @@ Plug 'MaxMEllon/vim-jsx-pretty'
 " Plug 'elixir-editors/vim-elixir'
 " Plug 'othree/es.next.syntax.vim', { 'for': ['javascript', 'jsx', 'vue'] }
 Plug 'StanAngeloff/php.vim' " php 5.6+ (including 7.x) syntax highlighting improvements like docblocks
-Plug 'tpope/vim-git' " vim git syntax, indent, and filetypes
 Plug 'posva/vim-vue' " vue.js syntax
 " Plug 'digitaltoad/vim-pug', { 'for': ['pug', 'jade'] } " pug (formerly jade) highlighting
 " Plug 'heavenshell/vim-syntax-flowtype' " js flowtype (included in pangloss/vim-javascript)
