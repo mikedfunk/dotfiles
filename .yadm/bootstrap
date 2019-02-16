@@ -83,43 +83,41 @@ _install_xcode_command_line_tools () {
 # fyi the CommandLineTools directory doesn't even exist until you run `xcode-select --install`
 # https://github.com/pyenv/pyenv/issues/1219#issuecomment-428700763
 _install_necessary_headers_in_include_on_mojave () {
-    if [ -f "/Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg" ] && ! [ -f "$HOME/.mojave-lock" ]; then
-        log_info "installing additional tools needed for mojave"
-        sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
-        touch "$HOME/.mojave-lock"
+    if ! [ -f "/Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg" ] || [ -f "$HOME/.mojave-lock" ]; then
+        return
     fi
+    log_info "installing additional tools needed for mojave"
+    sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
+    touch "$HOME/.mojave-lock"
 }
 # }}}
 
 # install homebrew if it's missing {{{
 _install_homebrew_if_its_missing () {
-    if ! command -v brew >/dev/null 2>&1; then
-        log_info "Installing homebrew"
-        /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-    fi
+    command -v brew >/dev/null 2>&1 && return
+    log_info "Installing homebrew"
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 }
 # }}}
 
 # install/update homebrew packages {{{
 _install_update_homebrew_packages () {
-    if [ -e "$HOME/.Brewfile" ]; then
-        log_info "Installing/upgrading homebrew packages"
-        brew update # update homebrew itself and the list of brew package versions
-        brew bundle --global # install/upgrade from ~/.Brewfile
-        brew upgrade         # upgrade all homebrew packages
-        brew cleanup         # remove outdated versions and dead symlinks from the homebrew prefix
-        # brew bundle --global cleanup --force # remove brew packages not in ~/.Brewfile
-    fi
+    [ -e "$HOME/.Brewfile" ] || return
+    log_info "Installing/upgrading homebrew packages"
+    brew update # update homebrew itself and the list of brew package versions
+    brew bundle --global # install/upgrade from ~/.Brewfile
+    brew upgrade         # upgrade all homebrew packages
+    brew cleanup         # remove outdated versions and dead symlinks from the homebrew prefix
+    # brew bundle --global cleanup --force # remove brew packages not in ~/.Brewfile
 }
 # }}}
 
 # akamai {{{
 _install_upgrade_akamai () {
-    if command -v akamai >/dev/null 2>&1; then
-        log_info "Updating akamai commands"
-        [[ "$(akamai list | grep purge)" ]] || akamai install purge
-        akamai update
-    fi
+    command -v akamai >/dev/null 2>&1 && return
+    log_info "Updating akamai commands"
+    [[ "$(akamai list | grep purge)" ]] || akamai install purge
+    akamai update
 }
 # }}}
 
@@ -170,10 +168,9 @@ _set_zsh_as_shell () {
 
 # install tmux plugin manager {{{
 _install_tmux_plugin_manager () {
-    if [[ ! -d "$HOME/.tmux/plugins/tpm" ]]; then
-        log_info "Installing tmux plugin manager. Upgrade packages with \`<c-a>U\`."
-        git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-    fi
+    [[ -d "$HOME/.tmux/plugins/tpm" ]] && return
+    log_info "Installing tmux plugin manager. Upgrade packages with \`<c-a>U\`."
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 }
 # }}}
 
@@ -196,12 +193,11 @@ _create_vim_directories () {
 
 # install vim-plug {{{
 _install_vim_plug () {
-    if [[ ! -f $HOME/.vim/autoload/plug.vim ]]; then
-        log_info "Installing vim-plug"
-        curl -fLo \
-            ~/.vim/autoload/plug.vim \
-            https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    fi
+    [ -f $HOME/.vim/autoload/plug.vim ] && return
+    log_info "Installing vim-plug"
+    curl -fLo \
+        ~/.vim/autoload/plug.vim \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 }
 # }}}
 
@@ -220,10 +216,9 @@ _install_upgrade_vim_plugins () {
 # install node version {{{
 _install_node_version () {
     NODE_VERSION="9.3.0"
-    if [[ ! "$(nodenv version | grep $NODE_VERSION)" ]]; then
-        log_info "Installing node $NODE_VERSION"
-        nodenv install $NODE_VERSION && nodenv rehash && nodenv global $NODE_VERSION
-    fi
+    [[ "$(nodenv version | grep $NODE_VERSION)" ]] && return
+    log_info "Installing node $NODE_VERSION"
+    nodenv install $NODE_VERSION && nodenv rehash && nodenv global $NODE_VERSION
 }
 # }}}
 
@@ -232,55 +227,55 @@ _install_node_version () {
 # and extensions right now.
 _install_php_version () {
     export PHP_VERSION="7.0.29" # needs exporting for the non-interactive install script
-    if [[ ! "$(phpenv version | grep $PHP_VERSION)" ]]; then
-        log_info "Installing php $PHP_VERSION"
-        # NOTE if I set php 7.1+.x to global and I use directory-specific php
-        # versions and I install global composer dependencies then they will fail
-        # when I have php 7.0.29 active! Same problem with rbenv, pyenv, and perlenv.
-        [[ ! "$(phpenv versions | grep $PHP_VERSION)" ]] || phpenv install $PHP_VERSION
-        php global $PHP_VERSION
-        phpenv rehash
+    [[ "$(phpenv version | grep $PHP_VERSION)" ]] && return
+    log_info "Installing php $PHP_VERSION"
+    # NOTE if I set php 7.1+.x to global and I use directory-specific php
+    # versions and I install global composer dependencies then they will fail
+    # when I have php 7.0.29 active! Same problem with rbenv, pyenv, and perlenv.
+    [[ ! "$(phpenv versions | grep $PHP_VERSION)" ]] || phpenv install $PHP_VERSION
+    php global $PHP_VERSION
+    phpenv rehash
 
-        # install pear so we can use pecl to install extensions
-        if ! command -v pecl >/dev/null 2>&1; then
-            log_info "Installing pear"
-            [ -f "$HOME/.bin/go-pear.phar" ] || wget -O "$HOME/.bin/go-pear.phar" http://pear.php.net/go-pear.phar
-            "$HOME"/.support/install-pear.sh # installs pear non-interactively
-            [ -f "$HOME/.bin/go-pear.phar" ] && rm "$HOME/.bin/go-pear.phar"
-        fi
-
-        log_info "Installing additional php extensions"
-        yes "" | "$(phpenv root)"/versions/$PHP_VERSION/pear/bin/pecl install couchbase-2.2.2 && ( echo 'extension="couchbase.so"' >"$HOME/.phpenv/versions/$PHP_VERSION/etc/conf.d/couchbase.ini" ) # their sdk has breaking changes all the time so I need a specific version
-        yes "" | "$(phpenv root)"/versions/$PHP_VERSION/pear/bin/pecl install memcached && ( echo 'extension="memcached.so"' >"$HOME/.phpenv/versions/$PHP_VERSION/etc/conf.d/memcached.ini" )
+    # install pear so we can use pecl to install extensions
+    if ! command -v pecl >/dev/null 2>&1; then
+        log_info "Installing pear"
+        [ -f "$HOME/.bin/go-pear.phar" ] || wget -O "$HOME/.bin/go-pear.phar" http://pear.php.net/go-pear.phar
+        "$HOME"/.support/install-pear.sh # installs pear non-interactively
+        [ -f "$HOME/.bin/go-pear.phar" ] && rm "$HOME/.bin/go-pear.phar"
     fi
+
+    log_info "Installing additional php extensions"
+    yes "" | "$(phpenv root)"/versions/$PHP_VERSION/pear/bin/pecl install couchbase-2.2.2 && ( echo 'extension="couchbase.so"' >"$HOME/.phpenv/versions/$PHP_VERSION/etc/conf.d/couchbase.ini" ) # their sdk has breaking changes all the time so I need a specific version
+    yes "" | "$(phpenv root)"/versions/$PHP_VERSION/pear/bin/pecl install memcached && ( echo 'extension="memcached.so"' >"$HOME/.phpenv/versions/$PHP_VERSION/etc/conf.d/memcached.ini" )
 }
 # }}}
 
 # install ruby version {{{
 _install_ruby_version () {
     RUBY_VERSION="2.2.2" # 2.2.2 needed for catalog
-    if [[ ! "$(rbenv versions | grep $RUBY_VERSION)" ]]; then
-        log_info "Installing ruby $RUBY_VERSION"
-        rbenv install $RUBY_VERSION && rbenv global $RUBY_VERSION && rbenv rehash
-    fi
+    [[ "$(rbenv versions | grep $RUBY_VERSION)" ]] && return
+    log_info "Installing ruby $RUBY_VERSION"
+    rbenv install $RUBY_VERSION && rbenv global $RUBY_VERSION && rbenv rehash
 }
 # }}}
 
 # install perl version {{{
-# PERL_VERSION="5.27.8"
-# if [[ ! "$(plenv version | grep $PERL_VERSION)" ]]; then
-#     log_info "Installing perl $PERL_VERSION"
-#     plenv install $PERL_VERSION && plenv rehash && plenv global $PERL_VERSION
-# fi
+_install_perl_version () {
+    PERL_VERSION="5.27.8"
+    [[ "$(plenv version | grep $PERL_VERSION)" ]] && return
+    log_info "Installing perl $PERL_VERSION"
+    plenv install $PERL_VERSION && plenv rehash && plenv global $PERL_VERSION
+}
 # }}}
 
 # install python3 version {{{
 _install_python3_version () {
     PYTHON_INSTALL_VERSION="3.7.2"
-    if [[ ! "$(pyenv global | grep $PYTHON_INSTALL_VERSION)" ]]; then
-        log_info "Installing python $PYTHON_INSTALL_VERSION"
-        CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" pyenv install $PYTHON_INSTALL_VERSION && pyenv rehash && pyenv global $PYTHON_INSTALL_VERSION
-    fi
+    [[ "$(pyenv global | grep $PYTHON_INSTALL_VERSION)" ]] && return
+    log_info "Installing python $PYTHON_INSTALL_VERSION"
+    # CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" pyenv install $PYTHON_INSTALL_VERSION && pyenv rehash && pyenv global $PYTHON_INSTALL_VERSION
+    # https://github.com/pyenv/pyenv/issues/1066#issuecomment-387211005
+    pyenv install $PYTHON_INSTALL_VERSION && pyenv rehash && pyenv global $PYTHON_INSTALL_VERSION
 }
 # }}}
 
@@ -300,21 +295,21 @@ _install_update_ruby_gems () {
 # TODO switch to tmuxp - tmuxomatic is broken and I have to run manual patches to get it working :(
 # https://github.com/oxidane/tmuxomatic/issues/23
 _update_python3_pip_packages () {
-    log_info "Installing/upgrading pip packages"
+    log_info "Installing/upgrading pip3 packages"
     /usr/local/bin/pip3 install neovim --user # neovim uses this pip/python version
     PIP_SUCCESSFUL=1
-    pip install -r "$HOME/requirements.txt" --user || PIP_SUCCESSFUL=0
+    pip3 install -r "$HOME/requirements.txt" --user || PIP_SUCCESSFUL=0
     # pip-review broke recently:
     # zsh: /usr/local/bin/pip-review: bad interpreter: /usr/local/opt/python/bin/python3.6: no such file or directory
     # pip-review --local --auto &&
-    # 	pip freeze >"$HOME/requirements.txt"
-    # pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U
+    # 	pip3 freeze >"$HOME/requirements.txt"
+    # pip3 list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip3 install -U
     function pip-update () {
-        pip list --outdated | grep -v 'Package' | grep -v -e '\-\-\-\-\-' | cut -d' ' -f1 | xargs -n1 pip install -U
+        pip3 list --outdated | grep -v 'Package' | grep -v -e '\-\-\-\-\-' | cut -d' ' -f1 | xargs -n1 pip3 install -U
     }
     pip-update || PIP_SUCCESSFUL=0
     # otherwise it might freeze a failed state
-    [[ $PIP_SUCCESSFUL ]] && pip freeze >"$HOME/requirements.txt"
+    [[ $PIP_SUCCESSFUL ]] && pip3 freeze >"$HOME/requirements.txt"
 }
 # }}}
 
@@ -325,11 +320,10 @@ _install-composer () {
     php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
     ACTUAL_SIGNATURE=$(php -r "echo hash_file('SHA384', 'composer-setup.php');")
 
-    if [ "$EXPECTED_SIGNATURE" != "$ACTUAL_SIGNATURE" ]; then
-        echo >&2 'ERROR: Invalid installer signature'
-        rm composer-setup.php
-        exit 1
-    fi
+    [ "$EXPECTED_SIGNATURE" == "$ACTUAL_SIGNATURE" ] && return
+    echo >&2 'ERROR: Invalid installer signature'
+    rm composer-setup.php
+    exit 1
 
     php composer-setup.php --quiet
     RESULT=$?
@@ -373,16 +367,15 @@ _parse_php_language_server_stubs () {
 # vivid {{{
 # TODO install vivid via homebrew instead once they add it on homebrew https://github.com/sharkdp/vivid
 _install_vivid () {
-    if ! command -v vivid >/dev/null 2>&1; then
-        VIVID_VERSION="0.4.0"
-        log_info "installing vivid"
-        cd || return
-        wget "https://github.com/sharkdp/vivid/releases/download/v$VIVID_VERSION/vivid-v0.4.0-x86_64-apple-darwin.tar.gz"
-        tar xzvf "vivid-v$VIVID_VERSION-x86_64-apple-darwin.tar.gz"
-        mv "vivid-v$VIVID_VERSION-x86_64-apple-darwin/vivid" "/usr/local/bin/vivid"
-        rm -rf "vivid-v$VIVID_VERSION-x86_64-apple-darwin/vivid" "vivid-v$VIVID_VERSION-x86_64-apple-darwin.tar.gz"
-        cd - || return
-    fi
+    command -v vivid >/dev/null 2>&1 && return
+    VIVID_VERSION="0.4.0"
+    log_info "installing vivid"
+    cd || return
+    wget "https://github.com/sharkdp/vivid/releases/download/v$VIVID_VERSION/vivid-v0.4.0-x86_64-apple-darwin.tar.gz"
+    tar xzvf "vivid-v$VIVID_VERSION-x86_64-apple-darwin.tar.gz"
+    mv "vivid-v$VIVID_VERSION-x86_64-apple-darwin/vivid" "/usr/local/bin/vivid"
+    rm -rf "vivid-v$VIVID_VERSION-x86_64-apple-darwin/vivid" "vivid-v$VIVID_VERSION-x86_64-apple-darwin.tar.gz"
+    cd - || return
 }
 # }}}
 
@@ -489,12 +482,26 @@ _start_launch_agents () {
 # fix file size limit for watching with entr {{{
 # http://entrproject.org/limits.html
 _fix_file_size_limit_for_watching_with_entr () {
-    if ! [ -f /Library/LaunchDaemons/limit.maxfiles.plist ]; then
-        log_info "Installing max files limit fixer for watching with entr"
-        cd /Library/LaunchDaemons || return
-        sudo curl -sO http://entrproject.org/etc/limit.maxfiles.plist
-        cd - || return
-    fi
+    [ -f /Library/LaunchDaemons/limit.maxfiles.plist ] && return
+    log_info "Installing max files limit fixer for watching with entr"
+    cd /Library/LaunchDaemons || return
+    sudo curl -sO http://entrproject.org/etc/limit.maxfiles.plist
+    cd - || return
+}
+# }}}
+
+# install bubo (mac-bt-headset-fix) {{{
+# https://github.com/jguice/mac-bt-headset-fix
+# when will this be on brew cask??
+function _install_bubo () {
+    [ -d /Applications/Bubo.app ] && return
+    log_info "Installing bubo"
+    cd "$HOME/Downloads" || return
+    wget https://s3-us-west-2.amazonaws.com/jguice/mac-bt-headset-fix-beta/bubo.app.zip
+    tar xzvf bubo.app.zip
+    rm bubo.app.zip
+    mv bubo.app /Applications/Bubo.app
+    cd - || return
 }
 # }}}
 
@@ -508,32 +515,33 @@ _show_reminders () {
 
 # run functions {{{
 # this way I can still source this file but comment out these function calls and run one or more independently
-# _install_xcode_command_line_tools
-# _install_necessary_headers_in_include_on_mojave
-# _install_homebrew_if_its_missing
-# _install_update_homebrew_packages
-# _install_upgrade_akamai
-# _install_upgrade_phpenv
-# _install_upgrade_yarn
-# _set_zsh_as_shell
-# _install_tmux_plugin_manager
-# _create_vim_directories
-# _install_vim_plug
-# _install_upgrade_vim_plugins
-# _install_node_version
+_install_xcode_command_line_tools
+_install_necessary_headers_in_include_on_mojave
+_install_homebrew_if_its_missing
+_install_update_homebrew_packages
+_install_upgrade_akamai
+_install_upgrade_phpenv
+_install_upgrade_yarn
+_set_zsh_as_shell
+_install_tmux_plugin_manager
+_create_vim_directories
+_install_vim_plug
+_install_upgrade_vim_plugins
+_install_node_version
 _install_php_version
-# _install_ruby_version
-# _install_python3_version
-# _install_update_ruby_gems
-# _update_python3_pip_packages
-# _install_update_composer_packages
-# _parse_php_language_server_stubs
-# _install_vivid
-# _update_antibody_plugins
-# _apply_hosts_file
-# _let_iterm_see_italics
-# _apply_mac_preferences
-# _start_launch_agents
-# _fix_file_size_limit_for_watching_with_entr
-# _show_reminders
+_install_ruby_version
+_install_python3_version
+_install_update_ruby_gems
+_update_python3_pip_packages
+_install_update_composer_packages
+_parse_php_language_server_stubs
+_install_vivid
+_update_antibody_plugins
+_apply_hosts_file
+_let_iterm_see_italics
+_apply_mac_preferences
+_start_launch_agents
+_fix_file_size_limit_for_watching_with_entr
+_show_reminders
+_install_bubo
 # }}}

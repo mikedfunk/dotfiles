@@ -32,6 +32,8 @@ path=(
   $HOME/.bin
   # global ruby gems
   $HOME/bin
+  # global python pip packages
+  $HOME/.local/bin
   # this needs to be first so rbenv from homebrew can take precedence
   # $(brew --prefix)/{bin,sbin}
   /usr/local/{bin,sbin}
@@ -46,8 +48,6 @@ path=(
   $HOME/.phpenv/pear/bin
   $HOME/.composer/vendor/bin
   $(gem env home)
-  # pip bin
-  $HOME/.local/bin
   /usr/{bin,sbin}
   /{bin,sbin}
   # /usr/local/opt/icu4c/{bin,sbin}
@@ -536,6 +536,9 @@ zstyle ':completion:*' matcher-list '' \
   'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
   'r:|?=** m:{a-z\-}={A-Z\_}'
 autoload -U edit-command-line
+
+# https://unix.stackexchange.com/questions/167582/why-zsh-ends-a-line-with-a-highlighted-percent-symbol
+PROMPT_EOL_MARK=''
 
 # https://wrotenwrites.com/a_modern_terminal_workflow_3/#Spellcheck-Typo-Correction
 # setopt correctall

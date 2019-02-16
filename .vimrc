@@ -645,6 +645,17 @@ augroup END
 
 " use vim grepprg
 nnoremap <leader>gg :grep!<space>
+" pneumonic: grep all
+nnoremap <leader>ga :grep!
+            \ --skip-vcs-ignores
+            \ --ignore="autoload.*"
+            \ --ignore="tags"
+            \ --ignore="tags*"
+            \ --ignore="cscope*"
+            \ --ignore="ncscope*"
+            \ --ignore="Session.vim"
+            \ --ignore="boostrap/cache"
+            \ --ignore="sessions"<space>
 nnoremap <leader>wg :grep! <cword> .<cr>
 nnoremap <leader>Wg :grep! '\b<cword>\b' .<cr>
 " fzf provides this
@@ -658,9 +669,9 @@ nnoremap <leader>fs :sp **/*
 
 " jump to tag
 nnoremap <leader>je :tjump<space>
-nnoremap <leader>js :sp tag<space>
-nnoremap <leader>jv :vsp tag<space>
-nnoremap <leader>jt :tab tag<space>
+" nnoremap <leader>js :sp<CR>:tag<space>
+nnoremap <leader>jv :vsp<CR>:tag<space>
+nnoremap <leader>jt :tabe<CR>:tag<space>
 
 " diffs
 nnoremap <leader>dr :diffget REMOTE<cr>

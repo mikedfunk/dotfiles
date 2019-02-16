@@ -12,7 +12,7 @@ brew "awscli" # aws command - used to upload to s3, etc. `aws configure` to set 
 brew "bat" # much cooler looking cat
 # brew "chromedriver" # like selenium for chrome.
 # brew "colortail" # tail with support for colors
-brew "composer" # php dependency management
+# brew "composer" # php dependency management (now installed via phpenv)
 # brew "coreutils" # used by k zsh plugin
 # brew "cmake" # used by youcompleteme
 # brew "ctags" # allows jumping to function/class definitions, etc. in vim (I use universal-ctags)
