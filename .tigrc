@@ -8,9 +8,21 @@
 set refresh-mode = auto
 set mailmap = true
 set line-graphics = utf-8
-set diff-highlight = true
+# set diff-highlight = true
 set mouse = true
 set mouse-wheel-cursor = true
+# set ignore-space = yes
+set main-view = line-number:no,interval=5 \
+    id:no,color=yes \
+    date:relative,local=no,format= \
+    author:full \
+    commit-title:yes,graph=v2,refs=yes
+set refs-view = line-number:no \
+    id:no,color=yes \
+    date:relative,local=no,format= \
+    author:full \
+    ref \
+    commit-title:yes,graph=no,refs=no
 # }}}
 
 # bindings {{{

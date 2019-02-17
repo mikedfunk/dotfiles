@@ -94,7 +94,7 @@ fi
 # source additional files and env vars {{{
 [ -f ~/.private_vars.sh ] && source ~/.private_vars.sh # where I store my secret env vars
 [ -f ~/.support/promptline.theme.bash ] && source ~/.support/promptline.theme.bash # vim plugin generates this tmux status line file
-command -v direnv >/dev/null 2>&1 && eval "$(direnv hook zsh)" # allow .envrc on each prompt start
+# command -v direnv >/dev/null 2>&1 && eval "$(direnv hook zsh)" # allow .envrc on each prompt start
 # [ -f /usr/local/etc/grc.bashrc ] && source "/usr/local/etc/grc.bashrc" # generic colorizer
 [ -f /usr/local/etc/grc.zsh ] && source "/usr/local/etc/grc.zsh" # generic colorizer
 # https://github.com/google/google-api-ruby-client/issues/235#issuecomment-169956795
@@ -105,12 +105,11 @@ command -v nodenv >/dev/null 2>&1 && eval "$(nodenv init -)"
 # https://github.com/pyenv/pyenv/blob/master/COMMANDS.md#pyenv-global
 # strangely this is already set BEFORE this file is sourced!
 unset PYENV_VERSION
-# PYENV_VERSION="$(cat $HOME/.pyenv/version)"
 command -v pyenv >/dev/null 2>&1 && eval "$(pyenv init -)"
 # command -v pyenv-virtualenv-init >/dev/null 2>&1 && eval "$(pyenv virtualenv-init -)"
 [[ -f "$HOME/.phpenv/bin/phpenv" ]] && eval "$($HOME/.phpenv/bin/phpenv init -)"
 command -v rbenv >/dev/null 2>&1 && eval "$(rbenv init -)"
-command -v akamai >/dev/null 2>&1 && eval "$(akamai --zsh)" # compinit: function definition file not found
+# command -v akamai >/dev/null 2>&1 && eval "$(akamai --zsh)" # compinit: function definition file not found
 # [ -f "/usr/local/opt/asdf/asdf.sh" ] && source "/usr/local/opt/asdf/asdf.sh"
 # [ -n "$DESK_ENV" ] && source "$DESK_ENV" || true # Hook for desk activation
 # tabtab source for yo package
