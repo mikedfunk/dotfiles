@@ -109,7 +109,7 @@ command -v pyenv >/dev/null 2>&1 && eval "$(pyenv init -)"
 # command -v pyenv-virtualenv-init >/dev/null 2>&1 && eval "$(pyenv virtualenv-init -)"
 [[ -f "$HOME/.phpenv/bin/phpenv" ]] && eval "$($HOME/.phpenv/bin/phpenv init -)"
 command -v rbenv >/dev/null 2>&1 && eval "$(rbenv init -)"
-# command -v akamai >/dev/null 2>&1 && eval "$(akamai --zsh)" # compinit: function definition file not found
+# command -v akamai >/dev/null 2>&1 && eval "$(akamai --zsh)" # this takes like 1 second and I almost never use it
 # [ -f "/usr/local/opt/asdf/asdf.sh" ] && source "/usr/local/opt/asdf/asdf.sh"
 # [ -n "$DESK_ENV" ] && source "$DESK_ENV" || true # Hook for desk activation
 # tabtab source for yo package
