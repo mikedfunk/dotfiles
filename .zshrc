@@ -132,10 +132,11 @@ has vivid && export LS_COLORS="$(vivid generate molokai)" # https://github.com/s
 # directory so I don't have broken tools when I switch php versions
 #
 # NOTE: when switching global versions I have to run this manually to also
-# update cgr and composer config. This is because I put my global composer
-# packages in ~/.phpenv/versions/{version}/composer so I get different globals
+# update cgr and composer config. I also have to `phpenv rehash` This is
+# because I put my global composer packages in
+# ~/.phpenv/versions/{version}/composer so I get different globals
 # in each phpenv version.
-configure-cgr-and-composer () {
+_configure_cgr_and_composer () {
     PHP_VERSION="$(phpenv version | cut -d' ' -f1)"
     export COMPOSER_HOME="$(phpenv root)/versions/${PHP_VERSION}/composer"
     # this fucks up cgr
@@ -145,7 +146,7 @@ configure-cgr-and-composer () {
     export CGR_BASE_DIR="$(phpenv root)/versions/${PHP_VERSION}/composer/global"
     export CGR_BIN_DIR="$(phpenv root)/versions/${PHP_VERSION}/composer/vendor/bin"
 }
-configure-cgr-and-composer
+_configure_cgr_and_composer
 # }}}
 
 # }}}
@@ -303,6 +304,16 @@ alias ya="yarn add"
 alias yad="yarn add --dev"
 alias yga="yarn global add"
 alias ygu="yarn global upgrade"
+# }}}
+
+# phpenv {{{
+phpenv-switch () {
+    # because phpenv's hook system is not implemented correctly, I wrap the global command so I can also change composer and cgr config
+    [ -z "$1" ] && ( echo "Usage: $0 {version_number}"; return 1 )
+    phpenv global "$1"
+    _configure_cgr_and_composer
+    # phpenv rehash
+}
 # }}}
 
 # phpspec {{{

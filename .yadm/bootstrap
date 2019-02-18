@@ -227,21 +227,12 @@ _install_node_version () {
 }
 # }}}
 
-# configure composer {{{
-_configure_composer () {
-    PHP_VERSION="$1"
-    # export COMPOSER_HOME="$(phpenv root)/versions/$PHP_VERSION/composer"
-    # export COMPOSER_VENDOR_DIR="$(phpenv root)/versions/$PHP_VERSION/composer/vendor"
-    # export COMPOSER_BIN_DIR="$(phpenv root)/versions/$PHP_VERSION/composer/vendor/bin"
-}
-# }}}
-
-# configure cgr {{{
-_configure_cgr () {
+# configure cgr and composer {{{
+_configure_cgr_and_composer () {
     PHP_VERSION="$1"
     [ -z "$PHP_VERSION" ] && ( log_error "Please provide a php version"; return 1 )
     [ -d "$(phpenv root)/versions/$PHP_VERSION" ] || ( log_error "Php version ${PHP_VERSION} not found"; return 1 )
-    _configure_composer "$PHP_VERSION"
+    export COMPOSER_HOME="$(phpenv root)/versions/$PHP_VERSION/composer"
     export CGR_COMPOSER_PATH="$(phpenv root)/shims/composer"
     export CGR_BASE_DIR="$(phpenv root)/versions/$PHP_VERSION/composer/global"
     export CGR_BIN_DIR="$(phpenv root)/versions/$PHP_VERSION/composer/vendor/bin"
@@ -255,12 +246,12 @@ _configure_cgr () {
 
 _install_php_version () {
     export PHP_VERSION="$1" # needs exporting for the non-interactive install script to install pear
-    [[ "$(phpenv versions | grep $PHP_VERSION)" ]] && return
+    ( phpenv versions | grep -q "$PHP_VERSION" ) && return
     log_info "Installing php $PHP_VERSION"
     # NOTE if I set php 7.1+.x to global and I use directory-specific php
     # versions and I install global composer dependencies then they will fail
     # when I have php 7.0.29 active! Same problem with rbenv, pyenv, and perlenv.
-    [[ ! "$(phpenv versions | grep $PHP_VERSION)" ]] || phpenv install $PHP_VERSION
+    ( phpenv versions | grep -q "$PHP_VERSION" ) || phpenv install "$PHP_VERSION"
     # phpenv global $PHP_VERSION
     # phpenv rehash
 
@@ -290,7 +281,7 @@ _install_php_versions () {
 
     PHP_VERSION="7.3.2"
     phpenv global "$PHP_VERSION"
-    _configure_cgr "$PHP_VERSION"
+    _configure_cgr_and_composer "$PHP_VERSION"
 
     phpenv rehash
 }
@@ -390,7 +381,9 @@ _install_update_composer_packages () {
     log_info "Installing/upgrading composer packages"
 
     PHP_VERSION=$(phpenv version | cut -d' ' -f1)
-    _configure_cgr "$PHP_VERSION"
+    _configure_cgr_and_composer "$PHP_VERSION"
+    # use global composer.json
+    [ -f "$COMPOSER_HOME/composer.json" ] || ln -sf "$HOME/.composer/composer.json" "$COMPOSER_HOME/composer.json"
 
     cd "$(phpenv root)/versions/$PHP_VERSION/composer" >/dev/null || return
 
@@ -408,8 +401,9 @@ _install_update_composer_packages () {
         log_info "Installing cgr packages"
         # https://github.com/consolidation/cgr
         while read -r package; do
-            COMPOSER_VENDOR_DIR="$(phpenv root)/versions/$PHP_VERSION/composer/vendor" cgr "$package"
+            cgr "$package"
         done <"$HOME/.composer/cgr-versions.txt"
+        phpenv rehash
     else
         log_info "Upgrading cgr packages"
         cgr update
