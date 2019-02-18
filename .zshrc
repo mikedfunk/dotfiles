@@ -316,6 +316,10 @@ phpenv-switch () {
     # not needed unless there were missing packages in the previous global vendor dir
     # phpenv rehash
 }
+
+# when switching php versions via direnv, it doesn't automatically switch the
+# phpenv vendor dir or something. TODO look into this more.
+phpenv-comeon () { eval "$($HOME/.phpenv/bin/phpenv init -)"; }
 # }}}
 
 # phpspec {{{
