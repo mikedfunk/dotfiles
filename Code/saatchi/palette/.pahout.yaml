@@ -1,0 +1,4 @@
+---
+ignore_paths:
+    - tests
+    - spec

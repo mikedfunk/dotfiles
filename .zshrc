@@ -47,6 +47,7 @@ path=(
   $HOME/.pyenv/shims
   $HOME/.phpenv/pear/bin
   $HOME/.composer/vendor/bin
+  "$(phpenv root)/versions/$(phpenv version | cut -d' ' -f1)/composer/vendor/bin"
   $(gem env home)
   /usr/{bin,sbin}
   /{bin,sbin}
@@ -62,6 +63,10 @@ fpath=(
   "/usr/local/share/zsh/site-functions"
   $fpath
 )
+# }}}
+
+# helper functions {{{
+function has() { type "$1" &>/dev/null; }
 # }}}
 
 # antibody {{{
@@ -94,22 +99,23 @@ fi
 # source additional files and env vars {{{
 [ -f ~/.private_vars.sh ] && source ~/.private_vars.sh # where I store my secret env vars
 [ -f ~/.support/promptline.theme.bash ] && source ~/.support/promptline.theme.bash # vim plugin generates this tmux status line file
-# command -v direnv >/dev/null 2>&1 && eval "$(direnv hook zsh)" # allow .envrc on each prompt start
+has direnv && eval "$(direnv hook zsh)" # allow .envrc on each prompt start
 # [ -f /usr/local/etc/grc.bashrc ] && source "/usr/local/etc/grc.bashrc" # generic colorizer
 [ -f /usr/local/etc/grc.zsh ] && source "/usr/local/etc/grc.zsh" # generic colorizer
 # https://github.com/google/google-api-ruby-client/issues/235#issuecomment-169956795
 [ -f /usr/local/etc/openssl/cert.pem ] && export SSL_CERT_FILE=/usr/local/etc/openssl/cert.pem
 # [ -d "$HOME/.zsh/completion" ] && find "$HOME/.zsh/completion" | while read f; do source "$f"; done
-# command -v plenv >/dev/null 2>&1 && eval "$(plenv init -)"
-command -v nodenv >/dev/null 2>&1 && eval "$(nodenv init -)"
+# has plenv && eval "$(plenv init -)"
+has nodenv && eval "$(nodenv init -)"
 # https://github.com/pyenv/pyenv/blob/master/COMMANDS.md#pyenv-global
 # strangely this is already set BEFORE this file is sourced!
 unset PYENV_VERSION
-command -v pyenv >/dev/null 2>&1 && eval "$(pyenv init -)"
-# command -v pyenv-virtualenv-init >/dev/null 2>&1 && eval "$(pyenv virtualenv-init -)"
+has pyenv && eval "$(pyenv init -)"
+# use pipenv instead of virtualenv. It comes with pyenv! There's also support for it with direnv.
+# has pyenv-virtualenv-init && eval "$(pyenv virtualenv-init -)"
 [[ -f "$HOME/.phpenv/bin/phpenv" ]] && eval "$($HOME/.phpenv/bin/phpenv init -)"
-command -v rbenv >/dev/null 2>&1 && eval "$(rbenv init -)"
-# command -v akamai >/dev/null 2>&1 && eval "$(akamai --zsh)" # this takes like 1 second and I almost never use it
+has rbenv && eval "$(rbenv init -)"
+# has akamai && eval "$(akamai --zsh)" # this takes like 1 second and I almost never use it
 # [ -f "/usr/local/opt/asdf/asdf.sh" ] && source "/usr/local/opt/asdf/asdf.sh"
 # [ -n "$DESK_ENV" ] && source "$DESK_ENV" || true # Hook for desk activation
 # tabtab source for yo package
@@ -119,7 +125,29 @@ export LC_CTYPE=en_US.UTF-8 # https://unix.stackexchange.com/a/302418/287898
 export LC_ALL=en_US.UTF-8 # https://unix.stackexchange.com/a/302418/287898
 # https://github.com/variadico/noti/blob/master/docs/noti.md#environment
 export NOTI_NSUSER_SOUNDNAME="Hero"
-command -v vivid >/dev/null 2>&1 && export LS_COLORS="$(vivid generate molokai)" # https://github.com/sharkdp/vivid
+has vivid && export LS_COLORS="$(vivid generate molokai)" # https://github.com/sharkdp/vivid
+
+# configure cgr and composer {{{
+# this ensures composer and cgr both point to my php version's composer
+# directory so I don't have broken tools when I switch php versions
+#
+# NOTE: when switching global versions I have to run this manually to also
+# update cgr and composer config. This is because I put my global composer
+# packages in ~/.phpenv/versions/{version}/composer so I get different globals
+# in each phpenv version.
+configure-cgr-and-composer () {
+    PHP_VERSION="$(phpenv version | cut -d' ' -f1)"
+    export COMPOSER_HOME="$(phpenv root)/versions/${PHP_VERSION}/composer"
+    # this fucks up cgr
+    # export COMPOSER_VENDOR_DIR="$(phpenv root)/versions/${PHP_VERSION}/composer/vendor"
+    # export COMPOSER_BIN_DIR="$(phpenv root)/versions/${PHP_VERSION}/composer/vendor/bin"
+    export CGR_COMPOSER_PATH="$(phpenv root)/shims/composer"
+    export CGR_BASE_DIR="$(phpenv root)/versions/${PHP_VERSION}/composer/global"
+    export CGR_BIN_DIR="$(phpenv root)/versions/${PHP_VERSION}/composer/vendor/bin"
+}
+configure-cgr-and-composer
+# }}}
+
 # }}}
 
 # ssh {{{

@@ -7,6 +7,7 @@
 function log_info() { echo -e "$(tput setaf 2)$(tput rev)$(tput bold) \xE2\x9C\x93 $1 $(tput sgr0)"; "${@:2}"; }
 function log_error() { echo -e "$(tput setaf 1)$(tput rev)$(tput bold) \xE2\x9C\x97 $1 $(tput sgr0)"; "${@:2}"; }
 function log_notice() { echo -e "$(tput setaf 3)$(tput rev)$(tput bold) \xE2\x9A\xa0 $1 $(tput sgr0)"; "${@:2}"; }
+function has() { type "$1" &>/dev/null; }
 # }}}
 
 # clone repos {{{
@@ -94,7 +95,7 @@ _install_necessary_headers_in_include_on_mojave () {
 
 # install homebrew if it's missing {{{
 _install_homebrew_if_its_missing () {
-    command -v brew >/dev/null 2>&1 && return
+    has brew && return
     log_info "Installing homebrew"
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 }
@@ -114,7 +115,7 @@ _install_update_homebrew_packages () {
 
 # akamai {{{
 _install_upgrade_akamai () {
-    command -v akamai >/dev/null 2>&1 && return
+    has akamai && return
     log_info "Updating akamai commands"
     [[ "$(akamai list | grep purge)" ]] || akamai install purge
     akamai update
@@ -135,12 +136,16 @@ _install_upgrade_akamai () {
 # steps of this file
 _install_upgrade_phpenv () {
     log_info "Installing/updating phpenv"
-    if command -v phpenv >/dev/null 2>&1; then
+    if has phpenv; then
+        # this is provided by the php-build plugin /Users/mikefunk/.phpenv/plugins/php-build/bin/phpenv-update
+        # it just runs git pull in the phpenv home dir
         phpenv update
     else
         # https://github.com/phpenv/phpenv
         # https://github.com/phpenv/phpenv-installer
         curl -L https://raw.githubusercontent.com/phpenv/phpenv-installer/master/bin/phpenv-installer | bash
+        # Modified version to actually support their half-assed hooks feature so I can make this work with cgr
+        cp $HOME/.support/phpenv-with-hooks $(phpenv root)/libexec/phpenv
     fi
 }
 # }}}
@@ -161,7 +166,7 @@ _set_zsh_as_shell () {
         sudo /bin/sh -c "echo /usr/local/bin/zsh >> /etc/shells"
     fi
     if [[ "$SHELL" != "/usr/local/bin/zsh" ]]; then
-        log_info "Changing shell to homebrew zsh" chsh -s "$(command -v zsh)"
+        log_info "Changing shell to homebrew zsh" chsh -s "$(which zsh)"
     fi
 }
 # }}}
@@ -222,22 +227,45 @@ _install_node_version () {
 }
 # }}}
 
+# configure composer {{{
+_configure_composer () {
+    PHP_VERSION="$1"
+    # export COMPOSER_HOME="$(phpenv root)/versions/$PHP_VERSION/composer"
+    # export COMPOSER_VENDOR_DIR="$(phpenv root)/versions/$PHP_VERSION/composer/vendor"
+    # export COMPOSER_BIN_DIR="$(phpenv root)/versions/$PHP_VERSION/composer/vendor/bin"
+}
+# }}}
+
+# configure cgr {{{
+_configure_cgr () {
+    PHP_VERSION="$1"
+    [ -z "$PHP_VERSION" ] && ( log_error "Please provide a php version"; return 1 )
+    [ -d "$(phpenv root)/versions/$PHP_VERSION" ] || ( log_error "Php version ${PHP_VERSION} not found"; return 1 )
+    _configure_composer "$PHP_VERSION"
+    export CGR_COMPOSER_PATH="$(phpenv root)/shims/composer"
+    export CGR_BASE_DIR="$(phpenv root)/versions/$PHP_VERSION/composer/global"
+    export CGR_BIN_DIR="$(phpenv root)/versions/$PHP_VERSION/composer/vendor/bin"
+    # export CGR_COMPOSER_PATH="$(phpenv root)/versions/${PHP_VERSION}"
+}
+# }}}
+
 # install php version {{{
 # I only use phpenv because homebrew is making it difficult to install php 7.0
 # and extensions right now.
+
 _install_php_version () {
-    export PHP_VERSION="7.0.29" # needs exporting for the non-interactive install script
-    [[ "$(phpenv version | grep $PHP_VERSION)" ]] && return
+    export PHP_VERSION="$1" # needs exporting for the non-interactive install script to install pear
+    [[ "$(phpenv versions | grep $PHP_VERSION)" ]] && return
     log_info "Installing php $PHP_VERSION"
     # NOTE if I set php 7.1+.x to global and I use directory-specific php
     # versions and I install global composer dependencies then they will fail
     # when I have php 7.0.29 active! Same problem with rbenv, pyenv, and perlenv.
     [[ ! "$(phpenv versions | grep $PHP_VERSION)" ]] || phpenv install $PHP_VERSION
-    php global $PHP_VERSION
-    phpenv rehash
+    # phpenv global $PHP_VERSION
+    # phpenv rehash
 
     # install pear so we can use pecl to install extensions
-    if ! command -v pecl >/dev/null 2>&1; then
+    if ! has pecl; then
         log_info "Installing pear"
         [ -f "$HOME/.bin/go-pear.phar" ] || wget -O "$HOME/.bin/go-pear.phar" http://pear.php.net/go-pear.phar
         "$HOME"/.support/install-pear.sh # installs pear non-interactively
@@ -245,9 +273,28 @@ _install_php_version () {
     fi
 
     log_info "Installing additional php extensions"
-    yes "" | "$(phpenv root)"/versions/$PHP_VERSION/pear/bin/pecl install couchbase-2.2.2 && ( echo 'extension="couchbase.so"' >"$HOME/.phpenv/versions/$PHP_VERSION/etc/conf.d/couchbase.ini" ) # their sdk has breaking changes all the time so I need a specific version
+    # their sdk has breaking changes all the time so I need a specific version
+    yes "" | "$(phpenv root)"/versions/$PHP_VERSION/pear/bin/pecl install couchbase-2.2.2 && ( echo 'extension="couchbase.so"' >"$HOME/.phpenv/versions/$PHP_VERSION/etc/conf.d/couchbase.ini" )
     yes "" | "$(phpenv root)"/versions/$PHP_VERSION/pear/bin/pecl install memcached && ( echo 'extension="memcached.so"' >"$HOME/.phpenv/versions/$PHP_VERSION/etc/conf.d/memcached.ini" )
+
+    # link global composer requirements
+    ln -sf "$HOME/.composer/composer.json" "$(phpenv root)/versions/$PHP_VERSION/composer/composer.json"
+
+    # each php version has their own composer global folder
+    _install_update_composer_packages
 }
+
+_install_php_versions () {
+    _install_php_version "7.0.29"
+    _install_php_version "7.3.2"
+
+    PHP_VERSION="7.3.2"
+    phpenv global "$PHP_VERSION"
+    _configure_cgr "$PHP_VERSION"
+
+    phpenv rehash
+}
+
 # }}}
 
 # install ruby version {{{
@@ -314,38 +361,54 @@ _update_python3_pip_packages () {
 # }}}
 
 # install/update composer and packages {{{
+
+# this is no longer needed - composer is managed by phpenv and will auto
+# download on first run for a php version
+
 # https://getcomposer.org/doc/faqs/how-to-install-composer-programmatically.md
-_install-composer () {
-    EXPECTED_SIGNATURE=$(wget -q -O - https://composer.github.io/installer.sig)
-    php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-    ACTUAL_SIGNATURE=$(php -r "echo hash_file('SHA384', 'composer-setup.php');")
+# _install-composer () {
+#     EXPECTED_SIGNATURE=$(wget -q -O - https://composer.github.io/installer.sig)
+#     php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+#     ACTUAL_SIGNATURE=$(php -r "echo hash_file('SHA384', 'composer-setup.php');")
 
-    [ "$EXPECTED_SIGNATURE" == "$ACTUAL_SIGNATURE" ] && return
-    echo >&2 'ERROR: Invalid installer signature'
-    rm composer-setup.php
-    exit 1
+#     [ "$EXPECTED_SIGNATURE" == "$ACTUAL_SIGNATURE" ] && return
+#     echo >&2 'ERROR: Invalid installer signature'
+#     rm composer-setup.php
+#     exit 1
 
-    php composer-setup.php --quiet
-    RESULT=$?
-    rm composer-setup.php
-    exit $RESULT
-}
+#     php composer-setup.php --quiet
+#     RESULT=$?
+#     rm composer-setup.php
+#     exit $RESULT
+# }
 _install_update_composer_packages () {
     cd $HOME/.composer >/dev/null || return
-    if ! command -v composer >/dev/null 2>&1; then
-        log_info "Installing composer"
-        _install-composer
-    fi
+    # if ! has composer; then
+    #     log_info "Installing composer"
+    #     _install-composer
+    # fi
     log_info "Installing/upgrading composer packages"
+
+    PHP_VERSION=$(phpenv version | cut -d' ' -f1)
+    _configure_cgr "$PHP_VERSION"
+
+    cd "$(phpenv root)/versions/$PHP_VERSION/composer" >/dev/null || return
+
+    if ! [ -f "$(phpenv root)/versions/$PHP_VERSION/composer/global/felixfbecker/language-server/composer.json" ]; then
+        # workaround for php language server
+        mkdir -p "$(phpenv root)/versions/$PHP_VERSION/composer/global/felixfbecker/language-server/"
+        ln -sf "$HOME/.composer/global/felixfbecker/language-server/composer.json" "$(phpenv root)/versions/$PHP_VERSION/composer/global/felixfbecker/language-server/composer.json"
+    fi
+
     composer selfupdate
     composer global install
     composer global update
-    if [[ ! -d $HOME/.composer/global ]]; then
+    if [[ ! -d "$CGR_BASE_DIR" ]]; then
         # ^ this will install cgr. Now install cgr packages...
         log_info "Installing cgr packages"
         # https://github.com/consolidation/cgr
         while read -r package; do
-            cgr "$package"
+            COMPOSER_VENDOR_DIR="$(phpenv root)/versions/$PHP_VERSION/composer/vendor" cgr "$package"
         done <"$HOME/.composer/cgr-versions.txt"
     else
         log_info "Upgrading cgr packages"
@@ -367,7 +430,7 @@ _parse_php_language_server_stubs () {
 # vivid {{{
 # TODO install vivid via homebrew instead once they add it on homebrew https://github.com/sharkdp/vivid
 _install_vivid () {
-    command -v vivid >/dev/null 2>&1 && return
+    has vivid && return
     VIVID_VERSION="0.4.0"
     log_info "installing vivid"
     cd || return
@@ -515,33 +578,33 @@ _show_reminders () {
 
 # run functions {{{
 # this way I can still source this file but comment out these function calls and run one or more independently
-_install_xcode_command_line_tools
-_install_necessary_headers_in_include_on_mojave
-_install_homebrew_if_its_missing
-_install_update_homebrew_packages
-_install_upgrade_akamai
-_install_upgrade_phpenv
-_install_upgrade_yarn
-_set_zsh_as_shell
-_install_tmux_plugin_manager
-_create_vim_directories
-_install_vim_plug
-_install_upgrade_vim_plugins
-_install_node_version
-_install_php_version
-_install_ruby_version
-_install_python3_version
-_install_update_ruby_gems
-_update_python3_pip_packages
+# _install_xcode_command_line_tools
+# _install_necessary_headers_in_include_on_mojave
+# _install_homebrew_if_its_missing
+# _install_update_homebrew_packages
+# _install_upgrade_akamai
+# _install_upgrade_phpenv
+# _install_upgrade_yarn
+# _set_zsh_as_shell
+# _install_tmux_plugin_manager
+# _create_vim_directories
+# _install_vim_plug
+# _install_upgrade_vim_plugins
+# _install_node_version
+# _install_php_versions
+# _install_ruby_version
+# _install_python3_version
+# _install_update_ruby_gems
+# _update_python3_pip_packages
 _install_update_composer_packages
-_parse_php_language_server_stubs
-_install_vivid
-_update_antibody_plugins
-_apply_hosts_file
-_let_iterm_see_italics
-_apply_mac_preferences
-_start_launch_agents
-_fix_file_size_limit_for_watching_with_entr
-_show_reminders
-_install_bubo
+# _parse_php_language_server_stubs
+# _install_vivid
+# _update_antibody_plugins
+# _apply_hosts_file
+# _let_iterm_see_italics
+# _apply_mac_preferences
+# _start_launch_agents
+# _fix_file_size_limit_for_watching_with_entr
+# _show_reminders
+# _install_bubo
 # }}}
