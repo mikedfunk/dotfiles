@@ -308,10 +308,12 @@ alias ygu="yarn global upgrade"
 
 # phpenv {{{
 phpenv-switch () {
-    # because phpenv's hook system is not implemented correctly, I wrap the global command so I can also change composer and cgr config
+    # because phpenv's hook system is not implemented correctly, I wrap the
+    # global command so I can also change composer and cgr config
     [ -z "$1" ] && ( echo "Usage: $0 {version_number}"; return 1 )
     phpenv global "$1"
     _configure_cgr_and_composer
+    # not needed unless there were missing packages in the previous global vendor dir
     # phpenv rehash
 }
 # }}}
