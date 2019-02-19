@@ -47,7 +47,7 @@ path=(
   $HOME/.pyenv/shims
   $HOME/.phpenv/pear/bin
   $HOME/.composer/vendor/bin
-  "$(phpenv root)/versions/$(phpenv version | cut -d' ' -f1)/composer/vendor/bin"
+  # "$(phpenv root)/versions/$(phpenv version | cut -d' ' -f1)/composer/vendor/bin"
   $(gem env home)
   /usr/{bin,sbin}
   /{bin,sbin}
@@ -316,10 +316,6 @@ phpenv-switch () {
     # not needed unless there were missing packages in the previous global vendor dir
     # phpenv rehash
 }
-
-# when switching php versions via direnv, it doesn't automatically switch the
-# phpenv vendor dir or something. TODO look into this more.
-phpenv-comeon () { eval "$($HOME/.phpenv/bin/phpenv init -)"; }
 # }}}
 
 # phpspec {{{
