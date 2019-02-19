@@ -220,6 +220,7 @@ _install_upgrade_vim_plugins () {
 
 # install node version {{{
 _install_node_version () {
+    local NODE_VERSION
     NODE_VERSION="9.3.0"
     [[ "$(nodenv version | grep $NODE_VERSION)" ]] && return
     log_info "Installing node $NODE_VERSION"
@@ -229,6 +230,7 @@ _install_node_version () {
 
 # configure cgr and composer {{{
 _configure_cgr_and_composer () {
+    local PHP_VERSION
     PHP_VERSION="$1"
     [ -z "$PHP_VERSION" ] && ( log_error "Please provide a php version"; return 1 )
     [ -d "$(phpenv root)/versions/$PHP_VERSION" ] || ( log_error "Php version ${PHP_VERSION} not found"; return 1 )
@@ -245,7 +247,7 @@ _configure_cgr_and_composer () {
 # and extensions right now.
 
 _install_php_version () {
-    export PHP_VERSION="$1" # needs exporting for the non-interactive install script to install pear
+    export PHP_VERSION="$1" # needs exporting for the non-interactive install pear script
     ( phpenv versions | grep -q "$PHP_VERSION" ) && return
     log_info "Installing php $PHP_VERSION"
     # NOTE if I set php 7.1+.x to global and I use directory-specific php
@@ -279,7 +281,9 @@ _install_php_versions () {
     _install_php_version "7.0.29"
     _install_php_version "7.3.2"
 
-    PHP_VERSION="7.3.2"
+    local PHP_VERSION
+    # PHP_VERSION="7.3.2"
+    PHP_VERSION="7.0.29"
     phpenv global "$PHP_VERSION"
     _configure_cgr_and_composer "$PHP_VERSION"
 
