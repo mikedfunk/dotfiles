@@ -420,7 +420,9 @@ _install_update_composer_packages () {
 _parse_php_language_server_stubs () {
     cd "$HOME/.composer" || return
     log_info "parsing php-language-server stubs"
-    composer global run-script --working-dir="$HOME/.composer/global/felixfbecker/language-server/vendor/felixfbecker/language-server" parse-stubs
+    local PHP_VERSION
+    PHP_VERSION=$(phpenv version | cut -d' ' -f1)
+    composer global run-script --working-dir="$(phpenv root)/versions/$PHP_VERSION/composer/global/felixfbecker/language-server/vendor/felixfbecker/language-server" parse-stubs
     cd - || return
 }
 # }}}
