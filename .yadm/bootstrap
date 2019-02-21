@@ -1,7 +1,11 @@
 #!/bin/bash
 # vim: set foldmethod=marker ft=sh:
 
-# Why did I wrap everything in functions? So I could re-run specific things when necessary without having to re-run the entire bootstrap file.
+# notes {{{
+# Why did I wrap everything in functions? So I could re-run specific things
+# when necessary without having to re-run the entire bootstrap file. It also
+# makes it easier to temporarily run one or more install steps.
+# }}}
 
 # helper functions {{{
 function log_info() { echo -e "$(tput setaf 2)$(tput rev)$(tput bold) \xE2\x9C\x93 $1 $(tput sgr0)"; "${@:2}"; }
@@ -577,7 +581,8 @@ _show_reminders () {
 # }}}
 
 # run functions {{{
-# this way I can still source this file but comment out these function calls and run one or more independently
+# this way I can still source this file but comment out these function calls
+# and run one or more independently. This is extremely useful!!
 _install_xcode_command_line_tools
 _install_necessary_headers_in_include_on_mojave
 _install_homebrew_if_its_missing
