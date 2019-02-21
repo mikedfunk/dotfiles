@@ -1411,8 +1411,12 @@ snippet cfg "Get config value via zend framework 1"
 Zend_Registry::get('config')->$1
 endsnippet
 
+snippet glg "Gallery log"
+\Log::info(print_r($1, true));
+endsnippet
+
 snippet plg "Php log to debug file with no dependencies"
-\Log::info(print_r($1), true);
+\Log::info(print_r($1, true));
 endsnippet
 
 snippet tc "try/catch block"
@@ -1441,4 +1445,20 @@ endsnippet
 
 snippet lre "legacy php-di resolve"
 \Zend_Controller_Front::getInstance()->getDispatcher()->getContainer()->get($1::class);
+endsnippet
+
+snippet pmt "partial mock for testing"
+// partial mock version
+$this->${1:myClass} = $this->getMockBuilder(${1/\w+\s*/\u$0/}::class)->
+    setConstructorArgs([
+        ${2:// TODO}
+    ])->
+    setMethods([
+        ${3:// TODO mock methods}
+    ])->
+    getMock();
+endsnippet
+
+snippet tne "throw new exception for debug purposes (palette)"
+throw new \Exception(print_r($1, true));
 endsnippet

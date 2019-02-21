@@ -76,6 +76,7 @@ Plug 'vim-scripts/BufOnly.vim', { 'on': ['BufOnly', 'Bufonly'] } " close all buf
 Plug 'tpope/vim-commentary' " toggle comment with gcc. in my case I use <leader>c<space>
 " Plug 'jbgutierrez/vim-better-comments' " fancy comments
 " Plug 'junegunn/vim-easy-align' " align on = with ga=
+" Plug 'tommcdo/vim-lion' " align on = with visual mode and gl=
 Plug 'tpope/vim-unimpaired' " lots of cool keyboard shortcuts
 " if has("python") || has("python3") | Plug 'SirVer/ultisnips' | endif " dynamic snippet completion
 if has('python3')
@@ -150,7 +151,7 @@ Plug 'machakann/vim-swap' " move args left/right with g< g> or gs for interactiv
 " Plug 'brooth/far.vim', { 'on': ['Far', 'Fardo', 'Farundo', 'Farp', 'Refar', 'F'] } " find and replace
 " Plug 'yonchu/accelerated-smooth-scroll' " animated scroll on c-d, c-u, c-f, c-b
 " Plug 'yuttie/comfortable-motion.vim' " smooth scroll using timer and shit
-" Plug 'wellle/targets.vim' " Adds selection targets like vi2) or vI} to avoid whitespace
+Plug 'wellle/targets.vim' " Adds selection targets like vi2) or vI} to avoid whitespace
 Plug 'tpope/vim-obsession' " auto save sessions if you :Obsess
 " Plug 'chrisbra/Recover.vim' " show diff when recovering a file
 " Plug 'tyru/undoclosewin.vim' " reopen closed window with <leader>uc

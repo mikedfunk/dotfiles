@@ -1,6 +1,6 @@
 {
-  "app/*.php": {"alternate": "spec/{}Spec.php"},
-  "spec/*Spec.php": {"alternate": "app/{}.php"},
+  "app/*.php": {"alternate": "tests/unit/{}Test.php"},
+  "tests/unit/*Test.php": {"alternate": "app/{}.php"},
   "resources/assets/js/apps/checkout/components/*.js": {"alternate": "resources/assets/js/apps/checkout/containers/{}.js"},
   "resources/assets/js/apps/checkout/containers/*.js": {"alternate": "resources/assets/js/apps/checkout/components/{}.js"}
 }

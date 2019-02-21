@@ -576,33 +576,33 @@ _show_reminders () {
 
 # run functions {{{
 # this way I can still source this file but comment out these function calls and run one or more independently
-# _install_xcode_command_line_tools
-# _install_necessary_headers_in_include_on_mojave
-# _install_homebrew_if_its_missing
-# _install_update_homebrew_packages
-# _install_upgrade_akamai
-# _install_upgrade_phpenv
-# _install_upgrade_yarn
-# _set_zsh_as_shell
-# _install_tmux_plugin_manager
-# _create_vim_directories
-# _install_vim_plug
-# _install_upgrade_vim_plugins
-# _install_node_version
-# _install_php_versions
-# _install_ruby_version
-# _install_python3_version
-# _install_update_ruby_gems
-# _update_python3_pip_packages
+_install_xcode_command_line_tools
+_install_necessary_headers_in_include_on_mojave
+_install_homebrew_if_its_missing
+_install_update_homebrew_packages
+_install_upgrade_akamai
+_install_upgrade_phpenv
+_install_upgrade_yarn
+_set_zsh_as_shell
+_install_tmux_plugin_manager
+_create_vim_directories
+_install_vim_plug
+_install_upgrade_vim_plugins
+_install_node_version
+_install_php_versions
+_install_ruby_version
+_install_python3_version
+_install_update_ruby_gems
+_update_python3_pip_packages
 _install_update_composer_packages
-# _parse_php_language_server_stubs
-# _install_vivid
-# _update_antibody_plugins
-# _apply_hosts_file
-# _let_iterm_see_italics
-# _apply_mac_preferences
-# _start_launch_agents
-# _fix_file_size_limit_for_watching_with_entr
-# _show_reminders
-# _install_bubo
+_parse_php_language_server_stubs
+_install_vivid
+_update_antibody_plugins
+_apply_hosts_file
+_let_iterm_see_italics
+_apply_mac_preferences
+_start_launch_agents
+_fix_file_size_limit_for_watching_with_entr
+_show_reminders
+_install_bubo
 # }}}

@@ -255,7 +255,7 @@ function psc () { phpdbg -qrr ./vendor/bin/phpspec run --config ./phpspec-covera
 alias puf="pu --filter="
 function puw () {
     noglob ag -l -g \
-        '(application\/controllers|application\/modules\/*\/controllers|application\/models|library|src|tests)/.*\.php' \
+        '(application\/controllers|application\/modules\/*\/controllers|application\/models|library|src|app|tests)/.*\.php' \
         | entr -r -c \
         "$HOME/.phpenv/shims/phpdbg" -qrr \
         -dmemory_limit=2048M \
