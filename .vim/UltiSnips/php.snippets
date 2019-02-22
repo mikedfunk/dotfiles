@@ -261,6 +261,14 @@ class `!v expand("%:t:r")`$4 extends ApiRequest
         ];
     }
 
+    public function messages()
+    {
+        return [
+            // key/value pairs for validation type => message e.g.
+            // 'first_name.required' => 'wtf dont leave this blank',
+        ];
+    }
+
     public function authorize()
     {
         return true;

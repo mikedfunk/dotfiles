@@ -552,6 +552,7 @@ endif
 " }}}
 
 " vdebug {{{
+" REMINDER: <leader>ev lets you evaluate the visual selection!
 " NOTE: `:VdebugTrace $myvar` to sticky a variable value as you go. You
 " can also write an expression there like `:VdebugTrace $x + 2`
 " NOTE: <F12> to get var under cursor, <F11> to go back to context
