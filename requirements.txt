@@ -31,6 +31,6 @@ sqlparse==0.2.4
 tabulate==0.8.3
 terminaltables==3.1.0
 tmuxomatic==2.19.dev0
-virtualenv==16.4.0
+virtualenv==16.4.1
 wcwidth==0.1.7
 wrapt==1.11.1

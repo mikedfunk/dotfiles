@@ -62,6 +62,12 @@ if (filereadable('.php_cs'))
     call add(s:php_fixers, 'php_cs_fixer')
 endif
 
+" custom lsp provider to let ale lint and complete with intelephense
+" see ~/.vim/ale_linters/php/intelephense.vim
+if filereadable($HOME.'/.config/yarn/global/node_modules/intelephense-server/lib/server.js') && executable($HOME.'/.nodenv/shims/node')
+    call add(s:php_linters, 'intelephense')
+endif
+
 " really I don't need to lint phpmd on every save :/
 " if filereadable('phpmd.xml')
 "     let g:ale_php_phpmd_ruleset = getcwd() . ('/phpmd.xml')
@@ -109,10 +115,16 @@ let g:ale_set_balloons = 1
 
 " completion {{{
 " :h ale-completion
+" completion is failing silently for me even with intelephense added and working :/
 " let g:ale_completion_enabled = 1
 " set completeopt=menu,menuone,preview,noselect,noinsert
-let g:ale_php_langserver_use_global = 1
-let g:ale_php_langserver_executable = $HOME.'/.composer/vendor/bin/php-language-server.php'
+" let g:ale_php_langserver_use_global = 1
+" let g:ale_php_langserver_executable = $HOME.'/.composer/vendor/bin/php-language-server.php'
+" let g:ale_php_langserver_executable = $HOME.'/.phpenv/shims/php-language-server.php'
+" this doesn't work yet because langserver prefixes php currently :/
+" https://github.com/w0rp/ale/blob/883978/ale_linters/php/langserver.vim#L19
+" let g:ale_php_langserver_executable = $HOME.'/.nodenv/shims/node '.$HOME.'/.config/yarn/global/node_modules/intelephense-server/lib/server.js --stdio'
+" so I just wrote my own at ~/.vim/ale_linters/php/intelephense.vim (see file)
 " }}}
 
 " }}}
@@ -259,8 +271,10 @@ let g:used_javascript_libs = ''
 " language-client-neovim {{{
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_serverCommands = {
-    \ 'php': ['php', '~/.composer/vendor/bin/php-language-server.php']
-\ }
+            \ 'php': [$HOME.'/.nodenv/shims/node', $HOME.'/.config/yarn/global/node_modules/intelephense-server/lib/server.js'],
+            \ }
+" \ 'php': ['php', $HOME.'/.phpenv/shims/php-language-server.php']
+" \ 'php': ['php', '~/.composer/vendor/bin/php-language-server.php']
 if isdirectory(expand('~/.vim/plugged/LanguageClient-neovim'))
     augroup language_client_neovim_augroup
         autocmd!
@@ -906,17 +920,43 @@ if isdirectory(expand('~/.vim/plugged/vim-lotr')) | nnoremap <leader>ll :LOTRTog
 " }}}
 
 " vim-lsp {{{
-if isdirectory(expand('~/.vim/plugged/vim-lsp'))
+if isdirectory(expand('~/.vim/plugged/vim-lsp')) && has('autocmd') && exists('+omnifunc')
     augroup lsp_group
         autocmd!
+
+        " php-language-server.php version
+        " currently commented out because the node version is much easier to
+        " install and maintain.
+        " also I'm put in a ton of time on this and it DOESN'T FUCKING WORK.
+        " No logs, no completion in the language server, it's a fucking train
+        " wreck.
+        " autocmd User lsp_setup call lsp#register_server({
+        "     \ 'name': 'php-language-server',
+        "     \ 'cmd': {server_info->[&shell, &shellcmdflag, 'php '.$HOME.'/.phpenv/shims/php-language-server.php', '--stdio']},
+        "     \ 'whitelist': ['php'],
+        " \ })
+        " \ 'cmd': {server_info->[&shell, &shellcmdflag, 'php ~/.composer/vendor/bin/php-language-server.php', '--stdio']},
+
+        " intelephense version (php language server written in node)
         autocmd User lsp_setup call lsp#register_server({
-            \ 'name': 'php-language-server',
-            \ 'cmd': {server_info->[&shell, &shellcmdflag, 'php ~/.composer/vendor/bin/php-language-server.php', '--stdio']},
+            \ 'name': 'intelephense',
+            \ 'cmd': {server_info->[$HOME.'/.nodenv/shims/node', $HOME.'/.config/yarn/global/node_modules/intelephense-server/lib/server.js', '--stdio']},
             \ 'whitelist': ['php'],
         \ })
+
         autocmd FileType php setlocal omnifunc=lsp#complete
     augroup END
 endif
+
+" this is handled by ALE
+let g:lsp_diagnostics_enabled = 0
+
+" having trouble?
+" let g:lsp_log_verbose = 1
+" let g:lsp_log_file = expand('~/vim-lsp.log')
+
+" for asyncomplete.vim log
+" let g:asyncomplete_log_file = expand('~/asyncomplete.log')
 " }}}
 
 " vim-markbar {{{
@@ -1099,10 +1139,13 @@ let g:startify_lists = [
 " \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
 
 if isdirectory(expand('~/.vim/plugged/vim-startify'))
+    " TODO integrate this to automatically :Obsess somehow...
     nnoremap <leader>ss :SSave<cr>
     nnoremap <leader>sl :SLoad<cr>
     nnoremap <leader>sd :SDelete<cr>
 endif
+
+let g:startify_change_to_dir = 0
 " }}}"
 
 " vim-taskwarrior {{{

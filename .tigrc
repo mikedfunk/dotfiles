@@ -51,4 +51,5 @@ bind generic C !git cherry-pick %(commit)
 # Go to the first file in the status view
 bind status <Ctrl-n> :/^.$
 bind status O !git open
+# TODO map something to checkout the current file from develop
 # }}}

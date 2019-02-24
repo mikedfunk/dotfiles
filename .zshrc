@@ -222,23 +222,24 @@ alias vit="vim +TW" # until vit gets its act together
 
 # suffix aliases {{{
 # https://unix.stackexchange.com/questions/354960/zsh-suffix-alias-alternative-in-bash
-alias -s css=vim
-alias -s html=vim
-alias -s js=vim
-alias -s json=vim
-alias -s jsx=vim
-alias -s markdown=vim
-alias -s md=vim
-alias -s phar=php
-alias -s php=vim
-alias -s phtml=vim
-alias -s rb=vim
-alias -s scss=vim
-alias -s txt=vim
-alias -s xml=vim
-alias -s xql=vim
-alias -s yaml=vim
-alias -s yml=vim
+# NOTE: This breaks php-language-server.php
+# alias -s css=vim
+# alias -s html=vim
+# alias -s js=vim
+# alias -s json=vim
+# alias -s jsx=vim
+# alias -s markdown=vim
+# alias -s md=vim
+# alias -s phar=php
+# alias -s php=vim
+# alias -s phtml=vim
+# alias -s rb=vim
+# alias -s scss=vim
+# alias -s txt=vim
+# alias -s xml=vim
+# alias -s xql=vim
+# alias -s yaml=vim
+# alias -s yml=vim
 # }}}
 
 # brew {{{
@@ -251,7 +252,7 @@ alias pu="phpunitnotify"
 # PhpUnitCoverage
 function puc () { pu --coverage-html=./coverage $@ && open coverage/index.html; }
 # PhpSpecCoverage
-function psc () { phpdbg -qrr ./vendor/bin/phpspec run --config ./phpspec-coverage.yml $@ && open coverage/index.html; }
+function psc () { phpdbg -qrr -dmemory_limit=2048M  ./vendor/bin/phpspec run --config ./phpspec-coverage.yml $@ && open coverage/index.html; }
 alias puf="pu --filter="
 function puw () {
     noglob ag -l -g \

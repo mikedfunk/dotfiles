@@ -24,6 +24,7 @@
     "glow": "^1.2.2",
     "grunt-cli": "^1.2.0",
     "ibm-openapi-validator": "^0.2.1",
+    "intelephense-server": "^0.8.8",
     "jest": "^22.0.6",
     "neovim": "^4.2.1",
     "nightmare": "^2.10.0",
