@@ -11,7 +11,7 @@ use Prophecy\Argument;
  *
  * @see \%subject%
  */
-class %name% extends ObjectBehavior
+final class %name% extends ObjectBehavior
 {
 
     /** @test */
