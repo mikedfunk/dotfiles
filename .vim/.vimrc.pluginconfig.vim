@@ -240,6 +240,7 @@ if isdirectory(expand('~/.vim/plugged/fzf.vim'))
 
     nnoremap <leader>ag :Ag<cr>
     nnoremap <leader>ff :Files<cr>
+    nnoremap <leader>tt :Tags<cr>
 endif
 " }}}
 
@@ -857,6 +858,18 @@ if executable('cscope') && has('cscope')
     call add(g:gutentags_modules, 'cscope')
     " set cscopetag " this is set in ~/.vimrc
 endif
+
+" disable gutentags for some cases
+augroup gitnogutentags
+    autocmd!
+    autocmd FileType gitrebase let g:gutentags_modules = []
+    autocmd FileType gitcommit let g:gutentags_modules = []
+    autocmd FileType git let g:gutentags_modules = []
+augroup END
+if &diff
+    let g:gutentags_modules = []
+endif
+
 let g:gutentags_ctags_exclude = [
     \ '.git',
     \ '*.log',

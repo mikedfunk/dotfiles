@@ -245,6 +245,29 @@ class `!v expand("%:t:r")`$4
 }
 endsnippet
 
+snippet lsp "laravel service provider"
+<?php
+declare(strict_types=1);
+`!p snip.rv = namespace(snip, path)`
+use Illuminate\Support\ServiceProvider;
+
+class `!v expand("%:t:r")`$1 extends ServiceProvider
+{
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        // $this->app->when(LegacyApi::class)
+        //     ->needs(GuzzleHttpClientInterface::class)
+        //     ->give(GuzzleHttpClient::instance);
+        $2
+    }
+}
+endsnippet
+
 snippet req "laravel validating request"
 <?php
 declare(strict_types=1);

@@ -372,6 +372,12 @@ augroup netrw_delete_hidden_augroup
     autocmd FileType netrw setl bufhidden=delete
 augroup END
 
+" this is because some of my notes start with 'vim:'
+augroup disable_modeline_for_markdown
+    autocmd!
+    autocmd FileType markdown :set nomodeline
+augroup END
+
 " disable Ex mode
 nnoremap Q <nop>
 
@@ -536,7 +542,7 @@ cabbr <expr> %% expand('%:p:h')
 cnoremap <c-p> <Up>
 cnoremap <c-n> <Down>
 
-nnoremap <leader>tt :tabe<cr>
+" nnoremap <leader>tt :tabe<cr>
 
 " put cursor at end of text on y and p
 vnoremap <silent> y y`]
