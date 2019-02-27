@@ -241,6 +241,7 @@ if isdirectory(expand('~/.vim/plugged/fzf.vim'))
     nnoremap <leader>ag :Ag<cr>
     nnoremap <leader>ff :Files<cr>
     nnoremap <leader>tt :Tags<cr>
+    nnoremap <leader>hh :History<cr>
 endif
 " }}}
 

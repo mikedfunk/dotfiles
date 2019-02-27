@@ -70,3 +70,17 @@ command! -nargs=1 Eqa execute "e scp://appdeploy@saatchi-xqa-legacy-services-01/
 " phpcd {{{
 " let g:phpcd_autoload_path = 'application/command_line_bootstrap.php'
 " }}}
+
+" vim-lsp {{{
+augroup register_flow_lsp
+    autocmd!
+    au User lsp_setup call lsp#register_server({
+                \ 'name': 'javascript support using typescript-language-server',
+                \ 'cmd': {server_info->[&shell, &shellcmdflag, '/usr/local/bin/typescript-language-server --stdio']},
+                \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'package.json'))},
+                \ 'whitelist': ['javascript', 'javascript.jsx'],
+                \ })
+    autocmd FileType javascript setlocal omnifunc=lsp#complete
+    autocmd FileType javascript.jsx setlocal omnifunc=lsp#complete
+augroup END
+" }}}
