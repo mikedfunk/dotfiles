@@ -37,6 +37,9 @@ command! -nargs=1 Edev execute "e scp://appdeploy@saatchi-xdev-zed-01//data/shop
 command! -nargs=1 Eqa execute "e scp://appdeploy@saatchi-xqa-zed-01//data/shop/current/" . <f-args>
 " }}}
 
-" gutentags {{{
-" let g:gutentags_project_info = [{"type": "php"}]
+" vim-gutentags {{{
+if executable('cscope') && has('cscope')
+    call add(g:gutentags_modules, 'cscope')
+    " set cscopetag " this is set in ~/.vimrc
+endif
 " }}}

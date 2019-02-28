@@ -65,3 +65,10 @@ augroup register_flow_lsp
   autocmd FileType javascript.jsx setlocal omnifunc=lsp#complete
 augroup END
 " }}}
+
+" vim-gutentags {{{
+if executable('cscope') && has('cscope')
+    call add(g:gutentags_modules, 'cscope')
+    " set cscopetag " this is set in ~/.vimrc
+endif
+" }}}

@@ -865,10 +865,11 @@ let g:gutentags_exclude_filetypes = ['gitcommit']
 " let g:gutentags_generate_on_empty_buffer = 0
 
 let g:gutentags_modules = ['ctags']
-if executable('cscope') && has('cscope')
-    call add(g:gutentags_modules, 'cscope')
-    " set cscopetag " this is set in ~/.vimrc
-endif
+" Commented out - I added this manually in .vimrc for php projects instead
+" if executable('cscope') && has('cscope')
+"     call add(g:gutentags_modules, 'cscope')
+"     " set cscopetag " this is set in ~/.vimrc
+" endif
 
 " disable gutentags for some cases
 augroup gitnogutentags
