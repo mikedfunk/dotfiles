@@ -59,7 +59,7 @@ let s:php_fixers = []
 " }}}
 
 " js linters {{{
-if executable('./node_modules/.bin/flow') | call add(s:js_linters, 'flow_ls') | endif
+if executable('./node_modules/.bin/flow') | call add(s:js_linters, 'flow-language-server') | endif
 if executable('./node_modules/.bin/eslint') | call add(s:js_linters, 'eslint') | endif
 if executable('./node_modules/.bin/prettier-eslint') | call add(s:js_fixers, 'prettier_eslint') | endif
 " }}}
