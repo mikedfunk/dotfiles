@@ -50,10 +50,11 @@ Plug 'wellle/tmux-complete.vim' " add tmux as a completion source with user-defi
 " E734: Wrong variable type for .=
 " [vim-hug-neovim-rpc] rpc method [nvim_buf_set_option] not implemented in pythonx/neovim_rpc_methods.py. Please send PR or contact the mantainer.
 " Plug 'autozimu/LanguageClient-neovim' | Plug 'roxma/vim-hug-neovim-rpc' | Plug 'roxma/nvim-yarp' " works with felixfbecker/php-language-server composer global package to do more intelligent completion
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 
 " completion not working currently with this...
 " Plug 'prabirshrestha/asyncomplete.vim' | Plug 'prabirshrestha/asyncomplete-lsp.vim' | Plug 'prabirshrestha/async.vim' | Plug 'prabirshrestha/vim-lsp' " Async Language Server Protocol plugin for vim8 and neovim.
-Plug 'prabirshrestha/async.vim' | Plug 'prabirshrestha/vim-lsp' " language server features
+" Plug 'prabirshrestha/async.vim' | Plug 'prabirshrestha/vim-lsp' " language server features
 " Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}} " language server completion
 " Plug 'neoclide/coc-sources' " more coc completion sources
 " Plug 'Shougo/neco-vim' | Plug 'neoclide/coc-neco' " viml coc completion
@@ -88,6 +89,7 @@ endif
 Plug 'jeromedalbert/auto-pairs', { 'branch': 'better-auto-pairs' } " fork, see https://www.reddit.com/r/vim/comments/adv2h0/do_you_use_a_custom_fork_of_autopairs_how_is_it/
 " Plug 'tmsvg/pear-tree' " fancier auto-pairs alternative - only adds pair on esc
 " Plug 'rstacruz/vim-closer' " like auto-pairs but only triggers on enter (only works well for JS)
+" Plug 'kana/vim-smartinput' " like auto-pairs
 Plug 'sickill/vim-pasta' " paste with context-sensitive indenting
 " Plug 'wincent/terminus' " auto update file changes, better mouse, insert cursor shape, bracketed paste.
 Plug 'tpope/vim-eunuch', { 'on': ['Mkdir!', 'Remove!'] } " :Mkdir!, :Remove!, and other shortcuts
@@ -136,7 +138,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegu
 " Plug 'junegunn/vim-slash' " after finding and moving cursor, turn off search highlights
 Plug 'tpope/vim-abolish' " search and replace for various naming types e.g. :S/someWord/someOtherWord/g
 Plug 'michaeljsmith/vim-indent-object' " select in indentation level e.g. vii
-" Plug 'kana/vim-textobj-user' | Plug 'glts/vim-textobj-comment' " change a multiline comment with cic
+" Plug 'kana/vim-kextobj-user' | Plug 'glts/vim-textobj-comment' " change a multiline comment with cic
 " Plug 'kana/vim-textobj-entire' " select in entire document
 " Plug 'coderifous/textobj-word-column.vim' " add a text object c and C for a column - visual block mode for current indentation level
 " Plug 'wellle/visual-split.vim' " adds mappings and commands to split out the visual selection vertically

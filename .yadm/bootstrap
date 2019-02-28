@@ -179,7 +179,15 @@ _set_zsh_as_shell () {
 _install_tmux_plugin_manager () {
     [[ -d "$HOME/.tmux/plugins/tpm" ]] && return
     log_info "Installing tmux plugin manager. Upgrade packages with \`<c-a>U\`."
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
+}
+# }}}
+
+# install/update tmux plugins {{{
+_install_upgrade_tmux_plugins () {
+    log_info "Install/upgrade tmux plugins"
+    $HOME/.tmux/plugins/tpm/bin/install_plugins
+    $HOME/.tmux/plugins/tpm/bin/update_plugins all
 }
 # }}}
 
@@ -278,7 +286,7 @@ _install_php_version () {
     ln -sf "$HOME/.composer/composer.json" "$(phpenv root)/versions/$PHP_VERSION/composer/composer.json"
 
     # each php version has their own composer global folder
-    _install_update_composer_packages
+    _install_update_composer_packages "$PHP_VERSION"
 }
 
 _install_php_versions () {
@@ -360,26 +368,6 @@ _update_python3_pip_packages () {
 # }}}
 
 # install/update composer and packages {{{
-
-# this is no longer needed - composer is managed by phpenv and will auto
-# download on first run for a php version
-
-# https://getcomposer.org/doc/faqs/how-to-install-composer-programmatically.md
-# _install-composer () {
-#     EXPECTED_SIGNATURE=$(wget -q -O - https://composer.github.io/installer.sig)
-#     php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-#     ACTUAL_SIGNATURE=$(php -r "echo hash_file('SHA384', 'composer-setup.php');")
-
-#     [ "$EXPECTED_SIGNATURE" == "$ACTUAL_SIGNATURE" ] && return
-#     echo >&2 'ERROR: Invalid installer signature'
-#     rm composer-setup.php
-#     exit 1
-
-#     php composer-setup.php --quiet
-#     RESULT=$?
-#     rm composer-setup.php
-#     exit $RESULT
-# }
 _install_update_composer_packages () {
     cd $HOME/.composer >/dev/null || return
     # if ! has composer; then
@@ -388,18 +376,21 @@ _install_update_composer_packages () {
     # fi
     log_info "Installing/upgrading composer packages"
 
-    PHP_VERSION=$(phpenv version | cut -d' ' -f1)
+    local PHP_VERSION
+    PHP_VERSION=$1
+    if [ -z $PHP_VERSION ]; then
+        PHP_VERSION=$(phpenv version | cut -d' ' -f1)
+    fi
+
     _configure_cgr_and_composer "$PHP_VERSION"
     # use global composer.json
     [ -f "$COMPOSER_HOME/composer.json" ] || ln -sf "$HOME/.composer/composer.json" "$COMPOSER_HOME/composer.json"
 
     cd "$(phpenv root)/versions/$PHP_VERSION/composer" >/dev/null || return
 
-    if ! [ -f "$(phpenv root)/versions/$PHP_VERSION/composer/global/felixfbecker/language-server/composer.json" ]; then
-        # workaround for php language server
-        mkdir -p "$(phpenv root)/versions/$PHP_VERSION/composer/global/felixfbecker/language-server/"
-        ln -sf "$HOME/.composer/global/felixfbecker/language-server/composer.json" "$(phpenv root)/versions/$PHP_VERSION/composer/global/felixfbecker/language-server/composer.json"
-    fi
+    # workaround for php language server
+    mkdir -p "$(phpenv root)/versions/$PHP_VERSION/composer/global/felixfbecker/language-server/"
+    ln -sf "$HOME/.composer/global/felixfbecker/language-server/composer.json" "$(phpenv root)/versions/$PHP_VERSION/composer/global/felixfbecker/language-server/composer.json"
 
     composer selfupdate
     composer global install
@@ -572,12 +563,19 @@ function _install_bubo () {
 }
 # }}}
 
-# reminders {{{
-_show_reminders () {
-    log_info "Don't forget to upgrade your docker-machine once in a while!"
-    # log_info "Don't forget to ''brew cask upgrade virtualbox virtualbox-extension-pack' once in a while!"
-    log_info "Don't forget to update tmux plugins via <c-a>U once in a while!"
+# upgrade docker-machine {{{
+_upgrade_docker_machine () {
+    log_info "Upgrading docker-machine"
+    docker-machine upgrade
 }
+# }}}
+
+# reminders {{{
+# _show_reminders () {
+#     # log_info "Don't forget to upgrade your docker-machine once in a while!"
+#     # log_info "Don't forget to ''brew cask upgrade virtualbox virtualbox-extension-pack' once in a while!"
+#     # log_info "Don't forget to update tmux plugins via <c-a>U once in a while!"
+# }
 # }}}
 
 # run functions {{{
@@ -592,6 +590,7 @@ _install_upgrade_phpenv
 _install_upgrade_yarn
 _set_zsh_as_shell
 _install_tmux_plugin_manager
+_install_upgrade_tmux_plugins
 _create_vim_directories
 _install_vim_plug
 _install_upgrade_vim_plugins
@@ -610,6 +609,7 @@ _let_iterm_see_italics
 _apply_mac_preferences
 _start_launch_agents
 _fix_file_size_limit_for_watching_with_entr
-_show_reminders
+_upgrade_docker_machine
 _install_bubo
+# _show_reminders
 # }}}

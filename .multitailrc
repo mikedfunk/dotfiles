@@ -5,6 +5,7 @@
 # another example https://github.com/flok99/multitail/blob/master/multitail.conf
 # more cool stuff: https://www.pantz.org/software/multitail/multitailconfig.html
 
+# general config {{{
 # whether to abbreviate filesizes to xKB/MB/GB
 abbreviate_filesize:on
 
@@ -27,6 +28,7 @@ statusline_ts_format:%Y-%m-%d %r
 # %u  username
 # %t  date + time
 # titlebar:%u@%h %f (%t) [%l]
+# }}}
 
 # catalog {{{
 colorscheme:catalog

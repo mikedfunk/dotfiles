@@ -16,7 +16,9 @@ endfunction
 call ale#linter#Define('php', {
             \   'name': 'intelephense',
             \   'lsp': 'stdio',
-            \   'executable': $HOME.'/.nodenv/shims/node'),
-            \   'command': '%e '.$HOME.'/.config/yarn/global/node_modules/intelephense-server/lib/server.js',
+            \   'executable': $HOME.'/.bin/intelephense-server'),
+            \   'command': '%e',
             \   'project_root': function('ale_linters#php#intelephense#GetProjectRoot'),
             \})
+" \   'executable': $HOME.'/.nodenv/shims/node'),
+" \   'command': '%e '.$HOME.'/.config/yarn/global/node_modules/intelephense-server/lib/server.js',

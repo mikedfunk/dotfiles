@@ -30,63 +30,78 @@ let g:ale_sign_column_always = 1 " otherwise screen keeps jumping left and right
 let g:airline#extensions#ale#error_symbol = 'Errors:' " default is a bit sparse: E
 let g:airline#extensions#ale#warning_symbol = 'Warnings:' " default is W
 
+" mappings {{{
 if isdirectory(expand('~/.vim/plugged/ale'))
     nmap <silent> [w <Plug>(ale_previous_wrap)
     nmap <silent> ]w <Plug>(ale_next_wrap)
     nnoremap <leader>al :ALELint<cr>
     nnoremap <leader>af :ALEFix<cr>
 endif
+" }}}
 
-" Set up fixers and linters
+" Set up fixers and linters {{{
 " defining linters and fixers is only required if you want to use only a
 " subset of available linters or fixers. Otherwise it uses all available
 " linters or fixers in separate processes asynchronously.
 let s:js_linters = []
 let s:js_fixers = ['importjs']
-" let s:php_linters = ['php', 'langserver'] " langserver is useful for completion
-let s:php_linters = ['php']
-let s:php_fixers = []
+" intelephense is a custom lsp provider to let ale lint and complete with
+" intelephense php language server
+" see ~/.vim/ale_linters/php/intelephense.vim
+" let s:php_linters = ['php', 'intelephense']
+let s:php_linters = ['php', 'langserver']
 
+" crappy php-language-server
+let g:ale_php_langserver_use_global = 1
+let g:ale_php_langserver_executable = $HOME.'/.bin/php-language-server'
+" let g:ale_php_langserver_executable = $HOME.'/.composer/vendor/bin/php-language-server.php'
+let s:php_fixers = []
+" }}}
+
+" js linters {{{
 if executable('./node_modules/.bin/flow') | call add(s:js_linters, 'flow_ls') | endif
 if executable('./node_modules/.bin/eslint') | call add(s:js_linters, 'eslint') | endif
+if executable('./node_modules/.bin/prettier-eslint') | call add(s:js_fixers, 'prettier_eslint') | endif
+" }}}
 
+" phpcs and phpcbf {{{
 if filereadable('phpcs.xml')
     let g:ale_php_phpcs_standard = getcwd() . '/phpcs.xml'
     let g:ale_php_phpcbf_standard = getcwd() . '/phpcs.xml'
     call add(s:php_linters, 'phpcs')
     call add(s:php_fixers, 'phpcbf')
 endif
+" }}}
 
+" php-cs-fixer {{{
 if (filereadable('.php_cs'))
     let g:ale_php_cs_fixer_options = '--config=.php_cs'
     call add(s:php_fixers, 'php_cs_fixer')
 endif
+" }}}
 
-" custom lsp provider to let ale lint and complete with intelephense
-" see ~/.vim/ale_linters/php/intelephense.vim
-if filereadable($HOME.'/.config/yarn/global/node_modules/intelephense-server/lib/server.js') && executable($HOME.'/.nodenv/shims/node')
-    call add(s:php_linters, 'intelephense')
-endif
-
+" phpmd {{{
 " really I don't need to lint phpmd on every save :/
 " if filereadable('phpmd.xml')
 "     let g:ale_php_phpmd_ruleset = getcwd() . ('/phpmd.xml')
 "     call add(s:php_linters, 'phpmd')
 " endif
+" }}}
+
+" phpstan {{{
 if (filereadable('phpstan.neon'))
     let g:ale_php_phpstan_configuration = getcwd() . '/phpstan.neon'
     call add(s:php_linters, 'phpstan')
 endif
-if executable('./node_modules/.bin/eslint') | call add(s:js_linters, 'eslint') | endif
-if executable('./node_modules/.bin/prettier-eslint') | call add(s:js_fixers, 'prettier_eslint') | endif
+" }}}
 
+" phpcbf {{{
 " If I don't do this, phpcbf fails on any file in the exclude-pattern :/
 let g:ale_php_phpcbf_executable = $HOME.'/.support/phpcbf-helper.sh'
-" let g:ale_php_phpcbf_executable = '/Users/mikefunk/.support/phpcbf-helper.sh'
-" let g:ale_php_phpcbf_executable = '~/.support/phpcbf-helper.sh'
 " in order to get the alternate executable working you have to declare it as
 " use global, even though it's not 'global' :/
 let g:ale_php_phpcbf_use_global = 1
+" }}}
 
 let g:ale_linters = {
 \    'sh': ['shellcheck'],
@@ -106,25 +121,20 @@ let g:ale_fixers = {
 " \    'json': ['jq'],
 " \    'sh': ['shfmt'],
 
+" hover {{{
 " :h ale-hover
 " Example mouse settings.
 " You will need to try different settings, depending on your terminal.
 " set mouse=a
 " set ttymouse=xterm
 let g:ale_set_balloons = 1
+" }}}
 
 " completion {{{
 " :h ale-completion
 " completion is failing silently for me even with intelephense added and working :/
 " let g:ale_completion_enabled = 1
 " set completeopt=menu,menuone,preview,noselect,noinsert
-" let g:ale_php_langserver_use_global = 1
-" let g:ale_php_langserver_executable = $HOME.'/.composer/vendor/bin/php-language-server.php'
-" let g:ale_php_langserver_executable = $HOME.'/.phpenv/shims/php-language-server.php'
-" this doesn't work yet because langserver prefixes php currently :/
-" https://github.com/w0rp/ale/blob/883978/ale_linters/php/langserver.vim#L19
-" let g:ale_php_langserver_executable = $HOME.'/.nodenv/shims/node '.$HOME.'/.config/yarn/global/node_modules/intelephense-server/lib/server.js --stdio'
-" so I just wrote my own at ~/.vim/ale_linters/php/intelephense.vim (see file)
 " }}}
 
 " }}}
@@ -270,18 +280,18 @@ let g:used_javascript_libs = ''
 " autocmd BufReadPre *.js let b:javascript_lib_use_d3 = 1
 " }}}
 
-" language-client-neovim {{{
+" languageClient-neovim {{{
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_serverCommands = {
-            \ 'php': [$HOME.'/.nodenv/shims/node', $HOME.'/.config/yarn/global/node_modules/intelephense-server/lib/server.js'],
+            \ 'php': [$HOME.'/.bin/php-language-server'],
             \ }
-" \ 'php': ['php', $HOME.'/.phpenv/shims/php-language-server.php']
-" \ 'php': ['php', '~/.composer/vendor/bin/php-language-server.php']
+" \ 'php': [$HOME.'/.bin/intelephense-server'],
 if isdirectory(expand('~/.vim/plugged/LanguageClient-neovim'))
     augroup language_client_neovim_augroup
         autocmd!
         autocmd filetype php set omnifunc=LanguageClient#complete
     augroup END
+    let g:airline#extensions#languageclient#enabled = 1
 endif
 " }}}
 
@@ -939,24 +949,19 @@ if isdirectory(expand('~/.vim/plugged/vim-lsp')) && has('autocmd') && exists('+o
         autocmd!
 
         " php-language-server.php version
-        " currently commented out because the node version is much easier to
-        " install and maintain.
-        " also I'm put in a ton of time on this and it DOESN'T FUCKING WORK.
-        " No logs, no completion in the language server, it's a fucking train
-        " wreck.
-        " autocmd User lsp_setup call lsp#register_server({
-        "     \ 'name': 'php-language-server',
-        "     \ 'cmd': {server_info->[&shell, &shellcmdflag, 'php '.$HOME.'/.phpenv/shims/php-language-server.php', '--stdio']},
-        "     \ 'whitelist': ['php'],
-        " \ })
-        " \ 'cmd': {server_info->[&shell, &shellcmdflag, 'php ~/.composer/vendor/bin/php-language-server.php', '--stdio']},
-
-        " intelephense version (php language server written in node)
+        " I hate php-language-server. It sucks.
         autocmd User lsp_setup call lsp#register_server({
-            \ 'name': 'intelephense',
-            \ 'cmd': {server_info->[$HOME.'/.nodenv/shims/node', $HOME.'/.config/yarn/global/node_modules/intelephense-server/lib/server.js', '--stdio']},
+            \ 'name': 'php-language-server',
+            \ 'cmd': {server_info->[&shell, &shellcmdflag, $HOME.'/.bin/php-language-server']},
             \ 'whitelist': ['php'],
         \ })
+
+        " intelephense version (php language server written in node)
+        " autocmd User lsp_setup call lsp#register_server({
+        "     \ 'name': 'intelephense',
+        "     \ 'cmd': {server_info->[&shell, &shellcmdflag, $HOME.'/.bin/intelephense-server']},
+        "     \ 'whitelist': ['php'],
+        " \ })
 
         autocmd FileType php setlocal omnifunc=lsp#complete
     augroup END
