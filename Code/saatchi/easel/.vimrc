@@ -13,7 +13,7 @@
 " let g:airline_theme="powerlineish"
 
 " bright with blue split lines and blue/green/teal colors
-colo base16-seti
+silent! colo base16-seti
 let g:airline_theme="base16_seti"
 " }}}
 

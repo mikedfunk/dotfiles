@@ -50,7 +50,7 @@ Plug 'wellle/tmux-complete.vim' " add tmux as a completion source with user-defi
 " E734: Wrong variable type for .=
 " [vim-hug-neovim-rpc] rpc method [nvim_buf_set_option] not implemented in pythonx/neovim_rpc_methods.py. Please send PR or contact the mantainer.
 " Plug 'autozimu/LanguageClient-neovim' | Plug 'roxma/vim-hug-neovim-rpc' | Plug 'roxma/nvim-yarp' " works with felixfbecker/php-language-server composer global package to do more intelligent completion
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+" Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 
 " completion not working currently with this...
 " Plug 'prabirshrestha/asyncomplete.vim' | Plug 'prabirshrestha/asyncomplete-lsp.vim' | Plug 'prabirshrestha/async.vim' | Plug 'prabirshrestha/vim-lsp' " Async Language Server Protocol plugin for vim8 and neovim.
@@ -183,7 +183,10 @@ endif
 "     Plug 'vim-vdebug/vdebug', { 'for': 'php', 'tag': 'v1.5.2' }
 " endif
 Plug 'arnaud-lb/vim-php-namespace', { 'for': 'php' } " insert use statements
-" Plug 'shawncplus/phpcomplete.vim' " better php omnicomplete. This is included with vim8 but the package keeps it up-to-date. (trying out vim-lsp with intelephense instead)
+" this is included with neovim in a pretty recent version
+" /usr/local/Cellar/neovim/{version}/share/nvim/runtime/autoload/phpcomplete.vim
+" Plug 'shawncplus/phpcomplete.vim' " better php omnicomplete. This is included with vim8 but the package keeps it up-to-date.
+
 " this doesn't work very well - it only jumps/completes to psr-7 namespaced classes. I fucking hate working on this piece of dogshit codebase.
 " Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install'} " recommended here to improve php completion https://www.reddit.com/r/vim/comments/95jxk7/big_list_of_tagsctags_matches_how_to_navigate_in/ PROBLEM: It _only_ works for classes in the composer autoloader, which makes it nearly useless on legacy until we merge simpler autoloading :/.
 " Plug 'mkusher/padawan.vim', { 'for': 'php', 'do': 'command -v padawan >/dev/null 2>&1 && cgr update mkusher/padawan \|\| cgr mkusher/padawan' } " better php omnicomplete... but it doesn't complete at all for me

@@ -4,7 +4,7 @@
 " endif
 " colo base16-unikitty-dark
 " colo Tomorrow-Night-Bright
-colo base16-dracula
+silent! colo base16-dracula
 let g:airline_theme='base16'
 
 " edit on remote {{{

@@ -457,6 +457,7 @@ _let_iterm_see_italics () {
     log_info "Enabling italic terminal"
     mkdir -p "$HOME/.terminfo/78"
     tic -o "$HOME/.terminfo/78/" "$HOME/.support/screen-256color.terminfo.txt"
+    tic -x "$HOME/.support/tmux-256color.terminfo.txt"
 }
 # }}}
 

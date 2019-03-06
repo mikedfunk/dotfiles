@@ -132,7 +132,7 @@ dir ~/Code/saatchi/palette
 2 run psw
 # 2 run saatchi-docker-palette
 3 run wait-on http://www.local.saatchiart.com && saatchi-tail-palette-local
-4 run saatchi-phpstan-watch
+4 run saatchi-phing-watch
 # }}}
 
 # zed {{{

@@ -2,7 +2,7 @@
 " colo hybrid_material
 " let g:airline_theme="base16_ocean"
 " colo onedark
-colo base16-onedark
+silent! colo base16-onedark
 let g:airline_theme="onedark"
 " set wildignore+=*/vendor/*
 set wildignore+=*/build/*,cscope.out,tags,.git/*,Session.vim
@@ -11,10 +11,12 @@ set wildignore+=*/build/*,cscope.out,tags,.git/*,Session.vim
 " can add multiple path maps to this array, just duplicate the line
 " below and add another. remote is first, local is second.
 " NOTE: You can't change this after loading because of a bug currently.
-let g:vdebug_options['path_maps'] = {
-\   '/data/palette/current': '/Users/mikefunk/Code/saatchi/palette'
-\}
-let g:vdebug_options['port'] = 9015
+if exists('g:vdebug_options')
+    let g:vdebug_options['path_maps'] = {
+    \   '/data/palette/current': '/Users/mikefunk/Code/saatchi/palette'
+    \}
+    let g:vdebug_options['port'] = 9015
+endif
 " }}}
 
 " vim-php-fmt {{{
@@ -72,7 +74,7 @@ let g:ale_php_phpcbf_use_global = 1
 " }}}
 
 " vim-gutentags {{{
-if executable('cscope') && has('cscope')
+if executable('cscope') && has('cscope') && exists('g:gutentags_modules')
     call add(g:gutentags_modules, 'cscope')
     " set cscopetag " this is set in ~/.vimrc
 endif

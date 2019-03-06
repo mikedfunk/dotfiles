@@ -274,6 +274,9 @@ let g:php_noShortTags = 1
 " let g:php_parent_error_close = 1 " highlight missing closing ] or )
 " let g:php_parent_error_open = 1 " highlight missing opening [ or (
 let g:php_syncmethod = 10 " :help :syn-sync https://stackoverflow.com/a/30732393/557215
+" :h doxygen
+let g:load_doxygen_syntax = 1 " pretty docblocks in php, c, etc.
+let g:doxygen_enhanced_color = 1 " prettier docblocks
 
 " augroup phpfoldnestmax
 "     autocmd!
@@ -752,9 +755,22 @@ augroup jsonformat
 augroup END
 
 " https://stackoverflow.com/questions/3494435/vimrc-make-comments-italic
+function! ItalicComments() abort
+    hi! Comment cterm=italic, gui=italic
+    " these mess up doxygen colors :(
+    " hi! doxygenSpecial cterm=italic gui=italic
+    " hi! doxygenOther cterm=italic, gui=italic
+    " hi! doxygenSpecialOnelineDesc cterm=italic, gui=italic
+    " hi! doxygenSpecialTypeOnelineDesc cterm=italic, gui=italic
+    " hi! doxygenStart cterm=italic, gui=italic
+    " hi! doxygenStartSpecial cterm=italic, gui=italic
+    " hi! doxygenComment cterm=italic, gui=italic
+    " hi! doxygenBody cterm=italic, gui=italic
+    " hi! doxygenBOther cterm=italic, gui=italic
+endfunction
 augroup italic_comments_group
     autocmd!
-    autocmd FileType * hi! Comment cterm=italic, gui=italic
+    autocmd FileType * call ItalicComments()
 augroup END
 
 augroup italic_comments_group_javascript

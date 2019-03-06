@@ -12,7 +12,7 @@ set wildignore+=*/build/*,*/coverage/*,*/strings/vocabulary/*,*/public/media/js/
 " set t_ZH=[3m
 " set t_ZR=[23m
 " highlight Comment cterm=italic
-colo base16-monokai
+silent! colo base16-monokai
 let g:airline_theme = 'base16_monokai'
 " augroup sfdf44
 "   au! FileType php highlight phpDocTags ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE cterm=italic
@@ -27,10 +27,12 @@ let g:flow#enable = 0
 " }}}
 
 " vdebug {{{
-let g:vdebug_options['port'] = 9000
-let g:vdebug_options['path_maps'] = {
-\   '/data/code_base/current': '/Users/mikefunk/Code/saatchi/legacy'
-\}
+if exists("g:vdebug_options")
+    let g:vdebug_options['port'] = 9000
+    let g:vdebug_options['path_maps'] = {
+    \   '/data/code_base/current': '/Users/mikefunk/Code/saatchi/legacy'
+    \}
+endif
 " }}}
 
 " ale {{{
@@ -86,7 +88,7 @@ augroup END
 " }}}
 
 " vim-gutentags {{{
-if executable('cscope') && has('cscope')
+if executable('cscope') && has('cscope') && exists('g:gutentags_modules')
     call add(g:gutentags_modules, 'cscope')
     " set cscopetag " this is set in ~/.vimrc
 endif

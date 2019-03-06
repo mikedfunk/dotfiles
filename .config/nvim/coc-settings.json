@@ -1,4 +1,8 @@
 {
+  "suggest.autoTrigger": "none",
+  "suggest.minTriggerInputLength": 2,
+  "suggest.timeout": 500,
+  "suggest.enablePreview": true,
   "languageserver": {
     "flow": {
       "command": "flow",
@@ -19,6 +23,11 @@
       "command": "docker-langserver",
       "filetypes": ["dockerfile"],
       "args": ["--stdio"]
+    },
+    "phplang": {
+      "command": "/Users/mikefunk/.bin/php-language-server",
+      "filetypes": ["php"],
+      "rootPatterns": ["composer.json"]
     }
   }
 }

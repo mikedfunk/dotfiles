@@ -167,10 +167,13 @@ let g:challenger_deep_termcolors = 16
 " coc.nvim {{{
 if isdirectory(expand('~/.vim/plugged/coc.nvim'))
 
+    " Use <c-space> for trigger completion.
+    inoremap <silent><expr> <c-space> coc#refresh()
+
     " tab completion {{{
-    " Use tab for trigger completion with characters ahead and navigate.
-    " Use command ':verbose imap <tab>' to make sure tab is not mapped by
-    " other plugin.
+    " Use tab for trigger completion with characters ahead and navigate. Use
+    " command ':verbose imap <tab>' to make sure tab is not mapped by other
+    " plugin.
     inoremap <silent><expr> <TAB>
           \ pumvisible() ? "\<C-n>" :
           \ <SID>check_back_space() ? "\<TAB>" :
@@ -203,6 +206,9 @@ if isdirectory(expand('~/.vim/plugged/coc.nvim'))
         " Update signature help on jump placeholder
         autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
     augroup end
+
+    let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
+    let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 endif
 " }}}
 
@@ -387,14 +393,26 @@ endif
 " }}}
 
 " php.vim {{{
+" I have most of this turned off because built-in doxygen support is more
+" comprehensive. I have it enabled in my main .vimrc. :h doxygen
+function! PhpSyntaxOverride() abort
+    " docblock color
+    " hi! link phpDocTags phpDefine
+    " docblock comments italic
+    " hi! PreProc cterm=italic
+    " hi! link phpDocTags phpDefine
+    " hi! link phpDocParam phpType
+    " hi! link phpDocParam phpRegion
+    " hi! link phpDocIdentifier phpIdentifier
+    " Colorize namespace separator in use, extends and implements
+    hi! link phpUseNamespaceSeparator Comment
+    hi! link phpClassNamespaceSeparator Comment
+endfunction
 if isdirectory(expand('~/.vim/plugged/php.vim'))
     " highlight docblocks
     augroup phpdoctagsgroup
         autocmd!
-        " docblock color
-        autocmd FileType php hi! def link phpDocTags phpDefine
-        " docblock comments italic
-        autocmd FileType php hi! PreProc cterm=italic
+        autocmd FileType php call PhpSyntaxOverride()
     augroup END
 endif
 " }}}

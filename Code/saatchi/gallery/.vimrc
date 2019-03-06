@@ -8,7 +8,7 @@
 " let g:airline_theme = 'base16_ashes'
 " colo ayu
 " let g:airline_theme = 'ayu'
-colo base16-zenburn
+silent! colo base16-zenburn
 let g:airline_theme = 'base16'
 
 set wildignore +=coverage/*,node_modules/*,node_modules_fuck_npm/*,public/build/*,.http/*,log/*,tags,.git/*,Session.vim
@@ -31,17 +31,21 @@ autocmd BufReadPre *.js let b:javascript_lib_use_react = 1
 " ale {{{
 " if executable('prettier-eslint') | call add(js_linters, 'prettier_eslint') | endif
 " * JavaScript: `eslint`, `flow`, `jscs`, `jshint`, `prettier`, `prettier-eslint` >= 4.2.0, `prettier-standard`, `standard`, `xo`
-let g:ale_fixers['javascript'] = ['prettier_eslint', 'eslint', 'importjs']
+if exists('g:ale_fixers')
+    let g:ale_fixers['javascript'] = ['prettier_eslint', 'eslint', 'importjs']
+endif
 " }}}
 
 " vdebug {{{
 " can add multiple path maps to this array, just duplicate the line
 " below and add another. remote is first, local is second.
 " NOTE: You can't change this after loading because of a bug currently.
-let g:vdebug_options['path_maps'] = {
-\   '/data/gallery/current': '/Users/mikefunk/Code/saatchi/gallery'
-\}
-let g:vdebug_options['port'] = 9010
+if exists('g:vdebug_options')
+    let g:vdebug_options['path_maps'] = {
+    \   '/data/gallery/current': '/Users/mikefunk/Code/saatchi/gallery'
+    \}
+    let g:vdebug_options['port'] = 9010
+endif
 " }}}
 
 " edit on remote {{{
@@ -67,7 +71,7 @@ augroup END
 " }}}
 
 " vim-gutentags {{{
-if executable('cscope') && has('cscope')
+if executable('cscope') && has('cscope') && exists('g:gutentags_modules')
     call add(g:gutentags_modules, 'cscope')
     " set cscopetag " this is set in ~/.vimrc
 endif

@@ -12,7 +12,7 @@
 " let g:airline_theme = 'oceanicnext'
 " colo despacio
 " colo base16-gruvbox-dark-soft
-colo base16-gruvbox-dark-hard
+silent! colo base16-gruvbox-dark-hard
 let g:airline_theme = 'base16'
 " }}}
 
@@ -20,10 +20,12 @@ let g:airline_theme = 'base16'
 " can add multiple path maps to this array, just duplicate the line
 " below and add another. remote is first, local is second.
 " NOTE: You can't change this after loading because of a bug currently.
-let g:vdebug_options['path_maps'] = {
-\   '/data/shop/current': '/Users/mikefunk/Code/saatchi/yzed'
-\}
-let g:vdebug_options['port'] = 9005
+if exists('g:vdebug_options')
+  let g:vdebug_options['path_maps'] = {
+  \   '/data/shop/current': '/Users/mikefunk/Code/saatchi/yzed'
+  \}
+  let g:vdebug_options['port'] = 9005
+endif
 " }}}
 
 " vim-jira-complete {{{
@@ -38,7 +40,7 @@ command! -nargs=1 Eqa execute "e scp://appdeploy@saatchi-xqa-zed-01//data/shop/c
 " }}}
 
 " vim-gutentags {{{
-if executable('cscope') && has('cscope')
+if executable('cscope') && has('cscope') && exists('g:gutentags_modules')
     call add(g:gutentags_modules, 'cscope')
     " set cscopetag " this is set in ~/.vimrc
 endif

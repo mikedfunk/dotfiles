@@ -1,7 +1,7 @@
 " vim: set foldmethod=marker:
 
 " color {{{
-colo base16-mocha
+silent! colo base16-mocha
 let g:airline_theme="base16_mocha"
 " }}}
 

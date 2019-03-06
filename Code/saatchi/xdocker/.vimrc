@@ -3,7 +3,7 @@
 " colorscheme {{{
 " colo ayu
 " let g:airline_theme = 'ayu'
-colo base16-chalk
+silent! colo base16-chalk
 let g:airline_theme="base16_chalk"
 " }}}
 
