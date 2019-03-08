@@ -56,3 +56,7 @@ augroup register_flow_lsp
   autocmd FileType javascript.jsx setlocal omnifunc=lsp#complete
 augroup END
 " }}}
+
+" vim-gutentags {{{
+let g:gutentags_modules = []
+" }}}

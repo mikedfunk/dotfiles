@@ -257,6 +257,7 @@ endif
 set noswapfile " swap files are a pain in the ass. I have git.
 " set nrformats= " make <C-a> and <C-x> play well with zero-padded numbers (i.e. don't consider them octal or hex)
 set shortmess+=I " hide the launch screen
+set shortmess+=c " hide 'back at original', 'match (x of x)', etc.
 " set gdefault " search/replace 'globally' (on a line) by default NOTE: this just swaps the functionality of /g, so if you add /g it will only replace the first match :/ not what I expected
 
 " escape codes for italic fonts
@@ -274,9 +275,10 @@ let g:php_noShortTags = 1
 " let g:php_parent_error_close = 1 " highlight missing closing ] or )
 " let g:php_parent_error_open = 1 " highlight missing opening [ or (
 let g:php_syncmethod = 10 " :help :syn-sync https://stackoverflow.com/a/30732393/557215
+" doxygen support is extremely buggy for php.
 " :h doxygen
-let g:load_doxygen_syntax = 1 " pretty docblocks in php, c, etc.
-let g:doxygen_enhanced_color = 1 " prettier docblocks
+" let g:load_doxygen_syntax = 1 " pretty docblocks in php, c, etc.
+" let g:doxygen_enhanced_color = 1 " prettier docblocks
 
 " augroup phpfoldnestmax
 "     autocmd!
@@ -569,6 +571,7 @@ map zh zH
 " my version of fast tabs. Doesn't work in netrw tabs.
 nnoremap gh gT
 nnoremap gl gt
+nnoremap <c-w>t :tabe<cr>
 
 " for all tag jumps, show the menu when there are more than one result! if
 " only one result, jump away. :h tjump. I don't see why I would want to do it

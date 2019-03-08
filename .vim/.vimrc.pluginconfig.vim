@@ -405,8 +405,8 @@ function! PhpSyntaxOverride() abort
     " hi! link phpDocParam phpRegion
     " hi! link phpDocIdentifier phpIdentifier
     " Colorize namespace separator in use, extends and implements
-    hi! link phpUseNamespaceSeparator Comment
-    hi! link phpClassNamespaceSeparator Comment
+    " hi! link phpUseNamespaceSeparator Comment
+    " hi! link phpClassNamespaceSeparator Comment
 endfunction
 if isdirectory(expand('~/.vim/plugged/php.vim'))
     " highlight docblocks
@@ -1184,6 +1184,23 @@ if isdirectory(expand('~/.vim/plugged/vim-startify'))
 endif
 
 let g:startify_change_to_dir = 0
+
+" this makes my sessions all start in empty tabs :(
+" function StartifyOnNewTab() abort
+"     if !exists('t:startify_new_tab')
+"                 \ && empty(expand('%'))
+"                 \ && empty(&l:buftype)
+"                 \ && &l:modifiable
+"         let t:startify_new_tab = 1
+"         Startify
+"     endif
+" endfunction
+
+" if has('nvim')
+"   autocmd TabNewEntered * Startify
+" else
+"   autocmd BufWinEnter * call StartifyOnNewTab()
+" endif
 " }}}"
 
 " vim-taskwarrior {{{
@@ -1210,6 +1227,11 @@ if isdirectory(expand('~/.vim/plugged/vim-test'))
     " nnoremap <silent> <leader>tl :TestLast<CR>
     " nnoremap <silent> <leader>tv :TestVisit<CR>
 endif
+" }}}
+
+" VimCompletesMe {{{
+let g:vcm_direction = 'p'
+let g:vcm_s_tab_behavior = 1
 " }}}
 
 " vimux {{{

@@ -409,6 +409,7 @@ alias dmc="docker-machine create --driver=virtualbox --virtualbox-memory=4096 --
 alias dmd="VBoxManage discardstate default" # the virtualbox vm doesn't like to come back up when suspended.
 alias dmi="dme && docker-machine ip"
 # alias dms="docker-machine start && dme"
+alias dms="docker-machine stop"
 
 # docker-machine can get hung up by virtualbox sometimes during startup. Try
 # again after 15 seconds up to 5 times.
