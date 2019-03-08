@@ -557,6 +557,10 @@ function php-language-server-script () {
 }
 # }}}
 
+# glow {{{
+alias glow-watch="ag -l -g '\.js$' | entr -r -c /usr/local/bin/glow"
+# }}}
+
 # }}}
 
 # source more files {{{

@@ -71,7 +71,8 @@ window easel
 0000003333333444444222222
 
 dir ~/Code/saatchi/easel
-4 run glow --watch
+# 4 run glow --watch
+4 run glow-watch
 3 run yarn jest --watchAll
 2 run wait-on http://www.local.saatchiart.com && saatchi-attach-easel-node
 # 2 run yarn dev
