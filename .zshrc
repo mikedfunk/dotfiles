@@ -414,7 +414,7 @@ alias dms="docker-machine stop"
 # docker-machine can get hung up by virtualbox sometimes during startup. Try
 # again after 15 seconds up to 5 times.
 # https://unix.stackexchange.com/a/82610/287898
-function dms () {
+function docker-machine-start () {
     for i in {1..5}; do
         docker-machine start && \
             dme && \
