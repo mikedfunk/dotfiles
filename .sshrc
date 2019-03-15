@@ -23,6 +23,8 @@ top () { HOME="$SSHHOME/.sshrc.d" /usr/bin/top; }
 # NOTE: this htop config is for 1.0.2 which is used on remote servers I ssh into
 htop () { HOME="$SSHHOME/.sshrc.d" /usr/bin/htop; }
 
+alias screen="TERM=screen-256color screen"
+
 # }}}
 
 # set up bashrc to source .sshrc if in screen so I don't have to do shitty workarounds for screen {{{
