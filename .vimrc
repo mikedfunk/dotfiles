@@ -1,4 +1,5 @@
-" vim: set foldmethod=marker ft=vim:
+" vim: set foldmethod=marker:
+scriptencoding utf-8
 
 " notes {{{
 " my vim config. I currently divide this into 3 files:
@@ -617,6 +618,15 @@ nnoremap <leader>fa mzggVG=`z :delmarks z<cr>hh :echo "formatted file"<cr>
 augroup phpsortusegroup
     autocmd!
     autocmd FileType php nnoremap <leader>su :call PhpSortUse()<cr>
+augroup END
+
+" single line to multiline docblock
+function PhpSingleToMultiDocblock() abort
+    :.,.s/\/\*\* \(.*\) \*\//\/\*\*\r     * \1\r     *\//g
+endfunction
+augroup phpsingletomultilinedocblockgroup
+    autocmd!
+    autocmd FileType php nnoremap <leader>cm :call PhpSingleToMultiDocblock()<cr>
 augroup END
 
 " array() to []

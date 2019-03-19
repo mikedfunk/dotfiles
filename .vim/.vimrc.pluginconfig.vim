@@ -1,4 +1,4 @@
-" vim: set foldmethod=marker ft=vim:
+" vim: set foldmethod=marker filetype=vim:
 " configuration for plugins I use
 scriptencoding utf-8
 
@@ -257,7 +257,10 @@ if isdirectory(expand('~/.vim/plugged/fzf.vim'))
     nnoremap <leader>ag :Ag<cr>
     nnoremap <leader>ff :Files<cr>
     nnoremap <leader>tt :Tags<cr>
-    nnoremap <leader>hh :History<cr>
+    " nnoremap <leader>bb :Buffers<cr>
+    " nnoremap <leader>hh :History<cr>
+    nnoremap <leader>hh :Helptags<cr>
+    " see `:h vim-fzf-commands` for all available commands
 endif
 " }}}
 
@@ -334,6 +337,13 @@ endif
 " nerdcommenter {{{
 " extra space in NERDCommenter comments
 let g:NERDSpaceDelims='1'
+
+" let g:NERDCustomDelimiters = {
+            " \ 'php': {
+            " \ 'left': '/**',
+            " \ 'right': '*/'
+            " \ }
+            " \ }
 " }}}
 
 " neoformat {{{
@@ -1248,10 +1258,10 @@ if isdirectory(expand('~/.vim/plugged/vimux')) && executable('tmux')
     " nnoremap <leader>vz :VimuxZoomRunner<cr>
 
     " poor man's phpunit runner for current test file
-    nnoremap <leader>pw :call VimuxRunCommand("clear; puwatch " . bufname("%"))<CR>
-    nnoremap <leader>pf :call VimuxRunCommand("clear; puwatch --filter=" . <c-r><c-w>."")<CR>
-    nnoremap <leader>sw :call VimuxRunCommand("clear; pswatch " . bufname("%"))<CR>
-    nnoremap <leader>sl :call VimuxRunCommand("clear; pswatch " . bufname("%") . ":" . (line(".") + 1))<CR>
+    nnoremap <leader>pw :call VimuxRunCommand("clear; puw " . bufname("%"))<CR>
+    nnoremap <leader>pf :call VimuxRunCommand("clear; puw --filter=" . <c-r><c-w>."")<CR>
+    nnoremap <leader>sw :call VimuxRunCommand("clear; psw " . bufname("%"))<CR>
+    nnoremap <leader>sl :call VimuxRunCommand("clear; psw " . bufname("%") . ":" . (line(".") + 1))<CR>
 endif
 " }}}
 

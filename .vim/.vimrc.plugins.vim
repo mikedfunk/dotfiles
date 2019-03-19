@@ -1,7 +1,7 @@
 " vim: set foldmethod=marker filetype=vim:
 " my vim plugins
 scriptencoding utf-8
-"
+
 " Vim-plug setup {{{
 " Install Vim-plug and packages on new systems
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -16,6 +16,8 @@ call plug#begin('~/.vim/plugged')
 " }}}
 
 " Unplug {{{
+" Provide a command to 'Unplug' or cancel requiring a plugin after it was
+" required
 " https://github.com/junegunn/vim-plug/issues/469
 function! s:deregister(repo)
     let l:repo = substitute(a:repo, '[\/]\+$', '', '')
@@ -75,7 +77,8 @@ Plug 'tpope/vim-surround' | Plug 'tpope/vim-repeat' " surround text in quotes or
 Plug 'kreskij/Repeatable.vim', { 'on': 'Repeatable' } " Extra functionality to make mappings repeatable easily
 " Plug 'machakann/vim-sandwich' " A better alternative to vim-surround... according to the internet
 Plug 'vim-scripts/BufOnly.vim', { 'on': ['BufOnly', 'Bufonly'] } " close all buffers but the current one
-Plug 'tpope/vim-commentary' " toggle comment with gcc. in my case I use <leader>c<space>
+Plug 'tpope/vim-commentary' " toggle comment with `gcc`. in my case I use `<leader>c<space>` which is the NERDCommenter default
+" Plug 'scrooloose/nerdcommenter' " pretty much the same but allows multi-line docblocks in php
 " Plug 'jbgutierrez/vim-better-comments' " fancy comments
 " Plug 'junegunn/vim-easy-align' " align on = with ga=
 " Plug 'tommcdo/vim-lion' " align on = with visual mode and gl=
@@ -370,12 +373,6 @@ Plug 'kristijanhusak/vim-hybrid-material'
 " Plug 'cocopon/iceberg.vim'
 " Plug 'evturn/cosmic-barf' " psychadelic solarized (comments are really hard to see)
 " }}}
-" }}}
-
-" local plugin changes {{{
-if filereadable('.vimrc.pluginconfig.vim')
-    source .vimrc.pluginconfig.vim
-endif
 " }}}
 
 " Vim-plug close {{{

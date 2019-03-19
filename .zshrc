@@ -69,6 +69,12 @@ fpath=(
 function has() { type "$1" &>/dev/null; }
 # }}}
 
+# zsh {{{
+# If I don't do this I get "compdef undefined"
+autoload -Uz compinit
+compinit
+# }}}
+
 # antibody {{{
 # make oh-my-zsh plugins work with antibody... this is kind of crazy
 ZSH="$HOME/Library/Caches/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh"
