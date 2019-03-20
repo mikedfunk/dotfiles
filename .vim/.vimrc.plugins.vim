@@ -46,13 +46,8 @@ endif
 Plug 'Shougo/echodoc.vim' " Displays function signatures from completions in the command line. Really helpful for omnicompletion!
 Plug 'wellle/tmux-complete.vim' " add tmux as a completion source with user-defined completion <c-x><c-u>
 
-" Got this error for languageclient:
-" Error detected while processing function <SNR>158_VimOutputCallback[6]..<SNR>159_HandleCommandMessage[3]..ale#lsp#HandleMessage:
-" line    1:
-" E734: Wrong variable type for .=
-" [vim-hug-neovim-rpc] rpc method [nvim_buf_set_option] not implemented in pythonx/neovim_rpc_methods.py. Please send PR or contact the mantainer.
-" Plug 'autozimu/LanguageClient-neovim' | Plug 'roxma/vim-hug-neovim-rpc' | Plug 'roxma/nvim-yarp' " works with felixfbecker/php-language-server composer global package to do more intelligent completion
 " Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+" Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
 
 " completion not working currently with this...
 " Plug 'prabirshrestha/asyncomplete.vim' | Plug 'prabirshrestha/asyncomplete-lsp.vim' | Plug 'prabirshrestha/async.vim' | Plug 'prabirshrestha/vim-lsp' " Async Language Server Protocol plugin for vim8 and neovim.

@@ -509,13 +509,14 @@ function pux() {
 # https://about.sourcegraph.com/docs/
 function sourcegraph() {
     docker run \
-        # -d \
         --publish 7080:7080 \
+        --publish 2633:2633 \
         --rm \
         --volume ~/.sourcegraph/config:/etc/sourcegraph \
         --volume ~/.sourcegraph/data:/var/opt/sourcegraph \
         --volume /var/run/docker.sock:/var/run/docker.sock \
-        sourcegraph/server:2.13.5
+        sourcegraph/server:3.2.0
+    # open http://127.0.0.1:7080
 }
 # }}}
 
