@@ -240,6 +240,15 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*'] " work with 
 
 " emmet-vim {{{
 " html:5<ctrl-y>, for html5 basic layout
+" make emmet behave well with JSX in JS and TS files
+let g:user_emmet_settings = {
+            \  'javascript' : {
+            \      'extends' : 'jsx',
+            \  },
+            \  'typescript' : {
+            \      'extends' : 'tsx',
+            \  },
+            \}
 " }}}
 
 " fzf.vim {{{
