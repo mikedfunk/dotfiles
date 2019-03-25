@@ -35,6 +35,7 @@ autocmd BufReadPre *.js let b:javascript_lib_use_react = 1
 
 " ale {{{
 " disabled until this PR is applied https://github.com/prettier/prettier-eslint/pull/194
+let g:ale_fixers['javascript'] = ['prettier', 'eslint', 'importjs']
 " call add(g:ale_fixers['javascript'], 'prettier_eslint')
 " }}}
 

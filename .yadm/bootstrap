@@ -233,7 +233,8 @@ _install_upgrade_vim_plugins () {
 # install node version {{{
 _install_node_version () {
     local NODE_VERSION
-    NODE_VERSION="9.3.0"
+    # NODE_VERSION="9.3.0"
+    NODE_VERSION="9.11.2"
     [[ "$(nodenv version | grep $NODE_VERSION)" ]] && return
     log_info "Installing node $NODE_VERSION"
     nodenv install $NODE_VERSION && nodenv rehash && nodenv global $NODE_VERSION

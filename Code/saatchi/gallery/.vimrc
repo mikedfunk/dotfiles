@@ -32,7 +32,8 @@ autocmd BufReadPre *.js let b:javascript_lib_use_react = 1
 " if executable('prettier-eslint') | call add(js_linters, 'prettier_eslint') | endif
 " * JavaScript: `eslint`, `flow`, `jscs`, `jshint`, `prettier`, `prettier-eslint` >= 4.2.0, `prettier-standard`, `standard`, `xo`
 if exists('g:ale_fixers')
-    let g:ale_fixers['javascript'] = ['prettier_eslint', 'eslint', 'importjs']
+    let g:ale_fixers['javascript'] = ['prettier', 'eslint', 'importjs']
+    " let g:ale_fixers['javascript'] = ['prettier_eslint', 'eslint', 'importjs']
 endif
 " }}}
 
