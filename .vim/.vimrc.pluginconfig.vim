@@ -418,26 +418,27 @@ endif
 " php.vim {{{
 " I have most of this turned off because built-in doxygen support is more
 " comprehensive. I have it enabled in my main .vimrc. :h doxygen
-function! PhpSyntaxOverride() abort
-    " docblock color
-    " hi! link phpDocTags phpDefine
-    " docblock comments italic
-    " hi! PreProc cterm=italic
-    " hi! link phpDocTags phpDefine
-    " hi! link phpDocParam phpType
-    " hi! link phpDocParam phpRegion
-    " hi! link phpDocIdentifier phpIdentifier
-    " Colorize namespace separator in use, extends and implements
-    " hi! link phpUseNamespaceSeparator Comment
-    " hi! link phpClassNamespaceSeparator Comment
-endfunction
-if isdirectory(expand('~/.vim/plugged/php.vim'))
-    " highlight docblocks
-    augroup phpdoctagsgroup
-        autocmd!
-        autocmd FileType php call PhpSyntaxOverride()
-    augroup END
-endif
+let g:php_var_selector_is_identifier = 1
+" function! PhpSyntaxOverride() abort
+"     " docblock color
+"     hi! link phpDocTags phpDefine
+"     " docblock comments italic
+"     hi! PreProc cterm=italic
+"     hi! link phpDocTags phpDefine
+"     hi! link phpDocParam phpType
+"     hi! link phpDocParam phpRegion
+"     hi! link phpDocIdentifier phpIdentifier
+"     " Colorize namespace separator in use, extends and implements
+"     hi! link phpUseNamespaceSeparator Comment
+"     hi! link phpClassNamespaceSeparator Comment
+" endfunction
+" if isdirectory(expand('~/.vim/plugged/php.vim'))
+"     " highlight docblocks
+"     augroup phpdoctagsgroup
+"         autocmd!
+"         autocmd FileType php call PhpSyntaxOverride()
+"     augroup END
+" endif
 " }}}
 
 " phpactor {{{

@@ -258,7 +258,10 @@ endif
 set noswapfile " swap files are a pain in the ass. I have git.
 " set nrformats= " make <C-a> and <C-x> play well with zero-padded numbers (i.e. don't consider them octal or hex)
 set shortmess+=I " hide the launch screen
-set shortmess+=c " hide 'back at original', 'match (x of x)', etc.
+try
+    set shortmess+=c " hide 'back at original', 'match (x of x)', etc.
+catch /E539: Illegal character/
+endtry
 " set gdefault " search/replace 'globally' (on a line) by default NOTE: this just swaps the functionality of /g, so if you add /g it will only replace the first match :/ not what I expected
 
 " escape codes for italic fonts

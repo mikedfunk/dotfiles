@@ -105,7 +105,7 @@ brew "plantuml" # uml generation from text. requires java (I use regularly for d
 # brew "pre-commit" # yelp git pre-commit framework (I manage this via pip)
 # brew "prettyping" # ping with a cool sparkline graph of status
 brew "pspg", args: ["--HEAD"] # "postgres pager" also useful for mysql, etc.
-# brew "pv" # pipe something to pv to see progress of data through a pipeline
+brew "pv" # pipe something to pv to see progress of data through a pipeline. pv works like cat so `pv /path/to/myfile.sql > mysql ...`
 brew "pyenv" # python version manager (same api as rbenv)
 # brew "python" # updated version of python with updated pip. Useful for installing pip packages without root. NOTE: homebrew "pip" breaks neovim.
 # brew "python3" # required for tmuxomatic (but I use pyenv)
@@ -126,6 +126,7 @@ brew "ssh-copy-id" # copies ssh keys to remote servers
 brew "sshrc" # use ~/.sshrc and ~/.sshrc.d on remote servers. bring your dotfiles with you!
 # brew "sshfs" # mounts ssh servers as file systems in the local fs. requires osxfuse.
 # brew "solr" # search data server
+# brew "source-highlight" # used to automatically colorize `less` text (I Just use `bat` instead. Got weird results with this.)
 # brew "spark" # used for rainbarf to show spiffy cli graphs
 # brew "sqlparse" # sql formatter (managed by pip in ~/requirements.txt)
 # brew "stormssh" # interact with ssh config. I have yet to find a net positive use for this. It makes my ssh config less readable because it doesn't put them in comment fold groups like I do. just so I can `storm add ...`. `storm list` and `storm search` are kind of useless as I can do that with `ssh <tab>`. It lets you edit multiple ssh entries at once, but I can do that in vim. It provides a web interface, but I don't want that.

@@ -134,6 +134,10 @@ export LC_ALL=en_US.UTF-8 # https://unix.stackexchange.com/a/302418/287898
 # https://github.com/variadico/noti/blob/master/docs/noti.md#environment
 export NOTI_NSUSER_SOUNDNAME="Hero"
 has vivid && export LS_COLORS="$(vivid generate molokai)" # https://github.com/sharkdp/vivid
+# colorize less... I get weird indentations all over the place with this
+# https://www.reddit.com/r/linux/comments/b5n1l5/whats_your_favorite_cli_tool_nobody_knows_about/ejex2pm/
+# export LESSOPEN="| /usr/local/opt/source-highlight/bin/src-hilite-lesspipe.sh %s"
+# alias less="less -R"
 
 # configure cgr and composer {{{
 # this ensures composer and cgr both point to my php version's composer
@@ -465,7 +469,7 @@ function _docker_exec {
 }
 
 alias docker-restart="osascript -e 'quit app \"Docker\"' && open -a Docker"
-function docker-stats {
+function docker-stats() {
     dme
     docker stats --format "table $(tput setaf 2){{.Name}}\t$(tput setaf 3){{.CPUPerc}}\t$(tput setaf 4){{.MemPerc}}" | sed -E -e "s/(NAME.*)/$(tput smul)\1$(tput sgr0)/"
 }
@@ -508,15 +512,19 @@ function pux() {
 # only works with docker-for-mac, not docker-machine :/
 # https://about.sourcegraph.com/docs/
 function sourcegraph() {
-    docker run \
-        --publish 7080:7080 \
-        --publish 2633:2633 \
-        --rm \
-        --volume ~/.sourcegraph/config:/etc/sourcegraph \
-        --volume ~/.sourcegraph/data:/var/opt/sourcegraph \
-        --volume /var/run/docker.sock:/var/run/docker.sock \
-        sourcegraph/server:3.2.0
-    # open http://127.0.0.1:7080
+    for i in {1..5}; do
+        docker run \
+            --publish 7080:7080 \
+            --publish 2633:2633 \
+            --rm \
+            --volume ~/.sourcegraph/config:/etc/sourcegraph \
+            --volume ~/.sourcegraph/data:/var/opt/sourcegraph \
+            --volume /var/run/docker.sock:/var/run/docker.sock \
+            sourcegraph/server:3.2.0 && \
+            break || \
+            sleep 15
+        # open http://127.0.0.1:7080
+    done
 }
 # }}}
 

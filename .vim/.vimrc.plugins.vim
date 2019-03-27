@@ -284,6 +284,7 @@ Plug 'qnighy/vim-ssh-annex' " ssh files syntax coloring e.g. ssh config
 Plug 'rodjek/vim-puppet'
 Plug 'aklt/plantuml-syntax'
 " Plug 'framallo/taskwarrior.vim' " taskwarrior config and task edit syntax
+Plug 'jwalton512/vim-blade' " laravel blade syntax
 " }}}
 
 " Visuals {{{
