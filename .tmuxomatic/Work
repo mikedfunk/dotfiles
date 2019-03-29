@@ -343,7 +343,7 @@ dir ~/Code/uml
 3 run ./watch.sh
 # }}}
 
-# maropost {{{
+# maropost (disabled) {{{
 # window maropost
 
 # 1111111111111111111111111

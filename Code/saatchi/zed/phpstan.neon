@@ -4,6 +4,7 @@ parameters:
     - /Users/mikefunk/.composer/vendor-bin/main/vendor/jangregor/phpstan-prophecy/src/extension.neon
   excludes_analyse:
     - lib/tests
+    - project/Zed/tests
   autoload_directories:
     - lib/cli
     - lib/component

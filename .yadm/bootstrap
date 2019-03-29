@@ -18,13 +18,13 @@ function has() { type "$1" &>/dev/null; }
 
 # log_info "Cloning repos"
 # mkdir -p "$HOME/Code"
-# cd "$HOME/Code"
+# command cd "$HOME/Code"
 # [[ -d "$HOME/Code/mikedfunk.github.io" ]] || git clone git@github.com:mikedfunk/mikedfunk.github.io.git
-# cd -
+# command cd -
 
 # saatchi repos {{{
 # mkdir -p "$HOME/Code/saatchi"
-# cd "$HOME/Code/saatchi"
+# command cd "$HOME/Code/saatchi"
 # [[ -d "$HOME/Code/saatchi/api" ]] || git clone git@github.com:saatchiart/api.git
 # [[ -d "$HOME/Code/saatchi/catalog" ]] || git clone git@github.com:saatchiart/catalog.git
 # [[ -d "$HOME/Code/saatchi/couchbase-views" ]] || git clone git@github.com:saatchiart/couchbase-views.git
@@ -38,7 +38,7 @@ function has() { type "$1" &>/dev/null; }
 # [[ -d "$HOME/Code/saatchi/saatchiart" ]] || git clone git@github.com:saatchiart/saatchiart.git legacy
 # [[ -d "$HOME/Code/saatchi/xdocker" ]] || git clone git@github.com:saatchiart/xdocker.git
 # [[ -d "$HOME/Code/saatchi/yzed" ]] || git clone git@github.com:saatchiart/yzed.git zed
-# cd -
+# command cd -
 # }}}
 
 # }}}
@@ -157,9 +157,9 @@ _install_upgrade_phpenv () {
 # update yarn {{{
 _install_upgrade_yarn () {
     log_info "Installing/upgrading yarn packages"
-    cd || return
+    command cd || return
     yarn global upgrade
-    cd - || return
+    command cd - || return
 }
 # }}}
 
@@ -339,10 +339,10 @@ _install_python3_version () {
 _install_update_ruby_gems () {
     log_info "Installing/upgrading ruby gems"
     gem install bundler
-    cd || return
+    command cd || return
     bundle install --system --binstubs
     bundle clean --force
-    cd - || return
+    command cd - || return
 }
 # }}}
 
@@ -370,7 +370,7 @@ _update_python3_pip_packages () {
 
 # install/update composer and packages {{{
 _install_update_composer_packages () {
-    cd $HOME/.composer >/dev/null || return
+    command cd $HOME/.composer >/dev/null || return
     # if ! has composer; then
     #     log_info "Installing composer"
     #     _install-composer
@@ -387,7 +387,7 @@ _install_update_composer_packages () {
     # use global composer.json
     [ -f "$COMPOSER_HOME/composer.json" ] || ln -sf "$HOME/.composer/composer.json" "$COMPOSER_HOME/composer.json"
 
-    cd "$(phpenv root)/versions/$PHP_VERSION/composer" >/dev/null || return
+    command cd "$(phpenv root)/versions/$PHP_VERSION/composer" >/dev/null || return
 
     # workaround for php language server
     mkdir -p "$(phpenv root)/versions/$PHP_VERSION/composer/global/felixfbecker/language-server/"
@@ -408,18 +408,18 @@ _install_update_composer_packages () {
         log_info "Upgrading cgr packages"
         cgr update
     fi
-    cd - >/dev/null || return
+    command cd - >/dev/null || return
 }
 # }}}
 
 # php-language-server {{{
 _parse_php_language_server_stubs () {
-    cd "$HOME/.composer" || return
+    command cd "$HOME/.composer" || return
     log_info "parsing php-language-server stubs"
     local PHP_VERSION
     PHP_VERSION=$(phpenv version | cut -d' ' -f1)
     composer global run-script --working-dir="$(phpenv root)/versions/$PHP_VERSION/composer/global/felixfbecker/language-server/vendor/felixfbecker/language-server" parse-stubs
-    cd - || return
+    command cd - || return
 }
 # }}}
 
@@ -429,12 +429,12 @@ _install_vivid () {
     has vivid && return
     VIVID_VERSION="0.4.0"
     log_info "installing vivid"
-    cd || return
+    command cd || return
     wget "https://github.com/sharkdp/vivid/releases/download/v$VIVID_VERSION/vivid-v0.4.0-x86_64-apple-darwin.tar.gz"
     tar xzvf "vivid-v$VIVID_VERSION-x86_64-apple-darwin.tar.gz"
     mv "vivid-v$VIVID_VERSION-x86_64-apple-darwin/vivid" "/usr/local/bin/vivid"
     rm -rf "vivid-v$VIVID_VERSION-x86_64-apple-darwin/vivid" "vivid-v$VIVID_VERSION-x86_64-apple-darwin.tar.gz"
-    cd - || return
+    command cd - || return
 }
 # }}}
 
@@ -544,9 +544,9 @@ _start_launch_agents () {
 _fix_file_size_limit_for_watching_with_entr () {
     [ -f /Library/LaunchDaemons/limit.maxfiles.plist ] && return
     log_info "Installing max files limit fixer for watching with entr"
-    cd /Library/LaunchDaemons || return
+    command cd /Library/LaunchDaemons || return
     sudo curl -sO http://entrproject.org/etc/limit.maxfiles.plist
-    cd - || return
+    command cd - || return
 }
 # }}}
 
@@ -556,12 +556,12 @@ _fix_file_size_limit_for_watching_with_entr () {
 function _install_bubo () {
     [ -d /Applications/Bubo.app ] && return
     log_info "Installing bubo"
-    cd "$HOME/Downloads" || return
+    command cd "$HOME/Downloads" || return
     wget https://s3-us-west-2.amazonaws.com/jguice/mac-bt-headset-fix-beta/bubo.app.zip
     tar xzvf bubo.app.zip
     rm bubo.app.zip
     mv bubo.app /Applications/Bubo.app
-    cd - || return
+    command cd - || return
 }
 # }}}
 
