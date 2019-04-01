@@ -40,3 +40,5 @@ gem "neovim", "~> 0.8.0"
 gem "mdl", "~> 0.5.0"
 
 gem "sqlint", "~> 0.1.9"
+
+gem "jist", "~> 1.5"

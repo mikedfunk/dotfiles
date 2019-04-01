@@ -551,6 +551,7 @@ _fix_file_size_limit_for_watching_with_entr () {
 # }}}
 
 # install bubo (mac-bt-headset-fix) {{{
+# I only use this so my bluetooth play/pause button gets sent to the spotify web app
 # https://github.com/jguice/mac-bt-headset-fix
 # when will this be on brew cask??
 function _install_bubo () {
