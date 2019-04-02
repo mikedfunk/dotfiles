@@ -190,7 +190,7 @@ export PINENTRY_USER_DATA="USE_CURSES=1"
 # misc {{{
 alias info="info --vi-keys"
 alias starwars="telnet towel.blinkenlights.nl" # :)
-cd () { command cd "$@" && ls -FAG; } # auto ls on cd
+cd () { builtin cd "$@" && ls -FAG; } # auto ls on cd
 alias ..="cd .."
 alias ...="cd ../.."
 alias ll='ls -lhGFA'
@@ -387,31 +387,31 @@ KEYTIMEOUT=1 # no vim delay entering normal mode
 # xdb () { xdebug-toggle $1 --no-server-restart; }
 
 function xdebug-off () {
-    command cd "$(phpenv root)/versions/${PHPENV_VERSION}/etc/conf.d"
+    builtin cd "$(phpenv root)/versions/${PHPENV_VERSION}/etc/conf.d"
     if ! [ -f xdebug.ini ]; then
         echo "xdebug.ini does not exist"
         return 1
     fi
     mv xdebug.ini xdebug.ini.DISABLED
-    command cd -
+    builtin cd -
     echo "xdebug disabled"
 }
 
 function xdebug-on () {
-    command cd "$(phpenv root)/versions/${PHPENV_VERSION}/etc/conf.d"
+    builtin cd "$(phpenv root)/versions/${PHPENV_VERSION}/etc/conf.d"
     if ! [ -f xdebug.ini.DISABLED ]; then
         echo "xdebug.ini.DISABLED does not exist"
         return 1
     fi
     mv xdebug.ini.DISABLED xdebug.ini
-    command cd -
+    builtin cd -
     echo "xdebug disabled"
 }
 
 function xdebug-status () {
-    command cd "$(phpenv root)/versions/${PHPENV_VERSION}/etc/conf.d"
+    builtin cd "$(phpenv root)/versions/${PHPENV_VERSION}/etc/conf.d"
     [ -f ./xdebug.ini  ] && echo 'xdebug enabled' || echo 'xdebug disabled'
-    command cd -
+    builtin cd -
 }
 # }}}
 
