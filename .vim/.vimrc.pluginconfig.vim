@@ -784,7 +784,7 @@ endif
 " }}}
 
 " vim-commentary {{{
-augroup commentstring
+augroup vimcommentarycommentstring
     autocmd!
     autocmd FileType php setlocal commentstring=//\ %s
     autocmd FileType haproxy setlocal commentstring=#\ %s

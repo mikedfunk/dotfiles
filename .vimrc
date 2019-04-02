@@ -457,6 +457,7 @@ augroup END
 if executable('devdocs')
     augroup filetypesgroup
         autocmd!
+        autocmd FileType php set keywordprg=devdocs\ php
         autocmd FileType javascript set keywordprg=devdocs\ javascript
         autocmd FileType html set keywordprg=devdocs\ html
         autocmd FileType ruby set keywordprg=devdocs\ ruby
@@ -748,11 +749,11 @@ set redrawtime=10000 " avoid problem with losting syntax highlighting https://gi
 set background=dark
 " set cursorline " highlight current line. this is really slow!
 set colorcolumn=80,120 " show vert lines at the psr-2 suggested column limits
-" silent! colorscheme lucius " set the default color scheme
-if (isdirectory(expand('~/.vim/plugged/vim-hybrid-material')))
-    silent! colorscheme hybrid_material
+" set the default color scheme
+if (isdirectory(expand('~/.vim/plugged/base16-vim')))
+    silent! colorscheme base16_atlas
 endif
-let g:airline_theme = 'base16_ocean'
+let g:airline_theme = 'base16'
 " let g:netrw_liststyle=3 " use netrw tree view by default (might cause this https://github.com/tpope/vim-vinegar/issues/13)
 " set listchars=tab:▸•,eol:¬,trail:•,extends:»,precedes:«,nbsp:¬ " prettier hidden chars. turn on with :set list
 set listchars=tab:▸•,trail:•,extends:»,precedes:« " prettier hidden chars. turn on with :set list (without line ending symbols)

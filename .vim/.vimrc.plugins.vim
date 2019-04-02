@@ -15,7 +15,7 @@ endif
 call plug#begin('~/.vim/plugged')
 " }}}
 
-" Unplug {{{
+" Unplug command {{{
 " Provide a command to 'Unplug' or cancel requiring a plugin after it was
 " required
 " https://github.com/junegunn/vim-plug/issues/469
@@ -73,7 +73,7 @@ Plug 'kreskij/Repeatable.vim', { 'on': 'Repeatable' } " Extra functionality to m
 " Plug 'machakann/vim-sandwich' " A better alternative to vim-surround... according to the internet
 Plug 'vim-scripts/BufOnly.vim', { 'on': ['BufOnly', 'Bufonly'] } " close all buffers but the current one
 Plug 'tpope/vim-commentary' " toggle comment with `gcc`. in my case I use `<leader>c<space>` which is the NERDCommenter default
-" Plug 'scrooloose/nerdcommenter' " pretty much the same but allows multi-line docblocks in php
+" Plug 'scrooloose/nerdcommenter' " comment plugin... I switched to tpope's vim-commentary
 " Plug 'jbgutierrez/vim-better-comments' " fancy comments
 " Plug 'junegunn/vim-easy-align' " align on = with ga=
 " Plug 'tommcdo/vim-lion' " align on = with visual mode and gl=
@@ -152,7 +152,7 @@ Plug 'machakann/vim-swap' " move args left/right with g< g> or gs for interactiv
 " Plug 'brooth/far.vim', { 'on': ['Far', 'Fardo', 'Farundo', 'Farp', 'Refar', 'F'] } " find and replace
 " Plug 'yonchu/accelerated-smooth-scroll' " animated scroll on c-d, c-u, c-f, c-b
 " Plug 'yuttie/comfortable-motion.vim' " smooth scroll using timer and shit
-Plug 'wellle/targets.vim' " Adds selection targets like vi2) or vI} to avoid whitespace
+" Plug 'wellle/targets.vim' " Adds selection targets like vi2) or vI} to avoid whitespace
 Plug 'tpope/vim-obsession' " auto save sessions if you :Obsess
 " Plug 'chrisbra/Recover.vim' " show diff when recovering a file
 " Plug 'tyru/undoclosewin.vim' " reopen closed window with <leader>uc
@@ -177,9 +177,6 @@ Plug 'simeji/winresizer' " ctrl-E to go to resize mode, hjkl, enter to finish, s
 if has('python3')
     Plug 'vim-vdebug/vdebug', { 'for': 'php' }
 endif
-" if has('python')
-"     Plug 'vim-vdebug/vdebug', { 'for': 'php', 'tag': 'v1.5.2' }
-" endif
 Plug 'arnaud-lb/vim-php-namespace', { 'for': 'php' } " insert use statements
 " this is included with neovim in a pretty recent version
 " /usr/local/Cellar/neovim/{version}/share/nvim/runtime/autoload/phpcomplete.vim
@@ -190,7 +187,7 @@ Plug 'arnaud-lb/vim-php-namespace', { 'for': 'php' } " insert use statements
 " Plug 'mkusher/padawan.vim', { 'for': 'php', 'do': 'command -v padawan >/dev/null 2>&1 && cgr update mkusher/padawan \|\| cgr mkusher/padawan' } " better php omnicomplete... but it doesn't complete at all for me
 " Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install'  } " based on phpcomplete but supposedly faster. Problem with legacy :/ SEE BELOW
 " Plug 'mikedfunk/phpcd.vim', { 'for': 'php', 'do': 'composer install'  } " fork to make it actually work with php 7.0. I still have problems with php errors on this. This probably expects a newer api than the old versions of the dependencies I had to use.
-Plug 'alvan/vim-php-manual', { 'for': ['php', 'blade', 'phtml'] } " contextual php manual with shift-K
+" Plug 'alvan/vim-php-manual', { 'for': ['php', 'blade', 'phtml'] } " contextual php manual with shift-K (trying devdocs.io instead, see ~/.vimrc)
 " Plug 'rayburgemeestre/phpfolding.vim' " php syntax folding with :EnableFastPhpFolds
 " Plug 'Plug 'swekaj/php-foldexpr.vim' " better php folding recommended here https://stackoverflow.com/questions/792886/vim-syntax-based-folding-with-php#comment46149243_11859632
 " Plug 'sbdchd/neoformat' " auto format code using prettier, phpcbf, etc. :Neoformat (I use ale fixing instead)
@@ -212,7 +209,7 @@ Plug 'alvan/vim-php-manual', { 'for': ['php', 'blade', 'phtml'] } " contextual p
 Plug 'tpope/vim-projectionist' " link tests and classes together
 " Plug 'editorconfig/editorconfig-vim' " use per-project editor settings
 Plug 'sgur/vim-editorconfig' " faster version of editorconfig
-Plug 'scrooloose/vim-orgymode' " kind of like emacs org-mode. <c-c> will toggle markdown checkbox. Also some syntax highlighting and ultisnips snippets.
+Plug 'scrooloose/vim-orgymode' " kind of like emacs org-mode. <c-c> will toggle markdown checkbox. Also some syntax highlighting and ultisnips snippets. I use it in my notes.
 " Plug 'dkarter/bullets.vim' " does cool stuff with numbered and bullet lists in markdown, etc. <c-t> to indent, <c-d> to outdent.
 " Plug 'blindFS/vim-taskwarrior' " vim taskwarrior integration. :TW to interact with tasks
 " }}}
@@ -223,11 +220,14 @@ Plug 'scrooloose/vim-orgymode' " kind of like emacs org-mode. <c-c> will toggle 
 if executable('git')
     Plug 'mhinz/vim-signify' " show git changes in sidebar
 " if executable('git') | Plug 'tpope/vim-fugitive' | Plug 'shumphrey/fugitive-gitlab.vim' | Plug 'tpope/vim-dispatch' | endif " git integration
+    " fugitive - vim git integration
+    " fubitive - add bitbucket support to fugitive
+    " rhubarb - github support for fugitive
     Plug 'tpope/vim-fugitive' | Plug 'shumphrey/fugitive-gitlab.vim' | Plug 'tommcdo/vim-fubitive' | Plug 'tpope/vim-rhubarb' " git integration
     Plug 'esneider/YUNOcommit.vim' " u save lot but no commit. Y u no commit??
     Plug 'rhysd/committia.vim' " prettier commit editor. Really cool!
     " Plug 'junegunn/gv.vim', { 'on': 'GV' } " :GV for git/tig-style log
-    " Plug 'mmozuras/vim-github-comment', { 'on': 'GHComment' } | Plug 'mattn/webapi-vim' " :GHComment my comment goes to latest commit on github
+    " Plug 'mmozuras/vim-github-comment', { 'on': 'GHComment' } | Plug 'mattn/webapi-vim' " :GHComment my comment goes to latest commit on github (so cool but I haven't got into the habit of using it)
     Plug 'hotwatermorning/auto-git-diff' " cool git rebase diffs per commit
 
     " NOTE: gutentags by default does not tag files in wildignore!
@@ -235,7 +235,7 @@ if executable('git')
     " if has('python') | Plug 'euclio/gitignore.vim' | endif " automatically populate wildignore from gitignore. Why would I not want to do this? Because it's buggy with no gitignore :/
     " Plug 'vim-scripts/gitignore' " simpler version with no python
     " Plug 'octref/rootignore' " yet another gitignore -> wildignore
-    Plug 'tpope/vim-git' " Git file mappings and functions (e.g. rebase helpers) and syntax highlighting, etc.
+    Plug 'tpope/vim-git' " Git file mappings and functions (e.g. rebase helpers) and syntax highlighting, etc. I add mappings in my plugin config.
 endif
 " }}}
 
@@ -245,8 +245,6 @@ endif
 " if executable('tsc') | Plug 'Shougo/vimproc.vim', { 'do': 'make', 'for': 'typescript' } | Plug 'Quramy/tsuquyomi', { 'for': 'typescript' } | endif " typescript omnicompletion, custom jump to def, custom syntax erroring
 Plug 'tpope/vim-jdaddy' "`gqaj` to pretty-print json, `gwaj` to merge the json object in the clipboard with the one under the cursor
 " Plug 'chemzqm/vim-jsx-improve' " better jsx formatting
-" Plug 'flowtype/vim-flow' " flowtype omnicompletion. If not using flow in a project, add this to project .vimrc: let g:flow#enable = 0
-Plug 'jez/vim-flow' " fork that adds --quiet. without --quiet doesn't work still as of may 2018
 if has('python3')
     Plug 'ternjs/tern_for_vim', { 'do': '/usr/local/bin/npm install' }
 endif " javascript omnifunc and jump to def. requires a .tern-project or ~/.tern-config file. http://ternjs.net/doc/manual.html#configuration
@@ -259,32 +257,34 @@ Plug 'tpope/vim-apathy' " tweak built-in vim features to allow jumping to javasc
 " Syntax highlighting {{{
 " Plug 'rtfb/vim-dox-spell' " fix buggy doxygen support in php and others
 " Plug 'gerw/vim-HiLinkTrace' " adds an <leader>hlt command to get all highlight groups under cursor
-" Plug 'sheerun/vim-polyglot' " just about every filetype under the sun in one package
-Plug 'zimbatm/haproxy.vim' " haproxy syntax
+Plug 'sheerun/vim-polyglot' " just about every filetype under the sun in one package
+" Plug 'zimbatm/haproxy.vim' " haproxy syntax (in vim-polyglot)
 " Plug 'amadeus/vim-mjml' " mjml email syntax
-Plug 'stephpy/vim-yaml' " faster yaml syntax highlighting
+" Plug 'stephpy/vim-yaml' " faster yaml syntax highlighting (vim-polyglot has a different one)
 Plug 'fpob/nette.vim' " .neon format
-Plug 'pangloss/vim-javascript' " Vastly improved Javascript indentation and syntax support in Vim.
+" Plug 'pangloss/vim-javascript' " Vastly improved Javascript indentation and syntax support in Vim. (in vim-polyglot)
+" Plug 'flowtype/vim-flow' " flowtype omnicompletion. If not using flow in a project, add this to project .vimrc: let g:flow#enable = 0
+" Plug 'jez/vim-flow' " fork that adds --quiet. without --quiet doesn't work still as of may 2018 (in vim-polyglot)
 " Plug 'othree/yajs.vim', { 'for': ['javascript', 'jsx', 'vue'] } " additonal javascript syntax highlighting. jsx is included in polyglot above.
 " Plug 'HerringtonDarkholme/yats.vim', { 'for': 'typescript' } " typescript syntax, etc. based on yajs
-" Plug 'mxw/vim-jsx'
-Plug 'MaxMEllon/vim-jsx-pretty'
+" Plug 'mxw/vim-jsx' (in vim-polyglot)
+" Plug 'MaxMEllon/vim-jsx-pretty'
 " Plug 'elixir-editors/vim-elixir'
 " Plug 'othree/es.next.syntax.vim', { 'for': ['javascript', 'jsx', 'vue'] }
-Plug 'StanAngeloff/php.vim' " php 5.6+ (including 7.x) syntax highlighting improvements like docblocks
-Plug 'posva/vim-vue' " vue.js syntax
+" Plug 'StanAngeloff/php.vim' " php 5.6+ (including 7.x) syntax highlighting improvements like docblocks (in vim-polyglot)
+" Plug 'posva/vim-vue' " vue.js syntax (in vim-polyglot)
 " Plug 'digitaltoad/vim-pug', { 'for': ['pug', 'jade'] } " pug (formerly jade) highlighting
 " Plug 'heavenshell/vim-syntax-flowtype' " js flowtype (included in pangloss/vim-javascript)
 Plug 'rhysd/vim-gfm-syntax' " github-flavored markdown. yum!
 Plug 'nelstrom/vim-markdown-folding' " just markdown folding
-Plug 'osyo-manga/vim-precious' | Plug 'Shougo/context_filetype.vim' " code block syntax highlighting for markdown
+Plug 'osyo-manga/vim-precious' | Plug 'Shougo/context_filetype.vim' " code block syntax highlighting for markdown, etc. _really_ helpful!
 Plug 'qnighy/vim-ssh-annex' " ssh files syntax coloring e.g. ssh config
 " Plug 'evanmiller/nginx-vim-syntax' " nginx conf syntax
 " Plug 'darfink/vim-plist' " plist syntax
-Plug 'rodjek/vim-puppet'
-Plug 'aklt/plantuml-syntax'
+" Plug 'rodjek/vim-puppet' " (in vim-polyglot)
+" Plug 'aklt/plantuml-syntax' " (in vim-polyglot)
 " Plug 'framallo/taskwarrior.vim' " taskwarrior config and task edit syntax
-Plug 'jwalton512/vim-blade' " laravel blade syntax
+" Plug 'jwalton512/vim-blade' " laravel blade syntax (in vim-polyglot)
 " }}}
 
 " Visuals {{{
@@ -331,7 +331,7 @@ Plug 'ap/vim-css-color', { 'for': ['scss', 'css'] } " colorize css colors e.g. #
 " Plug 'tomasr/molokai'
 " Plug 'w0ng/vim-hybrid'
 " Plug 'whatyouhide/vim-gotham'
-Plug 'sonph/onehalf', { 'rtp': 'vim' }
+" Plug 'sonph/onehalf', { 'rtp': 'vim' }
 " Plug 'archSeer/colibri.vim'
 " Plug 'fenetikm/falcon'
 " Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
@@ -364,7 +364,7 @@ Plug 'sonph/onehalf', { 'rtp': 'vim' }
 " Plug 'alessandroyorba/sierra'
 " Plug 'ayu-theme/ayu-vim'
 Plug 'chriskempson/base16-vim' " themes made of 16 colors
-Plug 'kristijanhusak/vim-hybrid-material'
+" Plug 'kristijanhusak/vim-hybrid-material'
 " Plug 'tyrannicaltoucan/vim-quantum'
 " Plug 'cocopon/iceberg.vim'
 " Plug 'evturn/cosmic-barf' " psychadelic solarized (comments are really hard to see)
