@@ -206,6 +206,7 @@ cask "quicklook-json" # quicklook plugin
 cask "quicklook-csv" # quicklook plugin
 # cask "qlimagesize" # quicklook plugin
 cask "sequel-pro" # mysql gui client
+cask "slack" # needed for screen sharing features
 cask "spectacle" # keyboard window splitter/resizer/mover
 # cask "spotify" # mac native spotify player (I use the web app)
 # cask "ssh-tunnel-manager" # mac native gui to manage running ssh tunnels
