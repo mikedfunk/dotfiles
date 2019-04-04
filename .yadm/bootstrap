@@ -343,6 +343,7 @@ _install_update_ruby_gems () {
     bundle install --system --binstubs
     bundle clean --force
     builtin cd - || return
+    has rbenv && rbenv rehash
 }
 # }}}
 
@@ -365,6 +366,7 @@ _update_python3_pip_packages () {
     pip-update || PIP_SUCCESSFUL=0
     # otherwise it might freeze a failed state
     [[ $PIP_SUCCESSFUL ]] && pip3 freeze >"$HOME/requirements.txt"
+    has pyenv && pyenv rehash
 }
 # }}}
 
@@ -403,12 +405,12 @@ _install_update_composer_packages () {
         while read -r package; do
             cgr "$package"
         done <"$HOME/.composer/cgr-versions.txt"
-        phpenv rehash
     else
         log_info "Upgrading cgr packages"
         cgr update
     fi
-    builtin cd - >/dev/null || return
+    builtin cd - || return
+    has phpenv && phpenv rehash
 }
 # }}}
 
