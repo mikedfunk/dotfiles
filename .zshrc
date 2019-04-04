@@ -512,7 +512,7 @@ function pux() {
 # only works with docker-for-mac, not docker-machine :/
 # https://about.sourcegraph.com/docs/
 function sourcegraph() {
-    for i in {1..5}; do
+    for i in {1..20}; do
         docker run \
             --publish 7080:7080 \
             --publish 2633:2633 \

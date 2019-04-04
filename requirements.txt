@@ -7,7 +7,7 @@ Click==7.0
 colorama==0.4.1
 configobj==5.0.6
 cryptography==2.6.1
-gita==0.8.7
+gita==0.8.8
 greenlet==0.4.15
 isort==4.3.16
 kaptan==0.5.11

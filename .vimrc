@@ -751,7 +751,7 @@ set background=dark
 set colorcolumn=80,120 " show vert lines at the psr-2 suggested column limits
 " set the default color scheme
 if (isdirectory(expand('~/.vim/plugged/base16-vim')))
-    silent! colorscheme base16_atlas
+    silent! colorscheme base16-atlas " very solarized-y but more colorful
 endif
 let g:airline_theme = 'base16'
 " let g:netrw_liststyle=3 " use netrw tree view by default (might cause this https://github.com/tpope/vim-vinegar/issues/13)

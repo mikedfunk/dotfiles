@@ -43,7 +43,7 @@ dir ~/Code/saatchi/legacy
 0 run v
 1 run ts
 2 run puw
-3 run cd assets/react && yarn && yarn start
+3 run wd legacy && cd assets/react && yarn && yarn start
 4 run saatchi-grunt-watch-legacy
 5 run wait-on http://www.local.saatchiart.com && saatchi-tail-legacy-local
 # 6 run cd assets/react

@@ -152,7 +152,7 @@ Plug 'machakann/vim-swap' " move args left/right with g< g> or gs for interactiv
 " Plug 'brooth/far.vim', { 'on': ['Far', 'Fardo', 'Farundo', 'Farp', 'Refar', 'F'] } " find and replace
 " Plug 'yonchu/accelerated-smooth-scroll' " animated scroll on c-d, c-u, c-f, c-b
 " Plug 'yuttie/comfortable-motion.vim' " smooth scroll using timer and shit
-" Plug 'wellle/targets.vim' " Adds selection targets like vi2) or vI} to avoid whitespace
+Plug 'wellle/targets.vim' " Adds selection targets like vi2) or vI} to avoid whitespace
 Plug 'tpope/vim-obsession' " auto save sessions if you :Obsess
 " Plug 'chrisbra/Recover.vim' " show diff when recovering a file
 " Plug 'tyru/undoclosewin.vim' " reopen closed window with <leader>uc
