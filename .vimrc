@@ -280,8 +280,11 @@ let g:php_noShortTags = 1
 " let g:php_parent_error_open = 1 " highlight missing opening [ or (
 let g:php_syncmethod = 10 " :help :syn-sync https://stackoverflow.com/a/30732393/557215
 " doxygen support is extremely buggy for php.
+" e.g. if you go to the last curly brace in a class, it breaks syntax
+" highlighting for one page above that class :/
 " :h doxygen
 " let g:load_doxygen_syntax = 1 " pretty docblocks in php, c, etc.
+" let g:doxygen_my_rendering = 0 " Q: does this fix it? I doubt it. A: nope.
 " let g:doxygen_enhanced_color = 1 " prettier docblocks
 
 " augroup phpfoldnestmax
@@ -756,7 +759,19 @@ endif
 let g:airline_theme = 'base16'
 " let g:netrw_liststyle=3 " use netrw tree view by default (might cause this https://github.com/tpope/vim-vinegar/issues/13)
 " set listchars=tab:▸•,eol:¬,trail:•,extends:»,precedes:«,nbsp:¬ " prettier hidden chars. turn on with :set list
-set listchars=tab:▸•,trail:•,extends:»,precedes:« " prettier hidden chars. turn on with :set list (without line ending symbols)
+set listchars=nbsp:␣,tab:▸•,eol:↲,trail:•,extends:»,precedes:«,trail:• " prettier hidden chars. turn on with :set list (different symbols)
+set listchars=nbsp:␣,tab:▸•,trail:•,extends:»,precedes:«,trail:• " prettier hidden chars. turn on with :set list (without line ending symbols)
+
+" show leading spaces
+" (messes up Yggdroot/indentLine)
+" https://www.reddit.com/r/vim/comments/b8wbzb/shows_tabs_and_spaces_as_dots_in_vim_like_sublime/
+" hi Conceal guibg=NONE ctermbg=NONE ctermfg=DarkGrey
+" augroup showleadingspaces
+"     autocmd!
+"     autocmd BufRead * setlocal conceallevel=2 concealcursor=nv
+"     autocmd BufRead * syn match LeadingSpace /\(^ *\)\@<= / containedin=ALL conceal cchar=·
+" augroup end
+
 augroup isbashgroup
     autocmd!
     autocmd BufRead,BufNewFile *bash* let b:is_bash=1 " fix syntax highlighting for bash files
@@ -764,12 +779,14 @@ augroup END
 
 " do not conceal quotes and stuff on the current line! Why would I even want
 " that?? It's worse than no formatting if I can't even see the quotes.
-augroup jsonformat
-    autocmd!
-    autocmd FileType json set concealcursor-=n
-    " jsonc - json with // comments
-    autocmd FileType json syntax match Comment +\/\/.\+$+
-augroup END
+" NOTE this is set by indentLine plugin to allow indent lines. See https://github.com/Yggdroot/indentLine
+" Now commented out because `let g:vim_json_syntax_conceal = 0` covers it
+" augroup jsonformat
+"     autocmd!
+"     autocmd FileType json set concealcursor-=n
+"     " jsonc - json with // comments
+"     autocmd FileType json syntax match Comment +\/\/.\+$+
+" augroup END
 
 " https://stackoverflow.com/questions/3494435/vimrc-make-comments-italic
 function! ItalicComments() abort

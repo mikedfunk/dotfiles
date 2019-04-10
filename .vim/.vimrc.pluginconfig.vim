@@ -526,7 +526,9 @@ let g:RootIgnoreUseHome=1
 " }}}
 
 " snipbar {{{
-if exists(':SnipBar') | nnoremap <leader>ss :SnipBar<CR> | endif
+if isdirectory(expand("~/.vim/plugged/snipbar"))
+    nnoremap <leader>ss :SnipBar<CR>
+endif
 " }}}
 
 " {{{ tagbar
@@ -866,6 +868,16 @@ endif
 let g:gitgutter_realtime = 0 | let g:gitgutter_eager = 0 " trade accuracy for speed. Only on save.
 " }}}
 
+" gitsessions.vim {{{
+if isdirectory(expand("~/.vim/plugged/gitsessions.vim"))
+    nnoremap <leader>ss :GitSessionSave<cr>
+    nnoremap <leader>sl :GitSessionLoad<cr>
+    nnoremap <leader>sd :GitSessionDelete<cr>
+endif
+" let g:gitsessions_dir = $PWD . '/sessions'
+let g:gitsessions_disable_auto_load = 1
+" }}}
+
 " vim-gutentags {{{
 " if isdirectory(expand("~/.vim/plugged/vim-gutentags"))
 "     nnoremap <leader>gu :execute 'GutentagsUpdate!'<cr>:redraw!<cr>
@@ -963,11 +975,25 @@ endif
 " }}}
 
 " {{{ vim-indentline
+" variations on indent guide character
+let g:indentLine_char = '┊'
 " let g:indentLine_char = '┆'
-let g:indentLine_char = '│'
+" let g:indentLine_char = '¦'
+" let g:indentLine_char = '│'
+" let g:indentLine_char = '⎸'
+" let g:indentLine_char = '▏'
+" let g:indentLine_char = '│'
+" let g:indentLine_char_list = ['|', '¦', '┆', '┊'] " each level has a distinct character
+"
 let g:indentLine_faster = 1
 let g:indentLine_fileTypeExclude = ['fzf', 'help', 'startify']
-" let g:indentLine_setConceal = 0
+
+" ensure json shows quotes
+let g:vim_json_syntax_conceal = 0
+
+" if you want to see dots for all leading spaces
+" let g:indentLine_leadingSpaceEnabled = 1
+" let g:indentLine_leadingSpaceChar = '·'
 " }}}
 
 " vim-javascript {{{
@@ -1189,7 +1215,10 @@ let g:startify_files_number = 9 " recently used
 " let g:startify_session_autoload = 1 " autoload Session.vim in the current dir
 let g:startify_session_persistence = 0 " auto save session on exit like obsession
 " save/load sessions from the current dir
-let g:startify_session_dir = getcwd().'/sessions'
+" let g:startify_session_dir = getcwd().'/sessions'
+" gitsessions dir... but actually it's a pretty good idea to use even outside
+" of gitsessions.
+let g:startify_session_dir = expand('~/.vim/sessions' . getcwd())
 
 " reorder and whitelist certain groups
 let g:startify_lists = [
@@ -1200,12 +1229,13 @@ let g:startify_lists = [
 " \ { 'type': 'files',     'header': ['   MRU']            },
 " \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
 
-if isdirectory(expand('~/.vim/plugged/vim-startify'))
-    " TODO integrate this to automatically :Obsess somehow...
-    nnoremap <leader>ss :SSave<cr>
-    nnoremap <leader>sl :SLoad<cr>
-    nnoremap <leader>sd :SDelete<cr>
-endif
+" commented out because I'm trying out gitsessions.vim instead
+" if isdirectory(expand('~/.vim/plugged/vim-startify'))
+"     " TODO integrate this to automatically :Obsess somehow...
+"     nnoremap <leader>ss :SSave<cr>
+"     nnoremap <leader>sl :SLoad<cr>
+"     nnoremap <leader>sd :SDelete<cr>
+" endif
 
 let g:startify_change_to_dir = 0
 

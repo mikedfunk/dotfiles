@@ -237,6 +237,7 @@ if executable('git')
     " Plug 'octref/rootignore' " yet another gitignore -> wildignore
     Plug 'tpope/vim-git' " Git file mappings and functions (e.g. rebase helpers) and syntax highlighting, etc. I add mappings in my plugin config.
 endif
+Plug 'wting/gitsessions.vim' " sessions based on git branches!
 " }}}
 
 " Javascript {{{
