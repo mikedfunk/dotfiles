@@ -61,7 +61,7 @@ let s:php_fixers = []
 " js linters {{{
 if executable('./node_modules/.bin/flow') | call add(s:js_linters, 'flow-language-server') | endif
 if executable('./node_modules/.bin/eslint') | call add(s:js_linters, 'eslint') | endif
-if executable('./node_modules/.bin/prettier-eslint') | call add(s:js_fixers, 'prettier_eslint') | endif
+" if executable('./node_modules/.bin/prettier-eslint') | call add(s:js_fixers, 'prettier_eslint') | endif
 " }}}
 
 " phpcs and phpcbf {{{
@@ -374,7 +374,7 @@ let g:neoformat_php_phpcbf = {
     \ 'no_append': 1
     \ }
 let g:neoformat_enabled_php = ['phpcbf']
-let g:neoformat_enabled_javascript = ['prettiereslint']
+" let g:neoformat_enabled_javascript = ['prettiereslint']
 let g:neoformat_basic_format_align = 1 " Enable alignment
 let g:neoformat_basic_format_retab = 1 " Enable tab to spaces conversion
 let g:neoformat_basic_format_trim = 1 " Enable trimmming of trailing whitespace
@@ -1024,6 +1024,7 @@ if isdirectory(expand('~/.vim/plugged/vim-lsp')) && has('autocmd') && exists('+o
             \ 'cmd': {server_info->[&shell, &shellcmdflag, $HOME.'/.bin/php-language-server']},
             \ 'whitelist': ['php'],
         \ })
+        " \ 'cmd': {server_info->[&shell, &shellcmdflag, $HOME.'/.bin/php-language-server']},
 
         " intelephense version (php language server written in node)
         " autocmd User lsp_setup call lsp#register_server({

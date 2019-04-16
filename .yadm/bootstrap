@@ -614,7 +614,7 @@ _let_iterm_see_italics
 _apply_mac_preferences
 _start_launch_agents
 _fix_file_size_limit_for_watching_with_entr
-_upgrade_docker_machine
+# _upgrade_docker_machine
 _install_bubo
 # _show_reminders
 # }}}

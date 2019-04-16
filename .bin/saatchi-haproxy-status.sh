@@ -31,7 +31,6 @@ if [[ $CURRENT_SESSION == 'Work' ]]; then
 		status+=$( (echo "$HTML" | grep -E '(active_up|active_no_check).*palette01' >/dev/null) && echo $GOOD || echo 'P')
 		status+=$( (echo "$HTML" | grep -E '(active_up|active_no_check).*gallery01' >/dev/null) && echo $GOOD || echo 'G')
 		status+=$( (echo "$HTML" | grep -E '(active_up|active_no_check).*catalog01' >/dev/null) && echo $GOOD || echo 'C')
-		status+=$( (echo "$HTML" | grep -E '(active_up|active_no_check).*api01' >/dev/null) && echo $GOOD || echo 'A')
 		status+=$( (echo "$HTML" | grep -E '(active_up|active_no_check).*solr01' >/dev/null) && echo $GOOD || echo 'S')
 		echo "$status"
 	else

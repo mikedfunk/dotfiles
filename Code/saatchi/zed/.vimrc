@@ -22,7 +22,7 @@ let g:airline_theme = 'base16'
 " NOTE: You can't change this after loading because of a bug currently.
 if exists('g:vdebug_options')
   let g:vdebug_options['path_maps'] = {
-  \   '/data/shop/current': '/Users/mikefunk/Code/saatchi/yzed'
+  \   '/data/shop/current': '/Users/mikefunk/Code/saatchi/zed'
   \}
   let g:vdebug_options['port'] = 9005
 endif

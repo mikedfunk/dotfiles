@@ -34,9 +34,16 @@ autocmd BufReadPre *.js let b:javascript_lib_use_react = 1
 " }}}
 
 " ale {{{
-" disabled until this PR is applied https://github.com/prettier/prettier-eslint/pull/194
-let g:ale_fixers['javascript'] = ['prettier', 'eslint', 'importjs']
+" disabled prettier-eslint until this PR is applied
+" https://github.com/prettier/prettier-eslint/pull/194
 " call add(g:ale_fixers['javascript'], 'prettier_eslint')
+"
+" disabled prettier because I'm using the recommended eslint plugin instead
+" (in an easel branch that's waiting to be merged)
+" https://prettier.io/docs/en/eslint.html#docsNav
+" let g:ale_fixers['javascript'] = ['prettier', 'eslint', 'importjs']
+let g:ale_fixers['javascript'] = ['eslint', 'importjs']
+let g:ale_javascript_prettier_options = '--trailing-comma es5'
 " }}}
 
 " tern {{{

@@ -1,5 +1,6 @@
 <?php
 define('APPLICATION_ENV', 'local');
+define('IS_UNIT_TESTING', true);
 define('APPLICATION_PATH', '.');
 define('DHL_URL', '');
 define('OCI_DEFAULT', '');

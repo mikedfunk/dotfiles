@@ -1,3 +1,4 @@
 #!/bin/sh
 # God damn this path is insane
-"$HOME/.phpenv/shims/php" -dmemory_limit=500M "$HOME/.phpenv/versions/$($HOME/.phpenv/bin/phpenv version | cut -d' ' -f1)/composer/vendor/bin/php-language-server.php" --memory-limit=256M $@
+# "$HOME/.phpenv/shims/php" -dmemory_limit=500M "$HOME/.phpenv/versions/$($HOME/.phpenv/bin/phpenv version | cut -d' ' -f1)/composer/vendor/bin/php-language-server.php" --memory-limit=256M $@
+"$HOME/.phpenv/shims/php" -dmemory_limit=500M "$HOME/.vim/plugged/LanguageServer-php-neovim/vendor/bin/php-language-server.php" --memory-limit=256M $@
