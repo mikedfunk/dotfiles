@@ -1,12 +1,14 @@
 # vim: set ft=dosini:
 # postgres pager config https://github.com/okbob/pspg
+force_uniborder = true
 ignore_case = false
 ignore_lower_case = false
 no_sound = false
 less_status_bar = false
 no_highlight_search = false
 no_highlight_lines = false
-force_uniborder = true
+# show_rownum = true
+; tabular_cursor = true
 theme = 17
 without_commandbar = false
 without_topbar = true

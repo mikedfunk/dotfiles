@@ -192,23 +192,9 @@ endsnippet
 
 snippet cstr "laravel 4 DI construct"
 
-/** Dependency injection. */
 public function __construct(${1/\w+\s*/\u$0/} $${1:myClass})
 {
     $this->$1 = $$1;
-}
-endsnippet
-
-snippet cstest1 "construct snippet, still working on it"
-
-/**
- * Dependency injection.
- *
- * @param ${1/, /\n     * @param /g}
- */
-public function __construct(${1:dependencies})
-{
-    ${1/\w*\s?\$(\w+)(, )*/\n        $this->$1 = $$1;/g}
 }
 endsnippet
 
@@ -378,9 +364,6 @@ class ${2:MyScript} extends QueueProcessAbstract
     /** @var bool */
     protected $isDryRun = true;
 
-	/**
-	 * Dependency injection.
-	 */
 	public function __construct()
 	{
         $this->_additionalOptionalFlags[] = ['flag' => 'dry-run', 'description' => 'If in dry run, don\'t actually do anything'];
