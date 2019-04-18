@@ -320,9 +320,9 @@ window releases
 1111111122222222233333333
 
 dir ~
-1 run while true; do saatchi-releases-xdev --clear; sleep 60; done
-2 run while true; do saatchi-releases-xqa --clear; sleep 60; done
-3 run while true; do saatchi-releases-xprod --clear; sleep 60; done
+1 run saatchi-releases-xdev --watch --clear
+2 run saatchi-releases-xqa --watch --clear
+3 run saatchi-releases-xprod --watch --clear
 # }}}
 
 # uml {{{
