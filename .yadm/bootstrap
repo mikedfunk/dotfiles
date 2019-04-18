@@ -78,7 +78,7 @@ function has() { type "$1" &>/dev/null; }
 # install xcode command line tools {{{
 # needed for a variety of things including phpenv (zlib) and CommandLineTools below
 _install_xcode_command_line_tools () {
-    log_info "installing xcode command line tools"
+    log_info "Installing xcode command line tools"
     xcode-select --install || true
 }
 # }}}
@@ -91,7 +91,7 @@ _install_necessary_headers_in_include_on_mojave () {
     if ! [ -f "/Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg" ] || [ -f "$HOME/.mojave-lock" ]; then
         return
     fi
-    log_info "installing additional tools needed for mojave"
+    log_info "Installing additional tools needed for mojave"
     sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
     touch "$HOME/.mojave-lock"
 }
@@ -417,7 +417,7 @@ _install_update_composer_packages () {
 # php-language-server {{{
 _parse_php_language_server_stubs () {
     builtin cd "$HOME/.composer" || return
-    log_info "parsing php-language-server stubs"
+    log_info "Parsing php-language-server stubs"
     local PHP_VERSION
     PHP_VERSION=$(phpenv version | cut -d' ' -f1)
     composer global run-script --working-dir="$(phpenv root)/versions/$PHP_VERSION/composer/global/felixfbecker/language-server/vendor/felixfbecker/language-server" parse-stubs
@@ -430,7 +430,7 @@ _parse_php_language_server_stubs () {
 _install_vivid () {
     has vivid && return
     VIVID_VERSION="0.4.0"
-    log_info "installing vivid"
+    log_info "Installing vivid"
     builtin cd || return
     wget "https://github.com/sharkdp/vivid/releases/download/v$VIVID_VERSION/vivid-v0.4.0-x86_64-apple-darwin.tar.gz"
     tar xzvf "vivid-v$VIVID_VERSION-x86_64-apple-darwin.tar.gz"
@@ -534,7 +534,7 @@ _apply_mac_preferences () {
 # debug launchd jobs https://stackoverflow.com/q/6337513/557215
 # use this form to easily generate a launchd plist: http://launched.zerowidth.com/
 _start_launch_agents () {
-    log_info "starting launch agents"
+    log_info "Starting launch agents"
     # let's use lunchy instead of launchctl! https://github.com/eddiezane/lunchy
     lunchy start -w mike.saatchi-tunnel.autossh
     lunchy start -w mike.saatchi-proxy.autossh
@@ -617,4 +617,5 @@ _fix_file_size_limit_for_watching_with_entr
 # _upgrade_docker_machine
 _install_bubo
 # _show_reminders
+log_info "Installation complete"
 # }}}
