@@ -256,6 +256,27 @@ let g:user_emmet_settings = {
 let $FZF_DEFAULT_COMMAND = 'ag -l --skip-vcs-ignores -g ""'
 " let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
 
+" go to tab/window or open in new tab with ctrl-t
+" https://www.reddit.com/r/vim/comments/9ifsjf/vim_fzf_question_about_switching_to_already_open/e6k5cp0/
+function! s:GotoOrOpen(command, ...)
+  for file in a:000
+    if a:command == 'e'
+      exec 'e ' . file
+    else
+      exec "tab drop " . file
+    endif
+  endfor
+endfunction
+
+command! -nargs=+ GotoOrOpen call s:GotoOrOpen(<f-args>)
+
+let g:fzf_action = {
+  \ 'ctrl-t': 'GotoOrOpen tab',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit'
+  \ }
+let g:fzf_buffers_jump = 1 " Jump to the existing window if possible
+
 if isdirectory(expand('~/.vim/plugged/fzf.vim'))
     " :Ag  - Start fzf with hidden preview window that can be enabled with ? key
     " :Ag! - Start fzf in fullscreen and display the preview window above

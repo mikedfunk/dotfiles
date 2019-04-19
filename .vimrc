@@ -219,6 +219,7 @@ set ignorecase " Case insensitive search. Needed for smartcase to work.
 set infercase " smarter, case-aware completion in insert mode.
 set lazyredraw " to speed up rendering and avoid scrolling problems
 set smartcase " Case sensitive when uc present
+set switchbuf=usetab,newtab " when following quickfix results, jump to first tab/window that has that file open if any. Also works with :sb
 " https://vi.stackexchange.com/a/11413
 augroup ignorecase_augroup
     autocmd!
@@ -487,6 +488,11 @@ endif
 " https://github.com/vim/vim/issues/3117#issuecomment-402622616
 if has('python3')
     silent! python3 1
+endif
+
+" for python2 (just to make :check happy)
+if executable('/usr/local/bin/python2')
+    let g:python_host_prog = '/usr/local/bin/python2'
 endif
 
 " preview susbstitute in neovim
