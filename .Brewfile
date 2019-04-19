@@ -74,6 +74,7 @@ brew "libxml2" # needed by php70
 # brew "lynx" # console web browser. used by ranger to preview html.
 # brew "macvim" # mac gui vim client
 brew "mas" # mac app store cli. e.g. `mas install Xcode`
+brew "andersjanmyr/homebrew-tap/mc" # memcached cli. Use the full path to avoid conflicting with midnight commander
 brew "memcached" # needed by php70 memcached pecl extension
 brew "mkcert" # create a certificate, create a local CA, add the cert as trusted in the CA
 # brew "mono" # .NET compiler for mac. Useful for OmniSharp.
