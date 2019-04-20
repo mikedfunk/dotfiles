@@ -972,7 +972,11 @@ let g:gutentags_ctags_exclude = [
 " let g:gutentags_file_list_command = 'find . -type f -name *.php'
 "
 " tells cscope to respect the same exclude settings in ~/.ctags
-let g:gutentags_file_list_command = $HOME.'/.support/cscope_find.sh'
+" NOTE: this applies to all gutentags modules, not just cscope! As such it
+" ignores files in .ignore, which broke _ide_helper.php integration. In the
+" end I just turned off cscope... it's not that helpful in php. Grepping for
+" usage is faster and more accurate.
+" let g:gutentags_file_list_command = $HOME.'/.support/cscope_find.sh'
 "
 " lets cscope ignore files in gitignore
 " let g:gutentags_file_list_command = {

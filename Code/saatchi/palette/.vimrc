@@ -74,8 +74,8 @@ let g:ale_php_phpcbf_use_global = 1
 " }}}
 
 " vim-gutentags {{{
-if executable('cscope') && has('cscope') && exists('g:gutentags_modules')
-    call add(g:gutentags_modules, 'cscope')
-    " set cscopetag " this is set in ~/.vimrc
-endif
+" if executable('cscope') && has('cscope') && exists('g:gutentags_modules')
+"     call add(g:gutentags_modules, 'cscope')
+"     " set cscopetag " this is set in ~/.vimrc
+" endif
 " }}}

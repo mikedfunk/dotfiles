@@ -321,22 +321,22 @@ if has('cscope')
     " recommended here to improve cscope quickfix results
     " https://www.reddit.com/r/vim/comments/95jxk7/big_list_of_tagsctags_matches_how_to_navigate_in/
     " set cscopequickfix=s-,c-,d-,i-,t-,e-,a-
-    set cscopetag " use cscope db as well as tags db for tag operations
+    " set cscopetag " use cscope db as well as tags db for tag operations
     " set nocscopetag " use cscope db as well as tags db for tag operations
 
     " open usage list here
-    nnoremap <c-\> :exec("cscope find c ".expand("<cword>"))<cr>
+    " nnoremap <c-\> :exec("cscope find c ".expand("<cword>"))<cr>
     " open usage list in vertical split
-    nnoremap <c-w><c-\> :vsp<CR>:exec("cscope find c ".expand("<cword>"))<cr>
+    " nnoremap <c-w><c-\> :vsp<CR>:exec("cscope find c ".expand("<cword>"))<cr>
     " I don't use horizontal splits much... but if I need it I can just `:scs find c something`
     " open usage list in new tab
-    function! FindUsagesInNewTab () abort
-        :normal! mz
-        :tabe %
-        :normal! `z
-        :exec("cscope find c ".expand('<cword>'))
-    endfunction
-    nnoremap <silent><leader><c-\> :call FindUsagesInNewTab()<cr>
+    " function! FindUsagesInNewTab () abort
+    "     :normal! mz
+    "     :tabe %
+    "     :normal! `z
+    "     :exec("cscope find c ".expand('<cword>'))
+    " endfunction
+    " nnoremap <silent><leader><c-\> :call FindUsagesInNewTab()<cr>
 
     " can also :cs find {type} {string}
     " types:

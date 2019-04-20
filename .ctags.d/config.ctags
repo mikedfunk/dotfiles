@@ -33,7 +33,7 @@
 --exclude=*.min.js
 --exclude=.git
 --exclude=__TwigTemplate_*
---exclude=_ide_helper.php
+# --exclude=_ide_helper.php
 --exclude=app/cache
 --exclude=app/storage
 --exclude=.next/bundles
