@@ -33,6 +33,7 @@
 --exclude=*.min.js
 --exclude=.git
 --exclude=__TwigTemplate_*
+# If I exclude this I lose the whole point of ide helper lol
 # --exclude=_ide_helper.php
 --exclude=app/cache
 --exclude=app/storage
