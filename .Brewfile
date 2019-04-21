@@ -74,7 +74,7 @@ brew "libxml2" # needed by php70
 # brew "lynx" # console web browser. used by ranger to preview html.
 # brew "macvim" # mac gui vim client
 brew "mas" # mac app store cli. e.g. `mas install Xcode`
-brew "andersjanmyr/homebrew-tap/mc" # memcached cli. Use the full path to avoid conflicting with midnight commander
+# brew "andersjanmyr/homebrew-tap/mc" # memcached cli. Use the full path to avoid conflicting with midnight commander (Trouble using on saatchi due to networking limitations)
 brew "memcached" # needed by php70 memcached pecl extension
 brew "mkcert" # create a certificate, create a local CA, add the cert as trusted in the CA
 # brew "mono" # .NET compiler for mac. Useful for OmniSharp.
@@ -218,6 +218,7 @@ cask "steam" # yep
 # TODO these can't just be upgraded while virtualbox is running :/
 cask "virtualbox" # virtual machine software
 # cask "virtualbox-extension-pack" # add-on to do stuff you'll always want... except for docker-machine
+# cask "vivaldi" # chrome alternative with some cool features (I switched back to chrome for now)
 #
 # cask "webpquicklook" # quicklook plugin
 # cask "wireshark" # analyze network data

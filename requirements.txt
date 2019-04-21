@@ -1,7 +1,7 @@
 arrow==0.13.1
 asn1crypto==0.24.0
 astroid==2.2.5
-cffi==1.12.2
+cffi==1.12.3
 cli-helpers==1.2.0
 Click==7.0
 colorama==0.4.1

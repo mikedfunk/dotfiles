@@ -1263,6 +1263,7 @@ let g:startify_lists = [
 "     nnoremap <leader>sd :SDelete<cr>
 " endif
 
+" this feature should not even exist. It is stupid.
 let g:startify_change_to_dir = 0
 
 " this makes my sessions all start in empty tabs :(
