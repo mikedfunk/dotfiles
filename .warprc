@@ -7,7 +7,6 @@ catalog:~/Code/saatchi/catalog
 api:~/Code/saatchi/api
 potato:~/Code/saatchi/potato
 local:~/Code/saatchi/local-scripts
-views:~/Code/saatchi/couchbase-views
 gallery:~/Code/saatchi/gallery
 palette:~/Code/saatchi/palette
 xpuppet:~/Code/saatchi/gitlab-puppet
@@ -25,3 +24,4 @@ imgproc:~/Code/saatchi/imgproc
 legacy:~/Code/saatchi/legacy
 saatchi:~/Code/saatchi
 zed:~/Code/saatchi/zed
+views:~/Code/saatchi/couchbase-views

@@ -1,0 +1,30 @@
+# vim: set foldmethod=marker:
+# tmux window layout setup
+name: Home
+windows:
+
+  # config {{{
+    - config:
+        root: ~/.yadm
+        layout: main-horizontal
+        panes:
+          - v -S
+          - yadm st
+          # if sourcegraph is running, attach, else run it
+          - ( docker ps | grep sourcegraph ) && docker logs --follow $( docker ps | grep "sourcegraph\/server" | awk '{print $1}' ) || sourcegraph
+          - htop
+  # }}}
+
+  # blog {{{
+    - blog:
+        root: ~/Code/mikedfunk.github.io
+        layout: main-horizontal
+        panes:
+          - v -S
+          - ts
+          - bundle install && bundle exec jekyll serve --watch
+  # }}}
+
+  # notes {{{
+    - notes: joplin
+  # }}}

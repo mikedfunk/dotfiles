@@ -11,7 +11,8 @@ windows:
         - v -S
         - yadm st
         - wait-on http://www.local.saatchiart.com && docker-stats
-        - sourcegraph
+        # if sourcegraph is running, attach, else run it
+        - ( docker ps | grep sourcegraph ) && docker logs --follow $( docker ps | grep "sourcegraph\/server" | awk '{print $1}' ) || sourcegraph
         - htop
 # }}}
 
@@ -88,7 +89,7 @@ windows:
 
 # views {{{
   - views:
-      root: ~/Code/saatchi/views
+      root: ~/Code/saatchi/couchbase-views
       layout: main-horizontal
       panes:
         - v -S
@@ -152,5 +153,5 @@ windows:
       panes:
         - v -S
         - ts
-        - ./watchi.sh
+        - . ./watchi.sh
 # }}}

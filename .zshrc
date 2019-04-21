@@ -195,8 +195,10 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ll='ls -lhGFA'
 alias phpx="php -dxdebug.remote_autostart=1 -dxdebug.remote_connect_back=1 -dxdebug.idekey=${XDEBUG_IDE_KEY} -dxdebug.remote_port=9000 -ddisplay_errors=on"
-alias work="tmux attach -t Work || tmuxomatic ~/.tmuxomatic/Work"
-alias home="tmux attach -t Home || tmuxomatic ~/.tmuxomatic/Home"
+# alias work="tmux attach -t Work || tmuxomatic ~/.tmuxomatic/Work"
+alias work="tmux attach -t Work || tmuxinator Work"
+# alias home="tmux attach -t Home || tmuxomatic ~/.tmuxomatic/Home"
+alias home="tmux attach -t Home || tmuxinator Home"
 alias rmf='rm -rf'
 compdef rmf="rm"
 mkcd () { mkdir $1 && cd $1; }
