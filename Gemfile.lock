@@ -29,6 +29,7 @@ GEM
     em-websocket (0.5.1)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
+    erubis (2.7.0)
     eventmachine (1.2.7)
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
@@ -132,11 +133,17 @@ GEM
       sass (~> 3.3.0)
     sqlint (0.1.9)
       pg_query (~> 1)
+    thor (0.20.3)
     thread_safe (0.3.6)
+    tmuxinator (0.16.0)
+      erubis (~> 2.6)
+      thor (~> 0.19, >= 0.15.0)
+      xdg (~> 2.2, >= 2.2.3)
     tomlrb (1.2.8)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     unicode-display_width (1.4.0)
+    xdg (2.2.3)
 
 PLATFORMS
   ruby
@@ -160,6 +167,7 @@ DEPENDENCIES
   rubocop
   scss-lint
   sqlint (~> 0.1.9)
+  tmuxinator (~> 0.16.0)
 
 BUNDLED WITH
    1.17.3

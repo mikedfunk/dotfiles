@@ -68,7 +68,16 @@
 # --exclude=vendor/**/composer.json
 
 # from files
---exclude=@.git/info/exclude
+#
+# I thought about this a lot - I don't think I need to exclude this. I only tag
+# php and ruby and the only php files I have here are _ide_helper.php in
+# gallery and no ruby files. If I do add a php file and exclude it here, it
+# will be for a reason that I should probably be able to access it via
+# completion and jump to tag. The main reason I commented this out was to allow
+# _ide_helper.php to be tagged and added to cscope. See
+# ~/.support/cscope_find.sh and vim-gutentags.
+# --exclude=@.git/info/exclude
+#
 # This breaks vim-puppet
 # --exclude=@.ignore
 --exclude=.ignore

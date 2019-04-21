@@ -35,10 +35,12 @@ gem 'scss-lint' # for syntastic / vim-ale
 # gem "ruby-fsevent" # probably a dependency of another package I dont use anymore
 # gem "teamocil" # save tmux layouts and regenerate them with ease
 
-gem "neovim", "~> 0.8.0"
+gem 'neovim', '~> 0.8.0'
 
-gem "mdl", "~> 0.5.0"
+gem 'mdl', '~> 0.5.0'
 
-gem "sqlint", "~> 0.1.9"
+gem 'sqlint', '~> 0.1.9'
 
-gem "jist", "~> 1.5"
+gem 'jist', '~> 1.5'
+
+gem "tmuxinator", "~> 0.16.0"
