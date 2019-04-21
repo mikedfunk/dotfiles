@@ -575,9 +575,8 @@ _upgrade_docker_machine () {
 
 # reminders {{{
 # _show_reminders () {
-#     # log_info "Don't forget to upgrade your docker-machine once in a while!"
-#     # log_info "Don't forget to ''brew cask upgrade virtualbox virtualbox-extension-pack' once in a while!"
-#     # log_info "Don't forget to update tmux plugins via <c-a>U once in a while!"
+#     # log_info "Don't forget to 'docker-machine upgrade' once in a while!"
+#     # log_info "Don't forget to 'brew cask upgrade virtualbox virtualbox-extension-pack' once in a while!"
 # }
 # }}}
 

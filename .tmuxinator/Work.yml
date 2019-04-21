@@ -11,8 +11,7 @@ windows:
         - v -S
         - yadm st
         - wait-on http://www.local.saatchiart.com && docker-stats
-        # if sourcegraph is running, attach, else run it
-        - ( docker ps | grep sourcegraph ) && docker logs --follow $( docker ps | grep "sourcegraph\/server" | awk '{print $1}' ) || sourcegraph
+        - sourcegraph
         - htop
 # }}}
 

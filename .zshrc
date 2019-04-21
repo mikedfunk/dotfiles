@@ -528,19 +528,24 @@ function pux() {
 # only works with docker-for-mac, not docker-machine :/
 # https://about.sourcegraph.com/docs/
 function sourcegraph() {
-    for i in {1..20}; do
-        docker run \
-            --publish 7080:7080 \
-            --publish 2633:2633 \
-            --rm \
-            --volume ~/.sourcegraph/config:/etc/sourcegraph \
-            --volume ~/.sourcegraph/data:/var/opt/sourcegraph \
-            --volume /var/run/docker.sock:/var/run/docker.sock \
-            sourcegraph/server:3.2.0 && \
-            break || \
-            sleep 15
-        # open http://127.0.0.1:7080
-    done
+    if ( docker ps | grep sourcegraph ); then
+        docker logs --follow $( docker ps | grep "sourcegraph\/server" | awk '{print $1}' )
+    else
+        for i in {1..20}; do
+            docker run \
+                --detach \
+                --publish 7080:7080 \
+                --publish 2633:2633 \
+                --rm \
+                --volume ~/.sourcegraph/config:/etc/sourcegraph \
+                --volume ~/.sourcegraph/data:/var/opt/sourcegraph \
+                --volume /var/run/docker.sock:/var/run/docker.sock \
+                sourcegraph/server:3.2.0 && \
+                docker logs --follow $( docker ps | grep "sourcegraph\/server" | awk '{print $1}' ) || \
+                sleep 15
+            # open http://127.0.0.1:7080
+        done
+    fi
 }
 # }}}
 
