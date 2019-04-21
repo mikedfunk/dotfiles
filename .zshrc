@@ -195,6 +195,19 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ll='ls -lhGFA'
 alias phpx="php -dxdebug.remote_autostart=1 -dxdebug.remote_connect_back=1 -dxdebug.idekey=${XDEBUG_IDE_KEY} -dxdebug.remote_port=9000 -ddisplay_errors=on"
+#
+# switched from tmuxomatic to tmuxinator - tmuxomatic is broken and I have to
+# run manual patches to get it working :(
+# https://github.com/oxidane/tmuxomatic/issues/23
+#
+# I also have an annoying problem with it - every time I launch a workspace,
+# all windows start thinking they have no space, which messes up full-screen
+# programs like vim and multitail.
+#
+# I tried tmuxp but it relied on an outdated version of pyyaml which broke gita
+# for me. tmuxinator is almost exactly the same. It's a gem that uses yaml with
+# the same layout options to automate tmux layouts.
+#
 # alias work="tmux attach -t Work || tmuxomatic ~/.tmuxomatic/Work"
 alias work="tmux attach -t Work || tmuxinator Work"
 # alias home="tmux attach -t Home || tmuxomatic ~/.tmuxomatic/Home"
@@ -223,6 +236,7 @@ alias save-dotfiles-without-encryption="yadm add -u && yadm ci -m working && yad
 alias joplin="/usr/local/bin/node `which joplin`" # joplin and nodenv do not mix. this uses homebrew node.
 # alias jsc="/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc" # javascript repl for testing javascript wonkiness
 alias ncdu="ncdu --color dark -rr -x --exclude .git --exclude vendor" # enhanced interactive disk usage command
+alias tmux-layout="tmux display-message -p \"#{window_layout}\""
 
 export CLICOLOR=1 # ls colors by default
 # export NODE_PATH="/usr/local/lib/node_modules" # zombie.js doesn't work without this

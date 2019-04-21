@@ -108,7 +108,7 @@ windows:
 
 # xpuppet {{{
   - xpuppet:
-      root: ~/Code/saatchi/xpuppet
+      root: ~/Code/saatchi/gitlab-puppet
       layout: main-horizontal
       panes:
         - v -S
