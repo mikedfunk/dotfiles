@@ -1146,6 +1146,10 @@ let g:polyglot_disabled=['php'] " I use a different php syntax plugin
 
 " vim-rest-console {{{
 " aka vim-rest-client
+"
+" TODO make some shortcuts to login and get a session cookie and to retrieve
+" an access token.
+"
 " let g:vrc_show_command = 1 " display the actual curl command being run when
 " firing http requests
 " let g:vrc_connect_timeout = 9999 " ignore timeout for xdebug (v2.x.x version)

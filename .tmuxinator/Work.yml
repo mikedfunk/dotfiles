@@ -11,6 +11,7 @@ windows:
         - v -S
         - yadm st
         - wait-on http://www.local.saatchiart.com && docker-stats
+        # TODO run this in the background and be fault-tolerant to problems starting up (e.g. look for text "Terminating")
         - sourcegraph
         - htop
 # }}}
