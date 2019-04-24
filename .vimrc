@@ -514,6 +514,14 @@ function! GetVisualSelection() abort
     return join(lines, "\n")
 endfunction
 
+" remove the $ sign from what consitutes a 'word' in vim
+" TODO I think this is being assigned in a plugin. Track it down at the source
+" instead of fixing it here.
+augroup dollarsignphp
+    autocmd!
+    autocmd FileType php set iskeyword -=$
+augroup END
+
 " }}}
 
 " Completion {{{

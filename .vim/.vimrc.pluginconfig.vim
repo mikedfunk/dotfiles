@@ -439,7 +439,7 @@ endif
 " php.vim {{{
 " I have most of this turned off because built-in doxygen support is more
 " comprehensive. I have it enabled in my main .vimrc. :h doxygen
-let g:php_var_selector_is_identifier = 1
+" let g:php_var_selector_is_identifier = 1
 " function! PhpSyntaxOverride() abort
 "     " docblock color
 "     hi! link phpDocTags phpDefine
