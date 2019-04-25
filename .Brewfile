@@ -171,6 +171,7 @@ tap "caskroom/cask"
 # cask "beardedspice" # keyboard media controls for media sites. Always seems to be broken :/
 # cask "cheatsheet" # hold <cmd> for a bit to get a modal of available keyboard shortcuts (kind of annoying - rarely comes up when I actually want it to, too much info)
 cask "docker" # docker for mac desktop app
+cask "dozer" # little menubar app that allows hiding rarely used menubar icons
 # cask "dropbox" # I especially use this for synching my notes so I can view them in the joplin mobile app (not using this feature right now)
 cask "emacs" # this actually makes sense as a cask. It becomes tmux, vim, and kitty all in one.
 cask "epic-games" # game store
@@ -180,7 +181,7 @@ tap "homebrew/cask-fonts"
 # cask "font-fira-code"
 cask "font-iosevka"
 # cask "font-meslo-for-powerline" # whoa there are a ton of fonts on brew "cask"!
-# cask "gog-galaxy" # good old games
+cask "gog-galaxy" # good old games
 cask "google-chrome"
 # cask "google-drive"
 # cask "iterm2" (I use "kitty" now)
@@ -197,6 +198,7 @@ cask "multifirefox" # profile picker until firefox fixes this glaring omission
 cask "ngrok" # securely expose your local site to the internet and inspect and repeat traffic
 # cask "osxfuse" # half of tool to mount ssh directories in the finder (useful if working on a shared dev environment)
 cask "openemu" # multi game system emulator
+cask "origin" # ea games store
 # cask "pdftotext" # used by ranger to preview pdfs
 # cask "see" https://github.com/sindresorhus/quick-look-plugins
 # cask "qlcolorcode" # quicklook plugin to provide syntax highlighting to code files (fails to install)
@@ -214,11 +216,13 @@ cask "spectacle" # keyboard window splitter/resizer/mover
 cask "steam" # yep
 # cask "suspicious-package" # quicklook plugin
 # cask "vagrant" # development VM maker/manager (I use docker now)
+cask "transmission" # unleash a torrent of files ;)
 #
 # TODO these can't just be upgraded while virtualbox is running :/
 cask "virtualbox" # virtual machine software
 # cask "virtualbox-extension-pack" # add-on to do stuff you'll always want... except for docker-machine
 # cask "vivaldi" # chrome alternative with some cool features (I switched back to chrome for now)
+cask "vlc" # watch the videos I download
 #
 # cask "webpquicklook" # quicklook plugin
 # cask "wireshark" # analyze network data
