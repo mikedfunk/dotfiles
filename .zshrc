@@ -209,9 +209,10 @@ alias phpx="php -dxdebug.remote_autostart=1 -dxdebug.remote_connect_back=1 -dxde
 # the same layout options to automate tmux layouts.
 #
 # alias work="tmux attach -t Work || tmuxomatic ~/.tmuxomatic/Work"
-alias work="tmux attach -t Work || tmuxinator Work"
+# suppress warning thing: https://github.com/tmuxinator/tmuxinator/issues/695#issuecomment-487315070
+alias work="tmux attach -t Work || tmuxinator Work --suppress-tmux-version-warning"
 # alias home="tmux attach -t Home || tmuxomatic ~/.tmuxomatic/Home"
-alias home="tmux attach -t Home || tmuxinator Home"
+alias home="tmux attach -t Home || tmuxinator Home --suppress-tmux-version-warning"
 alias rmf='rm -rf'
 compdef rmf="rm"
 mkcd () { mkdir $1 && cd $1; }

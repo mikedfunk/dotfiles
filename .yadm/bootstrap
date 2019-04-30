@@ -341,6 +341,7 @@ _install_update_ruby_gems () {
     gem install bundler
     builtin cd || return
     bundle install --system --binstubs
+    bundle update
     bundle clean --force
     builtin cd - || return
     has rbenv && rbenv rehash
