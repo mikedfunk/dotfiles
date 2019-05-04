@@ -298,14 +298,13 @@ use Zend_Controller_Front as FrontController;
 /**
  * ${1:Description}
  *
- * usage: php /data/code_base/current/`!v @%` {environment} -v {--dry-run}
+ * usage: php /data/code_base/current/`!v @%` {environment} {-v} {--dry-run}
  */
 class ${2:MyScript} extends ProcessAbstract
 {
     /** @var bool */
     protected $isDryRun = true;
 
-    /** Setup the command options. */
     public function __construct()
     {
 	    $this->_additionalOptionalFlags[] = ['flag' => 'dry-run', 'description' => 'If in dry run, don\'t actually do anything'];
@@ -357,7 +356,7 @@ use Zend_Controller_Front as FrontController;
 /**
  * ${1:Description}
  *
- * usage: php /data/code_base/current/`!v @%` {environment} -v {--dry-run}
+ * usage: php /data/code_base/current/`!v @%` {environment} {-v} {--dry-run}
  */
 class ${2:MyScript} extends QueueProcessAbstract
 {
@@ -375,9 +374,7 @@ class ${2:MyScript} extends QueueProcessAbstract
 		// $this->setDefaultPull(10);
 	}
 
-	/**
-	 * Handle each sqs event.
-	 */
+	/** Handle each sqs event. */
 	public function processData()
 	{
         $this->isDryRun = $this->_isFlagSet('dry-run');

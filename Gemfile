@@ -12,11 +12,14 @@ gem 'compass' # ruby tool to compile sass. Used by foundation cli tool.
 gem 'github_changelog_generator' # generate changelogs from tags, issues, and merged pull requests
 # gem "haste"
 gem 'jekyll' # blogging platform used by github
+gem 'jist', '~> 1.5' # github gist cli tool
 # gem "json_pure"
 # gem "kramdown" # another markdown parser option that can be used by Jekyll.
 gem 'lunchy' # launchctl wrapper to make it more developer-friendly
 # gem "mailcatcher" # catches outgoing mail and displays it from a local server to a web-based view
+gem 'mdl', '~> 0.5.0' # markdown lint - used by vim-ale
 # gem "mysql"2xxxx # export mysql to json, etc.
+gem 'neovim', '~> 0.8.0' # support gem for neovim
 # gem "observr" # watches the file system and does stuff when things change
 # gem "pre-commit" # install pre-commit hooks to check for all kinds of things DISABLED in favor of yelp pre-commit
 # gem "pre-commit-php"
@@ -32,15 +35,7 @@ gem 'rouge' # syntax higlighter (rougify in bin) themes: http://www.rubydoc.info
 gem 'rubocop' # ruby syntax checker. works with vim syntastic
 # gem "rdiscount" # another markdown option for jekyll.
 gem 'scss-lint' # for syntastic / vim-ale
+gem 'sqlint', '~> 0.1.9' # for vim-ale
 # gem "ruby-fsevent" # probably a dependency of another package I dont use anymore
 # gem "teamocil" # save tmux layouts and regenerate them with ease
-
-gem 'neovim', '~> 0.8.0'
-
-gem 'mdl', '~> 0.5.0'
-
-gem 'sqlint', '~> 0.1.9'
-
-gem 'jist', '~> 1.5'
-
-gem "tmuxinator", "~> 0.16.0"
+gem 'tmuxinator' # tmux orchestrator like teamocil and tmuxomatic

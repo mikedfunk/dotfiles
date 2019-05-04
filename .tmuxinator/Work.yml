@@ -50,6 +50,7 @@ windows:
         - puw
         - yarn jest --watch
         - yarn gulp
+        - saatchi-start-gallery
         - wait-on http://www.local.saatchiart.com && saatchi-tail-gallery-local
 # }}}
 
@@ -153,5 +154,5 @@ windows:
       panes:
         - v -S
         - ts
-        - . ./watchi.sh
+        - . ./watch.sh
 # }}}

@@ -190,6 +190,7 @@ export PINENTRY_USER_DATA="USE_CURSES=1"
 # misc {{{
 alias info="info --vi-keys"
 alias starwars="telnet towel.blinkenlights.nl" # :)
+alias gameboy="telnet gameboy.live 1989" # :)
 cd () { builtin cd "$@" && ls -FAG; } # auto ls on cd
 alias ..="cd .."
 alias ...="cd ../.."
@@ -210,9 +211,9 @@ alias phpx="php -dxdebug.remote_autostart=1 -dxdebug.remote_connect_back=1 -dxde
 #
 # alias work="tmux attach -t Work || tmuxomatic ~/.tmuxomatic/Work"
 # suppress warning thing: https://github.com/tmuxinator/tmuxinator/issues/695#issuecomment-487315070
-alias work="tmux attach -t Work || tmuxinator Work --suppress-tmux-version-warning"
+alias work="tmux attach -t Work || tmuxinator Work"
 # alias home="tmux attach -t Home || tmuxomatic ~/.tmuxomatic/Home"
-alias home="tmux attach -t Home || tmuxinator Home --suppress-tmux-version-warning"
+alias home="tmux attach -t Home || tmuxinator Home"
 alias rmf='rm -rf'
 compdef rmf="rm"
 mkcd () { mkdir $1 && cd $1; }
@@ -604,7 +605,9 @@ alias glow-watch="ag -l -g '\.js$' | entr -r -c /usr/local/bin/glow"
 # }}}
 
 # source more files {{{
-[ -e ~/.saatchirc.sh ] && source ~/.saatchirc.sh
+[ -e "$HOME/.saatchirc.sh" ] && source "$HOME/.saatchirc.sh"
+# ensure the tmux term exists, otherwise some stuff like ncurses apps (e.g. tig) might break. This is very fast.
+[ -f "$HOME/.support/tmux-256color.terminfo.txt" ] && tic -x "$HOME/.support/tmux-256color.terminfo.txt" &>/dev/null
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # fuzzy finder - installed and managed via vim-plug https://github.com/junegunn/fzf
 # }}}
 
