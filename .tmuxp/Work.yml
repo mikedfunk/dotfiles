@@ -4,20 +4,22 @@ session_name: Work
 windows:
 
 # config {{{
-  - layout: main-horizontal
+  - window_name: config
+    start_directory: ~/.yadm
+    layout: main-horizontal
+    focus: true
     panes:
       - v -S
       - yadm st
       # - wait-on http://www.local.saatchiart.com && docker-stats
       # - sourcegraph
       - htop
-    start_directory: ~/.yadm
-    window_name: config
-    focus: true
 # }}}
 
 # legacy {{{
-  - layout: main-horizontal
+  - window_name: legacy
+    start_directory: ~/Code/saatchi/legacy
+    layout: main-horizontal
     panes:
       - v
       - ts
@@ -26,23 +28,23 @@ windows:
       # - cd ~/Code/saatchi/legacy/assets/react && saatchi-eslint-watch-legacy
       # - saatchi-grunt-watch-legacy
       - wait-on http://www.local.saatchiart.com && saatchi-tail-legacy-local
-    start_directory: ~/Code/saatchi/legacy
-    window_name: legacy
 # }}}
 
 # easel {{{
-  - layout: main-horizontal
+  - window_name: easel
+    start_directory: ~/Code/saatchi/easel
+    layout: main-horizontal
     panes:
       - v
       - ts
       - yarn jest --watchAll
       - wait-on http://www.local.saatchiart.com && saatchi-attach-easel-node
-    start_directory: ~/Code/saatchi/easel
-    window_name: easel
 # }}}
 
 # gallery {{{
-  - layout: main-horizontal
+  - window_name: gallery
+    start_directory: ~/Code/saatchi/gallery
+    layout: main-horizontal
     panes:
       - v
       - ts
@@ -51,81 +53,79 @@ windows:
       - yarn gulp
       - saatchi-start-gallery
       - wait-on http://www.local.saatchiart.com && saatchi-tail-gallery-local
-    start_directory: ~/Code/saatchi/gallery
-    window_name: gallery
 # }}}
 
 # palette {{{
-  - layout: main-horizontal
+  - window_name: palette
+    start_directory: ~/Code/saatchi/palette
+    layout: main-horizontal
     panes:
       - v
       - ts
       - psw
       # - saatchi-phing-watch
       - wait-on http://www.local.saatchiart.com && saatchi-tail-palette-local
-    start_directory: ~/Code/saatchi/palette
-    window_name: palette
 # }}}
 
 # zed {{{
-  - layout: main-horizontal
+  - window_name: zed
+    start_directory: ~/Code/saatchi/zed
+    layout: main-horizontal
     panes:
       - v
       - ts
       - wait-on http://www.local.saatchiart.com && saatchi-phpunit-watch-zed
       - saatchi-grunt-watch-zed
       - wait-on http://www.local.saatchiart.com && saatchi-tail-zed-local
-    start_directory: ~/Code/saatchi/zed
-    window_name: zed
 # }}}
 
 # catalog {{{
-  - layout: main-horizontal
+  - window_name: catalog
+    start_directory: ~/Code/saatchi/catalog
+    layout: main-horizontal
     panes:
       - v
       - ts
       - wait-on http://www.local.saatchiart.com && saatchi-tail-catalog-local
-    start_directory: ~/Code/saatchi/catalog
-    window_name: catalog
 # }}}
 
 # views {{{
-  - layout: main-horizontal
+  - window_name: views
+    start_directory: ~/Code/saatchi/couchbase-views
+    layout: main-horizontal
     panes:
       - v -S
       - ts
-    start_directory: ~/Code/saatchi/couchbase-views
-    window_name: views
 # }}}
 
 # xdocker {{{
-  - layout: main-horizontal
+  - window_name: xdocker
+    start_directory: ~/Code/saatchi/xdocker
+    layout: main-horizontal
     panes:
       - v -S
       - saatchi-docker-start
       - ts
-    start_directory: ~/Code/saatchi/xdocker
-    window_name: xdocker
 # }}}
 
 # xpuppet {{{
-  - layout: main-horizontal
+  - window_name: xpuppet
+    start_directory: ~/Code/saatchi/gitlab-puppet
+    layout: main-horizontal
     panes:
       - v -S
       - ts
-    start_directory: ~/Code/saatchi/gitlab-puppet
-    window_name: xpuppet
 # }}}
 
 # mysql {{{
-  - layout: main-horizontal
+  - window_name: mysql
+    start_directory: ~/Code/saatchi/queries
+    layout: main-vertical
     panes:
       - v -S
       - wait-on http://www.local.saatchiart.com && saatchi-mycli-legacy-local
       - wait-on http://www.local.saatchiart.com && saatchi-mycli-palette-local
       - wait-on http://www.local.saatchiart.com && saatchi-mycli-zed-local
-    start_directory: ~/Code/saatchi/queries
-    window_name: mysql
 # }}}
 
 # http {{{
@@ -142,20 +142,20 @@ windows:
 # }}}
 
 # releases {{{
-  - layout: even-horizontal
+  - window_name: releases
+    layout: even-horizontal
     panes:
       - saatchi-releases-xdev --watch --clear
       - saatchi-releases-xqa --watch --clear
       - saatchi-releases-xprod --watch --clear
-    window_name: releases
 # }}}
 
 # uml {{{
-  - layout: main-horizontal
+  - window_name: uml
+    start_directory: ~/Code/uml
+    layout: main-horizontal
     panes:
       - v -S
       - ts
       - . ./watch.sh
-    start_directory: ~/Code/uml
-    window_name: uml
 # }}}

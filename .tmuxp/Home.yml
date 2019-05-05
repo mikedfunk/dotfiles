@@ -4,29 +4,29 @@ session_name: Home
 windows:
 
 # config {{{
-  - layout: main-horizontal
+  - window_name: config
+    start_directory: ~/.yadm
+    layout: main-horizontal
+    focus: true
     panes:
       - v -S
       - yadm st
       - sourcegraph
       - htop
-    start_directory: ~/.yadm
-    window_name: config
-    focus: true
 # }}}
 
 # blog {{{
-  - layout: main-horizontal
+  - window_name: blog
+    start_directory: ~/Code/mikedfunk.github.io
+    layout: main-horizontal
     panes:
       - v -S
       - ts
       - bundle install && bundle exec jekyll serve --watch
-    start_directory: ~/Code/mikedfunk.github.io
-    window_name: blog
 # }}}
 
 # notes {{{
-  - panes:
+  - window_name: notes
+    panes:
       - joplin
-    window_name: notes
 # }}}
