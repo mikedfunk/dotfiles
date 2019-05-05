@@ -211,9 +211,11 @@ alias phpx="php -dxdebug.remote_autostart=1 -dxdebug.remote_connect_back=1 -dxde
 #
 # alias work="tmux attach -t Work || tmuxomatic ~/.tmuxomatic/Work"
 # suppress warning thing: https://github.com/tmuxinator/tmuxinator/issues/695#issuecomment-487315070
-alias work="tmux attach -t Work || tmuxinator Work"
+# alias work="tmux attach -t Work || tmuxinator Work"
+alias work="tmux attach -t Work || tmuxp load Work"
 # alias home="tmux attach -t Home || tmuxomatic ~/.tmuxomatic/Home"
-alias home="tmux attach -t Home || tmuxinator Home"
+# alias home="tmux attach -t Home || tmuxinator Home"
+alias home="tmux attach -t Home || tmuxp load Home"
 alias rmf='rm -rf'
 compdef rmf="rm"
 mkcd () { mkdir $1 && cd $1; }

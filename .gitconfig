@@ -274,19 +274,20 @@
     # tool = opendiff
     # tool = vimdiff
     compactionHeuristic = 1
-    tool = "nvim -d"
+	tool = vimdiff3
+[diftool "vimdiff3"]
+    path = nvim
 [merge]
     # tool = opendiff
     # tool = vimdiff
-    tool = nvim
+	tool = vimdiff3
 
     # shows local, parent, then remote
     # http://psung.blogspot.com/2011/02/reducing-merge-headaches-git-meets.html
     # diff3 includes the ||||||| markers to give context, allowing us to deduce whether a change was an addition or a deletion.
     # conflictstyle = diff3
-[mergetool "nvim"]
-    # cmd = nvim -f -c \"Gdiff\" \"$MERGED\"
-    cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+[mergetool "vimdiff3"]
+    path = nvim
 [mergetool]
     keepBackup = false
     prompt = false
