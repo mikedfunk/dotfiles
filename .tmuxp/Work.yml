@@ -13,6 +13,7 @@ windows:
       - htop
     start_directory: ~/.yadm
     window_name: config
+    focus: true
 # }}}
 
 # legacy {{{
