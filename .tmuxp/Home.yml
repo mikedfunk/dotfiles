@@ -4,7 +4,7 @@ session_name: Home
 windows:
 
 # config {{{
-  - layout: main-vertical
+  - layout: main-horizontal
     panes:
       - v -S
       - yadm st
@@ -16,7 +16,7 @@ windows:
 # }}}
 
 # blog {{{
-  - layout: main-vertical
+  - layout: main-horizontal
     panes:
       - v -S
       - ts

@@ -4,7 +4,7 @@ session_name: Work
 windows:
 
 # config {{{
-  - layout: main-vertical
+  - layout: main-horizontal
     panes:
       - v -S
       - yadm st
@@ -17,7 +17,7 @@ windows:
 # }}}
 
 # legacy {{{
-  - layout: main-vertical
+  - layout: main-horizontal
     panes:
       - v
       - ts
@@ -31,7 +31,7 @@ windows:
 # }}}
 
 # easel {{{
-  - layout: main-vertical
+  - layout: main-horizontal
     panes:
       - v
       - ts
@@ -42,7 +42,7 @@ windows:
 # }}}
 
 # gallery {{{
-  - layout: main-vertical
+  - layout: main-horizontal
     panes:
       - v
       - ts
@@ -56,7 +56,7 @@ windows:
 # }}}
 
 # palette {{{
-  - layout: main-vertical
+  - layout: main-horizontal
     panes:
       - v
       - ts
@@ -68,7 +68,7 @@ windows:
 # }}}
 
 # zed {{{
-  - layout: main-vertical
+  - layout: main-horizontal
     panes:
       - v
       - ts
@@ -80,7 +80,7 @@ windows:
 # }}}
 
 # catalog {{{
-  - layout: main-vertical
+  - layout: main-horizontal
     panes:
       - v
       - ts
@@ -90,7 +90,7 @@ windows:
 # }}}
 
 # views {{{
-  - layout: main-vertical
+  - layout: main-horizontal
     panes:
       - v -S
       - ts
@@ -99,7 +99,7 @@ windows:
 # }}}
 
 # xdocker {{{
-  - layout: main-vertical
+  - layout: main-horizontal
     panes:
       - v -S
       - saatchi-docker-start
@@ -109,7 +109,7 @@ windows:
 # }}}
 
 # xpuppet {{{
-  - layout: main-vertical
+  - layout: main-horizontal
     panes:
       - v -S
       - ts
@@ -118,7 +118,7 @@ windows:
 # }}}
 
 # mysql {{{
-  - layout: main-vertical
+  - layout: main-horizontal
     panes:
       - v -S
       - wait-on http://www.local.saatchiart.com && saatchi-mycli-legacy-local
@@ -151,7 +151,7 @@ windows:
 # }}}
 
 # uml {{{
-  - layout: main-vertical
+  - layout: main-horizontal
     panes:
       - v -S
       - ts
