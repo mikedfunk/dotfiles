@@ -184,12 +184,12 @@ cask "font-iosevka"
 cask "gog-galaxy" # good old games
 cask "google-chrome"
 # cask "google-drive"
-# cask "iterm2" (I use "kitty" now)
+cask "iterm2" # I was using kitty but they use opengl and macos deprecated opengl support, so it crashes regularly. iTerm now has gpu rendering, so I'm back to iTerm!
 cask "java" # required for plantuml, etc.
 # cask "joplin" # desktop joplin (I use the terminal interface)
 cask "jumpcut" # clipboard manager recommended by Michael Zick (slightly annoying interface but I haven't found any better on brew) ctrl-opt-v (forward) or ctrl-opt-shift-v (backward)
 # cask "kitematic" # mac native docker container browser (I just use docker cli tools)
-cask "kitty" # fast terminal emulator
+# cask "kitty" # fast terminal emulator (see iterm2 above for why I switched back to iTerm)
 # cask "launchcontrol" # launchctl gui. (I use lunchy gem instead)
 # cask "macfusion" # other half of tool to mount ssh directories in the finder
 # cask "macgdbp" # xdebug gui client (I use vdebug)
