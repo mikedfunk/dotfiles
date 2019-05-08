@@ -86,7 +86,7 @@ GEM
       tomlrb
     msgpack (1.2.10)
     multi_json (1.13.1)
-    multipart-post (2.0.0)
+    multipart-post (2.1.0)
     neovim (0.8.0)
       msgpack (~> 1.1)
       multi_json (~> 1.0)
