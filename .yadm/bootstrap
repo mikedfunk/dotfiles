@@ -181,6 +181,11 @@ _set_zsh_as_shell () {
 # 2. <prefix>q does not show accurate data
 # 3. If htop is in a right-most pane, the right side of the text will bleed over to the left side of the left-most pane by one character.
 # 4. All of this happens without using tic to install tmux-256color terminfo, with an empty ~/.tmux.conf, and with an empty ~/.zshrc.
+#
+# tmux org seems to be aggressively removing issues and is kind of nasty in
+# their responses. I think they're missing these issues because of how hostile
+# they are toward any issues.
+#
 # TODO find minimal way to reproduce and create github issue
 _install_tmux_2_8 () {
     has tmux && return
