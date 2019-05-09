@@ -28,5 +28,5 @@ windows:
 # notes {{{
   - window_name: notes
     panes:
-      - joplin
+      - notes
 # }}}

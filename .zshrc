@@ -238,6 +238,7 @@ alias upgrades="yb"
 alias save-dotfiles="yadm encrypt && yadm add -u && yadm ci -m working && yadm pu"
 alias save-dotfiles-without-encryption="yadm add -u && yadm ci -m working && yadm pu"
 alias joplin="/usr/local/bin/node `which joplin`" # joplin and nodenv do not mix. this uses homebrew node.
+alias notes="joplin"
 # alias jsc="/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc" # javascript repl for testing javascript wonkiness
 alias ncdu="ncdu --color dark -rr -x --exclude .git --exclude vendor" # enhanced interactive disk usage command
 alias tmux-layout="tmux display-message -p \"#{window_layout}\""

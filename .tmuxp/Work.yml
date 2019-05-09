@@ -136,9 +136,9 @@ windows:
 # }}}
 
 # notes {{{
-  - panes:
-      - joplin
-    window_name: notes
+  - window_name: notes
+    panes:
+      - notes
 # }}}
 
 # releases {{{
