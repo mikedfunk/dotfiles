@@ -79,7 +79,7 @@ brew "memcached" # needed by php70 memcached pecl extension
 brew "mkcert" # create a certificate, create a local CA, add the cert as trusted in the CA
 # brew "mono" # .NET compiler for mac. Useful for OmniSharp.
 brew "multitail" # tail multiple files in splits with pretty colors
-# brew "mycli" # I use the pip version - it's updated more frequently
+brew "mycli" # Mysql cli augmentation with completion, highlighting, etc.
 brew "mysql" # I haven't been using the server lately but I use the cli tool to connect and I use mysql_config_editor
 # brew "mysql-client" # If I ever need mysql client without mysql on local... downside: it doesn't link automatically - you have to brew link --force even if mysql isn't installed :/
 # brew "m-cli" # mac cli tools e.g. restart, screensaver, bluetooth, etc.

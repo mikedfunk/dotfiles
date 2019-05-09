@@ -174,7 +174,9 @@
     rh = reset --hard
     # root dir - e.g. cd $(git root)
     root = rev-parse --show-toplevel
-    rs = reset --soft HEAD^
+    # hard to remember this one :/
+    # rs = reset --soft HEAD^
+    rsh = reset --soft HEAD^
     # show tags sorted by semantic version e.g. 3.1.0, 3.2.0, 3.10.0
     semver = !git fetch --tags && ( git tag --sort=v:refname | grep -E \"\\d+\\.\\d+\\.\\d+\" )
     # save a stash with "git stash save my_stash_name"
@@ -287,7 +289,8 @@
     # diff3 includes the ||||||| markers to give context, allowing us to deduce whether a change was an addition or a deletion.
     # conflictstyle = diff3
 [mergetool "vimdiff3"]
-    path = nvim
+    # path = nvim
+    cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 [mergetool]
     keepBackup = false
     prompt = false
