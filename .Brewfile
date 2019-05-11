@@ -120,6 +120,7 @@ brew "rlwrap" # wrap a command in readline to enable up for history, etc. Useful
 # brew "rust" # used for "vivid" LS_COLORS package (I now download the executable until it's on homebrew)
 # brew "rvm" # ruby version manager (I use rbenv instead)
 # brew "s3cmd" # amazon s3 uploader (I use awscli instead)
+# brew "scummvm" # never have I seen a more wretched hive of scum(m) and villainy
 # brew "selenium-server-standalone" # controls a browser for automated testing
 brew "shellcheck" # Checks shell syntax (used by vim ALE)
 brew "shfmt" # formats shell scripts (used by vim ALE)
@@ -159,6 +160,7 @@ brew "yamllint" # used by vim-ale
 brew "yarn" # wrapper for npm with real lock files and caching (installing via npm is deprecated)
 brew "yadm" # yet another dotfiles manager
 # brew "zlib" # needed for pyenv (but can be used from /usr/include after installing developer package)
+brew "zork" # seriously?
 # brew "zplug" # zsh plugin manager like composer. bash installer crashes for some reason. works fine via homebrew. (switched to antibody)
 brew "zsh" # awesome bash shell replacement
 # brew "zsh-completions" # tab completions (I install this via my zsh plugin manager instead)
