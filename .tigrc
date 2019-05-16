@@ -59,7 +59,8 @@ bind generic ZZ quit
 # Focus the next view
 # bind generic <Tab> view-next
 bind generic <C-W>n view-next
-bind generic <C-W>p view-previous
+# wtf there is a view-next but no view-previous??
+# bind generic <C-W>p view-previous
 bind generic gg move-first-line
 bind generic G move-last-line
 bind generic <C-U> move-half-page-up
