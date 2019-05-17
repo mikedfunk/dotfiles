@@ -91,6 +91,7 @@ endif
 " phpstan {{{
 if (filereadable('phpstan.neon'))
     let g:ale_php_phpstan_configuration = getcwd() . '/phpstan.neon'
+    let g:ale_php_phpstan_level = 4
     call add(s:php_linters, 'phpstan')
 endif
 " }}}
