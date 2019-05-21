@@ -71,6 +71,7 @@ brew "libmemcached" # needed by php70 memcached pecl extension
 brew "libmcrypt" # needed by php-build, which is used by phpenv DO NOT DELETE php will break
 brew "libxml2" # needed by php70
 # brew "lockrun" # simple way to lock cron jobs with a lock file and clear them when done
+brew "lsd" # pretty ls augmentation
 # brew "lynx" # console web browser. used by ranger to preview html.
 # brew "macvim" # mac gui vim client
 brew "mas" # mac app store cli. e.g. `mas install Xcode`
@@ -181,7 +182,8 @@ cask "firefox"
 tap "homebrew/cask-fonts"
 # tap "caskroom/fonts"
 # cask "font-fira-code"
-cask "font-iosevka"
+# cask "font-iosevka"
+cask "font-iosevka-nerd-font-mono"
 # cask "font-meslo-for-powerline" # whoa there are a ton of fonts on brew "cask"!
 cask "gog-galaxy" # good old games
 cask "google-chrome"

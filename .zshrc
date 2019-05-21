@@ -138,6 +138,7 @@ has vivid && export LS_COLORS="$(vivid generate molokai)" # https://github.com/s
 # https://www.reddit.com/r/linux/comments/b5n1l5/whats_your_favorite_cli_tool_nobody_knows_about/ejex2pm/
 # export LESSOPEN="| /usr/local/opt/source-highlight/bin/src-hilite-lesspipe.sh %s"
 # alias less="less -R"
+GITWEB_PROJECTROOT="$HOME/Code"
 
 # configure cgr and composer {{{
 # this ensures composer and cgr both point to my php version's composer
@@ -194,6 +195,7 @@ alias gameboy="telnet gameboy.live 1989" # :)
 cd () { builtin cd "$@" && ls -FAG; } # auto ls on cd
 alias ..="cd .."
 alias ...="cd ../.."
+# has lsd && alias ls="lsd" # fancy ls augmentation (disabled because it's missing flags that ls has >:(  )
 alias ll='ls -lhGFA'
 alias phpx="php -dxdebug.remote_autostart=1 -dxdebug.remote_connect_back=1 -dxdebug.idekey=${XDEBUG_IDE_KEY} -dxdebug.remote_port=9000 -ddisplay_errors=on"
 #
@@ -249,7 +251,7 @@ export CLICOLOR=1 # ls colors by default
 # pretty-print PATH with line breaks
 function pretty-path () { tr : '\n' <<<"$PATH"; }
 # alias vit="vim +TW" # until vit gets its act together
-# alias tree="alder" # colorized tree from npm (I colorize tree with "vivid" now so this is not needed)
+# alias tree="alder" # colorized tree from npm (I colorize tree with "lsd" now so this is not needed)
 
 # saatchi servers don't like anything *-256color
 alias ssh="env TERM=screen ssh"
