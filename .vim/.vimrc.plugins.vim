@@ -109,6 +109,7 @@ Plug 'tpope/vim-endwise' " auto add end/endif for vimscript/ruby. no lazy load o
 Plug 'tpope/vim-rsi' " readline mappings for insert and command modes
 " Plug 'google/vim-maktaba' | Plug 'google/vim-coverage' " coverage for python
 " Plug 'revolvingcow/vim-umbrella' " vague coverage displayer
+" Plug 'hyiltiz/vim-plugins-profile' " find slow plugins
 " }}}
 
 " Html {{{
@@ -252,6 +253,7 @@ endif " javascript omnifunc and jump to def. requires a .tern-project or ~/.tern
 Plug 'othree/javascript-libraries-syntax.vim' " syntax completion for common libraries (react, lodash, jquery, etc.)
 " Plug 'kristijanhusak/vim-js-file-import' " Go to definition: <leader>ig Import file: <Leader>if
 Plug 'tpope/vim-apathy' " tweak built-in vim features to allow jumping to javascript (and others) module location with gf
+Plug 'tomarrell/vim-npr' " make gf work with index.js and search js files more intelligently
 " vim-apathy is useful to replace something like this https://stackoverflow.com/questions/33093491/vim-gf-with-file-extension-based-on-current-filetype#33096831
 " }}}
 
