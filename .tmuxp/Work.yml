@@ -159,3 +159,12 @@ windows:
       - ts
       - . ./watch.sh
 # }}}
+
+# chromatic (iOS app) {{{
+  - window_name: chromatic
+    start_directory: ~/Code/saatchi/chromatic
+    layout: main-horizontal
+    panes:
+      - v -S
+      - ts
+# }}}

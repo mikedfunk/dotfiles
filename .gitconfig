@@ -117,9 +117,9 @@
     # fuzzy stash apply
     fsa = "!f() { ( git stash list | fzf | awk -F':' '{print $1}' | xargs git stash apply ); }; f"
     ft = fetch --tags
-    # git commit fixup using peco to select which commit to fixup on
-    cfd = "!f() { git ci --fixup $(git ld | fzf | awk '{print $1}'); }; f"
-    cfm = "!f() { git ci --fixup $(git lm | fzf | awk '{print $1}'); }; f"
+    # git commit fixup using fzf to select which commit to fixup on
+    cfd = "!f() { git commit --fixup $(git ld | fzf | awk '{print $1}'); }; f"
+    cfm = "!f() { git commit --fixup $(git lm | fzf | awk '{print $1}'); }; f"
     # show the sha ref of the current HEAD
     headref = "!git show-ref --head -s | awk 'NR==1'"
     # Show files ignored by git
