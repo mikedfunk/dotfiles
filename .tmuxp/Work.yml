@@ -23,6 +23,7 @@ windows:
     panes:
       - v
       - ts
+      - saatchi-tinker-legacy-local
       - puw
       - cd ~/Code/saatchi/legacy/assets/react && yarn && yarn start
       # - cd ~/Code/saatchi/legacy/assets/react && saatchi-eslint-watch-legacy
@@ -48,10 +49,11 @@ windows:
     panes:
       - v
       - ts
+      - saatchi-tinker-gallery-local
       - puw
       - yarn jest --watch
       - yarn gulp
-      - saatchi-start-gallery
+        # - saatchi-start-gallery
       - wait-on http://www.local.saatchiart.com && saatchi-tail-gallery-local
 # }}}
 
@@ -62,6 +64,7 @@ windows:
     panes:
       - v
       - ts
+      - saatchi-tinker-palette-local
       - psw
       # - saatchi-phing-watch
       - wait-on http://www.local.saatchiart.com && saatchi-tail-palette-local
@@ -86,6 +89,7 @@ windows:
     panes:
       - v
       - ts
+      - saatchi-tinker-catalog-local
       - wait-on http://www.local.saatchiart.com && saatchi-tail-catalog-local
 # }}}
 
