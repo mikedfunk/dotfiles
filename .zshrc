@@ -610,7 +610,7 @@ alias glow-watch="ag -l -g '\.js$' | entr -r -c /usr/local/bin/glow"
 # }}}
 
 # source more files {{{
-[ -e "$HOME/.saatchirc.sh" ] && source "$HOME/.saatchirc.sh"
+[ -e "$HOME/.saatchirc" ] && source "$HOME/.saatchirc"
 # ensure the tmux term exists, otherwise some stuff like ncurses apps (e.g. tig) might break. This is very fast.
 [ -f "$HOME/.support/tmux-256color.terminfo.txt" ] && tic -x "$HOME/.support/tmux-256color.terminfo.txt" &>/dev/null
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # fuzzy finder - installed and managed via vim-plug https://github.com/junegunn/fzf

@@ -4,7 +4,7 @@ Library/Application Support/Sequel Pro/Data/Favorites.plist
 .ssh/keys
 .ssh/config
 .saatchi-ansible-hosts.ini
-.saatchirc.sh
+.saatchirc
 Code/saatchi/queries
 Code/saatchi/http
 Code/uml
