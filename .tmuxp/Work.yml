@@ -13,6 +13,7 @@ windows:
       - yadm st
       # - wait-on http://www.local.saatchiart.com && docker-stats
       # - sourcegraph
+      - dme && ctop
       - htop
 # }}}
 

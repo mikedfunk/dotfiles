@@ -16,7 +16,7 @@ brew "bat" # much cooler looking cat
 # brew "coreutils" # used by k zsh plugin
 # brew "cmake" # used by youcompleteme
 # brew "ctags" # allows jumping to function/class definitions, etc. in vim (I use universal-ctags)
-# brew "ctop" # like top for docker containers (doesn't work with docker-machine, only docker-for-mac due to docker.sock)
+brew "ctop" # like top for docker containers
 brew "curl" # http cli tool. Included with mac of course, but this gives me the updated version.
 # brew "desk" # shell workspace manager. I use direnv instead.
 brew "diff-so-fancy" # better git diff viewer (note: diff-highlight is in pip)
