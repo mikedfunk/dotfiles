@@ -547,7 +547,7 @@ function sourcegraph() {
                 --volume ~/.sourcegraph/config:/etc/sourcegraph \
                 --volume ~/.sourcegraph/data:/var/opt/sourcegraph \
                 --volume /var/run/docker.sock:/var/run/docker.sock \
-                sourcegraph/server:3.3.1 || \
+                sourcegraph/server:3.4.2 || \
                 sleep 15
             # open http://127.0.0.1:7080
         done
