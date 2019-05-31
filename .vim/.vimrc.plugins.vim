@@ -359,7 +359,7 @@ Plug 'ap/vim-css-color', { 'for': ['scss', 'css'] } " colorize css colors e.g. #
 " Plug 'lifepillar/vim-solarized8'
 " Plug 'mbbill/vim-seattle'
 " Plug 'mhartington/oceanic-next' " base16 version available
-" Plug 'morhetz/gruvbox'
+" Plug 'gruvbox-community/gruvbox'
 " Plug 'rakr/vim-one'
 " Plug 'raphamorim/lucario'
 " Plug 'roosta/vim-srcery'

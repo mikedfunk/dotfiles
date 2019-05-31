@@ -13,7 +13,7 @@ windows:
       - yadm st
       # - wait-on http://www.local.saatchiart.com && docker-stats
       # - sourcegraph
-      - dme && ctop
+      - wait-on http://www.local.saatchiart.com && dme && ctop
       - htop
 # }}}
 
@@ -24,7 +24,7 @@ windows:
     panes:
       - v
       - ts
-      - saatchi-tinker-legacy-local
+      - wait-on http://www.local.saatchiart.com && saatchi-tinker-legacy-local
       - puw
       - cd ~/Code/saatchi/legacy/assets/react && yarn && yarn start
       # - cd ~/Code/saatchi/legacy/assets/react && saatchi-eslint-watch-legacy
@@ -50,7 +50,7 @@ windows:
     panes:
       - v
       - ts
-      - saatchi-tinker-gallery-local
+      - wait-on http://www.local.saatchiart.com && saatchi-tinker-gallery-local
       - puw
       - yarn jest --watch
       - yarn gulp
@@ -65,7 +65,7 @@ windows:
     panes:
       - v
       - ts
-      - saatchi-tinker-palette-local
+      - wait-on http://www.local.saatchiart.com && saatchi-tinker-palette-local
       - psw
       # - saatchi-phing-watch
       - wait-on http://www.local.saatchiart.com && saatchi-tail-palette-local
@@ -90,7 +90,7 @@ windows:
     panes:
       - v
       - ts
-      - saatchi-tinker-catalog-local
+      - wait-on http://www.local.saatchiart.com && saatchi-tinker-catalog-local
       - wait-on http://www.local.saatchiart.com && saatchi-tail-catalog-local
 # }}}
 
