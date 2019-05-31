@@ -330,6 +330,11 @@ mcsre_s:yellow,,bold:^[A-Za-z]+ +[0-9]+ ([0-9:]+)
 mcsre_s:blue: [a-zA-Z_\-]+/([a-zA-Z_\-]+[0-9]*)
 # request
 mcsre_s:red:"(.*)"
+# I tried to combine these in braces but was getting strange results
+cs_re:white,,bold:\{
+cs_re:white,,bold:\}
+cs_re:white,,bold:\[
+cs_re:white,,bold:\]
 # }}}
 
 # mysql general query log {{{
