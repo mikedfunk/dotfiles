@@ -161,7 +161,7 @@ brew "yamllint" # used by vim-ale
 brew "yarn" # wrapper for npm with real lock files and caching (installing via npm is deprecated)
 brew "yadm" # yet another dotfiles manager
 # brew "zlib" # needed for pyenv (but can be used from /usr/include after installing developer package)
-brew "zork" # seriously?
+brew "zork" # seriously? yes. tip: `save` and `restore` And yes, there's only one save slot, what do you think this is, 1990?
 # brew "zplug" # zsh plugin manager like composer. bash installer crashes for some reason. works fine via homebrew. (switched to antibody)
 brew "zsh" # awesome bash shell replacement
 # brew "zsh-completions" # tab completions (I install this via my zsh plugin manager instead)
@@ -195,6 +195,7 @@ cask "jumpcut" # clipboard manager recommended by Michael Zick (slightly annoyin
 # cask "kitematic" # mac native docker container browser (I just use docker cli tools)
 # cask "kitty" # fast terminal emulator (see iterm2 above for why I switched back to iTerm)
 # cask "launchcontrol" # launchctl gui. (I use lunchy gem instead)
+cask "lunchy" # launchctl cli wrapper. Port of lunchy gem. (Tried this, was missing options, back to gem)
 # cask "macfusion" # other half of tool to mount ssh directories in the finder
 # cask "macgdbp" # xdebug gui client (I use vdebug)
 cask "multifirefox" # profile picker until firefox fixes this glaring omission
@@ -215,7 +216,7 @@ cask "quicklook-csv" # quicklook plugin
 cask "sequel-pro" # mysql gui client
 cask "slack" # needed for screen sharing features
 cask "spectacle" # keyboard window splitter/resizer/mover
-# cask "spotify" # mac native spotify player (I use the web app)
+cask "spotify" # mac native spotify player (I use the web app, but sometimes it gets stuck in an offline state)
 # cask "ssh-tunnel-manager" # mac native gui to manage running ssh tunnels
 cask "steam" # yep
 # cask "suspicious-package" # quicklook plugin
@@ -225,7 +226,7 @@ cask "transmission" # unleash a torrent of files ;)
 # TODO these can't just be upgraded while virtualbox is running :/
 cask "virtualbox" # virtual machine software
 # cask "virtualbox-extension-pack" # add-on to do stuff you'll always want... except for docker-machine
-# cask "vivaldi" # chrome alternative with some cool features (I switched back to chrome for now)
+# cask "vivaldi" # chrome alternative with some cool features (I switched back to chrome for now - profiles are kind of buggy atm)
 cask "vlc" # watch the videos I download
 #
 # cask "webpquicklook" # quicklook plugin
@@ -235,6 +236,6 @@ cask "vlc" # watch the videos I download
 
 # mac app store {{{
 # Do I really need these?
-# mas "Xcode", id: 497799835
+mas "Xcode", id: 497799835
 # mas "GIPHY CAPTURE", id: 668208984
 # }}}
