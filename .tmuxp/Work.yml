@@ -53,7 +53,7 @@ windows:
       - wait-on http://www.local.saatchiart.com && saatchi-tinker-gallery-local
       - puw
       - yarn jest --watch
-      - yarn gulp
+      - saatchi-gulp-watch-gallery
         # - saatchi-start-gallery
       - wait-on http://www.local.saatchiart.com && saatchi-tail-gallery-local
 # }}}
