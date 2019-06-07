@@ -729,6 +729,12 @@ let g:airline#extensions#tabline#show_splits = 0 " shows how many splits are in 
 let g:airline#extensions#tabline#show_tab_type = 0 " right side says either 'buffers' or 'tabs'
 let g:airline#extensions#tagbar#enabled = 0 " cool but slows down php
 
+" emacs-like slanted separators
+" let g:airline_left_sep="\ue0b8"
+" let g:airline_left_alt_sep = "\ue0b9"
+" let g:airline_right_sep="\ue0be"
+" let g:airline_right_alt_sep="\ue0b9"
+
 " vim-obsession indicator - show current session name {{{
 " e.g. '$ my-session-name.vim'
 let g:this_session = get(g:, 'this_session', '')
