@@ -87,6 +87,7 @@ if [[ ! $ANTIBODY_LOADED ]]; then
 
     antibody bundle yous/vanilli.sh # sensible zsh defaults
     antibody bundle djui/alias-tips # tell you when an alias would shorten the command you ran
+    antibody bundle robbyrussell/oh-my-zsh path:plugins/command-not-found
     antibody bundle robbyrussell/oh-my-zsh path:plugins/colored-man-pages
     antibody bundle robbyrussell/oh-my-zsh path:plugins/colorize # Plugin for highlighting file content
     antibody bundle robbyrussell/oh-my-zsh path:plugins/wd/wd.plugin.zsh # warp directory

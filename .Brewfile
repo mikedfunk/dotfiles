@@ -173,6 +173,7 @@ tap "caskroom/cask"
 # cask "bitbar" # use any cli command to show stuff in the menubar with colors and icons and provide menu options
 # cask "beardedspice" # keyboard media controls for media sites. Always seems to be broken :/
 # cask "cheatsheet" # hold <cmd> for a bit to get a modal of available keyboard shortcuts (kind of annoying - rarely comes up when I actually want it to, too much info)
+cask "discord" # chat
 cask "docker" # docker for mac desktop app
 cask "dozer" # little menubar app that allows hiding rarely used menubar icons
 # cask "dropbox" # I especially use this for synching my notes so I can view them in the joplin mobile app (not using this feature right now)
