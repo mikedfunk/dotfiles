@@ -372,6 +372,10 @@ Plug 'chriskempson/base16-vim' " themes made of 16 colors
 " Plug 'cocopon/iceberg.vim'
 " Plug 'evturn/cosmic-barf' " psychadelic solarized (comments are really hard to see)
 " Plug 'toothpaste-theme/toothpaste'
+" Plug 'wmvanvliet/vim-blackboard'
+" Plug 'jaredgorski/SpaceCamp'
+" Plug 'mr-ubik/vim-hackerman-syntax'
+" Plug 'flrnprz/taffy.vim'
 " }}}
 " }}}
 

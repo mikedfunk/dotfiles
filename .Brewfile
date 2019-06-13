@@ -170,6 +170,7 @@ brew "zsh" # awesome bash shell replacement
 # cask {{{
 tap "caskroom/cask"
 # cask "dashlane" # password manager like lastpass (I use lastpass)
+cask "bettertouchtool" # with a config file this lets me vimify any cocoa app https://raw.githubusercontent.com/Vincent-Carrier/CocoaVim/master/CocoaVim.bttpreset
 # cask "bitbar" # use any cli command to show stuff in the menubar with colors and icons and provide menu options
 # cask "beardedspice" # keyboard media controls for media sites. Always seems to be broken :/
 # cask "cheatsheet" # hold <cmd> for a bit to get a modal of available keyboard shortcuts (kind of annoying - rarely comes up when I actually want it to, too much info)
@@ -199,6 +200,7 @@ cask "jumpcut" # clipboard manager recommended by Michael Zick (slightly annoyin
 cask "lunchy" # launchctl cli wrapper. Port of lunchy gem. (Tried this, was missing options, back to gem)
 # cask "macfusion" # other half of tool to mount ssh directories in the finder
 # cask "macgdbp" # xdebug gui client (I use vdebug)
+cask "malwarebytes" # ya neva know
 cask "multifirefox" # profile picker until firefox fixes this glaring omission
 # cask "noti" # mac native pushbullet notifications (I use the chrome extension)
 cask "ngrok" # securely expose your local site to the internet and inspect and repeat traffic
