@@ -229,9 +229,9 @@ cask "transmission" # unleash a torrent of files ;)
 # TODO these can't just be upgraded while virtualbox is running :/
 cask "virtualbox" # virtual machine software
 # cask "virtualbox-extension-pack" # add-on to do stuff you'll always want... except for docker-machine
+#
 # cask "vivaldi" # chrome alternative with some cool features (I switched back to chrome for now - profiles are kind of buggy atm)
 cask "vlc" # watch the videos I download
-#
 # cask "webpquicklook" # quicklook plugin
 # cask "wireshark" # analyze network data
 # cask "xquartz" # needed to install xclip, which is needed to copy text from multitail (I installed all of that, copy still didn't work :/ )
