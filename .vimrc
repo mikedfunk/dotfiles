@@ -219,7 +219,8 @@ set ignorecase " Case insensitive search. Needed for smartcase to work.
 set infercase " smarter, case-aware completion in insert mode.
 set lazyredraw " to speed up rendering and avoid scrolling problems
 set smartcase " Case sensitive when uc present
-set switchbuf=usetab,newtab " when following quickfix results, jump to first tab/window that has that file open if any. Also works with :sb
+" NOTE this results in an extra split showing up below the quickfix for some reason - I think because it overlaps with fzf-vim's mappings
+" set switchbuf=usetab,newtab " when following quickfix results, jump to first tab/window that has that file open if any. Also works with :sb
 " https://vi.stackexchange.com/a/11413
 augroup ignorecase_augroup
     autocmd!
