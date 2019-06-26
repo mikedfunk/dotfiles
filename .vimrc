@@ -744,7 +744,8 @@ nnoremap <leader>dl :diffget LOCAL<cr>
 
 " open current file in browser (useful for markdown preview)
 function! PreviewInBrowser() abort
-    silent !open -a "Google Chrome" %:p
+    " silent !open -a "Google Chrome" %:p
+    silent !open -a "Firefox" %:p
     redraw!
 endfunction
 command! PreviewInBrowser :call PreviewInBrowser()

@@ -5,6 +5,7 @@
 # https://code.joejag.com/2014/why-zsh.html
 # https://til.hashrocket.com/posts/alk38eeu8r-use-fc-to-fix-commands-in-the-shell
 # ctrl-z won't work? remove ~/.zsh/log/jog.lock
+# This is documented with tomdoc.sh style https://github.com/tests-always-included/tomdoc.sh
 # }}}
 
 # Paths {{{
@@ -66,7 +67,11 @@ fpath=(
 # }}}
 
 # helper functions {{{
-function has() { type "$1" &>/dev/null; }
+
+# Internal: Whether a command is available
+has() {
+    type "$1" &>/dev/null
+}
 # }}}
 
 # zsh {{{
@@ -121,7 +126,7 @@ has pyenv && eval "$(pyenv init -)"
 # use pipenv instead of virtualenv. It comes with pyenv! There's also support for it with direnv.
 # has pyenv-virtualenv-init && eval "$(pyenv virtualenv-init -)"
 [[ -f "$HOME/.phpenv/bin/phpenv" ]] && eval "$($HOME/.phpenv/bin/phpenv init -)"
-# this is useful in other places
+# used internally and in .envrc files to go to phpenv directories
 export PHPENV_VERSION="$(phpenv version | cut -d' ' -f1)"
 has rbenv && eval "$(rbenv init -)"
 # has akamai && eval "$(akamai --zsh)" # this takes like 1 second and I almost never use it
@@ -142,7 +147,7 @@ has vivid && export LS_COLORS="$(vivid generate molokai)" # https://github.com/s
 GITWEB_PROJECTROOT="$HOME/Code"
 
 # configure cgr and composer {{{
-# this ensures composer and cgr both point to my php version's composer
+# Internal: this ensures composer and cgr both point to my php version's composer
 # directory so I don't have broken tools when I switch php versions
 #
 # NOTE: when switching global versions I have to run this manually to also
@@ -170,10 +175,10 @@ _configure_cgr_and_composer
 # https://www.everythingcli.org/ssh-tunnelling-for-fun-and-profit-autossh/
 export AUTOSSH_PORT=0
 
-# pass the current ssh alias. Used by my promptline theme and .screenrc to show the alias in the PS1.
-function ssh () { LC_SSH_ALIAS=$1 /usr/bin/ssh $@; }
-function autossh () { LC_SSH_ALIAS=$1 /usr/local/bin/autossh $@; }
-function sshrc () { LC_SSH_ALIAS=$1 /usr/local/bin/sshrc $@; }
+# Public: pass the current ssh alias. Used by my promptline theme and .screenrc to show the alias in the PS1.
+ssh() { LC_SSH_ALIAS=$1 /usr/bin/ssh $@; }
+autossh() { LC_SSH_ALIAS=$1 /usr/local/bin/autossh $@; }
+sshrc() { LC_SSH_ALIAS=$1 /usr/local/bin/sshrc $@; }
 
 compdef autossh="ssh"
 compdef sshrc="ssh"
@@ -182,7 +187,7 @@ ssh-add -A 2>/dev/null # add all keys stored in keychain if they haven't been ad
 # }}}
 
 # gpg {{{
-# uncomment this to enable gpg passwords in the terminal
+# enable gpg passwords in the terminal
 export GPG_TTY=`tty` # make gpg prompt for a password
 export PINENTRY_USER_DATA="USE_CURSES=1"
 # }}}
@@ -250,7 +255,7 @@ export CLICOLOR=1 # ls colors by default
 # export NODE_PATH="/usr/local/lib/node_modules" # zombie.js doesn't work without this
 
 # pretty-print PATH with line breaks
-function pretty-path () { tr : '\n' <<<"$PATH"; }
+pretty-path() { tr : '\n' <<<"$PATH"; }
 # alias vit="vim +TW" # until vit gets its act together
 # alias tree="alder" # colorized tree from npm (I colorize tree with "lsd" now so this is not needed)
 
@@ -288,12 +293,16 @@ alias bri="brew install"
 
 # phpunit {{{
 alias pu="phpunitnotify"
-# PhpUnitCoverage
-function puc () { pu --coverage-html=./coverage $@ && open coverage/index.html; }
-# PhpSpecCoverage
-function psc () { phpdbg -qrr -dmemory_limit=2048M  ./vendor/bin/phpspec run --config ./phpspec-coverage.yml $@ && open coverage/index.html; }
+
+# Public: phpunit coverage
+puc() { pu --coverage-html=./coverage $@ && open coverage/index.html; }
+
+# Public: phpspec coverage
+psc() { phpdbg -qrr -dmemory_limit=2048M  ./vendor/bin/phpspec run --config ./phpspec-coverage.yml $@ && open coverage/index.html; }
 alias puf="pu --filter="
-function puw () {
+
+# Public: phpunit watch
+puw() {
     noglob ag -l -g \
         '(application\/controllers|application\/modules\/*\/controllers|application\/models|library|src|app|tests)/.*\.php' \
         | entr -r -c \
@@ -304,7 +313,9 @@ function puw () {
         --colors=always \
         $@
 }
-function puw-pretty () {
+
+# Public: phpunit watch with a "pretty" formatter
+puw-pretty() {
     noglob ag -l -g \
         '(application\/controllers|application\/modules\/*\/controllers|application\/models|library|src|tests)/.*\.php' \
         | entr -r -c \
@@ -328,7 +339,7 @@ alias crd="composer require --dev"
 # git {{{
 alias g="git"
 compdef g="git"
-function grt () { cd `g root`; }
+grt() { cd `g root`; }
 alias cdg="grt"
 alias git-standup="$HOME/.config/yarn/global/node_modules/.bin/git-standup" # use this instead of the one in brew git-extras
 # alias standup="tig --since='2 days ago' --author='Mike Funk' --no-merges"
@@ -347,7 +358,7 @@ alias ygu="yarn global upgrade"
 # }}}
 
 # phpenv {{{
-phpenv-switch () {
+phpenv-switch() {
     # because phpenv's hook system is not implemented correctly, I wrap the
     # global command so I can also change composer and cgr config
     [ -z "$1" ] && ( echo "Usage: $0 {version_number}"; return 1 )
@@ -363,7 +374,7 @@ alias psr="phpspecnotify"
 alias psd="phpspec describe"
 # alias psw="phpspec-watcher watch"
 alias psw="noglob ag -l -g '.*\\.php' | entr -r -c noti --message \"PHPSpec passed 👍\" ./vendor/bin/phpspec run -vvv"
-# function phpspecnotify () {
+# phpspecnotify() {
 #     php -dmemory_limit=2048M -ddisplay_errors=on ./vendor/bin/phpspec "${@}"
 #     [[ $? == 0 ]] && noti --message "PHPSpec specs passed 👍" ||
 #         noti --message "PHPSpec specs failed 👎"
@@ -410,7 +421,7 @@ KEYTIMEOUT=1 # no vim delay entering normal mode
 # usage: `xdb on` or `xdb off` or `xdb` for status
 # xdb () { xdebug-toggle $1 --no-server-restart; }
 
-function xdebug-off () {
+xdebug-off() {
     builtin cd "$(phpenv root)/versions/${PHPENV_VERSION}/etc/conf.d"
     if ! [ -f xdebug.ini ]; then
         echo "xdebug.ini does not exist"
@@ -421,7 +432,7 @@ function xdebug-off () {
     echo "xdebug disabled"
 }
 
-function xdebug-on () {
+xdebug-on() {
     builtin cd "$(phpenv root)/versions/${PHPENV_VERSION}/etc/conf.d"
     if ! [ -f xdebug.ini.DISABLED ]; then
         echo "xdebug.ini.DISABLED does not exist"
@@ -432,15 +443,16 @@ function xdebug-on () {
     echo "xdebug disabled"
 }
 
-function xdebug-status () {
+xdebug-status() {
     builtin cd "$(phpenv root)/versions/${PHPENV_VERSION}/etc/conf.d"
     [ -f ./xdebug.ini  ] && echo 'xdebug enabled' || echo 'xdebug disabled'
     builtin cd -
 }
+
 # }}}
 
 # docker {{{
-# switch to docker-machine
+# Public: switch to docker-machine
 alias dme="eval \$(docker-machine env default)"
 # unset all docker-machine env vars
 alias dmu="eval \$(docker-machine env -u)"
@@ -451,10 +463,10 @@ alias dmi="dme && docker-machine ip"
 # alias dms="docker-machine start && dme"
 alias dms="docker-machine stop"
 
-# docker-machine can get hung up by virtualbox sometimes during startup. Try
+# Public: docker-machine can get hung up by virtualbox sometimes during startup. Try
 # again after 15 seconds up to 5 times.
 # https://unix.stackexchange.com/a/82610/287898
-function docker-machine-start () {
+docker-machine-start() {
     for i in {1..5}; do
         docker-machine start && \
             dme && \
@@ -475,14 +487,15 @@ alias dcb="dme && docker-compose build"
 alias dcd="dme && docker-compose stop"
 alias dcp="dme && docker-compose ps"
 
+# Internal: kill docker exec processes on ctrl-c
+#
 # https://github.com/moby/moby/issues/9098#issuecomment-189743947
-# kill docker exec processes on ctrl-c
 # it's not perfect but it does stop the process
-function _docker_cleanup {
+_docker_cleanup() {
     docker exec $IMAGE bash -c "if [ -f $PIDFILE ]; then kill -TERM -\$(cat $PIDFILE); rm $PIDFILE; fi"
 }
 
-function _docker_exec {
+_docker_exec() {
     IMAGE=$1
     PIDFILE=/tmp/docker-exec-$$
     shift
@@ -495,7 +508,9 @@ function _docker_exec {
 }
 
 alias docker-restart="osascript -e 'quit app \"Docker\"' && open -a Docker"
-function docker-stats() {
+
+# Public: wrap docker status with color and underline in header
+docker-stats() {
     dme
     docker stats --format "table $(tput setaf 2){{.Name}}\t$(tput setaf 3){{.CPUPerc}}\t$(tput setaf 4){{.MemPerc}}" | sed -E -e "s/(NAME.*)/$(tput smul)\1$(tput sgr0)/"
 }
@@ -503,8 +518,8 @@ function docker-stats() {
 
 # phpunit {{{
 
-# runs phpunit/phpspec and uses noti to show the results {{{
-function phpunitnotify() {
+# Public: runs phpunit and uses noti to show the results
+phpunitnotify() {
     # xdebug-off > /dev/null
     # php -dmemory_limit=2048M -ddisplay_errors=on ./vendor/bin/phpunit --colors "${@}"
     # autoloader is failing :(
@@ -513,7 +528,9 @@ function phpunitnotify() {
         noti --message "PHPUnit tests failed 👎"
     # xdebug-on > /dev/null
 }
-function phpspecnotify() {
+
+# Public: runs phpspec run and uses noti to show the results
+phpspecnotify() {
     # xdebug-off > /dev/null
     # php -dmemory_limit=2048M -ddisplay_errors=on ./vendor/bin/phpspec run "${@}"
     phpdbg -qrr -dmemory_limit=2048M -ddisplay_errors=on ./vendor/bin/phpspec run "${@}"
@@ -522,22 +539,23 @@ function phpspecnotify() {
         noti --message "Specs failed 👎"
     # xdebug-on > /dev/null
 }
-# }}}
 
-# phpunit with xdebug turned on {{{
-function pux() {
+# Public: phpunit with xdebug turned on
+pux() {
     # xdebug-off > /dev/null
     phpx -dmemory_limit=2048M -ddisplay_errors=on ./vendor/bin/phpunit --colors "${@}"
     [[ $? == 0 ]] && noti --message "PHPUnit tests passed 👍" || noti --message "PHPUnit tests failed 👎"
     xdebug-on > /dev/null
 }
 # }}}
-# }}}
 
 # sourcegraph {{{
+
+# Public: Run sourcegraph via docker
+#
 # only works with docker-for-mac, not docker-machine :/
 # https://about.sourcegraph.com/docs/
-function sourcegraph() {
+sourcegraph() {
     if ( docker ps | grep sourcegraph ); then
         docker logs --follow $( docker ps | grep "sourcegraph\/server" | awk '{print $1}' )
     else
@@ -559,9 +577,10 @@ function sourcegraph() {
 # }}}
 
 # swagger {{{
-# bring up a swagger web editor that can interact with your local api
+
+# Public: bring up a swagger web editor that can interact with your local api
 # https://github.com/huan/swagger-edit
-function swagger-edit() {
+swagger-edit() {
     if [ "$1" -e "--help" ]; then echo "Usage: $0 {my-api-spec.yaml}"; return; fi
     docker run \
         --publish 8080:8080 \
@@ -570,7 +589,7 @@ function swagger-edit() {
         swaggerapi/swagger-editor
 }
 
-function swagger-ui() {
+swagger-ui() {
     if [ "$1" -e "--help" ]; then echo "Usage: $0 {my-api-spec.yaml}"; return; fi
     docker run \
         --publish 8090:8080 \
@@ -578,9 +597,10 @@ function swagger-ui() {
         --volume $(pwd)/$1:/tmp/$1 \
         swaggerapi/swagger-ui
 }
-# convert doctrine php docblocks to openapi spec yaml
+
+# Public: convert doctrine php docblocks to openapi spec yaml
 # https://github.com/zircote/swagger-php
-function swagger-php-gen() {
+swagger-php-gen() {
     docker run \
         --volume $(pwd):/app \
         -it \
@@ -590,16 +610,16 @@ function swagger-php-gen() {
 
 # pahout {{{
 # https://github.com/wata727/pahout
-pahout () { docker run --rm -t -v $(pwd):/workdir wata727/pahout; }
+pahout() { docker run --rm -t -v $(pwd):/workdir wata727/pahout; }
 # }}}
 
 # couchbase {{{
-function couchbase-php-sdk-version () { php --re couchbase | head -1 | awk '{print $6, $7, $8}'; }
-function couchbase-php-extension-version () { php -i | grep couchbase | grep "libcouchbase runtime"; }
+couchbase-php-sdk-version() { php --re couchbase | head -1 | awk '{print $6, $7, $8}'; }
+couchbase-php-extension-version() { php -i | grep couchbase | grep "libcouchbase runtime"; }
 # }}}
 
 # php-language-server {{{
-function php-language-server-script () {
+php-language-server-script() {
     if [ "$1" -e "--help" ]; then echo "Usage: $0 with no args lists scripts, $0 {script-name} to run"; return; fi
     [ -z $@ ] && ARG='-l' || ARG="$@"
     composer global run-script --working-dir=$HOME/.composer/global/felixfbecker/language-server/vendor/felixfbecker/language-server $ARG

@@ -14,7 +14,11 @@ My Bash, Vim, Git, and other dotfiles. Managed by [yadm](https://thelocehiliosan
 
 ## Key files
 
-* [Homebrew packages I use](.Brewfile)
+* [Homebrew packages, casks, and mac store apps I use](.Brewfile)
+* [Node packages](.config/yarn/global/package.json)
+* [Python packages](requirements.txt)
+* [Ruby packages](Gemfile)
+
 * [Yadm bootstrap file](.yadm/bootstrap) (script to install/upgrade everything)
 * [Vimrc](.vimrc)
 * [Zshrc](.zshrc)

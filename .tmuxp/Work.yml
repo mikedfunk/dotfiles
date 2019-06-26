@@ -26,7 +26,7 @@ windows:
       - ts
       - wait-on http://www.local.saatchiart.com && saatchi-tinker-legacy-local
       - puw
-      - cd ~/Code/saatchi/legacy/assets/react && yarn && yarn start
+      - cd ~/Code/saatchi/legacy/assets/react && yarn && yarn write-rev && yarn start
       # - cd ~/Code/saatchi/legacy/assets/react && saatchi-eslint-watch-legacy
       # - saatchi-grunt-watch-legacy
       - wait-on http://www.local.saatchiart.com && saatchi-tail-legacy-local
