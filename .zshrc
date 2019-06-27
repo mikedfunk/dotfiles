@@ -145,6 +145,7 @@ has vivid && export LS_COLORS="$(vivid generate molokai)" # https://github.com/s
 # export LESSOPEN="| /usr/local/opt/source-highlight/bin/src-hilite-lesspipe.sh %s"
 # alias less="less -R"
 GITWEB_PROJECTROOT="$HOME/Code"
+# [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ] && . "$HOME/.nix-profile/etc/profile.d/nix.sh" # this seems to conflict with direnv. Direnv seems to wipe the PATH changes this applies.
 
 # configure cgr and composer {{{
 # Internal: this ensures composer and cgr both point to my php version's composer
@@ -176,9 +177,10 @@ _configure_cgr_and_composer
 export AUTOSSH_PORT=0
 
 # Public: pass the current ssh alias. Used by my promptline theme and .screenrc to show the alias in the PS1.
-ssh() { LC_SSH_ALIAS=$1 /usr/bin/ssh $@; }
+# saatchi servers don't like anything *-256color so I need to use screen via ssh
+ssh() { env TERM=screen LC_SSH_ALIAS=$1 /usr/bin/ssh $@; }
 autossh() { LC_SSH_ALIAS=$1 /usr/local/bin/autossh $@; }
-sshrc() { LC_SSH_ALIAS=$1 /usr/local/bin/sshrc $@; }
+sshrc() { env TERM=screen LC_SSH_ALIAS=$1 /usr/local/bin/sshrc $@; }
 
 compdef autossh="ssh"
 compdef sshrc="ssh"
@@ -258,10 +260,6 @@ export CLICOLOR=1 # ls colors by default
 pretty-path() { tr : '\n' <<<"$PATH"; }
 # alias vit="vim +TW" # until vit gets its act together
 # alias tree="alder" # colorized tree from npm (I colorize tree with "lsd" now so this is not needed)
-
-# saatchi servers don't like anything *-256color
-alias ssh="env TERM=screen ssh"
-alias sshrc="env TERM=screen sshrc"
 # }}}
 
 # suffix aliases {{{

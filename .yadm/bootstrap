@@ -594,6 +594,15 @@ function _install_bubo () {
 }
 # }}}
 
+# install nix package manager {{{
+_install_nix_package_manager () {
+    [[ -d "/nix" ]] && return
+    log_info "Installing nix package manager (will require sudo)"
+    # curl https://nixos.org/nix/install | sh
+    bash <(curl https://nixos.org/nix/install)
+}
+# }}}
+
 # upgrade docker-machine {{{
 _upgrade_docker_machine () {
     log_info "Upgrading docker-machine"
@@ -642,6 +651,7 @@ _start_launch_agents
 _fix_file_size_limit_for_watching_with_entr
 # _upgrade_docker_machine
 _install_bubo
+# _install_nix_package_manager
 # _show_reminders
 log_info "Installation complete"
 # }}}
