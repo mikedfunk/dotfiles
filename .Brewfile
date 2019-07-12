@@ -4,7 +4,8 @@
 brew "akamai" # interact with akamai caching
 # brew "angband" # requires java
 brew "ant" # apache build tool used to build plantuml
-brew "getantibody/tap/antibody" # like antigen but faster!
+tap "getantibody/tap"
+brew "antibody" # like antigen but faster!
 # brew "antigen" # zsh package manager. I switched to antibody for speed
 brew "autoconf" # needed to build some php70 libs from source
 brew "autossh" # ssh that reconnects
@@ -52,7 +53,7 @@ brew "gpg" # used by s3cmd and yadm to encrypt stuff
 brew "hostess" # manage hosts file `hostess help`
 brew "htop" # prettier, more powerful version of top. gets the top running processes. (see my notes)
 brew "httpie" # a cool alternative to curl (http --help) (NOTE: `man http` is something different :/ )
-brew "hub", args: ["--devel"] # github tool is a superset of git with extra commands. 2.0 needs to be installed via --HEAD
+brew "hub", args: ["devel"] # github tool is a superset of git with extra commands. 2.0 needs to be installed via --HEAD
 # brew "icu4c" # needed for php70-intl extension (it seems this is included with node https://stackoverflow.com/questions/27896229/library-not-loaded-error-after-brew-install-php56)
 # brew "ievms" # internet explorer VirtualBox VMs to test a site in various IE versions
 brew "imagemagick@6" # image transformation tool - needed by php imagemagick extension (v6 needed for catalog)
@@ -169,6 +170,7 @@ brew "zsh" # awesome bash shell replacement
 
 # cask {{{
 tap "caskroom/cask"
+cask "adoptopenjdk" # needed to install akamai cli
 # cask "dashlane" # password manager like lastpass (I use lastpass)
 cask "bettertouchtool" # with a config file this lets me vimify any cocoa app https://raw.githubusercontent.com/Vincent-Carrier/CocoaVim/master/CocoaVim.bttpreset
 # cask "bitbar" # use any cli command to show stuff in the menubar with colors and icons and provide menu options
