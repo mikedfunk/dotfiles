@@ -241,7 +241,7 @@ cask "vlc" # watch the videos I download
 
 # mac app store {{{
 # Do I really need these?
-# mas "Downlink", id: 1454269192 # cool live (20 min refresh) earth view on my desktop (tries to reinstall every time :/ )
+mas "Downlink", id: 1454269192 # cool live (20 min refresh) earth view on my desktop (tries to reinstall every time :/ )
 mas "Xcode", id: 497799835 # needed for some tools (TODO which tools?)
 # mas "GIPHY CAPTURE", id: 668208984
 # }}}
