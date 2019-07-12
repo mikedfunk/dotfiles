@@ -342,6 +342,12 @@
     trustExitCode = true
 # }}}
 
+# yadm settings {{{
+# https://github.com/TheLocehiliosan/yadm/issues/110
+[yadm]
+    gpg-recipient = mike@mikefunk.com
+# }}}
+
 # git flow avh settings {{{
 # @link https://github.com/petervanderdoes/gitflow-avh/wiki/Reference:-Configuration
 [gitflow "feature.finish"]
