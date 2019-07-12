@@ -107,7 +107,7 @@ brew "plantuml" # uml generation from text. requires java (I use regularly for d
 # brew "postgresql" # database similar to mysql (install if needed)
 # brew "pre-commit" # yelp git pre-commit framework (I manage this via pip)
 # brew "prettyping" # ping with a cool sparkline graph of status
-brew "pspg", args: ["HEAD"] # "postgres pager" also useful for mysql, etc.
+brew "pspg" # , args: ["HEAD"] # "postgres pager" also useful for mysql, etc.
 brew "pv" # pipe something to pv to see progress of data through a pipeline. pv works like cat so `pv /path/to/myfile.sql > mysql ...`
 brew "pyenv" # python version manager (same api as rbenv)
 # brew "python" # updated version of python with updated pip. Useful for installing pip packages without root. NOTE: homebrew "pip" breaks neovim.

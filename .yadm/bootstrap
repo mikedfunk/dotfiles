@@ -92,8 +92,7 @@ _install_necessary_headers_in_include_on_mojave () {
         return
     fi
     log_info "Installing additional tools needed for mojave"
-    sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
-    touch "$HOME/.mojave-lock"
+    sudo installer -pkg "/Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg" -target / && touch "$HOME/.mojave-lock"
 }
 # }}}
 
@@ -301,7 +300,7 @@ _install_php_version () {
     if ! has pecl; then
         log_info "Installing pear"
         [ -f "$HOME/.bin/go-pear.phar" ] || wget -O "$HOME/.bin/go-pear.phar" http://pear.php.net/go-pear.phar
-        "$HOME"/.support/install-pear.sh # installs pear non-interactively
+        PHP_VERSION="$PHP_VERSION" "$HOME/.support/install-pear.sh" # installs pear non-interactively
         [ -f "$HOME/.bin/go-pear.phar" ] && rm "$HOME/.bin/go-pear.phar"
     fi
 
@@ -651,7 +650,7 @@ _start_launch_agents
 _fix_file_size_limit_for_watching_with_entr
 # _upgrade_docker_machine
 _install_bubo
-# _install_nix_package_manager
+_install_nix_package_manager
 # _show_reminders
 log_info "Installation complete"
 # }}}
