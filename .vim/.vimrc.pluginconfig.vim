@@ -833,6 +833,10 @@ if isdirectory(expand('~/.vim/plugged/vim-commentary'))
 endif
 " }}}
 
+" vim-doge {{{
+let g:doge_mapping="<leader>dd"
+" }}}
+
 " vim-fix-my-js {{{
 let g:fixmyjs_use_local = 1
 if isdirectory(expand('~/.vim/plugged/vim-fix-my-js')) | noremap <Leader>jf :Fixmyjs<CR> | endif

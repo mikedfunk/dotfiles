@@ -148,7 +148,7 @@ windows:
 
 # releases {{{
   - window_name: releases
-    layout: even-horizontal
+    layout: even-vertical
     panes:
       - saatchi-releases-xdev --watch --clear
       - saatchi-releases-xqa --watch --clear

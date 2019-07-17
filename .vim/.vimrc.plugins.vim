@@ -275,6 +275,7 @@ Plug 'fpob/nette.vim' " .neon format
 " Plug 'elixir-editors/vim-elixir'
 " Plug 'othree/es.next.syntax.vim', { 'for': ['javascript', 'jsx', 'vue'] }
 " Plug 'StanAngeloff/php.vim' " php 5.6+ (including 7.x) syntax highlighting improvements like docblocks (in vim-polyglot)
+Plug 'kkoomen/vim-doge' " docblock comments for a variety of languages <leader>dd
 " Plug 'posva/vim-vue' " vue.js syntax (in vim-polyglot)
 " Plug 'digitaltoad/vim-pug', { 'for': ['pug', 'jade'] } " pug (formerly jade) highlighting
 " Plug 'heavenshell/vim-syntax-flowtype' " js flowtype (included in pangloss/vim-javascript)
