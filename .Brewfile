@@ -35,6 +35,7 @@ brew "entr" # file watcher
 # brew "fasd" # Command-line productivity booster, offers quick access to files and directories, inspired by autojump, z and v. (I use wd)
 brew "fd" # prettier alternative to find that respects gitignore
 # brew "fpp" # facebook path picker. Used with tmux-fpp to easily open files in an editor. (I don't use it)
+brew "fx" # json funagler
 brew "fzf" # fuzzy file finder `git branch | fzf | xargs git checkout`
 brew "git"
 # brew "git-extras" # adds some cool additional git commands (conflicts with npm git-standup)

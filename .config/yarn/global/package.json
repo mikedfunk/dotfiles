@@ -36,6 +36,7 @@
     "intelephense-server": "^0.8.8",
     "jest": "^22.0.6",
     "jwt-cli": "^1.1.0",
+    "letswork": "^0.2.0",
     "neovim": "^4.2.1",
     "nightmare": "^2.10.0",
     "nightmare-upload": "^0.1.1",
