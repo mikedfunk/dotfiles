@@ -173,3 +173,14 @@ windows:
   #     - v -S
   #     - ts
 # }}}
+
+# logs {{{
+  - window_name: logs
+    start_directory: ~
+    layout: tiled
+    panes:
+      - saatchi-tail-easel-xprod
+      - saatchi-tail-gallery-xprod
+      - saatchi-tail-palette-xprod
+      - saatchi-tail-legacy-xprod
+# }}}
