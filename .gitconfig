@@ -306,6 +306,7 @@
 [branch]
     # this breaks git flow hotfix finish. Just use git purr or sync to rebase.
     # autosetuprebase = always
+    autosetupmerge = always
 [rebase]
     autosquash = true
     autostash = true

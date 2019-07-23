@@ -95,12 +95,12 @@ windows:
 # }}}
 
 # views {{{
-  - window_name: views
-    start_directory: ~/Code/saatchi/couchbase-views
-    layout: main-horizontal
-    panes:
-      - v -S
-      - ts
+  # - window_name: views
+  #   start_directory: ~/Code/saatchi/couchbase-views
+  #   layout: main-horizontal
+  #   panes:
+  #     - v -S
+  #     - ts
 # }}}
 
 # xdocker {{{
