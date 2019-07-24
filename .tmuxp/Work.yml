@@ -176,7 +176,7 @@ windows:
 
 # logs {{{
   - window_name: logs
-    start_directory: ~
+    start_directory: ~/
     layout: tiled
     panes:
       - saatchi-tail-easel-xprod
