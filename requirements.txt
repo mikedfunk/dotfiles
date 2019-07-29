@@ -1,4 +1,4 @@
-arrow==0.14.2
+arrow==0.14.3
 asn1crypto==0.24.0
 astroid==2.2.5
 cffi==1.12.3
@@ -31,6 +31,6 @@ tabulate==0.8.3
 terminaltables==3.1.0
 tmuxp==1.5.3
 typed-ast==1.4.0
-virtualenv==16.7.1
+virtualenv==16.7.2
 wcwidth==0.1.7
 wrapt==1.11.2
