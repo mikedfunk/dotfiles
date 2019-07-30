@@ -183,4 +183,5 @@ windows:
       - saatchi-tail-gallery-xprod
       - saatchi-tail-palette-xprod
       - saatchi-tail-legacy-xprod
+      # - saatchi-tail-legacy-services-xprod
 # }}}
