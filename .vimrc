@@ -149,7 +149,6 @@ set sessionoptions-=options
 " http://vim.wikia.com/wiki/Fix_syntax_highlighting
 " https://stackoverflow.com/questions/4775605/vim-syntax-highlight-improve-performance
 syntax sync minlines=200
-" set synmaxcol=200 " avoid performance problems syntax highlighting very long lines
 
 " Allow color schemes to do bright colors without forcing bold.
 if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'

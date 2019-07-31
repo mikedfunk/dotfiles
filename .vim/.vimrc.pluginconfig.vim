@@ -1179,9 +1179,20 @@ if isdirectory(expand('~/.vim/plugged/vim-rest-console'))
     command! RestJson let b:vrc_response_default_content_type = 'application/json'
     command! RestXml let g:vrc_response_default_content_type = 'text/xml'
 endif
+
+" fix a problem where vrc buffers lose syntax sync setting, causing the buffer
+" to lose syntax highlighting on scroll
+augroup vrc_syntax_fix
+    autocmd!
+    " you would think this would work but it doesn't for some reason
+    " autocmd BufRead,BufNewFile __REST_response__ syntax sync minlines=200
+    autocmd WinEnter * if (@% ==? "__REST_response__") | syntax sync minlines=200 | endif
+augroup END
+
 " let g:vrc_auto_format_response_enabled = 1 " enabled by default
 " let g:vrc_split_request_body = 1 " allow each line to be key=value after GET /my/url. NOTE: this breaks PUT requests with bodies!
 " let g:vrc_cookie_jar = '/tmp/vrc_cookie_jar'
+
 " }}}
 
 " vim-notes {{{
