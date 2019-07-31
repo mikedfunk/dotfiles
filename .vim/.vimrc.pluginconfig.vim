@@ -1186,7 +1186,7 @@ augroup vrc_syntax_fix
     autocmd!
     " you would think this would work but it doesn't for some reason
     " autocmd BufRead,BufNewFile __REST_response__ syntax sync minlines=200
-    autocmd WinEnter * if (@% ==? "__REST_response__") | syntax sync minlines=200 | endif
+    autocmd WinEnter __REST_response__ syntax sync minlines=200
 augroup END
 
 " let g:vrc_auto_format_response_enabled = 1 " enabled by default
