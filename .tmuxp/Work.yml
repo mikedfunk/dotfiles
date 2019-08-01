@@ -40,7 +40,7 @@ windows:
       - v
       - ts
       - yarn jest --watchAll
-      - wait-on http://www.local.saatchiart.com && saatchi-attach-easel-node
+      - wait-on http://www.local.saatchiart.com && saatchi-tail-easel-local
 # }}}
 
 # gallery {{{

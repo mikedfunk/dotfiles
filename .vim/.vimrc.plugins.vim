@@ -66,7 +66,7 @@ Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' } " redo another branch
 " Plug 'dahu/vim-lotr', { 'on': 'LOTRToggle' } " yankring-like
 " Plug 'scrooloose/syntastic' " syntax checker (no lazy load)
 " Plug 'mtscout6/syntastic-local-eslint.vim' " tell syntastic to prefer project node bin eslint executable over global one
-Plug 'w0rp/ale' " as-you-type syntax checker
+Plug 'dense-analysis/ale' " as-you-type syntax checker
 " Plug 'w0rp/ale', { 'commit': '2f9869d' } " as-you-type syntax checker
 Plug 'tpope/vim-surround' | Plug 'tpope/vim-repeat' " surround text in quotes or something. repeatable.
 Plug 'kreskij/Repeatable.vim', { 'on': 'Repeatable' } " Extra functionality to make mappings repeatable easily
