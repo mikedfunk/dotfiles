@@ -1161,9 +1161,7 @@ let g:polyglot_disabled=['php'] " I use a different php syntax plugin
 " TODO make some shortcuts to login and get a session cookie and to retrieve
 " an access token.
 "
-" let g:vrc_show_command = 1 " display the actual curl command being run when
-" firing http requests
-" let g:vrc_connect_timeout = 9999 " ignore timeout for xdebug (v2.x.x version)
+" let g:vrc_show_command = 1 " display the actual curl command being run when firing http requests
 " -sS is to keep it from showing the progress bar
 " -i is to show response headers
 let g:vrc_curl_opts = {
@@ -1175,10 +1173,10 @@ let g:vrc_curl_opts = {
 let g:vrc_response_default_content_type = 'json'
 " sometimes the output is html but the default type is json so it looks like
 " crap.
-if isdirectory(expand('~/.vim/plugged/vim-rest-console'))
-    command! RestJson let b:vrc_response_default_content_type = 'application/json'
-    command! RestXml let g:vrc_response_default_content_type = 'text/xml'
-endif
+" if isdirectory(expand('~/.vim/plugged/vim-rest-console'))
+"     command! RestJson let b:vrc_response_default_content_type = 'application/json'
+"     command! RestXml let g:vrc_response_default_content_type = 'text/xml'
+" endif
 
 " fix a problem where vrc buffers lose syntax sync setting, causing the buffer
 " to lose syntax highlighting on scroll

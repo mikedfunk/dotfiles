@@ -57,7 +57,8 @@ brew "httpie" # a cool alternative to curl (http --help) (NOTE: `man http` is so
 brew "hub" # , args: ["devel"] # github tool is a superset of git with extra commands. 2.0 needs to be installed via --HEAD
 # brew "icu4c" # needed for php70-intl extension (it seems this is included with node https://stackoverflow.com/questions/27896229/library-not-loaded-error-after-brew-install-php56)
 # brew "ievms" # internet explorer VirtualBox VMs to test a site in various IE versions
-brew "imagemagick@6" # image transformation tool - needed by php imagemagick extension (v6 needed for catalog)
+brew "imagemagick" # image transformation tool - needed by php imagemagick extension (latest version needed to install host machine pecl imagick php extension)
+brew "imagemagick@6" # image transformation tool - v6 needed for catalog
 brew "interactive-rebase-tool" # awesome ncurses tool to spiff up interactive rebases
 brew "intltool" # needed for php intl extension
 # brew "irssi" # irc client
