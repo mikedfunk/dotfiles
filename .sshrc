@@ -10,6 +10,9 @@ export VIMINIT="let \$MYVIMRC='$SSHHOME/.sshrc.d/.vimrc' | source \$MYVIMRC"
 # source my promptline theme on remote
 [ -f "$SSHHOME/.sshrc.d/promptline.theme.bash" ] && source "$SSHHOME/.sshrc.d/promptline.theme.bash"
 
+# doesn't work... because it's not zsh duh
+# [[ -f "$SSHHOME"/.sshrc.d/.p10k.zsh ]] && source "$SSHHOME"/.sshrc.d/.p10k.zsh # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+
 # tell screen to use my config file
 # screen () { /usr/bin/screen -U -c "$SSHHOME/.sshrc.d/.screenrc" -dAR mike.funk; }
 export SCREENRC="$SSHHOME/.sshrc.d/.screenrc"
