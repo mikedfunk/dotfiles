@@ -147,6 +147,7 @@ has vivid && export LS_COLORS="$(vivid generate molokai)" # https://github.com/s
 # alias less="less -R"
 GITWEB_PROJECTROOT="$HOME/Code"
 # [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ] && . "$HOME/.nix-profile/etc/profile.d/nix.sh" # this seems to conflict with direnv. Direnv seems to wipe the PATH changes this applies.
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 
 # configure cgr and composer {{{
 # Internal: this ensures composer and cgr both point to my php version's composer
@@ -669,6 +670,3 @@ PROMPT_EOL_MARK=''
 # }}}
 
 # }}}
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
