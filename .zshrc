@@ -103,6 +103,7 @@ if [[ ! $ANTIBODY_LOADED ]]; then
     antibody bundle zsh-users/zsh-completions # do-everything argument completions
     antibody bundle zsh-users/zsh-syntax-highlighting # colored input... see above
     # antibody bundle zsh-users/zsh-history-substring-search # up arrow after typing part of command
+    antibody bundle romkatv/powerlevel10k # zsh prompt theme
 
     ANTIBODY_LOADED=1
 fi
@@ -110,7 +111,7 @@ fi
 
 # source additional files and env vars {{{
 [ -f ~/.private_vars.sh ] && source ~/.private_vars.sh # where I store my secret env vars
-[ -f ~/.support/promptline.theme.bash ] && source ~/.support/promptline.theme.bash # vim plugin generates this tmux status line file
+# [ -f ~/.support/promptline.theme.bash ] && source ~/.support/promptline.theme.bash # vim plugin generates this tmux status line file
 has direnv && eval "$(direnv hook zsh)" # allow .envrc on each prompt start
 # [ -f /usr/local/etc/grc.bashrc ] && source "/usr/local/etc/grc.bashrc" # generic colorizer
 [ -f /usr/local/etc/grc.zsh ] && source "/usr/local/etc/grc.zsh" # generic colorizer
@@ -668,3 +669,6 @@ PROMPT_EOL_MARK=''
 # }}}
 
 # }}}
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
