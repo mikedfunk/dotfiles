@@ -194,6 +194,7 @@ cask "font-iosevka-nerd-font-mono"
 cask "gog-galaxy" # good old games
 cask "google-chrome"
 # cask "google-drive"
+cask "insomnia" # http api client like postman but nicer looking
 cask "iterm2" # I was using kitty but they use opengl and macos deprecated opengl support, so it crashes regularly. iTerm now has gpu rendering, so I'm back to iTerm!
 cask "java" # required for plantuml, etc.
 # cask "joplin" # desktop joplin (I use the terminal interface)
@@ -212,6 +213,7 @@ cask "ngrok" # securely expose your local site to the internet and inspect and r
 cask "openemu" # multi game system emulator
 cask "origin" # ea games store
 # cask "pdftotext" # used by ranger to preview pdfs
+# cask "postman" # http api client
 # cask "see" https://github.com/sindresorhus/quick-look-plugins
 # cask "qlcolorcode" # quicklook plugin to provide syntax highlighting to code files (fails to install)
 # cask "qlstephen" # quicklook plugin

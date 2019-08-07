@@ -581,7 +581,7 @@ sourcegraph() {
 # Public: bring up a swagger web editor that can interact with your local api
 # https://github.com/huan/swagger-edit
 swagger-edit() {
-    if [ "$1" -e "--help" ]; then echo "Usage: $0 {my-api-spec.yaml}"; return; fi
+    if [ "$1" = "--help" ]; then echo "Usage: $0 {my-api-spec.yaml}"; return; fi
     docker run \
         --publish 8080:8080 \
         --env SWAGGER_JSON=/tmp/$1 \
@@ -590,11 +590,12 @@ swagger-edit() {
 }
 
 swagger-ui() {
-    if [ "$1" -e "--help" ]; then echo "Usage: $0 {my-api-spec.yaml}"; return; fi
+    if [ "$1" = "--help" ]; then echo "Usage: $0 {my-open-api-3.0-spec.yaml}"; return; fi
     docker run \
         --publish 8090:8080 \
-        --env SWAGGER_JSON=/tmp/$1 \
-        --volume $(pwd)/$1:/tmp/$1 \
+        --env SWAGGER_JSON=/tmp/"$1" \
+        --env SPEC="{ \"openapi\": \"3.0.0\" }" \
+        --volume "$(pwd)"/"$1":/tmp/"$1" \
         swaggerapi/swagger-ui
 }
 
@@ -620,7 +621,7 @@ couchbase-php-extension-version() { php -i | grep couchbase | grep "libcouchbase
 
 # php-language-server {{{
 php-language-server-script() {
-    if [ "$1" -e "--help" ]; then echo "Usage: $0 with no args lists scripts, $0 {script-name} to run"; return; fi
+    if [ "$1" = "--help" ]; then echo "Usage: $0 with no args lists scripts, $0 {script-name} to run"; return; fi
     [ -z $@ ] && ARG='-l' || ARG="$@"
     composer global run-script --working-dir=$HOME/.composer/global/felixfbecker/language-server/vendor/felixfbecker/language-server $ARG
 }
