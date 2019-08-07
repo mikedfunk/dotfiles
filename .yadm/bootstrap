@@ -174,33 +174,6 @@ _set_zsh_as_shell () {
 }
 # }}}
 
-# install legacy tmux 2.8 {{{
-# this is HORRIFIC but tmux 2.9a is currently (2019-04-05) broken for me in several crucial ways:
-# 1. layout `main-horizontal` will break occasionally when sprintf modified terminal output changes e.g. when text flows beyond the bottom of the pane. It crashes tmux!
-# 2. <prefix>q does not show accurate data
-# 3. If htop is in a right-most pane, the right side of the text will bleed over to the left side of the left-most pane by one character.
-# 4. All of this happens without using tic to install tmux-256color terminfo, with an empty ~/.tmux.conf, and with an empty ~/.zshrc.
-#
-# tmux org seems to be aggressively removing issues and is kind of nasty in
-# their responses. I think they're missing these issues because of how hostile
-# they are toward any issues.
-#
-# TODO find minimal way to reproduce and create github issue
-_install_tmux_2_8 () {
-    has tmux && return
-    log_info "installing tmux 2.8"
-    builtin cd || return
-    wget https://github.com/tmux/tmux/releases/download/2.8/tmux-2.8.tar.gz
-    tar xzvf tmux-2.8.tar.gz
-    rm tmux-2.8.tar.gz
-    builtin cd tmux-2.8 || return
-    ./configure && make
-    sudo make install
-    builtin cd .. || return
-    rm -rf tmux-2.8
-}
-# }}}
-
 # install tmux plugin manager {{{
 _install_tmux_plugin_manager () {
     [[ -d "$HOME/.tmux/plugins/tpm" ]] && return
@@ -628,7 +601,6 @@ _install_upgrade_akamai
 _install_upgrade_phpenv
 _install_upgrade_yarn
 _set_zsh_as_shell
-_install_tmux_2_8
 _install_tmux_plugin_manager
 _install_upgrade_tmux_plugins
 _create_vim_directories
