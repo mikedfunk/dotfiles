@@ -16,6 +16,7 @@ libtmux==0.8.2
 mccabe==0.6.1
 msgpack==0.6.1
 neovim==0.3.1
+openapi-cli-tool==0.1.3
 prompt-toolkit==2.0.9
 pycparser==2.19
 Pygments==2.4.2

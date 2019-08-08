@@ -1,2 +1,2 @@
 #!/bin/bash
-open "https://devdocs.io/search?q=$1%20$2"
+open "https://devdocs.io/#q=$1%20$2"

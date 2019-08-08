@@ -583,7 +583,7 @@ sourcegraph() {
 swagger-edit() {
     if [ "$1" = "--help" ]; then echo "Usage: $0 {my-api-spec.yaml}"; return; fi
     docker run \
-        --publish 8080:8080 \
+        --publish 8095:8080 \
         --env SWAGGER_JSON=/tmp/$1 \
         --volume $(pwd)/$1:/tmp/$1 \
         swaggerapi/swagger-editor
