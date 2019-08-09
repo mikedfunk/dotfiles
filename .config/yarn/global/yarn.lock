@@ -9283,7 +9283,7 @@ intelephense@^0.8.8:
     php7parser "^1.0.8"
     vscode-languageserver-types "^3.5.0"
 
-intelephense@^1.0.14:
+intelephense@^1.1.5:
   version "1.1.5"
   resolved "https://registry.yarnpkg.com/intelephense/-/intelephense-1.1.5.tgz#6825d8d0fe48730b08942ecc1d356884c9738c8d"
   integrity sha512-OlvC+fjz7mplGJNK/5km9oWjNzyoqa3V1R1dICFHejO6xY3hGz3FJnaDR+NbgoHU4DV2V7HmuAxh+BxD+eCuGQ==

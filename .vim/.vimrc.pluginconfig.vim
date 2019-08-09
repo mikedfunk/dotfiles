@@ -56,6 +56,8 @@ let g:ale_php_langserver_use_global = 1
 let g:ale_php_langserver_executable = $HOME.'/.bin/php-language-server'
 " let g:ale_php_langserver_executable = $HOME.'/.composer/vendor/bin/php-language-server.php'
 let s:php_fixers = []
+
+set omnifunc=ale#completion#OmniFunc
 " }}}
 
 " js linters {{{
