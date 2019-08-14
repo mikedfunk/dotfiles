@@ -3,9 +3,9 @@
 # brew {{{
 brew "akamai" # interact with akamai caching
 # brew "angband" # requires java
-brew "ant" # apache build tool used to build plantuml
+brew "ant" # apache build tool (used to build plantuml)
 tap "getantibody/tap"
-brew "antibody" # like antigen but faster!
+brew "antibody" # like antigen but faster! (zsh plugin system)
 # brew "antigen" # zsh package manager. I switched to antibody for speed
 brew "autoconf" # needed to build some php70 libs from source
 brew "autossh" # ssh that reconnects
@@ -59,11 +59,11 @@ brew "hub" # , args: ["devel"] # github tool is a superset of git with extra com
 # brew "ievms" # internet explorer VirtualBox VMs to test a site in various IE versions
 brew "imagemagick" # image transformation tool - needed by php imagemagick extension (latest version needed to install host machine pecl imagick php extension)
 brew "imagemagick@6" # image transformation tool - v6 needed for catalog
-brew "interactive-rebase-tool" # awesome ncurses tool to spiff up interactive rebases
+# brew "interactive-rebase-tool" # awesome ncurses tool to spiff up interactive rebases (I use vim with a plugin instead)
 brew "intltool" # needed for php intl extension
 # brew "irssi" # irc client
 # brew "jsawk" # parse json in bash
-brew "joplin" # powerful note-taking app with cli version
+brew "joplin" # powerful note-taking app with cli version, multi-pane, search, etc.
 brew "jsonlint" # used by vim ale to lint json
 brew "jq" # simple json pretty-printer `echo '{"my" => "json"}' | jq .`
 # brew "jrnl" # simple journaling wrapper
@@ -74,7 +74,7 @@ brew "libmemcached" # needed by php70 memcached pecl extension
 brew "libmcrypt" # needed by php-build, which is used by phpenv DO NOT DELETE php will break
 brew "libxml2" # needed by php70
 # brew "lockrun" # simple way to lock cron jobs with a lock file and clear them when done
-brew "lsd" # pretty ls augmentation
+# brew "lsd" # pretty ls augmentation
 # brew "lynx" # console web browser. used by ranger to preview html.
 # brew "macvim" # mac gui vim client
 brew "mas" # mac app store cli. e.g. `mas install Xcode`
@@ -84,7 +84,7 @@ brew "mkcert" # create a certificate, create a local CA, add the cert as trusted
 # brew "mono" # .NET compiler for mac. Useful for OmniSharp.
 brew "multitail" # tail multiple files in splits with pretty colors
 brew "mycli" # Mysql cli augmentation with completion, highlighting, etc.
-brew "mysql" # I haven't been using the server lately but I use the cli tool to connect and I use mysql_config_editor
+brew "mysql" # I haven't been using the server lately but I use the cli tool to connect and I use mysql_config_editor. Unfortunately I can't just install this separately :(
 # brew "mysql-client" # If I ever need mysql client without mysql on local... downside: it doesn't link automatically - you have to brew link --force even if mysql isn't installed :/
 # brew "m-cli" # mac cli tools e.g. restart, screensaver, bluetooth, etc.
 # brew "nano" # text editor. This gets the latest version: 2.2.6 rather than 2.2.0 that comes with osx.
@@ -94,7 +94,7 @@ brew "node" # nodejs and npm (non-nodenv version required by joplin, yarn)
 brew "nodenv" # node version manager (same api as rbenv)
 brew "noti" # simple terminal notifier
 brew "nss" # required by mkcert to make certs trusted in firefox
-brew "pandoc" # used for inline vim php documentation
+# brew "pandoc" # transform between document formats e.g. markdown <-> pdf (used for inline vim php documentation)
 # brew "pass" # unix password manager using gpg
 # brew "peco" # interactively filter results and print the filtered version. can be used to print filtered one or e.g. `vim $(dosomething | peco)` (FZF does this)
 # brew "perl-build" # needed for perlenv
@@ -110,7 +110,7 @@ brew "plantuml" # uml generation from text. requires java (I use regularly for d
 # brew "pre-commit" # yelp git pre-commit framework (I manage this via pip)
 # brew "prettyping" # ping with a cool sparkline graph of status
 brew "pspg" # , args: ["HEAD"] # "postgres pager" also useful for mysql, etc.
-brew "pv" # pipe something to pv to see progress of data through a pipeline. pv works like cat so `pv /path/to/myfile.sql > mysql ...`
+# brew "pv" # pipe something to pv to see progress of data through a pipeline. pv works like cat so `pv /path/to/myfile.sql > mysql ...`
 brew "pyenv" # python version manager (same api as rbenv)
 # brew "python" # updated version of python with updated pip. Useful for installing pip packages without root. NOTE: homebrew "pip" breaks neovim.
 # brew "python3" # required for tmuxomatic (but I use pyenv)
@@ -118,7 +118,7 @@ brew "pyenv" # python version manager (same api as rbenv)
 brew "rbenv" # ruby environment switcher
 # brew "reattach-to-user-namespace" # used to fix mac issues with copy/paste in tmux (not needed after tmux 2.6! https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard/issues/66)
 # brew "redis" # key/value store
-brew "rlwrap" # wrap a command in readline to enable up for history, etc. Useful for python repl: `rlwrap python`
+# brew "rlwrap" # wrap a command in readline to enable up for history, etc. Useful for python repl: `rlwrap python`
 # brew "ruby"
 # brew "ruby-build" # an rbenv plugin that provides an rbenv install command to compile and install different versions of ruby
 # brew "rust" # used for "vivid" LS_COLORS package (I now download the executable until it's on homebrew)
@@ -152,7 +152,7 @@ tap "universal-ctags/universal-ctags"
 brew "universal-ctags", args: ["HEAD"] # tag creator for use by vim to navigate by symbols. head only.
 brew "unixodbc" # needed by php70
 # brew "virtualhost".sh # (crappy) virtualhost management script
-brew "watch" # contains some tools: free, kill, ps, uptime, etc.
+brew "watch" # Executes a program periodically, showing output fullscreen
 brew "watchman" # needed for `jest --watch` https://github.com/cm-pliser-tdd-by-example/tdd-by-example-js/issues/10
 # brew "w3m" # full color image previewer for ranger (but doesnt work in tmux)
 brew "wget" # latest version
@@ -174,16 +174,16 @@ brew "zsh" # awesome bash shell replacement
 tap "caskroom/cask"
 cask "adoptopenjdk" # needed to install akamai cli
 # cask "dashlane" # password manager like lastpass (I use lastpass)
-cask "bettertouchtool" # with a config file this lets me vimify any cocoa app https://raw.githubusercontent.com/Vincent-Carrier/CocoaVim/master/CocoaVim.bttpreset
+# cask "bettertouchtool" # with a config file this lets me vimify any cocoa app https://raw.githubusercontent.com/Vincent-Carrier/CocoaVim/master/CocoaVim.bttpreset
 # cask "bitbar" # use any cli command to show stuff in the menubar with colors and icons and provide menu options
 # cask "beardedspice" # keyboard media controls for media sites. Always seems to be broken :/
 # cask "cheatsheet" # hold <cmd> for a bit to get a modal of available keyboard shortcuts (kind of annoying - rarely comes up when I actually want it to, too much info)
-cask "discord" # chat
+# cask "discord" # chat
 cask "docker" # docker for mac desktop app
 cask "dozer" # little menubar app that allows hiding rarely used menubar icons
 # cask "dropbox" # I especially use this for synching my notes so I can view them in the joplin mobile app (not using this feature right now)
-cask "emacs" # this actually makes sense as a cask. It becomes tmux, vim, and kitty all in one.
-cask "epic-games" # game store
+# cask "emacs" # this actually makes sense as a cask. It becomes tmux, vim, and kitty all in one.
+# cask "epic-games" # game store
 cask "firefox"
 tap "homebrew/cask-fonts"
 # tap "caskroom/fonts"
@@ -191,11 +191,11 @@ tap "homebrew/cask-fonts"
 # cask "font-iosevka"
 cask "font-iosevka-nerd-font-mono"
 # cask "font-meslo-for-powerline" # whoa there are a ton of fonts on brew "cask"!
-cask "gog-galaxy" # good old games
+# cask "gog-galaxy" # good old games
 cask "google-chrome"
 # cask "google-drive"
 cask "insomnia" # http api client like postman but nicer looking
-cask "iterm2" # I was using kitty but they use opengl and macos deprecated opengl support, so it crashes regularly. iTerm now has gpu rendering, so I'm back to iTerm!
+cask "iterm2" # I was using kitty but they use opengl and macos deprecated opengl support, so it crashes regularly. iTerm now has gpu rendering, so I'm back to iTerm! It has a bunch of other cool new stuff now anyway.
 cask "java" # required for plantuml, etc.
 # cask "joplin" # desktop joplin (I use the terminal interface)
 cask "jumpcut" # clipboard manager recommended by Michael Zick (slightly annoying interface but I haven't found any better on brew) ctrl-opt-v (forward) or ctrl-opt-shift-v (backward)
@@ -208,10 +208,10 @@ cask "lunchy" # launchctl cli wrapper. Port of lunchy gem. (Tried this, was miss
 cask "malwarebytes" # ya neva know
 cask "multifirefox" # profile picker until firefox fixes this glaring omission
 # cask "noti" # mac native pushbullet notifications (I use the chrome extension)
-cask "ngrok" # securely expose your local site to the internet and inspect and repeat traffic
+# cask "ngrok" # securely expose your local site to the internet and inspect and repeat traffic
 # cask "osxfuse" # half of tool to mount ssh directories in the finder (useful if working on a shared dev environment)
 cask "openemu" # multi game system emulator
-cask "origin" # ea games store
+# cask "origin" # ea games store
 # cask "pdftotext" # used by ranger to preview pdfs
 # cask "postman" # http api client
 # cask "see" https://github.com/sindresorhus/quick-look-plugins
@@ -224,20 +224,20 @@ cask "quicklook-csv" # quicklook plugin
 # cask "qlimagesize" # quicklook plugin
 cask "sequel-pro" # mysql gui client
 cask "slack" # needed for screen sharing features
-cask "spectacle" # keyboard window splitter/resizer/mover
+cask "spectacle" # keyboard window splitter/resizer/mover. Kind of like a i3 window manager.
 cask "spotify" # mac native spotify player (I use the web app, but sometimes it gets stuck in an offline state)
 # cask "ssh-tunnel-manager" # mac native gui to manage running ssh tunnels
-cask "steam" # yep
+# cask "steam" # yep
 # cask "suspicious-package" # quicklook plugin
 # cask "vagrant" # development VM maker/manager (I use docker now)
-cask "transmission" # unleash a torrent of files ;)
+# cask "transmission" # unleash a torrent of files ;)
 #
 # TODO these can't just be upgraded while virtualbox is running :/
-cask "virtualbox" # virtual machine software
+cask "virtualbox" # virtual machine software (needed by docker-machine at least)
 # cask "virtualbox-extension-pack" # add-on to do stuff you'll always want... except for docker-machine
 #
 # cask "vivaldi" # chrome alternative with some cool features (I switched back to chrome for now - profiles are kind of buggy atm)
-cask "vlc" # watch the videos I download
+# cask "vlc" # watch the videos I download
 # cask "webpquicklook" # quicklook plugin
 # cask "wireshark" # analyze network data
 # cask "xquartz" # needed to install xclip, which is needed to copy text from multitail (I installed all of that, copy still didn't work :/ )
