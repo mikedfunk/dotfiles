@@ -14,7 +14,7 @@ brew "bat" # much cooler looking cat
 # brew "chromedriver" # like selenium for chrome.
 # brew "colortail" # tail with support for colors
 # brew "composer" # php dependency management (now installed via phpenv)
-# brew "coreutils" # used by k zsh plugin
+brew "coreutils" # used by k zsh plugin and msgpack gem which is a dependency of rouge and neovim gems
 # brew "cmake" # used by youcompleteme
 # brew "ctags" # allows jumping to function/class definitions, etc. in vim (I use universal-ctags)
 brew "ctop" # like top for docker containers
