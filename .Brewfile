@@ -152,7 +152,7 @@ tap "universal-ctags/universal-ctags"
 brew "universal-ctags", args: ["HEAD"] # tag creator for use by vim to navigate by symbols. head only.
 brew "unixodbc" # needed by php70
 # brew "virtualhost".sh # (crappy) virtualhost management script
-brew "watch" # Executes a program periodically, showing output fullscreen
+brew "watch" # Executes a program periodically, showing output fullscreen (an npm package which is a child dependency of another sometimes replaces this binary: https://www.npmjs.com/package/watch . If so, just `brew link --overwrite watch` )
 brew "watchman" # needed for `jest --watch` https://github.com/cm-pliser-tdd-by-example/tdd-by-example-js/issues/10
 # brew "w3m" # full color image previewer for ranger (but doesnt work in tmux)
 brew "wget" # latest version

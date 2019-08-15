@@ -306,7 +306,7 @@ use Zend_Controller_Front as FrontController;
 class ${2:MyScript} extends ProcessAbstract
 {
     /** @var bool */
-    protected $isDryRun = true;
+    private $isDryRun = true;
 
     public function __construct()
     {
@@ -364,7 +364,7 @@ use Zend_Controller_Front as FrontController;
 class ${2:MyScript} extends QueueProcessAbstract
 {
     /** @var bool */
-    protected $isDryRun = true;
+    private $isDryRun = true;
 
 	public function __construct()
 	{
@@ -509,7 +509,7 @@ class $4 extends Seeder
      *
      * @return string
      */
-    protected function getTableName()
+    private function getTableName()
     {
         return '${5:table_name}';
     }
@@ -528,7 +528,7 @@ class $4 extends Seeder
      *
      * @return array
      */
-    protected function provideOneRow()
+    private function provideOneRow()
     {
         return array(
             $6
@@ -563,7 +563,7 @@ final class `!v expand("%:t:r")` extends TestCase
 {
 
     /** @var \\`!p snip.rv = pathToNamespace(path)`\\${2:ActualClass} system under test */
-    protected \$${2/\w+\s*/\l$0/};
+    private \$${2/\w+\s*/\l$0/};
 
     /** Phpunit setup. Runs before each test. */
     public function setUp()
@@ -618,7 +618,7 @@ class `!v expand("%:t:r")` extends AbstractProphecyTest
     /**
      * @var \\$0${2:ActualClass} class under test
      */
-    protected \$${2/\w+\s*/\l$0/};
+    private \$${2/\w+\s*/\l$0/};
 
     /**
      * phpunit setup
@@ -713,7 +713,7 @@ endsnippet
 snippet va "var with docblock"
 
 /** @var ${1:mixed} */
-protected \$${2:myvar};
+private \$${2:myvar};
 endsnippet
 
 snippet iva "var with docblock with @Inject for php-di"
@@ -723,7 +723,7 @@ snippet iva "var with docblock with @Inject for php-di"
  *
  * @var ${1:mixed}
  */
-protected \$${2:myvar};
+private \$${2:myvar};
 endsnippet
 
 # snippet iva "var with docblock implementing an interface"
@@ -755,7 +755,7 @@ endsnippet
 
 snippet cnst "constant with docblock"
 
-/** @access ${1:protected} */
+/** @access ${1:private} */
 const ${3:MY_CONST} = '$4';
 endsnippet
 
