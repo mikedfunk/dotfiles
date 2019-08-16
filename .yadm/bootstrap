@@ -5,6 +5,19 @@
 # Why did I wrap everything in functions? So I could re-run specific things
 # when necessary without having to re-run the entire bootstrap file. It also
 # makes it easier to temporarily run one or more install steps.
+#
+# This is random but I thought I'd add my experience trying wuzz for an http
+# client here https://github.com/asciimoo/wuzz . Basically it sucks right now.
+# There's no completion for loading requests so you have to back out and load
+# by file just to get another request in there. There are emacs key bindings
+# but very limited vim ones. There's an error pasting a header too long for the
+# tiny headers box e.g. a bearer token - it gets pasted with spaces between
+# every character beyond the width of the window O_O. The only way to get that
+# working is to use a saved json request (you can't load a curl request) or to
+# pass in params via cli args. Without that stuff it's way worse than just
+# using vim-rest-console. I also looked around for other cli http clients and
+# so far no other cool ncurses clients like joplin for notes. Will keep an eye
+# out for anything better or to see if wuzz gets better.
 # }}}
 
 # helper functions {{{

@@ -96,7 +96,7 @@ Plug 'tpope/vim-eunuch', { 'on': ['Mkdir!', 'Remove!'] } " :Mkdir!, :Remove!, an
 Plug 'skywind3000/asyncrun.vim' " vim 8 async to quickfix plugin
 " Plug 'aquach/vim-http-client' " postman for vim
 " Plug 'diepm/vim-rest-console', { 'for': 'rest', 'tag': 'v2.6.0' } " like above but more capable
-Plug 'diepm/vim-rest-console', { 'for': 'rest' } " like above but more capable (latest version)
+Plug 'diepm/vim-rest-console', { 'for': 'rest' } " like above but more capable (latest version) NOTE see ~/.yadm/bootstrap for notes on wuzz as a replacement for this
 Plug 'AndrewRadev/splitjoin.vim', { 'for': ['php', 'javascript', 'html'] } " split and join php arrays to/from multiline/single line (gS, gJ) SO USEFUL
 " Plug 'sunaku/vim-shortcut' " search for shortcuts with :Shortcuts with fzf completion
 " Plug 'tweekmonster/startuptime.vim' " a plugin to find slow plugins. it's like rain on your wedding day.
