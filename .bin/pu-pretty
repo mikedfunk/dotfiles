@@ -1,6 +1,13 @@
 #!/bin/bash
+# vim:set foldmethod=marker:
+
+# notes {{{
 # pretty print with testdox - red is failed, green is passed. Phpunit, why
 # don't you already do this? Phpspec does :)
+#
+# This also uses utf-8 checkmarks and X marks, aligns the titles a little
+# differently, adds a vertical space, etc.
+# }}}
 
 # unofficial bash strict mode {{{
 # http://redsymbol.net/articles/unofficial-bash-strict-mode/
@@ -20,6 +27,15 @@ WHITE="$(tput setaf 7)"
 NORMAL="$(tput sgr0)"
 # }}}
 
+# script {{{
+#
+# example output:
+#
+#   DemandMedia\SaatchiArt\VisiiUrl (<-- this line is white)
+#
+# ✘ gets canonical url with no search data (<-- this line is red)
+# ✔ gets canonical url with search data (<-- checked lines are green)
+#
 "$HOME/.phpenv/shims/phpdbg" -qrr \
     -dmemory_limit=2048M \
     -ddisplay_errors=on \
@@ -28,6 +44,9 @@ NORMAL="$(tput sgr0)"
     --verbose \
     $@ | while read -r LINE; do
         echo -E $LINE | \
-            sed -E -e "s/^\[x\].*/ ${GREEN}&${NORMAL}/" | \
-            sed -E -e "s/^\[ \].*/ ${RED}&${NORMAL}/"
+            sed -E -e 's/^[a-zA-Z0-9\\_]+$/   & \
+            /' | \
+            sed -E -e "s/^(\[x\]) (It )?(.*)$/ ${GREEN}✔ \3${NORMAL}/" | \
+            sed -E -e "s/^(\[ \]) (It )?(.*)$/ ${RED}✘ \3${NORMAL}/"
     done
+# }}}

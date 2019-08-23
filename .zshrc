@@ -314,13 +314,18 @@ puw() {
         $@
 }
 
-# Public: phpunit watch with a "pretty" formatter
+# Public: phpunit watch with a "pretty" formatter (close to phpspec's pretty formatter)
 puw-pretty() {
     noglob ag -l -g \
         '(application\/controllers|application\/modules\/*\/controllers|application\/models|library|src|tests)/.*\.php' \
         | entr -r -c \
         "$HOME/.bin/pu-pretty" \
         $@
+}
+
+# Public: phpspec watch with a "pretty" formatter
+psw-pretty() {
+    psw --format=pretty $@
 }
 # }}}
 
