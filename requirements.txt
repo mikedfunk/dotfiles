@@ -11,7 +11,7 @@ gita==0.10.3
 greenlet==0.4.15
 isort==4.3.21
 kaptan==0.5.12
-lazy-object-proxy==1.4.1
+lazy-object-proxy==1.4.2
 libtmux==0.8.2
 mccabe==0.6.1
 msgpack==0.6.1
@@ -32,6 +32,6 @@ tabulate==0.8.3
 terminaltables==3.1.0
 tmuxp==1.5.3
 typed-ast==1.4.0
-virtualenv==16.7.2
+virtualenv==16.7.4
 wcwidth==0.1.7
 wrapt==1.11.2
