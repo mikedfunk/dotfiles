@@ -544,6 +544,12 @@ let g:qfenter_topen_map = ['t']
 let g:qfenter_keep_quickfixfocus = 0
 " }}}
 
+" quickpeek.vim {{{
+" if isdirectory(expand("~/.vim/plugged/quickpeek.vim"))
+"     nnoremap <c-p> :QuickpeekToggle<cr>
+" endif
+" }}}
+
 " RootIgnore.vim {{{
 let g:RootIgnoreAgignore=1
 let g:RootIgnoreUseHome=1

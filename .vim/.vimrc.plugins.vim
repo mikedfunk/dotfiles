@@ -122,6 +122,7 @@ Plug 'andymass/vim-matchup' " better matchit and match highlighter
 " }}}
 
 " Navigation and Search {{{
+" Plug 'AndrewRadev/quickpeek.vim' " cool quickfix preview - mapped to <c-p> from quickfix (ONLY works on vim 8.1+ with popups, not neovim)
 Plug 'mhinz/vim-startify' " better vim start screen. Strangely includes session management, which I don't use. I use vim-obsession for that.
 " NOTE: this also installs ~/.fzf and stuff
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim' " fuzzy finder. lazy load will prevent other commands from being loaded unless you add them all.

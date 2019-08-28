@@ -51,7 +51,7 @@ brew "gpg" # used by s3cmd and yadm to encrypt stuff
 # brew "heroku-toolbelt" # heroku deploy tools
 # brew "hg" # mercurial
 # brew "highlight" # colorizes html and other output on the command line. used by ranger.
-brew "hostess" # manage hosts file `hostess help`
+brew "hostess" # manage hosts file `hostess help` TODO try https://github.com/feross/hostile - you can apply/unapply separate hosts file in normal hosts file format rather than json. Can use like letswork/letsfun.
 brew "htop" # prettier, more powerful version of top. gets the top running processes. (see my notes)
 brew "httpie" # a cool alternative to curl (http --help) (NOTE: `man http` is something different :/ )
 brew "hub" # , args: ["devel"] # github tool is a superset of git with extra commands. 2.0 needs to be installed via --HEAD
