@@ -1107,6 +1107,10 @@ endif
 let g:matchup_matchparen_status_offscreen = 0
 " }}}
 
+" vim-monokai-tasty {{{
+let g:vim_monokai_tasty_italic = 1
+" }}}
+
 " vim-mundo {{{
 let g:mundo_close_on_revert = 1
 if isdirectory(expand('~/.vim/plugged/vim-mundo'))

@@ -248,6 +248,7 @@ Plug 'wting/gitsessions.vim' " sessions based on git branches!
 " if executable('tsc') | Plug 'Shougo/vimproc.vim', { 'do': 'make', 'for': 'typescript' } | Plug 'Quramy/tsuquyomi', { 'for': 'typescript' } | endif " typescript omnicompletion, custom jump to def, custom syntax erroring
 Plug 'tpope/vim-jdaddy' "`gqaj` to pretty-print json, `gwaj` to merge the json object in the clipboard with the one under the cursor
 " Plug 'chemzqm/vim-jsx-improve' " better jsx formatting
+Plug 'MaxMEllon/vim-jsx-pretty' " jsx formatting (NOT in vim-polyglot)
 if has('python3')
     Plug 'ternjs/tern_for_vim', { 'do': '/usr/local/bin/npm install' }
 endif " javascript omnifunc and jump to def. requires a .tern-project or ~/.tern-config file. http://ternjs.net/doc/manual.html#configuration
@@ -256,11 +257,13 @@ Plug 'othree/javascript-libraries-syntax.vim' " syntax completion for common lib
 Plug 'tpope/vim-apathy' " tweak built-in vim features to allow jumping to javascript (and others) module location with gf
 Plug 'tomarrell/vim-npr' " make gf work with index.js and search js files more intelligently
 " vim-apathy is useful to replace something like this https://stackoverflow.com/questions/33093491/vim-gf-with-file-extension-based-on-current-filetype#33096831
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' } " styled-components support
 " }}}
 
 " Syntax highlighting {{{
 " Plug 'rtfb/vim-dox-spell' " fix buggy doxygen support in php and others
 " Plug 'gerw/vim-HiLinkTrace' " adds an <leader>hlt command to get all highlight groups under cursor
+" Plug 'elzr/vim-json' " json syntax (in vim-polyglot)
 Plug 'sheerun/vim-polyglot' " just about every filetype under the sun in one package
 " Plug 'zimbatm/haproxy.vim' " haproxy syntax (in vim-polyglot)
 " Plug 'amadeus/vim-mjml' " mjml email syntax
@@ -354,7 +357,7 @@ Plug 'ap/vim-css-color', { 'for': ['scss', 'css'] } " colorize css colors e.g. #
 " Plug 'atelierbram/Base2Tone-vim'
 " Plug 'blueshirts/darcula'
 " Plug 'danilo-augusto/vim-afterglow'
-" Plug 'dracula/vim' " base16 version available
+" Plug 'dracula/vim', {'as':'dracula'} " base16 version available
 " Plug 'fcpg/vim-fahrenheit'
 " Plug 'jacoborus/tender.vim'
 " Plug 'kamwitsta/nordisk'
@@ -378,6 +381,7 @@ Plug 'chriskempson/base16-vim' " themes made of 16 colors
 " Plug 'jaredgorski/SpaceCamp'
 " Plug 'mr-ubik/vim-hackerman-syntax'
 " Plug 'flrnprz/taffy.vim'
+" Plug 'patstockwell/vim-monokai-tasty'
 " }}}
 " }}}
 
