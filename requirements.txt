@@ -1,4 +1,4 @@
-arrow==0.14.6
+arrow==0.14.7
 asn1crypto==0.24.0
 astroid==2.2.5
 cffi==1.12.3
