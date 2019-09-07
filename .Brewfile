@@ -139,7 +139,7 @@ brew "sshrc" # use ~/.sshrc and ~/.sshrc.d on remote servers. bring your dotfile
 # brew "stow" # http://brandon.invergo.net/news/2012-05-26-using-gnu-stow-to-manage-your-dotfiles.html (I use yadm instead)
 # brew "task" # taskwarrior https://taskwarrior.org (I don't need this unless I don't have jira)
 # brew "teleconsole" # share your console with others easily
-brew "terminal-notifier" # used by tmux plugin marzocchi/zsh-notify
+brew "terminal-notifier" # used by tmux plugin marzocchi/zsh-notify (this is really just a gem so watch for it being installed by dependencies of other gems :/ )
 brew "the_silver_searcher" # awesome fast grep replacement: `ag --help`
 brew "tig" # git? tig! (note: this requires asciidoc)
 # brew "timewarrior" # taskwarrior-like interface for tracking time (I don't use this)

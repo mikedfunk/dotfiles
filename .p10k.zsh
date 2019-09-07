@@ -658,11 +658,11 @@ fi
   }
 
   function prompt_phpenv() {
-    p10k segment -f 069 -t " $(phpenv local 2>/dev/null)" -c "$(phpenv local 2>/dev/null)"
+    p10k segment -f 069 -i '' -t "$(phpenv local 2>/dev/null)" -c "$(phpenv local 2>/dev/null)"
   }
 
   function prompt_laravel_version() {
-    p10k segment -f 202 -t " $(composer show 'laravel/framework' 2>/dev/null | grep versions | awk '{print $4}')" -c "$([ -f './composer.lock' ] && ( composer show 'laravel/framework' 2>/dev/null ))"
+    p10k segment -f 202 -i '' -t "$(composer show 'laravel/framework' 2>/dev/null | grep versions | awk '{print $4}')" -c "$([ -f './composer.lock' ] && ( composer show 'laravel/framework' 2>/dev/null ))"
   }
 
   # User-defined prompt segments can be customized the same way as built-in segments.
