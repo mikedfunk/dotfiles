@@ -1122,7 +1122,12 @@ class ${1:`!v expand("%:t:r")`} extends Command
     protected $description = '$3';
 
     /** @var string The name and signature of the console command. */
-    protected $signature = '${4:email:send {user}}';
+    protected $signature = '${4:email:send {--dry-run}}';
+
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
     /**
      * Execute the console command.
@@ -1131,7 +1136,15 @@ class ${1:`!v expand("%:t:r")`} extends Command
      */
     public function handle()
     {
+        $this->info("Starting script");
+        $this->info("DRY RUN ONLY no changes will be made");
         ${6:// TODO write command}
+        $this->info("Script finished");
+    }
+
+    private function isDryRun(): bool
+    {
+        return (bool) $this->option('dry-run');
     }
 }
 endsnippet

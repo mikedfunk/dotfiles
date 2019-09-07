@@ -327,15 +327,15 @@ let g:LanguageClient_autoStart = 1
 " don't spam the quickfix with lsp diagnostics
 let g:languageClient_diagnosticsList = 'Disabled'
 " this is now handled by 'roxma/LanguageServer-php-neovim'
-" let g:LanguageClient_serverCommands = {
-"             \ 'php': [$HOME.'/.bin/php-language-server'],
-"             \ }
+let g:LanguageClient_serverCommands = {
+            \ 'php': [$HOME . '/.bin/php-language-server'],
+            \ }
 " \ 'php': [$HOME.'/.bin/intelephense-server'],
 if isdirectory(expand('~/.vim/plugged/LanguageClient-neovim'))
-    " augroup language_client_neovim_augroup
-    "     autocmd!
-    "     autocmd filetype php set omnifunc=LanguageClient#complete
-    " augroup END
+    augroup language_client_neovim_augroup
+        autocmd!
+        autocmd filetype php set completefunc=LanguageClient#complete
+    augroup END
     let g:airline#extensions#languageclient#enabled = 1
     nnoremap <leader>zz :call LanguageClient_contextMenu()<cr>
 endif

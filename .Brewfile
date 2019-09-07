@@ -177,6 +177,7 @@ cask "adoptopenjdk" # needed to install akamai cli
 # cask "bettertouchtool" # with a config file this lets me vimify any cocoa app https://raw.githubusercontent.com/Vincent-Carrier/CocoaVim/master/CocoaVim.bttpreset
 # cask "bitbar" # use any cli command to show stuff in the menubar with colors and icons and provide menu options
 # cask "beardedspice" # keyboard media controls for media sites. Always seems to be broken :/
+# cask "caffeine" # keep mac awake (replaced with amphetamine)
 # cask "cheatsheet" # hold <cmd> for a bit to get a modal of available keyboard shortcuts (kind of annoying - rarely comes up when I actually want it to, too much info)
 # cask "discord" # chat
 cask "docker" # docker for mac desktop app
@@ -243,11 +244,13 @@ cask "virtualbox" # virtual machine software (needed by docker-machine at least)
 # cask "webpquicklook" # quicklook plugin
 # cask "wireshark" # analyze network data
 # cask "xquartz" # needed to install xclip, which is needed to copy text from multitail (I installed all of that, copy still didn't work :/ )
+cask "xscreensaver" # shitload of old screensavers... downside is there are so many it slows down selecting Desktop & Screen Saver the first time in System Preferences :/
 # }}}
 
 # mac app store {{{
 # Do I really need these?
 mas "Downlink", id: 1454269192 # cool live (20 min refresh) earth view on my desktop (tries to reinstall every time :/ )
 mas "Xcode", id: 497799835 # needed for some tools (TODO which tools?)
+mas "Amphetamine", id: 937984704 # replacement for discontinued "caffeine" menubar app
 # mas "GIPHY CAPTURE", id: 668208984
 # }}}
