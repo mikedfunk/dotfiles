@@ -98,12 +98,12 @@ if [[ ! $ANTIBODY_LOADED ]]; then
     antibody bundle robbyrussell/oh-my-zsh path:plugins/wd/wd.plugin.zsh # warp directory
     antibody bundle robbyrussell/oh-my-zsh path:plugins/vi-mode
     antibody bundle robbyrussell/oh-my-zsh path:plugins/gitfast # fix git completion issues https://unix.stackexchange.com/a/204308 downside: this also adds a TON of gxx aliases https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/gitfast it also adds MORE git aliases and functions from the main git plugin https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/git/git.plugin.zsh
-    antibody bundle marzocchi/zsh-notify # notify when a command fails or lasts longer than 30 seconds and the terminal is in the background (requires terminal-notifier)
+    # antibody bundle marzocchi/zsh-notify # notify when a command fails or lasts longer than 30 seconds and the terminal is in the background (requires terminal-notifier and reattach-to-user-namespace from within tmux)
     antibody bundle zsh-users/zsh-autosuggestions # OLD COMMENT: buggy if enabled along with zsh-syntax-highlighting. crashes the shell regularly.
     antibody bundle zsh-users/zsh-completions # do-everything argument completions
     antibody bundle zsh-users/zsh-syntax-highlighting # colored input... see above
     # antibody bundle zsh-users/zsh-history-substring-search # up arrow after typing part of command
-    antibody bundle romkatv/powerlevel10k # zsh prompt theme
+    antibody bundle romkatv/powerlevel10k # zsh prompt theme (see ~/.p10k.zsh)
 
     ANTIBODY_LOADED=1
 fi
