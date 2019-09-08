@@ -609,10 +609,16 @@ let g:airline#extensions#tmuxline#enabled = 0 " use current airline theme stuff 
 " z: date/time info
 " \ 'b': ['#h'],
 " \ 'options': {'status-justify': 'center'},
+"
+" I would like to use 'b' and 'c' but I found 'b' is actually lighter than
+" 'y', so it's insonsistent with the other side. And they won't provide a 'd'.
+" At least both on 'c' looks better than splitting between 'b' and 'c'.
 let g:tmuxline_preset = {
     \ 'a': ['❏ #S'],
-    \ 'b': ["🔋 #(pmset -g batt | egrep '\d+%' | awk '{print $3}' | awk -F';' '{print $1}')"],
-    \ 'c': ['#(~/.bin/saatchi-haproxy-status.sh)'],
+    \ 'c': [
+        \ "🔋 #(pmset -g batt | egrep '\d+%' | awk '{print $3}' | awk -F';' '{print $1}')",
+        \ '#(~/.bin/saatchi-haproxy-status.sh)'
+    \ ],
     \ 'win': ['#I', '#W'],
     \ 'cwin': ['#I', '#W#F'],
     \ 'x': ["#(TZ=Etc/UTC date '+%%R UTC')"],

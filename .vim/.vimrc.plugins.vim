@@ -306,7 +306,7 @@ Plug 'vim-airline/vim-airline-themes' " pretty colors for airline
 Plug 'Yggdroot/indentLine' " show vertical lines for levels of indentions
 " }}}
 
-" Plug 'edkolev/tmuxline.vim' " tmux statusline file generator
+Plug 'edkolev/tmuxline.vim' " tmux statusline file generator
 " Plug 'edkolev/promptline.vim', { 'on': ['Promptline', 'PromptlineSnapshot'] } " custom bash prompt creation in sync with airline
 " Plug 'ntpeters/vim-better-whitespace' " highlight tabs and trailing whitespace. Slows down typing considerably though!
 " Plug 'thirtythreeforty/lessspace.vim' " remove trailing whitespace only on lines you edit. Messes up paste indent!
