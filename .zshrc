@@ -683,9 +683,6 @@ letsfun () {
     cd -
     echo "Free at last!"
 }
-
-
-messed=(9gag.com fbcdn.com fbcdn.net kubernetes.docker.internal login.facebook.com m.youtube.com macrumors.com news.ycombinator.com producthunt.com static.ak.connect.facebook.com static.ak.fbcdn.net tweetdeck.twitter.com twitch.com www.9gag.com www.facebook.com www.fbcdn.com www.fbcdn.net www.login.facebook.com www.reddit.com www.static.ak.connect.facebook.com www.static.ak.fbcdn.net www.twitter.com youtube.com)
 # }}}
 
 # }}}
