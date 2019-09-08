@@ -37,7 +37,12 @@ fi
   # The list of segments shown on the left. Fill it with the most important segments.
   typeset -ga POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
       # os_icon               # os identifier
+      context
       dir                     # current directory
+      pyenv
+      nodenv_custom
+      phpenv
+      rbenv
       vcs                     # git status
       # prompt_char           # prompt symbol
   )
@@ -52,18 +57,18 @@ fi
       background_jobs         # presence of background jobs
       # virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
       # anaconda                # conda environment (https://conda.io/)
-      pyenv                   # python environment (https://github.com/pyenv/pyenv)
-      nodenv                  # node.js version from nodenv (https://github.com/nodenv/nodenv)
+      # pyenv                   # python environment (https://github.com/pyenv/pyenv)
+      # nodenv                  # node.js version from nodenv (https://github.com/nodenv/nodenv)
       # nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
       # nodeenv                 # node.js environment (https://github.com/ekalinin/nodeenv)
       # node_version          # node.js version
       # go_version            # golang version
       # php_version
-      phpenv                  # custom - see prompt_phpenv
+      # phpenv                  # custom - see prompt_phpenv
       # laravel_version       # custom - see prompt_laravel_version (powerlevel9k has it but this doesn't)
-      rbenv                 # ruby version from rbenv (https://github.com/rbenv/rbenv)
+      # rbenv                 # ruby version from rbenv (https://github.com/rbenv/rbenv)
       # kubecontext             # current kubernetes context (https://kubernetes.io/)
-      context                 # user@host
+      # context                 # user@host
       # nordvpn                 # nordvpn connection status, linux only (https://nordvpn.com/)
       # public_ip             # public IP address
       # battery               # internal battery
@@ -165,15 +170,18 @@ fi
   # Separator between same-color segments on the left.
   typeset -g POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR='%246F\uE0B1'
   # Separator between same-color segments on the right.
-  typeset -g POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR='%246F\uE0B3'
+  # typeset -g POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR='%246F\uE0B3'
+  typeset -g POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR=
   # Separator between different-color segments on the left.
   typeset -g POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR='\uE0B0'
   # Separator between different-color segments on the right.
-  typeset -g POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR='\uE0B2'
+  # typeset -g POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR='\uE0B2'
+  typeset -g POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=
   # The right end of left prompt.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL='\uE0B0'
   # The left end of right prompt.
-  typeset -g POWERLEVEL9K_RIGHT_PROMPT_FIRST_SEGMENT_START_SYMBOL='\uE0B2'
+  # typeset -g POWERLEVEL9K_RIGHT_PROMPT_FIRST_SEGMENT_START_SYMBOL='\uE0B2'
+  typeset -g POWERLEVEL9K_RIGHT_PROMPT_FIRST_SEGMENT_START_SYMBOL=
   # The left end of left prompt.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_FIRST_SEGMENT_START_SYMBOL=''
   # The right end of right prompt.
@@ -367,6 +375,7 @@ fi
   # it will signify success by turning green.
   typeset -g POWERLEVEL9K_STATUS_OK=true
   typeset -g POWERLEVEL9K_STATUS_OK_FOREGROUND=70
+  typeset -g POWERLEVEL9K_STATUS_OK_BACKGROUND=
   typeset -g POWERLEVEL9K_STATUS_OK_VISUAL_IDENTIFIER_EXPANSION='✔'
 
   # Status when some part of a pipe command fails but the overall exit status is zero. It may look
@@ -379,11 +388,13 @@ fi
   # it will signify error by turning red.
   typeset -g POWERLEVEL9K_STATUS_ERROR=true
   typeset -g POWERLEVEL9K_STATUS_ERROR_FOREGROUND=160
+  typeset -g POWERLEVEL9K_STATUS_ERROR_BACKGROUND=
   typeset -g POWERLEVEL9K_STATUS_ERROR_VISUAL_IDENTIFIER_EXPANSION='↵'
 
   # Status when the last command was terminated by a signal.
   typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL=true
   typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL_FOREGROUND=160
+  typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL_BACKGROUND=
   # Use terse signal names: "INT" instead of "SIGINT(2)".
   typeset -g POWERLEVEL9K_STATUS_VERBOSE_SIGNAME=false
   typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL_VISUAL_IDENTIFIER_EXPANSION='↵'
@@ -392,6 +403,7 @@ fi
   # It may look like this: 1|0.
   typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE=true
   typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE_FOREGROUND=160
+  typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE_BACKGROUND=
   typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE_VISUAL_IDENTIFIER_EXPANSION='↵'
   # }}}
 
@@ -403,6 +415,7 @@ fi
   typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_PRECISION=0
   # Execution time color.
   typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND=248
+  typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND=
   # Duration format: 1d 2h 3m 4s.
   typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FORMAT='d h m s'
   # Custom icon.
@@ -416,6 +429,7 @@ fi
   typeset -g POWERLEVEL9K_BACKGROUND_JOBS_VERBOSE=false
   # Background jobs color.
   typeset -g POWERLEVEL9K_BACKGROUND_JOBS_FOREGROUND=37
+  typeset -g POWERLEVEL9K_BACKGROUND_JOBS_BACKGROUND=
   # Icon to show when there are background jobs.
   typeset -g POWERLEVEL9K_BACKGROUND_JOBS_VISUAL_IDENTIFIER_EXPANSION='${P9K_VISUAL_IDENTIFIER// }'
   # }}}
@@ -635,6 +649,7 @@ fi
   # time: current time {{{
   # Current time color.
   typeset -g POWERLEVEL9K_TIME_FOREGROUND=66
+  typeset -g POWERLEVEL9K_TIME_BACKGROUND=
   # Format for the current time: 09:51:02. See `man 3 strftime`.
   typeset -g POWERLEVEL9K_TIME_FORMAT='%D{%r}'
   # typeset -g POWERLEVEL9K_TIME_FORMAT='%D{%H:%M:%S}'
@@ -662,6 +677,12 @@ fi
     p10k segment -f 069 -i '' -t "$(phpenv local 2>/dev/null)" -c "$(phpenv local 2>/dev/null)"
   }
 
+  # strangely the default plugin doesn't show up on easel for me :/
+  function prompt_nodenv_custom() {
+    p10k segment -f 034 -i '' -t "$(nodenv local 2>/dev/null)" -c "$(nodenv local 2>/dev/null)"
+  }
+
+  # this is pretty slow :/
   function prompt_laravel_version() {
     p10k segment -f 202 -i '' -t "$(composer show 'laravel/framework' 2>/dev/null | grep versions | awk '{print $4}')" -c "$([ -f './composer.lock' ] && ( composer show 'laravel/framework' 2>/dev/null ))"
   }

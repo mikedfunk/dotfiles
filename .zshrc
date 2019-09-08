@@ -220,8 +220,7 @@ export PINENTRY_USER_DATA="USE_CURSES=1"
 alias info="info --vi-keys"
 alias starwars="telnet towel.blinkenlights.nl" # :)
 alias gameboy="telnet gameboy.live 1989" # :)
-# cd () { builtin cd "$@" && ls -FAG; } # auto ls on cd
-cd () { builtin cd "$@" && ls; } # auto ls on cd
+cd () { builtin cd "$@" && ls -FAG; } # auto ls on cd
 alias ..="cd .."
 alias ...="cd ../.."
 # has lsd && alias ls="lsd" # fancy ls augmentation (disabled because it's missing flags that ls has >:(  )
