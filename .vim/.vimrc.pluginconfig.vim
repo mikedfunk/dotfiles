@@ -625,6 +625,19 @@ let g:tmuxline_preset = {
     \ 'y': ['%l:%M %p'],
     \ 'z': ['%a', '%b %d'],
 \}
+
+" TODO
+" let g:tmuxline_theme = tmuxline#api#set_theme({
+" 			\ 'a': ['237', '109', 'bold'],
+" 			\ 'b': ['109', '236', ''],
+" 			\ 'c': ['240', '237', ''],
+" 			\ 'bg': ['240', '237', ''],
+" 			\ 'cwin': ['109', '236', ''],
+" 			\ 'win': ['240', '237', ''],
+" 			\ 'x': ['240', '237', ''],
+" 			\ 'y': ['109', '236', ''],
+" 			\ 'z': ['237', '109', ''],
+" 			\ })
 let g:airline#extensions#tmuxline#snapshot_file = '~/.tmuxline.conf'
 
 if executable('tmux') && isdirectory(expand('~/.vim/plugged/tmuxline.vim'))
