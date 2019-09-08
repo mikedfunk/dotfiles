@@ -72,6 +72,19 @@ fpath=(
 has() {
     type "$1" &>/dev/null
 }
+
+# colors {{{
+BLACK="$(tput setaf 0)"
+RED="$(tput setaf 1)"
+GREEN="$(tput setaf 2)"
+YELLOW="$(tput setaf 3)"
+BLUE="$(tput setaf 4)"
+PINK="$(tput setaf 5)"
+CYAN="$(tput setaf 6)"
+WHITE="$(tput setaf 7)"
+NORMAL="$(tput sgr0)"
+# }}}
+
 # }}}
 
 # zsh {{{
@@ -656,6 +669,7 @@ alias glow-watch="ag -l -g '\.js$' | entr -r -c /usr/local/bin/glow"
 # }}}
 
 # letswork / letsfun {{{
+# this is more flexible and much simpler than an npm package for this.
 DISTRACTING_SITES=(
     reddit.com
     facebook.com
@@ -671,17 +685,17 @@ letswork () {
     cd >/dev/null
     hostess apply ~/.support/hosts.json
     cd - >/dev/null
-    echo "Lets work!"
+    echo "${RED}Lets work!${NORMAL}"
 }
 letsfun () {
     if [ "$1" = "--help" ]; then echo "Turns off all distracting sites in /etc/hosts."; return; fi
     for SITE in $DISTRACTING_SITES; do
         hostess rm $SITE
     done
-    cd
+    cd >/dev/null
     hostess apply ~/.support/hosts.json
-    cd -
-    echo "Free at last!"
+    cd - >/dev/null
+    echo "${GREEN}Free at last!${NORMAL}"
 }
 # }}}
 
