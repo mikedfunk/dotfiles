@@ -165,7 +165,9 @@ fi
   fi
 
   # Default background color.
-  typeset -g POWERLEVEL9K_BACKGROUND=238
+  # typeset -g POWERLEVEL9K_BACKGROUND=238
+  # keywords: main background color bg color primary
+  typeset -g POWERLEVEL9K_BACKGROUND=232
 
   # Separator between same-color segments on the left.
   typeset -g POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR='%246F\uE0B1'
@@ -221,6 +223,8 @@ fi
   # dir: current directory {{{
   # Default current directory color.
   typeset -g POWERLEVEL9K_DIR_FOREGROUND=31
+  # typeset -g POWERLEVEL9K_DIR_BACKGROUND=236
+  typeset -g POWERLEVEL9K_DIR_BACKGROUND=234
   # If directory is too long, shorten some of its segments to the shortest possible unique
   # prefix. The shortened directory can be tab-completed to the original.
   typeset -g POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_unique
@@ -362,6 +366,8 @@ fi
   # These settings are used for respositories other than Git or when gitstatusd fails and
   # Powerlevel10k has to fall back to using vcs_info.
   typeset -g POWERLEVEL9K_VCS_CLEAN_FOREGROUND=76
+  typeset -g POWERLEVEL9K_VCS_BACKGROUND=234
+  # typeset -g POWERLEVEL9K_VCS_{STAGED,UNSTAGED,UNTRACKED,CONFLICTED,COMMITS_AHEAD,COMMITS_BEHIND,CLEAN,MODIFIED}_BACKGROUND=234
   typeset -g POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND=76
   typeset -g POWERLEVEL9K_VCS_MODIFIED_FOREGROUND=227
   # }}}
@@ -648,7 +654,7 @@ fi
 
   # time: current time {{{
   # Current time color.
-  typeset -g POWERLEVEL9K_TIME_FOREGROUND=66
+  typeset -g POWERLEVEL9K_TIME_FOREGROUND=236
   typeset -g POWERLEVEL9K_TIME_BACKGROUND=
   # Format for the current time: 09:51:02. See `man 3 strftime`.
   typeset -g POWERLEVEL9K_TIME_FORMAT='%D{%r}'
@@ -673,6 +679,7 @@ fi
     p10k segment -f 208 -i '⭐' -t 'hello, %n'
   }
 
+  # BUG: I can't get -b to work at all :(
   function prompt_phpenv() {
     p10k segment -f 069 -i '' -t "$(phpenv local 2>/dev/null)" -c "$(phpenv local 2>/dev/null)"
   }
