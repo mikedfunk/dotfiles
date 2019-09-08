@@ -223,8 +223,8 @@ fi
   # dir: current directory {{{
   # Default current directory color.
   typeset -g POWERLEVEL9K_DIR_FOREGROUND=31
-  # typeset -g POWERLEVEL9K_DIR_BACKGROUND=236
-  typeset -g POWERLEVEL9K_DIR_BACKGROUND=234
+  typeset -g POWERLEVEL9K_DIR_BACKGROUND=235
+  # typeset -g POWERLEVEL9K_DIR_BACKGROUND=234
   # If directory is too long, shorten some of its segments to the shortest possible unique
   # prefix. The shortened directory can be tab-completed to the original.
   typeset -g POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_unique
@@ -366,7 +366,7 @@ fi
   # These settings are used for respositories other than Git or when gitstatusd fails and
   # Powerlevel10k has to fall back to using vcs_info.
   typeset -g POWERLEVEL9K_VCS_CLEAN_FOREGROUND=76
-  typeset -g POWERLEVEL9K_VCS_BACKGROUND=234
+  typeset -g POWERLEVEL9K_VCS_BACKGROUND=235
   # typeset -g POWERLEVEL9K_VCS_{STAGED,UNSTAGED,UNTRACKED,CONFLICTED,COMMITS_AHEAD,COMMITS_BEHIND,CLEAN,MODIFIED}_BACKGROUND=234
   typeset -g POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND=76
   typeset -g POWERLEVEL9K_VCS_MODIFIED_FOREGROUND=227

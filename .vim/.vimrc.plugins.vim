@@ -285,7 +285,7 @@ Plug 'kkoomen/vim-doge' " docblock comments for a variety of languages <leader>d
 " Plug 'heavenshell/vim-syntax-flowtype' " js flowtype (included in pangloss/vim-javascript)
 Plug 'rhysd/vim-gfm-syntax' " github-flavored markdown. yum!
 Plug 'nelstrom/vim-markdown-folding' " just markdown folding
-Plug 'osyo-manga/vim-precious' | Plug 'Shougo/context_filetype.vim' " code block syntax highlighting for markdown, etc. _really_ helpful!
+" Plug 'osyo-manga/vim-precious' | Plug 'Shougo/context_filetype.vim' " code block syntax highlighting for markdown, etc. _really_ helpful! (not needed - g:markdown_fenced_languages)
 Plug 'qnighy/vim-ssh-annex' " ssh files syntax coloring e.g. ssh config
 " Plug 'evanmiller/nginx-vim-syntax' " nginx conf syntax
 " Plug 'darfink/vim-plist' " plist syntax
@@ -320,7 +320,7 @@ Plug 'itchyny/vim-cursorword' " highlight matching words. What I like about this
 Plug 'ap/vim-css-color', { 'for': ['scss', 'css'] } " colorize css colors e.g. #333 with the actual color in the background
 " Plug 'chrisbra/NrrwRgn' " work in a separate window with a sub-region of a document. :NR
 " Plug 'scrooloose/vim-slumlord' " plantuml live preview for sequence diagrams
-" Plug 'ryanoasis/vim-devicons' " file type icons in netrw, etc.
+Plug 'ryanoasis/vim-devicons' " file type icons in netrw, etc.
 " Plug 'TaDaa/vimade' " fade inactive buffers, preserving color scheme (I don't really need this)
 
 " color schemes: 256-friendly {{{

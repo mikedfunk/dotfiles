@@ -848,6 +848,20 @@ command! HighlightLine :exe "let m = matchadd('WildMenu','\\%" . line('.') . "l'
 " clear all highlights for the current buffer only
 command! ClearHighlights :call clearmatches() | IndentGuidesEnable
 
+" markdown code block languages
+" https://old.reddit.com/r/vim/comments/2x5yav/markdown_with_fenced_code_blocks_is_great/
+let g:markdown_fenced_languages = [
+            \ 'css',
+            \ 'javascript',
+            \ 'js=javascript',
+            \ 'json=javascript',
+            \ 'php',
+            \ 'ruby',
+            \ 'scss',
+            \ 'sql',
+            \ 'xml',
+            \ 'html'
+            \ ]
 " }}}
 
 " Commands and Functions {{{
