@@ -655,6 +655,39 @@ php-language-server-script() {
 alias glow-watch="ag -l -g '\.js$' | entr -r -c /usr/local/bin/glow"
 # }}}
 
+# letswork / letsfun {{{
+DISTRACTING_SITES=(
+    reddit.com
+    facebook.com
+    instagram.com
+    twitter.com
+    cnn.com
+)
+letswork () {
+    if [ "$1" = "--help" ]; then echo "Turns off all distracting sites in /etc/hosts."; return; fi
+    for SITE in $DISTRACTING_SITES; do
+        hostess add $SITE 0.0.0.0
+    done
+    cd >/dev/null
+    hostess apply ~/.support/hosts.json
+    cd - >/dev/null
+    echo "Lets work!"
+}
+letsfun () {
+    if [ "$1" = "--help" ]; then echo "Turns off all distracting sites in /etc/hosts."; return; fi
+    for SITE in $DISTRACTING_SITES; do
+        hostess rm $SITE
+    done
+    cd
+    hostess apply ~/.support/hosts.json
+    cd -
+    echo "Free at last!"
+}
+
+
+messed=(9gag.com fbcdn.com fbcdn.net kubernetes.docker.internal login.facebook.com m.youtube.com macrumors.com news.ycombinator.com producthunt.com static.ak.connect.facebook.com static.ak.fbcdn.net tweetdeck.twitter.com twitch.com www.9gag.com www.facebook.com www.fbcdn.com www.fbcdn.net www.login.facebook.com www.reddit.com www.static.ak.connect.facebook.com www.static.ak.fbcdn.net www.twitter.com youtube.com)
+# }}}
+
 # }}}
 
 # source more files {{{
