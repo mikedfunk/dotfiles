@@ -147,7 +147,7 @@ brew "tldr" # more consise community man pages
 # brew "tmux" # terminal multiplexer similar to screen. (Latest tmux 2.9a has some crash-inducing bugs. I am manually installing 2.8 from a tarball temporarily. See ~/.yadm/bootstrap for details.)
 # brew "tofrodos" # line ending conversion (install if needed)
 # brew "trash" # a trash can for the terminal
-# brew "tree" # display file/folder hierarchies in a visual tree format (I alias tree to alder now)
+brew "tree" # display file/folder hierarchies in a visual tree format
 tap "universal-ctags/universal-ctags"
 brew "universal-ctags", args: ["HEAD"] # tag creator for use by vim to navigate by symbols. head only.
 brew "unixodbc" # needed by php70

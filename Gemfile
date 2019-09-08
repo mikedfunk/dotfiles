@@ -17,6 +17,7 @@ gem 'jekyll' # blogging platform used by github
 gem 'jist', '~> 1.5' # github gist cli tool
 # gem "json_pure"
 # gem "kramdown" # another markdown parser option that can be used by Jekyll.
+gem 'libv8', '~> 7.3' # this was needed to run `ruby --help` on ruby 2.2.2 apparently in the catalog dir, not sure why
 gem 'lunchy', '~> 0.10.4' # launchctl wrapper to make it more developer-friendly (Tried lunchy-go brew cask, this has more options)
 # gem "mailcatcher" # catches outgoing mail and displays it from a local server to a web-based view
 gem 'mdl', '~> 0.5.0' # markdown lint - used by vim-ale

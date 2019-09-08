@@ -165,6 +165,17 @@ windows:
       - . ./watch.sh
 # }}}
 
+# maropost php sdk {{{
+  - window_name: maropost
+    start_directory: ~/Code/saatchi/maropost-php-sdk
+    layout: main-horizontal
+    panes:
+      - v -S
+      - ts
+# }}}
+
+# }}}
+
 # chromatic (iOS app) {{{
   # - window_name: chromatic
   #   start_directory: ~/Code/saatchi/chromatic

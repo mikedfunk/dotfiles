@@ -357,6 +357,7 @@ alias cgi="composer global install"
 # alias cgr="composer global bin main require"
 alias cr="composer require"
 alias crd="composer require --dev"
+alias crs="composer run-script"
 # }}}
 
 # git {{{
