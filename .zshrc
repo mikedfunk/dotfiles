@@ -92,45 +92,63 @@ if [[ ! $ANTIBODY_LOADED ]]; then
 
     antibody bundle yous/vanilli.sh # sensible zsh defaults
     antibody bundle djui/alias-tips # tell you when an alias would shorten the command you ran
-    antibody bundle robbyrussell/oh-my-zsh path:plugins/command-not-found
+    antibody bundle robbyrussell/oh-my-zsh path:plugins/command-not-found # suggest packages to install if command not found
     antibody bundle robbyrussell/oh-my-zsh path:plugins/colored-man-pages
     antibody bundle robbyrussell/oh-my-zsh path:plugins/colorize # Plugin for highlighting file content
     antibody bundle robbyrussell/oh-my-zsh path:plugins/wd/wd.plugin.zsh # warp directory
     antibody bundle robbyrussell/oh-my-zsh path:plugins/vi-mode
     antibody bundle robbyrussell/oh-my-zsh path:plugins/gitfast # fix git completion issues https://unix.stackexchange.com/a/204308 downside: this also adds a TON of gxx aliases https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/gitfast it also adds MORE git aliases and functions from the main git plugin https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/git/git.plugin.zsh
-    # antibody bundle marzocchi/zsh-notify # notify when a command fails or lasts longer than 30 seconds and the terminal is in the background (requires terminal-notifier and reattach-to-user-namespace from within tmux)
+    antibody bundle marzocchi/zsh-notify # notify when a command fails or lasts longer than 30 seconds and the terminal is in the background (requires terminal-notifier and reattach-to-user-namespace from within tmux)
     antibody bundle zsh-users/zsh-autosuggestions # OLD COMMENT: buggy if enabled along with zsh-syntax-highlighting. crashes the shell regularly.
     antibody bundle zsh-users/zsh-completions # do-everything argument completions
-    antibody bundle zsh-users/zsh-syntax-highlighting # colored input... see above
+    # antibody bundle zsh-users/zsh-syntax-highlighting # colored input... see above
+    antibody bundle zdharma/fast-syntax-highlighting # colored input but faster
     # antibody bundle zsh-users/zsh-history-substring-search # up arrow after typing part of command
     antibody bundle romkatv/powerlevel10k # zsh prompt theme (see ~/.p10k.zsh)
+    antibody bundle qoomon/zsh-lazyload # lazyload various commands
+    antibody bundle mroth/evalcache # speeds up subsequent runs of eval init functions. if you make a change just call `_evalcache_clear`.
+    antibody bundle hlissner/zsh-autopair # auto close parens, etc.
 
     ANTIBODY_LOADED=1
 fi
 # }}}
 
+# lazyload {{{
+# has lazyload && lazyload 'has nodenv && eval "$(nodenv init -)"' nodenv # TOO SLOW
+# has lazyload && lazyload '[[ -f "$HOME/.phpenv/bin/phpenv" ]] && eval "$($HOME/.phpenv/bin/phpenv init -)"' phpenv # TOO SLOW
+# has lazyload && lazyload 'has pyenv && eval "$(pyenv init -)"' pyenv # TOO SLOW
+# has lazyload && lazyload 'has rbenv && eval "$(rbenv init -)"' rbenv # TOO SLOW
+has lazyload && lazyload 'has akamai && eval "$(akamai --zsh)"' akamai
+# }}}
+
 # source additional files and env vars {{{
 [ -f ~/.private_vars.sh ] && source ~/.private_vars.sh # where I store my secret env vars
 # [ -f ~/.support/promptline.theme.bash ] && source ~/.support/promptline.theme.bash # vim plugin generates this tmux status line file
-has direnv && eval "$(direnv hook zsh)" # allow .envrc on each prompt start
+# has direnv && eval "$(direnv hook zsh)" # allow .envrc on each prompt start
+has direnv && _evalcache direnv hook zsh # (evalcache version)
 # [ -f /usr/local/etc/grc.bashrc ] && source "/usr/local/etc/grc.bashrc" # generic colorizer
 [ -f /usr/local/etc/grc.zsh ] && source "/usr/local/etc/grc.zsh" # generic colorizer
 # https://github.com/google/google-api-ruby-client/issues/235#issuecomment-169956795
 [ -f /usr/local/etc/openssl/cert.pem ] && export SSL_CERT_FILE=/usr/local/etc/openssl/cert.pem
 # [ -d "$HOME/.zsh/completion" ] && find "$HOME/.zsh/completion" | while read f; do source "$f"; done
 # has plenv && eval "$(plenv init -)"
-has nodenv && eval "$(nodenv init -)"
+# has nodenv && eval "$(nodenv init -)" # moved to lazyload but much slower!
+has nodenv && _evalcache nodenv init - # (evalcache version)
 # https://github.com/pyenv/pyenv/blob/master/COMMANDS.md#pyenv-global
 # strangely this is already set BEFORE this file is sourced!
 unset PYENV_VERSION
-has pyenv && eval "$(pyenv init -)"
+# has pyenv && eval "$(pyenv init -)" # moved to lazyload but much slower!
+has pyenv && _evalcache pyenv init - # (evalcache version)
 # use pipenv instead of virtualenv. It comes with pyenv! There's also support for it with direnv.
 # has pyenv-virtualenv-init && eval "$(pyenv virtualenv-init -)"
-[[ -f "$HOME/.phpenv/bin/phpenv" ]] && eval "$($HOME/.phpenv/bin/phpenv init -)"
+# [[ -f "$HOME/.phpenv/bin/phpenv" ]] && eval "$($HOME/.phpenv/bin/phpenv init -)" # moved to lazyload but much slower!
+[[ -f "$HOME/.phpenv/bin/phpenv" ]] && _evalcache "$HOME"/.phpenv/bin/phpenv init - # (evalcache version)
 # used internally and in .envrc files to go to phpenv directories
-export PHPENV_VERSION="$(phpenv version | cut -d' ' -f1)"
-has rbenv && eval "$(rbenv init -)"
-# has akamai && eval "$(akamai --zsh)" # this takes like 1 second and I almost never use it
+# export PHPENV_VERSION="$(phpenv version | cut -d' ' -f1)" # see below - hardcoded
+export PHPENV_VERSION="7.0.29" # avoid lazy loading problems
+# has rbenv && eval "$(rbenv init -)" # moved to lazyload but much slower!
+has rbenv && _evalcache rbenv init - # (evalcache version)
+# has akamai && eval "$(akamai --zsh)" # this takes like 1 second and I almost never use it (moved to lazyload)
 # [ -f "/usr/local/opt/asdf/asdf.sh" ] && source "/usr/local/opt/asdf/asdf.sh"
 # [ -n "$DESK_ENV" ] && source "$DESK_ENV" || true # Hook for desk activation
 # tabtab source for yo package
@@ -202,7 +220,8 @@ export PINENTRY_USER_DATA="USE_CURSES=1"
 alias info="info --vi-keys"
 alias starwars="telnet towel.blinkenlights.nl" # :)
 alias gameboy="telnet gameboy.live 1989" # :)
-cd () { builtin cd "$@" && ls -FAG; } # auto ls on cd
+# cd () { builtin cd "$@" && ls -FAG; } # auto ls on cd
+cd () { builtin cd "$@" && ls; } # auto ls on cd
 alias ..="cd .."
 alias ...="cd ../.."
 # has lsd && alias ls="lsd" # fancy ls augmentation (disabled because it's missing flags that ls has >:(  )
