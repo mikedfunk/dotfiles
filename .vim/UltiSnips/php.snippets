@@ -235,6 +235,17 @@ class `!v expand("%:t:r")`$4
 }
 endsnippet
 
+snippet pcla "palette class"
+<?php
+
+declare(strict_types=1);
+`!p snip.rv = namespace(snip, path, "Palette\\")`$5
+class `!v expand("%:t:r")`$4
+{
+    $6
+}
+endsnippet
+
 snippet lsp "laravel service provider"
 <?php
 
@@ -1145,6 +1156,32 @@ class ${1:`!v expand("%:t:r")`} extends Command
     private function isDryRun(): bool
     {
         return (bool) $this->option('dry-run');
+    }
+}
+endsnippet
+
+snippet hnd "saatchi palette domain event handler"
+<?php
+
+declare(strict_types=1);
+`!p snip.rv = namespace(snip, path, "Palette\\")`
+use Palette\SaatchiArt\DomainEvent;
+
+class ${1:`!v expand("%:t:r")`} implements DomainEventHandlerInterface
+{
+
+    public function __construct(${5/\w+\s*/\u$0/} $${5:myClass})
+    {
+        $this->$5 = $$5;
+    }
+
+    /** @inheritDoc */
+    public function handle(DomainEvent $event)
+    {
+        if (!$event instanceof ${6:MyEventClass}) {
+            throw new \InvalidArgumentException("Wrong event type received");
+        }
+        ${7:// TODO handle event}
     }
 }
 endsnippet
