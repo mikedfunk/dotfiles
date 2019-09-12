@@ -26,8 +26,8 @@ windows:
       - ts
       - wait-on http://www.local.saatchiart.com && saatchi-tinker-legacy-local
       - puw
-      - cd ~/Code/saatchi/legacy/assets/react && yarn && yarn write-rev && yarn start
-      # - cd ~/Code/saatchi/legacy/assets/react && saatchi-eslint-watch-legacy
+      - wd legacy && cd ./assets/react && yarn && yarn write-rev && yarn start
+      # - saatchi-eslint-watch-legacy
       # - saatchi-grunt-watch-legacy
       - wait-on http://www.local.saatchiart.com && saatchi-tail-legacy-local
 # }}}
@@ -174,17 +174,6 @@ windows:
       - ts
 # }}}
 
-# }}}
-
-# chromatic (iOS app) {{{
-  # - window_name: chromatic
-  #   start_directory: ~/Code/saatchi/chromatic
-  #   layout: main-horizontal
-  #   panes:
-  #     - v -S
-  #     - ts
-# }}}
-
 # logs {{{
   - window_name: logs
     start_directory: ~/
@@ -195,4 +184,13 @@ windows:
       - saatchi-tail-palette-xprod
       - saatchi-tail-legacy-xprod
       # - saatchi-tail-legacy-services-xprod
+# }}}
+
+# chromatic (iOS app) {{{
+  # - window_name: chromatic
+  #   start_directory: ~/Code/saatchi/chromatic
+  #   layout: main-horizontal
+  #   panes:
+  #     - v -S
+  #     - ts
 # }}}

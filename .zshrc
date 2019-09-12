@@ -159,7 +159,7 @@ has pyenv && _evalcache pyenv init - # (evalcache version)
 [[ -f "$HOME/.phpenv/bin/phpenv" ]] && _evalcache "$HOME"/.phpenv/bin/phpenv init - # (evalcache version)
 # used internally and in .envrc files to go to phpenv directories
 # export PHPENV_VERSION="$(phpenv version | cut -d' ' -f1)" # see below - hardcoded
-export PHPENV_VERSION="7.0.29" # avoid lazy loading problems
+export PHPENV_VERSION="$(cat $HOME/.phpenv/version)" # avoid lazy loading problems
 # has rbenv && eval "$(rbenv init -)" # moved to lazyload but much slower!
 has rbenv && _evalcache rbenv init - # (evalcache version)
 # has akamai && eval "$(akamai --zsh)" # this takes like 1 second and I almost never use it (moved to lazyload)
