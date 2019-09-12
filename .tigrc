@@ -26,39 +26,88 @@ set refs-view = line-number:no \
 # }}}
 
 # bindings {{{
+# https://github.com/jonas/tig/wiki/Bindings
+
+# main {{{
+#
 # Cherry-pick current commit onto current branch (C in main view)
 bind main C !git cherry-pick %(commit)
 
-bind status S !git push
-bind status L !git pull
+# bind main ! !git revert %(commit)
+bind main grv !git revert %(commit)
+
+# open the commit on github (brs = browse)
+bind main gbrs @sh -c "open 'https://'$(git remote -v | grep -Eo 'github.com[:/][^.]+' | head -1 | tr : /)'/commit/%(commit)'"
+# }}}
+
+# status {{{
+bind status gps !git push
+bind status gpf !git push --force
+bind status gpl !git pull --rebase
+bind status gss !git stash save "%(prompt Enter stash name: )"
+bind status gsl !git stash list
+bind status gsa !git stash apply stash@{"%(prompt Enter stash position e.g. 1: )"}
+bind status grh !git reset --hard
+bind status gclf !git clean -f
+
 # Go to the first file in the status view
 bind status <Ctrl-n> :/^.$
-bind status O !git open
+bind status go !git open
+bind status gcfd !git cfd
+# }}}
 
+# pager {{{
 bind pager <Ctrl-n> :/^commit
 bind pager <Ctrl-p> :?^commit
+# }}}
+
+# stage {{{
 
 # quickly jump to the next diff chunk in the stage view (Enter in stage view)
 bind stage <Enter> :/^@@
+# }}}
 
+# refs {{{
 # Reload ~/.tigrc when 'S' is pressed
 # bind generic S :source .tigrc
 # TODO map something to checkout the current file from develop
-#
+
 # create a new branch (b in refs view)
-bind refs n !@git branch "%(prompt Enter branch name: )"
+bind refs gffs !@git flow feature start "%(prompt Enter feature branch name: )"
+# }}}
+
+# generic {{{
+# move grep command to grep. since gg is taken, ggr won't work :/
+bind generic g none
+bind generic grep view-grep
+
+bind generic gsv !git semver
+bind generic gfrs !git frs "%(prompt Enter release version: )"
+bind generic gfrf !git frf "%(prompt Enter release version: )"
+bind generic gfhs !git fhs "%(prompt Enter hotfix version: )"
+bind generic gfhf !git fhf "%(prompt Enter hotfix version: )"
+bind generic gcob !@git checkout -b "%(prompt Enter branch name: )"
+bind generic grbd !git rbd
+bind generic grbm !git rbm
+bind generic gsd !git synchd
+bind generic gsm !git synchm
+bind generic gsb !@git synch "%(prompt Enter branch name: )"
+bind generic glm !git lm
+bind generic gld !git ld
 
 # amend last commit  (+ in any view)
-bind generic + !git commit --amend
-# open the commit on github (B in main view)
-bind generic B @sh -c "open 'https://'$(git remote -v | grep -Eo 'github.com[:/][^.]+' | head -1 | tr : /)'/commit/%(commit)'"
+bind generic gca !git commit --amend
+
 # Go back to the previous view state
 bind generic <C-O> back
+
 # Close all views and quit
 bind generic ZZ quit
+
 # Focus the next view
 # bind generic <Tab> view-next
 bind generic <C-W>n view-next
+
 # wtf there is a view-next but no view-previous??
 # bind generic <C-W>p view-previous
 bind generic gg move-first-line
@@ -71,13 +120,14 @@ bind generic zl scroll-right
 # bind generic <C-E> scroll-line-down
 # bind generic <C-B> scroll-page-up
 # bind generic <C-F> scroll-page-down
+# }}}
 
-# https://github.com/jonas/tig/wiki/Bindings
+# diff {{{
 # move in diff view with arrow keys (up or down in diff view)
 # bind diff <Up> move-up
 # bind diff <Down> move-down
-# revert (! in main view)
-# bind main ! !git revert %(commit)
+# }}}
+
 # }}}
 
 # colorscheme {{{

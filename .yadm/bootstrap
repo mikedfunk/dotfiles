@@ -45,12 +45,15 @@ function has() { type "$1" &>/dev/null; }
 # [[ -d "$HOME/Code/saatchi/gallery" ]] || git clone git@github.com:saatchiart/gallery.git
 # [[ -d "$HOME/Code/saatchi/gitlab-puppet" ]] || git clone ab.dmdmedia.net:mike.funk/saatchi.git
 # [[ -d "$HOME/Code/saatchi/imgproc" ]] || git clone git@github.com:saatchiart/imgproc.git
+# [[ -d "$HOME/Code/saatchi/imgproc-python" ]] || git clone git@gitlab.dmdmedia.net:saatchiart/imgproc.git imgproc-python
 # [[ -d "$HOME/Code/saatchi/maropost-php-sdk" ]] || git clone git@github.com:saatchiart/maropost-php-sdk.git
+# [[ -d "$HOME/Code/saatchi/affirm-php-sdk" ]] || git clone git@github.com:saatchiart/affirm-php-sdk.git
 # [[ -d "$HOME/Code/saatchi/palette" ]] || git clone git@github.com:saatchiart/palette.git
 # [[ -d "$HOME/Code/saatchi/potato" ]] || git clone git@github.com:saatchiart/potato.git
 # [[ -d "$HOME/Code/saatchi/saatchiart" ]] || git clone git@github.com:saatchiart/saatchiart.git legacy
 # [[ -d "$HOME/Code/saatchi/xdocker" ]] || git clone git@github.com:saatchiart/xdocker.git
 # [[ -d "$HOME/Code/saatchi/yzed" ]] || git clone git@github.com:saatchiart/yzed.git zed
+# [[ -d "$HOME/Code/saatchi/gitlab-puppet" ]] || git clone git@gitlab.dmdmedia.net:mike.funk/saatchi.git gitlab-puppet
 # builtin cd -
 # }}}
 
