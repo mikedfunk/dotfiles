@@ -1,4 +1,5 @@
 #!/bin/zsh
+# zsh config
 # vim: set foldmethod=marker ft=zsh:
 
 # notes {{{

@@ -1,5 +1,5 @@
+# tmuxp window layout setup https://github.com/tmux-python/tmuxp
 # vim: set foldmethod=marker:
-# tmux window layout setup
 session_name: Work
 windows:
 

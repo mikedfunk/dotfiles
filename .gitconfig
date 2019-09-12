@@ -1,5 +1,5 @@
-# vim: set foldmethod=marker:
 # global git config
+# vim: set foldmethod=marker:
 
 # Tips {{{
 # g rbid: git rebase -i develop

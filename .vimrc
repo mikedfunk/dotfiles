@@ -1,3 +1,4 @@
+" vim config
 " vim: set foldmethod=marker:
 scriptencoding utf-8
 

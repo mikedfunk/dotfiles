@@ -1,5 +1,5 @@
-" vim: set foldmethod=marker filetype=vim:
 " my vim plugins
+" vim: set foldmethod=marker filetype=vim:
 scriptencoding utf-8
 
 " Vim-plug setup {{{

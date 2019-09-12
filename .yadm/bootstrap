@@ -1,4 +1,5 @@
 #!/bin/bash
+# main yadm setup file https://github.com/TheLocehiliosan/yadm
 # vim: set foldmethod=marker ft=sh:
 
 # notes {{{

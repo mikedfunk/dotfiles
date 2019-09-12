@@ -1,5 +1,5 @@
-" vim: set foldmethod=marker filetype=vim:
 " configuration for plugins I use
+" vim: set foldmethod=marker filetype=vim:
 scriptencoding utf-8
 
 " accelerated-smooth-scroll {{{

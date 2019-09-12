@@ -1,3 +1,4 @@
+# Homebrew, brew cask, and mac app store package manifest
 # vim: set foldmethod=marker:
 
 # brew {{{
