@@ -1,4 +1,7 @@
 <?php
+
+use PhpCsFixer\Fixer\Import\OrderedImportsFixer;
+
 $finder = PhpCsFixer\Finder::create()
     ->exclude('vendor')
     ->exclude('tests')
@@ -14,7 +17,7 @@ $finder = PhpCsFixer\Finder::create()
 
 return PhpCsFixer\Config::create()
     ->setRules([
-        // "array_syntax" => ["syntax" => 'short'], // this would mean a ton of changes
+        "array_syntax" => ["syntax" => 'short'], // this would mean a ton of changes
         'align_multiline_comment' => ['comment_type' => 'phpdocs_like'], // Each line of multi-line DocComments must have an asterisk [PSR-5] and must be aligned with the first one.
         'array_indentation' => true, // Each element of an array must be indented exactly once.
         'cast_spaces' => ['space' => 'none'], // A single space or none should be between cast and variable.
@@ -39,7 +42,15 @@ return PhpCsFixer\Config::create()
         'no_short_bool_cast' => true,
         'no_unused_imports' => true,
         'no_useless_return' => true,
-        'ordered_imports' => true,
+        // 'ordered_imports' => true,
+        'ordered_imports' => [
+            'sortAlgorithm' => OrderedImportsFixer::SORT_ALPHA,
+            'importsOrder' => [
+                'class',
+                'function',
+                'const',
+            ],
+        ],
         // 'phpdoc_no_empty_return' => true, // matt doesn't like this
         'phpdoc_no_useless_inheritdoc' => true, // Classy that does not inherit must not have @inheritdoc tags.
         'phpdoc_scalar' => true,

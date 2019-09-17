@@ -39,6 +39,9 @@ bind main grv !git revert %(commit)
 
 # open the commit on github (brs = browse)
 bind main gbrs @sh -c "open 'https://'$(git remote -v | grep -Eo 'github.com[:/][^.]+' | head -1 | tr : /)'/commit/%(commit)'"
+
+# Show commit statistics for the author under the cursor
+bind main U +sh -c 'git --no-pager shortlog -s --author="$(git show -s --format=%aE %(commit))" </dev/tty'
 # }}}
 
 # status {{{
@@ -72,9 +75,6 @@ bind stage <Enter> :/^@@
 # Reload ~/.tigrc when 'S' is pressed
 # bind generic S :source .tigrc
 # TODO map something to checkout the current file from develop
-
-# create a new branch (b in refs view)
-bind refs gffs !@git flow feature start "%(prompt Enter feature branch name: )"
 # }}}
 
 # generic {{{
@@ -83,6 +83,7 @@ bind generic g none
 bind generic grep view-grep
 
 bind generic gsv !git semver
+bind generic gffs !@git flow feature start "%(prompt Enter feature branch name: )"
 bind generic gfrs !git frs "%(prompt Enter release version: )"
 bind generic gfrf !git frf "%(prompt Enter release version: )"
 bind generic gfhs !git fhs "%(prompt Enter hotfix version: )"
@@ -127,6 +128,11 @@ bind generic zl scroll-right
 # move in diff view with arrow keys (up or down in diff view)
 # bind diff <Up> move-up
 # bind diff <Down> move-down
+# }}}
+
+# log {{{
+bind log <Ctrl-n> :/^commit
+bind log <Ctrl-p> :?^commit
 # }}}
 
 # }}}

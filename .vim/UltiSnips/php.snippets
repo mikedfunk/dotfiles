@@ -736,9 +736,15 @@ endsnippet
 
 snippet va "var with docblock"
 
-/** @var ${1:mixed} */
-private \$${2:myvar};
+/** @var \\${1:MyClass} */
+private \$${1/\w+/\l$0/};
 endsnippet
+
+# snippet va "var with docblock"
+
+# /** @var ${1:mixed} */
+# private \$${2:myvar};
+# endsnippet
 
 snippet iva "var with docblock with @Inject for php-di"
 

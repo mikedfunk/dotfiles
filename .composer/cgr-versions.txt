@@ -1,4 +1,4 @@
-FriendsofPHP/php-cs-fixer:^2.8
+FriendsofPHP/php-cs-fixer:^2.15
 felixfbecker/language-server:dev-master
 phing/phing:^2.16
 phpmd/phpmd:^2.6

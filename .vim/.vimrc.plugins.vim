@@ -179,7 +179,8 @@ Plug 'simeji/winresizer' " ctrl-E to go to resize mode, hjkl, enter to finish, s
 if has('python3')
     Plug 'vim-vdebug/vdebug', { 'for': 'php' }
 endif
-Plug 'arnaud-lb/vim-php-namespace', { 'for': 'php' } " insert use statements
+" Plug 'arnaud-lb/vim-php-namespace', { 'for': 'php' } " insert use statements (abandoned)
+Plug 'iusmac/vim-php-namespace', { 'for': 'php' } " maintained fork
 " this is included with neovim in a pretty recent version
 " /usr/local/Cellar/neovim/{version}/share/nvim/runtime/autoload/phpcomplete.vim
 " Plug 'shawncplus/phpcomplete.vim' " better php omnicomplete. This is included with vim8 but the package keeps it up-to-date.
@@ -320,7 +321,7 @@ Plug 'itchyny/vim-cursorword' " highlight matching words. What I like about this
 Plug 'ap/vim-css-color', { 'for': ['scss', 'css'] } " colorize css colors e.g. #333 with the actual color in the background
 " Plug 'chrisbra/NrrwRgn' " work in a separate window with a sub-region of a document. :NR
 " Plug 'scrooloose/vim-slumlord' " plantuml live preview for sequence diagrams
-Plug 'ryanoasis/vim-devicons' " file type icons in netrw, etc.
+" Plug 'ryanoasis/vim-devicons' " file type icons in netrw, etc.
 " Plug 'TaDaa/vimade' " fade inactive buffers, preserving color scheme (I don't really need this)
 
 " color schemes: 256-friendly {{{

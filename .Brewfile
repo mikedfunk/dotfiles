@@ -13,6 +13,7 @@ brew "autossh" # ssh that reconnects
 brew "awscli" # aws command - used to upload to s3, etc. `aws configure` to set up credentials. (set up access keys here https://console.aws.amazon.com/iam/home?region=us-west-1#/users/mike.funk?section=security_credentials)
 brew "bat" # much cooler looking cat
 # brew "chromedriver" # like selenium for chrome.
+brew codespell # neat little utility to show and fix misspellings
 # brew "colortail" # tail with support for colors
 # brew "composer" # php dependency management (now installed via phpenv)
 brew "coreutils" # used by k zsh plugin and msgpack gem which is a dependency of rouge and neovim gems
