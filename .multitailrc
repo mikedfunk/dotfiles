@@ -290,9 +290,11 @@ mcsre_s:yellow,,bold:^[0-9]{4}/[0-9]{2}/[0-9]{2} +[0-9]{2}:[0-9]{2}:[0-9]{2} (\[
 mcsre_s:red:^.*\[error\](.*)
 mcsre_s:yellow:^.*\[warn\](.*)
 
-# debug
+# debug and info
 cs_re:green,,bold:DEBUG
 mcsre_s:green:DEBUG: (.*)
+cs_re:green,,bold:INFO
+mcsre_s:green:INFO: (.*)
 
 # error and emergency
 cs_re:red,,blink:EMERGENCY

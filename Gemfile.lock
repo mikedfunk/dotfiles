@@ -112,7 +112,7 @@ GEM
     redcarpet (3.5.0)
     retriable (2.1.0)
     ripper-tags (0.7.0)
-    rouge (3.10.0)
+    rouge (3.11.0)
     rubocop (0.74.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)

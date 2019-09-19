@@ -277,7 +277,6 @@ declare(strict_types=1);
 `!p snip.rv = namespace(snip, path)`
 use Palette\Http\Requests\ApiRequest;
 
-/** ${1:Description} */
 class `!v expand("%:t:r")`$4 extends ApiRequest
 {
     public function rules()
@@ -428,7 +427,6 @@ snippet trt "mike's trait with namespace, file and class docblocks"
 
 declare(strict_types=1);
 `!p snip.rv = namespace(snip, path)`
-/** ${1:Description} */
 trait `!v expand("%:t:r")`
 {
     $6
@@ -723,7 +721,6 @@ snippet inte
 
 declare(strict_types=1);
 `!p snip.rv = namespace(snip, path)`
-/** ${3:Description} */
 interface $4
 {
     $6
@@ -734,17 +731,17 @@ snippet vr "local var docblock"
 /** @var ${1:mixed} \$${2:myVar} */
 endsnippet
 
-snippet va "var with docblock"
+snippet va "class-based var with docblock"
 
 /** @var \\${1:MyClass} */
 private \$${1/\w+/\l$0/};
 endsnippet
 
-# snippet va "var with docblock"
+snippet sva "scalar var with docblock"
 
-# /** @var ${1:mixed} */
-# private \$${2:myvar};
-# endsnippet
+/** @var ${1:mixed} */
+private \$${2:myvar};
+endsnippet
 
 snippet iva "var with docblock with @Inject for php-di"
 
@@ -844,7 +841,7 @@ snippet ife "php if/else" !b
 if (${1}) {
     ${2}
 } else {
-
+    ${3}
 }
 endsnippet
 
@@ -1162,6 +1159,23 @@ class ${1:`!v expand("%:t:r")`} extends Command
     private function isDryRun(): bool
     {
         return (bool) $this->option('dry-run');
+    }
+}
+endsnippet
+
+snippet evt "saatchi palette domain event"
+<?php
+
+declare(strict_types=1);
+`!p snip.rv = namespace(snip, path, "Palette\\")`
+use Palette\SaatchiArt\DomainEvent;
+
+class ${1:`!v expand("%:t:r")`} extends DomainEvent
+{
+
+    public function __construct(${5/\w+\s*/\u$0/} $${5:myClass})
+    {
+        $this->$5 = $$5;
     }
 }
 endsnippet
