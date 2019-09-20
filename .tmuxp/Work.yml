@@ -166,12 +166,12 @@ windows:
 # }}}
 
 # maropost php sdk {{{
-  - window_name: maropost
-    start_directory: ~/Code/saatchi/maropost-php-sdk
-    layout: main-horizontal
-    panes:
-      - v -S
-      - ts
+  # - window_name: maropost
+  #   start_directory: ~/Code/saatchi/maropost-php-sdk
+  #   layout: main-horizontal
+  #   panes:
+  #     - v -S
+  #     - ts
 # }}}
 
 # logs {{{
