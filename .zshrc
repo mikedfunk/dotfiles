@@ -15,6 +15,12 @@ cdpath=(
   $cdpath
 )
 
+# https://github.com/denisidoro/navi
+navipath=(
+  $HOME/.navi
+  $navipath
+)
+
 infopath=(
   # $(brew --prefix)/share/info
   /usr/local/share/info
@@ -201,6 +207,9 @@ _configure_cgr_and_composer () {
 }
 _configure_cgr_and_composer
 # }}}
+
+has kubectl && source <(kubectl completion zsh)
+has stern && source <(stern --completion=zsh)
 
 # }}}
 

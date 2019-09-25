@@ -85,6 +85,8 @@ mcsre_s:blue:(^/.*):in
 cs_re:white,,bold:^(  )*[a-zA-Z_ -]+:
 # }}}
 
+# aws {{{
+
 # api {{{
 colorscheme:api
 
@@ -364,6 +366,32 @@ cs_re:white,,bold:\{
 cs_re:white,,bold:\}
 cs_re:white,,bold:\[
 cs_re:white,,bold:\]
+# }}}
+
+# }}}
+
+# k8s {{{
+
+# legacy {{{
+colorscheme:k8slegacy
+
+# the nginx access log view
+mcsre_s:cyan:([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+) - -
+mcsre_s:black:([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+) (- - \[).*(\])
+mcsre_s:green:[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+ - - \[([0-9A-Za-z/]+):.+ .+\]
+mcsre_s:yellow:[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+ - - \[[0-9A-Za-z/]+:(.+) .+\]
+mcsre_s:black:[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+ - - \[[0-9A-Za-z/]+:.+ (.+)\]
+mcsre_s:black:(")
+mcsre_s:magenta,,bold:[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+ - - \[[0-9A-Za-z/]+:.+ .+\] "([A-Z]+)
+mcsre_s:black:[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+ - - \[[0-9A-Za-z/]+:.+ .+\] "[A-Z]+ .+ (HTTP/1.1)
+mcsre_s:black,green,bold:[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+ - - \[[0-9A-Za-z/]+:.+ .+\] "[A-Z]+ .+ HTTP/1.1" (2[0-9]+)
+mcsre_s:black,blue,bold:[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+ - - \[[0-9A-Za-z/]+:.+ .+\] "[A-Z]+ .+ HTTP/1.1" (3[0-9]+)
+mcsre_s:black,red,bold/blink:[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+ - - \[[0-9A-Za-z/]+:.+ .+\] "[A-Z]+ .+ HTTP/1.1" (5[0-9]+)
+mcsre_s:black,red,bold:[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+ - - \[[0-9A-Za-z/]+:.+ .+\] "[A-Z]+ .+ HTTP/1.1" (4[0-9]+)
+mcsre_s:black:[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+ - - \[[0-9A-Za-z/]+:.+ .+\] "[A-Z]+ .+ HTTP/1.1" [0-9]+ ([0-9]+)
+mcsre_s:black:[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+ - - \[[0-9A-Za-z/]+:.+ .+\] "[A-Z]+ .+ HTTP/1.1" [0-9]+ [0-9]+ "https?://.+" "(.*)"
+# }}}
+
 # }}}
 
 # mysql general query log {{{

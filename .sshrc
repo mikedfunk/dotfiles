@@ -1,5 +1,13 @@
 # vim: set foldmethod=marker:
 
+# path {{{
+# path=(
+#   /opt/gradle-2.8/bin
+#   $path
+# )
+PATH=$PATH:/opt/gradle-2.8/bin
+# }}}
+
 # config {{{
 
 # vim mode https://sanctum.geek.nz/arabesque/vi-mode-in-bash/

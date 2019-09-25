@@ -1,6 +1,6 @@
 arrow==0.15.2
 asn1crypto==0.24.0
-astroid==2.2.5
+astroid==2.3.0
 cffi==1.12.3
 cli-helpers==1.2.1
 Click==7.0
@@ -20,7 +20,7 @@ openapi-cli-tool==0.1.3
 prompt-toolkit==2.0.9
 pycparser==2.19
 Pygments==2.4.2
-pylint==2.3.1
+pylint==2.4.1
 PyMySQL==0.9.3
 pynvim==0.3.2
 python-dateutil==2.8.0
@@ -28,7 +28,7 @@ PyYAML==5.1.2
 sh==1.12.14
 six==1.12.0
 sqlparse==0.3.0
-tabulate==0.8.3
+tabulate==0.8.5
 terminaltables==3.1.0
 tmuxp==1.5.3
 typed-ast==1.4.0

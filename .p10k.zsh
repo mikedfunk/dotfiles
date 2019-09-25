@@ -43,6 +43,7 @@ fi
       nodenv_custom
       phpenv
       rbenv
+      # kubecontext             # current kubernetes context (https://kubernetes.io/)
       vcs                     # git status
       # prompt_char           # prompt symbol
   )
@@ -67,7 +68,6 @@ fi
       # phpenv                  # custom - see prompt_phpenv
       # laravel_version       # custom - see prompt_laravel_version (powerlevel9k has it but this doesn't)
       # rbenv                 # ruby version from rbenv (https://github.com/rbenv/rbenv)
-      # kubecontext             # current kubernetes context (https://kubernetes.io/)
       # context                 # user@host
       # nordvpn                 # nordvpn connection status, linux only (https://nordvpn.com/)
       # public_ip             # public IP address

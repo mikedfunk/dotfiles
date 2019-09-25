@@ -21,6 +21,7 @@ brew "coreutils" # used by k zsh plugin and msgpack gem which is a dependency of
 # brew "ctags" # allows jumping to function/class definitions, etc. in vim (I use universal-ctags)
 brew "ctop" # like top for docker containers
 brew "curl" # http cli tool. Included with mac of course, but this gives me the updated version.
+# brew "denisidoro/tools/navi" # cool interactive command helper (eh, I like aliases and functions. this is basically just a persistent <ctrl-r> with fzf.)
 # brew "desk" # shell workspace manager. I use direnv instead.
 brew "diff-so-fancy" # better git diff viewer (note: diff-highlight is in pip)
 brew "direnv" # allow .envrc in directories to be loaded at every prompt to add relative bins to PATH, etc. easy.
@@ -37,7 +38,7 @@ brew "entr" # file watcher
 # brew "fasd" # Command-line productivity booster, offers quick access to files and directories, inspired by autojump, z and v. (I use wd)
 brew "fd" # prettier alternative to find that respects gitignore
 # brew "fpp" # facebook path picker. Used with tmux-fpp to easily open files in an editor. (I don't use it)
-brew "fx" # json funagler
+brew "fx" # json funagler used by some of my shell functions
 brew "fzf" # fuzzy file finder `git branch | fzf | xargs git checkout`
 brew "git"
 # brew "git-extras" # adds some cool additional git commands (conflicts with npm git-standup)
@@ -53,7 +54,7 @@ brew "gpg" # used by s3cmd and yadm to encrypt stuff
 # brew "heroku-toolbelt" # heroku deploy tools
 # brew "hg" # mercurial
 # brew "highlight" # colorizes html and other output on the command line. used by ranger.
-brew "hostess" # manage hosts file `hostess help` TODO try https://github.com/feross/hostile - you can apply/unapply separate hosts file in normal hosts file format rather than json. Can use like letswork/letsfun.
+brew "hostess" # manage hosts file `hostess help` TODO try https://github.com/feross/hostile - you can apply/unapply separate hosts file in normal hosts file format rather than json.
 brew "htop" # prettier, more powerful version of top. gets the top running processes. (see my notes)
 brew "httpie" # a cool alternative to curl (http --help) (NOTE: `man http` is something different :/ )
 brew "hub" # , args: ["devel"] # github tool is a superset of git with extra commands. 2.0 needs to be installed via --HEAD
@@ -70,6 +71,7 @@ brew "jsonlint" # used by vim ale to lint json
 brew "jq" # simple json pretty-printer `echo '{"my" => "json"}' | jq .`
 # brew "jrnl" # simple journaling wrapper
 # brew "keychain" # manage ssh agent and adding keys to it automatically. (I don't use this now that I have an ssh config directive to store passphrases for ssh agent in my osx keychain, which is different from this project's "keychain". Confusing, I know.)
+# brew "kubernetes-cli" # already installed via brew cask install docker
 # brew "lftp" # fancy scp, torrent, http, ftp download and upload client with queues, backgrounding, and more
 brew "libcouchbase" # nosql fast data storage. I install this for the cli tool `cbc`
 brew "libmemcached" # needed by php70 memcached pecl extension
@@ -137,6 +139,7 @@ brew "sshrc" # use ~/.sshrc and ~/.sshrc.d on remote servers. bring your dotfile
 # brew "source-highlight" # used to automatically colorize `less` text (I Just use `bat` instead. Got weird results with this.)
 # brew "spark" # used for rainbarf to show spiffy cli graphs
 # brew "sqlparse" # sql formatter (managed by pip in ~/requirements.txt)
+# brew "stern" # kubernetes multitailer (waiting for this to be solved https://github.com/wercker/stern/issues/112)
 # brew "stormssh" # interact with ssh config. I have yet to find a net positive use for this. It makes my ssh config less readable because it doesn't put them in comment fold groups like I do. just so I can `storm add ...`. `storm list` and `storm search` are kind of useless as I can do that with `ssh <tab>`. It lets you edit multiple ssh entries at once, but I can do that in vim. It provides a web interface, but I don't want that.
 # brew "stow" # http://brandon.invergo.net/news/2012-05-26-using-gnu-stow-to-manage-your-dotfiles.html (I use yadm instead)
 # brew "task" # taskwarrior https://taskwarrior.org (I don't need this unless I don't have jira)
