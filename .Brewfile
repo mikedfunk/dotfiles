@@ -103,7 +103,7 @@ brew "nss" # required by mkcert to make certs trusted in firefox
 # brew "peco" # interactively filter results and print the filtered version. can be used to print filtered one or e.g. `vim $(dosomething | peco)` (FZF does this)
 # brew "perl-build" # needed for perlenv
 # brew "percona-toolkit" # mysql schema migrator among other things. requires java and perl.
-# brew "pgcli" # like mycli for postgres
+brew "pgcli" # like mycli for postgres (used for toaf judging app)
 # php has been moved to homebrew-php. In the process, php70 was removed >:( I've switched to phpenv and pecl instead. I don't even know how extensions work in the new homebrew php.
 # brew "php@7.1", args: ["--with-pear"], link: true
 brew "pinentry" # gpg terminal pin entry (used by yadm encrypt/decrypt)
