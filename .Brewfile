@@ -212,6 +212,7 @@ cask "lunchy" # launchctl cli wrapper. Port of lunchy gem. (Tried this, was miss
 # cask "macfusion" # other half of tool to mount ssh directories in the finder
 # cask "macgdbp" # xdebug gui client (I use vdebug)
 cask "malwarebytes" # ya neva know
+cask "microsoft-edge-beta" # not out of beta yet as of 2019-09-27
 cask "minikube" # for learning
 cask "mpv" # video player like vlc
 cask "multifirefox" # profile picker until firefox fixes this glaring omission

@@ -392,6 +392,26 @@ mcsre_s:black:[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+ - - \[[0-9A-Za-z/]+:.+ .+\] "[A-Z]+
 mcsre_s:black:[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+ - - \[[0-9A-Za-z/]+:.+ .+\] "[A-Z]+ .+ HTTP/1.1" [0-9]+ [0-9]+ "https?://.+" "(.*)"
 # }}}
 
+# catalog {{{
+# TODO
+# }}}
+
+# zed {{{
+# TODO
+# }}}
+
+# palette {{{
+# TODO
+# }}}
+
+# gallery {{{
+# TODO
+# }}}
+
+# easel {{{
+# TODO
+# }}}
+
 # }}}
 
 # mysql general query log {{{
