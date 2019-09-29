@@ -21,6 +21,8 @@ brew "coreutils" # used by k zsh plugin and msgpack gem which is a dependency of
 # brew "ctags" # allows jumping to function/class definitions, etc. in vim (I use universal-ctags)
 brew "ctop" # like top for docker containers
 brew "curl" # http cli tool. Included with mac of course, but this gives me the updated version.
+# tap "dandavison/delta" "https://github.com/dandavison/delta"
+# brew "dandavison/delta/git-delta" # git pager with syntax highlighting, language aware (kind of buggy right now, will stick with diff-so-fancy but check this out later)
 # brew "denisidoro/tools/navi" # cool interactive command helper (eh, I like aliases and functions. this is basically just a persistent <ctrl-r> with fzf.)
 # brew "desk" # shell workspace manager. I use direnv instead.
 brew "diff-so-fancy" # better git diff viewer (note: diff-highlight is in pip)

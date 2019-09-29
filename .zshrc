@@ -128,6 +128,7 @@ if [[ ! $ANTIBODY_LOADED ]]; then
     antibody bundle qoomon/zsh-lazyload # lazyload various commands
     antibody bundle mroth/evalcache # speeds up subsequent runs of eval init functions. if you make a change just call `_evalcache_clear`.
     antibody bundle hlissner/zsh-autopair # auto close parens, etc.
+    # antibody bundle zdharma/zsh-startify # like vim-startify for zsh (neat, but doesn't really help)
 
     ANTIBODY_LOADED=1
 fi
@@ -210,6 +211,7 @@ _configure_cgr_and_composer
 
 has kubectl && source <(kubectl completion zsh)
 has stern && source <(stern --completion=zsh)
+# has zsh-startify && zsh-startify (neat, but doesn't really help)
 
 # }}}
 
