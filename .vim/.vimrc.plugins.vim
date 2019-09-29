@@ -172,6 +172,11 @@ Plug 'lifepillar/vim-cheat40' " Customizable cheatsheet. Mine is in ~/.vim/plugg
 " Plug 'andymass/vim-tradewinds' " <c-w>gh to move the current split one to the left, etc. in other directions
 " Plug 'Yilin-Yang/vim-markbar' " <leader>mm to show marks
 Plug 'simeji/winresizer' " ctrl-E to go to resize mode, hjkl, enter to finish, simple
+Plug 'haya14busa/vim-edgemotion' " c-j and c-k to go to 'edge'. Try it. It's hard to explain.
+" if has('python2')
+"     Plug 'vim-scripts/VOoM' " outliner like tagbar but for folds (python2?
+"     not worth the trouble.)
+" endif
 " }}}
 
 " Php {{{
@@ -280,7 +285,7 @@ Plug 'fpob/nette.vim' " .neon format
 " Plug 'elixir-editors/vim-elixir'
 " Plug 'othree/es.next.syntax.vim', { 'for': ['javascript', 'jsx', 'vue'] }
 " Plug 'StanAngeloff/php.vim' " php 5.6+ (including 7.x) syntax highlighting improvements like docblocks (in vim-polyglot)
-Plug 'kkoomen/vim-doge' " docblock comments for a variety of languages <leader>dd
+" Plug 'kkoomen/vim-doge' " docblock comments for a variety of languages <leader>dd (doesn't work for shit in php)
 " Plug 'posva/vim-vue' " vue.js syntax (in vim-polyglot)
 " Plug 'digitaltoad/vim-pug', { 'for': ['pug', 'jade'] } " pug (formerly jade) highlighting
 " Plug 'heavenshell/vim-syntax-flowtype' " js flowtype (included in pangloss/vim-javascript)

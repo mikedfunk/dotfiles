@@ -35,6 +35,8 @@ top () { HOME="$SSHHOME/.sshrc.d" /usr/bin/top; }
 htop () { HOME="$SSHHOME/.sshrc.d" /usr/bin/htop; }
 
 alias screen="TERM=screen-256color screen"
+alias v="vim"
+alias g="git"
 
 # }}}
 

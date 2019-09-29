@@ -502,6 +502,13 @@ if has('nvim')
     set inccommand=split
 endif
 
+if has('nvim')
+    set diffopt+=hiddenoff " Do not use diff mode for a buffer when it becomes hidden
+endif
+if filereadable('/usr/share/dict/words')
+    set dictionary+=/usr/share/dict/words " Make <c-o><c-k> complete English words
+endif
+
 " Why is this not a built-in Vim script function?!
 function! GetVisualSelection() abort
     let [line_start, column_start] = getpos("'<")[1:2]
@@ -538,6 +545,7 @@ augroup csscompletegroup
 augroup END
 
 set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png,*.ico,*.pdf,*.psd,node_modules/*,.git/*,Session.vim
+set wildoptions+=tagfile " When using CTRL-D to list matching tags, the kind of tag and the file of the tag is listed.	Only one match is displayed per line.
 
 " }}}
 

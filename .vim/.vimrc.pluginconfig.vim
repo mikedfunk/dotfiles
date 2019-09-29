@@ -617,6 +617,7 @@ let g:tmuxline_preset = {
     \ 'a': ['❏ #S'],
     \ 'c': [
         \ "🔋 #(pmset -g batt | egrep '\d+%' | awk '{print $3}' | awk -F';' '{print $1}')",
+        \ '🚢  #(kubectl config current-context)',
         \ '#(~/.bin/saatchi-haproxy-status.sh)'
     \ ],
     \ 'win': ['#I', '#W'],
@@ -625,6 +626,18 @@ let g:tmuxline_preset = {
     \ 'y': ['%l:%M %p'],
     \ 'z': ['%a', '%b %d'],
 \}
+" don't use: anchor, sailboat
+" other possible emojis to use:
+" 📦
+" 🏭
+" ⎈
+" ☸️
+" 🕸️
+" ⚙️
+" these just take up a lot of space when I know the context already
+" 🕗
+" 🕑
+" 📅
 
 " TODO
 " let g:tmuxline_theme = tmuxline#api#set_theme({
@@ -860,8 +873,20 @@ if isdirectory(expand('~/.vim/plugged/vim-commentary'))
 endif
 " }}}
 
+" vim-dispatch {{{
+let g:dispatch_no_tmux_make = 1  " Prefer job strategy even in tmux.
+" }}}
+
 " vim-doge {{{
 let g:doge_mapping="<leader>dd"
+" }}}
+
+" vim-edgemotion {{{
+if isdirectory(expand('~/.vim/plugged/vim-edgemotion'))
+    " had trouble with nnoremap :/
+    map <C-j> <Plug>(edgemotion-j)
+    map <C-k> <Plug>(edgemotion-k)
+endif
 " }}}
 
 " vim-fix-my-js {{{
