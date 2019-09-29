@@ -614,7 +614,7 @@ let g:airline#extensions#tmuxline#enabled = 0 " use current airline theme stuff 
 " 'y', so it's insonsistent with the other side. And they won't provide a 'd'.
 " At least both on 'c' looks better than splitting between 'b' and 'c'.
 let g:tmuxline_preset = {
-    \ 'a': ['❏ #S'],
+    \ 'a': ['🏠 #S'],
     \ 'c': [
         \ "🔋 #(pmset -g batt | egrep '\d+%' | awk '{print $3}' | awk -F';' '{print $1}')",
         \ '🚢  #(kubectl config current-context)',
@@ -628,6 +628,7 @@ let g:tmuxline_preset = {
 \}
 " don't use: anchor, sailboat
 " other possible emojis to use:
+" ❏
 " 📦
 " 🏭
 " ⎈
