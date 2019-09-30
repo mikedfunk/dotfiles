@@ -93,7 +93,7 @@ function has() { type "$1" &>/dev/null; }
 # }}}
 
 # install xcode command line tools {{{
-# needed for a variety of things including phpenv (zlib) and CommandLineTools below
+# needed for a variety of things including phpenv (zlib), CommandLineTools below, sshpass
 _install_xcode_command_line_tools () {
     log_info "Installing xcode command line tools"
     xcode-select --install || true
@@ -384,6 +384,23 @@ _install_python3_version () {
 }
 # }}}
 
+# install or upgrade ntfy {{{
+# https://github.com/dschep/ntfy/issues/171#issuecomment-433388371
+_install_upgrade_ntfy () {
+    if has ntfy; then
+        log_info "Updating ntfy"
+        cd
+        /usr/local/bin/python3 -m pip install --upgrade ntfy
+        cd -
+        return
+    fi
+    log_info "Installing ntfy"
+    cd
+    /usr/local/bin/python3 -m pip install ntfy
+    cd -
+}
+# }}}
+
 # install/update ruby gems {{{
 # Installs from ~/Gemfile
 _install_update_ruby_gems () {
@@ -430,7 +447,7 @@ _install_update_composer_packages () {
 
     local PHP_VERSION
     PHP_VERSION=$1
-    if [ -z $PHP_VERSION ]; then
+    if [ -z "$PHP_VERSION" ]; then
         PHP_VERSION=$(phpenv version | cut -d' ' -f1)
     fi
 
@@ -663,8 +680,9 @@ _install_ruby_version
 _install_python3_version
 _install_update_ruby_gems
 _update_python3_pip_packages
+_install_upgrade_ntfy
 _install_update_composer_packages
-_parse_php_language_server_stubs
+# _parse_php_language_server_stubs
 _install_vivid
 _update_antibody_plugins
 _apply_hosts_file

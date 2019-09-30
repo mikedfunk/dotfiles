@@ -137,6 +137,7 @@ brew "shfmt" # formats shell scripts (used by vim ALE)
 brew "ssh-copy-id" # copies ssh keys to remote servers
 brew "sshrc" # use ~/.sshrc and ~/.sshrc.d on remote servers. bring your dotfiles with you!
 # brew "sshfs" # mounts ssh servers as file systems in the local fs. requires osxfuse.
+# brew "https://raw.githubusercontent.com/kadwanev/bigboybrew/master/Library/Formula/sshpass.rb" # use an ssh password. trying this for leaf group LDAP access. (didn't work, don't need it for anything else at the moment)
 # brew "solr" # search data server
 # brew "source-highlight" # used to automatically colorize `less` text (I Just use `bat` instead. Got weird results with this.)
 # brew "spark" # used for rainbarf to show spiffy cli graphs

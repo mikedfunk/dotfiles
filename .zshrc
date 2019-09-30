@@ -147,6 +147,11 @@ has lazyload && lazyload 'has akamai && eval "$(akamai --zsh)"' akamai
 # [ -f ~/.support/promptline.theme.bash ] && source ~/.support/promptline.theme.bash # vim plugin generates this tmux status line file
 # has direnv && eval "$(direnv hook zsh)" # allow .envrc on each prompt start
 has direnv && _evalcache direnv hook zsh # (evalcache version)
+# if you get this error:
+# 25:28: execution error: Not authorized to send Apple events to iTerm. (-1743)
+# Goto Settings -> Security & Privacy -> Privacy -> Automation -> Privacy tab and check the System Events checkbox. https://stackoverflow.com/a/53380557
+# then do this `tccutil reset AppleEvents; tccutil reset SystemPolicyAllFiles` https://stackoverflow.com/a/56992109/557215
+has ntfy && _evalcache ntfy shell-integration # notify when long-running command finishes. pip package, breaks in pyenv - see yadm bootstrap for unique setup.
 # [ -f /usr/local/etc/grc.bashrc ] && source "/usr/local/etc/grc.bashrc" # generic colorizer
 [ -f /usr/local/etc/grc.zsh ] && source "/usr/local/etc/grc.zsh" # generic colorizer
 # https://github.com/google/google-api-ruby-client/issues/235#issuecomment-169956795
