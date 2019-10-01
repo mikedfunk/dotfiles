@@ -74,6 +74,7 @@ brew "jq" # simple json pretty-printer `echo '{"my" => "json"}' | jq .`
 # brew "jrnl" # simple journaling wrapper
 # brew "keychain" # manage ssh agent and adding keys to it automatically. (I don't use this now that I have an ssh config directive to store passphrases for ssh agent in my osx keychain, which is different from this project's "keychain". Confusing, I know.)
 # brew "kubernetes-cli" # already installed via brew cask install docker
+# brew "kubectx" # kubernetes powertools (speeds up context handling)
 # brew "lftp" # fancy scp, torrent, http, ftp download and upload client with queues, backgrounding, and more
 brew "libcouchbase" # nosql fast data storage. I install this for the cli tool `cbc`
 brew "libmemcached" # needed by php70 memcached pecl extension
@@ -134,6 +135,7 @@ brew "rbenv" # ruby environment switcher
 # brew "selenium-server-standalone" # controls a browser for automated testing
 brew "shellcheck" # Checks shell syntax (used by vim ALE)
 brew "shfmt" # formats shell scripts (used by vim ALE)
+brew "skaffold" # awesole local kubernetes cluster by google
 brew "ssh-copy-id" # copies ssh keys to remote servers
 brew "sshrc" # use ~/.sshrc and ~/.sshrc.d on remote servers. bring your dotfiles with you!
 # brew "sshfs" # mounts ssh servers as file systems in the local fs. requires osxfuse.

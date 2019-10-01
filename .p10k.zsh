@@ -43,7 +43,7 @@ fi
       nodenv_custom
       phpenv
       rbenv
-      # kubecontext             # current kubernetes context (https://kubernetes.io/)
+      kubecontext             # current kubernetes context (https://kubernetes.io/)
       vcs                     # git status
       # prompt_char           # prompt symbol
   )

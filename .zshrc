@@ -184,6 +184,7 @@ export LC_CTYPE=en_US.UTF-8 # https://unix.stackexchange.com/a/302418/287898
 export LC_ALL=en_US.UTF-8 # https://unix.stackexchange.com/a/302418/287898
 # https://github.com/variadico/noti/blob/master/docs/noti.md#environment
 export NOTI_NSUSER_SOUNDNAME="Hero"
+export AUTO_NTFY_DONE_IGNORE="vim screen tmux"
 has vivid && export LS_COLORS="$(vivid generate molokai)" # https://github.com/sharkdp/vivid
 # colorize less... I get weird indentations all over the place with this
 # https://www.reddit.com/r/linux/comments/b5n1l5/whats_your_favorite_cli_tool_nobody_knows_about/ejex2pm/
