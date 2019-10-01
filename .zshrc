@@ -60,6 +60,8 @@ path=(
   /usr/{bin,sbin}
   /{bin,sbin}
   # /usr/local/opt/icu4c/{bin,sbin}
+  # add gnu coreutils before path... this seems a bit heavy-handed :/
+  # /usr/local/opt/coreutils/libexec/gnubin
   $path
 )
 
@@ -184,8 +186,18 @@ export LC_CTYPE=en_US.UTF-8 # https://unix.stackexchange.com/a/302418/287898
 export LC_ALL=en_US.UTF-8 # https://unix.stackexchange.com/a/302418/287898
 # https://github.com/variadico/noti/blob/master/docs/noti.md#environment
 export NOTI_NSUSER_SOUNDNAME="Hero"
-export AUTO_NTFY_DONE_IGNORE="vim screen tmux"
-has vivid && export LS_COLORS="$(vivid generate molokai)" # https://github.com/sharkdp/vivid
+# don't notify when these die after being "long-running processes"
+export AUTO_NTFY_DONE_IGNORE=(
+    vim
+    screen
+    tmux
+    man
+    less
+    ctop
+    htop
+    tig
+)
+# has vivid && export LS_COLORS="$(vivid generate molokai)" # https://github.com/sharkdp/vivid
 # colorize less... I get weird indentations all over the place with this
 # https://www.reddit.com/r/linux/comments/b5n1l5/whats_your_favorite_cli_tool_nobody_knows_about/ejex2pm/
 # export LESSOPEN="| /usr/local/opt/source-highlight/bin/src-hilite-lesspipe.sh %s"
@@ -218,6 +230,7 @@ _configure_cgr_and_composer
 
 has kubectl && source <(kubectl completion zsh)
 has stern && source <(stern --completion=zsh)
+# [[ -e /usr/local/opt/coreutils/libexec/gnubin/dircolors && -f "$HOME"/.dircolors ]] && eval $( /usr/local/opt/coreutils/libexec/gnubin/dircolors -b "$HOME"/.dircolors )
 # has zsh-startify && zsh-startify (neat, but doesn't really help)
 
 # }}}
@@ -256,6 +269,8 @@ cd () { builtin cd "$@" && ls -FAG; } # auto ls on cd
 alias ..="cd .."
 alias ...="cd ../.."
 # has lsd && alias ls="lsd" # fancy ls augmentation (disabled because it's missing flags that ls has >:(  )
+# https://github.com/sharkdp/vivid/issues/25#issuecomment-450423306
+# has gls && alias ls="gls --color"
 alias ll='ls -lhGFA'
 alias phpx="php -dxdebug.remote_autostart=1 -dxdebug.remote_connect_back=1 -dxdebug.idekey=${XDEBUG_IDE_KEY} -dxdebug.remote_port=9000 -ddisplay_errors=on"
 #

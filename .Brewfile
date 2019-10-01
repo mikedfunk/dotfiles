@@ -16,7 +16,7 @@ brew "bat" # much cooler looking cat
 brew "codespell" # neat little utility to show and fix code misspellings
 # brew "colortail" # tail with support for colors (I use multitail)
 # brew "composer" # php dependency management (now installed via phpenv)
-brew "coreutils" # used by k zsh plugin and msgpack gem which is a dependency of rouge and neovim gems
+brew "coreutils" # used by k zsh plugin and msgpack gem which is a dependency of rouge and neovim gems. Also used by vivid for gls.
 # brew "cmake" # used by youcompleteme (which I no longer use)
 # brew "ctags" # allows jumping to function/class definitions, etc. in vim (I use universal-ctags)
 brew "ctop" # like top for docker containers (really great!)

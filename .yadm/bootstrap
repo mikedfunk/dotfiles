@@ -417,8 +417,13 @@ _install_update_ruby_gems () {
 
 # update python3 pip packages {{{
 
+# update all pip packages
 _pip-update () {
-    pip3 list --outdated | grep -v 'Package' | grep -v -e '\-\-\-\-\-' | cut -d' ' -f1 | xargs -n1 pip3 install -U
+    pip3 list --outdated | \
+        grep --invert-match 'Package' | \
+        grep --invert-match --regexp='\-\{5\}' | \
+        awk '{print $1}' | \
+        xargs -n1 pip3 install --upgrade
 }
 _update_python3_pip_packages () {
     log_info "Installing/upgrading pip3 packages"
@@ -492,18 +497,13 @@ _parse_php_language_server_stubs () {
 }
 # }}}
 
-# vivid {{{
-# TODO install vivid via homebrew instead once they add it on homebrew https://github.com/sharkdp/vivid
-_install_vivid () {
-    has vivid && return
-    VIVID_VERSION="0.4.0"
-    log_info "Installing vivid"
-    builtin cd || return
-    wget "https://github.com/sharkdp/vivid/releases/download/v$VIVID_VERSION/vivid-v0.4.0-x86_64-apple-darwin.tar.gz"
-    tar xzvf "vivid-v$VIVID_VERSION-x86_64-apple-darwin.tar.gz"
-    mv "vivid-v$VIVID_VERSION-x86_64-apple-darwin/vivid" "/usr/local/bin/vivid"
-    rm -rf "vivid-v$VIVID_VERSION-x86_64-apple-darwin/vivid" "vivid-v$VIVID_VERSION-x86_64-apple-darwin.tar.gz"
-    builtin cd - || return
+# ls_colors {{{
+_install_ls_colors () {
+    [ -d "$HOME"/.dircolors ] && return
+    log_info "installing LS_COLORS"
+    wget https://raw.github.com/trapd00r/LS_COLORS/master/LS_COLORS -O $HOME/.dircolors
+    [ -e /usr/local/opt/coreutils/libexec/gnubin/dircolors ] || return
+    eval $( /usr/local/opt/coreutils/libexec/gnubin/dircolors -b "$HOME"/.dircolors )
 }
 # }}}
 
@@ -684,7 +684,7 @@ _update_python3_pip_packages
 _install_upgrade_ntfy
 _install_update_composer_packages
 # _parse_php_language_server_stubs
-_install_vivid
+# _install_ls_colors
 _update_antibody_plugins
 _apply_hosts_file
 _let_iterm_see_italics

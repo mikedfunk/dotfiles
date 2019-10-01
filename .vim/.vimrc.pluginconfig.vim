@@ -625,6 +625,7 @@ let g:tmuxline_preset = {
     \ 'y': ['%l:%M %p'],
     \ 'z': ['%a', '%b %d'],
 \}
+" disabled:
 " \ '🚢  #(kubectl config current-context)',
 "
 " don't use: anchor, sailboat
