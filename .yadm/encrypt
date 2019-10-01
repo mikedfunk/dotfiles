@@ -5,6 +5,7 @@ Library/Application Support/Sequel Pro/Data/Favorites.plist
 .ssh/config
 .saatchi-ansible-hosts.ini
 .saatchirc
+.toafrc
 Code/saatchi/queries
 Code/saatchi/http
 Code/saatchi/kubernetes

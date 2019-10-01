@@ -190,6 +190,7 @@ has vivid && export LS_COLORS="$(vivid generate molokai)" # https://github.com/s
 # export LESSOPEN="| /usr/local/opt/source-highlight/bin/src-hilite-lesspipe.sh %s"
 # alias less="less -R"
 GITWEB_PROJECTROOT="$HOME/Code"
+export PSQL_PAGER="pspg"
 # [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ] && . "$HOME/.nix-profile/etc/profile.d/nix.sh" # this seems to conflict with direnv. Direnv seems to wipe the PATH changes this applies.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 
@@ -720,6 +721,7 @@ letsfun () {
 
 # source more files {{{
 [ -e "$HOME/.saatchirc" ] && source "$HOME/.saatchirc"
+[ -e "$HOME/.toafrc" ] && source "$HOME/.toafrc"
 # ensure the tmux term exists, otherwise some stuff like ncurses apps (e.g. tig) might break. This is very fast.
 [ -f "$HOME/.support/tmux-256color.terminfo.txt" ] && tic -x "$HOME/.support/tmux-256color.terminfo.txt" &>/dev/null
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # fuzzy finder - installed and managed via vim-plug https://github.com/junegunn/fzf
