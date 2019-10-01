@@ -13,7 +13,7 @@
         <string>0</string>
         <string>-F</string>
         <string>/Users/mikefunk/.ssh/config</string>
-		<string>toaf-tunnel-prod-01</string>
+		<string>toaf-tunnel-prod</string>
         <string>-t</string>
         <string>-N</string>
 	</array>

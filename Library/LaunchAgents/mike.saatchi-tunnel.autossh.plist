@@ -13,7 +13,7 @@
         <string>0</string>
         <string>-F</string>
         <string>/Users/mikefunk/.ssh/config</string>
-		<string>saatchi-tunnel-01</string>
+		<string>saatchi-tunnel</string>
         <string>-t</string>
         <string>-N</string>
 	</array>
