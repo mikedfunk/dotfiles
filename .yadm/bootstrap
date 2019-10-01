@@ -416,6 +416,10 @@ _install_update_ruby_gems () {
 # }}}
 
 # update python3 pip packages {{{
+
+_pip-update () {
+    pip3 list --outdated | grep -v 'Package' | grep -v -e '\-\-\-\-\-' | cut -d' ' -f1 | xargs -n1 pip3 install -U
+}
 _update_python3_pip_packages () {
     log_info "Installing/upgrading pip3 packages"
     /usr/local/bin/pip3 install neovim --user # neovim uses this pip/python version
@@ -426,10 +430,7 @@ _update_python3_pip_packages () {
     # pip-review --local --auto &&
     # 	pip3 freeze >"$HOME/requirements.txt"
     # pip3 list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip3 install -U
-    function pip-update () {
-        pip3 list --outdated | grep -v 'Package' | grep -v -e '\-\-\-\-\-' | cut -d' ' -f1 | xargs -n1 pip3 install -U
-    }
-    pip-update || PIP_SUCCESSFUL=0
+    _pip-update || PIP_SUCCESSFUL=0
     # otherwise it might freeze a failed state
     [[ $PIP_SUCCESSFUL ]] && pip3 freeze >"$HOME/requirements.txt"
     has pyenv && pyenv rehash
