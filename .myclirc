@@ -1,8 +1,12 @@
-# vim: set ft=dosini:
+# vim: set ft=dosini foldmethod=marker:
 # config for mycli https://github.com/dbcli/mycli
-#
+
+# notes {{{
 # TIP: my mycli aliases start in the queries dir so I can run \. ./<tab>,
 # complete to a file, and run it as sql.
+# }}}
+
+# main {{{
 [main]
 
 # Enables context sensitive auto-completion. If this is disabled then all
@@ -88,6 +92,9 @@ keyword_casing = auto
 enable_pager = True
 
 # Custom colors for the completion menu, toolbar, etc.
+# }}}
+
+# colors {{{
 [colors]
 # COLOR PROMPT
 # https://github.com/dbcli/mycli/issues/394#issuecomment-432024890
@@ -119,9 +126,15 @@ Token.Toolbar.System = 'noinherit bold'
 Token.Toolbar.Arg = 'noinherit bold'
 Token.Toolbar.Arg.Text = 'nobold'
 
-# Favorite queries.
+# }}}
+
+# Favorite queries {{{
 [favorite_queries]
 
+# }}}
+
+# aliases {{{
 # Use the -d option to reference a DSN.
 [alias_dsn]
 # example_dsn = mysql://[user[:password]@][host][:port][/dbname] u = select * from users order by id desc limit 5
+# }}}

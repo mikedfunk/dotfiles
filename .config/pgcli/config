@@ -1,4 +1,7 @@
-# vi: ft=dosini
+# vi: set ft=dosini foldmethod=marker:
+# config for pgcli https://www.pgcli.com/
+
+# main {{{
 [main]
 
 # Enables context sensitive auto-completion. If this is disabled the all
@@ -145,6 +148,9 @@ enable_pager = True
 # Use keyring to automatically save and load password in a secure manner
 keyring = True
 
+# }}}
+
+# colors {{{
 # Custom colors for the completion menu, toolbar, etc.
 [colors]
 # COLOR PROMPT
@@ -177,16 +183,27 @@ output.header = "#00ff5f bold"
 output.odd-row = ""
 output.even-row = ""
 
+# }}}
+
+# named queries {{{
 # Named queries are queries you can execute by name.
 [named queries]
 
+# }}}
+
+# aliases {{{
 # DSN to call by -D option
 [alias_dsn]
 # example_dsn = postgresql://[user[:password]@][netloc][:port][/dbname]
 
+# }}}
+
+# data formats {{{
 # Format for number representation
 # for decimal "d" - 12345678, ",d" - 12,345,678
 # for float "g" - 123456.78, ",g" - 123,456.78
 [data_formats]
 decimal = ""
 float = ""
+
+# }}}
