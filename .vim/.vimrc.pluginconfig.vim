@@ -617,7 +617,6 @@ let g:tmuxline_preset = {
     \ 'a': ['🏠 #S'],
     \ 'c': [
         \ "🔋 #(pmset -g batt | egrep '\d+%' | awk '{print $3}' | awk -F';' '{print $1}')",
-        \ '🚢  #(kubectl config current-context)',
         \ '#(~/.bin/saatchi-haproxy-status.sh)'
     \ ],
     \ 'win': ['#I', '#W'],
@@ -626,6 +625,8 @@ let g:tmuxline_preset = {
     \ 'y': ['%l:%M %p'],
     \ 'z': ['%a', '%b %d'],
 \}
+" \ '🚢  #(kubectl config current-context)',
+"
 " don't use: anchor, sailboat
 " other possible emojis to use:
 " ❏
