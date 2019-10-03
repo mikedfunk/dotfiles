@@ -10,7 +10,8 @@ windows:
     focus: true
     panes:
       - v -S
-      - yadm st
+      # - yadm st
+      - while true; do clear && yadm st; sleep 60; done
       # - wait-on http://www.local.saatchiart.com && docker-stats
       # - sourcegraph
       - while true; do wait-on http://www.local.saatchiart.com && dme && ctop; sleep 10; done

@@ -463,10 +463,10 @@ if executable('devdocs')
     augroup filetypesgroup
         autocmd!
         autocmd FileType php set keywordprg=devdocs\ php
-        autocmd FileType javascript set keywordprg=devdocs\ javascript
+        autocmd FileType javascript* set keywordprg=devdocs\ javascript
         autocmd FileType html set keywordprg=devdocs\ html
         autocmd FileType ruby set keywordprg=devdocs\ ruby
-        autocmd FileType css set keywordprg=devdocs\ css
+        autocmd FileType css* set keywordprg=devdocs\ css
         autocmd FileType zsh set keywordprg=devdocs\ bash
         autocmd FileType bash set keywordprg=devdocs\ bash
         autocmd FileType sh set keywordprg=devdocs\ bash
