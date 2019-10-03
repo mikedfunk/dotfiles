@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@babel/cli": "^7.2.3",
+    "@prettier/plugin-php": "^0.11.2",
     "babel-core": "^6.26.0",
     "babel-eslint": "^10.0.1",
     "babel-init": "^0.2.0",
@@ -43,7 +44,7 @@
     "node-gyp": "^5.0.3",
     "parcel-bundler": "^1.6.1",
     "poi": "^9.5.10",
-    "prettier": "^1.8.2",
+    "prettier": "^1.18.2",
     "prettier-eslint-cli": "^4.7.1",
     "redoc-cli": "^0.8.6",
     "scsslint": "^0.0.3",

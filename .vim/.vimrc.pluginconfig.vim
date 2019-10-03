@@ -56,8 +56,6 @@ let g:ale_php_langserver_use_global = 1
 let g:ale_php_langserver_executable = $HOME.'/.bin/php-language-server'
 " let g:ale_php_langserver_executable = $HOME.'/.composer/vendor/bin/php-language-server.php'
 let s:php_fixers = []
-
-set omnifunc=ale#completion#OmniFunc
 " }}}
 
 " js linters {{{
@@ -106,6 +104,7 @@ let g:ale_php_phpcbf_executable = $HOME.'/.support/phpcbf-helper.sh'
 let g:ale_php_phpcbf_use_global = 1
 " }}}
 
+" linters and fixers config {{{
 let g:ale_linters = {
 \    'sh': ['shellcheck'],
 \    'scss': ['stylelint', 'scsslint'],
@@ -123,6 +122,7 @@ let g:ale_fixers = {
 \ }
 " \    'json': ['jq'],
 " \    'sh': ['shfmt'],
+" }}}
 
 " hover {{{
 " :h ale-hover
@@ -138,6 +138,9 @@ let g:ale_set_balloons = 1
 " completion is failing silently for me even with intelephense added and working :/
 " let g:ale_completion_enabled = 1
 " set completeopt=menu,menuone,preview,noselect,noinsert
+
+" Use ALE's function for omnicompletion.
+" autocmd FileType php setlocal omnifunc=ale#completion#OmniFunc
 " }}}
 
 " }}}
@@ -738,10 +741,12 @@ augroup vdebugwatchpanellarger
 augroup END
 
 " didn't work as just a command
-function! ZendRoutingParams() abort
-    :VdebugEval $this->getRequest()->getParams()
-endfunction
-command! ZendRoutingParams :call ZendRoutingParams()
+if exists(":VdebugEval")
+    function! ZendRoutingParams() abort
+        :VdebugEval $this->getRequest()->getParams()
+    endfunction
+    command! ZendRoutingParams :call ZendRoutingParams()
+endif
 
 if isdirectory(expand('~/.vim/plugged/vdebug')) && isdirectory(expand('~/.vim/plugged/Repeatable.vim'))
     " expand or collapse context trees
@@ -751,8 +756,10 @@ if isdirectory(expand('~/.vim/plugged/vdebug')) && isdirectory(expand('~/.vim/pl
     function! CloseVdebugTrees() abort
         :silent! exe 'g/'.g:vdebug_options["marker_open_tree"]."/normal \<cr><cr>"
     endfunction
-    Repeatable nnoremap <leader>v+ :silent! call OpenVdebugTrees()<cr>
-    Repeatable nnoremap <leader>v- :silent! call CloseVdebugTrees()<cr>
+    if exists(":Repeatable")
+        Repeatable nnoremap <leader>v+ :silent! call OpenVdebugTrees()<cr>
+        Repeatable nnoremap <leader>v- :silent! call CloseVdebugTrees()<cr>
+    endif
 endif
 " }}}
 

@@ -31,7 +31,9 @@ command! -nargs=1 Eqa execute "e scp://appdeploy@saatchi-xqa-palette-services-01
 " docker run --rm -t -v $(pwd):/palette wata727/pahout /palette --ignore-paths=/palette/vendor --config=/palette/.pahout.yaml
 " }}}
 
-" ale fixers {{{
+" ale {{{
+
+" fixers {{{
 let g:ale_php_phpcbf_executable = '/Users/mikefunk/.support/phpcbf-helper.sh'
 let g:ale_php_phpcbf_use_global = 1
 " let g:ale_php_phpstan_level = 4
@@ -72,6 +74,12 @@ let g:ale_php_phpcbf_use_global = 1
 " \   'php': ['phpcbf', 'php_cs_fixer'],
 " \   'ruby': ['rubocop']
 " \}
+" }}}
+
+" linters {{{
+" call add(g:ale_linters['php'], 'langserver')
+" }}}
+
 " }}}
 
 " vim-gutentags {{{
