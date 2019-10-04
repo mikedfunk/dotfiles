@@ -337,7 +337,7 @@
   # ':master' if the tracking branch name differs from local branch.
   vcs+='${${VCS_STATUS_REMOTE_BRANCH:#$VCS_STATUS_LOCAL_BRANCH}:+%f:%76F${VCS_STATUS_REMOTE_BRANCH//\%/%%}}'
   # '#tag' if on a tag.
-  vcs+='${VCS_STATUS_TAG:+%f#%76F${VCS_STATUS_TAG//\%/%%}}'
+  # vcs+='${VCS_STATUS_TAG:+%f#%76F${VCS_STATUS_TAG//\%/%%}}'
   # ⇣42 if behind the remote.
   # vcs+='${${VCS_STATUS_COMMITS_BEHIND:#0}:+ %76F⇣${VCS_STATUS_COMMITS_BEHIND}}'
   # ⇡42 if ahead of the remote; no leading space if also behind the remote: ⇣42⇡42.

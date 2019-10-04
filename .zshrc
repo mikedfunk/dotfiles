@@ -192,14 +192,17 @@ export LC_ALL=en_US.UTF-8 # https://unix.stackexchange.com/a/302418/287898
 export NOTI_NSUSER_SOUNDNAME="Hero"
 # don't notify when these die after being "long-running processes"
 export AUTO_NTFY_DONE_IGNORE=(
-    vim
-    screen
-    tmux
-    man
-    less
     ctop
     htop
+    less
+    man
+    screen
     tig
+    tmux
+    ts
+    v
+    vim
+    y
     yadm
 )
 # has vivid && export LS_COLORS="$(vivid generate molokai)" # https://github.com/sharkdp/vivid
