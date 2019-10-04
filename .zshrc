@@ -148,12 +148,10 @@ has lazyload && lazyload 'has akamai && eval "$(akamai --zsh)"' akamai
 [ -f ~/.private_vars.sh ] && source ~/.private_vars.sh # where I store my secret env vars
 # [ -f ~/.support/promptline.theme.bash ] && source ~/.support/promptline.theme.bash # vim plugin generates this tmux status line file
 # has direnv && eval "$(direnv hook zsh)" # allow .envrc on each prompt start
-has direnv && _evalcache direnv hook zsh # (evalcache version)
 # if you get this error:
 # 25:28: execution error: Not authorized to send Apple events to iTerm. (-1743)
 # Goto Settings -> Security & Privacy -> Privacy -> Automation -> Privacy tab and check the System Events checkbox. https://stackoverflow.com/a/53380557
 # then do this `tccutil reset AppleEvents; tccutil reset SystemPolicyAllFiles` https://stackoverflow.com/a/56992109/557215
-has ntfy && _evalcache ntfy shell-integration # notify when long-running command finishes. pip package, breaks in pyenv - see yadm bootstrap for unique setup.
 # [ -f /usr/local/etc/grc.bashrc ] && source "/usr/local/etc/grc.bashrc" # generic colorizer
 [ -f /usr/local/etc/grc.zsh ] && source "/usr/local/etc/grc.zsh" # generic colorizer
 # https://github.com/google/google-api-ruby-client/issues/235#issuecomment-169956795
@@ -161,43 +159,47 @@ has ntfy && _evalcache ntfy shell-integration # notify when long-running command
 # [ -d "$HOME/.zsh/completion" ] && find "$HOME/.zsh/completion" | while read f; do source "$f"; done
 # has plenv && eval "$(plenv init -)"
 # has nodenv && eval "$(nodenv init -)" # moved to lazyload but much slower!
-has nodenv && _evalcache nodenv init - # (evalcache version)
 # https://github.com/pyenv/pyenv/blob/master/COMMANDS.md#pyenv-global
 # strangely this is already set BEFORE this file is sourced!
 unset PYENV_VERSION
 # has pyenv && eval "$(pyenv init -)" # moved to lazyload but much slower!
-has pyenv && _evalcache pyenv init - # (evalcache version)
 # use pipenv instead of virtualenv. It comes with pyenv! There's also support for it with direnv.
 # has pyenv-virtualenv-init && eval "$(pyenv virtualenv-init -)"
 # [[ -f "$HOME/.phpenv/bin/phpenv" ]] && eval "$($HOME/.phpenv/bin/phpenv init -)" # moved to lazyload but much slower!
-[[ -f "$HOME/.phpenv/bin/phpenv" ]] && _evalcache "$HOME"/.phpenv/bin/phpenv init - # (evalcache version)
 # used internally and in .envrc files to go to phpenv directories
 # export PHPENV_VERSION="$(phpenv version | cut -d' ' -f1)" # see below - hardcoded
 export PHPENV_VERSION="$(cat $HOME/.phpenv/version)" # avoid lazy loading problems
 # has rbenv && eval "$(rbenv init -)" # moved to lazyload but much slower!
-has rbenv && _evalcache rbenv init - # (evalcache version)
 # has akamai && eval "$(akamai --zsh)" # this takes like 1 second and I almost never use it (moved to lazyload)
 # [ -f "/usr/local/opt/asdf/asdf.sh" ] && source "/usr/local/opt/asdf/asdf.sh"
 # [ -n "$DESK_ENV" ] && source "$DESK_ENV" || true # Hook for desk activation
 # tabtab source for yo package
 # uninstall by removing these lines or running `tabtab uninstall yo`
 # [[ -f /Users/mikefunk/.config/yarn/global/node_modules/tabtab/.completions/yo.zsh ]] && . /Users/mikefunk/.config/yarn/global/node_modules/tabtab/.completions/yo.zsh
+
+# evaluated startup commands {{{
+has direnv && _evalcache direnv hook zsh # (evalcache version)
+has ntfy && _evalcache ntfy shell-integration # notify when long-running command finishes. pip package, breaks in pyenv - see yadm bootstrap for unique setup.
+has nodenv && _evalcache nodenv init - # (evalcache version)
+has pyenv && _evalcache pyenv init - # (evalcache version)
+[[ -f "$HOME/.phpenv/bin/phpenv" ]] && _evalcache "$HOME"/.phpenv/bin/phpenv init - # (evalcache version)
+has rbenv && _evalcache rbenv init - # (evalcache version)
+# }}}
+
 export LC_CTYPE=en_US.UTF-8 # https://unix.stackexchange.com/a/302418/287898
 export LC_ALL=en_US.UTF-8 # https://unix.stackexchange.com/a/302418/287898
 # https://github.com/variadico/noti/blob/master/docs/noti.md#environment
 export NOTI_NSUSER_SOUNDNAME="Hero"
 # don't notify when these die after being "long-running processes"
 export AUTO_NTFY_DONE_IGNORE=(
+    vim
+    screen
+    tmux
+    man
+    less
     ctop
     htop
-    less
-    man
-    screen
     tig
-    tmux
-    v
-    vim
-    y
     yadm
 )
 # has vivid && export LS_COLORS="$(vivid generate molokai)" # https://github.com/sharkdp/vivid
@@ -209,6 +211,7 @@ GITWEB_PROJECTROOT="$HOME/Code"
 export PSQL_PAGER="pspg"
 # [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ] && . "$HOME/.nix-profile/etc/profile.d/nix.sh" # this seems to conflict with direnv. Direnv seems to wipe the PATH changes this applies.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+'builtin' 'setopt' 'aliases' # weird, this should have already been done :/
 
 # configure cgr and composer {{{
 # Internal: this ensures composer and cgr both point to my php version's composer
