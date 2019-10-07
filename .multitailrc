@@ -57,6 +57,8 @@ statusline_ts_format:%Y-%m-%d %r
 # titlebar:%u@%h %f (%t) [%l]
 # }}}
 
+# saatchi {{{
+
 # catalog {{{
 colorscheme:catalog
 
@@ -83,37 +85,6 @@ mcsre_s:blue:(^/.*):in
 
 # keys
 cs_re:white,,bold:^(  )*[a-zA-Z_ -]+:
-# }}}
-
-# aws {{{
-
-# api {{{
-colorscheme:api
-
-# I tried to combine these in braces but was getting strange results
-cs_re:white,,bold:\{
-cs_re:white,,bold:\}
-cs_re:white,,bold:\[
-cs_re:white,,bold:\]
-
-# date and time
-mcsre_s:magenta,,bold:\[([0-9]{4}-[0-9]{2}-[0-9]{2})
-mcsre_s:yellow,,bold:T([0-9]{2}:[0-9]{2}:[0-9]{2})
-
-# info
-cs_re:green:INFO.*$
-mcsre_s:red:INFO (.*)
-
-# debug
-cs_re:green:DEBUG.*$
-mcsre_s:red:DEBUG (.*)
-
-# error
-cs_re:red,,bold:ERROR
-mcsre_s:red:ERROR (.*)
-
-# file paths in stack traces
-mcsre_s:blue:(/.*):in
 # }}}
 
 # legacy {{{
@@ -368,11 +339,7 @@ cs_re:white,,bold:\[
 cs_re:white,,bold:\]
 # }}}
 
-# }}}
-
-# k8s {{{
-
-# nginx {{{
+# k8s nginx {{{
 # trying not to get too fancy here to keep it flexible. Most of this is from /usr/local/etc/multitail.conf
 colorscheme:nginx
 cs_re:cyan::
@@ -391,30 +358,16 @@ mcsre_s:black,red,bold/blink:.* (5[0-9]{2}) .*
 mcsre_s:black,red,bold:.* (4[0-9]{2}) .*
 # }}}
 
-# legacy {{{
-# TODO
 # }}}
 
-# catalog {{{
-# TODO
-# }}}
+# mjm {{{
+colorscheme:mjmship
 
-# zed {{{
-# TODO
-# }}}
-
-# palette {{{
-# TODO
-# }}}
-
-# gallery {{{
-# TODO
-# }}}
-
-# easel {{{
-# TODO
-# }}}
-
+cs_re:green,,bold:INFO
+cs_re:blue,,bold:DEBUG
+cs_re:black,red,bold/blink:ERROR
+# date/time
+cs_re:yellow:[0-9]{4}\-[0-9]{2}\-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}
 # }}}
 
 # mysql general query log {{{
