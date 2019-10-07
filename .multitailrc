@@ -77,7 +77,7 @@ cs_re:green,,bold:INFO
 cs_re:green:INFO.*$
 
 # error
-cs_re:red,,bold:ERROR
+cs_re:red,,bold/blink/reverse:ERROR
 mcsre_s:red:ERROR (.*)
 
 # file paths in stack traces
@@ -103,7 +103,7 @@ cs_re:magenta,,bold:^[0-9]{4}/[0-9]{2}/[0-9]{2}
 mcsre_s:yellow,,bold:^[0-9]{4}/[0-9]{2}/[0-9]{2} +([0-9]{2}:[0-9]{2}:[0-9]{2})
 
 # errors and warnings - legacy error log
-mcsre_s:red,,bold:^[0-9]{4}/[0-9]{2}/[0-9]{2} +[0-9]{2}:[0-9]{2}:[0-9]{2} (\[error\])
+mcsre_s:red,,bold/blink/reverse:^[0-9]{4}/[0-9]{2}/[0-9]{2} +[0-9]{2}:[0-9]{2}:[0-9]{2} (\[error\])
 mcsre_s:yellow,,bold:^[0-9]{4}/[0-9]{2}/[0-9]{2} +[0-9]{2}:[0-9]{2}:[0-9]{2} (\[warn\])
 mcsre_s:red:^.*\[error\](.*)
 mcsre_s:yellow:^.*\[warn\](.*)
@@ -123,8 +123,8 @@ cs_re:green:INFO.*$
 cs_re:blue:HTTP/1\.1 200 OK
 
 # error and severe
-cs_re:red,,bold:ERR
-cs_re:red,,bold:SEVERE
+cs_re:red,,bold/blink/reverse:ERR
+cs_re:red,,bold/blink/reverse:SEVERE
 mcsre_s:red:ERR (.*)
 mcsre_s:red:SEVERE (.*)
 
@@ -151,8 +151,8 @@ cs_re:green,,bold:DEBUG
 mcsre_s:green:DEBUG: (.*)
 
 # error and emergency
-cs_re:red,,blink:EMERGENCY
-cs_re:red,,bold:ERROR
+cs_re:red,,blink/bold/reverse:EMERGENCY
+cs_re:red,,bold/blink/reverse:ERROR
 mcsre_s:red:ERROR: (.*)
 mcsre_s:red:EMERGENCY: (.*)
 
@@ -180,7 +180,7 @@ cs_re:magenta,,bold:^[0-9]{4}/[0-9]{2}/[0-9]{2}
 mcsre_s:yellow,,bold:^[0-9]{4}/[0-9]{2}/[0-9]{2} +([0-9]{2}:[0-9]{2}:[0-9]{2})
 
 # errors and warnings - www error log
-mcsre_s:red,,bold:^[0-9]{4}/[0-9]{2}/[0-9]{2} +[0-9]{2}:[0-9]{2}:[0-9]{2} (\[error\])
+mcsre_s:red,,bold/blink/reverse:^[0-9]{4}/[0-9]{2}/[0-9]{2} +[0-9]{2}:[0-9]{2}:[0-9]{2} (\[error\])
 mcsre_s:yellow,,bold:^[0-9]{4}/[0-9]{2}/[0-9]{2} +[0-9]{2}:[0-9]{2}:[0-9]{2} (\[warn\])
 mcsre_s:red:^.*\[error\](.*)
 mcsre_s:yellow:^.*\[warn\](.*)
@@ -230,7 +230,7 @@ cs_re:magenta,,bold:^[0-9]+\|[a-zA-Z]+.*\|
 cs_re:magenta,,bold:^PM2.*\|
 
 # errors and warnings
-cs_re:red,,bold:[a-zA-Z]*Error:
+cs_re:red,,bold/blink/reverse:[a-zA-Z]*Error:
 mcsre_s:red:[a-zA-Z]*Error:(.*)
 mcsre_s:red,,blink:(Error) {
 # cs_re:red,,bold:^Stack trace:
@@ -258,7 +258,7 @@ cs_re:magenta,,bold:^[0-9]{4}/[0-9]{2}/[0-9]{2}
 mcsre_s:yellow,,bold:^[0-9]{4}/[0-9]{2}/[0-9]{2} +([0-9]{2}:[0-9]{2}:[0-9]{2})
 
 # errors and warnings - app error log
-mcsre_s:red,,bold:^[0-9]{4}/[0-9]{2}/[0-9]{2} +[0-9]{2}:[0-9]{2}:[0-9]{2} (\[error\])
+mcsre_s:red,,bold/blink/reverse:^[0-9]{4}/[0-9]{2}/[0-9]{2} +[0-9]{2}:[0-9]{2}:[0-9]{2} (\[error\])
 mcsre_s:yellow,,bold:^[0-9]{4}/[0-9]{2}/[0-9]{2} +[0-9]{2}:[0-9]{2}:[0-9]{2} (\[warn\])
 mcsre_s:red:^.*\[error\](.*)
 mcsre_s:yellow:^.*\[warn\](.*)
@@ -270,8 +270,8 @@ cs_re:green,,bold:INFO
 mcsre_s:green:INFO: (.*)
 
 # error and emergency
-cs_re:red,,blink:EMERGENCY
-cs_re:red,,bold:ERROR
+cs_re:red,,bold/blink/reverse:EMERGENCY
+cs_re:red,,bold/blink/reverse:ERROR
 mcsre_s:red:ERROR: (.*)
 mcsre_s:red:EMERGENCY: (.*)
 
@@ -296,8 +296,8 @@ cs_re:magenta,,bold:^[0-9]{4}-[0-9]{2}-[0-9]{2}
 mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})\+00:00
 
 # error and severe
-cs_re:red,,bold:PHP Fatal error:
-mcsre_s:red,,bold:ZED Exception([a-zA-Z]+)
+cs_re:red,,bold/blink/reverse:PHP Fatal error:
+mcsre_s:red,,bold/blink/reverse:ZED Exception([a-zA-Z]+)
 mcsre_s:red:ZED Exception[a-zA-Z]+ (.*)
 mcsre_s:red:PHP Fatal error: (.*)
 
@@ -315,7 +315,7 @@ mcsre_s:magenta,,bold:^\[([0-9]{2}-[a-zA-Z]{3}-[0-9]{4})
 mcsre_s:yellow,,bold:^\[[0-9]{2}-[a-zA-Z]{3}-[0-9]{4} ([0-9]{2}:[0-9]{2}:[0-9]{2})
 
 # errors and warnings - nginx error log
-mcsre_s:red,,bold:^[0-9]{4}/[0-9]{2}/[0-9]{2} +[0-9]{2}:[0-9]{2}:[0-9]{2} (\[error\])
+mcsre_s:red,,bold/reverse/blink:^[0-9]{4}/[0-9]{2}/[0-9]{2} +[0-9]{2}:[0-9]{2}:[0-9]{2} (\[error\])
 mcsre_s:yellow,,bold:^[0-9]{4}/[0-9]{2}/[0-9]{2} +[0-9]{2}:[0-9]{2}:[0-9]{2} (\[warn\])
 mcsre_s:red:^.*\[error\](.*)
 mcsre_s:yellow:^.*\[warn\](.*)
@@ -355,19 +355,24 @@ mcsre_s:magenta,,bold:"([A-Z]{3,} .*) HTTP
 mcsre_s:black,green,bold:.* (2[0-9]{2}) .*
 mcsre_s:black,blue,bold:.* (3[0-9]{2}) .*
 mcsre_s:black,red,bold/blink:.* (5[0-9]{2}) .*
-mcsre_s:black,red,bold:.* (4[0-9]{2}) .*
+mcsre_s:red,,bold/reverse:.* (4[0-9]{2}) .*
 # }}}
 
 # }}}
 
 # mjm {{{
+
+# app {{{
 colorscheme:mjmship
 
 cs_re:green,,bold:INFO
 cs_re:blue,,bold:DEBUG
-cs_re:black,red,bold/blink:ERROR
+cs_re:red,,bold/blink/reverse:ERROR
+mcsre_s:red:ERROR(.*)
 # date/time
 cs_re:yellow:[0-9]{4}\-[0-9]{2}\-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}
+# }}}
+
 # }}}
 
 # mysql general query log {{{
