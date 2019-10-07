@@ -26,6 +26,16 @@ windows:
       - bundle install && bundle exec jekyll serve --watch
 # }}}
 
+# magento {{{
+  - window_name: magento
+    start_directory: ~/Code/magento
+    layout: main-horizontal
+    panes:
+      - v -S
+      - ts
+      # TODO tests, etc.
+# }}}
+
 # notes {{{
   - window_name: notes
     panes:

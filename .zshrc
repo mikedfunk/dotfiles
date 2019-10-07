@@ -160,16 +160,15 @@ has lazyload && lazyload 'has akamai && eval "$(akamai --zsh)"' akamai
 # has plenv && eval "$(plenv init -)"
 # has nodenv && eval "$(nodenv init -)" # moved to lazyload but much slower!
 # https://github.com/pyenv/pyenv/blob/master/COMMANDS.md#pyenv-global
-# strangely this is already set BEFORE this file is sourced!
+# strangely these is already set BEFORE this file is sourced!
 unset PYENV_VERSION
+unset PHPENV_VERSION
 # has pyenv && eval "$(pyenv init -)" # moved to lazyload but much slower!
 # use pipenv instead of virtualenv. It comes with pyenv! There's also support for it with direnv.
 # has pyenv-virtualenv-init && eval "$(pyenv virtualenv-init -)"
-# [[ -f "$HOME/.phpenv/bin/phpenv" ]] && eval "$($HOME/.phpenv/bin/phpenv init -)" # moved to lazyload but much slower!
-# used internally and in .envrc files to go to phpenv directories
-# export PHPENV_VERSION="$(phpenv version | cut -d' ' -f1)" # see below - hardcoded
-export PHPENV_VERSION="$(cat $HOME/.phpenv/version)" # avoid lazy loading problems
-# has rbenv && eval "$(rbenv init -)" # moved to lazyload but much slower!
+# [[ -f "$HOME/.phpenv/bin/phpenv" ]] && eval "$($HOME/.phpenv/bin/phpenv init -)" # moved to _evalcache
+export MY_PHPENV_VERSION="$(cat $HOME/.phpenv/version)"
+# has rbenv && eval "$(rbenv init -)" # moved to _evalcache
 # has akamai && eval "$(akamai --zsh)" # this takes like 1 second and I almost never use it (moved to lazyload)
 # [ -f "/usr/local/opt/asdf/asdf.sh" ] && source "/usr/local/opt/asdf/asdf.sh"
 # [ -n "$DESK_ENV" ] && source "$DESK_ENV" || true # Hook for desk activation
@@ -226,13 +225,13 @@ export PSQL_PAGER="pspg"
 # ~/.phpenv/versions/{version}/composer so I get different globals
 # in each phpenv version.
 _configure_cgr_and_composer () {
-    export COMPOSER_HOME="$(phpenv root)/versions/${PHPENV_VERSION}/composer"
+    export COMPOSER_HOME="$(phpenv root)/versions/${MY_PHPENV_VERSION}/composer"
     # this fucks up cgr
-    # export COMPOSER_VENDOR_DIR="$(phpenv root)/versions/${PHPENV_VERSION}/composer/vendor"
-    # export COMPOSER_BIN_DIR="$(phpenv root)/versions/${PHPENV_VERSION}/composer/vendor/bin"
+    # export COMPOSER_VENDOR_DIR="$(phpenv root)/versions/${MY_PHPENV_VERSION}/composer/vendor"
+    # export COMPOSER_BIN_DIR="$(phpenv root)/versions/${MY_PHPENV_VERSION}/composer/vendor/bin"
     export CGR_COMPOSER_PATH="$(phpenv root)/shims/composer"
-    export CGR_BASE_DIR="$(phpenv root)/versions/${PHPENV_VERSION}/composer/global"
-    export CGR_BIN_DIR="$(phpenv root)/versions/${PHPENV_VERSION}/composer/vendor/bin"
+    export CGR_BASE_DIR="$(phpenv root)/versions/${MY_PHPENV_VERSION}/composer/global"
+    export CGR_BIN_DIR="$(phpenv root)/versions/${MY_PHPENV_VERSION}/composer/vendor/bin"
 }
 _configure_cgr_and_composer
 # }}}
@@ -502,7 +501,7 @@ KEYTIMEOUT=1 # no vim delay entering normal mode
 # xdb () { xdebug-toggle $1 --no-server-restart; }
 
 xdebug-off() {
-    builtin cd "$(phpenv root)/versions/${PHPENV_VERSION}/etc/conf.d"
+    builtin cd "$(phpenv root)/versions/${MY_PHPENV_VERSION}/etc/conf.d"
     if ! [ -f xdebug.ini ]; then
         echo "xdebug.ini does not exist"
         return 1
@@ -513,7 +512,7 @@ xdebug-off() {
 }
 
 xdebug-on() {
-    builtin cd "$(phpenv root)/versions/${PHPENV_VERSION}/etc/conf.d"
+    builtin cd "$(phpenv root)/versions/${MY_PHPENV_VERSION}/etc/conf.d"
     if ! [ -f xdebug.ini.DISABLED ]; then
         echo "xdebug.ini.DISABLED does not exist"
         return 1
@@ -524,7 +523,7 @@ xdebug-on() {
 }
 
 xdebug-status() {
-    builtin cd "$(phpenv root)/versions/${PHPENV_VERSION}/etc/conf.d"
+    builtin cd "$(phpenv root)/versions/${MY_PHPENV_VERSION}/etc/conf.d"
     [ -f ./xdebug.ini  ] && echo 'xdebug enabled' || echo 'xdebug disabled'
     builtin cd -
 }
@@ -603,11 +602,15 @@ phpunitnotify() {
     # xdebug-off > /dev/null
     # php -dmemory_limit=2048M -ddisplay_errors=on ./vendor/bin/phpunit --colors "${@}"
     # autoloader is failing :(
-    phpdbg -qrr -dmemory_limit=2048M -ddisplay_errors=on ./vendor/bin/phpunit --colors "${@}"
+    # phpdbg -qrr -dmemory_limit=2048M -ddisplay_errors=on ./vendor/bin/phpunit --colors "${@}"
+    phpdbg -qrr -dmemory_limit=4096M -ddisplay_errors=on ./vendor/bin/phpunit --colors "${@}"
     [[ $? == 0 ]] && noti --message "PHPUnit tests passed 👍" ||
         noti --message "PHPUnit tests failed 👎"
     # xdebug-on > /dev/null
 }
+
+# but why
+alias magento-phpunit="pu -c dev/tests/unit/phpunit.xml.dist"
 
 # Public: runs phpspec run and uses noti to show the results
 phpspecnotify() {
