@@ -1,18 +1,20 @@
-.private_vars.sh
-Library/Application Support/Sequel Pro/Data/Favorites.plist
+.bin/saatchi-haproxy-status.sh
 .config/joplin/database.sqlite
-.ssh/keys
-.ssh/config
+.edgerc
+.mailmap
+.mjm-ansible-hosts.ini
+.mjmrc
+.mylogin.cnf
+.private_vars.sh
 .saatchi-ansible-hosts.ini
 .saatchirc
+.ssh/config
+.ssh/keys
+.support/OmegaOptions.bak
+.support/saatchi
 .toafrc
-Code/saatchi/queries
 Code/saatchi/http
 Code/saatchi/kubernetes
+Code/saatchi/queries
 Code/uml
-.mailmap
-.bin/saatchi-haproxy-status.sh
-.support/OmegaOptions.bak
-.mylogin.cnf
-.edgerc
-.support/saatchi
+Library/Application Support/Sequel Pro/Data/Favorites.plist
