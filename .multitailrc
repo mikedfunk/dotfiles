@@ -113,12 +113,14 @@ cs_re:white,,bold/underline:^Stack trace:
 cs_re:blue,,bold:^-+
 
 # info and debug
-cs_re:red,,bold:INFO \(6\): Error
-cs_re:green,,bold:DEBUG
+# cs_re:red,,bold:INFO \(6\): Error
+# cs_re:green:INFO.*$
+mcsre_s:red,,bold/reverse/blink:INFO \(6\):.* (Error)
+cs_re:blue,,bold:DEBUG
+# mcsre_s:blue:DEBUG: (.*)
 cs_re:green,,bold:INFO
 # cs_re:blue:^.*(RESPONSE|REQUEST) ART CREATE.*$
-cs_re:red:INFO \(6\): Error.*$
-cs_re:green:INFO.*$
+# cs_re:red:INFO \(6\): Error.*$
 # shown in catalog requests
 cs_re:blue:HTTP/1\.1 200 OK
 
@@ -148,8 +150,8 @@ cs_re:magenta,,bold:[0-9]{4}-[0-9]{2}-[0-9]{2}
 mcsre_s:yellow,,bold:^\[[0-9\-]+ ([0-9:]+)\].*$
 
 # debug
-cs_re:green,,bold:DEBUG
-mcsre_s:green:DEBUG: (.*)
+cs_re:blue,,bold:DEBUG
+mcsre_s:blue:DEBUG: (.*)
 
 # error and emergency
 cs_re:red,,blink/bold/reverse:EMERGENCY
@@ -267,8 +269,8 @@ mcsre_s:red:^.*\[error\](.*)
 mcsre_s:yellow:^.*\[warn\](.*)
 
 # debug and info
-cs_re:green,,bold:DEBUG
-mcsre_s:green:DEBUG: (.*)
+cs_re:blue,,bold:DEBUG
+mcsre_s:blue:DEBUG: (.*)
 cs_re:green,,bold:INFO
 mcsre_s:green:INFO: (.*)
 
