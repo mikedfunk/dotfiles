@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>KeepAlive</key>
+	<true/>
+	<key>Label</key>
+	<string>mike.mjm-tunnel-prod.autossh</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/usr/local/bin/autossh</string>
+        <string>-M</string>
+        <string>0</string>
+        <string>-F</string>
+        <string>/Users/mikefunk/.ssh/config</string>
+		<string>mjm-tunnel-prod</string>
+        <string>-t</string>
+        <string>-N</string>
+	</array>
+	<key>RunAtLoad</key>
+	<true/>
+</dict>
+</plist>
