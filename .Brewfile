@@ -206,6 +206,7 @@ cask "font-iosevka-nerd-font-mono"
 # cask "gog-galaxy" # good old games
 cask "google-chrome"
 # cask "google-drive" (menubar app for google drive access)
+# cask "http-toolkit" # kind of like charles or wireshark, but with support for docker. (docker support seems to be coming soon)
 cask "insomnia" # http api client like postman but nicer looking
 cask "iterm2" # I was using kitty but they use opengl and macos deprecated opengl support, so it crashes regularly. iTerm now has gpu rendering, so I'm back to iTerm! It has a bunch of other cool new stuff now anyway.
 cask "java" # required for plantuml, etc.
