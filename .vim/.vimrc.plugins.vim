@@ -172,7 +172,7 @@ Plug 'lifepillar/vim-cheat40' " Customizable cheatsheet. Mine is in ~/.vim/plugg
 " Plug 'andymass/vim-tradewinds' " <c-w>gh to move the current split one to the left, etc. in other directions
 " Plug 'Yilin-Yang/vim-markbar' " <leader>mm to show marks
 Plug 'simeji/winresizer' " ctrl-E to go to resize mode, hjkl, enter to finish, simple
-Plug 'haya14busa/vim-edgemotion' " c-j and c-k to go to 'edge'. Try it. It's hard to explain.
+" Plug 'haya14busa/vim-edgemotion' " c-j and c-k to go to 'edge'. Try it. It's hard to explain. (uninstalled because it conflicts with ultisnips mapping)
 " if has('python2')
 "     Plug 'vim-scripts/VOoM' " outliner like tagbar but for folds (python2?
 "     not worth the trouble.)

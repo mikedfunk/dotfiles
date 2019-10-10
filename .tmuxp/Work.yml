@@ -185,7 +185,7 @@ windows:
       - saatchi-tail-palette-xprod
       - saatchi-tail-legacy-xprod
       - saatchi-tail-zed-xprod
-      - mjm-tail-app-xprod
+      - mjm-tail-app-prod
       # - saatchi-tail-legacy-services-xprod
 # }}}
 
