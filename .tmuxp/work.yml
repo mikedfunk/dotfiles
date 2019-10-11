@@ -8,11 +8,12 @@ windows:
     start_directory: ~/.yadm
     layout: main-horizontal
     options:
-      main-pane-height: 50
-    focus: true
-    panes:
-      - v -S
+      main-pane-height: 30
       focus: true
+    panes:
+      - shell_command:
+        - v -S
+        focus: true
       # - yadm st
       - while true; do clear && yadm st; sleep 60; done
       # - wait-on http://www.local.saatchiart.com && docker-stats
@@ -25,8 +26,11 @@ windows:
   - window_name: legacy
     start_directory: ~/Code/saatchi/legacy
     layout: main-horizontal
+    options:
+      main-pane-height: 40
     panes:
-      - v +GitSessionLoad
+      - shell_command:
+        - v +GitSessionLoad
         focus: true
       - ts
       - while true; do wait-on http://www.local.saatchiart.com && saatchi-tinker-legacy-local; sleep 10; done
@@ -42,7 +46,7 @@ windows:
     start_directory: ~/Code/saatchi/easel
     layout: main-horizontal
     options:
-      main-pane-height: 50
+      main-pane-height: 40
     panes:
       - v +GitSessionLoad
       - ts
@@ -55,7 +59,7 @@ windows:
     start_directory: ~/Code/saatchi/gallery
     layout: main-horizontal
     options:
-      main-pane-height: 50
+      main-pane-height: 40
     panes:
       - v +GitSessionLoad
       - ts
@@ -72,7 +76,7 @@ windows:
     start_directory: ~/Code/saatchi/palette
     layout: main-horizontal
     options:
-      main-pane-height: 50
+      main-pane-height: 40
     panes:
       - v +GitSessionLoad
       - ts
@@ -87,7 +91,7 @@ windows:
     start_directory: ~/Code/saatchi/zed
     layout: main-horizontal
     options:
-      main-pane-height: 50
+      main-pane-height: 40
     panes:
       - v +GitSessionLoad
       - ts
@@ -101,7 +105,7 @@ windows:
     start_directory: ~/Code/saatchi/catalog
     layout: main-horizontal
     options:
-      main-pane-height: 50
+      main-pane-height: 40
     panes:
       - v +GitSessionLoad
       - ts
@@ -113,8 +117,12 @@ windows:
   # - window_name: views
   #   start_directory: ~/Code/saatchi/couchbase-views
   #   layout: main-horizontal
+  #   options:
+  #     main-pane-height: 40
   #   panes:
-  #     - v -S
+  #     - shell_command:
+  #       - v -S
+  #       focus: true
   #     - ts
 # }}}
 
@@ -123,9 +131,11 @@ windows:
     start_directory: ~/Code/saatchi/xdocker
     layout: main-horizontal
     options:
-      main-pane-height: 50
+      main-pane-height: 40
     panes:
-      - v -S
+      - shell_command:
+        - v -S
+        focus: true
       - saatchi-docker-start
       - ts
 # }}}
@@ -135,9 +145,11 @@ windows:
     start_directory: ~/Code/saatchi/gitlab-puppet
     layout: main-horizontal
     options:
-      main-pane-height: 50
+      main-pane-height: 40
     panes:
-      - v -S
+      - shell_command:
+        - v -S
+        focus: true
       - ts
 # }}}
 
@@ -145,9 +157,13 @@ windows:
   - window_name: mysql
     start_directory: ~/Code/saatchi/queries
     layout: main-vertical
+    options:
+      main-pane-width: 100
     panes:
       - v -S
-      - wait-on http://www.local.saatchiart.com && saatchi-mycli-legacy-local
+      - shell_command:
+        - wait-on http://www.local.saatchiart.com && saatchi-mycli-legacy-local
+        focus: true
       - wait-on http://www.local.saatchiart.com && saatchi-mycli-palette-local
       - wait-on http://www.local.saatchiart.com && saatchi-mycli-zed-local
 # }}}
@@ -180,9 +196,11 @@ windows:
     start_directory: ~/Code/uml
     layout: main-horizontal
     options:
-      main-pane-height: 50
+      main-pane-height: 40
     panes:
-      - v -S
+      - shell_command:
+        - v -S
+        focus: true
       - ts
       - . ./watch.sh
 # }}}
@@ -191,8 +209,12 @@ windows:
   # - window_name: maropost
   #   start_directory: ~/Code/saatchi/maropost-php-sdk
   #   layout: main-horizontal
+  #   options:
+  #     main-pane-height: 40
   #   panes:
-  #     - v -S
+  #     - shell_command:
+  #       - v -S
+  #       focus: true
   #     - ts
 # }}}
 
@@ -200,13 +222,15 @@ windows:
   - window_name: logs
     start_directory: ~/
     layout: tiled
+    options:
+      pane-border-status: top
     panes:
-      - saatchi-tail-easel-xprod
-      - saatchi-tail-gallery-xprod
-      - saatchi-tail-palette-xprod
-      - saatchi-tail-legacy-xprod
-      - saatchi-tail-zed-xprod
-      - mjm-tail-app-prod
+      - sleep 5 && tmux select-pane -t 0 -T 'easel' && saatchi-tail-easel-xprod
+      - sleep 5 && tmux select-pane -t 1 -T 'gallery' && saatchi-tail-gallery-xprod
+      - sleep 5 && tmux select-pane -t 2 -T 'palette' && saatchi-tail-palette-xprod
+      - sleep 5 && tmux select-pane -t 3 -T 'legacy' && saatchi-tail-legacy-xprod
+      - sleep 5 && tmux select-pane -t 4 -T 'zed' && saatchi-tail-zed-xprod
+      - sleep 5 && tmux select-pane -t 5 -T 'mjmship' && mjm-tail-app-prod
       # - saatchi-tail-legacy-services-xprod
 # }}}
 
@@ -214,7 +238,11 @@ windows:
   # - window_name: chromatic
   #   start_directory: ~/Code/saatchi/chromatic
   #   layout: main-horizontal
+  #   options:
+  #     main-pane-height: 40
   #   panes:
-  #     - v -S
+  #     - shell_command:
+  #       - v -S
+  #       focus: true
   #     - ts
 # }}}
