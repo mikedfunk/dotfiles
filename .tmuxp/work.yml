@@ -48,7 +48,9 @@ windows:
     options:
       main-pane-height: 40
     panes:
-      - v +GitSessionLoad
+      - shell_command:
+        - v +GitSessionLoad
+        focus: true
       - ts
       - yarn jest --watchAll
       - while true; do wait-on http://www.local.saatchiart.com && saatchi-tail-easel-local; sleep 10; done
@@ -61,7 +63,9 @@ windows:
     options:
       main-pane-height: 40
     panes:
-      - v +GitSessionLoad
+      - shell_command:
+        - v +GitSessionLoad
+        focus: true
       - ts
       - while true; do wait-on http://www.local.saatchiart.com && saatchi-tinker-gallery-local; sleep 10; done
       - while true; do puw; sleep 10; done
@@ -78,7 +82,9 @@ windows:
     options:
       main-pane-height: 40
     panes:
-      - v +GitSessionLoad
+      - shell_command:
+        - v +GitSessionLoad
+        focus: true
       - ts
       - while true; do wait-on http://www.local.saatchiart.com && saatchi-tinker-palette-local; sleep 10; done
       - while true; do psw; sleep 10; done
@@ -93,7 +99,9 @@ windows:
     options:
       main-pane-height: 40
     panes:
-      - v +GitSessionLoad
+      - shell_command:
+        - v +GitSessionLoad
+        focus: true
       - ts
       - while true; do wait-on http://www.local.saatchiart.com && saatchi-phpunit-watch-zed; sleep 10; done
       - saatchi-grunt-watch-zed
@@ -107,7 +115,9 @@ windows:
     options:
       main-pane-height: 40
     panes:
-      - v +GitSessionLoad
+      - shell_command:
+        - v +GitSessionLoad
+        focus: true
       - ts
       - while true; do wait-on http://www.local.saatchiart.com && saatchi-tinker-catalog-local; sleep 10; done
       - while true; do wait-on http://www.local.saatchiart.com && saatchi-tail-catalog-local; sleep 10; done
@@ -133,10 +143,10 @@ windows:
     options:
       main-pane-height: 40
     panes:
+      - v -S
       - shell_command:
-        - v -S
+        - saatchi-docker-start
         focus: true
-      - saatchi-docker-start
       - ts
 # }}}
 
@@ -185,10 +195,13 @@ windows:
 # releases {{{
   - window_name: releases
     layout: even-vertical
+    options:
+      pane-border-status: top
     panes:
-      - saatchi-releases-xdev --watch --clear
-      - saatchi-releases-xqa --watch --clear
-      - saatchi-releases-xprod --watch --clear
+      # If I don't sleep first, tmux select-pane won't always work :/
+      - sleep 30 && tmux select-pane -t 0 -T 'Xdev' && saatchi-releases-xdev --watch --clear
+      - sleep 30 && tmux select-pane -t 1 -T 'Xqa' && saatchi-releases-xqa --watch --clear
+      - sleep 30 && tmux select-pane -t 2 -T 'Xprod' && saatchi-releases-xprod --watch --clear
 # }}}
 
 # uml {{{
@@ -225,12 +238,13 @@ windows:
     options:
       pane-border-status: top
     panes:
-      - sleep 5 && tmux select-pane -t 0 -T 'easel' && saatchi-tail-easel-xprod
-      - sleep 5 && tmux select-pane -t 1 -T 'gallery' && saatchi-tail-gallery-xprod
-      - sleep 5 && tmux select-pane -t 2 -T 'palette' && saatchi-tail-palette-xprod
-      - sleep 5 && tmux select-pane -t 3 -T 'legacy' && saatchi-tail-legacy-xprod
-      - sleep 5 && tmux select-pane -t 4 -T 'zed' && saatchi-tail-zed-xprod
-      - sleep 5 && tmux select-pane -t 5 -T 'mjmship' && mjm-tail-app-prod
+      # If I don't sleep first, tmux select-pane won't always work :/
+      - sleep 30 && tmux select-pane -t 0 -T 'Easel' && saatchi-tail-easel-xprod
+      - sleep 30 && tmux select-pane -t 1 -T 'Gallery' && saatchi-tail-gallery-xprod
+      - sleep 30 && tmux select-pane -t 2 -T 'Palette' && saatchi-tail-palette-xprod
+      - sleep 30 && tmux select-pane -t 3 -T 'Legacy' && saatchi-tail-legacy-xprod
+      - sleep 30 && tmux select-pane -t 4 -T 'Zed' && saatchi-tail-zed-xprod
+      - sleep 30 && tmux select-pane -t 5 -T 'Mjmship' && mjm-tail-app-prod
       # - saatchi-tail-legacy-services-xprod
 # }}}
 
