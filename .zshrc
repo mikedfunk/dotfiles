@@ -177,6 +177,7 @@ export MY_PHPENV_VERSION="$(cat $HOME/.phpenv/version)"
 # [[ -f /Users/mikefunk/.config/yarn/global/node_modules/tabtab/.completions/yo.zsh ]] && . /Users/mikefunk/.config/yarn/global/node_modules/tabtab/.completions/yo.zsh
 
 # evaluated startup commands {{{
+has tmuxp && _evalcache "$HOME"/.support/enable-tmuxp-completion.sh # workaround to make evalcache happy
 has direnv && _evalcache direnv hook zsh # (evalcache version)
 has ntfy && _evalcache ntfy shell-integration # notify when long-running command finishes. pip package, breaks in pyenv - see yadm bootstrap for unique setup.
 has nodenv && _evalcache nodenv init - # (evalcache version)
@@ -282,26 +283,13 @@ alias ...="cd ../.."
 # has gls && alias ls="gls --color"
 alias ll='ls -lhGFA'
 alias phpx="php -dxdebug.remote_autostart=1 -dxdebug.remote_connect_back=1 -dxdebug.idekey=${XDEBUG_IDE_KEY} -dxdebug.remote_port=9000 -ddisplay_errors=on"
-#
-# switched from tmuxomatic to tmuxinator - tmuxomatic is broken and I have to
-# run manual patches to get it working :(
-# https://github.com/oxidane/tmuxomatic/issues/23
-#
-# I also have an annoying problem with it - every time I launch a workspace,
-# all windows start thinking they have no space, which messes up full-screen
-# programs like vim and multitail.
-#
-# I tried tmuxp but it relied on an outdated version of pyyaml which broke gita
-# for me. tmuxinator is almost exactly the same. It's a gem that uses yaml with
-# the same layout options to automate tmux layouts.
-#
 # alias work="tmux attach -t Work || tmuxomatic ~/.tmuxomatic/Work"
 # suppress warning thing: https://github.com/tmuxinator/tmuxinator/issues/695#issuecomment-487315070
 # alias work="tmux attach -t Work || tmuxinator Work"
-alias work="tmux attach -t Work || tmuxp load Work"
+alias work="tmux attach -t Work || tmuxp load work"
 # alias home="tmux attach -t Home || tmuxomatic ~/.tmuxomatic/Home"
 # alias home="tmux attach -t Home || tmuxinator Home"
-alias home="tmux attach -t Home || tmuxp load Home"
+alias home="tmux attach -t Home || tmuxp load home"
 alias rmf='rm -rf'
 compdef rmf="rm"
 mkcd () { mkdir $1 && cd $1; }
