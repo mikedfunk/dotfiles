@@ -257,6 +257,11 @@ let g:user_emmet_settings = {
             \}
 " }}}
 
+" float-preview {{{
+" https://github.com/ncm2/float-preview.nvim
+let g:float_preview#docked = 0
+" }}}
+
 " fzf.vim {{{
 " this was making it ignore .agignore too :/
 let $FZF_DEFAULT_COMMAND = 'ag -l --skip-vcs-ignores -g ""'
