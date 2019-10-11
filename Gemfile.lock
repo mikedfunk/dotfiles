@@ -45,6 +45,7 @@ GEM
       rainbow (>= 2.1)
       rake (>= 10.0)
       retriable (~> 2.1)
+    heytmux (0.1.1)
     http_parser.rb (0.6.0)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
@@ -145,6 +146,7 @@ DEPENDENCIES
   coderay
   compass
   github_changelog_generator
+  heytmux
   jekyll
   jist (~> 1.5)
   libv8 (~> 7.3)

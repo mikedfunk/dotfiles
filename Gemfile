@@ -13,6 +13,7 @@ gem 'compass' # ruby tool to compile sass. Used by foundation cli tool.
 # gem "foundation" # zurb foundation css framework installer
 gem 'github_changelog_generator' # generate changelogs from tags, issues, and merged pull requests
 # gem "haste"
+gem 'heytmux' # fine-grained control to open a tmuxp window
 gem 'jekyll' # blogging platform used by github
 gem 'jist', '~> 1.5' # github gist cli tool
 # gem "json_pure"

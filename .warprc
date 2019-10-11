@@ -32,3 +32,4 @@ kubernetes:~/Code/saatchi/kubernetes
 toaf-voting:~/Code/toaf/toaf-voting
 bookymark:~/Code/bookymark
 magento:~/Code/magento
+notes:~/.config/joplin
