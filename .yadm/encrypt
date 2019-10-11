@@ -5,6 +5,7 @@
 .mjm-ansible-hosts.ini
 .mjmrc
 .mylogin.cnf
+.netrc
 .private_vars.sh
 .saatchi-ansible-hosts.ini
 .saatchirc
