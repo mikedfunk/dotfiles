@@ -1,4 +1,4 @@
-# tmuxp window layout setup https://github.com/tmux-python/tmuxp
+# tmuxp window layout for work https://github.com/tmux-python/tmuxp
 # vim: set foldmethod=marker:
 session_name: Work
 windows:
@@ -225,7 +225,7 @@ windows:
     options:
       pane-border-status: top
     panes:
-      # printf sets pane name. alternative:
+      # printf sets pane name. alternative, wasn't as reliable for me:
       # tmux select-pane -t 5 -T 'MY_PANE_NAME'
       - printf "\033]2;%s\033\\r:r" 'Xdev' && saatchi-releases-xdev --watch --clear
       - printf "\033]2;%s\033\\r:r" 'Xqa' && saatchi-releases-xqa --watch --clear
@@ -239,7 +239,7 @@ windows:
     options:
       pane-border-status: top
     panes:
-      # printf sets pane name. alternative:
+      # printf sets pane name. alternative, wasn't as reliable for me:
       # tmux select-pane -t 5 -T 'MY_PANE_NAME'
       - printf "\033]2;%s\033\\r:r" 'Easel' && saatchi-tail-easel-xprod
       - printf "\033]2;%s\033\\r:r" 'Gallery' && saatchi-tail-gallery-xprod
