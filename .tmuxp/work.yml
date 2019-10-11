@@ -123,7 +123,7 @@ windows:
       - while true; do wait-on http://www.local.saatchiart.com && saatchi-tail-catalog-local; sleep 10; done
 # }}}
 
-# views {{{
+# views (disabled) {{{
   # - window_name: views
   #   start_directory: ~/Code/saatchi/couchbase-views
   #   layout: main-horizontal
@@ -192,18 +192,6 @@ windows:
       - notes
 # }}}
 
-# releases {{{
-  - window_name: releases
-    layout: even-vertical
-    options:
-      pane-border-status: top
-    panes:
-      # If I don't sleep first, tmux select-pane won't always work :/
-      - sleep 30 && tmux select-pane -t 0 -T 'Xdev' && saatchi-releases-xdev --watch --clear
-      - sleep 30 && tmux select-pane -t 1 -T 'Xqa' && saatchi-releases-xqa --watch --clear
-      - sleep 30 && tmux select-pane -t 2 -T 'Xprod' && saatchi-releases-xprod --watch --clear
-# }}}
-
 # uml {{{
   - window_name: uml
     start_directory: ~/Code/uml
@@ -218,7 +206,7 @@ windows:
       - . ./watch.sh
 # }}}
 
-# maropost php sdk {{{
+# maropost php sdk (disabled) {{{
   # - window_name: maropost
   #   start_directory: ~/Code/saatchi/maropost-php-sdk
   #   layout: main-horizontal
@@ -231,24 +219,38 @@ windows:
   #     - ts
 # }}}
 
-# logs {{{
+# releases (xdev|xqa|xprod) {{{
+  - window_name: releases
+    layout: even-vertical
+    options:
+      pane-border-status: top
+    panes:
+      # printf sets pane name. alternative:
+      # tmux select-pane -t 5 -T 'MY_PANE_NAME'
+      - printf "\033]2;%s\033\\r:r" 'Xdev' && saatchi-releases-xdev --watch --clear
+      - printf "\033]2;%s\033\\r:r" 'Xqa' && saatchi-releases-xqa --watch --clear
+      - printf "\033]2;%s\033\\r:r" 'Xprod' && saatchi-releases-xprod --watch --clear
+# }}}
+
+# logs (prod) {{{
   - window_name: logs
     start_directory: ~/
     layout: tiled
     options:
       pane-border-status: top
     panes:
-      # If I don't sleep first, tmux select-pane won't always work :/
-      - sleep 30 && tmux select-pane -t 0 -T 'Easel' && saatchi-tail-easel-xprod
-      - sleep 30 && tmux select-pane -t 1 -T 'Gallery' && saatchi-tail-gallery-xprod
-      - sleep 30 && tmux select-pane -t 2 -T 'Palette' && saatchi-tail-palette-xprod
-      - sleep 30 && tmux select-pane -t 3 -T 'Legacy' && saatchi-tail-legacy-xprod
-      - sleep 30 && tmux select-pane -t 4 -T 'Zed' && saatchi-tail-zed-xprod
-      - sleep 30 && tmux select-pane -t 5 -T 'Mjmship' && mjm-tail-app-prod
+      # printf sets pane name. alternative:
+      # tmux select-pane -t 5 -T 'MY_PANE_NAME'
+      - printf "\033]2;%s\033\\r:r" 'Easel' && saatchi-tail-easel-xprod
+      - printf "\033]2;%s\033\\r:r" 'Gallery' && saatchi-tail-gallery-xprod
+      - printf "\033]2;%s\033\\r:r" 'Palette' && saatchi-tail-palette-xprod
+      - printf "\033]2;%s\033\\r:r" 'Legacy' && saatchi-tail-legacy-xprod
+      - printf "\033]2;%s\033\\r:r" 'Zed' && saatchi-tail-zed-xprod
+      - printf "\033]2;%s\033\\r:r" 'Mjmship' && mjm-tail-app-prod
       # - saatchi-tail-legacy-services-xprod
 # }}}
 
-# chromatic (iOS app) {{{
+# chromatic (iOS app) (disabled) {{{
   # - window_name: chromatic
   #   start_directory: ~/Code/saatchi/chromatic
   #   layout: main-horizontal
