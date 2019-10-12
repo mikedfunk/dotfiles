@@ -227,9 +227,9 @@ windows:
     panes:
       # printf sets pane name. alternative, wasn't as reliable for me:
       # tmux select-pane -t 5 -T 'MY_PANE_NAME'
-      - printf "\033]2;%s\033\\r:r" 'Xdev' && saatchi-releases-xdev --watch --clear
-      - printf "\033]2;%s\033\\r:r" 'Xqa' && saatchi-releases-xqa --watch --clear
-      - printf "\033]2;%s\033\\r:r" 'Xprod' && saatchi-releases-xprod --watch --clear
+      - printf "\033]2;%s\033\\r:r" 'xdev' && saatchi-releases-xdev --watch --clear
+      - printf "\033]2;%s\033\\r:r" 'xqa' && saatchi-releases-xqa --watch --clear
+      - printf "\033]2;%s\033\\r:r" 'xprod' && saatchi-releases-xprod --watch --clear
 # }}}
 
 # logs (prod) {{{
@@ -241,12 +241,12 @@ windows:
     panes:
       # printf sets pane name. alternative, wasn't as reliable for me:
       # tmux select-pane -t 5 -T 'MY_PANE_NAME'
-      - printf "\033]2;%s\033\\r:r" 'Easel' && saatchi-tail-easel-xprod
-      - printf "\033]2;%s\033\\r:r" 'Gallery' && saatchi-tail-gallery-xprod
-      - printf "\033]2;%s\033\\r:r" 'Palette' && saatchi-tail-palette-xprod
-      - printf "\033]2;%s\033\\r:r" 'Legacy' && saatchi-tail-legacy-xprod
-      - printf "\033]2;%s\033\\r:r" 'Zed' && saatchi-tail-zed-xprod
-      - printf "\033]2;%s\033\\r:r" 'Mjmship' && mjm-tail-app-prod
+      - printf "\033]2;%s\033\\r:r" 'easel' && saatchi-tail-easel-xprod
+      - printf "\033]2;%s\033\\r:r" 'gallery' && saatchi-tail-gallery-xprod
+      - printf "\033]2;%s\033\\r:r" 'palette' && saatchi-tail-palette-xprod
+      - printf "\033]2;%s\033\\r:r" 'legacy' && saatchi-tail-legacy-xprod
+      - printf "\033]2;%s\033\\r:r" 'zed' && saatchi-tail-zed-xprod
+      - printf "\033]2;%s\033\\r:r" 'mjmship' && mjm-tail-app-prod
       # - saatchi-tail-legacy-services-xprod
 # }}}
 
