@@ -410,7 +410,7 @@ cs_re:blue:3\|easel +\|
 mcsre_s:red,,bold/blink/reverse:(Error) {
 mcsre_s:red,,bold/blink/reverse:(Error) \(
 # e.g. TypeError: , etc.
-cs_re:red:([A-Z][a-z]+Error|Bad Request|Internal Server Error|Bad Gateway|LCB_E[A-Z_]+|ETIMEDOUT|Palette API Failed|Error Palette API call|ArtworkNotFound|invalid-json)
+cs_re:red,,bold:([A-Z][a-z]+Error|Bad Request|Internal Server Error|Bad Gateway|LCB_E[A-Z_]+|ETIMEDOUT|Palette API Failed|Error Palette API call|ArtworkNotFound|invalid-json)
 # }}}
 
 # palette {{{
@@ -477,8 +477,12 @@ cs_re:white,,bold:^#[0-9]+
 cs_re:cyan:(saatchi_random_|tok_)[a-zA-Z0-9]+
 cs_re:cyan:bayphotokey[a-zA-Z0-9]+-[OL]E
 
+# log file names
+mcsre_s:white,,bold:([a-zA-Z]+)\.(DEBUG|EMERGENCY|ERROR|WARN|INFO)
+
 # actions
-cs_re:green,,bold:Placing (MAO )?order for customer
+cs_re:green,,bold:Placing ((MAO )?order for customer|order placed response)
+cs_re:red,,bold:Failed to place order
 # }}}
 
 # zed {{{
