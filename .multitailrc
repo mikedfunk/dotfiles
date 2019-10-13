@@ -395,6 +395,10 @@ mcsre_s:blue,,bold:[ `,_;'"](30[0-8])[ `,_:;.'"-]
 
 # urls
 mcsre_s:blue:url: '(/[a-zA-Z0-9._/?&=#@%-]+)'
+mcsre_s:blue:route: '(/[a-zA-Z0-9._/?&=#@%-]+)'
+mcsre_s:blue:Error Palette API call: (/[a-zA-Z0-9._/?&=#@%-]+):
+# sometimes this is on the next line below "url:"
+cs_re:blue:'/legacy-pdp(/[a-zA-Z0-9._/?&=#@%-]+)'
 
 # server name in pm2
 cs_re:green:0\|easel +\|
@@ -405,8 +409,8 @@ cs_re:blue:3\|easel +\|
 # errors and warnings
 mcsre_s:red,,bold/blink/reverse:(Error) {
 mcsre_s:red,,bold/blink/reverse:(Error) \(
-# e.g. TypeError:
-cs_re:red:[A-Z][a-z]+Error
+# e.g. TypeError: , etc.
+cs_re:red:([A-Z][a-z]+Error|Bad Request|Internal Server Error|Bad Gateway|LCB_E[A-Z_]+|ETIMEDOUT|Palette API Failed|Error Palette API call|ArtworkNotFound|invalid-json)
 # }}}
 
 # palette {{{
@@ -552,7 +556,7 @@ cs_re:red,,bold/reverse/blink:\[error\]
 cs_re:yellow,,bold:\[warn\]
 
 # special log stuff
-cs_re:green,,bold: Fetching event
+cs_re:green,,bold: (Fetching event|Sent email|Mail added to queue|Begin sending mail|Mail sent)
 # }}}
 
 # lb {{{
@@ -669,14 +673,17 @@ mcsre_s:blue,,bold:[ `,_;'"](30[0-8])[ `,_:;.'"-]
 mcsre_s:blue:requestURI=(/[a-zA-Z0-9._/\\?&=#@%-]+)
 cs_re:blue:[a-zA-Z0-9._/\\?&=#@%-]+\.mjmship\.com
 mcsre_s:blue:=(GET|POST|PUT|PATCH|DELETE),
+# so far this is always "null"
 # mcsre_s:blue:queryString=([a-zA-Z0-9._/\\?&=#@%-]+),
 
-# http status codes in a weird place: https://zed.saatchiart.com/fulfillment/tracking/mjm:200
+# http status codes in a weird place e.g. https://zed.saatchiart.com/fulfillment/tracking/mjm:200
 mcsre_s:red,,bold/blink/reverse:call => https?:\\?/\\?/[a-zA-Z0-9._/\\?&=#@%-]+:(5[0-1][0-8])
 mcsre_s:red,,bold:call => https?:\\?/\\?/[a-zA-Z0-9._/\\?&=#@%-]+:(4[0123459][0-9])
 mcsre_s:green,,bold:call => https?:\\?/\\?/[a-zA-Z0-9._/\\?&=#@%-]+:(2[0-2][0-8])
 mcsre_s:blue,,bold:call => https?:\\?/\\?/[a-zA-Z0-9._/\\?&=#@%-]+:(30[0-8])
 
+# more types of log entries
+cs_re:green,,bold/reverse:TRACE
 # }}}
 
 # couchbase shutdown
