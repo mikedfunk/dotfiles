@@ -393,6 +393,9 @@ mcsre_s:green,,bold:[ `,_;'"](2[0-2][0-8])[ `,_:;.'"-]
 mcsre_s:blue,,bold:[ `,_;'"](30[0-8])[ `,_:;.'"-]
 # }}}
 
+# more dates e.g. 14/Oct/2019
+cs_re:magenta,,bold:[0-3]?[0-9]/[A-Z][a-z]{2}/20[0-9]{2}
+
 # urls
 mcsre_s:blue:url: '(/[a-zA-Z0-9._/?&=#@%-]+)'
 mcsre_s:blue:route: '(/[a-zA-Z0-9._/?&=#@%-]+)'
