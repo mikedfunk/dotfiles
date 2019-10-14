@@ -37,8 +37,8 @@ defaultcscheme:saatchishared
 # whether to abbreviate filesizes to xKB/MB/GB
 abbreviate_filesize:on
 
-# whether to show [01], etc. for which subwindow the output is from. `t` to show subwindows, `q` to quit.
-show_subwindow_id:on
+# whether to show [01], etc. for which subwindow the output is from. `t` to show subwindows, `q` to quit. <c-t> to toggle this.
+# show_subwindow_id:on
 
 # should searches be case insentive? press 'I' in the main menu to toggle at run-time
 # searches_case_insensitive:no

@@ -294,7 +294,7 @@ Plug 'fpob/nette.vim' " .neon format
 " Plug 'heavenshell/vim-syntax-flowtype' " js flowtype (included in pangloss/vim-javascript)
 Plug 'rhysd/vim-gfm-syntax' " github-flavored markdown. yum!
 Plug 'nelstrom/vim-markdown-folding' " just markdown folding
-" Plug 'osyo-manga/vim-precious' | Plug 'Shougo/context_filetype.vim' " code block syntax highlighting for markdown, etc. _really_ helpful! (not needed - g:markdown_fenced_languages)
+Plug 'osyo-manga/vim-precious' | Plug 'Shougo/context_filetype.vim' " code block syntax highlighting for markdown, etc. _really_ helpful! Also really helps to see the surrounding code block text! MUST USE for markdown.
 Plug 'qnighy/vim-ssh-annex' " ssh files syntax coloring e.g. ssh config
 " Plug 'evanmiller/nginx-vim-syntax' " nginx conf syntax
 " Plug 'darfink/vim-plist' " plist syntax

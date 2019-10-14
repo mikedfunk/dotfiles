@@ -41,3 +41,13 @@ windows:
     panes:
       - notes
 # }}}
+
+# railsblog {{{
+  - window_name: railsblog
+    panes:
+      - shell_command:
+        - wd railsblog && vim -S
+        focus: true
+      - ts
+      - rails c
+# }}}

@@ -183,7 +183,7 @@ has ntfy && _evalcache ntfy shell-integration # notify when long-running command
 has nodenv && _evalcache nodenv init - # (evalcache version)
 has pyenv && _evalcache pyenv init - # (evalcache version)
 [[ -f "$HOME/.phpenv/bin/phpenv" ]] && _evalcache "$HOME"/.phpenv/bin/phpenv init - # (evalcache version)
-has rbenv && _evalcache rbenv init - # (evalcache version)
+# has rbenv && _evalcache rbenv init - # (evalcache version)
 # }}}
 
 export LC_CTYPE=en_US.UTF-8 # https://unix.stackexchange.com/a/302418/287898
@@ -273,8 +273,15 @@ export PINENTRY_USER_DATA="USE_CURSES=1"
 
 # misc {{{
 alias info="info --vi-keys"
-alias starwars="telnet towel.blinkenlights.nl" # :)
-alias gameboy="telnet gameboy.live 1989" # :)
+
+alias play-starwars="telnet towel.blinkenlights.nl" # :)
+alias play-gameboy="telnet gameboy.live 1989" # :)
+alias play-nethack="telnetnethack@alt.org"
+alias play-chess="telnet freechess.org"
+alias play-aardwolf="telnet aardmud.org"
+# tip: curl ping.gg to set up a pingdom-style alert
+shorten-url () { curl -s http://tinyurl.com/api-create.php?url=$1; }
+
 cd () { builtin cd "$@" && ls -FAG; } # auto ls on cd
 alias ..="cd .."
 alias ...="cd ../.."
