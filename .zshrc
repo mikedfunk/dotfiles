@@ -183,7 +183,7 @@ has ntfy && _evalcache ntfy shell-integration # notify when long-running command
 has nodenv && _evalcache nodenv init - # (evalcache version)
 has pyenv && _evalcache pyenv init - # (evalcache version)
 [[ -f "$HOME/.phpenv/bin/phpenv" ]] && _evalcache "$HOME"/.phpenv/bin/phpenv init - # (evalcache version)
-# has rbenv && _evalcache rbenv init - # (evalcache version)
+has rbenv && _evalcache rbenv init - # (evalcache version)
 # }}}
 
 export LC_CTYPE=en_US.UTF-8 # https://unix.stackexchange.com/a/302418/287898
@@ -242,6 +242,14 @@ has stern && source <(stern --completion=zsh)
 # [[ -e /usr/local/opt/coreutils/libexec/gnubin/dircolors && -f "$HOME"/.dircolors ]] && eval $( /usr/local/opt/coreutils/libexec/gnubin/dircolors -b "$HOME"/.dircolors )
 # has zsh-startify && zsh-startify (neat, but doesn't really help)
 [[ -f "$HOME"/.iterm2_shell_integration.zsh ]] && source "$HOME"/.iterm2_shell_integration.zsh
+
+# fix an rbenv build openssl issue https://github.com/rbenv/ruby-build/issues/377#issuecomment-391427324
+if ( has brew && ( brew list | grep -q openssl ) ); then
+    # this takes about a second :/ f it, just hardcode
+    # OPENSSL_VERSION="$(brew info openssl | head -n1 | awk '{print $3}')"
+    OPENSSL_VERSION="1.0.2t"
+    export RUBY_CONFIGURE_OPTS=--with-openssl-dir=/usr/local/Cellar/openssl/"$OPENSSL_VERSION"
+fi
 
 # }}}
 
