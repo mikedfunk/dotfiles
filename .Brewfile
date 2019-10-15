@@ -269,5 +269,6 @@ cask "xscreensaver" # shitload of old screensavers... downside is there are so m
 mas "Downlink", id: 1454269192 # cool live (20 min refresh) earth view on my desktop (tries to reinstall every time :/ )
 mas "Xcode", id: 497799835 # needed for some tools (TODO which tools?)
 mas "Amphetamine", id: 937984704 # replacement for discontinued "caffeine" menubar app
+mas "Keeper", id: 414781829 # used by leaf group, like lastpass
 # mas "GIPHY CAPTURE", id: 668208984
 # }}}

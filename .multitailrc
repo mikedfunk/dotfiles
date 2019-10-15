@@ -474,10 +474,12 @@ mcsre_s:blue,,bold:[ `,_;'"](30[0-8])[ `,_:;.'"-]
 
 # exceptions
 cs_re:red:[a-zA-Z\\_]*Exception[a-zA-Z\\_]*
+cs_re:red:Unusually long lock of doc keys
 
 # errors and warnings - app error log
 cs_re:red,,bold/blink/reverse:\[error\]
 cs_re:yellow,,bold/reverse:\[warn\]
+cs_re:yellow,,bold/reverse:WARNING
 
 # keys and stack traces
 # cs_re:white,,bold:^(  )*[a-zA-Z_ -]+:
@@ -487,6 +489,9 @@ cs_re:white,,bold:^#[0-9]+
 # data ids
 cs_re:cyan:(saatchi_random_|tok_)[a-zA-Z0-9]+
 cs_re:cyan:bayphotokey[a-zA-Z0-9]+-[OL]E
+
+# urls
+mcsre_s:blue:\\"url\\":\\"(/[a-zA-Z0-9._/?&=#@%-]+)
 
 # log file names
 mcsre_s:white,,bold:([a-zA-Z]+)\.(DEBUG|EMERGENCY|ERROR|WARN|INFO)
@@ -547,6 +552,7 @@ mcsre_s:blue,,bold:[ `,_;'"](30[0-8])[ `,_:;.'"-]
 
 # more urls
 cs_re:blue: /art[a-zA-Z0-9._/?&=#@%-]+view
+mcsre_s:blue:\*{7} (/[a-zA-Z0-9._/?&=#@%-]+) \*{7}
 
 # exceptions
 cs_re:red:[a-zA-Z\\_]*Exception[a-zA-Z\\_]*
@@ -571,7 +577,7 @@ cs_re:red,,bold/reverse/blink:\[error\]
 cs_re:yellow,,bold:\[warn\]
 
 # special log stuff
-cs_re:green,,bold: (Fetching event|Sent email|Mail added to queue|Begin sending mail|Mail sent)
+cs_re:green,,bold: (Fetching event|Sent email|Mail added to queue|Begin sending mail|Mail sent|post back from bayphoto)
 # }}}
 
 # lb {{{
