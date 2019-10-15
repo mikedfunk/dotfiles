@@ -349,6 +349,14 @@ if isdirectory(expand('~/.vim/plugged/LanguageClient-neovim'))
 endif
 " }}}
 
+" line-number-interval.nvim {{{
+" Enable line number interval at startup. (default: 0(disable))
+let g:line_number_interval#enable_at_startup = 1
+
+" Set interval to highlight line number. (default: 10)
+let g:line_number_interval = 5
+" }}}
+
 " MatchTagAlways {{{
 if isdirectory(expand('~/.vim/plugged/MatchTagAlways'))
     augroup mta_group

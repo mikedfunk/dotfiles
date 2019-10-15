@@ -8,7 +8,7 @@ windows:
     start_directory: ~/.yadm
     layout: main-horizontal
     options:
-      main-pane-height: 30
+      main-pane-height: 40
       focus: true
     panes:
       - shell_command:

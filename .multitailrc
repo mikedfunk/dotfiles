@@ -343,12 +343,14 @@ mcsre_s:red:^.*\[error\](.*)
 mcsre_s:yellow:^.*\[warn\](.*)
 
 # keys and stack traces
-cs_re:white,,bold:^(  )*[a-zA-Z_ -]+:
-cs_re:green,,bold:^Stack trace:
+# cs_re:white,,bold:^(  )*[a-zA-Z_ -]+:
+cs_re:white,,bold/underline:^Stack trace:
 cs_re:white,,bold:^#[0-9]+
 
 # data ids
 cs_re:cyan:(saatchi_random_|tok_)[a-zA-Z0-9]+
+cs_re:green,,bold:Palette access token saved in cache
+
 # }}}
 
 # easel {{{
@@ -478,8 +480,8 @@ cs_re:red,,bold/blink/reverse:\[error\]
 cs_re:yellow,,bold/reverse:\[warn\]
 
 # keys and stack traces
-cs_re:white,,bold:^(  )*[a-zA-Z_ -]+:
-cs_re:green,,bold/underline:^Stack trace:
+# cs_re:white,,bold:^(  )*[a-zA-Z_ -]+:
+cs_re:white,,bold/underline:^Stack trace:
 cs_re:white,,bold:^#[0-9]+
 
 # data ids
@@ -557,8 +559,8 @@ cs_re:red,,bold/blink/reverse:PHP Fatal error:
 cs_re:red,,bold/blink/reverse:ZED Exception
 
 # keys and stack traces
-cs_re:white,,bold:^(  )*[a-zA-Z_ -]+:
-cs_re:green,,bold:^Stack trace:
+# cs_re:white,,bold:^(  )*[a-zA-Z_ -]+:
+cs_re:white,,bold/underline:^Stack trace:
 cs_re:white,,bold:^#[0-9]+
 
 # data and time - session errors

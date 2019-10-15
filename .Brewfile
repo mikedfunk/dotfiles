@@ -224,6 +224,7 @@ cask "malwarebytes" # ya neva know
 cask "microsoft-edge-beta" # not out of beta yet as of 2019-09-27
 cask "minikube" # for learning `minikube start`
 cask "mpv" # video player like vlc
+cask "mudlet" # muds are rad
 cask "multifirefox" # profile picker until firefox fixes this glaring omission
 # cask "noti" # mac native pushbullet notifications (I use the chrome extension)
 # cask "ngrok" # securely expose your local site to the internet and inspect and repeat traffic
