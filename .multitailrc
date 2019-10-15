@@ -577,7 +577,7 @@ cs_re:red,,bold/reverse/blink:\[error\]
 cs_re:yellow,,bold:\[warn\]
 
 # special log stuff
-cs_re:green,,bold: (Fetching event|Sent email|Mail added to queue|Begin sending mail|Mail sent|post back from bayphoto)
+cs_re:green,,bold: (Fetching event|Sent email|Mail added to Queue|Begin sending mail|Mail sent|post back from bayphoto|Mail already in Queue, skipping)
 # }}}
 
 # lb {{{
