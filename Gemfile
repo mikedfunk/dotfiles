@@ -43,3 +43,5 @@ gem 'sqlint' # for vim-ale
 # gem "ruby-fsevent" # probably a dependency of another package I dont use anymore
 # gem "teamocil" # save tmux layouts and regenerate them with ease
 # gem 'tmuxinator' # tmux orchestrator like teamocil and tmuxomatic
+
+gem "rails", "~> 6.0"
