@@ -190,8 +190,14 @@ mcsre_s:blue:(^/.*):in
 # keys
 cs_re:white,,bold:^(  )*[a-zA-Z_ -]+:
 
+# more urls
+mcsre_s:blue:"path":"(/[a-zA-Z0-9._/?&=#@%-]+)"
+mcsre_s:blue:"host":"([a-z.]+)"
+mcsre_s:blue:key=>"([a-zA-Z0-9._/?&=#@%-]+)"
+
 # more dates e.g. Oct 13 08:28:45
 cs_re:yellow,,bold:[A-Z][a-z]{2} [0-3][0-9] [01][0-9]:[0-5][0-9]:[0-5][0-9]
+mcsre_s:yellow,,bold:"time":([0-9]+)
 # }}}
 
 # legacy {{{
