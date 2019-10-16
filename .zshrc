@@ -758,6 +758,8 @@ letsfun () {
 # ensure the tmux term exists, otherwise some stuff like ncurses apps (e.g. tig) might break. This is very fast.
 [ -f "$HOME/.support/tmux-256color.terminfo.txt" ] && tic -x "$HOME/.support/tmux-256color.terminfo.txt" &>/dev/null
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # fuzzy finder - installed and managed via vim-plug https://github.com/junegunn/fzf
+# https://github.com/romkatv/powerlevel10k#does-powerlevel10k-always-render-exactly-the-same-prompt-as-powerlevel9k-given-the-same-config
+ZLE_RPROMPT_INDENT=0
 # }}}
 
 # zsh options {{{
