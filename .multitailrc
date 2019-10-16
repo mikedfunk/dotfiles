@@ -280,7 +280,7 @@ cs_re:white,,bold:^(  )*[a-zA-Z_ -]+:
 cs_re:white,,bold:^#[0-9]+
 
 # special log stuff
-cs_re:green,,bold: (Email Sent.|Creating zendesk [AB]RO ticket.|Set last_voted_without_submitting)
+cs_re:green,,bold: (Email Sent.|Creating zendesk [AB]RO ticket.|Set last_voted_without_submitting|Response direct_flatten (user|art))
 cs_re:white,,bold: (To|From|Subject|Email|Details):
 cs_re:red,,bold:Client error
 # }}}
