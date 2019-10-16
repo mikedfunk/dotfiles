@@ -261,8 +261,6 @@ cs_re:red:[a-zA-Z\\_]*Exception[a-zA-Z\\_]*
 # errors and warnings - legacy error log
 cs_re:red,,bold/blink/reverse:\[error\]
 cs_re:yellow,,bold:\[warn\]
-mcsre_s:red:^.*\[error\](.*)
-mcsre_s:yellow:^.*\[warn\](.*)
 cs_re:white,,bold/underline:^Stack trace:
 
 # lines
@@ -503,6 +501,7 @@ mcsre_s:white,,bold:([a-zA-Z]+)\.(DEBUG|EMERGENCY|ERROR|WARN|INFO)
 
 # actions
 cs_re:green,,bold:Placing ((MAO )?order for customer|order placed response)
+cs_re:green,,bold:(CREATE OR UPDATE ORDER (Response to|Request from) Zed|Taxjar (UPDATE|SHOW) ORDER (Request|Response)|CREATE OR UPDATE ORDER - Transaction [0-9]+ exists and was updated)
 cs_re:red,,bold:Failed to place order
 # }}}
 
@@ -648,6 +647,9 @@ mcsre_s:red:"(.*)"
 
 # mjm {{{
 
+# app {{{
+colorscheme:mjmship
+
 # shared config {{{
 # I tried to combine these in braces: [\{|\}|\[|\]] but was getting strange results
 cs_re:white,,bold:\{
@@ -659,11 +661,10 @@ cs_re:white,,bold:\]
 cs_re:cyan:P[0-9]+-U[0-9]+-A[0-9]+(-L)?(-T[0-9])?(-F[0-9]+)?(-W[0-9]+)?
 
 # urls
-cs_re:blue:(GET|POST|PUT|PATCH|DELETE|HEAD)
+cs_re:blue:(GET|POST|PUT|PATCH|DELETE)
 cs_re:blue:https?:\\?/\\?/[a-zA-Z0-9._/\\?&=#@%-]+
-cs_re:blue:(GET|POST|PUT|PATCH|DELETE|HEAD) /[a-zA-Z0-9._/?&=#@%-]+
+cs_re:blue:(GET|POST|PUT|PATCH|DELETE) /[a-zA-Z0-9._/?&=#@%-]+
 cs_re:blue: //[a-zA-Z0-9._/?&=#@%-]+.[a-z]{2,5}
-cs_re:magenta,,bold:[0-3][0-9]/[A-Z][a-z]{2}/20[0-9]{2}
 
 # email
 cs_re:blue:[0-9A-Za-z_.-]+@[a-z.-]+\.[a-z]+
@@ -693,6 +694,23 @@ mcsre_s:red,,bold/blink/reverse:[ `,_;'"](5[0-1][0-8])[ `,_:;.'"-]
 mcsre_s:red,,bold:[ `,_;'"](4[0123459][0-9])[ `,_:;.'"-]
 mcsre_s:green,,bold:[ `,_;'"](2[0-2][0-8])[ `,_:;.'"-]
 mcsre_s:blue,,bold:[ `,_;'"](30[0-8])[ `,_:;.'"-]
+# }}}
+
+# urls
+mcsre_s:blue:requestURI=(/[a-zA-Z0-9._/\\?&=#@%-]+)
+cs_re:blue:[a-zA-Z0-9._/\\?&=#@%-]+\.mjmship\.com
+mcsre_s:blue:=(GET|POST|PUT|PATCH|DELETE),
+# so far this is always "null"
+# mcsre_s:blue:queryString=([a-zA-Z0-9._/\\?&=#@%-]+),
+
+# http status codes in a weird place e.g. https://zed.saatchiart.com/fulfillment/tracking/mjm:200
+mcsre_s:red,,bold/blink/reverse:call => https?:\\?/\\?/[a-zA-Z0-9._/\\?&=#@%-]+:(5[0-1][0-8])
+mcsre_s:red,,bold:call => https?:\\?/\\?/[a-zA-Z0-9._/\\?&=#@%-]+:(4[0123459][0-9])
+mcsre_s:green,,bold:call => https?:\\?/\\?/[a-zA-Z0-9._/\\?&=#@%-]+:(2[0-2][0-8])
+mcsre_s:blue,,bold:call => https?:\\?/\\?/[a-zA-Z0-9._/\\?&=#@%-]+:(30[0-8])
+
+# more types of log entries
+cs_re:green,,bold/reverse:TRACE
 # }}}
 
 # couchbase shutdown
