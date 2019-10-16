@@ -112,7 +112,7 @@ cs_re:magenta,,bold:[0-9]{4}/[0-9]{2}/[0-9]{2}
 cs_re:magenta,,bold:[0-3][0-9]/[A-Z][a-z]{2}/20[0-9]{2}
 # cs_re:yellow,,bold:[0-9]{2}:[0-9]{2}:[0-9]{2}
 # in some cases it's date:time e.g. 2019-10-01:12:31:19 which shifts the time left a block :/
-mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})[ Z`,_;/.+-]
+mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})[0-9 Z`,_;/.+-]
 # closing brace doesn't play nice with regex []
 mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})\]
 
@@ -164,7 +164,7 @@ cs_re:magenta,,bold:[0-9]{4}/[0-9]{2}/[0-9]{2}
 cs_re:magenta,,bold:[0-3][0-9]/[A-Z][a-z]{2}/20[0-9]{2}
 # cs_re:yellow,,bold:[0-9]{2}:[0-9]{2}:[0-9]{2}
 # in some cases it's date:time e.g. 2019-10-01:12:31:19 which shifts the time left a block :/
-mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})[ Z`,_;/.+-]
+mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})[0-9 Z`,_;/.+-]
 # closing brace doesn't play nice with regex []
 mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})\]
 
@@ -230,7 +230,7 @@ cs_re:magenta,,bold:[0-9]{4}/[0-9]{2}/[0-9]{2}
 cs_re:magenta,,bold:[0-3][0-9]/[A-Z][a-z]{2}/20[0-9]{2}
 # cs_re:yellow,,bold:[0-9]{2}:[0-9]{2}:[0-9]{2}
 # in some cases it's date:time e.g. 2019-10-01:12:31:19 which shifts the time left a block :/
-mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})[ Z`,_;/.+-]
+mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})[0-9 Z`,_;/.+-]
 # closing brace doesn't play nice with regex []
 mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})\]
 
@@ -313,7 +313,7 @@ cs_re:magenta,,bold:[0-9]{4}/[0-9]{2}/[0-9]{2}
 cs_re:magenta,,bold:[0-3][0-9]/[A-Z][a-z]{2}/20[0-9]{2}
 # cs_re:yellow,,bold:[0-9]{2}:[0-9]{2}:[0-9]{2}
 # in some cases it's date:time e.g. 2019-10-01:12:31:19 which shifts the time left a block :/
-mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})[ Z`,_;/.+-]
+mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})[0-9 Z`,_;/.+-]
 # closing brace doesn't play nice with regex []
 mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})\]
 
@@ -383,7 +383,7 @@ cs_re:magenta,,bold:[0-9]{4}/[0-9]{2}/[0-9]{2}
 cs_re:magenta,,bold:[0-3][0-9]/[A-Z][a-z]{2}/20[0-9]{2}
 # cs_re:yellow,,bold:[0-9]{2}:[0-9]{2}:[0-9]{2}
 # in some cases it's date:time e.g. 2019-10-01:12:31:19 which shifts the time left a block :/
-mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})[ Z`,_;/.+-]
+mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})[0-9 Z`,_;/.+-]
 # closing brace doesn't play nice with regex []
 mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})\]
 
@@ -453,7 +453,7 @@ cs_re:magenta,,bold:[0-9]{4}/[0-9]{2}/[0-9]{2}
 cs_re:magenta,,bold:[0-3][0-9]/[A-Z][a-z]{2}/20[0-9]{2}
 # cs_re:yellow,,bold:[0-9]{2}:[0-9]{2}:[0-9]{2}
 # in some cases it's date:time e.g. 2019-10-01:12:31:19 which shifts the time left a block :/
-mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})[ Z`,_;/.+-]
+mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})[0-9 Z`,_;/.+-]
 # closing brace doesn't play nice with regex []
 mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})\]
 
@@ -501,7 +501,9 @@ mcsre_s:white,,bold:([a-zA-Z]+)\.(DEBUG|EMERGENCY|ERROR|WARN|INFO)
 
 # actions
 cs_re:green,,bold:Placing ((MAO )?order for customer|order placed response)
-cs_re:green,,bold:(CREATE OR UPDATE ORDER (Response to|Request from) Zed|Taxjar (UPDATE|SHOW) ORDER (Request|Response)|CREATE OR UPDATE ORDER - Transaction [0-9]+ exists and was updated|Access token has expired. Hence refreshing|Curl request|Curl response)
+cs_re:green,,bold:CREATE OR UPDATE ORDER (Response to|Request from) Zed
+cs_re:green,,bold:Taxjar (UPDATE|SHOW) ORDER (Request|Response)
+cs_re:green,,bold:(CREATE OR UPDATE ORDER - Transaction [0-9]+ exists and was updated|Access token has expired. Hence refreshing|Curl request|Curl response)
 cs_re:red,,bold:Failed to place order
 # }}}
 
@@ -533,7 +535,7 @@ cs_re:magenta,,bold:[0-9]{4}/[0-9]{2}/[0-9]{2}
 cs_re:magenta,,bold:[0-3][0-9]/[A-Z][a-z]{2}/20[0-9]{2}
 # cs_re:yellow,,bold:[0-9]{2}:[0-9]{2}:[0-9]{2}
 # in some cases it's date:time e.g. 2019-10-01:12:31:19 which shifts the time left a block :/
-mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})[ Z`,_;/.+-]
+mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})[0-9 Z`,_;/.+-]
 # closing brace doesn't play nice with regex []
 mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})\]
 
@@ -583,6 +585,9 @@ cs_re:yellow,,bold:\[warn\]
 
 # special log stuff
 cs_re:green,,bold: (Fetching event|Sent email|Mail added to Queue|Begin sending mail|Mail sent|post back from bayphoto|Mail already in Queue, skipping)
+#
+# data ids
+cs_re:cyan:bk_[a-zA-Z0-9]+
 # }}}
 
 # lb {{{
@@ -613,7 +618,7 @@ cs_re:magenta,,bold:[0-9]{4}/[0-9]{2}/[0-9]{2}
 cs_re:magenta,,bold:[0-3][0-9]/[A-Z][a-z]{2}/20[0-9]{2}
 # cs_re:yellow,,bold:[0-9]{2}:[0-9]{2}:[0-9]{2}
 # in some cases it's date:time e.g. 2019-10-01:12:31:19 which shifts the time left a block :/
-mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})[ Z`,_;/.+-]
+mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})[0-9 Z`,_;/.+-]
 # closing brace doesn't play nice with regex []
 mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})\]
 
@@ -675,7 +680,7 @@ cs_re:magenta,,bold:[0-9]{4}/[0-9]{2}/[0-9]{2}
 cs_re:magenta,,bold:[0-3][0-9]/[A-Z][a-z]{2}/20[0-9]{2}
 # cs_re:yellow,,bold:[0-9]{2}:[0-9]{2}:[0-9]{2}
 # in some cases it's date:time e.g. 2019-10-01:12:31:19 which shifts the time left a block :/
-mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})[ Z`,_;/.+-]
+mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})[0-9 Z`,_;/.+-]
 # closing brace doesn't play nice with regex []
 mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})\]
 
