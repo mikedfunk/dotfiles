@@ -1,0 +1,19 @@
+---
+repos:
+  - repo: local
+    hooks:
+      - id: phpunit
+        name: phpunit
+        entry: ./vendor/bin/phpunit -d memory_limit=1024M -d display_errors=on --colors=always --stop-on-error --stop-on-failure --stop-on-incomplete --stop-on-risky
+        language: system
+        files: ^tests\/DemandMedia\/SaatchiArt\/.*Test\.php$
+      - id: php-lint
+        name: php-lint
+        entry: php -l
+        language: system
+        types: [php]
+      - id: phpcs
+        name: phpcs
+        entry: ./vendor/bin/phpcs --standard=./phpcs.xml -s -v --colors
+        language: system
+        types: [php]

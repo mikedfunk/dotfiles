@@ -52,4 +52,6 @@ windows:
         focus: true
       - ts
       - rails c
+      - rails server
+      - multitail -cT ANSI -i log/development.log
 # }}}

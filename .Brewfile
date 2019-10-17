@@ -118,7 +118,7 @@ brew "pinentry" # gpg terminal pin entry (used by yadm encrypt/decrypt)
 brew "plantuml" # uml generation from text. requires java (I use regularly for diagramming processes and sometimes uml class diagrams)
 # brew "plenv" # perl version manager. better than perlbrew and consistent with my other env managers (rbenv, phpenv, nodenv, pyenv). used to get percona-toolkit working.
 # brew "postgresql" # database similar to mysql (install if needed)
-# brew "pre-commit" # yelp git pre-commit framework (I manage this via pip)
+brew "pre-commit" # yelp git pre-commit framework
 # brew "prettyping" # ping with a cool sparkline graph of status
 brew "pspg" # , args: ["HEAD"] # "postgres pager" also useful for mysql, etc.
 # brew "pv" # pipe something to pv to see progress of data through a pipeline. pv works like cat so `pv /path/to/myfile.sql > mysql ...`

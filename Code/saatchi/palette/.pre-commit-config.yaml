@@ -1,0 +1,19 @@
+---
+repos:
+  - repo: local
+    hooks:
+      - id: phpspec
+        name: phpspec
+        entry: ./vendor/bin/phpspec run --format=pretty -vvv
+        language: system
+        types: [php]
+      - id: php-lint
+        name: php-lint
+        entry: php -l
+        language: system
+        types: [php]
+      - id: phpcs
+        name: phpcs
+        entry: ./vendor/bin/phpcs --standard=./phpcs.xml -s -v --colors
+        language: system
+        types: [php]

@@ -1,0 +1,15 @@
+---
+repos:
+  - repo: local
+    hooks:
+      - id: phpunit
+        name: phpunit
+        entry: ./vendor/bin/phpunit --group=unit --colors=always --stop-on-error --stop-on-failure --stop-on-incomplete --stop-on-risky
+        language: system
+        # types: [php]
+        files: ^project/Zed/tests/.*Test.php$
+      - id: php-lint
+        name: php-lint
+        entry: php -l
+        language: system
+        types: [php]

@@ -211,6 +211,7 @@ export AUTO_NTFY_DONE_IGNORE=(
 # export LESSOPEN="| /usr/local/opt/source-highlight/bin/src-hilite-lesspipe.sh %s"
 # alias less="less -R"
 GITWEB_PROJECTROOT="$HOME/Code"
+PRE_COMMIT_COLOR=always # https://pre-commit.com/#cli
 export PSQL_PAGER="pspg"
 # [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ] && . "$HOME/.nix-profile/etc/profile.d/nix.sh" # this seems to conflict with direnv. Direnv seems to wipe the PATH changes this applies.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
