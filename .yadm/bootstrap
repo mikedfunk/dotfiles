@@ -357,11 +357,22 @@ _install_php_versions () {
 
 # install ruby version {{{
 _install_ruby_version () {
+    # 2.2.2 needed for catalog codebase
+    ( rbenv versions | grep --quiet "2.2.2" ) && return
+    log_info "Installing ruby 2.2.2"
+    rbenv install 2.2.2 && \
+        rbenv global 2.2.2 && \
+        rbenv rehash && \
+        gem install bundler
+
     RUBY_VERSION="2.6.5"
     ( rbenv versions | grep --quiet $RUBY_VERSION ) && return
-    log_info "Installing ruby 2.2.2 and $RUBY_VERSION"
-    rbenv install 2.2.2 # needed for catalog codebase
-    rbenv install $RUBY_VERSION && rbenv global $RUBY_VERSION && rbenv rehash
+    log_info "Installing ruby $RUBY_VERSION"
+    rbenv install $RUBY_VERSION && \
+        rbenv global $RUBY_VERSION && \
+        rbenv rehash && \
+        gem install bundler && \
+        gem install rails
 }
 # }}}
 
