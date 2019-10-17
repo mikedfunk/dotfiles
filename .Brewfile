@@ -81,6 +81,8 @@ brew "libcouchbase" # nosql fast data storage. I install this for the cli tool `
 brew "libmemcached" # needed by php70 memcached pecl extension
 brew "libmcrypt" # needed by php-build, which is used by phpenv DO NOT DELETE php will break
 brew "libxml2" # needed by php70
+tap "dbcli/tap"
+brew "litecli" # like mycli for sqlite
 # brew "lockrun" # simple way to lock cron jobs with a lock file and clear them when done
 # brew "lsd" # pretty ls augmentation
 # brew "lynx" # console web browser. used by ranger to preview html.
@@ -145,6 +147,7 @@ brew "sshrc" # use ~/.sshrc and ~/.sshrc.d on remote servers. bring your dotfile
 # brew "solr" # search data server (I hate solr. If I were to install it for an app it would be through docker.)
 # brew "source-highlight" # used to automatically colorize `less` text (I Just use `bat` instead. Got weird results with this.)
 # brew "spark" # used for rainbarf to show spiffy cli graphs (I don't use rainbarf currently)
+brew "sqlite3" # used as the default db for rails
 # brew "sqlparse" # sql formatter (managed by pip in ~/requirements.txt)
 # brew "stern" # kubernetes multitailer (waiting for this to be solved https://github.com/wercker/stern/issues/112)
 # brew "stormssh" # interact with ssh config. I have yet to find a net positive use for this. It makes my ssh config less readable because it doesn't put them in comment fold groups like I do. just so I can `storm add ...`. `storm list` and `storm search` are kind of useless as I can do that with `ssh <tab>`. It lets you edit multiple ssh entries at once, but I can do that in vim. It provides a web interface, but I don't want that.

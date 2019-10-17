@@ -44,9 +44,11 @@ windows:
 
 # railsblog {{{
   - window_name: railsblog
+    start_directory: ~/Code/railsblog
+    layout: main-horizontal
     panes:
       - shell_command:
-        - wd railsblog && vim -S
+        - vim -S
         focus: true
       - ts
       - rails c
