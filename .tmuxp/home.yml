@@ -52,6 +52,7 @@ windows:
         focus: true
       - ts
       - rails c
+      - litecli db/development.sqlite3
       - rails server
-      - multitail -cT ANSI -i log/development.log
+      # - multitail -cT ANSI -i log/development.log
 # }}}
