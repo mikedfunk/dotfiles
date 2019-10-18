@@ -27,13 +27,13 @@ windows:
 # }}}
 
 # magento {{{
-  - window_name: magento
-    start_directory: ~/Code/magento
-    layout: main-horizontal
-    panes:
-      - v -S
-      - ts
-      # TODO tests, etc.
+  # - window_name: magento
+  #   start_directory: ~/Code/magento
+  #   layout: main-horizontal
+  #   panes:
+  #     - v -S
+  #     - ts
+  #     # TODO tests, etc.
 # }}}
 
 # notes {{{

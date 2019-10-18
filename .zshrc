@@ -252,6 +252,8 @@ if ( has brew && ( brew list | grep -q openssl ) ); then
     export RUBY_CONFIGURE_OPTS=--with-openssl-dir=/usr/local/Cellar/openssl/"$OPENSSL_VERSION"
 fi
 
+HOMEBREW_NO_ANALYTICS=1
+
 # }}}
 
 # ssh {{{
@@ -269,7 +271,12 @@ sshrc() { env TERM=screen LC_SSH_ALIAS=$1 /usr/local/bin/sshrc $@; }
 compdef autossh="ssh"
 compdef sshrc="ssh"
 
-ssh-add -A 2>/dev/null # add all keys stored in keychain if they haven't been added yet
+# https://infosec.mozilla.org/guidelines/openssh#openssh-client
+ssh-add -K -A 2>/dev/null # add all keys stored in keychain if they haven't been added yet
+# ssh-add -c -K -A 2>/dev/null # add all keys stored in keychain if they haven't been added yet
+# [c] confirm password on use
+# [K] store/use password with macos keychain
+# [A] add all identities stored in keychain. Therefore, before this is useful, you'll need to add each key to the ssh agent at least once.
 # }}}
 
 # gpg {{{
@@ -376,7 +383,7 @@ alias pu="phpunitnotify"
 puc() { pu --coverage-html=./coverage $@ && open coverage/index.html; }
 
 # Public: phpspec coverage
-psc() { phpdbg -qrr -dmemory_limit=2048M  ./vendor/bin/phpspec run --config ./phpspec-coverage.yml $@ && open coverage/index.html; }
+psc() { phpdbg -qrr -dmemory_limit=2048M  ./vendor/bin/phpspec run --config ./phpspec-coverage-html.yml $@ && open coverage/index.html; }
 alias puf="pu --filter="
 
 # Public: phpunit watch

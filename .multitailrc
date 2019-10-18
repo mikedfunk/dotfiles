@@ -115,6 +115,7 @@ cs_re:magenta,,bold:[0-3][0-9]/[A-Z][a-z]{2}/20[0-9]{2}
 mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})[0-9 Z`,_;/.+-]
 # closing brace doesn't play nice with regex []
 mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})\]
+mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})$
 
 # log levels
 cs_re:blue,,bold/reverse:DEBUG
@@ -167,6 +168,7 @@ cs_re:magenta,,bold:[0-3][0-9]/[A-Z][a-z]{2}/20[0-9]{2}
 mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})[0-9 Z`,_;/.+-]
 # closing brace doesn't play nice with regex []
 mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})\]
+mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})$
 
 # log levels
 cs_re:blue,,bold/reverse:DEBUG
@@ -233,6 +235,7 @@ cs_re:magenta,,bold:[0-3][0-9]/[A-Z][a-z]{2}/20[0-9]{2}
 mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})[0-9 Z`,_;/.+-]
 # closing brace doesn't play nice with regex []
 mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})\]
+mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})$
 
 # log levels
 cs_re:blue,,bold/reverse:DEBUG
@@ -317,6 +320,7 @@ cs_re:magenta,,bold:[0-3][0-9]/[A-Z][a-z]{2}/20[0-9]{2}
 mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})[0-9 Z`,_;/.+-]
 # closing brace doesn't play nice with regex []
 mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})\]
+mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})$
 
 # log levels
 cs_re:blue,,bold/reverse:DEBUG
@@ -385,6 +389,7 @@ cs_re:magenta,,bold:[0-3][0-9]/[A-Z][a-z]{2}/20[0-9]{2}
 mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})[0-9 Z`,_;/.+-]
 # closing brace doesn't play nice with regex []
 mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})\]
+mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})$
 
 # log levels
 cs_re:blue,,bold/reverse:DEBUG
@@ -455,6 +460,7 @@ cs_re:magenta,,bold:[0-3][0-9]/[A-Z][a-z]{2}/20[0-9]{2}
 mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})[0-9 Z`,_;/.+-]
 # closing brace doesn't play nice with regex []
 mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})\]
+mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})$
 
 # log levels
 cs_re:blue,,bold/reverse:DEBUG
@@ -534,6 +540,7 @@ cs_re:magenta,,bold:[0-3][0-9]/[A-Z][a-z]{2}/20[0-9]{2}
 mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})[0-9 Z`,_;/.+-]
 # closing brace doesn't play nice with regex []
 mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})\]
+mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})$
 
 # log levels
 cs_re:blue,,bold/reverse:DEBUG
@@ -617,6 +624,7 @@ cs_re:magenta,,bold:[0-3][0-9]/[A-Z][a-z]{2}/20[0-9]{2}
 mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})[0-9 Z`,_;/.+-]
 # closing brace doesn't play nice with regex []
 mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})\]
+mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})$
 
 # log levels
 cs_re:blue,,bold/reverse:DEBUG
@@ -679,6 +687,7 @@ cs_re:magenta,,bold:[0-3][0-9]/[A-Z][a-z]{2}/20[0-9]{2}
 mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})[0-9 Z`,_;/.+-]
 # closing brace doesn't play nice with regex []
 mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})\]
+mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})$
 
 # log levels
 cs_re:blue,,bold/reverse:DEBUG
