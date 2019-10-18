@@ -280,7 +280,7 @@ cs_re:white,,bold:^(  )*[a-zA-Z_ -]+:
 cs_re:white,,bold:^#[0-9]+
 
 # special log stuff
-cs_re:green,,bold: (Email Sent.|Creating zendesk [AB]RO ticket.|Set last_voted_without_submitting|Response direct_flatten (user|art))
+cs_re:green,,bold: (Email Sent.|Creating zendesk [AB]RO ticket.|Set last_voted_without_submitting|Response direct_flatten (user|art)|Art advisory collection last voted date cleared)
 cs_re:yellow,,bold:Illegal IFD size
 cs_re:white,,bold: (To|From|Subject|Email|Details):
 cs_re:red,,bold:Client error
@@ -342,8 +342,6 @@ cs_re:red:[a-zA-Z\\_]*Exception[a-zA-Z\\_]*
 # errors and warnings - www error log
 cs_re:red,,bold/blink/reverse:\[error\]
 cs_re:yellow,,bold:\[warn\]
-mcsre_s:red:^.*\[error\](.*)
-mcsre_s:yellow:^.*\[warn\](.*)
 
 # keys and stack traces
 # cs_re:white,,bold:^(  )*[a-zA-Z_ -]+:
@@ -582,7 +580,7 @@ cs_re:red,,bold/reverse/blink:\[error\]
 cs_re:yellow,,bold:\[warn\]
 
 # special log stuff
-cs_re:green,,bold: (Fetching event|Sent email|Mail added to Queue|Begin sending mail|Mail sent|post back from bayphoto|Mail already in Queue, skipping)
+cs_re:green,,bold: ((Fetching|Ignoring) event|Sent email|Mail (added to Queue|sent|already in Queue)|Begin sending mail|post back from bayphoto|placeholderData)
 #
 # data ids
 cs_re:cyan:bk_[a-zA-Z0-9]+

@@ -14,7 +14,6 @@ use Prophecy\Argument;
 final class %name% extends ObjectBehavior
 {
 
-    /** @test */
     public function it_is_initializable()
     {
         $this->shouldHaveType('%subject%');

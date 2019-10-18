@@ -139,7 +139,7 @@ brew "rbenv" # ruby environment switcher
 # brew "selenium-server-standalone" # controls a browser for automated testing
 brew "shellcheck" # Checks shell syntax (used by vim ALE)
 brew "shfmt" # formats shell scripts (used by vim ALE)
-brew "skaffold" # awesole local kubernetes cluster by google (TODO learn this! It looks freakin awesome)
+brew "skaffold" # awesome local kubernetes cluster by google (TODO learn this! It looks freakin awesome)
 brew "ssh-copy-id" # copies ssh keys to remote servers
 brew "sshrc" # use ~/.sshrc and ~/.sshrc.d on remote servers. bring your dotfiles with you!
 # brew "sshfs" # mounts ssh servers as file systems in the local fs. requires osxfuse.
@@ -163,6 +163,7 @@ brew "tldr" # more consise community man pages
 # brew "tmux" # terminal multiplexer similar to screen. (Latest tmux 2.9a has some crash-inducing bugs. I am manually installing 2.8 from a tarball temporarily. See ~/.yadm/bootstrap for details.)
 # brew "tofrodos" # line ending conversion (install if needed)
 # brew "trash" # a trash can for the terminal
+brew "trash-cli" # a trash can for the terminal
 brew "tree" # display file/folder hierarchies in a visual tree format
 tap "universal-ctags/universal-ctags"
 brew "universal-ctags", args: ["HEAD"] # tag creator for use by vim to navigate by symbols. head only.

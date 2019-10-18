@@ -242,7 +242,7 @@ has kubectl && source <(kubectl completion zsh)
 has stern && source <(stern --completion=zsh)
 # [[ -e /usr/local/opt/coreutils/libexec/gnubin/dircolors && -f "$HOME"/.dircolors ]] && eval $( /usr/local/opt/coreutils/libexec/gnubin/dircolors -b "$HOME"/.dircolors )
 # has zsh-startify && zsh-startify (neat, but doesn't really help)
-[[ -f "$HOME"/.iterm2_shell_integration.zsh ]] && source "$HOME"/.iterm2_shell_integration.zsh
+# [[ -f "$HOME"/.iterm2_shell_integration.zsh ]] && source "$HOME"/.iterm2_shell_integration.zsh
 
 # fix an rbenv build openssl issue https://github.com/rbenv/ruby-build/issues/377#issuecomment-391427324
 if ( has brew && ( brew list | grep -q openssl ) ); then
