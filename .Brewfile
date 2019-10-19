@@ -140,6 +140,7 @@ brew "rbenv" # ruby environment switcher
 # brew "selenium-server-standalone" # controls a browser for automated testing
 brew "shellcheck" # Checks shell syntax (used by vim ALE)
 brew "shfmt" # formats shell scripts (used by vim ALE)
+brew "shml" # $(fgcolor red)wow$(fgcolor end)
 brew "skaffold" # awesome local kubernetes cluster by google (TODO learn this! It looks freakin awesome)
 brew "ssh-copy-id" # copies ssh keys to remote servers
 brew "sshrc" # use ~/.sshrc and ~/.sshrc.d on remote servers. bring your dotfiles with you!

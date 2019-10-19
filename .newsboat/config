@@ -1,0 +1,72 @@
+# vim: set ft=cfg foldmethod=marker:
+# https://newsboat.org/releases/2.17.1/docs/newsboat.html
+
+# general {{{
+# Auto load feeds at startup
+auto-reload yes
+
+# Load feeds in 8 different threads
+reload-threads 8
+
+# Time elapsed between each auto-reload
+reload-time 15
+
+# Notify unread feeds
+notify-always yes
+
+# Sort feeds by title
+feed-sort-order title
+
+# Not show read feeds
+show-read-feeds no
+
+# Not show read articles
+show-read-articles no
+# }}}
+
+# Vim keybindings {{{
+unbind-key g # bound to `sort` by default
+bind-key S sort
+bind-key g home
+unbind-key G # bound to `rev-sort` by default
+bind-key G end
+
+unbind-key h # not bound
+bind-key h quit
+unbind-key j # bound to next-feed
+bind-key j down
+unbind-key k # bound to prev-feed
+bind-key k up
+unbind-key l # bound to `toggle-show-reads-feeds`
+bind-key l open
+
+# Use lowercase
+unbind-key r
+bind-key r reload-all
+unbind-key R
+bind-key R reload
+unbind-key A # not bound
+bind-key a mark-all-feeds-read
+unbind-key C # not bout
+bind-key c mark-feed-read
+# }}}
+
+# Simple theme {{{
+# https://newsboat.org/releases/2.17.1/docs/newsboat.html#_configuring_colors
+color info white magenta bold
+color listnormal white default
+color listnormal_unread white default bold
+color listfocus magenta white
+color listfocus_unread magenta white bold
+# }}}
+
+# Article theme {{{
+highlight article "^(Feed|Link):.*$" default default dim
+highlight article "^(Date|Author):.*$" default default dim
+highlight article "^Title:.*$" green default bold
+highlight article "Links:" default default underline
+highlight article "https?://[^ ]+" blue default underline
+highlight article "\\[[0-9]+\\]" default default bold
+highlight article "\\[image [0-9]+\\]" default default bold
+# highlight feedlist "^─.*$" default default bold
+# }}}

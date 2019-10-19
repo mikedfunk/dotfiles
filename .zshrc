@@ -9,6 +9,13 @@
 # This is documented with tomdoc.sh style https://github.com/tests-always-included/tomdoc.sh
 # }}}
 
+# p10k instant prompt {{{
+# https://old.reddit.com/r/zsh/comments/dk53ow/new_powerlevel10k_feature_instant_prompt/
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+# }}}
+
 # Paths {{{
 cdpath=(
   $HOME/Code
@@ -81,18 +88,6 @@ fpath=(
 has() {
     type "$1" &>/dev/null
 }
-
-# colors {{{
-BLACK="$(tput setaf 0)"
-RED="$(tput setaf 1)"
-GREEN="$(tput setaf 2)"
-YELLOW="$(tput setaf 3)"
-BLUE="$(tput setaf 4)"
-PINK="$(tput setaf 5)"
-CYAN="$(tput setaf 6)"
-WHITE="$(tput setaf 7)"
-NORMAL="$(tput sgr0)"
-# }}}
 
 # }}}
 
@@ -242,7 +237,7 @@ has kubectl && source <(kubectl completion zsh)
 has stern && source <(stern --completion=zsh)
 # [[ -e /usr/local/opt/coreutils/libexec/gnubin/dircolors && -f "$HOME"/.dircolors ]] && eval $( /usr/local/opt/coreutils/libexec/gnubin/dircolors -b "$HOME"/.dircolors )
 # has zsh-startify && zsh-startify (neat, but doesn't really help)
-# [[ -f "$HOME"/.iterm2_shell_integration.zsh ]] && source "$HOME"/.iterm2_shell_integration.zsh
+[[ -f "$HOME"/.iterm2_shell_integration.zsh ]] && source "$HOME"/.iterm2_shell_integration.zsh
 
 # fix an rbenv build openssl issue https://github.com/rbenv/ruby-build/issues/377#issuecomment-391427324
 if ( has brew && ( brew list | grep -q openssl ) ); then
@@ -254,6 +249,23 @@ fi
 
 HOMEBREW_NO_ANALYTICS=1
 
+# used by newsboat and others
+# this opens in both my work AND home profiles :/
+# export BROWSER="/Applications/Firefox.app/Contents/MacOS/firefox -P Home --new-tab"
+export BROWSER="echo '%u' | pbcopy"
+
+# https://odb.github.io/shml/getting-started/
+# "$(fgcolor red)wow$(fgcolor end)$(br)$(hr '-')"
+# colors: black red green yellow blue magenta cyan gray white darkgray lightgreen lightyellow lightblue lightmagenta lightcyan
+# attributes: bold dim underline invert hidden
+# icons: checkmark xmark heart sun star darkstar umbrella flag snowflake music scissors trademark copyright apple smile
+# emojis: smiley innocent joy =p worried cry rage wave ok_hand thumbsup thumbsdown smiley_cat cat dog bee pig monkey cow panda sushi home eyeglases smoke fire hankey beer cookie lock unlock star joker check x toilet bell search dart cash thinking luck
+# confirm QUESTION [SUCCESS_FUNCTION] [FAILURE_FUNCTION]
+has shml && source $(which shml)
+
+# disable weird highlighting of pasted text
+# https://old.reddit.com/r/zsh/comments/c160o2/command_line_pasted_text/erbg6hy/
+zle_highlight=('paste:none')
 # }}}
 
 # ssh {{{
@@ -283,13 +295,12 @@ ssh-add -K -A 2>/dev/null # add all keys stored in keychain if they haven't been
 # enable gpg passwords in the terminal
 export GPG_TTY=`tty` # make gpg prompt for a password
 export PINENTRY_USER_DATA="USE_CURSES=1"
-# used by newsboat and others
-export BROWSER="/Applications/Firefox.app/Contents/MacOS/firefox"
 # }}}
 
 # functions and aliases {{{
 
 # misc {{{
+alias nb="newsboat"
 alias info="info --vi-keys"
 
 alias play-starwars="telnet towel.blinkenlights.nl" # :)
@@ -745,7 +756,7 @@ letswork () {
     cd >/dev/null
     hostess apply ~/.support/hosts.json
     cd - >/dev/null
-    echo "${RED}Lets work!${NORMAL}"
+    echo "$(fgcolor red)Lets work!$(fgcolor end)"
 }
 letsfun () {
     if [ "$1" = "--help" ]; then echo "Turns off all distracting sites in /etc/hosts."; return; fi
@@ -755,7 +766,7 @@ letsfun () {
     cd >/dev/null
     hostess apply ~/.support/hosts.json
     cd - >/dev/null
-    echo "${GREEN}Free at last!${NORMAL}"
+    echo "$(fgcolor green)Free at last!$(fgcolor end)"
 }
 # }}}
 
