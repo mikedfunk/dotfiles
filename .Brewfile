@@ -216,7 +216,7 @@ cask "font-iosevka-nerd-font-mono"
 cask "google-chrome"
 # cask "google-drive" (menubar app for google drive access)
 # cask "http-toolkit" # kind of like charles or wireshark, but with support for docker. (docker support seems to be coming soon)
-cask "insomnia" # http api client like postman but nicer looking
+cask "insomnia" # http api client like postman but nicer looking (I use this for sharing with my team but I mostly use vim-rest-console)
 cask "iterm2" # I was using kitty but they use opengl and macos deprecated opengl support, so it crashes regularly. iTerm now has gpu rendering, so I'm back to iTerm! It has a bunch of other cool new stuff now anyway.
 cask "java" # required for plantuml, etc.
 # cask "joplin" # desktop joplin (I use the terminal interface)
@@ -228,10 +228,10 @@ cask "lunchy" # launchctl cli wrapper. Port of lunchy gem. (Tried this, was miss
 # cask "macfusion" # other half of tool to mount ssh directories in the finder
 # cask "macgdbp" # xdebug gui client (I use vdebug)
 cask "malwarebytes" # ya neva know
-cask "microsoft-edge-beta" # not out of beta yet as of 2019-09-27
+# cask "microsoft-edge-beta" # not out of beta yet as of 2019-09-27
 cask "minikube" # for learning `minikube start`
 cask "mpv" # video player like vlc
-cask "mudlet" # muds are rad
+# cask "mudlet" # muds are rad
 cask "multifirefox" # profile picker until firefox fixes this glaring omission
 # cask "noti" # mac native pushbullet notifications (I use the chrome extension)
 # cask "ngrok" # securely expose your local site to the internet and inspect and repeat traffic
@@ -249,7 +249,7 @@ cask "quicklook-json" # quicklook plugin (preview json)
 # cask "qlprettypatch" # quicklook plugin (preview patch files)
 cask "quicklook-csv" # quicklook plugin (preview csvs)
 cask "qlimagesize" # quicklook plugin (display image size and resolution in the title in preview)
-cask "sequel-pro" # mysql gui client
+cask "sequel-pro" # mysql gui client. I mostly use mycli.
 cask "slack" # needed for screen sharing features. I mostly use the web app.
 cask "spectacle" # keyboard window splitter/resizer/mover. Kind of like a lightweight i3 window manager. I use it a lot.
 cask "spotify" # mac native spotify player (I use the web app, but sometimes it gets stuck in an offline state or randomly stops playing)

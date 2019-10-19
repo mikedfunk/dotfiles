@@ -304,6 +304,27 @@ _configure_cgr_and_composer () {
 }
 # }}}
 
+# install phive {{{
+# NOTE: phive requires php 7.2+
+_install_upgrade_phive () {
+    if has phive; then
+        log_info "Updating phive"
+        phive selfupdate
+    else
+        log_info "Installing phive"
+        cd
+        wget -O phive.phar "https://phar.io/releases/phive.phar"
+        wget -O phive.phar.asc "https://phar.io/releases/phive.phar.asc"
+        gpg --keyserver hkps.pool.sks-keyservers.net --recv-keys 0x9D8A98B29B2D5D79
+        gpg --verify phive.phar.asc phive.phar
+        rm phive.phar.asc
+        chmod +x phive.phar
+        mv phive.phar /usr/local/bin/phive
+        cd -
+    fi
+}
+# }}}
+
 # install php version {{{
 # I only use phpenv because homebrew is making it difficult to install php 7.0
 # and extensions right now.
@@ -345,8 +366,8 @@ _install_php_versions () {
     _install_php_version "7.3.2"
 
     local PHP_VERSION
-    # PHP_VERSION="7.3.2"
-    PHP_VERSION="7.0.29"
+    PHP_VERSION="7.3.2"
+    # PHP_VERSION="7.0.29"
     phpenv global "$PHP_VERSION"
     _configure_cgr_and_composer "$PHP_VERSION"
 
@@ -689,6 +710,7 @@ _install_vim_plug
 _install_upgrade_vim_plugins
 _install_node_version
 _install_php_versions
+_install_upgrade_phive
 _install_ruby_version
 _install_python3_version
 _install_update_ruby_gems
