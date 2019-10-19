@@ -1,4 +1,0 @@
-auto-reload yes
-bind-key j next
-bind-key k prev
-bind-key G end
