@@ -283,6 +283,8 @@ ssh-add -K -A 2>/dev/null # add all keys stored in keychain if they haven't been
 # enable gpg passwords in the terminal
 export GPG_TTY=`tty` # make gpg prompt for a password
 export PINENTRY_USER_DATA="USE_CURSES=1"
+# used by newsboat and others
+export BROWSER="/Applications/Firefox.app/Contents/MacOS/firefox"
 # }}}
 
 # functions and aliases {{{
