@@ -56,3 +56,10 @@ windows:
       - rails server
       # - multitail -cT ANSI -i log/development.log
 # }}}
+
+# news {{{
+# not sure this is a good idea...
+  - window_name: news
+    panes:
+      - nb
+# }}}

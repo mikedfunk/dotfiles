@@ -535,8 +535,6 @@ _install_ls_colors () {
     [ -d "$HOME"/.dircolors ] && return
     log_info "installing LS_COLORS"
     wget https://raw.github.com/trapd00r/LS_COLORS/master/LS_COLORS -O $HOME/.dircolors
-    [ -e /usr/local/opt/coreutils/libexec/gnubin/dircolors ] || return
-    eval $( /usr/local/opt/coreutils/libexec/gnubin/dircolors -b "$HOME"/.dircolors )
 }
 # }}}
 
@@ -710,7 +708,7 @@ _install_vim_plug
 _install_upgrade_vim_plugins
 _install_node_version
 _install_php_versions
-_install_upgrade_phive
+# _install_upgrade_phive
 _install_ruby_version
 _install_python3_version
 _install_update_ruby_gems
@@ -727,7 +725,7 @@ _start_launch_agents
 _fix_file_size_limit_for_watching_with_entr
 # _upgrade_docker_machine
 _install_bubo
-_install_nix_package_manager
+# _install_nix_package_manager
 # _show_reminders
 log_info "Installation complete"
 # }}}

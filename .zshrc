@@ -266,6 +266,11 @@ has shml && source $(which shml)
 # disable weird highlighting of pasted text
 # https://old.reddit.com/r/zsh/comments/c160o2/command_line_pasted_text/erbg6hy/
 zle_highlight=('paste:none')
+
+# https://github.com/trapd00r/LS_COLORS
+DIRCOLORS_CMD="/usr/local/opt/coreutils/libexec/gnubin/dircolors"
+DIRCOLORS_FILE="$HOME/.dircolors"
+[[ -e "$DIRCOLORS_CMD" && -f "$DIRCOLORS_FILE" ]] && eval $( "$DIRCOLORS_CMD" -b "$DIRCOLORS_FILE" )
 # }}}
 
 # ssh {{{
