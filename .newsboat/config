@@ -24,7 +24,7 @@ show-read-feeds no
 show-read-articles no
 # }}}
 
-# Vim keybindings {{{
+# keybindings {{{
 unbind-key g # bound to `sort` by default
 bind-key S sort
 bind-key g home
@@ -49,6 +49,8 @@ unbind-key A # not bound
 bind-key a mark-all-feeds-read
 unbind-key C # not bout
 bind-key c mark-feed-read
+
+bind-key "^S" toggle-show-read-feeds
 # }}}
 
 # Simple theme {{{
