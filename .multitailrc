@@ -505,7 +505,7 @@ mcsre_s:blue:\\"url\\":\\"(/[a-zA-Z0-9._/?&=#@%-]+)
 mcsre_s:white,,bold:([a-zA-Z]+)\.(DEBUG|EMERGENCY|ERROR|WARN|INFO)
 
 # actions
-cs_re:green,,bold:(CREATE OR UPDATE ORDER - Transaction [0-9]+ exists and was updated|Access token has expired. Hence refreshing|Curl request|Curl response|(MAO )?order placed response|Placing (MAO )?order for customer|CREATE OR UPDATE ORDER (Response to|Request from) Zed|Taxjar (UPDATE|SHOW) ORDER (Request|Response))
+cs_re:green,,bold:(CREATE OR UPDATE ORDER - Transaction [0-9]+ exists and was updated|Access Token has expired. Hence refreshing.|Curl request|Curl response|(MAO )?order placed response|Placing (MAO )?order for customer|CREATE OR UPDATE ORDER (Response to|Request from) Zed|Taxjar (UPDATE|SHOW) ORDER (Request|Response))
 cs_re:red,,bold:Failed to place order
 # }}}
 
