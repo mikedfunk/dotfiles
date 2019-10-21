@@ -286,7 +286,7 @@ cs_re:white,,bold:^#[0-9]+
 cs_re:green,,bold: (Email Sent.|Creating zendesk [AB]RO ticket.|Set last_voted_without_submitting|Response direct_flatten (user|art)|Art advisory collection last voted date cleared)
 cs_re:yellow,,bold:Illegal IFD size
 cs_re:white,,bold: (To|From|Subject|Email|Details):
-cs_re:red,,bold:Client error
+cs_re:red,,bold:(Client error|No such file or directory)
 # }}}
 
 # gallery {{{
@@ -342,6 +342,8 @@ mcsre_s:blue,,bold:[ `,_;'"](30[0-8])[ `,_:;.'"-]
 
 # exceptions
 cs_re:red:[a-zA-Z\\_]*Exception[a-zA-Z\\_]*
+# exception "code" e.g. INVALID_EMAIL
+mcsre_s:white,,bold:[a-zA-Z\\_]*Exception[a-zA-Z\\_]*: ([A-Z_]+)
 
 # errors and warnings - www error log
 cs_re:red,,bold/blink/reverse:\[error\]
