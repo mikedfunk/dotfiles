@@ -28,7 +28,7 @@ brew "curl" # http cli tool. Included with mac of course, but this gives me the 
 # brew "desk" # shell workspace manager. (I use direnv instead)
 brew "diff-so-fancy" # better git diff viewer (note: diff-highlight is in pip)
 brew "direnv" # allow .envrc in directories to be loaded at every prompt to add relative bins to PATH, etc. easy. (I use this a lot to adjust path, kubernetes context, etc.)
-# brew "dnsmasq" # easily set up dynamic dev domains such as myproject.dev
+brew "dnsmasq" # easily set up dynamic dev domains such as myproject.dev `sudo brew services start dnsmasq`
 # brew "docker" # virtualization software (I use docker for mac now - see docker cask)
 # brew "docker-compose" # manage multiple docker images and how they interact (I get this via docker-for-mac)
 # brew "docker-machine" # virtualbox VM for your docker images (I get this via docker-for-mac)

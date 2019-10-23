@@ -423,6 +423,10 @@ cs_re:green:0\|easel +\|
 cs_re:yellow:1\|easel +\|
 cs_re:magenta:2\|easel +\|
 cs_re:blue:3\|easel +\|
+cs_re:black:xsaatchi_easel_node_instance +\|
+
+# dashed lines
+cs_re:cyan,,bold:-{5,}
 
 # errors and warnings
 mcsre_s:red,,bold/blink/reverse:(Error) {

@@ -252,7 +252,8 @@ HOMEBREW_NO_ANALYTICS=1
 # used by newsboat and others
 # this opens in both my work AND home profiles :/
 # export BROWSER="/Applications/Firefox.app/Contents/MacOS/firefox -P Home --new-tab"
-export BROWSER="echo '%u' | pbcopy"
+# this breaks git-open :/
+# export BROWSER="echo '%u' | pbcopy"
 
 # https://odb.github.io/shml/getting-started/
 # "$(fgcolor red)wow$(fgcolor end)$(br)$(hr '-')"
@@ -305,7 +306,7 @@ export PINENTRY_USER_DATA="USE_CURSES=1"
 # functions and aliases {{{
 
 # misc {{{
-alias nb="newsboat"
+alias nb="BROWSER=\"echo '%u' | pbcopy\" newsboat"
 alias info="info --vi-keys"
 
 alias play-starwars="telnet towel.blinkenlights.nl" # :)
@@ -746,8 +747,10 @@ alias glow-watch="ag -l -g '\.js$' | entr -r -c /usr/local/bin/glow"
 
 # letswork / letsfun {{{
 # this is more flexible and much simpler than an npm package for this.
+# but you still have to clear dns cache and/or restart the browser for it to work :/ https://w3guy.com/flush-delete-dns-cache-firefox-chrome/
 DISTRACTING_SITES=(
     reddit.com
+    old.reddit.com
     facebook.com
     instagram.com
     twitter.com

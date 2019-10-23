@@ -34,3 +34,5 @@ bookymark:~/Code/bookymark
 magento:~/Code/magento
 notes:~/.config/joplin
 railsblog:~/Code/railsblog
+saatchi-kubernetes:~/Code/saatchi/saatchi-kubernetes
+kube:~/Code/saatchi/saatchi-kubernetes

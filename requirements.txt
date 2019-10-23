@@ -1,7 +1,7 @@
 arrow==0.15.2
 asn1crypto==1.2.0
 astroid==2.3.2
-cffi==1.13.0
+cffi==1.13.1
 cli-helpers==1.2.1
 Click==7.0
 colorama==0.4.1
@@ -32,6 +32,6 @@ tabulate==0.8.5
 terminaltables==3.1.0
 tmuxp==1.5.3
 typed-ast==1.4.0
-virtualenv==16.7.6
+virtualenv==16.7.7
 wcwidth==0.1.7
 wrapt==1.11.2
