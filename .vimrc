@@ -860,6 +860,7 @@ command! ClearHighlights :call clearmatches() | IndentGuidesEnable
 " markdown code block languages
 " https://old.reddit.com/r/vim/comments/2x5yav/markdown_with_fenced_code_blocks_is_great/
 let g:markdown_fenced_languages = [
+            \ 'sh',
             \ 'css',
             \ 'javascript',
             \ 'js=javascript',

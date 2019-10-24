@@ -33,7 +33,7 @@
     "glow": "^1.2.2",
     "grunt-cli": "^1.2.0",
     "ibm-openapi-validator": "^0.2.1",
-    "intelephense": "^1.1.5",
+    "intelephense": "^1.2.3",
     "intelephense-server": "^0.8.8",
     "is-tar": "^1.0.0",
     "jest": "^22.0.6",

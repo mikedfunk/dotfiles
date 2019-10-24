@@ -1123,6 +1123,21 @@ augroup END
 if isdirectory(expand('~/.vim/plugged/vim-lotr')) | nnoremap <leader>ll :LOTRToggle<cr> | endif
 " }}}
 
+" vim-lsc {{{
+let g:lsc_server_commands = {
+\     'php': {
+\         'command': '~/.bin/php-language-server',
+\         'log_level': -1,
+\         'suppress_stderr': v:true
+\     }
+\ }
+" \         'command': '/usr/local/bin/intelephense --stdio',
+let g:lsc_auto_map = {
+\     'Completion': 'omnifunc',
+\     'ShowHover': 'K'
+\ }
+" }}}
+
 " vim-lsp {{{
 if isdirectory(expand('~/.vim/plugged/vim-lsp')) && has('autocmd') && exists('+omnifunc')
     augroup lsp_group
@@ -1168,6 +1183,10 @@ if isdirectory(expand('~/.vim/plugged/vim-markbar'))
         autocmd FileType markbar nnoremap q :q<cr>
     augroup END
 endif
+" }}}
+
+" vim-markdown-folding {{{
+let g:markdown_fold_style='nested'
 " }}}
 
 " vim-matchup {{{

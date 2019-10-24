@@ -651,22 +651,6 @@ _fix_file_size_limit_for_watching_with_entr () {
 }
 # }}}
 
-# install bubo (mac-bt-headset-fix) {{{
-# I only use this so my bluetooth play/pause button gets sent to the spotify web app
-# https://github.com/jguice/mac-bt-headset-fix
-# when will this be on brew cask??
-function _install_bubo () {
-    [ -d /Applications/Bubo.app ] && return
-    log_info "Installing bubo"
-    builtin cd "$HOME/Downloads" || return
-    wget https://s3-us-west-2.amazonaws.com/jguice/mac-bt-headset-fix-beta/bubo.app.zip
-    tar xzvf bubo.app.zip
-    rm bubo.app.zip
-    mv bubo.app /Applications/Bubo.app
-    builtin cd - || return
-}
-# }}}
-
 # install nix package manager {{{
 _install_nix_package_manager () {
     [[ -d "/nix" ]] && return
@@ -684,10 +668,11 @@ _upgrade_docker_machine () {
 # }}}
 
 # reminders {{{
-# _show_reminders () {
-#     # log_info "Don't forget to 'docker-machine upgrade' once in a while!"
-#     # log_info "Don't forget to 'brew cask upgrade virtualbox virtualbox-extension-pack' once in a while!"
-# }
+_show_reminders () {
+    true # noop
+    # log_info "Don't forget to 'docker-machine upgrade' once in a while!"
+    # log_info "Don't forget to 'brew cask upgrade virtualbox virtualbox-extension-pack' once in a while!"
+}
 # }}}
 
 # run functions {{{
@@ -725,7 +710,6 @@ _apply_mac_preferences
 _start_launch_agents
 _fix_file_size_limit_for_watching_with_entr
 # _upgrade_docker_machine
-_install_bubo
 # _install_nix_package_manager
 # _show_reminders
 log_info "Installation complete"
