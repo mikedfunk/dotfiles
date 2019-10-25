@@ -274,8 +274,7 @@ mcsre_s:red,,bold/reverse/blink:INFO \(6\):.* (Error)
 cs_re:blue,,bold/reverse:DEBUG
 
 # error and severe
-cs_re:red,,bold/blink/reverse:ERR
-cs_re:red,,bold/blink/reverse:SEVERE
+cs_re:red,,bold/blink/reverse:(ERR|Fatal error|SEVERE)
 
 # keys and stack traces
 cs_re:yellow,,bold:(Warning|Notice)
@@ -283,7 +282,7 @@ cs_re:white,,bold:^(  )*[a-zA-Z_ -]+:
 cs_re:white,,bold:^#[0-9]+
 
 # special log stuff
-cs_re:green,,bold: (Email Sent.|Creating zendesk [AB]RO ticket.|Set last_voted_without_submitting|Response direct_flatten (user|art)|Art advisory collection last voted date cleared)
+cs_re:green,,bold:( Email Sent.| Creating zendesk [AB]RO ticket.| Set last_voted_without_submitting| Response direct_flatten (user|art)| Art advisory collection last voted date cleared|^Starting Update)
 cs_re:yellow,,bold:Illegal IFD size
 cs_re:white,,bold: (To|From|Subject|Email|Details):
 cs_re:red,,bold:(Client error|No such file or directory)

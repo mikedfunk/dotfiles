@@ -250,6 +250,25 @@ windows:
       # - saatchi-tail-legacy-services-xprod
 # }}}
 
+# logs (kqa) {{{
+# kqa logs are kind of flaky. Sometimes they time out. Haven't figured out why
+# yet.
+  # - window_name: kqa
+  #   start_directory: ~/
+  #   layout: tiled
+  #   options:
+  #     pane-border-status: top
+  #   panes:
+  #     # printf sets pane name. alternative, wasn't as reliable for me:
+  #     # tmux select-pane -t 5 -T 'MY_PANE_NAME'
+  #     - printf "\033]2;%s\033\\r:r" 'easel' && saatchi-tail-easel-kqa
+  #     - printf "\033]2;%s\033\\r:r" 'gallery' && saatchi-tail-gallery-kqa
+  #     - printf "\033]2;%s\033\\r:r" 'palette' && saatchi-tail-palette-kqa
+  #     - printf "\033]2;%s\033\\r:r" 'legacy' && saatchi-tail-legacy-kqa
+  #     - printf "\033]2;%s\033\\r:r" 'zed' && saatchi-tail-zed-kqa
+  #     - printf "\033]2;%s\033\\r:r" 'catalog' && saatchi-tail-catalog-kqa
+# }}}
+
 # chromatic (iOS app) (disabled) {{{
   # - window_name: chromatic
   #   start_directory: ~/Code/saatchi/chromatic
