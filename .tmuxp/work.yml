@@ -233,7 +233,7 @@ windows:
 # }}}
 
 # logs (prod) {{{
-  - window_name: logs
+  - window_name: p.logs
     start_directory: ~/
     layout: tiled
     options:
@@ -253,7 +253,7 @@ windows:
 # logs (kqa) {{{
 # kqa logs are kind of flaky. Sometimes they time out. Haven't figured out why
 # yet.
-  # - window_name: kqa
+  # - window_name: k.logs
   #   start_directory: ~/
   #   layout: tiled
   #   options:
