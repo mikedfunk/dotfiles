@@ -114,6 +114,9 @@ Plug 'tpope/vim-rsi' " readline mappings for insert and command modes
 " Plug 'google/vim-maktaba' | Plug 'google/vim-coverage' " coverage for python
 " Plug 'revolvingcow/vim-umbrella' " vague coverage displayer
 " Plug 'hyiltiz/vim-plugins-profile' " find slow plugins
+if has('nvim')
+    Plug 'glacambre/firenvim', { 'do': function('firenvim#install') } " use neovim in browser text inputs
+endif
 " }}}
 
 " Html {{{

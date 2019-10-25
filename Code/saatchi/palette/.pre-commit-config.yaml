@@ -4,9 +4,9 @@ repos:
     hooks:
       - id: phpspec
         name: phpspec
-        entry: ./vendor/bin/phpspec run --format=pretty -vvv
+        entry: /Users/mikefunk/.support/phpspec-pre-commit-helper.sh
         language: system
-        types: [php]
+        files: Spec\.php$
       - id: php-lint
         name: php-lint
         entry: php -l

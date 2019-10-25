@@ -58,30 +58,30 @@ snippet uml "start and end uml"
 ' }
 '
 ' ' now set the namespace separator to standard php
-' set namespaceSeparator \\
-' class DemandMedia\\SaatchiArt\\Service\\Resale {
+' set namespaceSeparator \\\\
+' class DemandMedia\\\\SaatchiArt\\\\Service\\\\Resale {
 '     + submitOffer(string $firstName, string $lastName, string $email, string $sku): void
 ' }
 '
-' class DemandMedia\\SaatchiArt\\Repository\\ArtworkRepository {
+' class DemandMedia\\\\SaatchiArt\\\\Repository\\\\ArtworkRepository {
 '     + getCouchArtItemByArtIdAndArtistId(int $userArtId, int $userId): Model_Render_CouchArtItem|null
 ' }
 '
-' class Zendesk\\Zendesk {
-'     + submitTicket(array $ticketData, bool $public): \\stdClass
+' class Zendesk\\\\Zendesk {
+'     + submitTicket(array $ticketData, bool $public): \\\\stdClass
 '     + prepareZendeskUserId(array $requesterData): int
 ' }
 '
-' class DemandMedia\\SaatchiArt\\Transformer\\Resale\\ArtworkData {
+' class DemandMedia\\\\SaatchiArt\\\\Transformer\\\\Resale\\\\ArtworkData {
 '     + transform(Model_Render_CouchArtItem $couchArtItem, Saatchi_Product_Sku $sku): array
 ' }
 '
 ' Saatchi_Controller <-- Resale_IndexController
-' Resale_IndexController *-- DemandMedia\\SaatchiArt\\Service\\Resale
-' DemandMedia\\SaatchiArt\\Service\\Resale *-- DemandMedia\\SaatchiArt\\Repository\\ArtworkRepository
-' DemandMedia\\SaatchiArt\\Service\\Resale *-- Zend_View
-' DemandMedia\\SaatchiArt\\Service\\Resale *-- Zendesk\\Zendesk
-' DemandMedia\\SaatchiArt\\Service\\Resale *-- DemandMedia\\SaatchiArt\\Transformer\\Resale\\ArtworkData
+' Resale_IndexController *-- DemandMedia\\\\SaatchiArt\\\\Service\\\\Resale
+' DemandMedia\\\\SaatchiArt\\\\Service\\\\Resale *-- DemandMedia\\\\SaatchiArt\\\\Repository\\\\ArtworkRepository
+' DemandMedia\\\\SaatchiArt\\\\Service\\\\Resale *-- Zend_View
+' DemandMedia\\\\SaatchiArt\\\\Service\\\\Resale *-- Zendesk\\\\Zendesk
+' DemandMedia\\\\SaatchiArt\\\\Service\\\\Resale *-- DemandMedia\\\\SaatchiArt\\\\Transformer\\\\Resale\\\\ArtworkData
 @startuml
 $0
 @enduml

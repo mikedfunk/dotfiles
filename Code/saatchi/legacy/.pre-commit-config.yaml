@@ -4,7 +4,7 @@ repos:
     hooks:
       - id: phpunit
         name: phpunit
-        entry: ./vendor/bin/phpunit -d memory_limit=1024M -d display_errors=on --colors=always --stop-on-error --stop-on-failure --stop-on-incomplete --stop-on-risky
+        entry: /Users/mikefunk/.support/phpunit-pre-commit-helper.sh
         language: system
         files: ^tests\/DemandMedia\/SaatchiArt\/.*Test\.php$
       - id: php-lint
