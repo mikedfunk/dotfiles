@@ -114,8 +114,11 @@ Plug 'tpope/vim-rsi' " readline mappings for insert and command modes
 " Plug 'google/vim-maktaba' | Plug 'google/vim-coverage' " coverage for python
 " Plug 'revolvingcow/vim-umbrella' " vague coverage displayer
 " Plug 'hyiltiz/vim-plugins-profile' " find slow plugins
-if has('nvim')
-    Plug 'glacambre/firenvim', { 'do': function('firenvim#install') } " use neovim in browser text inputs
+" if has('nvim')
+"     Plug 'glacambre/firenvim', { 'do': function('firenvim#install') } " use neovim in browser text inputs
+" endif
+if has('nvim') && has('python3')
+    Plug 'raghur/vim-ghost', {'do': ':GhostInstall'} " manually connect a text field with neovim. I like this better because it doesn't vimify _all_ of my input areas.
 endif
 " }}}
 

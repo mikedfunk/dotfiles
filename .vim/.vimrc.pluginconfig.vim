@@ -985,6 +985,10 @@ endif
 let g:gitsessions_disable_auto_load = 1
 " }}}
 
+" vim-ghost {{{
+let g:ghost_darwin_app="iTerm2"
+" }}}
+
 " vim-gutentags {{{
 " if isdirectory(expand("~/.vim/plugged/vim-gutentags"))
 "     nnoremap <leader>gu :execute 'GutentagsUpdate!'<cr>:redraw!<cr>

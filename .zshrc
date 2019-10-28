@@ -306,7 +306,8 @@ export PINENTRY_USER_DATA="USE_CURSES=1"
 # functions and aliases {{{
 
 # misc {{{
-alias nb="BROWSER=\"echo '%u' | pbcopy\" newsboat"
+# alias nb="BROWSER=\"echo '%u' | pbcopy\" newsboat" # when opening links, just copy to clipboard
+alias nb="BROWSER=\"open '%u'\" newsboat"
 alias info="info --vi-keys"
 
 alias play-starwars="telnet towel.blinkenlights.nl" # :)
