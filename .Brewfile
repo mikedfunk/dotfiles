@@ -191,7 +191,6 @@ brew "zsh" # awesome bash shell replacement
 # }}}
 
 # cask {{{
-tap "caskroom/cask"
 cask "adoptopenjdk" # needed to install akamai cli
 # cask "bettertouchtool" # with a config file this lets me vimify any cocoa app https://raw.githubusercontent.com/Vincent-Carrier/CocoaVim/master/CocoaVim.bttpreset
 # cask "bitbar" # use any cli command to show stuff in the menubar with colors and icons and provide menu options

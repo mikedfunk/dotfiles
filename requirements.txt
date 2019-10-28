@@ -11,7 +11,7 @@ gita==0.10.3
 greenlet==0.4.15
 isort==4.3.21
 kaptan==0.5.12
-lazy-object-proxy==1.4.2
+lazy-object-proxy==1.4.3
 libtmux==0.8.2
 mccabe==0.6.1
 msgpack==0.6.2
@@ -24,12 +24,15 @@ pylint==2.4.3
 PyMySQL==0.9.3
 pynvim==0.3.2
 python-dateutil==2.8.0
+python-slugify==4.0.0
 PyYAML==5.1.2
 sh==1.12.14
+SimpleWebSocketServer==0.1.1
 six==1.12.0
 sqlparse==0.3.0
 tabulate==0.8.5
 terminaltables==3.1.0
+text-unidecode==1.3
 tmuxp==1.5.3
 typed-ast==1.4.0
 virtualenv==16.7.7

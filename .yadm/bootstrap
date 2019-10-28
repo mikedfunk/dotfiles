@@ -134,6 +134,23 @@ _install_update_homebrew_packages () {
 }
 # }}}
 
+# install ievms {{{
+# homebrew formula is broken for this :/
+_install_ievms () {
+    if ! has VBoxManage; then
+        log_error "VBoxManage not installed, unable to install ievms"
+        return
+    fi
+    if ( VBoxManage list vms | grep -q "IE11 - Win7" ); then
+        # ie11 is already installed
+        return
+    fi
+
+    log_info "Installing IE11 VirtualBox VM"
+    curl -s https://raw.githubusercontent.com/xdissent/ievms/master/ievms.sh | env IEVMS_VERSIONS="11" bash
+}
+# }}}
+
 # akamai {{{
 _install_upgrade_akamai () {
     has akamai && return
@@ -682,6 +699,7 @@ _install_xcode_command_line_tools
 _install_necessary_headers_in_include_on_mojave
 _install_homebrew_if_its_missing
 _install_update_homebrew_packages
+_install_ievms
 _install_upgrade_akamai
 _install_upgrade_phpenv
 _install_upgrade_yarn
