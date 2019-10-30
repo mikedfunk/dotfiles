@@ -76,6 +76,7 @@ brew "jq" # simple json pretty-printer `echo '{"my" => "json"}' | jq .` (Used in
 # brew "keychain" # manage ssh agent and adding keys to it automatically. (I don't use this now that I have an ssh config directive to store passphrases for ssh agent in my osx keychain, which is different from this project's "keychain". Confusing, I know.)
 # brew "kubernetes-cli" # already installed via brew cask install docker
 # brew "kubectx" # kubernetes powertools (speeds up context handling)
+brew "lastpass-cli" # TODO move all of my cli private_stuff over to lastpass
 # brew "lftp" # fancy scp, torrent, http, ftp download and upload client with queues, backgrounding, and more
 brew "libcouchbase" # nosql fast data storage. I install this for the cli tool `cbc`
 brew "libmemcached" # needed by php70 memcached pecl extension
@@ -195,6 +196,7 @@ cask "adoptopenjdk" # needed to install akamai cli
 # cask "bettertouchtool" # with a config file this lets me vimify any cocoa app https://raw.githubusercontent.com/Vincent-Carrier/CocoaVim/master/CocoaVim.bttpreset
 # cask "bitbar" # use any cli command to show stuff in the menubar with colors and icons and provide menu options
 # cask "beardedspice" # keyboard media controls for media sites. Always seems to be broken :/
+cask "browserstacklocal" # local ie11, etc? If I have to. Otherwise, easy alternative is xdissent's ievms.
 # cask "bubo" # menubar app that lets you use media and bluetooth keys with spotify web in chrome (but not in firefox, boo!)
 # cask "caffeine" # keep mac awake (replaced with amphetamine)
 # cask "cheatsheet" # hold <cmd> for a bit to get a modal of available keyboard shortcuts (kind of annoying - rarely comes up when I actually want it to, too much info)
@@ -263,11 +265,11 @@ cask "virtualbox" # virtual machine software (needed by docker-machine at least)
 # cask "virtualbox-extension-pack" # add-on to do stuff you'll always want... except for docker-machine
 #
 # cask "vivaldi" # chrome alternative with some cool features (I switched back to chrome for now - profiles are kind of buggy atm)
-# cask "vlc" # watch the videos I download
+# cask "vlc" # watch the videos I download (switchtd to mpv)
 # cask "webpquicklook" # quicklook plugin (preview webp images)
 # cask "wireshark" # analyze network data (but not on virtualbox networks)
 # cask "xquartz" # needed to install xclip, which is needed to copy text from multitail (I installed all of that, copy still didn't work :/ )
-cask "xscreensaver" # shitload of old screensavers... downside is there are so many it slows down selecting Desktop & Screen Saver the first time in System Preferences :/
+cask "xscreensaver" # shitload of old screensavers... downside is there are so many it slows down selecting Desktop & Screen Saver the first time in System Preferences :/ Upside: it has GLMatrix :)
 # }}}
 
 # mac app store {{{

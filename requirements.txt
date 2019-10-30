@@ -16,7 +16,7 @@ libtmux==0.8.2
 mccabe==0.6.1
 msgpack==0.6.2
 neovim==0.3.1
-openapi-cli-tool==0.2.0
+openapi-cli-tool==0.2.1
 prompt-toolkit==2.0.10
 pycparser==2.19
 Pygments==2.4.2
@@ -25,12 +25,12 @@ PyMySQL==0.9.3
 pynvim==0.3.2
 python-dateutil==2.8.0
 python-slugify==4.0.0
-PyYAML==5.1.2
+PyYAML==5.1
 sh==1.12.14
 SimpleWebSocketServer==0.1.1
 six==1.12.0
 sqlparse==0.3.0
-tabulate==0.8.5
+tabulate==0.8.3
 terminaltables==3.1.0
 text-unidecode==1.3
 tmuxp==1.5.3
