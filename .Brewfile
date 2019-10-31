@@ -66,6 +66,7 @@ brew "hub" # , args: ["devel"] # github tool is a superset of git with extra com
 brew "imagemagick" # image transformation tool - needed by php imagemagick extension (latest version needed to install host machine pecl imagick php extension)
 brew "imagemagick@6" # image transformation tool - v6 needed for catalog
 # brew "interactive-rebase-tool" # awesome ncurses tool to spiff up interactive rebases (I use vim with a plugin instead)
+# brew "intellij-idea-ce" # there's a community edition?? Just bookmarking this for later
 brew "intltool" # needed for php intl extension
 # brew "irssi" # irc client (I use web app)
 # brew "jsawk" # parse json in bash

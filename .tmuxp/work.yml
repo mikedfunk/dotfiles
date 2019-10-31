@@ -250,7 +250,7 @@ windows:
       # - saatchi-tail-legacy-services-xprod
 # }}}
 
-# logs (kqa) {{{
+# logs (kqa) (disabled) {{{
 # kqa logs are kind of flaky. Sometimes they time out. Haven't figured out why
 # yet.
   # - window_name: k.logs

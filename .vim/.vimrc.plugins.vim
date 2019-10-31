@@ -57,6 +57,7 @@ Plug 'wellle/tmux-complete.vim' " add tmux as a completion source with user-defi
 " Plug 'natebosch/vim-lsc' " vim language server support https://bluz71.github.io/2019/10/16/lsp-in-vim-with-the-lsc-plugin.html (tried, I think the problem is with php-language-server. I get a shitload of errors.)
 " Plug 'prabirshrestha/async.vim' | Plug 'prabirshrestha/vim-lsp' " language server features
 " Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}} " language server completion
+Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
 " Plug 'neoclide/coc-sources' " more coc completion sources
 " Plug 'Shougo/neco-vim' | Plug 'neoclide/coc-neco' " viml coc completion
 " Plug 'roxma/nvim-completion-manager' | Plug 'roxma/vim-hug-neovim-rpc' " completion plugin recommended on reddit https://www.reddit.com/r/vim/comments/6zgi34/what_are_the_differences_between_vimcompletesme/?utm_content=title&utm_medium=front&utm_source=reddit&utm_name=vim
@@ -283,6 +284,7 @@ Plug 'styled-components/vim-styled-components', { 'branch': 'main' } " styled-co
 " Plug 'gerw/vim-HiLinkTrace' " adds an <leader>hlt command to get all highlight groups under cursor
 " Plug 'elzr/vim-json' " json syntax (in vim-polyglot)
 Plug 'sheerun/vim-polyglot' " just about every filetype under the sun in one package
+Plug 'neoclide/jsonc.vim' " jsonc syntax
 " Plug 'zimbatm/haproxy.vim' " haproxy syntax (in vim-polyglot)
 " Plug 'amadeus/vim-mjml' " mjml email syntax
 " Plug 'stephpy/vim-yaml' " faster yaml syntax highlighting (vim-polyglot has a different one)

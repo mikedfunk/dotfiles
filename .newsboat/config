@@ -1,27 +1,14 @@
-# vim: set ft=cfg foldmethod=marker:
+# vim: set ft=config foldmethod=marker:
 # https://newsboat.org/releases/2.17.1/docs/newsboat.html
 
 # general {{{
-# Auto load feeds at startup
-auto-reload yes
-
-# Load feeds in 8 different threads
-reload-threads 8
-
-# Time elapsed between each auto-reload
-reload-time 15
-
-# Notify unread feeds
-notify-always yes
-
-# Sort feeds by title
-feed-sort-order title
-
-# Not show read feeds
-show-read-feeds no
-
-# Not show read articles
-show-read-articles no
+auto-reload yes # Auto load feeds at startup
+reload-threads 8 # Load feeds in 8 different threads
+reload-time 15 # Time elapsed between each auto-reload
+notify-always yes # Notify unread feeds
+feed-sort-order title # Sort feeds by title
+show-read-feeds no # Do not show read feeds
+show-read-articles no # Do not show read articles
 # }}}
 
 # keybindings {{{
@@ -47,7 +34,7 @@ unbind-key R
 bind-key R reload
 unbind-key A # not bound
 bind-key a mark-all-feeds-read
-unbind-key C # not bout
+unbind-key C # not bound
 bind-key c mark-feed-read
 
 bind-key "^S" toggle-show-read-feeds

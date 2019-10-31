@@ -24,10 +24,18 @@
       "filetypes": ["dockerfile"],
       "args": ["--stdio"]
     },
-    "phplang": {
-      "command": "/Users/mikefunk/.bin/php-language-server",
+    "intelephense": {
+      "command": "intelephense",
+      "args": ["--stdio"],
       "filetypes": ["php"],
-      "rootPatterns": ["composer.json"]
+      "initializationOptions": {
+        "storagePath": "/tmp/intelephense"
+      }
     }
+    // "phplang": {
+    //   "command": "/Users/mikefunk/.bin/php-language-server",
+    //   "filetypes": ["php"],
+    //   "rootPatterns": ["composer.json"]
+    // }
   }
 }
