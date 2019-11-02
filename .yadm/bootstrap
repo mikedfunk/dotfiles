@@ -288,7 +288,7 @@ _install_vim_plug () {
 _install_upgrade_vim_plugins () {
     log_info "Installing/upgrading vim plugins"
     # vim +PlugInstall +PlugUpdate +PlugClean! +qall
-    nvim +PlugUpgrade +PlugInstall +PlugUpdate +PlugClean! +qall
+    nvim +PlugUpgrade +PlugInstall +PlugUpdate +PlugClean! +UpdateRemotePlugins +qall
     # coc.nvim extension updates
     # nvim +"CocInstall coc-phpls" +CocUpdate +qall
 }
@@ -652,8 +652,10 @@ _apply_mac_preferences () {
 _start_launch_agents () {
     log_info "Starting launch agents"
     # let's use lunchy instead of launchctl! https://github.com/eddiezane/lunchy
-    lunchy start -w mike.saatchi-tunnel.autossh
-    lunchy start -w mike.saatchi-proxy.autossh
+    lunchy start --write mike.saatchi-tunnel.autossh
+    lunchy start --write mike.saatchi-proxy.autossh
+    lunchy start --write mike.toaf-tunnel-prod.autossh
+    lunchy start --write mike.toaf-tunnel-qa.autossh
 }
 # }}}
 

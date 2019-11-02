@@ -493,6 +493,8 @@ cs_re:red:Unusually long lock of doc keys
 cs_re:red,,bold/blink/reverse:\[error\]
 cs_re:yellow,,bold/reverse:\[warn\]
 cs_re:yellow,,bold/reverse:WARNING
+# zed error codes show up here sometimes
+cs_re:red,,bold/reverse/blink:[A-Z_]*ERROR[A-Z_]*
 
 # keys and stack traces
 # cs_re:white,,bold:^(  )*[a-zA-Z_ -]+:
@@ -589,6 +591,7 @@ cs_re:magenta,,bold:\[[0-9]{2}-[a-zA-Z]{3}-[0-9]{4}
 
 # errors and warnings - nginx error log
 cs_re:red,,bold/reverse/blink:\[error\]
+cs_re:red,,bold/reverse/blink:[A-Z_]*ERROR[A-Z_]*
 cs_re:yellow,,bold:\[warn\]
 
 # special log stuff

@@ -54,10 +54,9 @@ Plug 'wellle/tmux-complete.vim' " add tmux as a completion source with user-defi
 
 " completion not working currently with this...
 " Plug 'prabirshrestha/asyncomplete.vim' | Plug 'prabirshrestha/asyncomplete-lsp.vim' | Plug 'prabirshrestha/async.vim' | Plug 'prabirshrestha/vim-lsp' " Async Language Server Protocol plugin for vim8 and neovim.
-" Plug 'natebosch/vim-lsc' " vim language server support https://bluz71.github.io/2019/10/16/lsp-in-vim-with-the-lsc-plugin.html (tried, I think the problem is with php-language-server. I get a shitload of errors.)
+" Plug 'natebosch/vim-lsc' " vim language server support https://bluz71.github.io/2019/10/16/lsp-in-vim-with-the-lsc-plugin.html (tried, I think the problem is with php-language-server. I get a shitload of errors. Tried again with intelephense. I don't know why but on completion the mode is changing to insert completion but I get no completion menu.)
 " Plug 'prabirshrestha/async.vim' | Plug 'prabirshrestha/vim-lsp' " language server features
-" Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}} " language server completion
-Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'} " language server completion
 " Plug 'neoclide/coc-sources' " more coc completion sources
 " Plug 'Shougo/neco-vim' | Plug 'neoclide/coc-neco' " viml coc completion
 " Plug 'roxma/nvim-completion-manager' | Plug 'roxma/vim-hug-neovim-rpc' " completion plugin recommended on reddit https://www.reddit.com/r/vim/comments/6zgi34/what_are_the_differences_between_vimcompletesme/?utm_content=title&utm_medium=front&utm_source=reddit&utm_name=vim

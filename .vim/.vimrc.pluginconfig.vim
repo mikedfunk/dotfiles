@@ -1131,7 +1131,7 @@ if isdirectory(expand('~/.vim/plugged/vim-lotr')) | nnoremap <leader>ll :LOTRTog
 let g:lsc_server_commands = {
 \     'php': {
 \         'command': '~/.bin/php-language-server',
-\         'log_level': -1,
+\         'log_level': 1,
 \         'suppress_stderr': v:true
 \     }
 \ }
@@ -1246,7 +1246,7 @@ let g:phpqa_codecoverage_file = 'coverage/clover.xml'
 
 " vim-plug {{{
 " Install any newly added plugins in ~/.vimrc.plugins
-if exists(':PlugInstall') | nnoremap <leader>bi :Source<cr> :PlugInstall<cr> | endif
+if exists(':PlugInstall') | nnoremap <leader>bi :Source<cr> :PlugInstall<cr> :UpdateRemotePlugins<cr> | endif
 " Remove any newly removed plugins in ~/.vimrc.plugins
 if exists(':PlugClean') | nnoremap <leader>bc :Source<cr> :PlugClean!<cr> | endif
 " Upgrade all installed plugins in ~/.vimrc.plugins
