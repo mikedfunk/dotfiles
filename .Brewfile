@@ -29,9 +29,9 @@ brew "curl" # http cli tool. Included with mac of course, but this gives me the 
 brew "diff-so-fancy" # better git diff viewer (note: diff-highlight is in pip)
 brew "direnv" # allow .envrc in directories to be loaded at every prompt to add relative bins to PATH, etc. easy. (I use this a lot to adjust path, kubernetes context, etc.)
 brew "dnsmasq" # easily set up dynamic dev domains such as myproject.dev `sudo brew services start dnsmasq`
-# brew "docker" # virtualization software (I use docker for mac now - see docker cask)
-# brew "docker-compose" # manage multiple docker images and how they interact (I get this via docker-for-mac)
-# brew "docker-machine" # virtualbox VM for your docker images (I get this via docker-for-mac)
+brew "docker" # virtualization software (docker-for-mac no longer seems to come with any executables :/)
+brew "docker-compose" # manage multiple docker images and how they interact (docker-for-mac no longer seems to come with any executables :/)
+brew "docker-machine" # virtualbox VM for your docker images (docker-for-mac no longer seems to come with any executables :/)
 brew "docker-machine-nfs" # enables nfs mounts for docker-machine via `docker-machine-nfs default --mount-opts="async,noatime,actimeo=1,nolock,vers=3,udp" --force` (speeds up docker-machine a LOT)
 # brew "dos2unix" # converts dos line endings to unix in a file
 # tap "moncho/dry"

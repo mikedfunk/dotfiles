@@ -686,6 +686,19 @@ _upgrade_docker_machine () {
 }
 # }}}
 
+# link docker-for-mac {{{
+_link_docker_for_mac () {
+    # brew cask upgrade docker removes all docker-for-mac executables but doesn't link them, and there's no "brew cask link docker". I assume this is a temporary bug with the cask formula.
+    log_info "Linking docker-for-mac binaries"
+    DOCKER_APP_BIN="/Applications/Docker.app/Contents/Resources/bin"
+    ln -sf "$DOCKER_APP_BIN"/docker /usr/local/bin/docker
+    ln -sf "$DOCKER_APP_BIN"/docker-credential-osxkeychain /usr/local/bin/docker-credential-osxkeychain
+    ln -sf "$DOCKER_APP_BIN"/docker-credential-desktop /usr/local/bin/docker-credential-desktop
+    ln -sf "$DOCKER_APP_BIN"/docker-machine /usr/local/bin/docker-machine
+    ln -sf "$DOCKER_APP_BIN"/docker-compose /usr/local/bin/docker-compose
+}
+# }}}
+
 # reminders {{{
 _show_reminders () {
     true # noop
@@ -730,6 +743,7 @@ _apply_mac_preferences
 _start_launch_agents
 _fix_file_size_limit_for_watching_with_entr
 # _upgrade_docker_machine
+_link_docker_for_mac
 # _install_nix_package_manager
 # _show_reminders
 log_info "Installation complete"

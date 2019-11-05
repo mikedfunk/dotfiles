@@ -51,7 +51,7 @@ windows:
         - vim -S
         focus: true
       - ts
-      - bundle install && rails c
+      - bundle install; rails c
       - litecli db/development.sqlite3
       - sleep 60 && rails server
       # - multitail -cT ANSI -i log/development.log

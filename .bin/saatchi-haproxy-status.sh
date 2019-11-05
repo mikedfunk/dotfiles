@@ -21,7 +21,7 @@ DOCKER="🐳"
 GOOD="+"
 if [[ $CURRENT_SESSION == 'Work' ]]; then
 	if [[ $DOCKER_STATUS == 'Running' ]]; then
-		HTML=$(curl --user admin:admin -s 'http://local.saatchiart.com/haproxy?stats')
+		HTML=$(curl --user admin:admin -s 'http://www.local.saatchiart.com/haproxy?stats')
         status="$DOCKER "
         status+=$( (echo "$HTML" | grep -E '(active_up|active_no_check).*legacy01' >/dev/null) && echo $GOOD || echo 'L')
         status+=$( (echo "$HTML" | grep -E '(active_up|active_no_check).*imgproc01' >/dev/null) && echo $GOOD || echo 'I')
