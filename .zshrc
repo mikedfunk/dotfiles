@@ -142,7 +142,7 @@ has lazyload && lazyload 'has akamai && eval "$(akamai --zsh)"' akamai
 # source additional files and env vars {{{
 [ -f ~/.private_vars.sh ] && source ~/.private_vars.sh # where I store my secret env vars
 # [ -f ~/.support/promptline.theme.bash ] && source ~/.support/promptline.theme.bash # vim plugin generates this tmux status line file
-# has direnv && eval "$(direnv hook zsh)" # allow .envrc on each prompt start
+# has direnv && eval "$(direnv hook zsh)" # allow .envrc on each prompt start (moved to evalcache)
 # if you get this error:
 # 25:28: execution error: Not authorized to send Apple events to iTerm. (-1743)
 # Goto Settings -> Security & Privacy -> Privacy -> Automation -> Privacy tab and check the System Events checkbox. https://stackoverflow.com/a/53380557
@@ -177,7 +177,7 @@ has direnv && _evalcache direnv hook zsh # (evalcache version)
 has ntfy && _evalcache ntfy shell-integration # notify when long-running command finishes. pip package, breaks in pyenv - see yadm bootstrap for unique setup.
 has nodenv && _evalcache nodenv init - # (evalcache version)
 has pyenv && _evalcache pyenv init - # (evalcache version)
-[[ -f "$HOME/.phpenv/bin/phpenv" ]] && _evalcache "$HOME"/.phpenv/bin/phpenv init - # (evalcache version)
+[[ -f "$HOME"/.phpenv/bin/phpenv ]] && _evalcache "$HOME"/.phpenv/bin/phpenv init - # (evalcache version)
 has rbenv && _evalcache rbenv init - # (evalcache version)
 # }}}
 
@@ -205,7 +205,7 @@ export AUTO_NTFY_DONE_IGNORE=(
 # https://www.reddit.com/r/linux/comments/b5n1l5/whats_your_favorite_cli_tool_nobody_knows_about/ejex2pm/
 # export LESSOPEN="| /usr/local/opt/source-highlight/bin/src-hilite-lesspipe.sh %s"
 # alias less="less -R"
-GITWEB_PROJECTROOT="$HOME/Code"
+export GITWEB_PROJECTROOT="$HOME/Code"
 export PRE_COMMIT_COLOR=always # https://pre-commit.com/#cli
 export PSQL_PAGER="pspg"
 # [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ] && . "$HOME/.nix-profile/etc/profile.d/nix.sh" # this seems to conflict with direnv. Direnv seems to wipe the PATH changes this applies.

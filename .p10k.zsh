@@ -31,6 +31,11 @@
   # restarting zsh. Edit ~/.p10k.zsh and type `source ~/.p10k.zsh`.
   unset -m 'POWERLEVEL9K_*'
 
+  # MIKE ADDED: {{{
+  typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet # avoid p10k complaining about direnv output
+  typeset -g POWERLEVEL9K_TRANSIENT_PROMPT=same-dir # hide the extra prompt chrome for repeated commands in the same directory
+  # }}}
+
   # The list of segments shown on the left. Fill it with the most important segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
       # os_icon               # os identifier

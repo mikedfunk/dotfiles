@@ -156,6 +156,7 @@ brew "sqlite3" # used as the default db for rails
 # brew "stern" # kubernetes multitailer (waiting for this to be solved https://github.com/wercker/stern/issues/112)
 # brew "stormssh" # interact with ssh config. I have yet to find a net positive use for this. It makes my ssh config less readable because it doesn't put them in comment fold groups like I do. just so I can `storm add ...`. `storm list` and `storm search` are kind of useless as I can do that with `ssh <tab>`. It lets you edit multiple ssh entries at once, but I can do that in vim. It provides a web interface, but I don't want that.
 # brew "stow" # http://brandon.invergo.net/news/2012-05-26-using-gnu-stow-to-manage-your-dotfiles.html (I use yadm instead)
+# brew "stripe/stripe-cli/stripe" # test webooks with stripe, tail api events, etc.
 # brew "task" # taskwarrior https://taskwarrior.org (I don't need this unless I don't have jira. Doesn't let you assign points! Has an opaque priority selection algorithm.)
 # brew "teleconsole" # share your console with others easily (Extremely rare that I need something like this)
 brew "telnet" # I don't have telnet? How am I going to watch star wars?
