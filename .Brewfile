@@ -28,10 +28,10 @@ brew "curl" # http cli tool. Included with mac of course, but this gives me the 
 # brew "desk" # shell workspace manager. (I use direnv instead)
 brew "diff-so-fancy" # better git diff viewer (note: diff-highlight is in pip)
 brew "direnv" # allow .envrc in directories to be loaded at every prompt to add relative bins to PATH, etc. easy. (I use this a lot to adjust path, kubernetes context, etc.)
-brew "dnsmasq" # easily set up dynamic dev domains such as myproject.dev `sudo brew services start dnsmasq`
-brew "docker" # virtualization software (docker-for-mac no longer seems to come with any executables :/)
-brew "docker-compose" # manage multiple docker images and how they interact (docker-for-mac no longer seems to come with any executables :/)
-brew "docker-machine" # virtualbox VM for your docker images (docker-for-mac no longer seems to come with any executables :/)
+# brew "dnsmasq" # easily set up dynamic dev domains such as myproject.dev `sudo brew services start dnsmasq` (WARNING: this _could_ cause problems with docker-machine certs)
+# brew "docker" # virtualization software (I use docker-for-mac, which comes with executables but doesn't link them to /usr/local/bin any more, so I'm doing that manually in my yadm bootstrap)
+# brew "docker-compose" # manage multiple docker images and how they interact (I use docker-for-mac, which comes with executables but doesn't link them to /usr/local/bin any more, so I'm doing that manually in my yadm bootstrap)
+# brew "docker-machine" # virtualbox VM for your docker images (I use docker-for-mac, which comes with executables but doesn't link them to /usr/local/bin any more, so I'm doing that manually in my yadm bootstrap)
 brew "docker-machine-nfs" # enables nfs mounts for docker-machine via `docker-machine-nfs default --mount-opts="async,noatime,actimeo=1,nolock,vers=3,udp" --force` (speeds up docker-machine a LOT)
 # brew "dos2unix" # converts dos line endings to unix in a file
 # tap "moncho/dry"
@@ -238,6 +238,7 @@ cask "mpv" # video player like vlc
 cask "multifirefox" # profile picker until firefox fixes this glaring omission
 # cask "noti" # mac native pushbullet notifications (I use the chrome extension)
 # cask "ngrok" # securely expose your local site to the internet and inspect and repeat traffic
+cask "onecast" # cast xbox one to mac.
 # cask "osxfuse" # half of tool to mount ssh directories in the finder (useful if working on a shared dev environment)
 # cask "openemu" # multi game system emulator
 # cask "origin" # ea games store
@@ -252,6 +253,7 @@ cask "quicklook-json" # quicklook plugin (preview json)
 # cask "qlprettypatch" # quicklook plugin (preview patch files)
 cask "quicklook-csv" # quicklook plugin (preview csvs)
 cask "qlimagesize" # quicklook plugin (display image size and resolution in the title in preview)
+# cask "scummvm" # old school
 cask "sequel-pro" # mysql gui client. I mostly use mycli.
 cask "slack" # needed for screen sharing features. I mostly use the web app.
 cask "spectacle" # keyboard window splitter/resizer/mover. Kind of like a lightweight i3 window manager. I use it a lot.

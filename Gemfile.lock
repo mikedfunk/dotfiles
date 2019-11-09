@@ -141,7 +141,7 @@ GEM
       mini_mime (>= 0.1.1)
     marcel (0.3.3)
       mimemagic (~> 0.3.2)
-    mdl (0.7.0)
+    mdl (0.8.0)
       kramdown (~> 2.0)
       kramdown-parser-gfm (~> 1.0)
       mixlib-cli (~> 2.1, >= 2.1.1)
