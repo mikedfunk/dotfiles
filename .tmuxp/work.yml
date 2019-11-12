@@ -108,19 +108,19 @@ windows:
       - while true; do wait-on http://www.local.saatchiart.com && saatchi-tail-zed-local; sleep 1; done
 # }}}
 
-# catalog {{{
-  - window_name: catalog
-    start_directory: ~/Code/saatchi/catalog
-    layout: main-horizontal
-    options:
-      main-pane-height: 40
-    panes:
-      - shell_command:
-        - v +GitSessionLoad
-        focus: true
-      - ts
-      - while true; do wait-on http://www.local.saatchiart.com && saatchi-tinker-catalog-local; sleep 1; done
-      - while true; do wait-on http://www.local.saatchiart.com && saatchi-tail-catalog-local; sleep 1; done
+# catalog (disabled) {{{
+  # - window_name: catalog
+  #   start_directory: ~/Code/saatchi/catalog
+  #   layout: main-horizontal
+  #   options:
+  #     main-pane-height: 40
+  #   panes:
+  #     - shell_command:
+  #       - v +GitSessionLoad
+  #       focus: true
+  #     - ts
+  #     - while true; do wait-on http://www.local.saatchiart.com && saatchi-tinker-catalog-local; sleep 1; done
+  #     - while true; do wait-on http://www.local.saatchiart.com && saatchi-tail-catalog-local; sleep 1; done
 # }}}
 
 # views (disabled) {{{
@@ -219,21 +219,22 @@ windows:
   #     - ts
 # }}}
 
-# releases (xdev|xqa|xprod) {{{
-  - window_name: releases
-    layout: even-vertical
-    options:
-      pane-border-status: top
-    panes:
-      # printf sets pane name. alternative, wasn't as reliable for me:
-      # tmux select-pane -t 5 -T 'MY_PANE_NAME'
-      - printf "\033]2;%s\033\\r:r" 'xdev' && saatchi-releases-xdev --watch --clear
-      - printf "\033]2;%s\033\\r:r" 'xqa' && saatchi-releases-xqa --watch --clear
-      - printf "\033]2;%s\033\\r:r" 'xprod' && saatchi-releases-xprod --watch --clear
+# releases (xdev|xqa|xprod) (disabled) {{{
+  # - window_name: releases
+  #   layout: even-vertical
+  #   options:
+  #     pane-border-status: top
+  #   panes:
+  #     # printf sets pane name. alternative, wasn't as reliable for me:
+  #     # tmux select-pane -t 5 -T 'MY_PANE_NAME'
+  #     - printf "\033]2;%s\033\\r:r" 'xdev' && saatchi-releases-xdev --watch --clear
+  #     - printf "\033]2;%s\033\\r:r" 'xqa' && saatchi-releases-xqa --watch --clear
+  #     - printf "\033]2;%s\033\\r:r" 'xprod' && saatchi-releases-xprod --watch --clear
 # }}}
 
 # logs (prod) {{{
-  - window_name: p.logs
+  # - window_name: p.logs
+  - window_name: logs
     start_directory: ~/
     layout: tiled
     options:
@@ -267,6 +268,12 @@ windows:
   #     - printf "\033]2;%s\033\\r:r" 'legacy' && saatchi-tail-legacy-kqa
   #     - printf "\033]2;%s\033\\r:r" 'zed' && saatchi-tail-zed-kqa
   #     - printf "\033]2;%s\033\\r:r" 'catalog' && saatchi-tail-catalog-kqa
+# }}}
+
+# k9s (disabled) {{{
+  # - window_name: k9s
+  #   panes:
+  #     - k9s --namespace=develop
 # }}}
 
 # chromatic (iOS app) (disabled) {{{

@@ -76,6 +76,7 @@ brew "jq" # simple json pretty-printer `echo '{"my" => "json"}' | jq .` (Used in
 # brew "keychain" # manage ssh agent and adding keys to it automatically. (I don't use this now that I have an ssh config directive to store passphrases for ssh agent in my osx keychain, which is different from this project's "keychain". Confusing, I know.)
 # brew "kubernetes-cli" # already installed via brew cask install docker
 # brew "kubectx" # kubernetes powertools (speeds up context handling)
+brew "derailed/k9s/k9s" # handy kubernetes dashboard `k9s -n develop`
 brew "lastpass-cli" # TODO move all of my cli private_stuff over to lastpass
 # brew "lftp" # fancy scp, torrent, http, ftp download and upload client with queues, backgrounding, and more
 brew "libcouchbase" # nosql fast data storage. I install this for the cli tool `cbc`
@@ -89,7 +90,7 @@ brew "litecli" # like mycli for sqlite
 # brew "lynx" # console web browser. used by ranger to preview html.
 # brew "macvim" # mac gui vim client
 brew "mas" # mac app store cli. e.g. `mas install Xcode`
-# brew "andersjanmyr/homebrew-tap/mc" # memcached cli. Use the full path to avoid conflicting with midnight commander (Trouble using on saatchi due to networking limitations)
+# brew "andersjanmyr/homebrew-tap/mc" # memcached cli. Use the full path to avoid conflicting with midnight commander, or just uninstall midnight commander (Trouble using on saatchi due to networking limitations)
 brew "memcached" # needed by php70 memcached pecl extension
 brew "mkcert" # create a certificate, create a local CA, add the cert as trusted in the CA
 # brew "mono" # .NET compiler for mac. Useful for OmniSharp. (not needed)

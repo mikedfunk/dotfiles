@@ -48,7 +48,7 @@ windows:
     layout: main-horizontal
     panes:
       - shell_command:
-        - vim -S
+          - vim -S
         focus: true
       - ts
       - bundle install; rails c
