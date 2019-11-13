@@ -151,6 +151,16 @@ _install_ievms () {
 }
 # }}}
 
+# install mc {{{
+_install_mc () {
+    # brew formula is broken for this because it's in a private github repo :/
+    has mc && return
+    log_info "installing mc (memcached)"
+    curl -L https://github.com/andersjanmyr/mc/releases/download/v1.4.3/mc-osx > /usr/local/bin/mc
+    chmod +x /usr/local/bin/mc
+}
+# }}}
+
 # akamai {{{
 _install_upgrade_akamai () {
     has akamai && return
@@ -744,6 +754,7 @@ _start_launch_agents
 _fix_file_size_limit_for_watching_with_entr
 # _upgrade_docker_machine
 _link_docker_for_mac
+# _install_mc
 # _install_nix_package_manager
 # _show_reminders
 log_info "Installation complete"

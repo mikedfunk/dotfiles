@@ -1,0 +1,16 @@
+k9s:
+  refreshRate: 2
+  headless: true
+  logBufferSize: 1000
+  logRequestSize: 200
+  currentContext: saatchi
+  currentCluster: saatchi-aws
+  clusters:
+    saatchi-aws:
+      namespace:
+        active: develop
+        favorites:
+        - develop
+        - default
+      view:
+        active: pods

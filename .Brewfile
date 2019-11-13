@@ -90,7 +90,7 @@ brew "litecli" # like mycli for sqlite
 # brew "lynx" # console web browser. used by ranger to preview html.
 # brew "macvim" # mac gui vim client
 brew "mas" # mac app store cli. e.g. `mas install Xcode`
-# brew "andersjanmyr/homebrew-tap/mc" # memcached cli. Use the full path to avoid conflicting with midnight commander, or just uninstall midnight commander (Trouble using on saatchi due to networking limitations)
+# brew "andersjanmyr/homebrew-tap/mc" # memcached cli. Use the full path to avoid conflicting with midnight commander, or just uninstall midnight commander (Trouble using on saatchi due to networking limitations, also this tap is in a private github repo!! I have an installer in my yadm config instead)
 brew "memcached" # needed by php70 memcached pecl extension
 brew "mkcert" # create a certificate, create a local CA, add the cert as trusted in the CA
 # brew "mono" # .NET compiler for mac. Useful for OmniSharp. (not needed)
