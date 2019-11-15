@@ -75,7 +75,7 @@ brew "jq" # simple json pretty-printer `echo '{"my" => "json"}' | jq .` (Used in
 # brew "jrnl" # simple journaling wrapper (I use joplin)
 # brew "keychain" # manage ssh agent and adding keys to it automatically. (I don't use this now that I have an ssh config directive to store passphrases for ssh agent in my osx keychain, which is different from this project's "keychain". Confusing, I know.)
 # brew "kubernetes-cli" # already installed via brew cask install docker
-# brew "kubectx" # kubernetes powertools (speeds up context handling)
+brew "kubectx" # quick way to switch contexts with a fzf picker
 brew "derailed/k9s/k9s" # handy kubernetes dashboard `k9s -n develop`
 brew "lastpass-cli" # TODO move all of my cli private_stuff over to lastpass
 # brew "lftp" # fancy scp, torrent, http, ftp download and upload client with queues, backgrounding, and more
@@ -182,6 +182,7 @@ brew "watchman" # needed for `jest --watch` https://github.com/cm-pliser-tdd-by-
 brew "wget" # latest version
 # brew "wifi-password" # get your current wifi password quickly without mucking about with keychain access (install if needed)
 # brew "xdebug-osx" # xdebug toggler for homebrew php (which I don't currently use)
+# brew "xmlto" # convert xml to other formats because fuck xml
 # brew "vim" # macvim requires xcode. This also allows you to get vim 8 without using a separate tap. (switched back to neovim)
 # brew "vit" # ncurses taskwarrior interface - like tig for taskwarrior (This is cool but I don't really use taskwarrior anymore. Freeform daily task list with notes are more helpful to me.)
 brew "yamllint" # used by vim-ale
@@ -192,6 +193,7 @@ brew "zork" # seriously? yes. tip: `save` and `restore` And yes, there's only on
 # brew "zplug" # zsh plugin manager like composer. bash installer crashes for some reason. works fine via homebrew. (switched to antibody)
 brew "zsh" # awesome bash shell replacement
 # brew "zsh-completions" # tab completions (I install this via my zsh plugin manager instead)
+# brew "zsh-lovers" # https://grml.org/zsh/zsh-lovers.html
 # }}}
 
 # cask {{{

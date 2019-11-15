@@ -1,0 +1,32 @@
+# files to encrypt and put in my dotfiles. This is handled by yadm and
+# encrypted with gpg. globbing is supported. Also inverse via !... is
+# supported.
+# https://github.com/TheLocehiliosan/yadm/blob/master/yadm.md#encryption
+# vim: set foldmethod=marker filetype=conf:
+
+# leafgroup {{{
+.bin/saatchi-haproxy-status.sh
+.mjm-ansible-hosts.ini
+.mjmrc
+.toafrc
+.saatchi-ansible-hosts.ini
+.saatchirc
+Code/saatchi/http
+Code/saatchi/kubernetes
+Code/saatchi/queries
+# }}}
+
+# misc {{{
+.config/joplin/database.sqlite
+.edgerc
+.mailmap
+.mylogin.cnf
+.netrc
+.private_vars.sh
+.ssh/config
+.ssh/keys
+.support/OmegaOptions.bak
+.support/saatchi
+Code/uml
+Library/Application Support/Sequel Pro/Data/Favorites.plist
+# }}}

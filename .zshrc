@@ -95,6 +95,12 @@ has() {
 # If I don't do this I get "compdef undefined"
 autoload -Uz compinit
 compinit
+
+# https://github.com/machinshin/dotfiles/blob/master/.zshrc#L159-L160
+# Complete the hosts and - last but not least - the remote directories.
+#  $ scp file username@<TAB><TAB>:/<TAB>
+zstyle ':completion:*:(ssh|scp|sftp|sshrc|autossh|sshfs):*' hosts $hosts
+zstyle ':completion:*:(ssh|scp|sftp|sshrc|autossh|sshfs):*' users $users
 # }}}
 
 # antibody {{{

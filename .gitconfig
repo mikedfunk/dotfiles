@@ -59,6 +59,7 @@
     cm = !git add -A && git commit -am
     cma = !git add -A && git commit -a --amend --no-edit
     ca = !git add -A && git commit --amend
+    cia = commit --amend --no-edit
     co = checkout
     cob = checkout -b
     # Fire up your difftool (e.g. Kaleidescope) with all the changes that
