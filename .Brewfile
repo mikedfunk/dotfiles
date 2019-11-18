@@ -246,6 +246,7 @@ cask "onecast" # cast xbox one to mac.
 # cask "openemu" # multi game system emulator
 # cask "origin" # ea games store
 # cask "pdftotext" # used by ranger to preview pdfs (I don't use ranger these days)
+# cask "playonmac" # run windows apps on mac for free via wine
 # cask "postico" # postgresql gui. Useful for some time saver capabilities like copy/paste rows, etc. (paid app, ugh)
 # cask "postman" # http api client (I use insomnia to share, but vim-rest-console in the terminal)
 # https://github.com/sindresorhus/quick-look-plugins

@@ -76,8 +76,8 @@ path=(
 # but it doesn't. If I don't source that I get compdef undefined.
 fpath=(
   # homebrew zsh completions
-  "/usr/local/share/zsh/functions"
-  "/usr/local/share/zsh/site-functions"
+  # "/usr/local/share/zsh/functions" # (already in FPATH)
+  # "/usr/local/share/zsh/site-functions" # (already in FPATH)
   $fpath
 )
 # }}}

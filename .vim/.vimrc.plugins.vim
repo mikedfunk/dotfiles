@@ -162,6 +162,7 @@ Plug 'machakann/vim-swap' " move args left/right with g< g> or gs for interactiv
 " if has('signs') | Plug 'MattesGroeger/vim-bookmarks' | endif " bookmark lines with annotations and navigate them globally. especially useful for taking inline notes on a file without adding a comment.
 " Plug 'brooth/far.vim', { 'on': ['Far', 'Fardo', 'Farundo', 'Farp', 'Refar', 'F'] } " find and replace
 " Plug 'yonchu/accelerated-smooth-scroll' " animated scroll on c-d, c-u, c-f, c-b
+" Plug 'psliwka/vim-smoothie' " spiffier smooth scrolling
 " Plug 'yuttie/comfortable-motion.vim' " smooth scroll using timer and shit
 Plug 'wellle/targets.vim' " Adds selection targets like vi2) or vI} to avoid whitespace
 Plug 'tpope/vim-obsession' " auto save sessions if you :Obsess

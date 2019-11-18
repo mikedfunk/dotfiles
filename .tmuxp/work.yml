@@ -52,6 +52,7 @@ windows:
         - v +GitSessionLoad
         focus: true
       - ts
+      - while true; do wait-on http://www.local.saatchiart.com && saatchi-tinker-easel-local; sleep 1; done
       - yarn jest --watchAll
       - while true; do wait-on http://www.local.saatchiart.com && saatchi-tail-easel-local; sleep 1; done
 # }}}
@@ -103,6 +104,7 @@ windows:
         - v +GitSessionLoad
         focus: true
       - ts
+      - while true; do wait-on http://www.local.saatchiart.com && saatchi-tinker-zed-local; sleep 1; done
       - while true; do wait-on http://www.local.saatchiart.com && saatchi-phpunit-watch-zed; sleep 1; done
       - saatchi-grunt-watch-zed
       - while true; do wait-on http://www.local.saatchiart.com && saatchi-tail-zed-local; sleep 1; done
