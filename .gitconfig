@@ -313,7 +313,7 @@
     # This just implicitly sets up a tracking branch when you `git branch` or `git checkout -b`. Same as `--track`.
     # autosetupmerge = always
 [rebase]
-    autosquash = true
+    # autosquash = true
     autostash = true
 [push]
     default = current
