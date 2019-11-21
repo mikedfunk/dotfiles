@@ -286,5 +286,5 @@ mas "Downlink", id: 1454269192 # cool live (20 min refresh) earth view on my des
 mas "Xcode", id: 497799835 # needed for some tools (TODO which tools?)
 mas "Amphetamine", id: 937984704 # replacement for discontinued "caffeine" menubar app
 mas "Keeper", id: 414781829 # used by leaf group, like lastpass
-# mas "GIPHY CAPTURE", id: 668208984
+mas "GIPHY CAPTURE", id: 668208984
 # }}}
