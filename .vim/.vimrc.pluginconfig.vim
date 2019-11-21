@@ -65,7 +65,14 @@ if executable('./node_modules/.bin/eslint') | call add(s:js_linters, 'eslint') |
 " }}}
 
 " phpcs and phpcbf {{{
-if filereadable('phpcs.xml')
+if filereadable('phpcs-mike.xml')
+    let g:ale_php_phpcs_standard = getcwd() . '/phpcs-mike.xml'
+    let g:ale_php_phpcbf_standard = getcwd() . '/phpcs-mike.xml'
+    let g:ale_php_phpcs_use_global = 1
+    let g:ale_php_phpcbf_use_global = 1
+    call add(s:php_linters, 'phpcs')
+    call add(s:php_fixers, 'phpcbf')
+elseif filereadable('phpcs.xml')
     let g:ale_php_phpcs_standard = getcwd() . '/phpcs.xml'
     let g:ale_php_phpcbf_standard = getcwd() . '/phpcs.xml'
     call add(s:php_linters, 'phpcs')

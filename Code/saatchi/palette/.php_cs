@@ -59,7 +59,7 @@ return PhpCsFixer\Config::create()
         'escape_implicit_backslashes' => true, // Escape implicit backslashes in strings and heredocs to ease the understanding of which are special chars interpreted by PHP and which not. @PhpCsFixer
         'explicit_indirect_variable' => true, // Add curly braces to indirect variables to make them clear to understand. Requires PHP >= 7.0. @PhpCsFixer
         'explicit_string_variable' => true, // Converts implicit variables into explicit ones in double-quoted strings or heredoc syntax. @PhpCsFixer
-        'final_class' => true, // All classes must be final, except abstract ones and Doctrine entities.
+        // 'final_class' => true, // All classes must be final, except abstract ones and Doctrine entities.
         // 'final_internal_class' => true, // Internal classes should be final. @PhpCsFixer:risky
         'fopen_flag_order' => true, // Order the flags in fopen calls, b and t must be last. @PhpCsFixer:risky@Symfony:risky
         'fopen_flags' => true, // The flags in fopen calls must omit t, and b must be omitted or included consistently. @PhpCsFixer:risky@Symfony:risky
@@ -188,7 +188,7 @@ return PhpCsFixer\Config::create()
         'phpdoc_inline_tag' => true, // Fix PHPDoc inline tags, make @inheritdoc always inline. @PhpCsFixer@Symfony
         'phpdoc_no_access' => true, // @access annotations should be omitted from PHPDoc. @PhpCsFixer@Symfony
         'phpdoc_no_alias_tag' => true, // No alias PHPDoc tags should be used. @PhpCsFixer@Symfony
-        'phpdoc_no_empty_return' => true, // @return void and @return null annotations should be omitted from PHPDoc. @PhpCsFixer
+        // 'phpdoc_no_empty_return' => true, // @return void and @return null annotations should be omitted from PHPDoc. @PhpCsFixer
         'phpdoc_no_package' => true, // @package and @subpackage annotations should be omitted from PHPDoc. @PhpCsFixer@Symfony
         'phpdoc_no_useless_inheritdoc' => true, // Classy that does not inherit must not have @inheritdoc tags. @PhpCsFixer@Symfony
         'phpdoc_order' => true, // Annotations in PHPDoc should be ordered so that @param annotations come first, then @throws annotations, then @return annotations. @PhpCsFixer

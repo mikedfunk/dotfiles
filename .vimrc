@@ -183,7 +183,7 @@ set completeopt+=longest " only autofill the common text between all completion 
 "     set completeopt+=popup
 " endif
 if has('nvim')
-    set pumblend=10 " pseudo-transparency in popups (neovim only)
+    set pumblend=20 " pseudo-transparency in popups (neovim only)
 endif
 " set completeopt+=noinsert,noselect " For as-you-type completion. avoids automatically inserting text as you type.
 " set completeopt-=menu | set completeopt+=menuone " display completion even if there is one result. Useful for as-you-type completion.
