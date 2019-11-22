@@ -3,6 +3,8 @@
   <description>The coding standard for Saatchi Art (phpcs v3.5.2)</description>
   <arg name="colors" />
 
+  <ini name="memory_limit" value="1024M"/>
+
   <exclude-pattern>vendor/*</exclude-pattern>
   <exclude-pattern>tests/*</exclude-pattern>
   <exclude-pattern>spec/*</exclude-pattern>
