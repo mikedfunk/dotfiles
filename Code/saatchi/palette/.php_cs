@@ -32,7 +32,7 @@ return PhpCsFixer\Config::create()
         'blank_line_after_namespace' => true, // There MUST be one blank line after the namespace declaration. @PSR2@PhpCsFixer@Symfony
         'blank_line_after_opening_tag' => true, // Ensure there is no code on the same line as the PHP open tag and it is followed by a blank line. @PhpCsFixer@Symfony
         'blank_line_before_return' => true, // An empty line feed should precede a return statement.
-        'blank_line_before_statement' => true, // An empty line feed must precede any configured statement. @PhpCsFixer@Symfony
+        // 'blank_line_before_statement' => true, // An empty line feed must precede any configured statement. @PhpCsFixer@Symfony
         'braces' => true, // The body of each structure MUST be enclosed by braces. Braces should be properly placed. Body of braces should be properly indented. @PSR2@PhpCsFixer@Symfony
         'cast_spaces' => ['space' => 'single'], // A single space or none should be between cast and variable. @PhpCsFixer@Symfony
         'class_attributes_separation' => true, // Class, trait and interface elements must be separated with one blank line. @PhpCsFixer@Symfony
@@ -43,7 +43,9 @@ return PhpCsFixer\Config::create()
         'combine_nested_dirname' => true, // Replace multiple nested calls of dirname by only one call with second $level parameter. Requires PHP >= 7.0. @PHP70Migration:risky@PHP71Migration:risky
         'comment_to_phpdoc' => true, // Comments with annotation should be docblock when used on structural elements. @PhpCsFixer:risky
         'compact_nullable_typehint' => true, // Remove extra spaces in a nullable typehint. @PhpCsFixer
-        'concat_space' => true, // Concatenation should be spaced according configuration. @PhpCsFixer@Symfony
+        'concat_space' => [
+            'spacing' => 'one',
+        ], // Concatenation should be spaced according configuration. @PhpCsFixer@Symfony
         'date_time_immutable' => true, // Class DateTimeImmutable should be used instead of DateTime.
         'declare_equal_normalize' => true, // Equal sign in declare statement should be surrounded by spaces or not following configuration. @PhpCsFixer@Symfony
         'declare_strict_types' => true, // Force strict types declaration in all files. Requires PHP >= 7.0. @PHP70Migration:risky@PHP71Migration:risky
@@ -149,10 +151,28 @@ return PhpCsFixer\Config::create()
         'no_whitespace_in_blank_line' => true, // Remove trailing whitespace at the end of blank lines. @PhpCsFixer@Symfony
         'non_printable_character' => true, // Remove Zero-width space (ZWSP), Non-breaking space (NBSP) and other invisible unicode symbols. @PHP70Migration:risky@PHP71Migration:risky@PhpCsFixer:risky@Symfony:risky
         'normalize_index_brace' => true, // Array index should always be written by using square braces. @PhpCsFixer@Symfony
-        'not_operator_with_space' => true, // Logical NOT operators (!) should have leading and trailing whitespaces.
-        'not_operator_with_successor_space' => true, // Logical NOT operators (!) should have one trailing whitespace.
+        // 'not_operator_with_space' => true, // Logical NOT operators (!) should have leading and trailing whitespaces.
+        // 'not_operator_with_successor_space' => true, // Logical NOT operators (!) should have one trailing whitespace.
         'object_operator_without_whitespace' => true, // There should not be space before or after object T_OBJECT_OPERATOR ->. @PhpCsFixer@Symfony
-        'ordered_class_elements' => true, // Orders the elements of classes/interfaces/traits. @PhpCsFixer
+        'ordered_class_elements' => [
+            'order' => [
+                'use_trait',
+                'constant_public',
+                'constant_protected',
+                'constant_private',
+                'property_public',
+                'property_protected',
+                'property_private',
+                'construct',
+                'destruct',
+                'method',
+                // 'magic',
+                // 'phpunit',
+                // 'method_public',
+                // 'method_protected',
+                // 'method_private',
+            ],
+        ], // Orders the elements of classes/interfaces/traits. @PhpCsFixer
         // 'ordered_imports' => true, // Ordering use statements. @PhpCsFixer@Symfony
         'ordered_imports' => [
             'sortAlgorithm' => OrderedImportsFixer::SORT_ALPHA,
@@ -182,27 +202,31 @@ return PhpCsFixer\Config::create()
         'php_unit_test_case_static_method_calls' => true, // ramework\TestCase static methods must all be of the same type, either $this->, self:: or static::. @PhpCsFixer:risky
         'php_unit_test_class_requires_covers' => true, // Adds a default @coversNothing annotation to PHPUnit test classes that have no @covers* annotation. @PhpCsFixer
         'phpdoc_add_missing_param_annotation' => true, // PHPDoc should contain @param for all params. @PhpCsFixer
-        'phpdoc_align' => true, // All items of the given phpdoc tags must be either left-aligned or (by default) aligned vertically. @PhpCsFixer@Symfony
+        // 'phpdoc_align' => [
+        //     'align' => 'left',
+        // ], // All items of the given phpdoc tags must be either left-aligned or (by default) aligned vertically. @PhpCsFixer@Symfony
         'phpdoc_annotation_without_dot' => true, // PHPDoc annotation descriptions should not be a sentence. @PhpCsFixer@Symfony
         'phpdoc_indent' => true, // Docblocks should have the same indentation as the documented subject. @PhpCsFixer@Symfony
         'phpdoc_inline_tag' => true, // Fix PHPDoc inline tags, make @inheritdoc always inline. @PhpCsFixer@Symfony
-        'phpdoc_no_access' => true, // @access annotations should be omitted from PHPDoc. @PhpCsFixer@Symfony
+        // 'phpdoc_no_access' => true, // @access annotations should be omitted from PHPDoc. @PhpCsFixer@Symfony
         'phpdoc_no_alias_tag' => true, // No alias PHPDoc tags should be used. @PhpCsFixer@Symfony
         // 'phpdoc_no_empty_return' => true, // @return void and @return null annotations should be omitted from PHPDoc. @PhpCsFixer
         'phpdoc_no_package' => true, // @package and @subpackage annotations should be omitted from PHPDoc. @PhpCsFixer@Symfony
         'phpdoc_no_useless_inheritdoc' => true, // Classy that does not inherit must not have @inheritdoc tags. @PhpCsFixer@Symfony
-        'phpdoc_order' => true, // Annotations in PHPDoc should be ordered so that @param annotations come first, then @throws annotations, then @return annotations. @PhpCsFixer
+        // 'phpdoc_order' => true, // Annotations in PHPDoc should be ordered so that @param annotations come first, then @throws annotations, then @return annotations. @PhpCsFixer
         'phpdoc_return_self_reference' => true, // The type of @return annotations of methods returning a reference to itself must the configured one. @PhpCsFixer@Symfony
         'phpdoc_scalar' => true, // Scalar types should always be written in the same form. int not integer, bool not boolean, float not real or double. @PhpCsFixer@Symfony
         'phpdoc_separation' => true, // Annotations in PHPDoc should be grouped together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a single blank line. @PhpCsFixer@Symfony
         'phpdoc_single_line_var_spacing' => true, // Single line @var PHPDoc should have proper spacing. @PhpCsFixer@Symfony
         'phpdoc_summary' => true, // PHPDoc summary should end in either a full stop, exclamation mark, or question mark. @PhpCsFixer@Symfony
-        'phpdoc_to_comment' => true, // Docblocks should only be used on structural elements. @PhpCsFixer@Symfony
+        // 'phpdoc_to_comment' => true, // Docblocks should only be used on structural elements. @PhpCsFixer@Symfony
         'phpdoc_to_return_type' => true, // EXPERIMENTAL: Takes @return annotation of non-mixed types and adjusts accordingly the function signature. Requires PHP >= 7.0.
         'phpdoc_trim' => true, // PHPDoc should start and end with content, excluding the very first and last line of the docblocks. @PhpCsFixer@Symfony
         'phpdoc_trim_consecutive_blank_line_separation' => true, // Removes extra blank lines after summary and after description in PHPDoc. @PhpCsFixer@Symfony
         'phpdoc_types' => true, // The correct case must be used for standard PHP types in PHPDoc. @PhpCsFixer@Symfony
-        'phpdoc_types_order' => true, // Sorts PHPDoc types. @PhpCsFixer@Symfony
+        'phpdoc_types_order' => [
+            'null_adjustment' => 'always_last',
+        ], // Sorts PHPDoc types. @PhpCsFixer@Symfony
         'phpdoc_var_annotation_correct_order' => true, // @var and @type annotations must have type and name in the correct order. @PhpCsFixer
         'phpdoc_var_without_name' => true, // @var and @type annotations should not contain the variable name. @PhpCsFixer@Symfony
         'pow_to_exponentiation' => true, // Converts pow to the ** operator. @PHP56Migration:risky@PHP70Migration:risky@PHP71Migration:risky
@@ -245,10 +269,10 @@ return PhpCsFixer\Config::create()
         'visibility_required' => true, // Visibility MUST be declared on all properties and methods; abstract and final MUST be declared before the visibility; static MUST be declared after the visibility. @PHP71Migration@PHP73Migration@PSR2@PhpCsFixer@Symfony
         // 'void_return' => true, // Add void return type to functions with missing or empty return statements, but priority is given to @return annotations. Requires PHP >= 7.1. @PHP71Migration:risky
         'whitespace_after_comma_in_array' => true, // In array declaration, there MUST be a whitespace after each comma. @PhpCsFixer@Symfony
-        'yoda_style' => true, // Write conditions in Yoda style (true), non-Yoda style (false) or ignore those conditions (null) based on configuration. @PhpCsFixer@Symfony
+        // 'yoda_style' => true, // Write conditions in Yoda style (true), non-Yoda style (false) or ignore those conditions (null) based on configuration. @PhpCsFixer@Symfony
 
         // THIRD_PARTY FIXERS
-        'PedroTroller/line_break_between_method_arguments' => ['max-length' => 80, 'automatic-argument-merge' => true], // 'max-args' => 4,
+        'PedroTroller/line_break_between_method_arguments' => ['max-length' => 90, 'automatic-argument-merge' => true], // 'max-args' => 4,
         'PedroTroller/comment_line_to_phpdoc_block' => true,
         'PedroTroller/phpspec' => ['instanceof' => ['PhpSpec\ObjectBehavior']],
     ])

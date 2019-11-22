@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <ruleset name="Saatchi Art Coding Standard">
-  <description>The coding standard for Saatchi Art</description>
+  <description>The coding standard for Saatchi Art (phpcs v3.5.2)</description>
   <arg name="colors" />
 
   <exclude-pattern>vendor/*</exclude-pattern>
@@ -18,9 +18,11 @@
     <!-- Generic (28 sniffs) -->
     <rule ref="Generic.Arrays.ArrayIndent" />
     <rule ref="Generic.Arrays.DisallowLongArraySyntax" />
-    <rule ref="Generic.CodeAnalysis.EmptyStatement" />
+    <rule ref="Generic.CodeAnalysis.EmptyStatement">
+        <exclude name="Generic.CodeAnalysis.EmptyStatement.DetectedCatch" />
+    </rule>
     <rule ref="Generic.CodeAnalysis.UnnecessaryFinalModifier" />
-    <rule ref="Generic.Commenting.DocComment" />
+    <!-- <rule ref="Generic.Commenting.DocComment" /> -->
     <!-- <rule ref="Generic.Commenting.Todo" /> -->
     <rule ref="Generic.ControlStructures.InlineControlStructure" />
     <rule ref="Generic.Debug.ClosureLinter" />
@@ -34,7 +36,9 @@
     </rule>
     <rule ref="Generic.Files.OneObjectStructurePerFile" /> <!-- added -->
     <rule ref="Generic.Formatting.DisallowMultipleStatements" />
-    <rule ref="Generic.Formatting.MultipleStatementAlignment" />
+    <rule ref="Generic.Formatting.MultipleStatementAlignment">
+      <exclude name="Generic.Formatting.MultipleStatementAlignment.NotSameWarning" />
+    </rule>
     <rule ref="Generic.Formatting.SpaceAfterCast" />
     <rule ref="Generic.Functions.CallTimePassByReference" />
     <rule ref="Generic.Functions.FunctionCallArgumentSpacing">
@@ -80,7 +84,10 @@
     <rule ref="PEAR.ControlStructures.MultiLineCondition" />
     <rule ref="PEAR.Files.IncludingFile" />
     <rule ref="PEAR.Formatting.MultiLineAssignment" />
-    <rule ref="PEAR.Functions.FunctionCallSignature" />
+    <rule ref="PEAR.Functions.FunctionCallSignature">
+      <exclude name="PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket" />
+      <exclude name="PEAR.Functions.FunctionCallSignature.CloseBracketLine" />
+    </rule>
     <rule ref="PEAR.Functions.ValidDefaultValue" />
 
     <!-- PSR1 (3 sniffs) -->
@@ -103,7 +110,9 @@
     <rule ref="PSR12.Keywords.ShortFormTypeKeywords" />
     <rule ref="PSR12.Namespaces.CompoundNamespaceDepth" />
     <rule ref="PSR12.Operators.OperatorSpacing" />
-    <rule ref="PSR12.Properties.ConstantVisibility" />
+    <rule ref="PSR12.Properties.ConstantVisibility">
+        <exclude name="PSR12.Properties.ConstantVisibility.NotFound" />
+    </rule>
     <rule ref="PSR12.Traits.UseDeclaration" />
 
     <!-- PSR2 (12 sniffs) -->
@@ -122,7 +131,14 @@
 
     <!-- Squiz (98 sniffs) -->
     <rule ref="Squiz.Arrays.ArrayBracketSpacing" />
-    <rule ref="Squiz.Arrays.ArrayDeclaration" />
+    <rule ref="Squiz.Arrays.ArrayDeclaration">
+        <exclude name="Squiz.Arrays.ArrayDeclaration.KeyNotAligned" />
+        <exclude name="Squiz.Arrays.ArrayDeclaration.CloseBraceNotAligned" />
+        <exclude name="Squiz.Arrays.ArrayDeclaration.DoubleArrowNotAligned" />
+        <exclude name="Squiz.Arrays.ArrayDeclaration.SingleLineNotAllowed" />
+        <exclude name="Squiz.Arrays.ArrayDeclaration.ValueNotAligned" />
+    </rule>
+
     <!-- <rule ref="Squiz.CSS.ClassDefinitionClosingBraceSpace" /> -->
     <!-- <rule ref="Squiz.CSS.ClassDefinitionNameSpacing" /> -->
     <!-- <rule ref="Squiz.CSS.ClassDefinitionOpeningBraceSpace" /> -->
@@ -151,50 +167,86 @@
       <exclude name="Squiz.Commenting.BlockComment.FirstLineIndent" />
       <exclude name="Squiz.Commenting.BlockComment.LineIndent" />
       <exclude name="Squiz.Commenting.BlockComment.NoEmptyLineAfter" />
+      <exclude name="Squiz.Commenting.BlockComment.WrongStart" />
     </rule>
-    <rule ref="Squiz.Commenting.ClassComment" />
-    <rule ref="Squiz.Commenting.ClosingDeclarationComment" />
+    <rule ref="Squiz.Commenting.ClassComment">
+      <exclude name="Squiz.Commenting.ClassComment.Missing" />
+      <exclude name="Squiz.Commenting.ClassComment.TagNotAllowed" />
+    </rule>
+    <!-- <rule ref="Squiz.Commenting.ClosingDeclarationComment" /> -->
     <rule ref="Squiz.Commenting.DocCommentAlignment" />
     <rule ref="Squiz.Commenting.EmptyCatchComment" />
     <!-- <rule ref="Squiz.Commenting.FileComment" /> -->
-    <rule ref="Squiz.Commenting.FunctionComment" />
+    <!-- <rule ref="Squiz.Commenting.FunctionComment" /> -->
     <rule ref="Squiz.Commenting.FunctionCommentThrowTag" />
     <rule ref="Squiz.Commenting.InlineComment">
       <exclude name="Squiz.Commenting.InlineComment.InvalidEndChar" />
       <exclude name="Squiz.Commenting.InlineComment.NotCapital" />
+      <exclude name="Squiz.Commenting.InlineComment.SpacingAfter" />
+      <exclude name="Squiz.Commenting.InlineComment.DocBlock" />
     </rule>
-    <rule ref="Squiz.Commenting.LongConditionClosingComment" />
+    <rule ref="Squiz.Commenting.LongConditionClosingComment">
+      <exclude name="Squiz.Commenting.LongConditionClosingComment.Missing" />
+    </rule>
     <!-- <rule ref="Squiz.Commenting.PostStatementComment" /> -->
-    <rule ref="Squiz.Commenting.VariableComment" />
+    <rule ref="Squiz.Commenting.VariableComment">
+      <exclude name="Squiz.Commenting.VariableComment.IncorrectVarType" />
+    </rule>
     <rule ref="Squiz.ControlStructures.ControlSignature" />
-    <rule ref="Squiz.ControlStructures.ElseIfDeclaration" />
+    <rule ref="Squiz.ControlStructures.ElseIfDeclaration">
+        <exclude name="Squiz.ControlStructures.ElseIfDeclaration.NotAllowed" />
+    </rule>
     <rule ref="Squiz.ControlStructures.ForEachLoopDeclaration" />
     <rule ref="Squiz.ControlStructures.ForLoopDeclaration" />
-    <rule ref="Squiz.ControlStructures.InlineIfDeclaration" />
+    <rule ref="Squiz.ControlStructures.InlineIfDeclaration">
+        <exclude name="Squiz.ControlStructures.InlineIfDeclaration.NoBrackets" />
+    </rule>
     <rule ref="Squiz.ControlStructures.LowercaseDeclaration" />
     <rule ref="Squiz.ControlStructures.SwitchDeclaration" />
     <!-- <rule ref="Squiz.Debug.JSLint" /> -->
     <!-- <rule ref="Squiz.Debug.JavaScriptLint" /> -->
-    <rule ref="Squiz.Files.FileExtension" />
-    <rule ref="Squiz.Formatting.OperatorBracket" />
+    <rule ref="Squiz.Files.FileExtension">
+      <exclude name="Squiz.Files.FileExtension.ClassFound" />
+    </rule>
+    <!-- <rule ref="Squiz.Formatting.OperatorBracket" /> -->
     <rule ref="Squiz.Functions.FunctionDeclaration" />
-    <rule ref="Squiz.Functions.FunctionDeclarationArgumentSpacing" />
+    <rule ref="Squiz.Functions.FunctionDeclarationArgumentSpacing">
+      <properties>
+        <property name="equalsSpacing" value="1" />
+      </properties>
+    </rule>
     <rule ref="Squiz.Functions.FunctionDuplicateArgument" />
     <rule ref="Squiz.Functions.GlobalFunction" />
     <rule ref="Squiz.Functions.LowercaseFunctionKeywords" />
     <rule ref="Squiz.Functions.MultiLineFunctionDeclaration" />
-    <rule ref="Squiz.NamingConventions.ValidFunctionName" />
-    <rule ref="Squiz.NamingConventions.ValidVariableName" />
+    <rule ref="Squiz.NamingConventions.ValidFunctionName">
+      <exclude name="Squiz.NamingConventions.ValidFunctionName.PrivateNoUnderscore" />
+      <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.SpaceAfterFunction" />
+    </rule>
+    <rule ref="Squiz.NamingConventions.ValidVariableName">
+      <exclude name="Squiz.NamingConventions.ValidVariableName.PrivateNoUnderscore" />
+    </rule>
     <rule ref="Squiz.Objects.DisallowObjectStringIndex" />
-    <rule ref="Squiz.Objects.ObjectInstantiation" />
+    <rule ref="Squiz.Objects.ObjectInstantiation">
+      <exclude name="Squiz.Objects.ObjectInstantiation.NotAssigned" />
+    </rule>
     <rule ref="Squiz.Objects.ObjectMemberComma" />
-    <rule ref="Squiz.Operators.ComparisonOperatorUsage" />
+    <rule ref="Squiz.Operators.ComparisonOperatorUsage">
+        <exclude name="Squiz.Operators.ComparisonOperatorUsage.ImplicitTrue" />
+        <exclude name="Squiz.Operators.ComparisonOperatorUsage.NotAllowed" />
+    </rule>
     <rule ref="Squiz.Operators.IncrementDecrementUsage" />
     <rule ref="Squiz.Operators.ValidLogicalOperators" />
     <rule ref="Squiz.PHP.CommentedOutCode" />
     <rule ref="Squiz.PHP.DisallowBooleanStatement" />
-    <rule ref="Squiz.PHP.DisallowComparisonAssignment" />
-    <rule ref="Squiz.PHP.DisallowInlineIf" />
+    <rule ref="Squiz.PHP.DisallowComparisonAssignment">
+        <exclude name="Squiz.PHP.DisallowComparisonAssignment.AssignedComparison" />
+        <exclude name="Squiz.PHP.DisallowComparisonAssignment.AssignedBool" />
+        <exclude name="Squiz.PHP.DisallowBooleanStatement.Found" />
+    </rule>
+    <rule ref="Squiz.PHP.DisallowInlineIf">
+        <exclude name="Squiz.PHP.DisallowInlineIf.Found" />
+    </rule>
     <rule ref="Squiz.PHP.DisallowMultipleAssignments" />
     <rule ref="Squiz.PHP.DisallowSizeFunctionsInLoops" />
     <rule ref="Squiz.PHP.DiscouragedFunctions" />
@@ -208,18 +260,42 @@
     <rule ref="Squiz.Scope.MemberVarScope" />
     <rule ref="Squiz.Scope.MethodScope" />
     <rule ref="Squiz.Scope.StaticThisUsage" />
-    <rule ref="Squiz.Strings.ConcatenationSpacing" />
-    <rule ref="Squiz.Strings.DoubleQuoteUsage" />
+    <rule ref="Squiz.Strings.ConcatenationSpacing">
+      <exclude name="Squiz.Strings.ConcatenationSpacing.PaddingFound" />
+    </rule>
+
+    <rule ref="Squiz.Strings.DoubleQuoteUsage">
+      <exclude name="Squiz.Strings.DoubleQuoteUsage.ContainsVar" />
+    </rule>
+
     <rule ref="Squiz.Strings.EchoedStrings" />
     <rule ref="Squiz.WhiteSpace.CastSpacing" />
     <rule ref="Squiz.WhiteSpace.ControlStructureSpacing" />
-    <rule ref="Squiz.WhiteSpace.FunctionClosingBraceSpace" />
+    <rule ref="Squiz.WhiteSpace.FunctionClosingBraceSpace">
+      <exclude name="Squiz.WhiteSpace.FunctionClosingBraceSpace.SpacingBeforeClose" />
+    </rule>
     <rule ref="Squiz.WhiteSpace.FunctionOpeningBraceSpace" />
-    <rule ref="Squiz.WhiteSpace.FunctionSpacing" />
+    <rule ref="Squiz.WhiteSpace.FunctionSpacing">
+      <properties>
+        <property name="spacing" value="1" />
+        <property name="spacingBeforeFirst" value="0" />
+        <property name="spacingAfterLast" value="0" />
+      </properties>
+    </rule>
     <rule ref="Squiz.WhiteSpace.LanguageConstructSpacing" />
     <rule ref="Squiz.WhiteSpace.LogicalOperatorSpacing" />
-    <rule ref="Squiz.WhiteSpace.MemberVarSpacing" />
-    <rule ref="Squiz.WhiteSpace.ObjectOperatorSpacing" />
+    <rule ref="Squiz.WhiteSpace.MemberVarSpacing">
+      <properties>
+        <property name="spacingBeforeFirst" value="0" />
+      </properties>
+    </rule>
+    <rule ref="Squiz.WhiteSpace.ObjectOperatorSpacing">
+      <exclude name="Squiz.WhiteSpace.ObjectOperatorSpacing.After" />
+      <exclude name="Squiz.WhiteSpace.ObjectOperatorSpacing.Before" />
+      <properties>
+        <property name="ignoreNewLines" value="true" />
+      </properties>
+    </rule>
     <rule ref="Squiz.WhiteSpace.OperatorSpacing" />
     <rule ref="Squiz.WhiteSpace.PropertyLabelSpacing" />
     <rule ref="Squiz.WhiteSpace.ScopeClosingBrace" />
