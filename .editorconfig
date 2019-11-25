@@ -17,3 +17,6 @@ insert_final_newline = true
 # rules for front-end files
 [*.{blade.php,coffee,css,feature,html,xml,js,jsx,json,less,phtml,rake,rb,scss,yaml,eyaml,yml,babelrc,vue,neon,cfg,rest}]
 indent_size = 2
+
+[Makefile]
+indent_style = tab

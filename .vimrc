@@ -82,7 +82,7 @@ set backspace=indent,eol,start
 " disable some completion sources for faster completion
 set complete-=i " included files: prevent a condition where vim lags due to searching include files.
 set complete-=t " tag completion
-set smarttab
+" set smarttab
 
 set nrformats-=octal
 

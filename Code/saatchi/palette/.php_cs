@@ -274,7 +274,12 @@ return PhpCsFixer\Config::create()
         // THIRD_PARTY FIXERS
         'PedroTroller/line_break_between_method_arguments' => ['max-length' => 90, 'automatic-argument-merge' => true], // 'max-args' => 4,
         'PedroTroller/comment_line_to_phpdoc_block' => true,
-        'PedroTroller/phpspec' => ['instanceof' => ['PhpSpec\ObjectBehavior']],
+
+        // this is 3 fixers in one but I don't like one of them and there's no way to whitelist each fixer >:/ So I'll use the "deprecated" one-by-one versions instead.
+        // 'PedroTroller/phpspec' => ['instanceof' => ['PhpSpec\ObjectBehavior']],
+        'PedroTroller/phpspec_scenario_return_type_declaration' => ['instanceof' => ['PhpSpec\ObjectBehavior']],
+        // 'PedroTroller/phpspec_scenario_scope' => ['instanceof' => ['PhpSpec\ObjectBehavior']], // WHY would I want to remove the `public` from each phpspec method?
+        'PedroTroller/ordered_spec_elements' => ['instanceof' => ['PhpSpec\ObjectBehavior']],
     ])
     ->setRiskyAllowed(true)
     ->setFinder($finder);

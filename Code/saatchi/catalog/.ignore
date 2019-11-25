@@ -1,4 +1,4 @@
 vendor/assets
-# node_modules/*
+node_modules/*
 # app/assets/*
 # apiary.apib

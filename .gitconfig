@@ -100,7 +100,7 @@
     fhd = flow hotfix diff
     # fhf = flow hotfix finish
     # fhf = "!f() { git checkout develop && git pull && git checkout - && git checkout master && git pull && git flow hotfix finish $1 && git push && git checkout master && git push && git push --tags && git checkout develop && ( git push origin --delete hotfix/$1  || true ); }; f"
-    fhf = "!f() { git checkout develop && git pull && git checkout - && git checkout master && git pull && git flow hotfix finish $1 && git push && git checkout master && git push && git push --tags && git checkout develop; }; f"
+    fhf = "!f() { git checkout develop && git pull && git checkout master && git pull && git flow hotfix finish $1 && git push && git checkout master && git push && git push --tags && git checkout develop && hub release create $1 -m $1; }; f"
     fhl = flow hotfix list
     fhp = flow hotfix publish
     fhpl = flow hotfix pull
@@ -112,7 +112,7 @@
     # frs = flow release start
     frs = "!f() { git checkout develop && git pull && git checkout master && git pull && git flow release start $1 && git push; }; f"
     # frf = flow release finish
-    frf = "!f() { git checkout develop && git pull && git checkout - && git checkout master && git pull && git flow release finish $1 && git push && git checkout master && git push && git push --tags && git checkout develop && hub release create $1 -m $1; }; f"
+    frf = "!f() { git checkout develop && git pull && git checkout master && git pull && git flow release finish $1 && git push && git checkout master && git push && git push --tags && git checkout develop && hub release create $1 -m $1; }; f"
     # show change for one file
     filelog = log -u
     fl = log -u
