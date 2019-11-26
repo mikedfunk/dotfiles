@@ -249,7 +249,8 @@ windows:
       - printf "\033]2;%s\033\\r:r" 'palette' && saatchi-tail-palette-xprod
       - printf "\033]2;%s\033\\r:r" 'legacy' && saatchi-tail-legacy-xprod
       - printf "\033]2;%s\033\\r:r" 'zed' && saatchi-tail-zed-xprod
-      - printf "\033]2;%s\033\\r:r" 'mjmship' && mjm-tail-app-prod
+      # - printf "\033]2;%s\033\\r:r" 'mjmship' && mjm-tail-app-prod
+      - printf "\033]2;%s\033\\r:r" 'catalog' && saatchi-tail-catalog-prod
       # - saatchi-tail-legacy-services-xprod
 # }}}
 
