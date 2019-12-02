@@ -103,6 +103,7 @@ brew "mysql" # I haven't been using the server lately but I use the cli tool to 
 # brew "ncdu" # interactive du
 brew "newsboat" # terminal rss reader. I'm debating on whether this is worth it. It's kind of handy to read the headlines in hackernews, reddit programming, etc.
 brew "neovim" # vim re-imagined
+# brew "nextdns/tap/nextdns" # dns privacy service
 brew "node" # nodejs and npm (non-nodenv version required by joplin, yarn)
 brew "nodenv" # node version manager (same api as rbenv)
 brew "noti" # simple terminal notifier
@@ -275,6 +276,7 @@ cask "virtualbox" # virtual machine software (needed by docker-machine at least)
 # cask "vivaldi" # chrome alternative with some cool features (I switched back to chrome for now - profiles are kind of buggy atm)
 # cask "vlc" # watch the videos I download (switchtd to mpv)
 # cask "webpquicklook" # quicklook plugin (preview webp images)
+# cask "wineskin-winery" # run windows apps in macos via wine
 # cask "wireshark" # analyze network data (but not on virtualbox networks)
 # cask "xquartz" # needed to install xclip, which is needed to copy text from multitail (I installed all of that, copy still didn't work :/ )
 cask "xscreensaver" # shitload of old screensavers... downside is there are so many it slows down selecting Desktop & Screen Saver the first time in System Preferences :/ Upside: it has GLMatrix :)
