@@ -693,7 +693,10 @@ let g:UltiSnipsEditSplit='vertical'
 let g:UltiSnipsExpandTrigger='<c-l>' " Default: <Tab>
 " let g:UltiSnipsExpandTrigger='<c-e>' " conflicts with cancel completion. Default: <Tab>
 " let g:UltiSnipsListSnippets='<c-l>' " default: <c-Tab>
-let g:UltiSnipsSnippetDirectories=['~/.vim/UltiSnips', 'UltiSnips']
+
+" this breaks in neovim :/
+" let g:UltiSnipsSnippetDirectories=['~/.vim/UltiSnips', 'UltiSnips']
+let g:UltiSnipsSnippetDirectories=['~/.vim/UltiSnips']
 " }}}"
 
 " undoclosewin.vim {{{

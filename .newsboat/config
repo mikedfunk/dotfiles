@@ -9,6 +9,8 @@ notify-always yes # Notify unread feeds
 feed-sort-order title # Sort feeds by title
 show-read-feeds no # Do not show read feeds
 show-read-articles no # Do not show read articles
+bookmark-autopilot yes # Don't ask me all these questions when bookmarking
+bookmark-cmd /Users/mikefunk/.bin/bookmark-helper.sh # TODO find a better bookmarking tool that is NOT buku. That thing is garbage.
 # }}}
 
 # keybindings {{{
