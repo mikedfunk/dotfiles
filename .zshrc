@@ -765,6 +765,7 @@ DISTRACTING_SITES=(
 )
 letswork () {
     if [ "$1" = "--help" ]; then echo "Turns off all distracting sites in /etc/hosts."; return; fi
+    hostess fix
     for SITE in $DISTRACTING_SITES; do
         hostess add $SITE 0.0.0.0
     done
@@ -775,6 +776,7 @@ letswork () {
 }
 letsfun () {
     if [ "$1" = "--help" ]; then echo "Turns off all distracting sites in /etc/hosts."; return; fi
+    hostess fix
     for SITE in $DISTRACTING_SITES; do
         hostess rm $SITE
     done
