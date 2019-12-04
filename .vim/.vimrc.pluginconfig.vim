@@ -24,7 +24,7 @@ let g:ale_lint_on_save = 1 " acceptable speed
 let g:ale_lint_on_filetype_changed = 0
 let g:ale_lint_on_text_changed = 'never'
 
-" let g:ale_fix_on_save = 1 " This is off by default. You could do it manually with :ALEFix
+let g:ale_fix_on_save = 1 " This is off by default. You could do it manually with :ALEFix
 
 let g:ale_sign_column_always = 1 " otherwise screen keeps jumping left and right
 let g:airline#extensions#ale#error_symbol = 'Errors:' " default is a bit sparse: E
@@ -271,7 +271,7 @@ let g:float_preview#docked = 0
 
 " fzf.vim {{{
 " this was making it ignore .agignore too :/
-let $FZF_DEFAULT_COMMAND = 'ag -l --skip-vcs-ignores -g ""'
+let $FZF_DEFAULT_COMMAND = 'ag --vimgrep --skip-vcs-ignores'
 " let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
 
 " go to tab/window or open in new tab with ctrl-t
@@ -694,9 +694,10 @@ let g:UltiSnipsExpandTrigger='<c-l>' " Default: <Tab>
 " let g:UltiSnipsExpandTrigger='<c-e>' " conflicts with cancel completion. Default: <Tab>
 " let g:UltiSnipsListSnippets='<c-l>' " default: <c-Tab>
 
-" this breaks in neovim :/
-" let g:UltiSnipsSnippetDirectories=['~/.vim/UltiSnips', 'UltiSnips']
-let g:UltiSnipsSnippetDirectories=['~/.vim/UltiSnips']
+" this breaks in neovim (:UltiSnipsEdit doesn't work right) but if I switch
+" it, it doesn't load third-party snippets right :/
+let g:UltiSnipsSnippetDirectories=['~/.vim/UltiSnips', 'UltiSnips']
+" let g:UltiSnipsSnippetDirectories=['~/.vim/UltiSnips']
 " }}}"
 
 " undoclosewin.vim {{{
