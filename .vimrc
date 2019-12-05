@@ -258,8 +258,8 @@ set backupdir=$HOME/.vimbackup " set custom swap file dir
 let viewdir='$HOME/.vimviews' " custom dir for :mkview output
 " usage: :grep! my_term<cr>
 if executable('ag')
-    set grepprg=ag\ --vimgrep\ $* " allow :grep to use ag
-    set grepformat=%f:%l:%c:%m " show column/row in results
+    set grepprg=ag\ --vimgrep " allow :grep to use ag
+    " set grepformat=%f:%l:%c%m " show column/row in results
     " note to self - try to use :grep! to keep it more vim-like.
     " command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw! " :Ag command that allows args
 endif
@@ -287,7 +287,7 @@ let g:php_noShortTags = 1
 " let g:php_parent_error_close = 1 " highlight missing closing ] or )
 " let g:php_parent_error_open = 1 " highlight missing opening [ or (
 let g:php_syncmethod = 10 " :help :syn-sync https://stackoverflow.com/a/30732393/557215
-" doxygen support is extremely buggy for php.
+" doxygen support is _extremely_ buggy for php.
 " e.g. if you go to the last curly brace in a class, it breaks syntax
 " highlighting for one page above that class :/
 " :h doxygen

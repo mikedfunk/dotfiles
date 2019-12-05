@@ -271,7 +271,7 @@ let g:float_preview#docked = 0
 
 " fzf.vim {{{
 " this was making it ignore .agignore too :/
-let $FZF_DEFAULT_COMMAND = 'ag --vimgrep --skip-vcs-ignores'
+let $FZF_DEFAULT_COMMAND = 'ag --files-with-matches --skip-vcs-ignores -g ""'
 " let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
 
 " go to tab/window or open in new tab with ctrl-t
