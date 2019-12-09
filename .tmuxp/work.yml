@@ -71,7 +71,7 @@ windows:
       - while true; do wait-on http://www.local.saatchiart.com && saatchi-tinker-gallery-local; sleep 1; done
       - while true; do puw; sleep 1; done
       - yarn jest --watch
-      - saatchi-gulp-watch-gallery
+      - while true; do saatchi-gulp-watch-gallery; sleep 1; done
         # - saatchi-start-gallery
       - while true; do wait-on http://www.local.saatchiart.com && saatchi-tail-gallery-local; sleep 1; done
 # }}}
