@@ -38,7 +38,7 @@ brew "docker-machine-nfs" # enables nfs mounts for docker-machine via `docker-ma
 # brew "dtrx" # do the right extraction - so you don't have to remember tar args (I found a helpful pneumonic to remember tar args: eXtract Ze Vucking Files, Compress Ze Vucking Files)
 brew "entr" # file watcher (I use this a lot in my shell functions)
 # brew "fasd" # Command-line productivity booster, offers quick access to files and directories, inspired by autojump, z and v. (I use wd)
-brew "fd" # prettier alternative to find that respects gitignore
+# brew "fd" # prettier alternative to find that respects gitignore (haven't used it yet)
 # brew "fpp" # facebook path picker. Used with tmux-fpp to easily open files in an editor. (I don't use it)
 brew "fx" # json funagler used by some of my shell functions
 brew "fzf" # fuzzy file finder `git branch | fzf | xargs git checkout`
@@ -77,14 +77,13 @@ brew "jq" # simple json pretty-printer `echo '{"my" => "json"}' | jq .` (Used in
 # brew "kubernetes-cli" # already installed via brew cask install docker
 brew "kubectx" # quick way to switch contexts with a fzf picker
 brew "derailed/k9s/k9s" # handy kubernetes dashboard `k9s -n develop`
-brew "lastpass-cli" # TODO move all of my cli private_stuff over to lastpass
+# brew "lastpass-cli" # TODO move all of my cli private_stuff over to lastpass
 # brew "lftp" # fancy scp, torrent, http, ftp download and upload client with queues, backgrounding, and more
 brew "libcouchbase" # nosql fast data storage. I install this for the cli tool `cbc`
 brew "libmemcached" # needed by php70 memcached pecl extension
 brew "libmcrypt" # needed by php-build, which is used by phpenv DO NOT DELETE php will break
 brew "libxml2" # needed by php70
-tap "dbcli/tap"
-brew "litecli" # like mycli for sqlite
+brew "dbcli/tap/litecli" # like mycli for sqlite
 # brew "lockrun" # simple way to lock cron jobs with a lock file and clear them when done
 # brew "lsd" # pretty ls augmentation
 # brew "lynx" # console web browser. used by ranger to preview html.
@@ -144,7 +143,7 @@ brew "rbenv" # ruby environment switcher
 brew "shellcheck" # Checks shell syntax (used by vim ALE)
 brew "shfmt" # formats shell scripts (used by vim ALE)
 brew "shml" # $(fgcolor red)wow$(fgcolor end)
-brew "skaffold" # awesome local kubernetes cluster by google (TODO learn this! It looks freakin awesome)
+# brew "skaffold" # awesome local kubernetes cluster by google (TODO learn this! It looks freakin awesome)
 brew "ssh-copy-id" # copies ssh keys to remote servers
 brew "sshrc" # use ~/.sshrc and ~/.sshrc.d on remote servers. bring your dotfiles with you!
 # brew "sshfs" # mounts ssh servers as file systems in the local fs. requires osxfuse.
