@@ -91,7 +91,7 @@ brew "dbcli/tap/litecli" # like mycli for sqlite
 brew "mas" # mac app store cli. e.g. `mas install Xcode`
 # brew "andersjanmyr/homebrew-tap/mc" # memcached cli. Use the full path to avoid conflicting with midnight commander, or just uninstall midnight commander (Trouble using on saatchi due to networking limitations, also this tap is in a private github repo!! I have an installer in my yadm config instead)
 brew "memcached" # needed by php70 memcached pecl extension
-brew "mkcert" # create a certificate, create a local CA, add the cert as trusted in the CA
+# brew "mkcert" # create a certificate, create a local CA, add the cert as trusted in the CA (Only needed to _create_ certs)
 # brew "mono" # .NET compiler for mac. Useful for OmniSharp. (not needed)
 brew "multitail" # tail multiple files or tail streams in splits with pretty colors. I use this a lot.
 brew "mycli" # Mysql cli augmentation with completion, highlighting, etc.
@@ -171,8 +171,7 @@ brew "tldr" # more consise community man pages
 # brew "trash" # a trash can for the terminal
 brew "trash-cli" # a trash can for the terminal
 brew "tree" # display file/folder hierarchies in a visual tree format
-tap "universal-ctags/universal-ctags"
-brew "universal-ctags", args: ["HEAD"] # tag creator for use by vim to navigate by symbols. head only.
+brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"] # tag creator for use by vim to navigate by symbols. head only.
 brew "unixodbc" # needed by php70
 brew "urlview" # used by <prefix>u tmux urlview plugin
 # brew "virtualhost".sh # (crappy) virtualhost management script
@@ -212,14 +211,12 @@ cask "dozer" # little menubar app that allows hiding menubar icon clutter
 # cask "emacs" # this actually makes sense as a cask. It becomes tmux, vim, and kitty all in one.
 # cask "epic-games" # game store
 cask "firefox"
-tap "homebrew/cask-fonts"
-# tap "caskroom/fonts"
-# cask "font-fira-code"
-# cask "font-iosevka"
-cask "font-iosevka-nerd-font-mono"
-# cask "font-meslo-for-powerline" # whoa there are a ton of fonts on brew "cask"!
+# cask "homebrew/cask-fonts/font-fira-code"
+# cask "homebrew/cask-fonts/font-iosevka"
+cask "homebrew/cask-fonts/font-iosevka-nerd-font-mono"
+# cask "homebrew/cask-fonts/font-meslo-for-powerline" # whoa there are a ton of fonts on brew "cask"!
 # cask "gog-galaxy" # good old games
-cask "google-chrome"
+# cask "google-chrome"
 # cask "google-drive" (menubar app for google drive access)
 # cask "http-toolkit" # kind of like charles or wireshark, but with support for docker. (docker support seems to be coming soon)
 cask "insomnia" # http api client like postman but nicer looking (I use this for sharing with my team but I mostly use vim-rest-console)
@@ -230,7 +227,7 @@ cask "jumpcut" # clipboard manager recommended by Michael Zick (slightly annoyin
 # cask "kitematic" # mac native docker container browser (I just use docker cli tools)
 # cask "kitty" # fast terminal emulator (see iterm2 above for why I switched back to iTerm)
 # cask "launchcontrol" # launchctl gui. (I use lunchy gem instead)
-cask "lunchy" # launchctl cli wrapper. Port of lunchy gem. (Tried this, was missing options, back to gem)
+# cask "lunchy" # launchctl cli wrapper. Port of lunchy gem. (Tried this, was missing options, back to gem)
 # cask "macfusion" # other half of tool to mount ssh directories in the finder
 # cask "macgdbp" # xdebug gui client (I use vdebug)
 cask "malwarebytes" # ya neva know
@@ -241,7 +238,7 @@ cask "mpv" # video player like vlc
 cask "multifirefox" # profile picker until firefox fixes this glaring omission
 # cask "noti" # mac native pushbullet notifications (I use the chrome extension)
 # cask "ngrok" # securely expose your local site to the internet and inspect and repeat traffic
-cask "onecast" # cast xbox one to mac.
+# cask "onecast" # cast xbox one to mac.
 # cask "osxfuse" # half of tool to mount ssh directories in the finder (useful if working on a shared dev environment)
 # cask "openemu" # multi game system emulator
 # cask "origin" # ea games store
@@ -261,7 +258,7 @@ cask "qlimagesize" # quicklook plugin (display image size and resolution in the 
 cask "sequel-pro" # mysql gui client. I mostly use mycli.
 cask "slack" # needed for screen sharing features. I mostly use the web app.
 cask "spectacle" # keyboard window splitter/resizer/mover. Kind of like a lightweight i3 window manager. I use it a lot.
-cask "spotify" # mac native spotify player (I use the web app, but sometimes it gets stuck in an offline state or randomly stops playing)
+# cask "spotify" # mac native spotify player (I use the web app, but sometimes it gets stuck in an offline state or randomly stops playing)
 # cask "ssh-tunnel-manager" # mac native gui to manage running ssh tunnels (I just put tunnels in launchctl with autossh and forget about them)
 # cask "steam" # yep
 # cask "suspicious-package" # quicklook plugin for mac dmg package inspection (I don't care about inspecting these)
@@ -275,7 +272,7 @@ cask "virtualbox" # virtual machine software (needed by docker-machine at least)
 # cask "vivaldi" # chrome alternative with some cool features (I switched back to chrome for now - profiles are kind of buggy atm)
 # cask "vlc" # watch the videos I download (switchtd to mpv)
 # cask "webpquicklook" # quicklook plugin (preview webp images)
-# cask "wineskin-winery" # run windows apps in macos via wine
+# cask "wineskin-winery" # run windows apps in macos via wine (doesn't work in macOS catalina)
 # cask "wireshark" # analyze network data (but not on virtualbox networks)
 # cask "xquartz" # needed to install xclip, which is needed to copy text from multitail (I installed all of that, copy still didn't work :/ )
 cask "xscreensaver" # shitload of old screensavers... downside is there are so many it slows down selecting Desktop & Screen Saver the first time in System Preferences :/ Upside: it has GLMatrix :)
