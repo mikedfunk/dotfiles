@@ -716,7 +716,7 @@ augroup phphelpersgroup
 augroup END
 
 " use vim grepprg
-nnoremap <leader>gg :grep!<space>
+nnoremap <leader>gg :silent grep!<space>
 " pneumonic: grep all
 nnoremap <leader>ga :grep!
             \ --skip-vcs-ignores
