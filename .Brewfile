@@ -211,10 +211,10 @@ cask "dozer" # little menubar app that allows hiding menubar icon clutter
 # cask "emacs" # this actually makes sense as a cask. It becomes tmux, vim, and kitty all in one.
 # cask "epic-games" # game store
 cask "firefox"
-# cask "homebrew/cask-fonts/font-fira-code"
-# cask "homebrew/cask-fonts/font-iosevka"
-cask "homebrew/cask-fonts/font-iosevka-nerd-font-mono"
-# cask "homebrew/cask-fonts/font-meslo-for-powerline" # whoa there are a ton of fonts on brew "cask"!
+# cask "font-fira-code"
+# cask "font-iosevka"
+cask "font-iosevka-nerd-font-mono" # note: homebrew doesn't need a tap for these any more
+# cask "font-meslo-for-powerline" # whoa there are a ton of fonts on brew "cask"!
 # cask "gog-galaxy" # good old games
 # cask "google-chrome"
 # cask "google-drive" (menubar app for google drive access)
