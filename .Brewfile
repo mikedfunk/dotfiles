@@ -236,6 +236,7 @@ cask "minikube" # for learning `minikube start`
 cask "mpv" # video player like vlc
 # cask "mudlet" # muds are rad
 cask "multifirefox" # profile picker until firefox fixes this glaring omission
+# cask "multipass" # "ubuntu LTS on tap" launch instances of ubuntu and itialize them with cloud-init metadata in a matter of seconds. Uses hypervisor or virtualbox behind the scenes.
 # cask "noti" # mac native pushbullet notifications (I use the chrome extension)
 # cask "ngrok" # securely expose your local site to the internet and inspect and repeat traffic
 # cask "onecast" # cast xbox one to mac.
