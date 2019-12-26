@@ -46,13 +46,13 @@
 
 # Aliases {{{
 [alias]
-    ahead = git log --branches --not --remotes
+    # ahead = git log --branches --not --remotes
     br = branch
     brs = browse
     # list branches sorted by last modified
-    bm = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
+    # bm = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
     ci = commit
-    cl = clone
+    # cl = clone
     # checkout develop, then run this to remove all local branches that haven't been
     # merged into develop or master
     cleanmerged = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 git branch -d"
@@ -64,17 +64,17 @@
     cob = checkout -b
     # Fire up your difftool (e.g. Kaleidescope) with all the changes that
     # are on the current branch.
-    code-review = difftool origin/develop...
+    # code-review = difftool origin/develop...
     committers = shortlog --nse --no-merges
     dc = diff --cached
     dd = diff develop..HEAD
     ddn = diff develop..HEAD --name-only
-    df = diff
-    dl = diff --cached HEAD~1 --name-only # show modified files _only_ in the last commit
-    dlc = diff --cached HEAD~1 # show a diff of _only_ the last commit
+    # df = diff
+    # dl = diff --cached HEAD~1 --name-only # show modified files _only_ in the last commit
+    # dlc = diff --cached HEAD~1 # show a diff of _only_ the last commit
     dm = diff master..HEAD
     dmn = diff master..HEAD --name-only
-    ds = diff --stat # show files changed (only slightly different than git status)
+    # ds = diff --stat # show files changed (only slightly different than git status)
     # show diffs one-by-one of each file that has changed. Takes a branch or hash or HEAD~1 or something.
     # e.g. g dt HEAD~1
     dt = difftool
@@ -85,26 +85,26 @@
     # "fuzzy checkout"
     fco = "!f() { ( git branch | fzf | xargs git co ); }; f"
     # git flow feature shortcuts
-    ffc = flow feature checkout
-    ffd = flow feature diff
+    # ffc = flow feature checkout
+    # ffd = flow feature diff
     # fff = flow feature finish
     fff = "!f() { git flow feature finish $1 && git push; }; f"
-    ffl = flow feature list
-    ffp = flow feature publish
-    ffpl = flow feature pull
-    ffr = flow feature rebase
+    # ffl = flow feature list
+    # ffp = flow feature publish
+    # ffpl = flow feature pull
+    # ffr = flow feature rebase
     ffs = "!f() { git checkout develop && git pull && git flow feature start $1; }; f"
-    fft = flow feature track
+    # fft = flow feature track
     # git flow hotfix shortcuts
-    fhc = flow hotfix checkout
-    fhd = flow hotfix diff
+    # fhc = flow hotfix checkout
+    # fhd = flow hotfix diff
     # fhf = flow hotfix finish
     # fhf = "!f() { git checkout develop && git pull && git checkout - && git checkout master && git pull && git flow hotfix finish $1 && git push && git checkout master && git push && git push --tags && git checkout develop && ( git push origin --delete hotfix/$1  || true ); }; f"
     fhf = "!f() { git checkout develop && git pull && git checkout master && git pull && git flow hotfix finish $1 && git push && git checkout master && git push && git push --tags && git checkout develop && hub release create $1 -m $1; }; f"
-    fhl = flow hotfix list
-    fhp = flow hotfix publish
-    fhpl = flow hotfix pull
-    fhr = flow hotfix rebase
+    # fhl = flow hotfix list
+    # fhp = flow hotfix publish
+    # fhpl = flow hotfix pull
+    # fhr = flow hotfix rebase
     # fhs = flow hotfix start
     fhs = "!f() { git checkout develop && git pull && git checkout master && git pull && git flow hotfix start $1 && git push; }; f"
     fht = flow hotfix track
@@ -114,8 +114,8 @@
     # frf = flow release finish
     frf = "!f() { git checkout develop && git pull && git checkout master && git pull && git flow release finish $1 && git push && git checkout master && git push && git push --tags && git checkout develop && hub release create $1 -m $1; }; f"
     # show change for one file
-    filelog = log -u
-    fl = log -u
+    # filelog = log -u
+    # fl = log -u
     # fuzzy stash apply
     fsa = "!f() { ( git stash list | fzf | awk -F':' '{print $1}' | xargs git stash apply ); }; f"
     ft = fetch --tags
@@ -123,9 +123,9 @@
     cfd = "!f() { git commit --fixup $(git ld | fzf | awk '{print $1}'); }; f"
     cfm = "!f() { git commit --fixup $(git lm | fzf | awk '{print $1}'); }; f"
     # show the sha ref of the current HEAD
-    headref = "!git show-ref --head -s | awk 'NR==1'"
+    # headref = "!git show-ref --head -s | awk 'NR==1'"
     # Show files ignored by git
-    ign = ls-files -o -i --exclude-standard
+    # ign = ls-files -o -i --exclude-standard
     iw = instaweb --httpd webrick
     # list aliases
     la = "!git config -l | grep alias | cut -c 7-"
@@ -134,37 +134,37 @@
     # my go-to log format
     # lg = log --pretty=format:'commit %Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
     lg = log --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
-    lgdate = log --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cd) %C(bold blue)<%an>%Creset'
+    # lgdate = log --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cd) %C(bold blue)<%an>%Creset'
     ld = log --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' develop..HEAD --no-merges
     lm = log --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' master..HEAD --no-merges
     lmn = "!git log --pretty=format:'%h - %s (%cr) <%an>' master..HEAD --no-merges | pbcopy"
     # graphy log format with the visual branching on the left
-    lol = log --graph --decorate --pretty=oneline --abbrev-commit
-    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    # lol = log --graph --decorate --pretty=oneline --abbrev-commit
+    # lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
     # show all files tracked by git in this branch
     ls = ls-files
     # show the last added tag! Helpful for git flow!
-    lasttag = describe --tags --abbrev=0
-    lt = describe --tags --abbrev=0
+    # lasttag = describe --tags --abbrev=0
+    # lt = describe --tags --abbrev=0
     mt = mergetool
     # To see what new commits have been created by the last command –
     # typically after a git pull. You invoke it for example with: git new HEAD
     new = !sh -c 'git log $1@{1}..$1@{0} "$@"'
     # another graphy log format
-    olg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    # olg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     permission-reset = !git diff -p -R | grep -E \"^(diff|(old|new) mode)\" | git apply
     pl = pull --rebase
     # pl = !git fetch; git rebase --autostash
-    pnp = !git pull -r && git push
+    # pnp = !git pull -r && git push
     # yo baby yo
-    po = !echo 'Ah push it' && git push origin && echo 'PUSH IT REAL GOOD'
-    pp = !git pull && git push
-    pu = push
+    # po = !echo 'Ah push it' && git push origin && echo 'PUSH IT REAL GOOD'
+    # pp = !git pull && git push
+    ps = push
     # pull and update submodules... i hate submodules...
     pup = !git pull --recurse-submodules && git submodule update
     puf = push --force
-    purr = pull --rebase
-    put = push --tags
+    # purr = pull --rebase
+    # put = push --tags
     rbc = rebase --continue
     rbi = rebase -i
     rbd = rebase -i develop
@@ -200,10 +200,10 @@
     unstage = reset HEAD # hard to remember
     who = shortlog -n -s --no-merges # who has contributed to a project
     wiff = diff --color-words
-    wip = !git add -u && git commit -m "WIP" # work in progress commit
+    # wip = !git add -u && git commit -m "WIP" # work in progress commit
     # uncommit the last commit... but make a backup ref first just in case
-    wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
-	ctags = !.git/hooks/ctags # https://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
+    # wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
+	# ctags = !.git/hooks/ctags # https://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
 # }}}
 
 # Color and visual settings {{{
