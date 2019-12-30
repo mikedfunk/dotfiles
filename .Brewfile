@@ -273,9 +273,11 @@ cask "virtualbox" # virtual machine software (needed by docker-machine at least)
 # cask "vivaldi" # chrome alternative with some cool features (I switched back to chrome for now - profiles are kind of buggy atm)
 # cask "vlc" # watch the videos I download (switchtd to mpv)
 # cask "webpquicklook" # quicklook plugin (preview webp images)
+# cask wine-stable # run windows apps on mac
+# cask wine-staging # run windows apps on mac (with bugfixes not in the stable package yet)
 # cask "wineskin-winery" # run windows apps in macos via wine (doesn't work in macOS catalina)
 # cask "wireshark" # analyze network data (but not on virtualbox networks)
-# cask "xquartz" # needed to install xclip, which is needed to copy text from multitail (I installed all of that, copy still didn't work :/ )
+# cask "xquartz" # needed to install xclip, which is needed to copy text from multitail (I installed all of that, copy still didn't work :/ ) also needed for wine-stable
 cask "xscreensaver" # shitload of old screensavers... downside is there are so many it slows down selecting Desktop & Screen Saver the first time in System Preferences :/ Upside: it has GLMatrix :)
 # }}}
 

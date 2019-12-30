@@ -318,9 +318,11 @@ alias info="info --vi-keys"
 
 alias play-starwars="telnet towel.blinkenlights.nl" # :)
 alias play-gameboy="telnet gameboy.live 1989" # :)
-alias play-nethack="telnetnethack@alt.org"
-alias play-chess="telnet freechess.org"
-alias play-aardwolf="telnet aardmud.org"
+alias play-nethack="telnetnethack@alt.org" # :)
+alias play-chess="telnet freechess.org" # :)
+alias play-aardwolf="telnet aardmud.org" # :)
+alias play-tron="ssh sshtron.zachlatta.com" # :)
+
 # tip: curl ping.gg to set up a pingdom-style alert
 shorten-url () { curl -s http://tinyurl.com/api-create.php?url=$1; }
 
