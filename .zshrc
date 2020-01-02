@@ -754,7 +754,7 @@ php-language-server-script() {
 alias glow-watch="ag -l -g '\.js$' | entr -r -c /usr/local/bin/glow"
 # }}}
 
-# letswork / letsfun {{{
+# letsfun / letsbreak (formerly letswork / letsfun) {{{
 # this is more flexible and much simpler than an npm package for this.
 # but you still have to clear dns cache and/or restart the browser for it to work :/ https://w3guy.com/flush-delete-dns-cache-firefox-chrome/
 DISTRACTING_SITES=(
@@ -765,8 +765,9 @@ DISTRACTING_SITES=(
     twitter.com
     cnn.com
 )
-letswork () {
+letsfun () {
     if [ "$1" = "--help" ]; then echo "Turns off all distracting sites in /etc/hosts."; return; fi
+    MESSAGE=${1:-"Let's do some fun work!"}
     hostess fix
     for SITE in $DISTRACTING_SITES; do
         hostess add $SITE 0.0.0.0
@@ -774,10 +775,12 @@ letswork () {
     cd >/dev/null
     hostess apply ~/.support/hosts.json
     cd - >/dev/null
-    echo "$(fgcolor red)Lets work!$(fgcolor end)"
+    echo "$(fgcolor green)${MESSAGE}$(fgcolor end)"
 }
-letsfun () {
+letsbreak () {
     if [ "$1" = "--help" ]; then echo "Turns off all distracting sites in /etc/hosts."; return; fi
+    BREAK_TIME_IN_MINUTES=${1:-15}
+    ((BREAK_TIME_IN_SECONDS=BREAK_TIME_IN_MINUTES*60))
     hostess fix
     for SITE in $DISTRACTING_SITES; do
         hostess rm $SITE
@@ -785,7 +788,12 @@ letsfun () {
     cd >/dev/null
     hostess apply ~/.support/hosts.json
     cd - >/dev/null
-    echo "$(fgcolor green)Free at last!$(fgcolor end)"
+    echo "$(fgcolor yellow)Let's take a break for $BREAK_TIME_IN_MINUTES minutes!$(fgcolor end)"
+    sleep $BREAK_TIME_IN_SECONDS
+    MESSAGE="Break's over, let's do some fun work!"
+    letsfun "$MESSAGE"
+    noti "$MESSAGE"
+    return 0
 }
 # }}}
 
