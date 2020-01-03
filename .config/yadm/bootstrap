@@ -408,12 +408,22 @@ _install_php_versions () {
 # install ruby version {{{
 _install_ruby_version () {
     # 2.2.2 needed for catalog codebase
-    ( rbenv versions | grep --quiet "2.2.2" ) && return
-    log_info "Installing ruby 2.2.2"
-    rbenv install 2.2.2 && \
-        rbenv global 2.2.2 && \
-        rbenv rehash && \
-        gem install bundler
+    if ! ( rbenv versions | grep --quiet "2.2.2" ); then
+        log_info "Installing ruby 2.2.2"
+        rbenv install 2.2.2 && \
+            rbenv global 2.2.2 && \
+            rbenv rehash && \
+            gem install bundler
+    fi
+
+    # 2.5.6 needed for ios chromatic codebase
+    if ! ( rbenv versions | grep --quiet "2.5.6" ); then
+        log_info "Installing ruby 2.5.6"
+        rbenv install 2.5.6 && \
+            rbenv global 2.5.6 && \
+            rbenv rehash && \
+            gem install bundler
+    fi
 
     RUBY_VERSION="2.6.5"
     ( rbenv versions | grep --quiet $RUBY_VERSION ) && return

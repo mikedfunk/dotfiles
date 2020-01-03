@@ -1,5 +1,4 @@
 yadm:~/.yadm
-ios:~/Code/saatchi/discover
 airliners:~/Code/airliners
 test:~/Code/test
 maropost:~/Code/saatchi/maropost-php-sdk
@@ -34,6 +33,6 @@ bookymark:~/Code/bookymark
 magento:~/Code/magento
 notes:~/.config/joplin
 railsblog:~/Code/railsblog
-saatchi-kubernetes:~/Code/saatchi/saatchi-kubernetes
 kube:~/Code/saatchi/saatchi-kubernetes
 mig:~/Desktop/migration-2019-11-25
+ios:~/Code/saatchi/chromatic
