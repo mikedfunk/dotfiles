@@ -307,10 +307,22 @@ let g:php_syncmethod = 10 " :help :syn-sync https://stackoverflow.com/a/30732393
 " set noequalalways winminheight=0 winheight=9999 helpheight=9999
 
 " auto open quickfix window on search if results found
-augroup quickfixcmdgroup
-    autocmd!
-    autocmd QuickFixCmdPost *grep* cwindow
-augroup END
+" https://github.com/neovim/neovim/issues/11580
+" https://github.com/neovim/neovim/issues/11424
+" This has a nasty bug in neovim where the quickfix height is incorrect,
+" eventually causing it to crash. I had to disable it because I was tired of
+" dealing with this crap.
+" augroup quickfixcmdgroup
+"     autocmd!
+"     autocmd QuickFixCmdPost *grep* copen
+" augroup END
+"
+" same bug https://stackoverflow.com/a/39010855/557215
+" augroup quickfixopengroup
+"     autocmd!
+"     autocmd QuickFixCmdPost [^l]* cwindow
+"     autocmd QuickFixCmdPost l*    lwindow
+" augroup END
 
 if has('mouse')
     set mouse+=a " Automatically enable mouse usage

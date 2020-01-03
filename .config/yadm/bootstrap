@@ -141,7 +141,7 @@ _install_ievms () {
         log_error "VBoxManage not installed, unable to install ievms"
         return
     fi
-    if ( VBoxManage list vms | grep -q "IE11 - Win7" ); then
+    if ( VBoxManage list vms | grep --quiet "IE11 - Win7" ); then
         # ie11 is already installed
         return
     fi
@@ -360,12 +360,12 @@ _install_upgrade_phive () {
 
 _install_php_version () {
     export PHP_VERSION="$1" # needs exporting for the non-interactive install pear script
-    ( phpenv versions | grep -q "$PHP_VERSION" ) && return
+    ( phpenv versions | grep --quiet "$PHP_VERSION" ) && return
     log_info "Installing php $PHP_VERSION"
     # NOTE if I set php 7.1+.x to global and I use directory-specific php
     # versions and I install global composer dependencies then they will fail
     # when I have php 7.0.29 active! Same problem with rbenv, pyenv, and perlenv.
-    ( phpenv versions | grep -q "$PHP_VERSION" ) || phpenv install "$PHP_VERSION"
+    ( phpenv versions | grep --quiet "$PHP_VERSION" ) || phpenv install "$PHP_VERSION"
     # phpenv global $PHP_VERSION
     # phpenv rehash
 
