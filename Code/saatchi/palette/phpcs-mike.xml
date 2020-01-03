@@ -106,24 +106,27 @@
   </rule>
 
   <!-- PSR12 (16 sniffs) -->
-  <rule ref="PSR12.Classes.AnonClassDeclaration" />
+
+  <!-- these have been removed from the PSR12 ruleset but the Sniff classes still exist -->
+  <!-- <rule ref="PSR12.Classes.AnonClassDeclaration" /> -->
+  <!-- <rule ref="PSR12.Classes.ClosingBrace" /> -->
+  <!-- <rule ref="PSR12.ControlStructures.BooleanOperatorPlacement" /> -->
+  <!-- <rule ref="PSR12.ControlStructures.ControlStructureSpacing" /> -->
+  <!-- <rule ref="PSR12.Files.DeclareStatement" /> -->
+  <!-- <rule ref="PSR12.Files.FileHeader" /> -->
+  <!-- <rule ref="PSR12.Files.ImportStatement" /> -->
+  <!-- <rule ref="PSR12.Files.OpenTag" /> -->
+  <!-- <rule ref="PSR12.Functions.ReturnTypeDeclaration" /> -->
+  <!-- <rule ref="PSR12.Properties.ConstantVisibility"> -->
+  <!--   <exclude name="PSR12.Properties.ConstantVisibility.NotFound" /> -->
+  <!-- </rule> -->
+  <!-- <rule ref="PSR12.Traits.UseDeclaration" /> -->
+
   <rule ref="PSR12.Classes.ClassInstantiation" />
-  <rule ref="PSR12.Classes.ClosingBrace" />
-  <rule ref="PSR12.ControlStructures.BooleanOperatorPlacement" />
-  <rule ref="PSR12.ControlStructures.ControlStructureSpacing" />
-  <rule ref="PSR12.Files.DeclareStatement" />
-  <rule ref="PSR12.Files.FileHeader" />
-  <rule ref="PSR12.Files.ImportStatement" />
-  <rule ref="PSR12.Files.OpenTag" />
   <rule ref="PSR12.Functions.NullableTypeDeclaration" />
-  <rule ref="PSR12.Functions.ReturnTypeDeclaration" />
   <rule ref="PSR12.Keywords.ShortFormTypeKeywords" />
   <rule ref="PSR12.Namespaces.CompoundNamespaceDepth" />
   <rule ref="PSR12.Operators.OperatorSpacing" />
-  <rule ref="PSR12.Properties.ConstantVisibility">
-    <exclude name="PSR12.Properties.ConstantVisibility.NotFound" />
-  </rule>
-  <rule ref="PSR12.Traits.UseDeclaration" />
 
   <!-- PSR2 (12 sniffs) -->
   <rule ref="PSR2.Classes.ClassDeclaration" />
@@ -304,13 +307,16 @@
     </properties>
   </rule>
   <rule ref="Squiz.WhiteSpace.ObjectOperatorSpacing">
-    <exclude name="Squiz.WhiteSpace.ObjectOperatorSpacing.After" />
-    <exclude name="Squiz.WhiteSpace.ObjectOperatorSpacing.Before" />
+    <exclude name="Squiz.WhiteSpace.ObjectOperatorSpacing.SpacingAfter" />
+    <exclude name="Squiz.WhiteSpace.ObjectOperatorSpacing.SpacingBefore" />
     <properties>
       <property name="ignoreNewLines" value="true" />
     </properties>
   </rule>
-  <rule ref="Squiz.WhiteSpace.OperatorSpacing" />
+  <rule ref="Squiz.WhiteSpace.OperatorSpacing">
+    <!-- this conflicts with Mike's multiline ternary style -->
+    <exclude name="Squiz.WhiteSpace.OperatorSpacing.SpacingAfter" />
+  </rule>
   <rule ref="Squiz.WhiteSpace.PropertyLabelSpacing" />
   <rule ref="Squiz.WhiteSpace.ScopeClosingBrace" />
   <rule ref="Squiz.WhiteSpace.ScopeKeywordSpacing" />
