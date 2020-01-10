@@ -162,7 +162,7 @@
     ps = push
     # pull and update submodules... i hate submodules...
     pup = !git pull --recurse-submodules && git submodule update
-    puf = push --force
+    psf = push --force
     # purr = pull --rebase
     # put = push --tags
     rbc = rebase --continue
