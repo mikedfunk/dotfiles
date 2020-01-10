@@ -27,7 +27,6 @@ views:~/Code/saatchi/couchbase-views
 chromatic:~/Code/saatchi/chromatic
 ddd:~/Code/ddd-2019
 imgproc-python:~/Code/saatchi/imgproc-python
-kubernetes:~/Code/saatchi/kubernetes
 toaf-voting:~/Code/toaf/toaf-voting
 bookymark:~/Code/bookymark
 magento:~/Code/magento
@@ -36,3 +35,4 @@ railsblog:~/Code/railsblog
 kube:~/Code/saatchi/saatchi-kubernetes
 mig:~/Desktop/migration-2019-11-25
 ios:~/Code/saatchi/chromatic
+k8s:~/Code/saatchi/saatchi-kubernetes

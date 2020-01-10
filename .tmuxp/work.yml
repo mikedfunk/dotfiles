@@ -165,6 +165,20 @@ windows:
       - ts
 # }}}
 
+# k8s {{{
+  - window_name: k8s
+    start_directory: ~/Code/saatchi/saatchi-kubernetes
+    layout: main-horizontal
+    options:
+      main-pane-height: 40
+    panes:
+      - shell_command:
+        - v -S
+        focus: true
+      - ts
+      - k9s -n develop
+# }}}
+
 # mysql {{{
   - window_name: mysql
     start_directory: ~/Code/saatchi/queries

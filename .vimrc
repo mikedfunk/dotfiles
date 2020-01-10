@@ -259,9 +259,13 @@ let viewdir='$HOME/.vimviews' " custom dir for :mkview output
 " usage: :grep! my_term<cr>
 if executable('ag')
     set grepprg=ag\ --vimgrep " allow :grep to use ag
-    " set grepformat=%f:%l:%c%m " show column/row in results
+    set grepformat=%f:%l:%c%m " show column/row in results
     " note to self - try to use :grep! to keep it more vim-like.
     " command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw! " :Ag command that allows args
+elseif executable('git')
+    " git grep is much faster than regular grep
+    set grepprg=git\ --no-pager\ grep\ --no-color\ -rin
+    set grepformat=%f:%l:%m,%m\ %f\ match%ts,%f
 endif
 set noswapfile " swap files are a pain in the ass. I have git.
 " set nrformats= " make <C-a> and <C-x> play well with zero-padded numbers (i.e. don't consider them octal or hex)
@@ -312,10 +316,10 @@ let g:php_syncmethod = 10 " :help :syn-sync https://stackoverflow.com/a/30732393
 " This has a nasty bug in neovim where the quickfix height is incorrect,
 " eventually causing it to crash. I had to disable it because I was tired of
 " dealing with this crap.
-" augroup quickfixcmdgroup
-"     autocmd!
-"     autocmd QuickFixCmdPost *grep* copen
-" augroup END
+augroup quickfixcmdgroup
+    autocmd!
+    autocmd QuickFixCmdPost *grep* copen
+augroup END
 "
 " same bug https://stackoverflow.com/a/39010855/557215
 " augroup quickfixopengroup
@@ -728,7 +732,8 @@ augroup phphelpersgroup
 augroup END
 
 " use vim grepprg
-nnoremap <leader>gg :silent grep!<space>
+" nnoremap <leader>gg :silent grep!<space>
+nnoremap <leader>gg :grep!<space>
 " pneumonic: grep all
 nnoremap <leader>ga :grep!
             \ --skip-vcs-ignores
