@@ -414,6 +414,8 @@ mcsre_s:blue,,bold:[ `,_;'"](30[0-8])[ `,_:;.'"-]
 mcsre_s:blue:url: '(/[a-zA-Z0-9._/?&=#@%-]+)'
 mcsre_s:blue:route: '(/[a-zA-Z0-9._/?&=#@%-]+)'
 mcsre_s:blue:Error Palette API call: (/[a-zA-Z0-9._/?&=#@%-]+):
+mcsre_s:blue:PaletteEndpoints\.[a-zA-Z]+ - (/[a-zA-Z0-9._/?&=#@%-]+)
+mcsre_s:blue:"path":"(/[a-zA-Z0-9._/?&=#@%-]+)"
 # sometimes this is on the next line below "url:"
 cs_re:blue:'/legacy-pdp(/[a-zA-Z0-9._/?&=#@%-]+)'
 
@@ -432,6 +434,8 @@ mcsre_s:red,,bold/blink/reverse:(Error) {
 mcsre_s:red,,bold/blink/reverse:(Error) \(
 # e.g. TypeError: , etc.
 cs_re:red,,bold:([A-Z][a-z]+Error|Bad Request|Internal Server Error|Bad Gateway|LCB_E[A-Z_]+|ETIMEDOUT|Palette API Failed|Error Palette API call|ArtworkNotFound|invalid-json)
+mcsre_s:red,,bold:"code":"([A-Z_]+)"
+mcsre_s:red,,bold:"errors":\["(.*)"\]
 # }}}
 
 # palette {{{
