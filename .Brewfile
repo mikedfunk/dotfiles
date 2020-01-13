@@ -11,6 +11,7 @@ brew "getantibody/tap/antibody" # like antigen but faster! (zsh plugin system)
 brew "autoconf" # needed to build some php70 libs from source
 brew "autossh" # ssh that reconnects (I use this a lot for tunnels, etc)
 brew "awscli" # aws command - used to upload to s3, etc. `aws configure` to set up credentials. (set up access keys here https://console.aws.amazon.com/iam/home?region=us-west-1#/users/mike.funk?section=security_credentials)
+brew "bandwhich" # top-like tool to see which processes are using the most bandwidth (sudo bandwhich)
 brew "bat" # much cooler looking cat
 # brew "chromedriver" # like selenium for chrome. (These drivers feel pretty outdated to me)
 brew "codespell" # neat little utility to show and fix code misspellings
