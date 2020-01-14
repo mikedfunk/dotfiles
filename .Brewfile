@@ -69,7 +69,7 @@ brew "imagemagick@6" # image transformation tool - v6 needed for catalog
 # brew "intellij-idea-ce" # there's a community edition?? Just bookmarking this for later
 brew "intltool" # needed for php intl extension
 # brew "irssi" # irc client (I use web app)
-# brew "jenkins-zh/jcli/jcli" # jenkins cli
+# brew "jenkins-zh/jcli/jcli" # jenkins cli - alternative to .jar version
 # brew "jsawk" # parse json in bash
 brew "joplin" # powerful note-taking app with cli version, multi-pane, search, etc.
 brew "jsonlint" # used by vim ale to lint json

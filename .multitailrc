@@ -44,9 +44,12 @@ abbreviate_filesize:on
 # searches_case_insensitive:no
 
 # whot character to print in the markerline
-# markerline_color:red,black,reverse
+markerline_color:red,black,reverse
 # markerline_char:-
-#
+
+# whether to put a timestamp in the markerline (1) or not (0)
+markerline_timestamp:1
+
 # attributes for the line that is printed when multitail switches subwindow
 # changeline_color:blue,black,bold/reverse
 # changeline_char:-
