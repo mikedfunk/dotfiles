@@ -262,6 +262,7 @@ cask "sequel-pro" # mysql gui client. I mostly use mycli.
 cask "slack" # needed for screen sharing features. I mostly use the web app.
 cask "spectacle" # keyboard window splitter/resizer/mover. Kind of like a lightweight i3 window manager. I use it a lot.
 # cask "spotify" # mac native spotify player (I use the web app, but sometimes it gets stuck in an offline state or randomly stops playing)
+# cask "stoplight-studio" # openapi ide. This is cool but you can also just use the web version at https://stoplight.io/p/studio but the desktop app works with local files _and_ automatically mocks local apis with prism - their built-in api mocker
 # cask "ssh-tunnel-manager" # mac native gui to manage running ssh tunnels (I just put tunnels in launchctl with autossh and forget about them)
 # cask "steam" # yep
 # cask "suspicious-package" # quicklook plugin for mac dmg package inspection (I don't care about inspecting these)
