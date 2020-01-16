@@ -8,7 +8,8 @@
 " let g:airline_theme = 'base16_ashes'
 " colo ayu
 " let g:airline_theme = 'ayu'
-silent! colo base16-zenburn
+" silent! colo base16-zenburn
+silent! colo base16-outrun
 let g:airline_theme = 'base16'
 
 set wildignore +=coverage/*,node_modules/*,node_modules_fuck_npm/*,public/build/*,.http/*,log/*,tags,.git/*,Session.vim

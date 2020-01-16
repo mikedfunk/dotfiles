@@ -29,6 +29,8 @@ let g:ale_fix_on_save = 1 " This is off by default. You could do it manually wit
 let g:ale_sign_column_always = 1 " otherwise screen keeps jumping left and right
 let g:airline#extensions#ale#error_symbol = 'Errors:' " default is a bit sparse: E
 let g:airline#extensions#ale#warning_symbol = 'Warnings:' " default is W
+let g:zenburn_high_Contrast = 1
+" }}}
 
 " mappings {{{
 if isdirectory(expand('~/.vim/plugged/ale'))
@@ -148,8 +150,6 @@ let g:ale_set_balloons = 1
 
 " Use ALE's function for omnicompletion.
 " autocmd FileType php setlocal omnifunc=ale#completion#OmniFunc
-" }}}
-
 " }}}
 
 " asyncrun.vim {{{
