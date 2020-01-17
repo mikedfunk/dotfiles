@@ -29,13 +29,14 @@
       <property name="allowMultiline" value="true" />
     </properties>
   </rule>
-  <rule ref="Generic.Files.LineLength">
-    <properties>
-      <property name="lineLimit" value="160" />
-      <property name="absolutelineLimit" value="0" />
-    </properties>
-  </rule>
+  <!-- <rule ref="Generic.Files.LineLength"> -->
+  <!--   <properties> -->
+  <!--     <property name="lineLimit" value="80" /> -->
+  <!--     <property name="absolutelineLimit" value="160" /> -->
+  <!--   </properties> -->
+  <!-- </rule> -->
   <rule ref="Generic">
+    <exclude name="Generic.Formatting.NoSpaceAfterCast" />
     <exclude name="Generic.Functions.OpeningFunctionBraceBsdAllman" />
     <exclude name="Generic.PHP.ClosingPHPTag" />
     <exclude name="Generic.Files.LowercasedFilename" />
@@ -55,6 +56,12 @@
 
   <!-- MySource (16 sniffs) -->
   <rule ref="MySource">
+    <rule ref="Squiz.Strings.ConcatenationSpacing">
+      <properties>
+        <property name="ignoreNewlines" value="true" />
+        <property name="spacing" value="1" />
+      </properties>
+    </rule>
     <exclude name="MySource.CSS.BrowserSpecificStyles" />
     <exclude name="MySource.Channels.DisallowSelfActions" />
     <exclude name="MySource.Channels.IncludeOwnSystem" />
@@ -77,6 +84,7 @@
   <!--   </properties> -->
   <!-- </rule> -->
   <rule ref="PEAR">
+    <exclude name="PEAR.NamingConventions.ValidVariableName" />
     <exclude name="PEAR.NamingConventions.ValidFunctionName" />
     <exclude name="Generic.Files.LineLength" />
     <exclude name="PEAR.Commenting.FileComment" />
@@ -94,27 +102,19 @@
     <exclude-pattern>spec/*</exclude-pattern>
   </rule>
 
-  <!-- PSR12 (16 sniffs) -->
-  <rule ref="PSR12">
-  </rule>
-
   <!-- PSR2 (12 sniffs) -->
   <rule ref="PSR2">
   </rule>
 
-  <!-- Squiz (98 sniffs) -->
-  <rule ref="Squiz.WhiteSpace.ObjectOperatorSpacing">
-    <properties>
-      <property name="ignoreNewlines" value="true" />
-    </properties>
-  </rule>
-  <rule ref="Squiz.WhiteSpace.OperatorSpacing">
-    <properties>
-      <property name="ignoreNewlines" value="true" />
-    </properties>
+  <!-- PSR12 (16 sniffs) -->
+  <rule ref="PSR12">
   </rule>
 
+  <!-- Squiz (98 sniffs) -->
+
   <rule ref="Squiz">
+    <exclude name="Squiz.PHP.DisallowBooleanStatement" />
+    <exclude name="Squiz.WhiteSpace.MemberVarSpacing" />
     <rule ref="Squiz.WhiteSpace.MemberVarSpacing">
       <properties>
         <property name="spacingBeforeFirst" value="0" />
@@ -122,6 +122,7 @@
     </rule>
     <!-- <exclude name="Squiz.PHP.CommentedOutCode" /> -->
     <exclude name="Squiz.Strings.DoubleQuoteUsage" />
+    <exclude name="Squiz.Commenting.LongConditionClosingComment" />
     <exclude name="Squiz.Commenting.PostStatementComment.Found" />
     <exclude name="Squiz.Commenting.BlockComment" />
     <exclude name="Squiz.Commenting.ClassComment" />
@@ -163,6 +164,22 @@
       <property name="spacing" value="1" />
       <property name="spacingBeforeFirst" value="0" />
       <property name="spacingAfterLast" value="0" />
+    </properties>
+  </rule>
+  <rule ref="Squiz.Strings.ConcatenationSpacing">
+    <properties>
+      <property name="ignoreNewlines" value="true" />
+      <property name="spacing" value="1" />
+    </properties>
+  </rule>
+  <rule ref="Squiz.WhiteSpace.ObjectOperatorSpacing">
+    <properties>
+      <property name="ignoreNewlines" value="true" />
+    </properties>
+  </rule>
+  <rule ref="Squiz.WhiteSpace.OperatorSpacing">
+    <properties>
+      <property name="ignoreNewlines" value="true" />
     </properties>
   </rule>
 </ruleset>
