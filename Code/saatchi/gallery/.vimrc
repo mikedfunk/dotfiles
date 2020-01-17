@@ -9,10 +9,10 @@
 " colo ayu
 " let g:airline_theme = 'ayu'
 " silent! colo base16-zenburn
-silent! colo base16-outrun
+silent! colo base16-outrun-dark
 let g:airline_theme = 'base16'
 
-set wildignore +=coverage/*,node_modules/*,node_modules_fuck_npm/*,public/build/*,.http/*,log/*,tags,.git/*,Session.vim
+set wildignore +=coverage/*,node_modules/*,public/build/*,.http/*,log/*,tags,.git/*,Session.vim
 
 " jsx/javascript {{{
 " let b:javascript_lib_use_flux = 1
