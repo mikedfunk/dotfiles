@@ -19,23 +19,8 @@
   <!-- <exclude-pattern>app/Console/Commands/OneTimers/*</exclude-pattern> -->
 
   <!-- Generic (28 sniffs) -->
-  <rule ref="Generic.Formatting.SpaceAfterNot">
-    <properties>
-      <property name="spacing" value="0" />
-    </properties>
-  </rule>
-  <rule ref="Generic.Strings.UnnecessaryStringConcat">
-    <properties>
-      <property name="allowMultiline" value="true" />
-    </properties>
-  </rule>
-  <!-- <rule ref="Generic.Files.LineLength"> -->
-  <!--   <properties> -->
-  <!--     <property name="lineLimit" value="80" /> -->
-  <!--     <property name="absolutelineLimit" value="160" /> -->
-  <!--   </properties> -->
-  <!-- </rule> -->
   <rule ref="Generic">
+    <!-- <exclude name="Generic.Formatting.SpaceAfterNot" /> -->
     <exclude name="Generic.Formatting.NoSpaceAfterCast" />
     <exclude name="Generic.Functions.OpeningFunctionBraceBsdAllman" />
     <exclude name="Generic.PHP.ClosingPHPTag" />
@@ -52,6 +37,27 @@
     <exclude name="Generic.PHP.UpperCaseConstant" />
     <exclude name="Generic.Formatting.SpaceBeforeCast" />
     <exclude name="Generic.Arrays.DisallowShortArraySyntax" />
+  </rule>
+  <!-- properties of rules used in other rulesets -->
+  <rule ref="Generic.Formatting.SpaceAfterNot">
+    <properties>
+      <!-- This will not work with Sergey's style, will probably have to disable this -->
+      <property name="spacing" value="0" />
+    </properties>
+  </rule>
+  <rule ref="Generic.Strings.UnnecessaryStringConcat">
+    <properties>
+      <property name="allowMultiline" value="true" />
+        <!-- warning instead of error -->
+      <property name="error" value="false" />
+    </properties>
+  </rule>
+  <rule ref="Generic.PHP.ForbiddenFunctions">
+    <properties>
+      <!-- this is set in order to remove is_null from forbidden functions, but it doesn't work. -->
+      <property name="forbiddenFunctions" type="array" value="sizeof=>count,delete=>unset,print=>echo" />
+      <property name="error" value="false" />
+    </properties>
   </rule>
 
   <!-- MySource (16 sniffs) -->
@@ -78,12 +84,8 @@
   </rule>
 
   <!-- PEAR (5 sniffs) -->
-  <!-- <rule ref="PEAR.WhiteSpace.ObjectOperatorIndent" > -->
-  <!--   <properties> -->
-  <!--     <property name="multilevel" value="true" /> -->
-  <!--   </properties> -->
-  <!-- </rule> -->
   <rule ref="PEAR">
+    <exclude name="PEAR.Functions.FunctionCallSignature" />
     <exclude name="PEAR.NamingConventions.ValidVariableName" />
     <exclude name="PEAR.NamingConventions.ValidFunctionName" />
     <exclude name="Generic.Files.LineLength" />
@@ -111,7 +113,6 @@
   </rule>
 
   <!-- Squiz (98 sniffs) -->
-
   <rule ref="Squiz">
     <exclude name="Squiz.PHP.DisallowBooleanStatement" />
     <exclude name="Squiz.WhiteSpace.MemberVarSpacing" />
@@ -124,6 +125,7 @@
     <exclude name="Squiz.Strings.DoubleQuoteUsage" />
     <exclude name="Squiz.Commenting.LongConditionClosingComment" />
     <exclude name="Squiz.Commenting.PostStatementComment.Found" />
+    <exclude name="Squiz.Commenting.VariableComment" />
     <exclude name="Squiz.Commenting.BlockComment" />
     <exclude name="Squiz.Commenting.ClassComment" />
     <exclude name="Squiz.Files.FileExtension" />
@@ -143,21 +145,6 @@
     <!-- this doesn't take into account ?? >:( -->
     <exclude name="Squiz.Formatting.OperatorBracket" />
   </rule>
-
-  <!-- Zend (2 sniffs) -->
-  <rule ref="Zend">
-    <exclude name="Zend.NamingConventions.ValidVariableName" />
-    <exclude name="Zend.Debug.CodeAnalyzer" />
-  </rule>
-
-  <!-- full rulesets -->
-  <!-- <rule ref="Generic" /> -->
-  <!-- <rule ref="PSR2" /> -->
-  <!-- <rule ref="MySource" /> -->
-  <!-- <rule ref="Squiz" /> -->
-  <!-- <rule ref="PSR1" /> -->
-  <!-- <rule ref="PSR12" /> -->
-
   <!-- properties of rules used in other rulesets -->
   <rule ref="Squiz.WhiteSpace.FunctionSpacing">
     <properties>
@@ -182,4 +169,11 @@
       <property name="ignoreNewlines" value="true" />
     </properties>
   </rule>
+
+  <!-- Zend (2 sniffs) -->
+  <rule ref="Zend">
+    <exclude name="Zend.NamingConventions.ValidVariableName" />
+    <exclude name="Zend.Debug.CodeAnalyzer" />
+  </rule>
+
 </ruleset>

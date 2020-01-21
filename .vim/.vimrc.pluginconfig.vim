@@ -24,7 +24,7 @@ let g:ale_lint_on_save = 1 " acceptable speed
 let g:ale_lint_on_filetype_changed = 0
 let g:ale_lint_on_text_changed = 'never'
 
-let g:ale_fix_on_save = 1 " This is off by default. You could do it manually with :ALEFix
+" let g:ale_fix_on_save = 1 " This is off by default. You could do it manually with :ALEFix
 
 let g:ale_sign_column_always = 1 " otherwise screen keeps jumping left and right
 let g:airline#extensions#ale#error_symbol = 'Errors:' " default is a bit sparse: E

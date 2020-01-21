@@ -185,6 +185,7 @@ has nodenv && _evalcache nodenv init - # (evalcache version)
 has pyenv && _evalcache pyenv init - # (evalcache version)
 [[ -f "$HOME"/.phpenv/bin/phpenv ]] && _evalcache "$HOME"/.phpenv/bin/phpenv init - # (evalcache version)
 has rbenv && _evalcache rbenv init - # (evalcache version)
+has hub && _evalcache hub alias -s # alias git to hub with completion intact
 # }}}
 
 export LC_CTYPE=en_US.UTF-8 # https://unix.stackexchange.com/a/302418/287898

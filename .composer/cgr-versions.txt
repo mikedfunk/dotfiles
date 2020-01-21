@@ -7,7 +7,7 @@ phpspec/phpspec
 phpunit/phpunit
 sebastian/phpcpd:^3.0
 pdepend/pdepend:^2.5
-squizlabs/php_codesniffer:3.*@dev
+squizlabs/php_codesniffer:^3.5.3
 psy/psysh:^0.8.15
 phpstan/phpstan:^0.9.2
 pedrotroller/php-cs-custom-fixer:^2.19
