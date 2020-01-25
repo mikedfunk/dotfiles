@@ -89,6 +89,7 @@ windows:
       - ts
       - while true; do wait-on http://www.local.saatchiart.com && saatchi-tinker-palette-local; sleep 1; done
       - while true; do psw; sleep 1; done
+      - saatchi-docs-serve-palette
       # - saatchi-phing-watch
       - while true; do wait-on http://www.local.saatchiart.com && saatchi-tail-palette-local; sleep 1; done
 # }}}

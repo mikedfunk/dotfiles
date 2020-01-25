@@ -14,6 +14,6 @@ repos:
         types: [php]
       - id: phpcs
         name: phpcs
-        entry: ./vendor/bin/phpcs --standard=./phpcs.xml -s -v --colors
+        entry: ./vendor/bin/phpcs --standard=./phpcs.xml -s -v --colors -n
         language: system
         types: [php]
