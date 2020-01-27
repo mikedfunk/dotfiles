@@ -793,7 +793,7 @@ letsbreak () {
     sleep $BREAK_TIME_IN_SECONDS
     MESSAGE="Break's over, let's do some fun work!"
     letsfun "$MESSAGE"
-    noti "$MESSAGE"
+    noti --message "$MESSAGE"
     return 0
 }
 # }}}
