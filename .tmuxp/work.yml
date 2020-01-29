@@ -18,7 +18,7 @@ windows:
       - while true; do clear && yadm st; sleep 60; done
       # - wait-on http://www.local.saatchiart.com && docker-stats
       # - sourcegraph
-      - while true; do wait-on http://www.local.saatchiart.com && dme && ctop; sleep 1; done
+      # - while true; do wait-on http://www.local.saatchiart.com && dme && ctop; sleep 1; done
       - htop
 # }}}
 
@@ -150,6 +150,7 @@ windows:
       - shell_command:
         - saatchi-docker-start
         focus: true
+      - while true; do wait-on http://www.local.saatchiart.com && dme && ctop; sleep 1; done
       - ts
 # }}}
 

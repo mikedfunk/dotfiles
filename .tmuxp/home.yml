@@ -12,7 +12,7 @@ windows:
       - v -S
       - yadm st
       # - sourcegraph
-      - ctop
+      # - ctop
       - htop
 # }}}
 
