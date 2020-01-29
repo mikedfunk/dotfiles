@@ -251,7 +251,7 @@ windows:
 
 # logs (prod) {{{
   # - window_name: p.logs
-  - window_name: logs
+  - window_name: xprod.logs
     start_directory: ~/
     layout: tiled
     options:
@@ -271,21 +271,40 @@ windows:
 
 # logs (kqa) (disabled) {{{
 # kqa logs are kind of flaky. Sometimes they time out. Haven't figured out why
-# yet.
-  # - window_name: k.logs
-  #   start_directory: ~/
-  #   layout: tiled
-  #   options:
-  #     pane-border-status: top
-  #   panes:
-  #     # printf sets pane name. alternative, wasn't as reliable for me:
-  #     # tmux select-pane -t 5 -T 'MY_PANE_NAME'
-  #     - printf "\033]2;%s\033\\r:r" 'easel' && saatchi-tail-easel-kqa
-  #     - printf "\033]2;%s\033\\r:r" 'gallery' && saatchi-tail-gallery-kqa
-  #     - printf "\033]2;%s\033\\r:r" 'palette' && saatchi-tail-palette-kqa
-  #     - printf "\033]2;%s\033\\r:r" 'legacy' && saatchi-tail-legacy-kqa
-  #     - printf "\033]2;%s\033\\r:r" 'zed' && saatchi-tail-zed-kqa
-  #     - printf "\033]2;%s\033\\r:r" 'catalog' && saatchi-tail-catalog-kqa
+# yet. Workaround: R will restart the tail without quitting multitail.
+  - window_name: kqa.logs
+    start_directory: ~/
+    layout: tiled
+    options:
+      pane-border-status: top
+    panes:
+      # printf sets pane name. alternative, wasn't as reliable for me:
+      # tmux select-pane -t 5 -T 'MY_PANE_NAME'
+      - printf "\033]2;%s\033\\r:r" 'easel' && saatchi-tail-easel-kqa
+      - printf "\033]2;%s\033\\r:r" 'gallery' && saatchi-tail-gallery-kqa
+      - printf "\033]2;%s\033\\r:r" 'palette' && saatchi-tail-palette-kqa
+      - printf "\033]2;%s\033\\r:r" 'legacy' && saatchi-tail-legacy-kqa
+      - printf "\033]2;%s\033\\r:r" 'zed' && saatchi-tail-zed-kqa
+      - printf "\033]2;%s\033\\r:r" 'catalog' && saatchi-tail-catalog-kqa
+# }}}
+
+# logs (kprod) {{{
+# kprod logs are kind of flaky. Sometimes they time out. Haven't figured out why
+# yet. Workaround: R will restart the tail without quitting multitail.
+  - window_name: kprod.logs
+    start_directory: ~/
+    layout: tiled
+    options:
+      pane-border-status: top
+    panes:
+      # printf sets pane name. alternative, wasn't as reliable for me:
+      # tmux select-pane -t 5 -T 'MY_PANE_NAME'
+      - printf "\033]2;%s\033\\r:r" 'easel' && saatchi-tail-easel-kprod
+      - printf "\033]2;%s\033\\r:r" 'gallery' && saatchi-tail-gallery-kprod
+      - printf "\033]2;%s\033\\r:r" 'palette' && saatchi-tail-palette-kprod
+      - printf "\033]2;%s\033\\r:r" 'legacy' && saatchi-tail-legacy-kprod
+      - printf "\033]2;%s\033\\r:r" 'zed' && saatchi-tail-zed-kprod
+      - printf "\033]2;%s\033\\r:r" 'catalog' && saatchi-tail-catalog-kprod
 # }}}
 
 # k9s (disabled) {{{
