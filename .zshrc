@@ -148,7 +148,6 @@ has lazyload && lazyload 'has akamai && eval "$(akamai --zsh)"' akamai
 # source additional files and env vars {{{
 [ -f ~/.private_vars.sh ] && source ~/.private_vars.sh # where I store my secret env vars
 # [ -f ~/.support/promptline.theme.bash ] && source ~/.support/promptline.theme.bash # vim plugin generates this tmux status line file
-# has direnv && eval "$(direnv hook zsh)" # allow .envrc on each prompt start (moved to evalcache)
 # if you get this error:
 # 25:28: execution error: Not authorized to send Apple events to iTerm. (-1743)
 # Goto Settings -> Security & Privacy -> Privacy -> Automation -> Privacy tab and check the System Events checkbox. https://stackoverflow.com/a/53380557
@@ -167,9 +166,7 @@ unset PHPENV_VERSION
 # has pyenv && eval "$(pyenv init -)" # moved to lazyload but much slower!
 # use pipenv instead of virtualenv. It comes with pyenv! There's also support for it with direnv.
 # has pyenv-virtualenv-init && eval "$(pyenv virtualenv-init -)"
-# [[ -f "$HOME/.phpenv/bin/phpenv" ]] && eval "$($HOME/.phpenv/bin/phpenv init -)" # moved to _evalcache
 export MY_PHPENV_VERSION="$(cat $HOME/.phpenv/version)"
-# has rbenv && eval "$(rbenv init -)" # moved to _evalcache
 # has akamai && eval "$(akamai --zsh)" # this takes like 1 second and I almost never use it (moved to lazyload)
 # [ -f "/usr/local/opt/asdf/asdf.sh" ] && source "/usr/local/opt/asdf/asdf.sh"
 # [ -n "$DESK_ENV" ] && source "$DESK_ENV" || true # Hook for desk activation
@@ -186,6 +183,11 @@ has pyenv && _evalcache pyenv init - # (evalcache version)
 [[ -f "$HOME"/.phpenv/bin/phpenv ]] && _evalcache "$HOME"/.phpenv/bin/phpenv init - # (evalcache version)
 has rbenv && _evalcache rbenv init - # (evalcache version)
 has hub && _evalcache hub alias -s # alias git to hub with completion intact
+
+# https://github.com/trapd00r/LS_COLORS
+DIRCOLORS_CMD="/usr/local/opt/coreutils/libexec/gnubin/dircolors"
+DIRCOLORS_FILE="$HOME/.dircolors"
+[[ -e "$DIRCOLORS_CMD" && -f "$DIRCOLORS_FILE" ]] && _evalcache "$DIRCOLORS_CMD" -b "$DIRCOLORS_FILE"
 # }}}
 
 export LC_CTYPE=en_US.UTF-8 # https://unix.stackexchange.com/a/302418/287898
@@ -274,11 +276,6 @@ has shml && source $(which shml)
 # disable weird highlighting of pasted text
 # https://old.reddit.com/r/zsh/comments/c160o2/command_line_pasted_text/erbg6hy/
 zle_highlight=('paste:none')
-
-# https://github.com/trapd00r/LS_COLORS
-DIRCOLORS_CMD="/usr/local/opt/coreutils/libexec/gnubin/dircolors"
-DIRCOLORS_FILE="$HOME/.dircolors"
-[[ -e "$DIRCOLORS_CMD" && -f "$DIRCOLORS_FILE" ]] && eval $( "$DIRCOLORS_CMD" -b "$DIRCOLORS_FILE" )
 # }}}
 
 # ssh {{{
