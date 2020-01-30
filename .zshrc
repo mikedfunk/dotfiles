@@ -16,6 +16,19 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 # }}}
 
+# helper functions {{{
+
+# Internal: Whether a command is available
+has() {
+    type "$1" &>/dev/null
+}
+
+# }}}
+
+# set up homebrew paths {{{
+has brew && eval $(brew shellenv) # this MUST be done before setting the rest of paths
+# }}}
+
 # Paths {{{
 cdpath=(
   $HOME/Code
@@ -29,15 +42,11 @@ navipath=(
 )
 
 infopath=(
-  # $(brew --prefix)/share/info
-  /usr/local/share/info
   /usr/share/info
   $infopath
 )
 
 manpath=(
-  # $(brew --prefix)/share/man
-  /usr/local/share/man
   /usr/share/man
   $manpath
 )
@@ -49,13 +58,11 @@ path=(
   $HOME/bin
   # global python pip packages
   $HOME/.local/bin
-  # this needs to be first so rbenv from homebrew can take precedence
-  # $(brew --prefix)/{bin,sbin}
-  /usr/local/{bin,sbin}
-  # golang packages
-  $HOME/go/bin
+  # (homebrew is already covered by the eval above)
   # rust cargo packages
   # $HOME/.cargo/bin
+  # golang packages
+  $HOME/go/bin
   # golang executables
   /usr/local/opt/go/libexec/bin
   $HOME/.{php,pl,nod,py}env/bin
@@ -71,24 +78,6 @@ path=(
   # /usr/local/opt/coreutils/libexec/gnubin
   $path
 )
-
-# weird that I have to specify zsh functions. That should work out of the box,
-# but it doesn't. If I don't source that I get compdef undefined.
-fpath=(
-  # homebrew zsh completions
-  # "/usr/local/share/zsh/functions" # (already in FPATH)
-  # "/usr/local/share/zsh/site-functions" # (already in FPATH)
-  $fpath
-)
-# }}}
-
-# helper functions {{{
-
-# Internal: Whether a command is available
-has() {
-    type "$1" &>/dev/null
-}
-
 # }}}
 
 # zsh {{{
@@ -158,16 +147,13 @@ has lazyload && lazyload 'has akamai && eval "$(akamai --zsh)"' akamai
 [ -f /usr/local/etc/openssl/cert.pem ] && export SSL_CERT_FILE=/usr/local/etc/openssl/cert.pem
 # [ -d "$HOME/.zsh/completion" ] && find "$HOME/.zsh/completion" | while read f; do source "$f"; done
 # has plenv && eval "$(plenv init -)"
-# has nodenv && eval "$(nodenv init -)" # moved to lazyload but much slower!
 # https://github.com/pyenv/pyenv/blob/master/COMMANDS.md#pyenv-global
 # strangely these is already set BEFORE this file is sourced!
 unset PYENV_VERSION
 unset PHPENV_VERSION
-# has pyenv && eval "$(pyenv init -)" # moved to lazyload but much slower!
 # use pipenv instead of virtualenv. It comes with pyenv! There's also support for it with direnv.
 # has pyenv-virtualenv-init && eval "$(pyenv virtualenv-init -)"
 export MY_PHPENV_VERSION="$(cat $HOME/.phpenv/version)"
-# has akamai && eval "$(akamai --zsh)" # this takes like 1 second and I almost never use it (moved to lazyload)
 # [ -f "/usr/local/opt/asdf/asdf.sh" ] && source "/usr/local/opt/asdf/asdf.sh"
 # [ -n "$DESK_ENV" ] && source "$DESK_ENV" || true # Hook for desk activation
 # tabtab source for yo package
@@ -244,6 +230,7 @@ _configure_cgr_and_composer
 
 has kubectl && source <(kubectl completion zsh)
 has stern && source <(stern --completion=zsh)
+has pyenv && has brew && [[ -f $(brew --prefix pyenv)/completions/pyenv.zsh ]] && source $(brew --prefix pyenv)/completions/pyenv.zsh
 # [[ -e /usr/local/opt/coreutils/libexec/gnubin/dircolors && -f "$HOME"/.dircolors ]] && eval $( /usr/local/opt/coreutils/libexec/gnubin/dircolors -b "$HOME"/.dircolors )
 # has zsh-startify && zsh-startify (neat, but doesn't really help)
 [[ -f "$HOME"/.iterm2_shell_integration.zsh ]] && source "$HOME"/.iterm2_shell_integration.zsh
