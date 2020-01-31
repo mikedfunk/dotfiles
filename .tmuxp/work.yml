@@ -224,52 +224,6 @@ windows:
       - . ./watch.sh
 # }}}
 
-# maropost php sdk (disabled) {{{
-  # - window_name: maropost
-  #   start_directory: ~/Code/saatchi/maropost-php-sdk
-  #   layout: main-horizontal
-  #   options:
-  #     main-pane-height: 40
-  #   panes:
-  #     - shell_command:
-  #       - v -S
-  #       focus: true
-  #     - ts
-# }}}
-
-# releases (xdev|xqa|xprod) (disabled) {{{
-  # - window_name: releases
-  #   layout: even-vertical
-  #   options:
-  #     pane-border-status: top
-  #   panes:
-  #     # printf sets pane name. alternative, wasn't as reliable for me:
-  #     # tmux select-pane -t 5 -T 'MY_PANE_NAME'
-  #     - printf "\033]2;%s\033\\r:r" 'xdev' && saatchi-releases-xdev --watch --clear
-  #     - printf "\033]2;%s\033\\r:r" 'xqa' && saatchi-releases-xqa --watch --clear
-  #     - printf "\033]2;%s\033\\r:r" 'xprod' && saatchi-releases-xprod --watch --clear
-# }}}
-
-# logs (prod) {{{
-  # - window_name: p.logs
-  - window_name: xprod.logs
-    start_directory: ~/
-    layout: tiled
-    options:
-      pane-border-status: top
-    panes:
-      # printf sets pane name. alternative, wasn't as reliable for me:
-      # tmux select-pane -t 5 -T 'MY_PANE_NAME'
-      - printf "\033]2;%s\033\\r:r" 'easel' && saatchi-tail-easel-xprod
-      - printf "\033]2;%s\033\\r:r" 'gallery' && saatchi-tail-gallery-xprod
-      - printf "\033]2;%s\033\\r:r" 'palette' && saatchi-tail-palette-xprod
-      - printf "\033]2;%s\033\\r:r" 'legacy' && saatchi-tail-legacy-xprod
-      - printf "\033]2;%s\033\\r:r" 'zed' && saatchi-tail-zed-xprod
-      # - printf "\033]2;%s\033\\r:r" 'mjmship' && mjm-tail-app-prod
-      - printf "\033]2;%s\033\\r:r" 'catalog' && saatchi-tail-catalog-xprod
-      # - saatchi-tail-legacy-services-xprod
-# }}}
-
 # logs (kqa) (disabled) {{{
 # kqa logs are kind of flaky. Sometimes they time out. Haven't figured out why
 # yet. Workaround: R will restart the tail without quitting multitail.
@@ -306,12 +260,6 @@ windows:
       - printf "\033]2;%s\033\\r:r" 'legacy' && saatchi-tail-legacy-kprod
       - printf "\033]2;%s\033\\r:r" 'zed' && saatchi-tail-zed-kprod
       - printf "\033]2;%s\033\\r:r" 'catalog' && saatchi-tail-catalog-kprod
-# }}}
-
-# k9s (disabled) {{{
-  # - window_name: k9s
-  #   panes:
-  #     - k9s --namespace=develop
 # }}}
 
 # chromatic (iOS app) (disabled) {{{
