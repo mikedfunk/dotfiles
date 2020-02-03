@@ -33,12 +33,12 @@ windows:
         - v +GitSessionLoad
         focus: true
       - ts
-      - while true; do wait-on http://www.local.saatchiart.com && saatchi-tinker-legacy-local; sleep 1; done
-      - while true; do puw; sleep 1; done
+      - echo "while true; do wait-on http://www.local.saatchiart.com && saatchi-tinker-legacy-local; sleep 1; done"
+      - echo "while true; do puw; sleep 1; done"
       - wd legacy && cd ./assets/react && yarn && yarn write-rev && yarn start
       # - saatchi-eslint-watch-legacy
       # - saatchi-grunt-watch-legacy
-      - while true; do wait-on http://www.local.saatchiart.com && saatchi-tail-legacy-local; sleep 1; done
+      - echo "while true; do wait-on http://www.local.saatchiart.com && saatchi-tail-legacy-local; sleep 1; done"
 # }}}
 
 # easel {{{
@@ -52,9 +52,9 @@ windows:
         - v +GitSessionLoad
         focus: true
       - ts
-      - while true; do wait-on http://www.local.saatchiart.com && saatchi-tinker-easel-local; sleep 1; done
-      - yarn jest --watchAll
-      - while true; do wait-on http://www.local.saatchiart.com && saatchi-tail-easel-local; sleep 1; done
+      - echo "while true; do wait-on http://www.local.saatchiart.com && saatchi-tinker-easel-local; sleep 1; done"
+      - echo "yarn jest --watchAll"
+      - echo "while true; do wait-on http://www.local.saatchiart.com && saatchi-tail-easel-local; sleep 1; done"
 # }}}
 
 # gallery {{{
@@ -68,12 +68,12 @@ windows:
         - v +GitSessionLoad
         focus: true
       - ts
-      - while true; do wait-on http://www.local.saatchiart.com && saatchi-tinker-gallery-local; sleep 1; done
-      - while true; do puw; sleep 1; done
-      - yarn jest --watch
+      - echo "while true; do wait-on http://www.local.saatchiart.com && saatchi-tinker-gallery-local; sleep 1; done"
+      - echo "while true; do puw; sleep 1; done"
+      - echo "yarn jest --watch"
       - while true; do saatchi-gulp-watch-gallery; sleep 1; done
         # - saatchi-start-gallery
-      - while true; do wait-on http://www.local.saatchiart.com && saatchi-tail-gallery-local; sleep 1; done
+      - echo "while true; do wait-on http://www.local.saatchiart.com && saatchi-tail-gallery-local; sleep 1; done"
 # }}}
 
 # palette {{{
@@ -87,11 +87,11 @@ windows:
         - v +GitSessionLoad
         focus: true
       - ts
-      - while true; do wait-on http://www.local.saatchiart.com && saatchi-tinker-palette-local; sleep 1; done
+      - echo "while true; do wait-on http://www.local.saatchiart.com && saatchi-tinker-palette-local; sleep 1; done"
       - while true; do psw; sleep 1; done
-      - saatchi-docs-serve-palette
+      - echo "saatchi-docs-serve-palette"
       # - saatchi-phing-watch
-      - while true; do wait-on http://www.local.saatchiart.com && saatchi-tail-palette-local; sleep 1; done
+      - echo "while true; do wait-on http://www.local.saatchiart.com && saatchi-tail-palette-local; sleep 1; done"
 # }}}
 
 # zed {{{
@@ -105,10 +105,10 @@ windows:
         - v +GitSessionLoad
         focus: true
       - ts
-      - while true; do wait-on http://www.local.saatchiart.com && saatchi-tinker-zed-local; sleep 1; done
-      - while true; do wait-on http://www.local.saatchiart.com && saatchi-phpunit-watch-zed; sleep 1; done
-      - saatchi-grunt-watch-zed
-      - while true; do wait-on http://www.local.saatchiart.com && saatchi-tail-zed-local; sleep 1; done
+      - echo "while true; do wait-on http://www.local.saatchiart.com && saatchi-tinker-zed-local; sleep 1; done"
+      - echo "while true; do wait-on http://www.local.saatchiart.com && saatchi-phpunit-watch-zed; sleep 1; done"
+      - echo "saatchi-grunt-watch-zed"
+      - echo "while true; do wait-on http://www.local.saatchiart.com && saatchi-tail-zed-local; sleep 1; done"
 # }}}
 
 # catalog (disabled) {{{
@@ -227,39 +227,39 @@ windows:
 # logs (kqa) (disabled) {{{
 # kqa logs are kind of flaky. Sometimes they time out. Haven't figured out why
 # yet. Workaround: R will restart the tail without quitting multitail.
-  - window_name: kqa.logs
-    start_directory: ~/
-    layout: tiled
-    options:
-      pane-border-status: top
-    panes:
-      # printf sets pane name. alternative, wasn't as reliable for me:
-      # tmux select-pane -t 5 -T 'MY_PANE_NAME'
-      - printf "\033]2;%s\033\\r:r" 'easel' && saatchi-tail-easel-kqa
-      - printf "\033]2;%s\033\\r:r" 'gallery' && saatchi-tail-gallery-kqa
-      - printf "\033]2;%s\033\\r:r" 'palette' && saatchi-tail-palette-kqa
-      - printf "\033]2;%s\033\\r:r" 'legacy' && saatchi-tail-legacy-kqa
-      - printf "\033]2;%s\033\\r:r" 'zed' && saatchi-tail-zed-kqa
-      - printf "\033]2;%s\033\\r:r" 'catalog' && saatchi-tail-catalog-kqa
+  # - window_name: kqa.logs
+  #   start_directory: ~/
+  #   layout: tiled
+  #   options:
+  #     pane-border-status: top
+  #   panes:
+  #     # printf sets pane name. alternative, wasn't as reliable for me:
+  #     # tmux select-pane -t 5 -T 'MY_PANE_NAME'
+  #     - printf "\033]2;%s\033\\r:r" 'easel' && saatchi-tail-easel-kqa
+  #     - printf "\033]2;%s\033\\r:r" 'gallery' && saatchi-tail-gallery-kqa
+  #     - printf "\033]2;%s\033\\r:r" 'palette' && saatchi-tail-palette-kqa
+  #     - printf "\033]2;%s\033\\r:r" 'legacy' && saatchi-tail-legacy-kqa
+  #     - printf "\033]2;%s\033\\r:r" 'zed' && saatchi-tail-zed-kqa
+  #     - printf "\033]2;%s\033\\r:r" 'catalog' && saatchi-tail-catalog-kqa
 # }}}
 
 # logs (kprod) {{{
 # kprod logs are kind of flaky. Sometimes they time out. Haven't figured out why
 # yet. Workaround: R will restart the tail without quitting multitail.
-  - window_name: kprod.logs
-    start_directory: ~/
-    layout: tiled
-    options:
-      pane-border-status: top
-    panes:
-      # printf sets pane name. alternative, wasn't as reliable for me:
-      # tmux select-pane -t 5 -T 'MY_PANE_NAME'
-      - printf "\033]2;%s\033\\r:r" 'easel' && saatchi-tail-easel-kprod
-      - printf "\033]2;%s\033\\r:r" 'gallery' && saatchi-tail-gallery-kprod
-      - printf "\033]2;%s\033\\r:r" 'palette' && saatchi-tail-palette-kprod
-      - printf "\033]2;%s\033\\r:r" 'legacy' && saatchi-tail-legacy-kprod
-      - printf "\033]2;%s\033\\r:r" 'zed' && saatchi-tail-zed-kprod
-      - printf "\033]2;%s\033\\r:r" 'catalog' && saatchi-tail-catalog-kprod
+  # - window_name: kprod.logs
+  #   start_directory: ~/
+  #   layout: tiled
+  #   options:
+  #     pane-border-status: top
+  #   panes:
+  #     # printf sets pane name. alternative, wasn't as reliable for me:
+  #     # tmux select-pane -t 5 -T 'MY_PANE_NAME'
+  #     - printf "\033]2;%s\033\\r:r" 'easel' && saatchi-tail-easel-kprod
+  #     - printf "\033]2;%s\033\\r:r" 'gallery' && saatchi-tail-gallery-kprod
+  #     - printf "\033]2;%s\033\\r:r" 'palette' && saatchi-tail-palette-kprod
+  #     - printf "\033]2;%s\033\\r:r" 'legacy' && saatchi-tail-legacy-kprod
+  #     - printf "\033]2;%s\033\\r:r" 'zed' && saatchi-tail-zed-kprod
+  #     - printf "\033]2;%s\033\\r:r" 'catalog' && saatchi-tail-catalog-kprod
 # }}}
 
 # chromatic (iOS app) (disabled) {{{

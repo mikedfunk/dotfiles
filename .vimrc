@@ -734,6 +734,9 @@ augroup END
 " use vim grepprg
 " nnoremap <leader>gg :silent grep!<space>
 nnoremap <leader>gg :grep!<space>
+" fzf version to avoid neovim bug with quickfix populating fucking everything up
+" downside: can't add arguments :/
+nnoremap <leader>gg :Ag<cr>
 " pneumonic: grep all
 nnoremap <leader>ga :grep!
             \ --skip-vcs-ignores

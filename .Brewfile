@@ -258,7 +258,8 @@ cask "quicklook-json" # quicklook plugin (preview json)
 cask "quicklook-csv" # quicklook plugin (preview csvs)
 cask "qlimagesize" # quicklook plugin (display image size and resolution in the title in preview)
 # cask "scummvm" # old school
-cask "sequel-pro" # mysql gui client. I mostly use mycli.
+# cask "sequel-pro" # mysql gui client. I mostly use mycli.
+cask "sequel-pro-nightly" # nightly has bug fixes and dark mode! B)
 cask "slack" # needed for screen sharing features. I mostly use the web app.
 cask "spectacle" # keyboard window splitter/resizer/mover. Kind of like a lightweight i3 window manager. I use it a lot.
 # cask "spotify" # mac native spotify player (I use the web app, but sometimes it gets stuck in an offline state or randomly stops playing)
