@@ -178,7 +178,8 @@ windows:
         - v -S
         focus: true
       - ts
-      - k9s -n develop
+      - k9s -n develop --context saatchi-qa
+      - k9s -n master --context saatchi-prod
 # }}}
 
 # mysql {{{

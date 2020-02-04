@@ -11,9 +11,9 @@
 
 # p10k instant prompt {{{
 # https://old.reddit.com/r/zsh/comments/dk53ow/new_powerlevel10k_feature_instant_prompt/
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#     source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
 # }}}
 
 # helper functions {{{
@@ -26,7 +26,7 @@ has() {
 # }}}
 
 # set up homebrew paths {{{
-has brew && eval $(brew shellenv) # this MUST be done before setting the rest of paths
+# has brew && eval $(brew shellenv) # this MUST be done before setting the rest of paths
 # }}}
 
 # Paths {{{
@@ -42,11 +42,13 @@ navipath=(
 )
 
 infopath=(
+  /usr/local/share/info
   /usr/share/info
   $infopath
 )
 
 manpath=(
+  /usr/local/share/man
   /usr/share/man
   $manpath
 )
@@ -59,6 +61,8 @@ path=(
   # global python pip packages
   $HOME/.local/bin
   # (homebrew is already covered by the eval above)
+  # wtf homebrew? this is too far down the list!
+  /usr/local/{bin,sbin}
   # rust cargo packages
   # $HOME/.cargo/bin
   # golang packages
@@ -92,7 +96,7 @@ zstyle ':completion:*:(ssh|scp|sftp|sshrc|autossh|sshfs):*' hosts $hosts
 zstyle ':completion:*:(ssh|scp|sftp|sshrc|autossh|sshfs):*' users $users
 # }}}
 
-# antibody {{{
+# antibody (#slow) {{{
 # make oh-my-zsh plugins work with antibody... this is kind of crazy
 ZSH="$HOME/Library/Caches/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh"
 # If I re-source antibody init a second time it takes MINUTES to reinit. Even
@@ -166,6 +170,7 @@ has direnv && _evalcache direnv hook zsh # (evalcache version)
 has ntfy && _evalcache ntfy shell-integration # notify when long-running command finishes. pip package, breaks in pyenv - see yadm bootstrap for unique setup.
 has nodenv && _evalcache nodenv init - # (evalcache version)
 has pyenv && _evalcache pyenv init - # (evalcache version)
+# #slow
 [[ -f "$HOME"/.phpenv/bin/phpenv ]] && _evalcache "$HOME"/.phpenv/bin/phpenv init - # (evalcache version)
 has rbenv && _evalcache rbenv init - # (evalcache version)
 has hub && _evalcache hub alias -s # alias git to hub with completion intact
@@ -230,8 +235,11 @@ _configure_cgr_and_composer
 
 has kubectl && source <(kubectl completion zsh)
 has stern && source <(stern --completion=zsh)
+# #slow
 has pyenv && has brew && [[ -f $(brew --prefix pyenv)/completions/pyenv.zsh ]] && source $(brew --prefix pyenv)/completions/pyenv.zsh
+# #slow
 has rbenv && has brew && [[ -f $(brew --prefix rbenv)/completions/rbenv.zsh ]] && source $(brew --prefix rbenv)/completions/rbenv.zsh
+# #slow
 has nodenv && has brew && [[ -f $(brew --prefix nodenv)/completions/nodenv.zsh ]] && source $(brew --prefix nodenv)/completions/nodenv.zsh
 has plenv && has brew && [[ -f $(brew --prefix plenv)/completions/plenv.zsh ]] && source $(brew --prefix plenv)/completions/plenv.zsh
 has phpenv && [[ -f "$HOME"/.phpenv/completions/phpenv.zsh ]] && source "$HOME"/.phpenv/completions/phpenv.zsh
@@ -262,6 +270,7 @@ HOMEBREW_NO_ANALYTICS=1
 # icons: checkmark xmark heart sun star darkstar umbrella flag snowflake music scissors trademark copyright apple smile
 # emojis: smiley innocent joy =p worried cry rage wave ok_hand thumbsup thumbsdown smiley_cat cat dog bee pig monkey cow panda sushi home eyeglases smoke fire hankey beer cookie lock unlock star joker check x toilet bell search dart cash thinking luck
 # confirm QUESTION [SUCCESS_FUNCTION] [FAILURE_FUNCTION]
+# #slow
 has shml && source $(which shml)
 
 # disable weird highlighting of pasted text

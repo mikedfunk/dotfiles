@@ -733,21 +733,22 @@ augroup END
 
 " use vim grepprg
 " nnoremap <leader>gg :silent grep!<space>
-nnoremap <leader>gg :grep!<space>
+" nnoremap <leader>gg :grep!<space>
 " fzf version to avoid neovim bug with quickfix populating fucking everything up
-" downside: can't add arguments :/
+" TODO figure out how to add args in addition to the search
 nnoremap <leader>gg :Ag<cr>
+
 " pneumonic: grep all
-nnoremap <leader>ga :grep!
-            \ --skip-vcs-ignores
-            \ --ignore="autoload.*"
-            \ --ignore="tags"
-            \ --ignore="tags*"
-            \ --ignore="cscope*"
-            \ --ignore="ncscope*"
-            \ --ignore="Session.vim"
-            \ --ignore="boostrap/cache"
-            \ --ignore="sessions"<space>
+" nnoremap <leader>ga :grep!
+"             \ --skip-vcs-ignores
+"             \ --ignore="autoload.*"
+"             \ --ignore="tags"
+"             \ --ignore="tags*"
+"             \ --ignore="cscope*"
+"             \ --ignore="ncscope*"
+"             \ --ignore="Session.vim"
+"             \ --ignore="boostrap/cache"
+"             \ --ignore="sessions"<space>
 nnoremap <leader>wg :grep! <cword> .<cr>
 nnoremap <leader>Wg :grep! '\b<cword>\b' .<cr>
 " fzf provides this
