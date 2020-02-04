@@ -33,12 +33,12 @@ windows:
         - v +GitSessionLoad
         focus: true
       - ts
-      - echo "while true; do wait-on http://www.local.saatchiart.com && saatchi-tinker-legacy-local; sleep 1; done"
-      - echo "while true; do puw; sleep 1; done"
+      - while true; do wait-on http://www.local.saatchiart.com && saatchi-tinker-legacy-local; sleep 1; done
+      - while true; do puw; sleep 1; done
       - wd legacy && cd ./assets/react && yarn && yarn write-rev && yarn start
       # - saatchi-eslint-watch-legacy
       # - saatchi-grunt-watch-legacy
-      - echo "while true; do wait-on http://www.local.saatchiart.com && saatchi-tail-legacy-local; sleep 1; done"
+      - while true; do wait-on http://www.local.saatchiart.com && saatchi-tail-legacy-local; sleep 1; done
 # }}}
 
 # easel {{{
@@ -52,9 +52,9 @@ windows:
         - v +GitSessionLoad
         focus: true
       - ts
-      - echo "while true; do wait-on http://www.local.saatchiart.com && saatchi-tinker-easel-local; sleep 1; done"
-      - echo "yarn jest --watchAll"
-      - echo "while true; do wait-on http://www.local.saatchiart.com && saatchi-tail-easel-local; sleep 1; done"
+      - while true; do wait-on http://www.local.saatchiart.com && saatchi-tinker-easel-local; sleep 1; done
+      - yarn jest --watchAll
+      - while true; do wait-on http://www.local.saatchiart.com && saatchi-tail-easel-local; sleep 1; done
 # }}}
 
 # gallery {{{
@@ -68,12 +68,12 @@ windows:
         - v +GitSessionLoad
         focus: true
       - ts
-      - echo "while true; do wait-on http://www.local.saatchiart.com && saatchi-tinker-gallery-local; sleep 1; done"
-      - echo "while true; do puw; sleep 1; done"
-      - echo "yarn jest --watch"
+      - while true; do wait-on http://www.local.saatchiart.com && saatchi-tinker-gallery-local; sleep 1; done
+      - while true; do puw; sleep 1; done
+      - yarn jest --watch
       - while true; do saatchi-gulp-watch-gallery; sleep 1; done
         # - saatchi-start-gallery
-      - echo "while true; do wait-on http://www.local.saatchiart.com && saatchi-tail-gallery-local; sleep 1; done"
+      - while true; do wait-on http://www.local.saatchiart.com && saatchi-tail-gallery-local; sleep 1; done
 # }}}
 
 # palette {{{
@@ -87,11 +87,11 @@ windows:
         - v +GitSessionLoad
         focus: true
       - ts
-      - echo "while true; do wait-on http://www.local.saatchiart.com && saatchi-tinker-palette-local; sleep 1; done"
+      - while true; do wait-on http://www.local.saatchiart.com && saatchi-tinker-palette-local; sleep 1; done
       - while true; do psw; sleep 1; done
-      - echo "saatchi-docs-serve-palette"
+      - saatchi-docs-serve-palette
       # - saatchi-phing-watch
-      - echo "while true; do wait-on http://www.local.saatchiart.com && saatchi-tail-palette-local; sleep 1; done"
+      - while true; do wait-on http://www.local.saatchiart.com && saatchi-tail-palette-local; sleep 1; done
 # }}}
 
 # zed {{{
@@ -105,10 +105,10 @@ windows:
         - v +GitSessionLoad
         focus: true
       - ts
-      - echo "while true; do wait-on http://www.local.saatchiart.com && saatchi-tinker-zed-local; sleep 1; done"
-      - echo "while true; do wait-on http://www.local.saatchiart.com && saatchi-phpunit-watch-zed; sleep 1; done"
-      - echo "saatchi-grunt-watch-zed"
-      - echo "while true; do wait-on http://www.local.saatchiart.com && saatchi-tail-zed-local; sleep 1; done"
+      - while true; do wait-on http://www.local.saatchiart.com && saatchi-tinker-zed-local; sleep 1; done
+      - while true; do wait-on http://www.local.saatchiart.com && saatchi-phpunit-watch-zed; sleep 1; done
+      - saatchi-grunt-watch-zed
+      - while true; do wait-on http://www.local.saatchiart.com && saatchi-tail-zed-local; sleep 1; done
 # }}}
 
 # catalog (disabled) {{{
