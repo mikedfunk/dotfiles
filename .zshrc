@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block, everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 #!/bin/zsh
 # zsh config
 # vim: set foldmethod=marker ft=zsh:
@@ -22,6 +29,21 @@
 has() {
     type "$1" &>/dev/null
 }
+
+# colors {{{
+BLACK="$(tput setaf 0)"
+RED="$(tput setaf 1)"
+GREEN="$(tput setaf 2)"
+YELLOW="$(tput setaf 3)"
+BLUE="$(tput setaf 4)"
+PINK="$(tput setaf 5)"
+CYAN="$(tput setaf 6)"
+WHITE="$(tput setaf 7)"
+NORMAL="$(tput sgr0)"
+MAC_REMOVE_ANSI='gsed "s/\x1b\[[0-9;]*m//g"'
+LINUX_REMOVE_ANSI='sed \"s/\x1b\[[0-9;]*m//g\"'
+UNDERLINE="$(tput smul)"
+# }}}
 
 # }}}
 
@@ -66,11 +88,12 @@ path=(
   # rust cargo packages
   # $HOME/.cargo/bin
   # golang packages
-  $HOME/go/bin
+  # $HOME/go/bin
   # golang executables
-  /usr/local/opt/go/libexec/bin
-  $HOME/.{php,pl,nod,py}env/bin
-  $HOME/.pyenv/shims
+  # /usr/local/opt/go/libexec/bin
+  $HOME/.phpenv/bin # this isn't set by shell integration for some reason :/
+  # $HOME/.{pl,nod,py}env/bin # these will be set up by shell integration
+  # $HOME/.pyenv/shims # these will be set up by shell integration
   $HOME/.phpenv/pear/bin
   $HOME/.composer/vendor/bin
   # "$(phpenv root)/versions/$(phpenv version | cut -d' ' -f1)/composer/vendor/bin"
@@ -271,7 +294,7 @@ HOMEBREW_NO_ANALYTICS=1
 # emojis: smiley innocent joy =p worried cry rage wave ok_hand thumbsup thumbsdown smiley_cat cat dog bee pig monkey cow panda sushi home eyeglases smoke fire hankey beer cookie lock unlock star joker check x toilet bell search dart cash thinking luck
 # confirm QUESTION [SUCCESS_FUNCTION] [FAILURE_FUNCTION]
 # #slow
-has shml && source $(which shml)
+# has shml && source $(which shml) # disabled because it's slow! Using tput instead.
 
 # disable weird highlighting of pasted text
 # https://old.reddit.com/r/zsh/comments/c160o2/command_line_pasted_text/erbg6hy/
@@ -629,7 +652,7 @@ alias docker-restart="osascript -e 'quit app \"Docker\"' && open -a Docker"
 # Public: wrap docker status with color and underline in header
 docker-stats() {
     dme
-    docker stats --format "table $(tput setaf 2){{.Name}}\t$(tput setaf 3){{.CPUPerc}}\t$(tput setaf 4){{.MemPerc}}" | sed -E -e "s/(NAME.*)/$(tput smul)\1$(tput sgr0)/"
+    docker stats --format "table ${GREEN}{{.Name}}\t${YELLOW}{{.CPUPerc}}\t${BLUE}{{.MemPerc}}" | sed -E -e "s/(NAME.*)/${UNDERLINE}\1${NORMAL}/"
 }
 # }}}
 
@@ -773,7 +796,7 @@ letsfun () {
     cd >/dev/null
     hostess apply ~/.support/hosts.json
     cd - >/dev/null
-    echo "$(fgcolor green)${MESSAGE}$(fgcolor end)"
+    echo "${GREEN}${MESSAGE}${NORMAL}"
 }
 letsbreak () {
     if [ "$1" = "--help" ]; then echo "Turns off all distracting sites in /etc/hosts."; return; fi
@@ -786,7 +809,7 @@ letsbreak () {
     cd >/dev/null
     hostess apply ~/.support/hosts.json
     cd - >/dev/null
-    echo "$(fgcolor yellow)Let's take a break for $BREAK_TIME_IN_MINUTES minutes!$(fgcolor end)"
+    echo "${YELLOW}Let's take a break for $BREAK_TIME_IN_MINUTES minutes!${NORMAL}"
     sleep $BREAK_TIME_IN_SECONDS
     MESSAGE="Break's over, let's do some fun work!"
     letsfun "$MESSAGE"
@@ -799,8 +822,8 @@ letsbreak () {
 
 # source more files {{{
 [ -e "$HOME/.saatchirc" ] && source "$HOME/.saatchirc"
-[ -e "$HOME/.toafrc" ] && source "$HOME/.toafrc"
-[ -e "$HOME/.mjmrc" ] && source "$HOME/.mjmrc"
+# [ -e "$HOME/.toafrc" ] && source "$HOME/.toafrc"
+# [ -e "$HOME/.mjmrc" ] && source "$HOME/.mjmrc"
 # ensure the tmux term exists, otherwise some stuff like ncurses apps (e.g. tig) might break. This is very fast.
 [ -f "$HOME/.support/tmux-256color.terminfo.txt" ] && tic -x "$HOME/.support/tmux-256color.terminfo.txt" &>/dev/null
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # fuzzy finder - installed and managed via vim-plug https://github.com/junegunn/fzf
