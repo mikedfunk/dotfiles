@@ -27,7 +27,6 @@
     "gatsby-cli": "^1.1.58",
     "generate-babelrc": "^0.1.2",
     "generator-generator": "^4.0.2",
-    "gh": "^1.13.0",
     "git-open": "^2.1.0",
     "git-standup": "^2.1.8",
     "glow": "^1.2.2",

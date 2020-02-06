@@ -44,6 +44,7 @@ brew "entr" # file watcher (I use this a lot in my shell functions)
 # brew "fpp" # facebook path picker. Used with tmux-fpp to easily open files in an editor. (I don't use it)
 brew "fx" # json funagler used by some of my shell functions
 brew "fzf" # fuzzy file finder `git branch | fzf | xargs git checkout`
+brew "github/gh/gh" # new github cli in beta!
 brew "git"
 # brew "git-extras" # adds some cool additional git commands (conflicts with npm git-standup)
 # brew "git-flow" # adds first class git commands for the git-flow workflow (I use avh version below)

@@ -5,7 +5,7 @@ windows:
 
 # config {{{
   - window_name: config
-    start_directory: ~/.yadm
+    start_directory: ~/.config/yadm
     layout: main-horizontal
     options:
       main-pane-height: 40
