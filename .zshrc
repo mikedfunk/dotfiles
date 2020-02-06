@@ -1,10 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block, everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 #!/bin/zsh
 # zsh config
 # vim: set foldmethod=marker ft=zsh:
@@ -17,10 +10,12 @@ fi
 # }}}
 
 # p10k instant prompt {{{
-# https://old.reddit.com/r/zsh/comments/dk53ow/new_powerlevel10k_feature_instant_prompt/
-# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#     source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-# fi
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block, everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 # }}}
 
 # helper functions {{{
@@ -277,6 +272,8 @@ if ( has brew && ( brew list | grep -q openssl ) ); then
     OPENSSL_VERSION="1.0.2t"
     export RUBY_CONFIGURE_OPTS=--with-openssl-dir=/usr/local/Cellar/openssl/"$OPENSSL_VERSION"
 fi
+# broot file browser https://dystroy.org/broot/documentation/installation/##installation-completion-the-br-shell-function
+[ -f "$HOME"/Library/Preferences/org.dystroy.broot/launcher/bash/br ] && source "$HOME"/Library/Preferences/org.dystroy.broot/launcher/bash/br
 
 HOMEBREW_NO_ANALYTICS=1
 
