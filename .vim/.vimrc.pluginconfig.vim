@@ -298,7 +298,7 @@ let g:fzf_buffers_jump = 1 " Jump to the existing window if possible
 if isdirectory(expand('~/.vim/plugged/fzf.vim'))
     " :Ag  - Start fzf with hidden preview window that can be enabled with ? key
     " :Ag! - Start fzf in fullscreen and display the preview window above
-    command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, <bang>0 ? fzf#vim#with_preview('up:60%') : fzf#vim#with_preview('right:50%:hidden', '?'), <bang>0)
+    command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, <bang>0 ? fzf#vim#with_preview('up:60%') : fzf#vim#with_preview('right:50%', '?'), <bang>0)
     " Likewise, :Files command with preview window
     command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
@@ -335,6 +335,12 @@ endif
 " fzf-mru.vim {{{
 " only show MRU files from within your cwd
 let g:fzf_mru_relative = 1
+" }}}
+
+" fzf-preview.vim {{{
+if isdirectory(expand('~/.vim/plugged/fzf-preview.vim'))
+    let g:fzf_layout = { 'window': 'call fzf_preview#window#create_centered_floating_window()' }
+endif
 " }}}
 
 " gist-vim {{{

@@ -36,7 +36,7 @@ if executable('ctags')
     " Plug 'vim-php/tagbar-phpctags.vim', { 'do': 'make' } " Better php support for tagbar. Without this tagbar will show nothing if you use a trait. However, the php parser used is not updated for php 7, so it will fail on null coalesce! The first problem is now fixed in majutsushi/tagbar.
 endif
 if has('nvim')
-    Plug 'ncm2/float-preview.nvim' " nifty neovim floating window alternative to vim's preview window during omni completion
+    " Plug 'ncm2/float-preview.nvim' " nifty neovim floating window alternative to vim's preview window during omni completion (I prefer my simpler approach - this adds separate searching functions)
 endif
 " use these shortcuts for completion! https://github.com/mikedfunk/learning/blob/master/vim/completion.md
 " Plug 'ajh17/VimCompletesMe' " simple tab omni completion with fallback to other types of completion (not sure I like this... I can just <c-x><c-o>, etc.)
@@ -135,6 +135,7 @@ Plug 'andymass/vim-matchup' " better matchit and match highlighter
 Plug 'mhinz/vim-startify' " better vim start screen. Strangely includes session management, which I don't use. I use vim-obsession for that.
 " NOTE: this also installs ~/.fzf and stuff
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim' " fuzzy finder. lazy load will prevent other commands from being loaded unless you add them all.
+" Plug 'yuki-ycino/fzf-preview.vim' " use vim fzf in a floating window with sensible defaults (I prefer fzf's suggested approach. This adds separate search commands and doesn't use ag.)
 " FZF TERMINAL TIPS!
 "
 " <ctrl-t> will open a fzf browser at the current pwd
