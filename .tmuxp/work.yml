@@ -12,13 +12,14 @@ windows:
       focus: true
     panes:
       - shell_command:
-        - v -S
+          - v -S
         focus: true
       # - yadm st
-      - while true; do clear && yadm st; sleep 60; done
-      # - wait-on http://www.local.saatchiart.com && docker-stats
-      # - sourcegraph
-      # - while true; do wait-on http://www.local.saatchiart.com && dme && ctop; sleep 1; done
+      - shell_command:
+          - cd ~
+          - while true; do clear && yadm st; sleep 60; done
+          # - wait-on http://www.local.saatchiart.com && docker-stats
+          # - sourcegraph
       - htop
 # }}}
 
@@ -30,7 +31,7 @@ windows:
       main-pane-height: 40
     panes:
       - shell_command:
-        - v +GitSessionLoad
+          - v +GitSessionLoad
         focus: true
       - ts
       - while true; do wait-on http://www.local.saatchiart.com && saatchi-tinker-legacy-local; sleep 1; done
@@ -49,7 +50,7 @@ windows:
       main-pane-height: 40
     panes:
       - shell_command:
-        - v +GitSessionLoad
+          - v +GitSessionLoad
         focus: true
       - ts
       - while true; do wait-on http://www.local.saatchiart.com && saatchi-tinker-easel-local; sleep 1; done
@@ -65,14 +66,14 @@ windows:
       main-pane-height: 40
     panes:
       - shell_command:
-        - v +GitSessionLoad
+          - v +GitSessionLoad
         focus: true
       - ts
       - while true; do wait-on http://www.local.saatchiart.com && saatchi-tinker-gallery-local; sleep 1; done
       - while true; do puw; sleep 1; done
       - yarn jest --watch
       - while true; do saatchi-gulp-watch-gallery; sleep 1; done
-        # - saatchi-start-gallery
+      # - saatchi-start-gallery
       - while true; do wait-on http://www.local.saatchiart.com && saatchi-tail-gallery-local; sleep 1; done
 # }}}
 
@@ -84,7 +85,7 @@ windows:
       main-pane-height: 40
     panes:
       - shell_command:
-        - v +GitSessionLoad
+          - v +GitSessionLoad
         focus: true
       - ts
       - while true; do wait-on http://www.local.saatchiart.com && saatchi-tinker-palette-local; sleep 1; done
@@ -102,7 +103,7 @@ windows:
       main-pane-height: 40
     panes:
       - shell_command:
-        - v +GitSessionLoad
+          - v +GitSessionLoad
         focus: true
       - ts
       - while true; do wait-on http://www.local.saatchiart.com && saatchi-tinker-zed-local; sleep 1; done
@@ -148,7 +149,7 @@ windows:
     panes:
       - v -S
       - shell_command:
-        - saatchi-docker-start
+          - saatchi-docker-start
         focus: true
       - while true; do wait-on http://www.local.saatchiart.com && dme && ctop; sleep 1; done
       - ts
@@ -162,7 +163,7 @@ windows:
       main-pane-height: 40
     panes:
       - shell_command:
-        - v -S
+          - v -S
         focus: true
       - ts
 # }}}
@@ -175,7 +176,7 @@ windows:
       main-pane-height: 40
     panes:
       - shell_command:
-        - v -S
+          - v -S
         focus: true
       - ts
       - while true; do k9s -n develop --context saatchi-qa; sleep 60; done
@@ -191,7 +192,7 @@ windows:
     panes:
       - v -S
       - shell_command:
-        - wait-on http://www.local.saatchiart.com && saatchi-mycli-legacy-local
+          - wait-on http://www.local.saatchiart.com && saatchi-mycli-legacy-local
         focus: true
       - wait-on http://www.local.saatchiart.com && saatchi-mycli-palette-local
       - wait-on http://www.local.saatchiart.com && saatchi-mycli-zed-local
@@ -219,15 +220,15 @@ windows:
       main-pane-height: 40
     panes:
       - shell_command:
-        - v -S
+          - v -S
         focus: true
       - ts
-      - . ./watch.sh
+      - ./watch.sh
 # }}}
 
 # logs (kqa) (disabled) {{{
-# kqa logs are kind of flaky. Sometimes they time out. Haven't figured out why
-# yet. Workaround: R will restart the tail without quitting multitail.
+  # kqa logs are kind of flaky. Sometimes they time out. Haven't figured out why
+  # yet. Workaround: R will restart the tail without quitting multitail.
   # - window_name: kqa.logs
   #   start_directory: ~/
   #   layout: tiled
@@ -245,8 +246,8 @@ windows:
 # }}}
 
 # logs (kprod) {{{
-# kprod logs are kind of flaky. Sometimes they time out. Haven't figured out why
-# yet. Workaround: R will restart the tail without quitting multitail.
+  # kprod logs are kind of flaky. Sometimes they time out. Haven't figured out why
+  # yet. Workaround: R will restart the tail without quitting multitail.
   # - window_name: kprod.logs
   #   start_directory: ~/
   #   layout: tiled

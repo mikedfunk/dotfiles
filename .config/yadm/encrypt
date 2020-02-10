@@ -9,7 +9,7 @@
 .mjm-ansible-hosts.ini
 .mjmrc
 .toafrc
-.saatchi-ansible-hosts.ini
+# .saatchi-ansible-hosts.ini
 .saatchirc
 Code/saatchi/http
 Code/saatchi/kubernetes
