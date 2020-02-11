@@ -21,7 +21,7 @@ fi
 # helper functions {{{
 
 # Internal: Whether a command is available
-has() {
+_has() {
     type "$1" &>/dev/null
 }
 
@@ -43,7 +43,7 @@ UNDERLINE="$(tput smul)"
 # }}}
 
 # set up homebrew paths {{{
-# has brew && eval $(brew shellenv) # this MUST be done before setting the rest of paths
+# _has brew && eval $(brew shellenv) # this MUST be done before setting the rest of paths
 # }}}
 
 # Paths {{{
@@ -149,11 +149,11 @@ fi
 # }}}
 
 # lazyload {{{
-# has lazyload && lazyload 'has nodenv && eval "$(nodenv init -)"' nodenv # TOO SLOW
-# has lazyload && lazyload '[[ -f "$HOME/.phpenv/bin/phpenv" ]] && eval "$($HOME/.phpenv/bin/phpenv init -)"' phpenv # TOO SLOW
-# has lazyload && lazyload 'has pyenv && eval "$(pyenv init -)"' pyenv # TOO SLOW
-# has lazyload && lazyload 'has rbenv && eval "$(rbenv init -)"' rbenv # TOO SLOW
-has lazyload && lazyload 'has akamai && eval "$(akamai --zsh)"' akamai
+# _has lazyload && lazyload '_has nodenv && eval "$(nodenv init -)"' nodenv # TOO SLOW
+# _has lazyload && lazyload '[[ -f "$HOME/.phpenv/bin/phpenv" ]] && eval "$($HOME/.phpenv/bin/phpenv init -)"' phpenv # TOO SLOW
+# _has lazyload && lazyload '_has pyenv && eval "$(pyenv init -)"' pyenv # TOO SLOW
+# _has lazyload && lazyload '_has rbenv && eval "$(rbenv init -)"' rbenv # TOO SLOW
+_has lazyload && lazyload '_has akamai && eval "$(akamai --zsh)"' akamai
 # }}}
 
 # source additional files and env vars {{{
@@ -168,13 +168,13 @@ has lazyload && lazyload 'has akamai && eval "$(akamai --zsh)"' akamai
 # https://github.com/google/google-api-ruby-client/issues/235#issuecomment-169956795
 [ -f /usr/local/etc/openssl/cert.pem ] && export SSL_CERT_FILE=/usr/local/etc/openssl/cert.pem
 # [ -d "$HOME/.zsh/completion" ] && find "$HOME/.zsh/completion" | while read f; do source "$f"; done
-# has plenv && eval "$(plenv init -)"
+# _has plenv && eval "$(plenv init -)"
 # https://github.com/pyenv/pyenv/blob/master/COMMANDS.md#pyenv-global
 # strangely these is already set BEFORE this file is sourced!
 unset PYENV_VERSION
 unset PHPENV_VERSION
 # use pipenv instead of virtualenv. It comes with pyenv! There's also support for it with direnv.
-# has pyenv-virtualenv-init && eval "$(pyenv virtualenv-init -)"
+# _has pyenv-virtualenv-init && eval "$(pyenv virtualenv-init -)"
 export MY_PHPENV_VERSION="$(cat $HOME/.phpenv/version)"
 # [ -f "/usr/local/opt/asdf/asdf.sh" ] && source "/usr/local/opt/asdf/asdf.sh"
 # [ -n "$DESK_ENV" ] && source "$DESK_ENV" || true # Hook for desk activation
@@ -183,15 +183,15 @@ export MY_PHPENV_VERSION="$(cat $HOME/.phpenv/version)"
 # [[ -f /Users/mikefunk/.config/yarn/global/node_modules/tabtab/.completions/yo.zsh ]] && . /Users/mikefunk/.config/yarn/global/node_modules/tabtab/.completions/yo.zsh
 
 # evaluated startup commands {{{
-has tmuxp && _evalcache "$HOME"/.support/enable-tmuxp-completion.sh # workaround to make evalcache happy
-has direnv && _evalcache direnv hook zsh # (evalcache version)
-has ntfy && _evalcache ntfy shell-integration # notify when long-running command finishes. pip package, breaks in pyenv - see yadm bootstrap for unique setup.
-has nodenv && _evalcache nodenv init - # (evalcache version)
-has pyenv && _evalcache pyenv init - # (evalcache version)
+_has tmuxp && _evalcache "$HOME"/.support/enable-tmuxp-completion.sh # workaround to make evalcache happy
+_has direnv && _evalcache direnv hook zsh # (evalcache version)
+_has ntfy && _evalcache ntfy shell-integration # notify when long-running command finishes. pip package, breaks in pyenv - see yadm bootstrap for unique setup.
+_has nodenv && _evalcache nodenv init - # (evalcache version)
+_has pyenv && _evalcache pyenv init - # (evalcache version)
 # #slow
 [[ -f "$HOME"/.phpenv/bin/phpenv ]] && _evalcache "$HOME"/.phpenv/bin/phpenv init - # (evalcache version)
-has rbenv && _evalcache rbenv init - # (evalcache version)
-has hub && _evalcache hub alias -s # alias git to hub with completion intact
+_has rbenv && _evalcache rbenv init - # (evalcache version)
+_has hub && _evalcache hub alias -s # alias git to hub with completion intact
 
 # https://github.com/trapd00r/LS_COLORS
 DIRCOLORS_CMD="/usr/local/opt/coreutils/libexec/gnubin/dircolors"
@@ -218,7 +218,7 @@ export AUTO_NTFY_DONE_IGNORE=(
     y
     yadm
 )
-# has vivid && export LS_COLORS="$(vivid generate molokai)" # https://github.com/sharkdp/vivid
+# _has vivid && export LS_COLORS="$(vivid generate molokai)" # https://github.com/sharkdp/vivid
 # colorize less... I get weird indentations all over the place with this
 # https://www.reddit.com/r/linux/comments/b5n1l5/whats_your_favorite_cli_tool_nobody_knows_about/ejex2pm/
 # export LESSOPEN="| /usr/local/opt/source-highlight/bin/src-hilite-lesspipe.sh %s"
@@ -251,22 +251,22 @@ _configure_cgr_and_composer () {
 _configure_cgr_and_composer
 # }}}
 
-has kubectl && source <(kubectl completion zsh)
-has stern && source <(stern --completion=zsh)
+_has kubectl && source <(kubectl completion zsh)
+_has stern && source <(stern --completion=zsh)
 # #slow
-has pyenv && has brew && [[ -f $(brew --prefix pyenv)/completions/pyenv.zsh ]] && source $(brew --prefix pyenv)/completions/pyenv.zsh
+_has pyenv && _has brew && [[ -f $(brew --prefix pyenv)/completions/pyenv.zsh ]] && source $(brew --prefix pyenv)/completions/pyenv.zsh
 # #slow
-has rbenv && has brew && [[ -f $(brew --prefix rbenv)/completions/rbenv.zsh ]] && source $(brew --prefix rbenv)/completions/rbenv.zsh
+_has rbenv && _has brew && [[ -f $(brew --prefix rbenv)/completions/rbenv.zsh ]] && source $(brew --prefix rbenv)/completions/rbenv.zsh
 # #slow
-has nodenv && has brew && [[ -f $(brew --prefix nodenv)/completions/nodenv.zsh ]] && source $(brew --prefix nodenv)/completions/nodenv.zsh
-has plenv && has brew && [[ -f $(brew --prefix plenv)/completions/plenv.zsh ]] && source $(brew --prefix plenv)/completions/plenv.zsh
-has phpenv && [[ -f "$HOME"/.phpenv/completions/phpenv.zsh ]] && source "$HOME"/.phpenv/completions/phpenv.zsh
+_has nodenv && _has brew && [[ -f $(brew --prefix nodenv)/completions/nodenv.zsh ]] && source $(brew --prefix nodenv)/completions/nodenv.zsh
+_has plenv && _has brew && [[ -f $(brew --prefix plenv)/completions/plenv.zsh ]] && source $(brew --prefix plenv)/completions/plenv.zsh
+_has phpenv && [[ -f "$HOME"/.phpenv/completions/phpenv.zsh ]] && source "$HOME"/.phpenv/completions/phpenv.zsh
 # [[ -e /usr/local/opt/coreutils/libexec/gnubin/dircolors && -f "$HOME"/.dircolors ]] && eval $( /usr/local/opt/coreutils/libexec/gnubin/dircolors -b "$HOME"/.dircolors )
-# has zsh-startify && zsh-startify (neat, but doesn't really help)
+# _has zsh-startify && zsh-startify (neat, but doesn't really help)
 [[ -f "$HOME"/.iterm2_shell_integration.zsh ]] && source "$HOME"/.iterm2_shell_integration.zsh
 
 # fix an rbenv build openssl issue https://github.com/rbenv/ruby-build/issues/377#issuecomment-391427324
-if ( has brew && ( brew list | grep -q openssl ) ); then
+if ( _has brew && ( brew list | grep -q openssl ) ); then
     # this takes about a second :/ f it, just hardcode
     # OPENSSL_VERSION="$(brew info openssl | head -n1 | awk '{print $3}')"
     OPENSSL_VERSION="1.0.2t"
@@ -291,7 +291,7 @@ HOMEBREW_NO_ANALYTICS=1
 # emojis: smiley innocent joy =p worried cry rage wave ok_hand thumbsup thumbsdown smiley_cat cat dog bee pig monkey cow panda sushi home eyeglases smoke fire hankey beer cookie lock unlock star joker check x toilet bell search dart cash thinking luck
 # confirm QUESTION [SUCCESS_FUNCTION] [FAILURE_FUNCTION]
 # #slow
-# has shml && source $(which shml) # disabled because it's slow! Using tput instead.
+# _has shml && source $(which shml) # disabled because it's slow! Using tput instead.
 
 # disable weird highlighting of pasted text
 # https://old.reddit.com/r/zsh/comments/c160o2/command_line_pasted_text/erbg6hy/
@@ -347,9 +347,9 @@ shorten-url () { curl -s http://tinyurl.com/api-create.php?url=$1; }
 cd () { builtin cd "$@" && ls -FAG; } # auto ls on cd
 alias ..="cd .."
 alias ...="cd ../.."
-# has lsd && alias ls="lsd" # fancy ls augmentation (disabled because it's missing flags that ls has >:(  )
+# _has lsd && alias ls="lsd" # fancy ls augmentation (disabled because it's missing flags that ls _has >:(  )
 # https://github.com/sharkdp/vivid/issues/25#issuecomment-450423306
-# has gls && alias ls="gls --color"
+# _has gls && alias ls="gls --color"
 alias ll='ls -lhGFA'
 alias phpx="php -dxdebug.remote_autostart=1 -dxdebug.remote_connect_back=1 -dxdebug.idekey=${XDEBUG_IDE_KEY} -dxdebug.remote_port=9000 -ddisplay_errors=on"
 # alias work="tmux attach -t Work || tmuxomatic ~/.tmuxomatic/Work"

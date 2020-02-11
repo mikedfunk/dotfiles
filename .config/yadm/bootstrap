@@ -22,15 +22,15 @@
 # }}}
 
 # helper functions {{{
-function log_info() { echo -e "$(tput setaf 2)$(tput rev)$(tput bold) \xE2\x9C\x93 $1 $(tput sgr0)"; "${@:2}"; }
-function log_error() { echo -e "$(tput setaf 1)$(tput rev)$(tput bold) \xE2\x9C\x97 $1 $(tput sgr0)"; "${@:2}"; }
-function log_notice() { echo -e "$(tput setaf 3)$(tput rev)$(tput bold) \xE2\x9A\xa0 $1 $(tput sgr0)"; "${@:2}"; }
-function has() { type "$1" &>/dev/null; }
+function _log_info() { echo -e "$(tput setaf 2)$(tput rev)$(tput bold) \xE2\x9C\x93 $1 $(tput sgr0)"; "${@:2}"; }
+function _log_error() { echo -e "$(tput setaf 1)$(tput rev)$(tput bold) \xE2\x9C\x97 $1 $(tput sgr0)"; "${@:2}"; }
+function _log_notice() { echo -e "$(tput setaf 3)$(tput rev)$(tput bold) \xE2\x9A\xa0 $1 $(tput sgr0)"; "${@:2}"; }
+function _has() { type "$1" &>/dev/null; }
 # }}}
 
 # clone repos {{{
 
-# log_info "Cloning repos"
+# _log_info "Cloning repos"
 # mkdir -p "$HOME/Code"
 # builtin cd "$HOME/Code"
 # [[ -d "$HOME/Code/mikedfunk.github.io" ]] || git clone git@github.com:mikedfunk/mikedfunk.github.io.git
@@ -62,7 +62,7 @@ function has() { type "$1" &>/dev/null; }
 # }}}
 
 # decrypt yadm files {{{
-# log_info "Decrypting yadm files"
+# _log_info "Decrypting yadm files"
 # yadm decrypt
 #
 # This is commented out because it requires the GPG password each time. Yadm
@@ -96,7 +96,7 @@ function has() { type "$1" &>/dev/null; }
 # install xcode command line tools {{{
 # needed for a variety of things including phpenv (zlib), CommandLineTools below, sshpass
 _install_xcode_command_line_tools () {
-    log_info "Installing xcode command line tools"
+    _log_info "Installing xcode command line tools"
     xcode-select --install || true
 }
 # }}}
@@ -105,19 +105,20 @@ _install_xcode_command_line_tools () {
 # needed for phpenv and pyenv
 # fyi the CommandLineTools directory doesn't even exist until you run `xcode-select --install`
 # https://github.com/pyenv/pyenv/issues/1219#issuecomment-428700763
+# TODO catalina https://apple.stackexchange.com/questions/373316/missing-headers-in-macos-10-15-catalina
 _install_necessary_headers_in_include_on_mojave () {
     if ! [ -f "/Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg" ] || [ -f "$HOME/.mojave-lock" ]; then
         return
     fi
-    log_info "Installing additional tools needed for mojave"
+    _log_info "Installing additional tools needed for mojave"
     sudo installer -pkg "/Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg" -target / && touch "$HOME/.mojave-lock"
 }
 # }}}
 
 # install homebrew if it's missing {{{
 _install_homebrew_if_its_missing () {
-    has brew && return
-    log_info "Installing homebrew"
+    _has brew && return
+    _log_info "Installing homebrew"
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 }
 # }}}
@@ -125,7 +126,7 @@ _install_homebrew_if_its_missing () {
 # install/update homebrew packages {{{
 _install_update_homebrew_packages () {
     [ -e "$HOME/.Brewfile" ] || return
-    log_info "Installing/upgrading homebrew packages"
+    _log_info "Installing/upgrading homebrew packages"
     brew update # update homebrew itself and the list of brew package versions
     brew bundle --global # install/upgrade from ~/.Brewfile
     brew upgrade         # upgrade all homebrew packages
@@ -138,8 +139,8 @@ _install_update_homebrew_packages () {
 # install ievms {{{
 # homebrew formula is broken for this :/
 _install_ievms () {
-    if ! has VBoxManage; then
-        log_error "VBoxManage not installed, unable to install ievms"
+    if ! _has VBoxManage; then
+        _log_error "VBoxManage not installed, unable to install ievms"
         return
     fi
     if ( VBoxManage list vms | grep --quiet "IE11 - Win7" ); then
@@ -147,7 +148,7 @@ _install_ievms () {
         return
     fi
 
-    log_info "Installing IE11 VirtualBox VM"
+    _log_info "Installing IE11 VirtualBox VM"
     curl -s https://raw.githubusercontent.com/xdissent/ievms/master/ievms.sh | env IEVMS_VERSIONS="11" bash
 }
 # }}}
@@ -155,8 +156,8 @@ _install_ievms () {
 # install mc {{{
 _install_mc () {
     # brew formula is broken for this because it's in a private github repo :/
-    has mc && return
-    log_info "installing mc (memcached)"
+    _has mc && return
+    _log_info "installing mc (memcached)"
     curl -L https://github.com/andersjanmyr/mc/releases/download/v1.4.3/mc-osx > /usr/local/bin/mc
     chmod +x /usr/local/bin/mc
 }
@@ -164,8 +165,8 @@ _install_mc () {
 
 # akamai {{{
 _install_upgrade_akamai () {
-    has akamai && return
-    log_info "Updating akamai commands"
+    _has akamai && return
+    _log_info "Updating akamai commands"
     [[ "$(akamai list | grep purge)" ]] || akamai install purge
     akamai update
 }
@@ -184,8 +185,8 @@ _install_upgrade_akamai () {
 # installing the additional headers for libz, etc., which I do in the first few
 # steps of this file
 _install_upgrade_phpenv () {
-    log_info "Installing/updating phpenv"
-    if has phpenv; then
+    _log_info "Installing/updating phpenv"
+    if _has phpenv; then
         # this is provided by the php-build plugin /Users/mikefunk/.phpenv/plugins/php-build/bin/phpenv-update
         # it just runs git pull in the phpenv home dir
         phpenv update
@@ -201,7 +202,7 @@ _install_upgrade_phpenv () {
 
 # update yarn {{{
 _install_upgrade_yarn () {
-    log_info "Installing/upgrading yarn packages"
+    _log_info "Installing/upgrading yarn packages"
     builtin cd || return
     yarn global upgrade
     builtin cd - || return
@@ -211,11 +212,11 @@ _install_upgrade_yarn () {
 # set zsh as shell {{{
 _set_zsh_as_shell () {
     if [[ $(grep "/usr/local/bin/zsh" /etc/shells -c) == 0 ]]; then
-        log_info "Installing homebrew zsh to /etc/shells"
+        _log_info "Installing homebrew zsh to /etc/shells"
         sudo /bin/sh -c "echo /usr/local/bin/zsh >> /etc/shells"
     fi
     if [[ "$SHELL" != "/usr/local/bin/zsh" ]]; then
-        log_info "Changing shell to homebrew zsh" chsh -s "$(which zsh)"
+        _log_info "Changing shell to homebrew zsh" chsh -s "$(which zsh)"
     fi
 }
 # }}}
@@ -238,8 +239,8 @@ _set_zsh_as_shell () {
 # 2. <prefix>q still has missing numbers
 # 3. tmux occasionally crashes
 _install_tmux_2_8 () {
-    has tmux && return
-    log_info "installing tmux 2.8"
+    _has tmux && return
+    _log_info "installing tmux 2.8"
     builtin cd || return
     wget https://github.com/tmux/tmux/releases/download/2.8/tmux-2.8.tar.gz
     tar xzvf tmux-2.8.tar.gz
@@ -255,14 +256,14 @@ _install_tmux_2_8 () {
 # install tmux plugin manager {{{
 _install_tmux_plugin_manager () {
     [[ -d "$HOME/.tmux/plugins/tpm" ]] && return
-    log_info "Installing tmux plugin manager. Upgrade packages with \`<c-a>U\`."
+    _log_info "Installing tmux plugin manager. Upgrade packages with \`<c-a>U\`."
     git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
 }
 # }}}
 
 # install/update tmux plugins {{{
 _install_upgrade_tmux_plugins () {
-    log_info "Install/upgrade tmux plugins"
+    _log_info "Install/upgrade tmux plugins"
     $HOME/.tmux/plugins/tpm/bin/install_plugins
     $HOME/.tmux/plugins/tpm/bin/update_plugins all
 }
@@ -273,12 +274,12 @@ _install_upgrade_tmux_plugins () {
 # Directories {{{
 _create_vim_directories () {
     if [[ ! -d "$HOME/.vim/autoload" ]]; then
-        log_info "Creating required vim autoload directory"
+        _log_info "Creating required vim autoload directory"
         mkdir -p "$HOME/.vim/autoload" &&
             chmod +w "$HOME/.vim/autoload"
     fi
     if [[ ! -d "$HOME/.vim/files/info" ]]; then
-        log_info "Creating required vim info directory"
+        _log_info "Creating required vim info directory"
         mkdir -p "$HOME/.vim/files/info" &&
             chmod a+w "$HOME/.vim/files/info"
     fi
@@ -288,7 +289,7 @@ _create_vim_directories () {
 # install vim-plug {{{
 _install_vim_plug () {
     [ -f $HOME/.vim/autoload/plug.vim ] && return
-    log_info "Installing vim-plug"
+    _log_info "Installing vim-plug"
     curl -fLo \
         ~/.vim/autoload/plug.vim \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -297,7 +298,7 @@ _install_vim_plug () {
 
 # install/upgrade vim plugins {{{
 _install_upgrade_vim_plugins () {
-    log_info "Installing/upgrading vim plugins"
+    _log_info "Installing/upgrading vim plugins"
     # vim +PlugInstall +PlugUpdate +PlugClean! +qall
     nvim +PlugUpgrade +PlugInstall +PlugUpdate +PlugClean! +UpdateRemotePlugins +qall
     # coc.nvim extension updates
@@ -315,7 +316,7 @@ _install_node_version () {
     # NODE_VERSION="10.11.0"
     NODE_VERSION="13.2.0"
     [[ "$(nodenv version | grep $NODE_VERSION)" ]] && return
-    log_info "Installing node $NODE_VERSION"
+    _log_info "Installing node $NODE_VERSION"
     nodenv install $NODE_VERSION && nodenv rehash && nodenv global $NODE_VERSION
 }
 # }}}
@@ -324,8 +325,8 @@ _install_node_version () {
 _configure_cgr_and_composer () {
     local PHP_VERSION
     PHP_VERSION="$1"
-    [ -z "$PHP_VERSION" ] && ( log_error "Please provide a php version"; return 1 )
-    [ -d "$(phpenv root)/versions/$PHP_VERSION" ] || ( log_error "Php version ${PHP_VERSION} not found"; return 1 )
+    [ -z "$PHP_VERSION" ] && ( _log_error "Please provide a php version"; return 1 )
+    [ -d "$(phpenv root)/versions/$PHP_VERSION" ] || ( _log_error "Php version ${PHP_VERSION} not found"; return 1 )
     export COMPOSER_HOME="$(phpenv root)/versions/$PHP_VERSION/composer"
     export CGR_COMPOSER_PATH="$(phpenv root)/shims/composer"
     export CGR_BASE_DIR="$(phpenv root)/versions/$PHP_VERSION/composer/global"
@@ -337,11 +338,11 @@ _configure_cgr_and_composer () {
 # install phive {{{
 # NOTE: phive requires php 7.2+
 _install_upgrade_phive () {
-    if has phive; then
-        log_info "Updating phive"
+    if _has phive; then
+        _log_info "Updating phive"
         phive selfupdate
     else
-        log_info "Installing phive"
+        _log_info "Installing phive"
         cd
         wget -O phive.phar "https://phar.io/releases/phive.phar"
         wget -O phive.phar.asc "https://phar.io/releases/phive.phar.asc"
@@ -362,7 +363,7 @@ _install_upgrade_phive () {
 _install_php_version () {
     export PHP_VERSION="$1" # needs exporting for the non-interactive install pear script
     ( phpenv versions | grep --quiet "$PHP_VERSION" ) && return
-    log_info "Installing php $PHP_VERSION"
+    _log_info "Installing php $PHP_VERSION"
     # NOTE if I set php 7.1+.x to global and I use directory-specific php
     # versions and I install global composer dependencies then they will fail
     # when I have php 7.0.29 active! Same problem with rbenv, pyenv, and perlenv.
@@ -371,14 +372,14 @@ _install_php_version () {
     # phpenv rehash
 
     # install pear so we can use pecl to install extensions
-    if ! has pecl; then
-        log_info "Installing pear"
+    if ! _has pecl; then
+        _log_info "Installing pear"
         [ -f "$HOME/.bin/go-pear.phar" ] || wget -O "$HOME/.bin/go-pear.phar" http://pear.php.net/go-pear.phar
         PHP_VERSION="$PHP_VERSION" "$HOME/.support/install-pear.sh" # installs pear non-interactively
         [ -f "$HOME/.bin/go-pear.phar" ] && rm "$HOME/.bin/go-pear.phar"
     fi
 
-    log_info "Installing additional php extensions"
+    _log_info "Installing additional php extensions"
     # their sdk has breaking changes all the time so I need a specific version
     yes "" | "$(phpenv root)"/versions/"$PHP_VERSION"/pear/bin/pecl install couchbase-2.2.2 && ( echo 'extension="couchbase.so"' >"$HOME/.phpenv/versions/$PHP_VERSION/etc/conf.d/couchbase.ini" )
     yes "" | "$(phpenv root)"/versions/"$PHP_VERSION"/pear/bin/pecl install memcached && ( echo 'extension="memcached.so"' >"$HOME/.phpenv/versions/$PHP_VERSION/etc/conf.d/memcached.ini" )
@@ -410,7 +411,7 @@ _install_php_versions () {
 _install_ruby_version () {
     # 2.2.2 needed for catalog codebase
     if ! ( rbenv versions | grep --quiet "2.2.2" ); then
-        log_info "Installing ruby 2.2.2"
+        _log_info "Installing ruby 2.2.2"
         rbenv install 2.2.2 && \
             rbenv global 2.2.2 && \
             rbenv rehash && \
@@ -419,7 +420,7 @@ _install_ruby_version () {
 
     # 2.5.6 needed for ios chromatic codebase
     if ! ( rbenv versions | grep --quiet "2.5.6" ); then
-        log_info "Installing ruby 2.5.6"
+        _log_info "Installing ruby 2.5.6"
         rbenv install 2.5.6 && \
             rbenv global 2.5.6 && \
             rbenv rehash && \
@@ -428,7 +429,7 @@ _install_ruby_version () {
 
     RUBY_VERSION="2.6.5"
     ( rbenv versions | grep --quiet $RUBY_VERSION ) && return
-    log_info "Installing ruby $RUBY_VERSION"
+    _log_info "Installing ruby $RUBY_VERSION"
     rbenv install $RUBY_VERSION && \
         rbenv global $RUBY_VERSION && \
         rbenv rehash && \
@@ -441,7 +442,7 @@ _install_ruby_version () {
 _install_perl_version () {
     PERL_VERSION="5.27.8"
     [[ "$(plenv version | grep $PERL_VERSION)" ]] && return
-    log_info "Installing perl $PERL_VERSION"
+    _log_info "Installing perl $PERL_VERSION"
     plenv install $PERL_VERSION && plenv rehash && plenv global $PERL_VERSION
 }
 # }}}
@@ -450,7 +451,7 @@ _install_perl_version () {
 _install_python3_version () {
     PYTHON_INSTALL_VERSION="3.7.2"
     [[ "$(pyenv global | grep $PYTHON_INSTALL_VERSION)" ]] && return
-    log_info "Installing python $PYTHON_INSTALL_VERSION"
+    _log_info "Installing python $PYTHON_INSTALL_VERSION"
     # CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" pyenv install $PYTHON_INSTALL_VERSION && pyenv rehash && pyenv global $PYTHON_INSTALL_VERSION
     # https://github.com/pyenv/pyenv/issues/1066#issuecomment-387211005
     pyenv install $PYTHON_INSTALL_VERSION && pyenv rehash && pyenv global $PYTHON_INSTALL_VERSION
@@ -460,14 +461,14 @@ _install_python3_version () {
 # install or upgrade ntfy {{{
 # https://github.com/dschep/ntfy/issues/171#issuecomment-433388371
 _install_upgrade_ntfy () {
-    if has ntfy; then
-        log_info "Updating ntfy"
+    if _has ntfy; then
+        _log_info "Updating ntfy"
         cd
         /usr/local/bin/python3 -m pip install --upgrade ntfy
         cd -
         return
     fi
-    log_info "Installing ntfy"
+    _log_info "Installing ntfy"
     cd
     /usr/local/bin/python3 -m pip install ntfy
     cd -
@@ -477,14 +478,14 @@ _install_upgrade_ntfy () {
 # install/update ruby gems {{{
 # Installs from ~/Gemfile
 _install_update_ruby_gems () {
-    log_info "Installing/upgrading ruby gems"
+    _log_info "Installing/upgrading ruby gems"
     gem install bundler
     builtin cd || return
     bundle install --system --binstubs
     bundle update
     bundle clean --force
     builtin cd - || return
-    has rbenv && rbenv rehash
+    _has rbenv && rbenv rehash
 }
 # }}}
 
@@ -499,7 +500,7 @@ _pip-update () {
         xargs -n1 pip3 install --upgrade
 }
 _update_python3_pip_packages () {
-    log_info "Installing/upgrading pip3 packages"
+    _log_info "Installing/upgrading pip3 packages"
     /usr/local/bin/pip3 install neovim --user # neovim uses this pip/python version
     PIP_SUCCESSFUL=1
     pip3 install -r "$HOME/requirements.txt" --user || PIP_SUCCESSFUL=0
@@ -511,7 +512,7 @@ _update_python3_pip_packages () {
     _pip-update || PIP_SUCCESSFUL=0
     # otherwise it might freeze a failed state
     [[ $PIP_SUCCESSFUL ]] && pip3 freeze >"$HOME/requirements.txt"
-    has pyenv && pyenv rehash
+    _has pyenv && pyenv rehash
 }
 # }}}
 
@@ -519,10 +520,10 @@ _update_python3_pip_packages () {
 _install_update_composer_packages () {
     builtin cd $HOME/.composer >/dev/null || return
     # if ! has composer; then
-    #     log_info "Installing composer"
+    #     _log_info "Installing composer"
     #     _install-composer
     # fi
-    log_info "Installing/upgrading composer packages"
+    _log_info "Installing/upgrading composer packages"
 
     local PHP_VERSION
     PHP_VERSION=$1
@@ -545,24 +546,24 @@ _install_update_composer_packages () {
     composer global update
     if [[ ! -d "$CGR_BASE_DIR" ]]; then
         # ^ this will install cgr. Now install cgr packages...
-        log_info "Installing cgr packages"
+        _log_info "Installing cgr packages"
         # https://github.com/consolidation/cgr
         while read -r package; do
             cgr "$package"
         done <"$HOME/.composer/cgr-versions.txt"
     else
-        log_info "Upgrading cgr packages"
+        _log_info "Upgrading cgr packages"
         cgr update
     fi
     builtin cd - || return
-    has phpenv && phpenv rehash
+    _has phpenv && phpenv rehash
 }
 # }}}
 
 # php-language-server {{{
 _parse_php_language_server_stubs () {
     builtin cd "$HOME/.composer" || return
-    log_info "Parsing php-language-server stubs"
+    _log_info "Parsing php-language-server stubs"
     local PHP_VERSION
     PHP_VERSION=$(phpenv version | cut -d' ' -f1)
     composer global run-script --working-dir="$(phpenv root)/versions/$PHP_VERSION/composer/global/felixfbecker/language-server/vendor/felixfbecker/language-server" parse-stubs
@@ -573,14 +574,14 @@ _parse_php_language_server_stubs () {
 # ls_colors {{{
 _install_ls_colors () {
     [ -d "$HOME"/.dircolors ] && return
-    log_info "installing LS_COLORS"
+    _log_info "installing LS_COLORS"
     wget https://raw.github.com/trapd00r/LS_COLORS/master/LS_COLORS -O $HOME/.dircolors
 }
 # }}}
 
 # antibody {{{
 _update_antibody_plugins () {
-    log_info "Updating antibody plugins"
+    _log_info "Updating antibody plugins"
     # source <(antibody init)
     antibody update # update all packages
 }
@@ -588,14 +589,14 @@ _update_antibody_plugins () {
 
 # apply hosts file {{{
 _apply_hosts_file () {
-    log_info "Syncing hosts file"
+    _log_info "Syncing hosts file"
     hostess apply "$HOME/.support/hosts.json"
 }
 # }}}
 
 # let iterm see italics {{{
 _let_iterm_see_italics () {
-    log_info "Enabling italic terminal"
+    _log_info "Enabling italic terminal"
     mkdir -p "$HOME/.terminfo/78"
     tic -o "$HOME/.terminfo/78/" "$HOME/.support/screen-256color.terminfo.txt"
     tic -x "$HOME/.support/tmux-256color.terminfo.txt"
@@ -608,7 +609,7 @@ _apply_mac_preferences () {
     defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
 
     # TODO write a function to abstract the repetition here
-    log_info "Setting general mac preferences"
+    _log_info "Setting general mac preferences"
     # Disable “natural” (Lion-style) scrolling
     defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
     # dock on left side
@@ -645,23 +646,23 @@ _apply_mac_preferences () {
     # finder default location home
     defaults write com.apple.finder NewWindowTargetPath "file:/$HOME/"
     if [[ $(defaults read com.apple.dock orientation) != "left" ]]; then
-        log_info "Moving dock to left side"
+        _log_info "Moving dock to left side"
         defaults write com.apple.dock orientation -string 'left'
         killall Dock
     fi
     if [[ $(defaults read NSGlobalDomain AppleInterfaceStyle) != "Dark" ]]; then
-        log_info "Mac dark mode"
+        _log_info "Mac dark mode"
         defaults write NSGlobalDomain AppleInterfaceStyle -string 'Dark'
         killall Dock
         killall SystemUIServer
     fi
     if [[ $(defaults read NSGlobalDomain AppleAquaColorVariant) != 6 ]]; then
-        log_info "Graphite color theme"
+        _log_info "Graphite color theme"
         defaults write NSGlobalDomain AppleAquaColorVariant -int 6
         killall Finder
     fi
     if [[ $(defaults read com.apple.dashboard dashboard-enabled-state) != 1 ]]; then
-        log_info "Disable dashboard"
+        _log_info "Disable dashboard"
         defaults write com.apple.dashboard dashboard-enabled-state -int 1
         killall Finder
     fi
@@ -672,7 +673,7 @@ _apply_mac_preferences () {
 # debug launchd jobs https://stackoverflow.com/q/6337513/557215
 # use this form to easily generate a launchd plist: http://launched.zerowidth.com/
 _start_launch_agents () {
-    log_info "Starting launch agents"
+    _log_info "Starting launch agents"
     # let's use lunchy instead of launchctl! https://github.com/eddiezane/lunchy
     lunchy start --write mike.saatchi-tunnel.autossh
     lunchy start --write mike.saatchi-proxy.autossh
@@ -685,7 +686,7 @@ _start_launch_agents () {
 # http://entrproject.org/limits.html
 _fix_file_size_limit_for_watching_with_entr () {
     [ -f /Library/LaunchDaemons/limit.maxfiles.plist ] && return
-    log_info "Installing max files limit fixer for watching with entr"
+    _log_info "Installing max files limit fixer for watching with entr"
     builtin cd /Library/LaunchDaemons || return
     sudo curl -sO http://entrproject.org/etc/limit.maxfiles.plist
     builtin cd - || return
@@ -695,7 +696,7 @@ _fix_file_size_limit_for_watching_with_entr () {
 # install nix package manager {{{
 _install_nix_package_manager () {
     [[ -d "/nix" ]] && return
-    log_info "Installing nix package manager (will require sudo)"
+    _log_info "Installing nix package manager (will require sudo)"
     # curl https://nixos.org/nix/install | sh
     bash <(curl https://nixos.org/nix/install)
 }
@@ -703,7 +704,7 @@ _install_nix_package_manager () {
 
 # upgrade docker-machine {{{
 _upgrade_docker_machine () {
-    log_info "Upgrading docker-machine"
+    _log_info "Upgrading docker-machine"
     docker-machine upgrade
 }
 # }}}
@@ -711,7 +712,7 @@ _upgrade_docker_machine () {
 # link docker-for-mac {{{
 _link_docker_for_mac () {
     # brew cask upgrade docker removes all docker-for-mac executables but doesn't link them, and there's no "brew cask link docker". I assume this is a temporary bug with the cask formula.
-    log_info "Linking docker-for-mac binaries"
+    _log_info "Linking docker-for-mac binaries"
     DOCKER_APP_BIN="/Applications/Docker.app/Contents/Resources/bin"
     ln -sf "$DOCKER_APP_BIN"/docker /usr/local/bin/docker
     ln -sf "$DOCKER_APP_BIN"/docker-credential-osxkeychain /usr/local/bin/docker-credential-osxkeychain
@@ -724,8 +725,8 @@ _link_docker_for_mac () {
 # reminders {{{
 _show_reminders () {
     true # noop
-    # log_info "Don't forget to 'docker-machine upgrade' once in a while!"
-    # log_info "Don't forget to 'brew cask upgrade virtualbox virtualbox-extension-pack' once in a while!"
+    # _log_info "Don't forget to 'docker-machine upgrade' once in a while!"
+    # _log_info "Don't forget to 'brew cask upgrade virtualbox virtualbox-extension-pack' once in a while!"
 }
 # }}}
 
@@ -769,5 +770,5 @@ _link_docker_for_mac
 # _install_mc
 # _install_nix_package_manager
 # _show_reminders
-log_info "Installation complete"
+_log_info "Installation complete"
 # }}}
