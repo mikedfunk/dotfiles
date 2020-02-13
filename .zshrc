@@ -255,13 +255,7 @@ _configure_cgr_and_composer
 
 _has kubectl && source <(kubectl completion zsh)
 _has stern && source <(stern --completion=zsh)
-# #slow
-_has pyenv && _has brew && [[ -f $(brew --prefix pyenv)/completions/pyenv.zsh ]] && source $(brew --prefix pyenv)/completions/pyenv.zsh
-# #slow
-_has rbenv && _has brew && [[ -f $(brew --prefix rbenv)/completions/rbenv.zsh ]] && source $(brew --prefix rbenv)/completions/rbenv.zsh
-# #slow
-_has nodenv && _has brew && [[ -f $(brew --prefix nodenv)/completions/nodenv.zsh ]] && source $(brew --prefix nodenv)/completions/nodenv.zsh
-_has plenv && _has brew && [[ -f $(brew --prefix plenv)/completions/plenv.zsh ]] && source $(brew --prefix plenv)/completions/plenv.zsh
+# NOTE any completions in the brew completions dir are already added!
 _has phpenv && [[ -f "$HOME"/.phpenv/completions/phpenv.zsh ]] && source "$HOME"/.phpenv/completions/phpenv.zsh
 # [[ -e /usr/local/opt/coreutils/libexec/gnubin/dircolors && -f "$HOME"/.dircolors ]] && eval $( /usr/local/opt/coreutils/libexec/gnubin/dircolors -b "$HOME"/.dircolors )
 # _has zsh-startify && zsh-startify (neat, but doesn't really help)
