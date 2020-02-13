@@ -80,6 +80,8 @@ path=(
   # (homebrew is already covered by the eval above)
   # wtf homebrew? this is too far down the list!
   /usr/local/{bin,sbin}
+  # homebrew doesn't like to link curl
+  /usr/local/opt/curl/bin
   # rust cargo packages
   # $HOME/.cargo/bin
   # golang packages

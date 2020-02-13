@@ -38,6 +38,7 @@ brew "docker-machine-nfs" # enables nfs mounts for docker-machine via `docker-ma
 # tap "moncho/dry"
 # brew "dry" # docker monitoring (does not work with docker-machine. works with docker for mac because needs access to docker.sock.)
 # brew "dtrx" # do the right extraction - so you don't have to remember tar args (I found a helpful pneumonic to remember tar args: eXtract Ze Vucking Files, Compress Ze Vucking Files)
+# brew "knes1/tap/elktail" # tail kibana logs (doesn't work with latest elk version)
 brew "entr" # file watcher (I use this a lot in my shell functions)
 # brew "fasd" # Command-line productivity booster, offers quick access to files and directories, inspired by autojump, z and v. (I use wd)
 # brew "fd" # prettier alternative to find that respects gitignore (haven't used it yet)
