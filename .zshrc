@@ -256,7 +256,8 @@ _configure_cgr_and_composer
 _has kubectl && source <(kubectl completion zsh)
 _has stern && source <(stern --completion=zsh)
 # NOTE any completions in the brew completions dir are already added!
-_has phpenv && [[ -f "$HOME"/.phpenv/completions/phpenv.zsh ]] && source "$HOME"/.phpenv/completions/phpenv.zsh
+# This is already added by phpenv init
+# _has phpenv && [[ -f "$HOME"/.phpenv/completions/phpenv.zsh ]] && source "$HOME"/.phpenv/completions/phpenv.zsh
 # [[ -e /usr/local/opt/coreutils/libexec/gnubin/dircolors && -f "$HOME"/.dircolors ]] && eval $( /usr/local/opt/coreutils/libexec/gnubin/dircolors -b "$HOME"/.dircolors )
 # _has zsh-startify && zsh-startify (neat, but doesn't really help)
 [[ -f "$HOME"/.iterm2_shell_integration.zsh ]] && source "$HOME"/.iterm2_shell_integration.zsh

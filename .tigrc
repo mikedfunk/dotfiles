@@ -53,11 +53,13 @@ bind status gsl !git stash list
 bind status gsa !git stash apply stash@{"%(prompt Enter stash position e.g. 1: )"}
 bind status grh !git reset --hard
 bind status gclf !git clean -f
+bind status gpr !gh pr create
 
 # Go to the first file in the status view
 bind status <Ctrl-n> :/^.$
 bind status go !git open
 bind status gcfd !git cfd
+bind status gcfm !git cfm
 # }}}
 
 # pager {{{

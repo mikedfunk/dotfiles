@@ -159,6 +159,7 @@
     # yo baby yo
     # po = !echo 'Ah push it' && git push origin && echo 'PUSH IT REAL GOOD'
     # pp = !git pull && git push
+    prc = "!gh pr create"
     ps = push
     # pull and update submodules... i hate submodules...
     pup = !git pull --recurse-submodules && git submodule update
