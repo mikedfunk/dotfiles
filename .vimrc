@@ -258,7 +258,7 @@ set backupdir=$HOME/.vimbackup " set custom swap file dir
 let viewdir='$HOME/.vimviews' " custom dir for :mkview output
 " usage: :grep! my_term<cr>
 if executable('ag')
-    set grepprg=ag\ --vimgrep " allow :grep to use ag
+    set grepprg=ag\ --vimgrep " allow :grep to use ag (man ag)
     set grepformat=%f:%l:%c%m " show column/row in results
     " note to self - try to use :grep! to keep it more vim-like.
     " command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw! " :Ag command that allows args
@@ -311,22 +311,16 @@ let g:php_syncmethod = 10 " :help :syn-sync https://stackoverflow.com/a/30732393
 " set noequalalways winminheight=0 winheight=9999 helpheight=9999
 
 " auto open quickfix window on search if results found
-" https://github.com/neovim/neovim/issues/11580
-" https://github.com/neovim/neovim/issues/11424
-" This has a nasty bug in neovim where the quickfix height is incorrect,
-" eventually causing it to crash. I had to disable it because I was tired of
-" dealing with this crap.
-augroup quickfixcmdgroup
-    autocmd!
-    autocmd QuickFixCmdPost *grep* copen
-augroup END
-"
-" same bug https://stackoverflow.com/a/39010855/557215
-" augroup quickfixopengroup
+" augroup quickfixcmdgroup
 "     autocmd!
-"     autocmd QuickFixCmdPost [^l]* cwindow
-"     autocmd QuickFixCmdPost l*    lwindow
+"     autocmd QuickFixCmdPost *grep* copen
 " augroup END
+"
+augroup quickfixopengroup
+    autocmd!
+    autocmd QuickFixCmdPost [^l]* cwindow
+    autocmd QuickFixCmdPost l*    lwindow
+augroup END
 
 if has('mouse')
     set mouse+=a " Automatically enable mouse usage
@@ -732,11 +726,21 @@ augroup phphelpersgroup
 augroup END
 
 " use vim grepprg
+" This has a nasty bug in neovim where the quickfix height is incorrect,
+" eventually causing it to crash. I had to disable it because I was tired of
+" dealing with this crap.
+" https://github.com/neovim/neovim/issues/11580
+" https://github.com/neovim/neovim/issues/11424
+" https://stackoverflow.com/a/39010855/557215
 " nnoremap <leader>gg :silent grep!<space>
 " nnoremap <leader>gg :grep!<space>
-" fzf version to avoid neovim bug with quickfix populating fucking everything up
-" TODO figure out how to add args in addition to the search
-nnoremap <leader>gg :Ag<cr>
+"
+" fzf version to avoid neovim bug with quickfix populating fucking everything up (downside - can't add ag args)
+" nnoremap <leader>gg :Ag<cr>
+"
+" AsyncRun version to keep it in the quickfix but avoid the neovim quickfix
+" population bug
+nnoremap <leader>gg :AsyncRun! ag --vimgrep<space>
 
 " pneumonic: grep all
 " nnoremap <leader>ga :grep!

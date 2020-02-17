@@ -151,7 +151,7 @@ windows:
       - shell_command:
           - saatchi-docker-start
         focus: true
-      - while true; do wait-on http://www.local.saatchiart.com && dme && ctop; sleep 1; done
+      - while true; do dme && ctop; sleep 1; done
       - ts
 # }}}
 

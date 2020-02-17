@@ -721,8 +721,9 @@ let g:UltiSnipsExpandTrigger='<c-l>' " Default: <Tab>
 " let g:UltiSnipsListSnippets='<c-l>' " default: <c-Tab>
 
 " this breaks in neovim (:UltiSnipsEdit doesn't work right) but if I switch
-" it, it doesn't load third-party snippets right :/
-let g:UltiSnipsSnippetDirectories=['~/.vim/UltiSnips', 'UltiSnips']
+" it, it doesn't load third-party snippets right :/ (FIXED - just symlinked
+" from ~/.vim/UltiSnips to ~/.config/nvim/UltiSnips)
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips', 'UltiSnips']
 " let g:UltiSnipsSnippetDirectories=['~/.vim/UltiSnips']
 " }}}"
 
