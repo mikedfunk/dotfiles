@@ -740,7 +740,7 @@ augroup END
 "
 " AsyncRun version to keep it in the quickfix but avoid the neovim quickfix
 " population bug
-nnoremap <leader>gg :AsyncRun! ag --vimgrep<space>
+" (moved to .vimrc.pluginconfig.vim)
 
 " pneumonic: grep all
 " nnoremap <leader>ga :grep!
