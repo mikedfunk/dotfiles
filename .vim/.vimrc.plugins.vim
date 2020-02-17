@@ -53,7 +53,11 @@ Plug 'wellle/tmux-complete.vim' " add tmux as a completion source with user-defi
 " Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
 
 " completion not working currently with this...
-" Plug 'prabirshrestha/asyncomplete.vim' | Plug 'prabirshrestha/asyncomplete-lsp.vim' | Plug 'prabirshrestha/async.vim' | Plug 'prabirshrestha/vim-lsp' " Async Language Server Protocol plugin for vim8 and neovim.
+" Async Language Server Protocol plugin for vim8 and neovim.
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+"
 " Plug 'natebosch/vim-lsc' " vim language server support https://bluz71.github.io/2019/10/16/lsp-in-vim-with-the-lsc-plugin.html (tried, I think the problem is with php-language-server. I get a shitload of errors. Tried again with intelephense. I don't know why but on completion the mode is changing to insert completion but I get no completion menu.)
 " Plug 'prabirshrestha/async.vim' | Plug 'prabirshrestha/vim-lsp' " language server features
 " Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'} " language server completion

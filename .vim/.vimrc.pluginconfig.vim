@@ -723,10 +723,9 @@ let g:UltiSnipsExpandTrigger='<c-l>' " Default: <Tab>
 " let g:UltiSnipsListSnippets='<c-l>' " default: <c-Tab>
 
 " this breaks in neovim (:UltiSnipsEdit doesn't work right) but if I switch
-" it, it doesn't load third-party snippets right :/ (FIXED - just symlinked
-" from ~/.vim/UltiSnips to ~/.config/nvim/UltiSnips)
-let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips', 'UltiSnips']
-" let g:UltiSnipsSnippetDirectories=['~/.vim/UltiSnips']
+" it, it doesn't load third-party snippets right :/
+" let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips', 'UltiSnips']
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/vim-ultisnips/snippets', 'UltiSnips']
 " }}}"
 
 " undoclosewin.vim {{{
@@ -1184,25 +1183,29 @@ let g:lsc_auto_map = {
 
 " vim-lsp {{{
 if isdirectory(expand('~/.vim/plugged/vim-lsp')) && has('autocmd') && exists('+omnifunc')
+    " augroup lsp_group
+    "     autocmd!
+
+    "     " php-language-server.php version
+    "     " I hate php-language-server. It sucks.
+    "     autocmd User lsp_setup call lsp#register_server({
+    "         \ 'name': 'php-language-server',
+    "         \ 'cmd': {server_info->[&shell, &shellcmdflag, $HOME.'/.bin/php-language-server']},
+    "         \ 'whitelist': ['php'],
+    "     \ })
+    "     " \ 'cmd': {server_info->[&shell, &shellcmdflag, $HOME.'/.bin/php-language-server']},
+
+    "     " intelephense version (php language server written in node)
+    "     " autocmd User lsp_setup call lsp#register_server({
+    "     "     \ 'name': 'intelephense',
+    "     "     \ 'cmd': {server_info->[&shell, &shellcmdflag, $HOME.'/.bin/intelephense-server']},
+    "     "     \ 'whitelist': ['php'],
+    "     " \ })
+
+    "     autocmd FileType php setlocal omnifunc=lsp#complete
+    " augroup END
     augroup lsp_group
         autocmd!
-
-        " php-language-server.php version
-        " I hate php-language-server. It sucks.
-        autocmd User lsp_setup call lsp#register_server({
-            \ 'name': 'php-language-server',
-            \ 'cmd': {server_info->[&shell, &shellcmdflag, $HOME.'/.bin/php-language-server']},
-            \ 'whitelist': ['php'],
-        \ })
-        " \ 'cmd': {server_info->[&shell, &shellcmdflag, $HOME.'/.bin/php-language-server']},
-
-        " intelephense version (php language server written in node)
-        " autocmd User lsp_setup call lsp#register_server({
-        "     \ 'name': 'intelephense',
-        "     \ 'cmd': {server_info->[&shell, &shellcmdflag, $HOME.'/.bin/intelephense-server']},
-        "     \ 'whitelist': ['php'],
-        " \ })
-
         autocmd FileType php setlocal omnifunc=lsp#complete
     augroup END
 endif
