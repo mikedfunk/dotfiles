@@ -54,9 +54,10 @@ Plug 'wellle/tmux-complete.vim' " add tmux as a completion source with user-defi
 
 " completion not working currently with this...
 " Async Language Server Protocol plugin for vim8 and neovim.
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'mattn/vim-lsp-settings'
+" TODO javascript gives me 'not executable: yarn flow'
+Plug 'prabirshrestha/async.vim', { 'for': ['php'] }
+Plug 'prabirshrestha/vim-lsp', { 'for': ['php'] }
+Plug 'mattn/vim-lsp-settings', { 'for': ['php'] }
 "
 " Plug 'natebosch/vim-lsc' " vim language server support https://bluz71.github.io/2019/10/16/lsp-in-vim-with-the-lsc-plugin.html (tried, I think the problem is with php-language-server. I get a shitload of errors. Tried again with intelephense. I don't know why but on completion the mode is changing to insert completion but I get no completion menu.)
 " Plug 'prabirshrestha/async.vim' | Plug 'prabirshrestha/vim-lsp' " language server features

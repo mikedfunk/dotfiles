@@ -1183,6 +1183,8 @@ let g:lsc_auto_map = {
 
 " vim-lsp {{{
 if isdirectory(expand('~/.vim/plugged/vim-lsp')) && has('autocmd') && exists('+omnifunc')
+    " This all happens automatically with vim-lsp-settings package
+    "
     " augroup lsp_group
     "     autocmd!
 
@@ -1201,13 +1203,24 @@ if isdirectory(expand('~/.vim/plugged/vim-lsp')) && has('autocmd') && exists('+o
     "     "     \ 'cmd': {server_info->[&shell, &shellcmdflag, $HOME.'/.bin/intelephense-server']},
     "     "     \ 'whitelist': ['php'],
     "     " \ })
-
-    "     autocmd FileType php setlocal omnifunc=lsp#complete
     " augroup END
+
     augroup lsp_group
         autocmd!
+        " TODO get js working - problem with yarn flow
         autocmd FileType php setlocal omnifunc=lsp#complete
     augroup END
+
+    " from vim-lsp wiki https://github.com/prabirshrestha/vim-lsp/wiki/Servers-Flow
+    " if executable('flow')
+    "     au User lsp_setup call lsp#register_server({
+    "         \ 'name': 'flow',
+    "         \ 'cmd': {server_info->['flow', 'lsp', '--from', 'vim-lsp']},
+    "         \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.flowconfig'))},
+    "         \ 'whitelist': ['javascript', 'javascript.jsx'],
+    "         \ })
+    " endif
+
 endif
 
 " this is handled by ALE
