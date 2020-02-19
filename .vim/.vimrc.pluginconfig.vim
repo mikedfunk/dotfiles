@@ -155,7 +155,10 @@ let g:ale_set_balloons = 1
 " asyncrun.vim {{{
 if isdirectory(expand('~/.vim/plugged/asyncrun.vim'))
     " search without the annoying neovim bug
-    nnoremap <leader>gg :AsyncRun! -strip -program=grep<space>
+    " trying to avoid the neovim bug, it still exists with -program=grep :(
+    " nnoremap <leader>gg :AsyncRun! -strip -program=grep<space>
+    nnoremap <leader>gg :AsyncRun! -strip ag --vimgrep<space>
+
     nnoremap <leader>qq :call asyncrun#quickfix_toggle(8)<cr>
     if isdirectory(expand('~/.vim/plugged/vim-fugitive'))
         " @link https://github.com/skywind3000/asyncrun.vim/wiki/Cooperate-with-famous-plugins#fugitive
