@@ -447,14 +447,32 @@ _install_perl_version () {
 }
 # }}}
 
-# install python3 version {{{
-_install_python3_version () {
-    PYTHON_INSTALL_VERSION="3.7.2"
-    [[ "$(pyenv global | grep $PYTHON_INSTALL_VERSION)" ]] && return
-    _log_info "Installing python $PYTHON_INSTALL_VERSION"
-    # CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" pyenv install $PYTHON_INSTALL_VERSION && pyenv rehash && pyenv global $PYTHON_INSTALL_VERSION
+# install python2 version {{{
+PYTHON2_INSTALL_VERSION="3.7.2"
+_install_python2_version () {
+    [[ "$(pyenv global | grep $PYTHON2_INSTALL_VERSION)" ]] && return
+    _log_info "Installing python $PYTHON2_INSTALL_VERSION"
+    # CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" pyenv install $PYTHON2_INSTALL_VERSION && pyenv rehash && pyenv global $PYTHON2_INSTALL_VERSION
     # https://github.com/pyenv/pyenv/issues/1066#issuecomment-387211005
-    pyenv install $PYTHON_INSTALL_VERSION && pyenv rehash && pyenv global $PYTHON_INSTALL_VERSION
+    pyenv install $PYTHON2_INSTALL_VERSION && pyenv rehash
+}
+# }}}
+
+# install python3 version {{{
+PYTHON3_INSTALL_VERSION="3.7.2"
+_install_python3_version () {
+    [[ "$(pyenv global | grep $PYTHON3_INSTALL_VERSION)" ]] && return
+    _log_info "Installing python $PYTHON3_INSTALL_VERSION"
+    # CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" pyenv install $PYTHON3_INSTALL_VERSION && pyenv rehash && pyenv global $PYTHON3_INSTALL_VERSION
+    # https://github.com/pyenv/pyenv/issues/1066#issuecomment-387211005
+    pyenv install $PYTHON3_INSTALL_VERSION && pyenv rehash
+}
+# }}}
+
+# enable python versions {{{
+_enable_python_versions () {
+    # you can enable python3 versions and python2 versions at the same time
+    pyenv global $PYTHON3_INSTALL_VERSION  $PYTHON2_INSTALL_VERSION
 }
 # }}}
 
@@ -752,7 +770,9 @@ _install_node_version
 _install_php_versions
 # _install_upgrade_phive
 _install_ruby_version
+_install_python2_version
 _install_python3_version
+_enable_python_versions
 _install_update_ruby_gems
 _update_python3_pip_packages
 _install_upgrade_ntfy

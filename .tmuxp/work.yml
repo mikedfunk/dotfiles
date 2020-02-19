@@ -155,19 +155,6 @@ windows:
       - ts
 # }}}
 
-# xpuppet {{{
-  - window_name: xpuppet
-    start_directory: ~/Code/saatchi/gitlab-puppet
-    layout: main-horizontal
-    options:
-      main-pane-height: 40
-    panes:
-      - shell_command:
-          - v -S
-        focus: true
-      - ts
-# }}}
-
 # k8s {{{
   - window_name: k8s
     start_directory: ~/Code/saatchi/saatchi-kubernetes

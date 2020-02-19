@@ -944,11 +944,11 @@ let g:doge_mapping="<leader>dd"
 " }}}
 
 " vim-edgemotion {{{
-if isdirectory(expand('~/.vim/plugged/vim-edgemotion'))
-    " had trouble with nnoremap :/
-    map <C-j> <Plug>(edgemotion-j)
-    map <C-k> <Plug>(edgemotion-k)
-endif
+" if isdirectory(expand('~/.vim/plugged/vim-edgemotion'))
+"     " had trouble with nnoremap :/
+"     map <C-j> <Plug>(edgemotion-j)
+"     map <C-k> <Plug>(edgemotion-k)
+" endif
 " }}}
 
 " vim-fix-my-js {{{
