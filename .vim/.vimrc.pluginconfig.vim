@@ -467,16 +467,35 @@ let g:neoformat_basic_format_trim = 1 " Enable trimmming of trailing whitespace
 
 " nvim-lsp {{{
 if (has('nvim')) && isdirectory(expand('~/.vim/plugged/nvim-lsp'))
-    " :h lua-heredoc
-lua << EOF
-require'nvim_lsp'.intelephense.setup{}
-EOF
-" require'nvim_lsp'.flow.setup{}
-    augroup nvim_lsp
-        autocmd!
-        autocmd filetype php setlocal omnifunc=v:lua.vim.lsp.omnifunc
-        " autocmd filetype javascript.jsx setlocal omnifunc=v:lua.vim.lsp.omnifunc
-    augroup END
+    " working for palette, legacy, etc!
+    if (executable('intelephense'))
+        lua require'nvim_lsp'.intelephense.setup{}
+        augroup nvim_lsp_php
+            autocmd!
+            autocmd filetype php setlocal omnifunc=v:lua.vim.lsp.omnifunc
+        augroup END
+    endif
+
+    " so far this is not working, it's just failing silently for catalog
+    if (executable('solargraph'))
+        lua require'nvim_lsp'.solargraph.setup{}
+        augroup nvim_lsp_ruby
+            autocmd!
+            autocmd filetype ruby setlocal omnifunc=v:lua.vim.lsp.omnifunc
+        augroup END
+    endif
+
+    if (executable('docker-langserver'))
+        lua require'nvim_lsp'.solargraph.setup{}
+        augroup nvim_lsp_docker
+            autocmd!
+            autocmd filetype docker setlocal omnifunc=v:lua.vim.lsp.omnifunc
+        augroup END
+    endif
+
+    " moved this to easel .vimrc ... legacy doesn't have flow and gallery's
+    " version is so old it doesn't have lsp.
+    " require'nvim_lsp'.flow.setup{}
 endif
 " }}}
 

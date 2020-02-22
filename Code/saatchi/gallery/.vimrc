@@ -77,17 +77,32 @@ if executable('cscope') && has('cscope') && exists('g:gutentags_modules')
 endif
 " }}}
 
-" nvim-lsp (NOT WORKING) {{{
+" nvim-lsp {{{
+
+" flow (NOT WORKING) {{{
 if (has('nvim'))
   " NOT WORKING: this old-ass version of flow doesn't have an lsp included :facepalm:
-lua << EOF
-require'nvim_lsp'.flow.setup{
-  cmd = { "yarn", "flow", "lsp" }
-}
-EOF
-  augroup nvim_lsp_easel
-    autocmd!
-    autocmd filetype javascript.jsx setlocal omnifunc=v:lua.vim.lsp.omnifunc
-  augroup END
-endif
+" lua << EOF
+" require'nvim_lsp'.flow.setup{
+"   cmd = { "yarn", "flow", "lsp" }
+" }
+" EOF
+"   augroup nvim_lsp_easel
+"     autocmd!
+"     autocmd filetype javascript.jsx setlocal omnifunc=v:lua.vim.lsp.omnifunc
+"   augroup END
+" endif
+" }}}
+
+" typescript (obviously NOT WORKING because this is in flowtype) {{{
+" lua << EOF
+" require'nvim_lsp'.tsserver.setup{}
+" EOF
+"   augroup nvim_lsp_easel
+"     autocmd!
+"     autocmd filetype javascript.jsx setlocal omnifunc=v:lua.vim.lsp.omnifunc
+"   augroup END
+" endif
+" }}}
+
 " }}}

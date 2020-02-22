@@ -69,7 +69,7 @@ augroup END
 let g:gutentags_modules = []
 " }}}
 
-" nvim-lsp {{{
+" nvim-lsp (works!) {{{
 if (has('nvim'))
 lua << EOF
 require'nvim_lsp'.flow.setup{

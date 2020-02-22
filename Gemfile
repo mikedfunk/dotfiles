@@ -45,3 +45,5 @@ gem 'sqlint' # for vim-ale
 # gem 'tmuxinator' # tmux orchestrator like teamocil and tmuxomatic
 
 gem "rails", "~> 6.0"
+
+gem "solargraph", "~> 0.38.5"
