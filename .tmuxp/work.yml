@@ -140,6 +140,16 @@ windows:
   #     - ts
 # }}}
 
+# ui-tests {{{
+  - window_name: ui-tests
+    start_directory: ~/Code/saatchi/ui-test-automation
+    layout: main-horizontal
+    panes:
+      - v -S
+      - echo "dme && docker-compose run saatchi-tests"
+      - ts
+# }}}
+
 # xdocker {{{
   - window_name: xdocker
     start_directory: ~/Code/saatchi/xdocker

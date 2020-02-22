@@ -67,6 +67,11 @@ Plug 'wellle/tmux-complete.vim' " add tmux as a completion source with user-defi
 " Plug 'Shougo/neco-vim' | Plug 'neoclide/coc-neco' " viml coc completion
 " Plug 'roxma/nvim-completion-manager' | Plug 'roxma/vim-hug-neovim-rpc' " completion plugin recommended on reddit https://www.reddit.com/r/vim/comments/6zgi34/what_are_the_differences_between_vimcompletesme/?utm_content=title&utm_medium=front&utm_source=reddit&utm_name=vim
 " Plug 'ncm2/ncm2' | Plug 'roxma/nvim-yarp' " formerly known as nvim-completion-manager (requires language server or phpactor connector)
+"
+if (has('nvim'))
+    " actual official lsp config \o/
+    Plug 'neovim/nvim-lsp'
+endif
 " }}}
 
 " General {{{

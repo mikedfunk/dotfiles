@@ -68,3 +68,17 @@ augroup END
 " vim-gutentags {{{
 let g:gutentags_modules = []
 " }}}
+
+" nvim-lsp {{{
+if (has('nvim'))
+lua << EOF
+require'nvim_lsp'.flow.setup{
+  cmd = { "yarn", "flow", "lsp" }
+}
+EOF
+  augroup nvim_lsp_easel
+    autocmd!
+    autocmd filetype javascript.jsx setlocal omnifunc=v:lua.vim.lsp.omnifunc
+  augroup END
+endif
+" }}}

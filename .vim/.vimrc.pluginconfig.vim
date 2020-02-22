@@ -154,10 +154,10 @@ let g:ale_set_balloons = 1
 
 " asyncrun.vim {{{
 if isdirectory(expand('~/.vim/plugged/asyncrun.vim'))
-    " search without the annoying neovim bug
-    " trying to avoid the neovim bug, it still exists with -program=grep :(
-    " nnoremap <leader>gg :AsyncRun! -strip -program=grep<space>
-    nnoremap <leader>gg :AsyncRun! -strip ag --vimgrep<space>
+    " trying to search without the annoying neovim bug
+    " but it still exists in these commands. ARGH
+    nnoremap <leader>gg :AsyncRun! -strip -program=grep<space>
+    " nnoremap <leader>gg :AsyncRun! -strip ag --vimgrep<space>
 
     nnoremap <leader>qq :call asyncrun#quickfix_toggle(8)<cr>
     if isdirectory(expand('~/.vim/plugged/vim-fugitive'))
@@ -463,6 +463,21 @@ let g:neoformat_basic_format_trim = 1 " Enable trimmming of trailing whitespace
     " autocmd BufWritePre * Neoformat
     " autocmd BufWritePre * undojoin | Neoformat
 " augroup END
+" }}}
+
+" nvim-lsp {{{
+if (has('nvim')) && isdirectory(expand('~/.vim/plugged/nvim-lsp'))
+    " :h lua-heredoc
+lua << EOF
+require'nvim_lsp'.intelephense.setup{}
+EOF
+" require'nvim_lsp'.flow.setup{}
+    augroup nvim_lsp
+        autocmd!
+        autocmd filetype php setlocal omnifunc=v:lua.vim.lsp.omnifunc
+        " autocmd filetype javascript.jsx setlocal omnifunc=v:lua.vim.lsp.omnifunc
+    augroup END
+endif
 " }}}
 
 " onedark.vim {{{
