@@ -54,7 +54,8 @@ bind status gsa !git stash apply stash@{"%(prompt Enter stash position e.g. 0: )
 bind status grh !git reset --hard
 bind status gclf !git clean -f
 bind status gprc !gh pr create
-bind status gpro !gh pr checkout "$(prompt Enter pull request number: )"
+# pneumonic: git pr get
+bind status gprg !gh pr checkout "$(prompt Enter pull request number: )"
 bind status gprs !gh pr status
 bind status gprv !gh pr view
 

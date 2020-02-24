@@ -18,6 +18,9 @@
 # It's not really a problem though - I can still complete namespaced classes,
 # expand and import classes with vim-php-namespace
 # --output-format=etags
+# supposedly fixes double backslash better
+# https://github.com/shawncplus/phpcomplete.vim/issues/124
+--output-format=e-ctags
 # strangely this defaults to TAGS
 # -ftags
 # WHY does ctags support html??

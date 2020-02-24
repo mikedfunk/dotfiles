@@ -80,7 +80,7 @@ endif
 " nvim-lsp {{{
 
 " flow (NOT WORKING) {{{
-if (has('nvim'))
+" if (has('nvim'))
   " NOT WORKING: this old-ass version of flow doesn't have an lsp included :facepalm:
 " lua << EOF
 " require'nvim_lsp'.flow.setup{
