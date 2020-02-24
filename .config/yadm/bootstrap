@@ -656,6 +656,7 @@ _apply_mac_preferences () {
     # Chrome - Disable the all too sensitive backswipe on Magic Mouse
     defaults write com.google.Chrome AppleEnableMouseSwipeNavigateWithScrolls -bool false
     defaults write com.google.Chrome.canary AppleEnableMouseSwipeNavigateWithScrolls -bool false
+    defaults write com.apple.screencapture location ~/Screenshots
 
     killall Dock
     killall Finder

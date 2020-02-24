@@ -127,7 +127,10 @@ if [[ ! $ANTIBODY_LOADED ]]; then
     source <(antibody init)
 
     antibody bundle yous/vanilli.sh # sensible zsh defaults
-    antibody bundle djui/alias-tips # tell you when an alias would shorten the command you ran
+    # antibody bundle djui/alias-tips # tell you when an alias would shorten the command you ran
+    # antibody bundle sei40kr/fast-alias-tips-bin branch:v0.1.1 (doesn't work - he doesn't put the executable on a branch, it's in a release, which antibody doesn't know how to get)
+    # antibody bundle sei40kr/zsh-fast-alias-tips (this does not play nice with antibody)
+    antibody bundle robbyrussell/oh-my-zsh path:plugins/alias-finder # supposed to be 10x faster than alias-tips O_O https://github.com/djui/alias-tips/issues/49#issuecomment-569726313
     antibody bundle robbyrussell/oh-my-zsh path:plugins/command-not-found # suggest packages to install if command not found
     antibody bundle robbyrussell/oh-my-zsh path:plugins/colored-man-pages
     antibody bundle robbyrussell/oh-my-zsh path:plugins/colorize # Plugin for highlighting file content
@@ -142,6 +145,7 @@ if [[ ! $ANTIBODY_LOADED ]]; then
     # antibody bundle zsh-users/zsh-history-substring-search # up arrow after typing part of command
     antibody bundle romkatv/powerlevel10k # zsh prompt theme (see ~/.p10k.zsh)
     antibody bundle qoomon/zsh-lazyload # lazyload various commands
+    # antibody bundle black7375/zsh-lazyenv # like lazyload but provides lazy loading of nodenv, phpenv, etc. with one command: `lazyenv-enabled` (kept caching phpenv over and over, wasn't actually faster anyway)
     antibody bundle mroth/evalcache # speeds up subsequent runs of eval init functions. if you make a change just call `_evalcache_clear`.
     antibody bundle hlissner/zsh-autopair # auto close parens, etc.
     # antibody bundle zdharma/zsh-startify # like vim-startify for zsh (neat, but doesn't really help)
@@ -159,6 +163,8 @@ _has lazyload && lazyload '_has akamai && eval "$(akamai --zsh)"' akamai
 # }}}
 
 # source additional files and env vars {{{
+ZSH_ALIAS_FINDER_AUTOMATIC=true # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/alias-finder#usage
+ZSH_AUTOSUGGEST_STRATEGY=(history completion) # https://github.com/zsh-users/zsh-autosuggestions#suggestion-strategy
 [ -f ~/.private_vars.sh ] && source ~/.private_vars.sh # where I store my secret env vars
 # [ -f ~/.support/promptline.theme.bash ] && source ~/.support/promptline.theme.bash # vim plugin generates this tmux status line file
 # if you get this error:
@@ -194,6 +200,9 @@ _has pyenv && _evalcache pyenv init - # (evalcache version)
 [[ -f "$HOME"/.phpenv/bin/phpenv ]] && _evalcache "$HOME"/.phpenv/bin/phpenv init - # (evalcache version)
 _has rbenv && _evalcache rbenv init - # (evalcache version)
 _has hub && _evalcache hub alias -s # alias git to hub with completion intact
+
+# https://github.com/black7375/zsh-lazyenv
+# _has lazyenv-enabled && lazyenv-enabled
 
 # https://github.com/trapd00r/LS_COLORS
 DIRCOLORS_CMD="/usr/local/opt/coreutils/libexec/gnubin/dircolors"
