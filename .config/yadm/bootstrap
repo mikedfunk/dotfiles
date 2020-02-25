@@ -163,7 +163,7 @@ _install_ievms () {
 # _install_neovim_from_source {{{
 _install_neovim_from_source () {
     _log_info "Installing neovim from source"
-    pushd
+    pushd .
     if [[ ! -d "$HOME/Code/neovim" ]]; then
         cd "$HOME/Code"
         git clone git@github.com:neovim/neovim.git
