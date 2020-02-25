@@ -28,6 +28,13 @@ function _log_notice() { echo -e "$(tput setaf 3)$(tput rev)$(tput bold) \xE2\x9
 function _has() { type "$1" &>/dev/null; }
 # }}}
 
+# create dirs {{{
+_create_dirs () {
+    _log_info "Creating any missing home directories"
+    [[ -d "$HOME/Code" ]] || mkdir "$HOME/Code"
+}
+# }}}
+
 # clone repos {{{
 
 # _log_info "Cloning repos"
@@ -150,6 +157,25 @@ _install_ievms () {
 
     _log_info "Installing IE11 VirtualBox VM"
     curl -s https://raw.githubusercontent.com/xdissent/ievms/master/ievms.sh | env IEVMS_VERSIONS="11" bash
+}
+# }}}
+
+# _install_neovim_from_source {{{
+_install_neovim_from_source () {
+    _log_info "Installing neovim from source"
+    pushd
+    if [[ ! -d "$HOME/Code/neovim" ]]; then
+        cd "$HOME/Code"
+        git clone git@github.com:neovim/neovim.git
+        cd neovim
+    else
+        cd "$HOME/Code/neovim"
+    fi
+    git pull
+    rm build/.ran-third-party-cmake 2>/dev/null || true
+    make CMAKE_BUILD_TYPE=RelWithDebInfo
+    sudo make install
+    popd
 }
 # }}}
 
@@ -752,6 +778,7 @@ _show_reminders () {
 # run functions {{{
 # this way I can still source this file but comment out these function calls
 # and run one or more independently. This is extremely useful!!
+_create_dirs
 _install_xcode_command_line_tools
 _install_necessary_headers_in_include_on_mojave
 _install_homebrew_if_its_missing
@@ -788,6 +815,7 @@ _start_launch_agents
 _fix_file_size_limit_for_watching_with_entr
 # _upgrade_docker_machine
 _link_docker_for_mac
+# _install_neovim_from_source
 # _install_mc
 # _install_nix_package_manager
 # _show_reminders

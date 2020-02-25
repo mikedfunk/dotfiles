@@ -803,6 +803,7 @@ letsfun () {
     cd - >/dev/null
     echo "${GREEN}${MESSAGE}${NORMAL}"
 }
+alias letswork="letsfun"
 letsbreak () {
     if [ "$1" = "--help" ]; then echo "Turns off all distracting sites in /etc/hosts."; return; fi
     BREAK_TIME_IN_MINUTES=${1:-15}
