@@ -140,8 +140,8 @@ windows:
   #     - ts
 # }}}
 
-# ui-tests {{{
-  - window_name: ui-tests
+# e2e tests {{{
+  - window_name: e2e
     start_directory: ~/Code/saatchi/ui-test-automation
     layout: main-horizontal
     panes:

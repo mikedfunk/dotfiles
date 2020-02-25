@@ -148,7 +148,7 @@ if [[ ! $ANTIBODY_LOADED ]]; then
     # antibody bundle black7375/zsh-lazyenv # like lazyload but provides lazy loading of nodenv, phpenv, etc. with one command: `lazyenv-enabled` (kept caching phpenv over and over, wasn't actually faster anyway)
     antibody bundle mroth/evalcache # speeds up subsequent runs of eval init functions. if you make a change just call `_evalcache_clear`.
     antibody bundle hlissner/zsh-autopair # auto close parens, etc.
-    antibody bundle oldratlee/hacker-quotes # just add some cool hacker quotes in shell init like MOTD
+    # antibody bundle oldratlee/hacker-quotes # just add some cool hacker quotes in shell init like MOTD
     # antibody bundle zdharma/zsh-startify # like vim-startify for zsh (neat, but doesn't really help)
     # antibody bundle paulmelnikow/zsh-startup-timer # uncomment to show startup time. This plugin itself is slow, but helpful to measure once in a while.
 
@@ -166,7 +166,7 @@ _has lazyload && lazyload '_has akamai && eval "$(akamai --zsh)"' akamai
 
 # source additional files and env vars {{{
 ZSH_ALIAS_FINDER_AUTOMATIC=true # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/alias-finder#usage
-ZSH_AUTOSUGGEST_STRATEGY=(history completion) # https://github.com/zsh-users/zsh-autosuggestions#suggestion-strategy
+# ZSH_AUTOSUGGEST_STRATEGY=(history completion) # https://github.com/zsh-users/zsh-autosuggestions#suggestion-strategy (this prevents me from typing more e.g. `php artisan ...`!)
 [ -f ~/.private_vars.sh ] && source ~/.private_vars.sh # where I store my secret env vars
 # [ -f ~/.support/promptline.theme.bash ] && source ~/.support/promptline.theme.bash # vim plugin generates this tmux status line file
 # if you get this error:

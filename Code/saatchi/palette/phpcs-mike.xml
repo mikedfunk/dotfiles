@@ -110,6 +110,8 @@
 
   <!-- PSR12 (16 sniffs) -->
   <rule ref="PSR12">
+    <!-- constant visibility is not yet available in php 7.0 -->
+    <exclude name="PSR12.Properties.ConstantVisibility.NotFound" />
   </rule>
 
   <!-- Squiz (98 sniffs) -->
