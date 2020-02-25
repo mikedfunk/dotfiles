@@ -215,8 +215,8 @@ cask "dozer" # little menubar app that allows hiding menubar icon clutter
 # cask "dropbox" # I especially use this for synching my notes so I can view them in the joplin mobile app (not using this feature right now)
 # cask "emacs" # this actually makes sense as a cask. It becomes tmux, vim, and kitty all in one.
 # cask "epic-games" # game store
-# cask "firefox"
-cask "firefox-developer-edition"
+cask "firefox" # I use firefox for my home profile
+cask "firefox-developer-edition" # I use dev edition for my work profile
 # cask "font-fira-code"
 # cask "font-iosevka"
 cask "font-iosevka-nerd-font-mono" # note: homebrew doesn't need a tap for these any more
