@@ -1,7 +1,29 @@
 <?xml version="1.0"?>
 <!-- vim:set sw=2 ts=2 et: -->
 <ruleset name="Mike's Palette Coding Standard">
+
   <description>Mike's more strict, experimental version of the Saatchi Art Coding Standard (phpcs v3.5.2 as of 11-25-2019)</description>
+
+  <!-- start php compatibility -->
+  <config name="installed_paths" value="/Users/mikefunk/.phpenv/versions/7.0.29/composer/global/phpcompatibility/php-compatibility/vendor/phpcompatibility/php-compatibility" />
+  <!-- ensure php code is compatible with this version -->
+  <config name="testVersion" value="7.0.29" />
+  <!-- adding this rule is apparently not necessary. It redeclares a class. -->
+  <!-- <rule ref="PhpCompatibility" /> -->
+  <!-- end php compatibility -->
+
+  <!-- start phpcs-import-detection -->
+  <config name="installed_paths" value="/Users/mikefunk/.phpenv/versions/7.0.29/composer/global/sirbrillig/phpcs-import-detection/vendor/sirbrillig/phpcs-import-detection" />
+  <rule ref="ImportDetection" />
+  <!-- end phpcs-import-detection -->
+
+  <!-- start phpcs-type-sniff -->
+  <!-- NOTE this only works for php 7.1+ -->
+  <!-- cgr gskema/phpcs-type-sniff:^0.14.0 -->
+  <!-- <config name="installed_paths" value="/Users/mikefunk/.phpenv/versions/7.0.29/composer/global/gskema/phpcs-type-sniff/vendor/gskema/phpcs-type-sniff" /> -->
+  <!-- <rule ref="CompositeCodeElementSniff" /> -->
+  <!-- end phpcs-import-detection -->
+
   <arg name="colors" />
 
   <ini name="memory_limit" value="1024M"/>
@@ -58,6 +80,9 @@
       <property name="forbiddenFunctions" type="array" value="sizeof=>count,delete=>unset,print=>echo" />
       <property name="error" value="false" />
     </properties>
+  </rule>
+  <rule ref="Generic.NamingConventions.CamelCapsFunctionName.ScopeNotCamelCaps">
+    <exclude-pattern>spec/*</exclude-pattern>
   </rule>
 
   <!-- MySource (16 sniffs) -->
@@ -146,6 +171,9 @@
     <exclude name="Squiz.WhiteSpace.FunctionClosingBraceSpace.SpacingBeforeClose" />
     <!-- this doesn't take into account ?? >:( -->
     <exclude name="Squiz.Formatting.OperatorBracket" />
+  </rule>
+  <rule ref="Squiz.NamingConventions.ValidFunctionName.ScopeNotCamelCaps">
+    <exclude-pattern>spec/*</exclude-pattern>
   </rule>
   <!-- properties of rules used in other rulesets -->
   <rule ref="Squiz.WhiteSpace.FunctionSpacing">
