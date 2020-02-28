@@ -13,8 +13,12 @@
   <!-- end php compatibility -->
 
   <!-- start phpcs-import-detection -->
-  <config name="installed_paths" value="/Users/mikefunk/.phpenv/versions/7.0.29/composer/global/sirbrillig/phpcs-import-detection/vendor/sirbrillig/phpcs-import-detection" />
-  <rule ref="ImportDetection" />
+  <!-- this is just too buggy.
+    - skip import because it's in your current namespace? error.
+    - arrow at and of line, indent on next line and method call? error.
+  -->
+  <!-- <config name="installed_paths" value="/Users/mikefunk/.phpenv/versions/7.0.29/composer/global/sirbrillig/phpcs-import-detection/vendor/sirbrillig/phpcs-import-detection" /> -->
+  <!-- <rule ref="ImportDetection" /> -->
   <!-- end phpcs-import-detection -->
 
   <!-- start phpcs-type-sniff -->
@@ -141,6 +145,7 @@
 
   <!-- Squiz (98 sniffs) -->
   <rule ref="Squiz">
+    <exclude name="Squiz.PHP.DisallowMultipleAssignments" />
     <exclude name="Squiz.PHP.DisallowBooleanStatement" />
     <exclude name="Squiz.WhiteSpace.MemberVarSpacing" />
     <rule ref="Squiz.WhiteSpace.MemberVarSpacing">
