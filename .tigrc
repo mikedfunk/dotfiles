@@ -55,7 +55,7 @@ bind status grh !git reset --hard
 bind status gclf !git clean -f
 bind status gprc !gh pr create
 # pneumonic: git pr get
-bind status gprg !gh pr checkout "$(prompt Enter pull request number: )"
+bind status gprg !gh pr checkout "%(prompt Enter pull request number: )"
 bind status gprs !gh pr status
 bind status gprv !gh pr view
 

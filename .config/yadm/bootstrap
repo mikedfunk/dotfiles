@@ -593,6 +593,10 @@ _install_update_composer_packages () {
         _log_info "Installing cgr packages"
         # https://github.com/consolidation/cgr
         while read -r package; do
+            # ignore empty lines
+            ( echo "$package" | grep --quiet "^$" ) && continue
+            # ignore "commented" lines
+            ( echo "$package" | grep --quiet "^#" ) && continue
             cgr "$package"
         done <"$HOME/.composer/cgr-versions.txt"
     else
