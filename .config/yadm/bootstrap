@@ -525,7 +525,8 @@ _install_update_ruby_gems () {
     _log_info "Installing/upgrading ruby gems"
     gem install bundler
     builtin cd || return
-    bundle install --system --binstubs
+    bundle install --system
+    bundle binstubs
     bundle update
     bundle clean --force
     builtin cd - || return

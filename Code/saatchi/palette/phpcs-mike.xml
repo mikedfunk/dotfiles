@@ -28,6 +28,42 @@
   <!-- <rule ref="CompositeCodeElementSniff" /> -->
   <!-- end phpcs-import-detection -->
 
+  <!-- start slevomat coding standard -->
+  <config name="installed_paths" value="/Users/mikefunk/.phpenv/versions/7.0.29/composer/global/slevomat/coding-standard/vendor/slevomat/coding-standard" />
+  <!-- <rule ref="SlevomatCodingStandard.TypeHints.TypeHintDeclaration"> -->
+  <!--   <property name="enableNullableTypeHints" value="false" /> -->
+  <!--   <property name="enableVoidTypeHint" value="false" /> -->
+  <!--   <property name="enableEachParameterAndReturnInspection" value="false" /> -->
+  <!--   <!-1- <property name="enableEachParameterAndReturnInspection" value="true" /> -1-> -->
+  <!-- </rule> -->
+  <!-- <rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes"> -->
+  <!--   <property name="spacesCountAroundEqualsSign" value="0" /> -->
+  <!-- </rule> -->
+  <rule ref="SlevomatCodingStandard.Classes.UnusedPrivateElements" />
+  <rule ref="SlevomatCodingStandard.Namespaces.UnusedUses" />
+  <rule ref="SlevomatCodingStandard.Exceptions.DeadCatch" />
+  <rule ref="SlevomatCodingStandard.Arrays.TrailingArrayComma" />
+  <rule ref="SlevomatCodingStandard.Namespaces.DisallowGroupUse" />
+  <rule ref="SlevomatCodingStandard.Namespaces.FullyQualifiedGlobalConstants" />
+  <rule ref="SlevomatCodingStandard.Namespaces.FullyQualifiedGlobalFunctions" />
+  <rule ref="SlevomatCodingStandard.Namespaces.MultipleUsesPerLine" />
+  <!-- <rule ref="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly"> -->
+  <!--   <property name="allowFullyQualifiedNameForCollidingClasses" value="true" /> -->
+  <!--   <property name="allowFullyQualifiedGlobalClasses" value="true" /> -->
+  <!--   <property name="allowFullyQualifiedExceptions" value="true" /> -->
+  <!--   <property name="allowFullyQualifiedGlobalFunctions" value="true" /> -->
+  <!--   <property name="allowFullyQualifiedGlobalConstants" value="true" /> -->
+  <!-- </rule> -->
+  <!-- <rule ref="SlevomatCodingStandard.TypeHints.LongTypeHints" /> -->
+  <!-- end slevomat coding standard -->
+
+  <!-- TODO implement https://github.com/object-calisthenics/phpcs-calisthenics-rules/tree/v2.0.1 . Kind of hard to do as the docs for 2.0.1 don't have examples and it's the newest version that supports php 7.0 :( -->
+
+  <!-- begin phpcs-variable-analysis -->
+  <config name="installed_paths" value="/Users/mikefunk/.phpenv/versions/7.0.29/composer/global/sirbrillig/phpcs-variable-analysis/vendor/sirbrillig/phpcs-variable-analysis" />
+  <rule ref="VariableAnalysis" />
+  <!-- end phpcs-variable-analysis -->
+
   <arg name="colors" />
 
   <ini name="memory_limit" value="1024M"/>

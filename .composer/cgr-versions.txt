@@ -13,5 +13,12 @@ psy/psysh:^0.8.15
 phpstan/phpstan:^0.9.2
 pedrotroller/php-cs-custom-fixer:^2.19
 phpcompatibility/php-compatibility:^9.3.5
+
 # This doesn't work very well. Lots of incorrect failures.
 # sirbrillig/phpcs-import-detection:^1.2.2
+
+# php 7.1+
+# slevomat/coding-standard:^6.1
+# php 7.0+ :(
+slevomat/coding-standard:4.0.0
+sirbrillig/phpcs-variable-analysis:^2.8
