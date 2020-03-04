@@ -503,10 +503,10 @@ _enable_python_versions () {
 # }}}
 
 # install nextdns service {{{
-_install_nextdns () {
+_install_activate_nextdns () {
     _log_info "Installing nextdns service and activating it"
-    nextdns install --config-file="$HOME"/.config/nextdns.conf
-    nextdns activate
+    sudo nextdns install --config "$NEXTDNS_CONFIG"
+    sudo nextdns activate
 }
 # }}}
 
@@ -826,7 +826,7 @@ _let_iterm_see_italics
 _apply_mac_preferences
 _start_launch_agents
 _fix_file_size_limit_for_watching_with_entr
-_install_nextdns
+# _install_activate_nextdns
 # _upgrade_docker_machine
 _link_docker_for_mac
 # _install_neovim_from_source

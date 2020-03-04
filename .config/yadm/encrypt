@@ -32,5 +32,4 @@ Library/Application Support/Sequel Pro/Data/Favorites.plist
 # .thelounge/logs
 .thelounge/users
 .aws/credentials
-.config/nextdns.conf
 # }}}
