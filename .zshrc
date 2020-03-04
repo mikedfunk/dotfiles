@@ -157,11 +157,11 @@ fi
 # }}}
 
 # lazyload {{{
-# _has lazyload && lazyload '_has nodenv && eval "$(nodenv init -)"' nodenv # TOO SLOW
-# _has lazyload && lazyload '[[ -f "$HOME/.phpenv/bin/phpenv" ]] && eval "$($HOME/.phpenv/bin/phpenv init -)"' phpenv # TOO SLOW
-# _has lazyload && lazyload '_has pyenv && eval "$(pyenv init -)"' pyenv # TOO SLOW
-# _has lazyload && lazyload '_has rbenv && eval "$(rbenv init -)"' rbenv # TOO SLOW
-_has lazyload && lazyload '_has akamai && eval "$(akamai --zsh)"' akamai
+# _has lazyload && lazyload nodenv -- '_has nodenv && eval "$(nodenv init -)"' # TOO SLOW
+# _has lazyload && lazyload phpenv -- '[[ -f "$HOME/.phpenv/bin/phpenv" ]] && eval "$($HOME/.phpenv/bin/phpenv init -)"' # TOO SLOW
+# _has lazyload && lazyload pyenv -- '_has pyenv && eval "$(pyenv init -)"' # TOO SLOW
+# _has lazyload && lazyload rbenv -- '_has rbenv && eval "$(rbenv init -)"' # TOO SLOW
+_has lazyload && lazyload akamai -- '_has akamai && eval "$(akamai --zsh)"'
 # }}}
 
 # source additional files and env vars {{{
