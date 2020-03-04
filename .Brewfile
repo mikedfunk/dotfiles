@@ -107,7 +107,7 @@ brew "mysql" # I haven't been using the server lately but I use the cli tool to 
 # brew "ncdu" # interactive du
 brew "newsboat" # terminal rss reader. I'm debating on whether this is worth it. It's kind of handy to read the headlines in hackernews, reddit programming, etc.
 # brew "neovim" # vim re-imagined (temporarily disabled so I can build from source to address the extremely annoying quickfix bug)
-# brew "nextdns/tap/nextdns" # dns privacy service
+brew "nextdns/tap/nextdns" # dns privacy service
 brew "node" # nodejs and npm (non-nodenv version required by joplin, yarn)
 brew "nodenv" # node version manager (same api as rbenv)
 brew "noti" # simple terminal notifier

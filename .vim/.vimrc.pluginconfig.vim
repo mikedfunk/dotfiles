@@ -771,7 +771,7 @@ let g:UltiSnipsExpandTrigger='<c-l>' " Default: <Tab>
 " this breaks in neovim (:UltiSnipsEdit doesn't work right) but if I switch
 " it, it doesn't load third-party snippets right :/
 " let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips', 'UltiSnips']
-" let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/vim-ultisnips/snippets', 'UltiSnips']
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/vim-ultisnips/snippets', 'UltiSnips']
 
 " UltiSnips somehow forgets this mapping when I open a new file :/
 if isdirectory(expand('~/.vim/plugged/ultisnips'))

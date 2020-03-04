@@ -3085,9 +3085,9 @@ base@^0.11.1:
     pascalcase "^0.1.1"
 
 bash-language-server@^1.5.5:
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/bash-language-server/-/bash-language-server-1.8.0.tgz#bd086cc74123dcc70712dfbaff370e8d2978af16"
-  integrity sha512-qtHfFMbxX0moz0+C5ZYiV9N227KObJUWIfUURC1r5iorA98530dWkNrNet9R7fQCWzbTUlupbZIEj50uJl45Qg==
+  version "1.11.0"
+  resolved "https://registry.yarnpkg.com/bash-language-server/-/bash-language-server-1.11.0.tgz#646894ea9bbd89b808c79917e9ab52b5caaf1c57"
+  integrity sha512-Fs3vWPrITiSWPPmSs8GmEhY36Fkq5MwSPYkOh0sbsrSEJZhvGsqagbzr8MgAy/IB5v0Axgv10AQ6ZoZH/n1upQ==
   dependencies:
     glob "^7.1.6"
     request "^2.83.0"
@@ -3095,7 +3095,7 @@ bash-language-server@^1.5.5:
     turndown "^4.0.2"
     urijs "^1.19.1"
     vscode-languageserver "^5.2.1"
-    web-tree-sitter "^0.15.9"
+    web-tree-sitter "^0.16.2"
 
 batch@0.6.1:
   version "0.6.1"
@@ -4124,9 +4124,9 @@ cli-width@^2.0.0:
   integrity sha1-/xnt6Kml5XkyQUewwR8PvLq+1jk=
 
 clipboard@^2.0.0:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/clipboard/-/clipboard-2.0.4.tgz#836dafd66cf0fea5d71ce5d5b0bf6e958009112d"
-  integrity sha512-Vw26VSLRpJfBofiVaFb/I8PVfdI1OxKcYShe6fm0sP/DtmiWQNCjhM/okTvdCo0G+lMMm1rMYbk4IK4x1X+kgQ==
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/clipboard/-/clipboard-2.0.5.tgz#4a016d56c1daa1474a0ec4f42d524744b9dc2744"
+  integrity sha512-3IlokN96rXErcpaVpAXgsE2o+/85DEHr/Gs0pLQOonwtrjZpZLEfy9S4ZyZj+JhVMvZT8szWfKPYQSZCAKDfQg==
   dependencies:
     good-listener "^1.2.2"
     select "^1.1.2"
@@ -19990,10 +19990,10 @@ web-push@3.4.1:
     minimist "^1.2.0"
     urlsafe-base64 "^1.0.0"
 
-web-tree-sitter@^0.15.9:
-  version "0.15.11"
-  resolved "https://registry.yarnpkg.com/web-tree-sitter/-/web-tree-sitter-0.15.11.tgz#2fa29820f4b6273f936e23de9ab1a1a62be347c3"
-  integrity sha512-7Sr26MV8bPPvKU+4VMpOoLYwaAFBsCsxRGtxYPSxClWIaR2KIciqg6zUeG14W9QrdlpBt7VHHzhd1CBb0e6i8w==
+web-tree-sitter@^0.16.2:
+  version "0.16.2"
+  resolved "https://registry.yarnpkg.com/web-tree-sitter/-/web-tree-sitter-0.16.2.tgz#fc6b62681d7ca524a9ffc8498448f8e23be7b1ea"
+  integrity sha512-vxZHqu4nItCARmE+oGvTgjFBrMbhEuGI9PWYSgF4ET/nLuW3K11KQQIVhAsoGtYvTI9jdbjc/THj38P7nhYwow==
 
 webidl-conversions@^4.0.2:
   version "4.0.2"
