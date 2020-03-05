@@ -1,7 +1,0 @@
-#!/bin/sh
-
-# God damn this path is insane.
-# Also this lib requires a TON of memory. It ran out in palette at 512M!
-# "$HOME/.phpenv/shims/php" -dmemory_limit=1024M "$HOME/.phpenv/versions/$($HOME/.phpenv/bin/phpenv version | cut -d' ' -f1)/composer/vendor/bin/php-language-server.php" --memory-limit=1024M $@
-# "$HOME/.phpenv/shims/php" -dmemory_limit=500M "$HOME/.vim/plugged/LanguageServer-php-neovim/vendor/bin/php-language-server.php" --memory-limit=256M $@
-/usr/local/bin/intelephense --stdio $@

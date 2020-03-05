@@ -502,6 +502,19 @@ _enable_python_versions () {
 }
 # }}}
 
+# install monitoror {{{
+# TODO set up monitoror config and launchctl job
+_install_monitoror () {
+    _has monitoror && return
+    _log_info "installing monitoror"
+    pushd .
+    cd /usr/local/bin
+    curl -sL -o monitoror $(curl -s https://api.github.com/repos/monitoror/monitoror/releases/latest | grep 'browser_download_url.*monitoror-macos' | cut -d: -f2,3 | tr -d \")
+    chmod +x monitoror
+    popd
+}
+# }}}
+
 # install nextdns service {{{
 _install_activate_nextdns () {
     _log_info "Installing nextdns service and activating it"
@@ -827,6 +840,7 @@ _apply_mac_preferences
 _start_launch_agents
 _fix_file_size_limit_for_watching_with_entr
 # _install_activate_nextdns
+# _install_monitoror
 # _upgrade_docker_machine
 _link_docker_for_mac
 # _install_neovim_from_source

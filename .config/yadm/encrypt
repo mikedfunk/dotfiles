@@ -14,6 +14,7 @@
 Code/saatchi/http
 Code/saatchi/kubernetes
 Code/saatchi/queries
+# .config/monitoror/saatchi.json
 # }}}
 
 # misc {{{

@@ -1,3 +1,0 @@
-#!/bin/bash
-# shorten this long path
-"$HOME/.nodenv/shims/node" "$HOME/.config/yarn/global/node_modules/intelephense-server/lib/server.js" --stdio $@
