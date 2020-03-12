@@ -37,5 +37,5 @@ mig:~/Desktop/migration-2019-11-25
 ios:~/Code/saatchi/chromatic
 k8s:~/Code/saatchi/saatchi-kubernetes
 neovim:~/Code/neovim
-chris:~/Code/chris-portfolio
 ui-tests:~/Code/saatchi/ui-test-automation
+chris:~/Code/chris-zenner/chris-word-guessing-game

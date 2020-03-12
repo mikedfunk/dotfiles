@@ -1582,3 +1582,10 @@ endif
 let g:vimwiki_folding = 'expr'
 let g:vimwiki_ext2syntax = { '.md': 'markdown' }
 " }}}
+
+" vista.vim {{{
+let g:vista_close_on_jump = 1
+if isdirectory(expand('~/.vim/plugged/vista.vim'))
+    nnoremap <silent> <leader>bb :Vista nvim_lsp<CR>
+endif
+" }}}

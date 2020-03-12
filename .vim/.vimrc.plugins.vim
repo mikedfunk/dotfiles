@@ -33,6 +33,7 @@ if executable('ctags')
     " evaluating https://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
     Plug 'ludovicchabant/vim-gutentags' " auto ctags runner. no lazy load.
     Plug 'majutsushi/tagbar' "Shows methods/properties. no lazy load.
+    " Plug 'liuchengxu/vista.vim' " like tagbar for lsp symbols (removed - it's very buggy atm)
     " Plug 'vim-php/tagbar-phpctags.vim', { 'do': 'make' } " Better php support for tagbar. Without this tagbar will show nothing if you use a trait. However, the php parser used is not updated for php 7, so it will fail on null coalesce! The first problem is now fixed in majutsushi/tagbar.
 endif
 if has('nvim')
