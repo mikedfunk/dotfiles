@@ -140,14 +140,14 @@ windows:
   #     - ts
 # }}}
 
-# e2e tests {{{
-  - window_name: e2e
-    start_directory: ~/Code/saatchi/ui-test-automation
-    layout: main-horizontal
-    panes:
-      - v -S
-      - echo "dme && docker-compose run saatchi-tests"
-      - ts
+# e2e tests (disabled) {{{
+  # - window_name: e2e
+  #   start_directory: ~/Code/saatchi/ui-test-automation
+  #   layout: main-horizontal
+  #   panes:
+  #     - v -S
+  #     - echo "dme && docker-compose run saatchi-tests"
+  #     - ts
 # }}}
 
 # xdocker {{{

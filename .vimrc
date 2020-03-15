@@ -112,6 +112,14 @@ if !&sidescrolloff
 endif
 set display+=lastline
 
+" turn on relative line numbers unless I'm in terminal mode. In that case turn
+" it off.
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &number | set relativenumber | endif
+  autocmd BufLeave,FocusLost,InsertEnter,WinLeave * if &number | set norelativenumber | endif
+augroup END
+
 if &encoding ==# 'latin1' && has('gui_running')
   set encoding=utf-8
 endif
@@ -814,8 +822,8 @@ endif
 let g:airline_theme = 'base16'
 " let g:netrw_liststyle=3 " use netrw tree view by default (might cause this https://github.com/tpope/vim-vinegar/issues/13)
 " set listchars=tab:▸•,eol:¬,trail:•,extends:»,precedes:«,nbsp:¬ " prettier hidden chars. turn on with :set list
-set listchars=nbsp:␣,tab:▸•,eol:↲,trail:•,extends:»,precedes:«,trail:• " prettier hidden chars. turn on with :set list (different symbols)
-set listchars=nbsp:␣,tab:▸•,trail:•,extends:»,precedes:«,trail:• " prettier hidden chars. turn on with :set list (without line ending symbols)
+set listchars=nbsp:␣,tab:▸•,eol:↲,trail:•,extends:»,precedes:«,trail:• " prettier hidden chars. turn on with :set list or yol (different symbols)
+" set listchars=nbsp:␣,tab:▸•,trail:•,extends:»,precedes:«,trail:• " (like above without line ending symbols)
 
 " show leading spaces
 " (messes up Yggdroot/indentLine)

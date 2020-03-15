@@ -43,6 +43,7 @@
   <!--   <property name="spacesCountAroundEqualsSign" value="0" /> -->
   <!-- </rule> -->
   <rule ref="SlevomatCodingStandard.Classes.UnusedPrivateElements" />
+  <!-- NOTE this is unreliable when it comes to importing constants and functions e.g. shape and arr -->
   <rule ref="SlevomatCodingStandard.Namespaces.UnusedUses" />
   <rule ref="SlevomatCodingStandard.Exceptions.DeadCatch" />
   <rule ref="SlevomatCodingStandard.Arrays.TrailingArrayComma" />
@@ -50,6 +51,8 @@
   <rule ref="SlevomatCodingStandard.Namespaces.FullyQualifiedGlobalConstants" />
   <rule ref="SlevomatCodingStandard.Namespaces.FullyQualifiedGlobalFunctions" />
   <rule ref="SlevomatCodingStandard.Namespaces.MultipleUsesPerLine" />
+  <!-- NOTE this has proven to result in false positives -->
+  <rule ref="SlevomatCodingStandard.Classes.UnusedPrivateElements.WriteOnlyProperty" />
   <!-- <rule ref="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly"> -->
   <!--   <property name="allowFullyQualifiedNameForCollidingClasses" value="true" /> -->
   <!--   <property name="allowFullyQualifiedGlobalClasses" value="true" /> -->
