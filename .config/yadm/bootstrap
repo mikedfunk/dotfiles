@@ -773,7 +773,7 @@ _link_docker_for_mac () {
     ln -sf "$DOCKER_APP_BIN"/docker /usr/local/bin/docker
     ln -sf "$DOCKER_APP_BIN"/docker-credential-osxkeychain /usr/local/bin/docker-credential-osxkeychain
     ln -sf "$DOCKER_APP_BIN"/docker-credential-desktop /usr/local/bin/docker-credential-desktop
-    ln -sf "$DOCKER_APP_BIN"/docker-machine /usr/local/bin/docker-machine
+    # ln -sf "$DOCKER_APP_BIN"/docker-machine /usr/local/bin/docker-machine # this is no longer included in docker-for-mac
     ln -sf "$DOCKER_APP_BIN"/docker-compose /usr/local/bin/docker-compose
 }
 # }}}

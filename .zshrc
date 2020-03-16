@@ -701,9 +701,6 @@ pux() {
 # sourcegraph {{{
 
 # Public: Run sourcegraph via docker
-#
-# only works with docker-for-mac, not docker-machine :/
-# https://about.sourcegraph.com/docs/
 sourcegraph() {
     if ( docker ps | grep sourcegraph ); then
         docker logs --follow $( docker ps | grep "sourcegraph\/server" | awk '{print $1}' )
@@ -712,12 +709,12 @@ sourcegraph() {
             # running in foreground mode makes it easier to kill it when it's having problems, just ctrl-c
             docker run \
                 --publish 7080:7080 \
-                --publish 2633:2633 \
+                --publish 3370:3370 \
                 --rm \
                 --volume ~/.sourcegraph/config:/etc/sourcegraph \
                 --volume ~/.sourcegraph/data:/var/opt/sourcegraph \
-                --volume /var/run/docker.sock:/var/run/docker.sock \
-                sourcegraph/server:3.4.2 || \
+                # --volume /var/run/docker.sock:/var/run/docker.sock \
+                sourcegraph/server:3.13.2 || \
                 sleep 15
             # open http://127.0.0.1:7080
         done

@@ -32,7 +32,7 @@ brew "direnv" # allow .envrc in directories to be loaded at every prompt to add 
 # brew "dnsmasq" # easily set up dynamic dev domains such as myproject.dev `sudo brew services start dnsmasq` (WARNING: this _could_ cause problems with docker-machine certs)
 # brew "docker" # virtualization software (I use docker-for-mac, which comes with executables but doesn't link them to /usr/local/bin any more, so I'm doing that manually in my yadm bootstrap)
 # brew "docker-compose" # manage multiple docker images and how they interact (I use docker-for-mac, which comes with executables but doesn't link them to /usr/local/bin any more, so I'm doing that manually in my yadm bootstrap)
-# brew "docker-machine" # virtualbox VM for your docker images (I use docker-for-mac, which comes with executables but doesn't link them to /usr/local/bin any more, so I'm doing that manually in my yadm bootstrap)
+brew "docker-machine" # virtualbox VM for your docker images
 brew "docker-machine-nfs" # enables nfs mounts for docker-machine via `docker-machine-nfs default --mount-opts="async,noatime,actimeo=1,nolock,vers=3,udp" --force` (speeds up docker-machine a LOT)
 # brew "dos2unix" # converts dos line endings to unix in a file
 # tap "moncho/dry"
@@ -229,7 +229,7 @@ cask "insomnia" # http api client like postman but nicer looking (I use this for
 cask "iterm2" # I was using kitty but they use opengl and macos deprecated opengl support, so it crashes regularly. iTerm now has gpu rendering, so I'm back to iTerm! It has a bunch of other cool new stuff now anyway. (There's also iterm2-nightly and iterm2-beta, which I've found to be unstable.)
 cask "java" # required for plantuml, etc.
 # cask "joplin" # desktop joplin (I use the terminal interface)
-cask "jumpcut" # clipboard manager recommended by Michael Zick (slightly annoying interface but I haven't found any better on brew) ctrl-opt-v (forward) or ctrl-opt-shift-v (backward)
+cask "jumpcut" # clipboard manager recommended by Michael Zick (slightly annoying interface but I haven't found any better on brew) ctrl-cmd-p (forward) or ctrl-cmd-shift-p (backward)
 # cask "kitematic" # mac native docker container browser (I just use docker cli tools)
 # cask "kitty" # fast terminal emulator (see iterm2 above for why I switched back to iTerm)
 # cask "launchcontrol" # launchctl gui. (I use lunchy gem instead)
