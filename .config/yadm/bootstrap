@@ -778,6 +778,13 @@ _link_docker_for_mac () {
 }
 # }}}
 
+# clear evalcache {{{
+_clear_evalcache () {
+    _log_info "Clearing evalcache"
+    _has _evalcache_clear && ( yes | _evalcache_clear )
+}
+# }}}
+
 # reminders {{{
 _show_reminders () {
     true # noop
@@ -830,6 +837,7 @@ _link_docker_for_mac
 # _install_neovim_from_source
 # _install_mc
 # _install_nix_package_manager
+_evalcache_clear
 # _show_reminders
 _log_info "Installation complete"
 # }}}
