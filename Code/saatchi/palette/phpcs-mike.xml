@@ -189,6 +189,8 @@
     <exclude name="Squiz.PHP.DisallowMultipleAssignments" />
     <exclude name="Squiz.PHP.DisallowBooleanStatement" />
     <exclude name="Squiz.WhiteSpace.MemberVarSpacing" />
+    <!-- this is a great rule but it doesn't respect {@inheritDoc} :( -->
+    <!-- <exclude name="Squiz.Commenting.FunctionCommentThrowTag.Missing" /> -->
     <rule ref="Squiz.WhiteSpace.MemberVarSpacing">
       <properties>
         <property name="spacingBeforeFirst" value="0" />
