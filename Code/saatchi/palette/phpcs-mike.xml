@@ -219,6 +219,7 @@
     <exclude name="Squiz.WhiteSpace.FunctionClosingBraceSpace.SpacingBeforeClose" />
     <!-- this doesn't take into account ?? >:( -->
     <exclude name="Squiz.Formatting.OperatorBracket" />
+    <exclude name="Squiz.ControlStructures.ElseIfDeclaration" />
   </rule>
   <rule ref="Squiz.NamingConventions.ValidFunctionName.ScopeNotCamelCaps">
     <exclude-pattern>spec/*</exclude-pattern>

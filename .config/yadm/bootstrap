@@ -774,14 +774,15 @@ _link_docker_for_mac () {
     ln -sf "$DOCKER_APP_BIN"/docker-credential-osxkeychain /usr/local/bin/docker-credential-osxkeychain
     ln -sf "$DOCKER_APP_BIN"/docker-credential-desktop /usr/local/bin/docker-credential-desktop
     # ln -sf "$DOCKER_APP_BIN"/docker-machine /usr/local/bin/docker-machine # this is no longer included in docker-for-mac
-    ln -sf "$DOCKER_APP_BIN"/docker-compose /usr/local/bin/docker-compose
+    # ln -sf "$DOCKER_APP_BIN"/docker-compose /usr/local/bin/docker-compose # this is weirdly a directory in docker-for-mac
 }
 # }}}
 
 # clear evalcache {{{
 _clear_evalcache () {
     _log_info "Clearing evalcache"
-    _has _evalcache_clear && ( yes | _evalcache_clear )
+    # This is what _evalcache_clear does
+    rm "$ZSH_EVALCACHE_DIR"/init-*.sh
 }
 # }}}
 
