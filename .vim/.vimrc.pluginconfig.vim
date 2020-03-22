@@ -485,7 +485,7 @@ if (has('nvim')) && isdirectory(expand('~/.vim/plugged/nvim-lsp'))
         augroup END
     endif
 
-    " so far this is not working, it's just failing silently for catalog
+    " so far this is not working, it's just failing silently for catalog.
     if (executable('solargraph'))
         lua require'nvim_lsp'.solargraph.setup{}
         augroup nvim_lsp_ruby
