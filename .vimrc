@@ -416,6 +416,12 @@ augroup disable_modeline_for_markdown
     autocmd FileType markdown :set nomodeline
 augroup END
 
+" if I don't do this it's disabled for pinfo files for some reason
+augroup enable_modeline_for_pinfo
+    autocmd!
+    autocmd FileType pinfo :set modeline
+augroup END
+
 " disable Ex mode
 nnoremap Q <nop>
 

@@ -123,6 +123,7 @@ brew "pgcli" # like mycli for postgres (used for toaf judging app)
 # brew "php@7.1", args: ["--with-pear"], link: true
 brew "pinentry" # gpg terminal pin entry (used by yadm encrypt/decrypt)
 # brew "pinentry-mac" # native gpg pin entry for yadm and others. Opens a native window.
+brew "pinfo" # man-like command to get manuals on tools written for info
 brew "plantuml" # uml generation from text. requires java (I use regularly for diagramming processes and sometimes uml class diagrams)
 # brew "plenv" # perl version manager. better than perlbrew and consistent with my other env managers (rbenv, phpenv, nodenv, pyenv). used to get percona-toolkit working.
 # brew "postgresql" # database similar to mysql (install if needed)
@@ -271,7 +272,7 @@ cask "spectacle" # keyboard window splitter/resizer/mover. Kind of like a lightw
 # cask "ssh-tunnel-manager" # mac native gui to manage running ssh tunnels (I just put tunnels in launchctl with autossh and forget about them)
 # cask "steam" # yep
 # cask "suspicious-package" # quicklook plugin for mac dmg package inspection (I don't care about inspecting these)
-# cask "vagrant" # development VM maker/manager (I use docker now)
+cask "vagrant" # development VM maker/manager (I use docker now, but this is helpful for a linux training course I'm taking)
 # cask "transmission" # unleash a torrent of files ;)
 #
 # TODO these can't just be upgraded while virtualbox is running :/
