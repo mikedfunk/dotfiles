@@ -342,13 +342,6 @@ export PINENTRY_USER_DATA="USE_CURSES=1"
 alias nb="BROWSER=\"open '%u'\" newsboat"
 alias info="info --vi-keys" # info -> pinfo is like top -> htop
 
-alias play-starwars="telnet towel.blinkenlights.nl" # :)
-alias play-gameboy="telnet gameboy.live 1989" # :)
-alias play-nethack="telnetnethack@alt.org" # :)
-alias play-chess="telnet freechess.org" # :)
-alias play-aardwolf="telnet aardmud.org" # :)
-alias play-tron="ssh sshtron.zachlatta.com" # :)
-
 # tip: curl ping.gg to set up a pingdom-style alert
 shorten-url () { curl -s http://tinyurl.com/api-create.php?url=$1; }
 
@@ -401,6 +394,16 @@ export CLICOLOR=1 # ls colors by default
 pretty-path() { tr : '\n' <<<"$PATH"; }
 # alias vit="vim +TW" # until vit gets its act together
 # alias tree="alder" # colorized tree from npm (I colorize tree with "lsd" now so this is not needed)
+# }}}
+
+# games {{{
+alias play-starwars="telnet towel.blinkenlights.nl" # :)
+# alias play-gameboy="telnet gameboy.live 1989" # not working any more
+alias play-nethack="telnetnethack@alt.org" # :)
+alias play-chess="telnet freechess.org" # :)
+alias play-aardwolf="telnet aardmud.org" # :)
+alias play-tron="ssh sshtron.zachlatta.com" # :)
+alias play-zork="zork"
 # }}}
 
 # suffix aliases {{{

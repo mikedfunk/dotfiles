@@ -64,6 +64,7 @@ bind status <Ctrl-n> :/^.$
 bind status go !git open
 bind status gcfd !git cfd
 bind status gcfm !git cfm
+bind status gcs !git cs
 # }}}
 
 # pager {{{

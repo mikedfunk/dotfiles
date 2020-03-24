@@ -67,6 +67,8 @@
     # are on the current branch.
     # code-review = difftool origin/develop...
     committers = shortlog --nse --no-merges
+    # commit and sign with gpg key
+    cs = commit -S
     dc = diff --cached
     dd = diff develop..HEAD
     ddn = diff develop..HEAD --name-only
