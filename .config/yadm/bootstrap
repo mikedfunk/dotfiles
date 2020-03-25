@@ -782,7 +782,7 @@ _link_docker_for_mac () {
 _clear_evalcache () {
     _log_info "Clearing evalcache"
     # This is what _evalcache_clear does
-    rm "$ZSH_EVALCACHE_DIR"/init-*.sh
+    rm -f "$ZSH_EVALCACHE_DIR"/init-*.sh
 }
 # }}}
 
@@ -838,7 +838,7 @@ _link_docker_for_mac
 # _install_neovim_from_source
 # _install_mc
 # _install_nix_package_manager
-_evalcache_clear
+_clear_evalcache
 # _show_reminders
 _log_info "Installation complete"
 # }}}
