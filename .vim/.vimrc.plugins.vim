@@ -92,7 +92,7 @@ Plug 'tpope/vim-commentary' " toggle comment with `gcc`. in my case I use `<lead
 " Plug 'scrooloose/nerdcommenter' " comment plugin... I switched to tpope's vim-commentary
 " Plug 'jbgutierrez/vim-better-comments' " fancy comments
 " Plug 'junegunn/vim-easy-align' " align on = with ga=
-" Plug 'tommcdo/vim-lion' " align on = with visual mode and gl=
+Plug 'tommcdo/vim-lion' " align on = with visual mode and gl=
 Plug 'tpope/vim-unimpaired' " lots of cool keyboard shortcuts
 if has('python3')
     Plug 'SirVer/ultisnips' " dynamic snippet completion
