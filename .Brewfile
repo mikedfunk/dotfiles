@@ -273,8 +273,9 @@ cask "spectacle" # keyboard window splitter/resizer/mover. Kind of like a lightw
 # cask "ssh-tunnel-manager" # mac native gui to manage running ssh tunnels (I just put tunnels in launchctl with autossh and forget about them)
 # cask "steam" # yep
 # cask "suspicious-package" # quicklook plugin for mac dmg package inspection (I don't care about inspecting these)
-cask "vagrant" # development VM maker/manager (I use docker now, but this is helpful for a linux training course I'm taking)
 # cask "transmission" # unleash a torrent of files ;)
+cask "vagrant" # development VM maker/manager (I use docker now, but this is helpful for a linux training course I'm taking)
+cask "pvinis/pvinis/vimac" # control mac with vimium-style vi controls
 #
 # TODO these can't just be upgraded while virtualbox is running :/
 cask "virtualbox" # virtual machine software (needed by docker-machine at least)

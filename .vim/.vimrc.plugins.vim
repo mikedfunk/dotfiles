@@ -147,6 +147,7 @@ Plug 'andymass/vim-matchup' " better matchit and match highlighter
 Plug 'mhinz/vim-startify' " better vim start screen. Strangely includes session management, which I don't use. I use vim-obsession for that.
 " NOTE: this also installs ~/.fzf and stuff
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim' " fuzzy finder. lazy load will prevent other commands from being loaded unless you add them all.
+Plug 'jesseleite/vim-agriculture' " Add :AgRaw to search with args
 " Plug 'yuki-ycino/fzf-preview.vim' " use vim fzf in a floating window with sensible defaults (I prefer fzf's suggested approach. This adds separate search commands and doesn't use ag.)
 " FZF TERMINAL TIPS!
 "
@@ -317,8 +318,9 @@ Plug 'fpob/nette.vim' " .neon format
 " Plug 'digitaltoad/vim-pug', { 'for': ['pug', 'jade'] } " pug (formerly jade) highlighting
 " Plug 'heavenshell/vim-syntax-flowtype' " js flowtype (included in pangloss/vim-javascript)
 Plug 'rhysd/vim-gfm-syntax' " github-flavored markdown. yum!
-Plug 'nelstrom/vim-markdown-folding' " just markdown folding
-Plug 'osyo-manga/vim-precious' | Plug 'Shougo/context_filetype.vim' " code block syntax highlighting for markdown, etc. _really_ helpful! Also really helps to see the surrounding code block text! MUST USE for markdown.
+" Plug 'tpope/vim-markdown' " This is supposed to be included with vim but I don't think it is included with neovim
+" Plug 'nelstrom/vim-markdown-folding' " just markdown folding (markdown folding functionality is actually provided by default, you just have to enable it with let g:markdown_folding=1)
+" Plug 'osyo-manga/vim-precious' | Plug 'Shougo/context_filetype.vim' " code block syntax highlighting for markdown, etc. _really_ helpful! Also really helps to see the surrounding code block text! MUST USE for markdown.
 Plug 'qnighy/vim-ssh-annex' " ssh files syntax coloring e.g. ssh config
 " Plug 'evanmiller/nginx-vim-syntax' " nginx conf syntax
 " Plug 'darfink/vim-plist' " plist syntax
@@ -326,6 +328,7 @@ Plug 'qnighy/vim-ssh-annex' " ssh files syntax coloring e.g. ssh config
 " Plug 'aklt/plantuml-syntax' " (in vim-polyglot)
 " Plug 'framallo/taskwarrior.vim' " taskwarrior config and task edit syntax
 " Plug 'jwalton512/vim-blade' " laravel blade syntax (in vim-polyglot)
+Plug 'itchyny/vim-highlighturl' " just highlight urls like in a browser
 " }}}
 
 " Visuals {{{

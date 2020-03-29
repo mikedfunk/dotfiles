@@ -266,6 +266,7 @@ _configure_cgr_and_composer
 
 _has kubectl && source <(kubectl completion zsh)
 _has stern && source <(stern --completion=zsh)
+_has cod && source <(cod init $$ zsh)
 # NOTE any completions in the brew completions dir are already added!
 # This is already added by phpenv init
 # _has phpenv && [[ -f "$HOME"/.phpenv/completions/phpenv.zsh ]] && source "$HOME"/.phpenv/completions/phpenv.zsh

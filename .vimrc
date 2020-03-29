@@ -503,6 +503,9 @@ if executable('devdocs')
     augroup END
 endif
 
+" do not conceal anything when cursor is over a line
+set concealcursor=
+
 " line text object e.g. vil yil
 xnoremap il 0o$h
 onoremap il :normal vil<CR>
@@ -902,21 +905,6 @@ command! HighlightLine :exe "let m = matchadd('WildMenu','\\%" . line('.') . "l'
 " clear all highlights for the current buffer only
 command! ClearHighlights :call clearmatches() | IndentGuidesEnable
 
-" markdown code block languages
-" https://old.reddit.com/r/vim/comments/2x5yav/markdown_with_fenced_code_blocks_is_great/
-let g:markdown_fenced_languages = [
-            \ 'sh',
-            \ 'css',
-            \ 'javascript',
-            \ 'js=javascript',
-            \ 'json=javascript',
-            \ 'php',
-            \ 'ruby',
-            \ 'scss',
-            \ 'sql',
-            \ 'xml',
-            \ 'html'
-            \ ]
 " }}}
 
 " Commands and Functions {{{

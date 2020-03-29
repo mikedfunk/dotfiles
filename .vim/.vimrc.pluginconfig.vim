@@ -156,7 +156,7 @@ let g:ale_set_balloons = 1
 if isdirectory(expand('~/.vim/plugged/asyncrun.vim'))
     " trying to search without the annoying neovim bug
     " but it still exists in these commands. ARGH
-    nnoremap <leader>gg :AsyncRun! -strip -program=grep<space>
+    " nnoremap <leader>gg :AsyncRun! -strip -program=grep<space>
     " nnoremap <leader>gg :AsyncRun! -strip ag --vimgrep<space>
 
     nnoremap <leader>qq :call asyncrun#quickfix_toggle(8)<cr>
@@ -702,6 +702,7 @@ let g:airline#extensions#tmuxline#enabled = 0 " use current airline theme stuff 
 " b: hostname
 " win: unselected tab
 " cwin: current tab
+" x: UTC
 " y: battery, docker machine status, haproxy status, socks proxy status
 " z: date/time info
 " \ 'b': ['#h'],
@@ -718,11 +719,17 @@ let g:tmuxline_preset = {
     \ ],
     \ 'win': ['#I', '#W'],
     \ 'cwin': ['#I', '#W#F'],
-    \ 'x': ["#(TZ=Etc/UTC date '+%%R UTC')"],
+    \ 'x': [
+        \ "#(TZ=Etc/UTC date '+%%R UTC')"
+    \ ],
     \ 'y': ['%l:%M %p'],
-    \ 'z': ['%a', '%b %d'],
+    \ 'z': ['%a', '%b %d']
 \}
 " disabled:
+"
+" this is just distracting
+" \ '#{prefix_text} #{synchronized_text} #{sharedsession_text}',
+"
 " \ '🚢  #(kubectl config current-context)',
 "
 " don't use: anchor, sailboat
@@ -863,6 +870,14 @@ if isdirectory(expand('~/.vim/plugged/vdebug')) && isdirectory(expand('~/.vim/pl
         Repeatable nnoremap <leader>v+ :silent! call OpenVdebugTrees()<cr>
         Repeatable nnoremap <leader>v- :silent! call CloseVdebugTrees()<cr>
     endif
+endif
+" }}}
+
+" vim-agriculture {{{
+if isdirectory(expand('~/.vim/plugged/vim-agriculture'))
+    " this is EXACTLY what I wanted. Search with raw ag args but allow
+    " filtering down with fzf. No quickfix problems with neovim. Perfect.
+    nnoremap <leader>gg :AgRaw<space>
 endif
 " }}}
 
@@ -1191,7 +1206,12 @@ let g:indentLine_char = '┊'
 " let g:indentLine_char_list = ['|', '¦', '┆', '┊'] " each level has a distinct character
 "
 let g:indentLine_faster = 1
-let g:indentLine_fileTypeExclude = ['fzf', 'help', 'startify']
+let g:indentLine_fileTypeExclude = [
+    \ 'fzf',
+    \ 'help',
+    \ 'startify',
+    \ 'markdown'
+\ ]
 
 " ensure json shows quotes
 let g:vim_json_syntax_conceal = 0
@@ -1294,6 +1314,29 @@ if isdirectory(expand('~/.vim/plugged/vim-markbar'))
         autocmd FileType markbar nnoremap q :q<cr>
     augroup END
 endif
+" }}}
+
+" vim-markdown {{{
+" built-in markdown plugin settings
+" https://github.com/tpope/vim-markdown
+let g:markdown_folding=1
+let g:markdown_syntax_conceal=0
+let g:markdown_minlines=100
+
+" https://old.reddit.com/r/vim/comments/2x5yav/markdown_with_fenced_code_blocks_is_great/
+let g:markdown_fenced_languages = [
+    \ 'sh',
+    \ 'css',
+    \ 'javascript=javascript.jsx',
+    \ 'js=javascript.jsx',
+    \ 'json=javascript',
+    \ 'php',
+    \ 'ruby',
+    \ 'scss',
+    \ 'sql',
+    \ 'xml',
+    \ 'html'
+\ ]
 " }}}
 
 " vim-markdown-folding {{{
