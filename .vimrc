@@ -171,7 +171,7 @@ inoremap <C-U> <C-G>u<C-U>
 " use bram's defaults https://github.com/vim/vim/blob/master/runtime/defaults.vim
 " unlet! skip_defaults_vim
 " if filereadable($VIMRUNTIME . "/defaults.vim") | source $VIMRUNTIME/defaults.vim | endif
-if !isdirectory(expand('~/.vim/plugged/vim-matchup'))
+if !has_key(g:plugs, 'vim-matchup')
     runtime macros/matchit.vim " jump to matching html tag (switched to vim-matchup)
 endif
 " runtime syntax/2html.vim
@@ -283,6 +283,13 @@ try
 catch /E539: Illegal character/
 endtry
 " set gdefault " search/replace 'globally' (on a line) by default NOTE: this just swaps the functionality of /g, so if you add /g it will only replace the first match :/ not what I expected
+
+" Keep the cursor on the same column
+set nostartofline
+
+" Shift-tab on GNU screen
+" http://superuser.com/questions/195794/gnu-screen-shift-tab-issue
+set t_kB=[Z
 
 " escape codes for italic fonts
 " https://stackoverflow.com/questions/3494435/vimrc-make-comments-italic
@@ -824,11 +831,6 @@ set redrawtime=10000 " avoid problem with losting syntax highlighting https://gi
 set background=dark
 " set cursorline " highlight current line. this is really slow!
 set colorcolumn=80,120 " show vert lines at the psr-2 suggested column limits
-" set the default color scheme
-if (isdirectory(expand('~/.vim/plugged/base16-vim')))
-    silent! colorscheme base16-atlas " very solarized-y but more colorful
-endif
-let g:airline_theme = 'base16'
 " let g:netrw_liststyle=3 " use netrw tree view by default (might cause this https://github.com/tpope/vim-vinegar/issues/13)
 " set listchars=tab:▸•,eol:¬,trail:•,extends:»,precedes:«,nbsp:¬ " prettier hidden chars. turn on with :set list
 set listchars=nbsp:␣,tab:▸•,eol:↲,trail:•,extends:»,precedes:«,trail:• " prettier hidden chars. turn on with :set list or yol (different symbols)
@@ -937,6 +939,28 @@ augroup netrw_buf_hidden_fix
                 \|     set bufhidden=hide
                 \| endif
 augroup end
+
+" tmux complete {{{
+" https://github.com/junegunn/dotfiles/blob/5a152686a9456e3713c5b0d4abc7798607db1979/vimrc
+function! s:tmux_feedkeys(data)
+echom empty(g:_tmux_q)
+execute 'normal!' (empty(g:_tmux_q) ? 'a' : 'ciW')."\<C-R>=a:data\<CR>"
+startinsert!
+endfunction
+
+function! s:tmux_words(query)
+let g:_tmux_q = a:query
+let matches = fzf#run({
+\ 'source':      'tmuxwords.rb --all-but-current --scroll 500 --min 5',
+\ 'sink':        function('s:tmux_feedkeys'),
+\ 'options':     '--no-multi --query='.a:query,
+\ 'tmux_height': '40%'
+\ })
+endfunction
+
+inoremap <silent> <C-X><C-T> <C-o>:call <SID>tmux_words(expand('<cWORD>'))<CR>
+" }}}
+
 " }}}
 
 " delete inactive buffers (the ones not in tabs or windows) {{{
@@ -993,6 +1017,28 @@ augroup headerstohttpgroup
     autocmd!
     autocmd FileType rest command! HeadersToHttp :call HeadersToHttp()<cr>
 augroup END
+" }}}
+
+" get todos in git working area {{{
+" https://github.com/junegunn/dotfiles/blob/5a152686a9456e3713c5b0d4abc7798607db1979/vimrc#L785
+function! s:todo() abort
+let entries = []
+for cmd in ['git grep -n -e TODO -e FIXME -e XXX 2> /dev/null',
+          \ 'grep -rn -e TODO -e FIXME -e XXX * 2> /dev/null']
+  let lines = split(system(cmd), '\n')
+  if v:shell_error != 0 | continue | endif
+  for line in lines
+    let [fname, lno, text] = matchlist(line, '^\([^:]*\):\([^:]*\):\(.*\)')[1:3]
+    call add(entries, { 'filename': fname, 'lnum': lno, 'text': text })
+  endfor
+endfor
+
+if !empty(entries)
+  call setqflist(entries)
+  copen
+endif
+endfunction
+command! Todo call s:todo()
 " }}}
 
 " }}}

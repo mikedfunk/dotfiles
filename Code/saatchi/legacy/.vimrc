@@ -1,7 +1,10 @@
 " vim: set foldmethod=marker:
 
-" general {{{
-set wildignore+=*/build/*,*/coverage/*,*/strings/vocabulary/*,*/public/media/js/lib/ckeditor/*,*/node_modules/*,*/assets/react/node_modules/*,*/.git/*,composer.phar,Session.vim,*.csv,.php_cs
+" commands {{{
+command! RunCurrentScript :AsyncRun eval `docker-machine env default` && docker exec -ti saatchi_legacy_instance php /data/code_base/current/% local -v<cr>
+" edit services files on remote
+command! -nargs=1 Edev execute "e scp://appdeploy@saatchi-xdev-legacy-services-01//data/code_base/current/" . <f-args>
+command! -nargs=1 Eqa execute "e scp://appdeploy@saatchi-xqa-legacy-services-01//data/code_base/current/" . <f-args>
 " }}}
 
 " color {{{
@@ -22,17 +25,8 @@ let g:airline_theme = 'base16_monokai'
 " let g:airline_theme = 'challenger_deep'
 " }}}
 
-" vim-flow {{{
-let g:flow#enable = 0
-" }}}
-
-" vdebug {{{
-if exists("g:vdebug_options")
-    let g:vdebug_options['port'] = 9000
-    let g:vdebug_options['path_maps'] = {
-    \   '/data/code_base/current': '/Users/mikefunk/Code/saatchi/legacy'
-    \}
-endif
+" general {{{
+set wildignore+=*/build/*,*/coverage/*,*/strings/vocabulary/*,*/public/media/js/lib/ckeditor/*,*/node_modules/*,*/assets/react/node_modules/*,*/.git/*,composer.phar,Session.vim,*.csv,.php_cs
 " }}}
 
 " ale {{{
@@ -62,15 +56,38 @@ augroup jslibsyn_augroup
 augroup END
 " }}}
 
-" commands {{{
-command! RunCurrentScript :AsyncRun eval `docker-machine env default` && docker exec -ti saatchi_legacy_instance php /data/code_base/current/% local -v<cr>
-" edit services files on remote
-command! -nargs=1 Edev execute "e scp://appdeploy@saatchi-xdev-legacy-services-01//data/code_base/current/" . <f-args>
-command! -nargs=1 Eqa execute "e scp://appdeploy@saatchi-xqa-legacy-services-01//data/code_base/current/" . <f-args>
+" lsp {{{
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 " }}}
 
 " phpcd {{{
 " let g:phpcd_autoload_path = 'application/command_line_bootstrap.php'
+" }}}
+
+" vdebug {{{
+if exists("g:vdebug_options")
+    let g:vdebug_options['port'] = 9000
+    let g:vdebug_options['path_maps'] = {
+    \   '/data/code_base/current': '/Users/mikefunk/Code/saatchi/legacy'
+    \}
+endif
+" }}}
+
+" vim-flow {{{
+let g:flow#enable = 0
+" }}}
+
+" vim-gutentags {{{
+if executable('cscope') && has('cscope') && exists('g:gutentags_modules')
+    " call add(g:gutentags_modules, 'cscope')
+    " set cscopetag " this is set in ~/.vimrc
+endif
 " }}}
 
 " vim-lsp {{{
@@ -87,19 +104,9 @@ augroup register_flow_lsp
 augroup END
 " }}}
 
-" vim-gutentags {{{
-if executable('cscope') && has('cscope') && exists('g:gutentags_modules')
-    " call add(g:gutentags_modules, 'cscope')
-    " set cscopetag " this is set in ~/.vimrc
+" vim-tbone {{{
+if has_key(g:plugs, 'vim-tbone')
+    " send selection to repl
+    vnoremap T :Twrite 2<CR>
 endif
-" }}}
-
-" lsp {{{
-nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
-nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 " }}}

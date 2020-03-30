@@ -620,7 +620,7 @@ _install_upgrade_ntfy () {
 # less $(which ix) for details
 # or ix -h
 _install_upgrade_ix_io () {
-    log_info "installing/upgrading ix.io client"
+    _log_info "installing/upgrading ix.io client"
     curl ix.io/client > /usr/local/bin/ix
     chmod +x /usr/local/bin/ix
 }

@@ -30,10 +30,9 @@ let g:ale_sign_column_always = 1 " otherwise screen keeps jumping left and right
 let g:airline#extensions#ale#error_symbol = 'Errors:' " default is a bit sparse: E
 let g:airline#extensions#ale#warning_symbol = 'Warnings:' " default is W
 let g:zenburn_high_Contrast = 1
-" }}}
 
 " mappings {{{
-if isdirectory(expand('~/.vim/plugged/ale'))
+if has_key(g:plugs, 'ale')
     nmap <silent> [w <Plug>(ale_previous_wrap)
     nmap <silent> ]w <Plug>(ale_next_wrap)
     nnoremap <leader>al :ALELint<cr>
@@ -152,15 +151,25 @@ let g:ale_set_balloons = 1
 " autocmd FileType php setlocal omnifunc=ale#completion#OmniFunc
 " }}}
 
+" }}}
+
+" base16-vim {{{
+" set the default color scheme
+if has_key(g:plugs, 'base16-vim')
+    silent! colorscheme base16-atlas " very solarized-y but more colorful
+endif
+let g:airline_theme = 'base16'
+" }}}
+
 " asyncrun.vim {{{
-if isdirectory(expand('~/.vim/plugged/asyncrun.vim'))
+if has_key(g:plugs, 'asyncrun.vim')
     " trying to search without the annoying neovim bug
     " but it still exists in these commands. ARGH
     " nnoremap <leader>gg :AsyncRun! -strip -program=grep<space>
     " nnoremap <leader>gg :AsyncRun! -strip ag --vimgrep<space>
 
     nnoremap <leader>qq :call asyncrun#quickfix_toggle(8)<cr>
-    if isdirectory(expand('~/.vim/plugged/vim-fugitive'))
+    if has_key(g:plugs, 'vim-fugitive')
         " @link https://github.com/skywind3000/asyncrun.vim/wiki/Cooperate-with-famous-plugins#fugitive
         command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
     endif
@@ -183,7 +192,7 @@ let g:challenger_deep_termcolors = 16
 " }}}
 
 " coc.nvim {{{
-if isdirectory(expand('~/.vim/plugged/coc.nvim'))
+if has_key(g:plugs, 'coc.nvim')
 
     " Use <c-space> for trigger completion.
     inoremap <silent><expr> <c-space> coc#refresh()
@@ -231,7 +240,7 @@ endif
 " }}}
 
 " coc-sources {{{
-" if isdirectory(expand('~/.vim/plugged/coc-sources'))
+" if has_key(g:plugs, 'coc-sources')
 "     :CocInstall coc-omni
 "     :CocInstall coc-tag
 "     :CocInstall coc-ultisnips
@@ -300,7 +309,7 @@ let g:fzf_action = {
   \ }
 let g:fzf_buffers_jump = 1 " Jump to the existing window if possible
 
-if isdirectory(expand('~/.vim/plugged/fzf.vim'))
+if has_key(g:plugs, 'fzf.vim')
     " :Ag  - Start fzf with hidden preview window that can be enabled with ? key
     " :Ag! - Start fzf in fullscreen and display the preview window above
     command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, <bang>0 ? fzf#vim#with_preview('up:60%') : fzf#vim#with_preview('right:50%', '?'), <bang>0)
@@ -343,15 +352,48 @@ let g:fzf_mru_relative = 1
 " }}}
 
 " fzf-preview.vim {{{
-if isdirectory(expand('~/.vim/plugged/fzf-preview.vim'))
+if has_key(g:plugs, 'fzf-preview.vim')
     let g:fzf_layout = { 'window': 'call fzf_preview#window#create_centered_floating_window()' }
 endif
 " }}}
 
 " gist-vim {{{
-if isdirectory(expand('~/.vim/plugged/gist-vim'))
+if has_key(g:plugs, 'gist-vim')
     nnoremap <leader>gi :Gist<cr>
 endif
+" }}}
+
+" goyo.vim + limelight.vim {{{
+" https://github.com/junegunn/dotfiles/blob/5a152686a9456e3713c5b0d4abc7798607db1979/vimrc#L1213
+let g:limelight_paragraph_span = 1
+
+function! s:goyo_enter()
+  if has('gui_running')
+    set fullscreen
+    set background=light
+    set linespace=7
+  elseif exists('$TMUX')
+    silent !tmux set status off
+  endif
+  " hi NonText ctermfg=101
+  Limelight
+endfunction
+
+function! s:goyo_leave()
+  if has('gui_running')
+    set nofullscreen
+    set background=dark
+    set linespace=0
+  elseif exists('$TMUX')
+    silent !tmux set status on
+  endif
+  Limelight!
+endfunction
+
+autocmd! User GoyoEnter
+autocmd! User GoyoLeave
+autocmd  User GoyoEnter nested call <SID>goyo_enter()
+autocmd  User GoyoLeave nested call <SID>goyo_leave()
 " }}}
 
 " gruvbox {{{
@@ -377,7 +419,7 @@ let g:LanguageClient_serverCommands = {
             \ 'php': [$HOME . '/.bin/php-language-server'],
             \ }
 " \ 'php': [$HOME.'/.bin/intelephense-server'],
-if isdirectory(expand('~/.vim/plugged/LanguageClient-neovim'))
+if has_key(g:plugs, 'LanguageClient-neovim')
     augroup language_client_neovim_augroup
         autocmd!
         autocmd filetype php set completefunc=LanguageClient#complete
@@ -396,7 +438,7 @@ let g:line_number_interval = 5
 " }}}
 
 " MatchTagAlways {{{
-if isdirectory(expand('~/.vim/plugged/MatchTagAlways'))
+if has_key(g:plugs, 'MatchTagAlways')
     augroup mta_group
         autocmd!
         autocmd FileType phtml,html,html.twig,xml nnoremap <leader>% :MtaJumpToOtherTag<cr>
@@ -418,7 +460,7 @@ let g:minimap_toggle = '<leader>mm'
 
 " mucomplete {{{
 let g:mucomplete#enable_auto_at_startup = 1
-if isdirectory(expand('~/.vim/plugged/vim-mucomplete'))
+if has_key(g:plugs, 'vim-mucomplete')
     " set completeopt+=menuone
     set shortmess+=c
     " set completeopt+=noinsert,noselect " For automatic completion
@@ -466,7 +508,7 @@ let g:neoformat_basic_format_trim = 1 " Enable trimmming of trailing whitespace
 " }}}
 
 " nvim-lsp {{{
-if (has('nvim')) && isdirectory(expand('~/.vim/plugged/nvim-lsp'))
+if (has('nvim')) && has_key(g:plugs, 'nvim-lsp')
     " example config from :help lsp:
     " nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
     " nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
@@ -519,7 +561,7 @@ let g:padawan#composer_command = 'composer'
 " {{{ pdv
 " (php documentor for vim)
 let g:pdv_template_dir = $HOME .'/.vim/plugged/pdv/templates_snip'
-if isdirectory(expand('~/.vim/plugged/pdv'))
+if has_key(g:plugs, 'pdv')
     " document the current element with php documentor for vim
     augroup pdvgroup
         autocmd!
@@ -529,7 +571,7 @@ endif
 " }}}
 
 " phpcd {{{
-if isdirectory(expand('~/.vim/plugged/deoplete.nvim')) && isdirectory(expand('~/.vim/plugged/phpcd.vim'))
+if has_key(g:plugs, 'deoplete.nvim') && has_key(g:plugs, 'phpcd.vim')
     let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
     let g:deoplete#ignore_sources.php = ['omni']
     " let g:deoplete#ignore_sources.php = ['phpcd', 'omni'] " will disable phpcd from deoplete
@@ -553,7 +595,7 @@ endif
 "     hi! link phpUseNamespaceSeparator Comment
 "     hi! link phpClassNamespaceSeparator Comment
 " endfunction
-" if isdirectory(expand('~/.vim/plugged/php.vim'))
+" if has_key(g:plugs, 'php.vim')
 "     " highlight docblocks
 "     augroup phpdoctagsgroup
 "         autocmd!
@@ -565,7 +607,7 @@ endif
 " phpactor {{{
 " current phpenv version of php
 let g:phpactorPhpBin = $HOME . "/.phpenv/shims/php"
-if (isdirectory(expand('~/.vim/plugged/phpactor')))
+if has_key(g:plugs, 'phpactor')
     let g:phpactorOmniError = v:true " enable debugging for failed completions
     augroup phpactorcompletephp
         autocmd!
@@ -575,7 +617,7 @@ endif
 " }}}
 
 " phpcomplete {{{
-if (isdirectory(expand('~/.vim/plugged/phpcomplete.vim')))
+if has_key(g:plugs, 'phpcomplete.vim')
     augroup mycompletephp
         autocmd!
         autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
@@ -666,7 +708,7 @@ let g:tagbar_previewwin_pos = "botright"
 " let g:tagbar_hide_nonpublic=1 " hide non-public methods. Now tagbar looks more like an interface!
 " let g:tagbar_left = 1
 " tagbar autofocus is the whole point of tagbar
-if isdirectory(expand('~/.vim/plugged/tagbar')) | nnoremap <silent> <leader>bb :TagbarToggle<CR> | endif
+if has_key(g:plugs, 'tagbar') | nnoremap <silent> <leader>bb :TagbarToggle<CR> | endif
 " Configure Tagbar to user ripper-tags with ruby
 let g:tagbar_type_ruby = {
     \ 'kinds' : [
@@ -760,7 +802,7 @@ let g:tmuxline_preset = {
 " 			\ })
 let g:airline#extensions#tmuxline#snapshot_file = '~/.tmuxline.conf'
 
-if executable('tmux') && isdirectory(expand('~/.vim/plugged/tmuxline.vim'))
+if executable('tmux') && has_key(g:plugs, 'tmuxline.vim')
     " apply tmuxline settings and snapshot to file
     command! MyTmuxline :Tmuxline | TmuxlineSnapshot! ~/.support/tmuxline.conf
 endif
@@ -781,7 +823,7 @@ let g:UltiSnipsExpandTrigger='<c-l>' " Default: <Tab>
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/vim-ultisnips/snippets', 'UltiSnips']
 
 " UltiSnips somehow forgets this mapping when I open a new file :/
-if isdirectory(expand('~/.vim/plugged/ultisnips'))
+if has_key(g:plugs, 'ultisnips')
     inoremap <c-j> <c-r>=UltiSnips#JumpForwards()<CR>
 endif
 " }}}"
@@ -858,7 +900,7 @@ if exists(":VdebugEval")
     command! ZendRoutingParams :call ZendRoutingParams()
 endif
 
-if isdirectory(expand('~/.vim/plugged/vdebug')) && isdirectory(expand('~/.vim/plugged/Repeatable.vim'))
+if has_key(g:plugs, 'vdebug') && has_key(g:plugs, 'Repeatable.vim')
     " expand or collapse context trees
     function! OpenVdebugTrees() abort
         :silent! exe 'g/'.g:vdebug_options["marker_closed_tree"]."/normal \<cr><cr>"
@@ -874,7 +916,7 @@ endif
 " }}}
 
 " vim-agriculture {{{
-if isdirectory(expand('~/.vim/plugged/vim-agriculture'))
+if has_key(g:plugs, 'vim-agriculture')
     " this is EXACTLY what I wanted. Search with raw ag args but allow
     " filtering down with fzf. No quickfix problems with neovim. Perfect.
     nnoremap <leader>gg :AgRaw<space>
@@ -924,9 +966,9 @@ augroup obsession_current
 augroup end
 " }}}
 
-if isdirectory(expand('~/.vim/plugged/vim-airline'))
+if has_key(g:plugs, 'vim-airline')
     " add asyncrun status for async tasks e.g. 'running' 'failure' 'success'
-    if isdirectory(expand('~/.vim/plugged/asyncrun.vim'))
+    if has_key(g:plugs, 'asyncrun.vim')
         function! AsyncrunAirlineInit() abort
             let g:airline_section_z = airline#section#create_right([
                 \ '%{g:asyncrun_status} ' . g:airline_section_z
@@ -975,7 +1017,7 @@ augroup END
 let g:colorscheme_switcher_exclude_builtins = 1
 " only because shift-F8 is already mapped
 let g:colorscheme_switcher_define_mappings = 0
-if isdirectory(expand('~/.vim/plugged/vim-colorscheme-switcher'))
+if has_key(g:plugs, 'vim-colorscheme-switcher')
     nnoremap <F7> :PrevColorScheme<cr>
     nnoremap <F8> :NextColorScheme<cr>
 endif
@@ -993,7 +1035,7 @@ augroup vimcommentarycommentstring
     autocmd FileType plantuml setlocal commentstring='\ %s
     autocmd BufRead,BufNewFile .env setlocal commentstring=#\ %s
 augroup END
-if isdirectory(expand('~/.vim/plugged/vim-commentary'))
+if has_key(g:plugs, 'vim-commentary')
     " this is for my muscle memory from nerd-commenter, but try to get used to
     " gcc or gc(motion) instead (like gcap)
     nnoremap <leader>c<space> :Commentary<cr>
@@ -1010,7 +1052,7 @@ let g:doge_mapping="<leader>dd"
 " }}}
 
 " vim-edgemotion {{{
-" if isdirectory(expand('~/.vim/plugged/vim-edgemotion'))
+" if has_key(g:plugs, 'vim-edgemotion')
 "     " had trouble with nnoremap :/
 "     map <C-j> <Plug>(edgemotion-j)
 "     map <C-k> <Plug>(edgemotion-k)
@@ -1019,7 +1061,7 @@ let g:doge_mapping="<leader>dd"
 
 " vim-fix-my-js {{{
 let g:fixmyjs_use_local = 1
-if isdirectory(expand('~/.vim/plugged/vim-fix-my-js')) | noremap <Leader>jf :Fixmyjs<CR> | endif
+if has_key(g:plugs, 'vim-fix-my-js') | noremap <Leader>jf :Fixmyjs<CR> | endif
 " }}}
 
 " vim-flow {{{
@@ -1031,7 +1073,7 @@ let g:flow#timeout = 4 " increase timeout to avoid errors on init
 " vim-fugivite {{{
 " cd to git root: :Gcd
 let g:fugitive_git_executable = 'git -c "color.ui=never"' " Why is this not default?
-if isdirectory(expand('~/.vim/plugged/vim-fugitive'))
+if has_key(g:plugs, 'vim-fugitive')
     nnoremap <leader>gpl :Gpull<cr>
     nnoremap <leader>gps :Gpush<cr>
     nnoremap <leader>gs :Gstatus<cr>
@@ -1061,7 +1103,7 @@ let g:http_client_focus_output_window = 0
 " }}}
 
 " vim-git {{{
-if isdirectory(expand('~/.vim/plugged/vim-git'))
+if has_key(g:plugs, 'vim-git')
     augroup vimgitautocmd
         autocmd!
         " NOTE: these work on multiple lines at once! (a range)
@@ -1234,7 +1276,7 @@ augroup END
 " }}}
 
 " vim-lotr {{{
-if isdirectory(expand('~/.vim/plugged/vim-lotr')) | nnoremap <leader>ll :LOTRToggle<cr> | endif
+if has_key(g:plugs, 'vim-lotr') | nnoremap <leader>ll :LOTRToggle<cr> | endif
 " }}}
 
 " vim-lsc {{{
@@ -1253,7 +1295,7 @@ let g:lsc_auto_map = {
 " }}}
 
 " vim-lsp {{{
-if isdirectory(expand('~/.vim/plugged/vim-lsp')) && has('autocmd') && exists('+omnifunc')
+if has_key(g:plugs, 'vim-lsp') && has('autocmd') && exists('+omnifunc')
     " This all happens automatically with vim-lsp-settings package
     "
     " augroup lsp_group
@@ -1306,7 +1348,7 @@ let g:lsp_diagnostics_enabled = 0
 " }}}
 
 " vim-markbar {{{
-if isdirectory(expand('~/.vim/plugged/vim-markbar'))
+if has_key(g:plugs, 'vim-markbar')
     " tried nnoremap but didn't work for some reason :/
     nmap <leader>mm <Plug>ToggleMarkbar
     augroup markbar-grp
@@ -1353,7 +1395,7 @@ let g:vim_monokai_tasty_italic = 1
 
 " vim-mundo {{{
 let g:mundo_close_on_revert = 1
-if isdirectory(expand('~/.vim/plugged/vim-mundo'))
+if has_key(g:plugs, 'vim-mundo')
     silent! unmap <leader>u
     " toggle undotree window
     nnoremap <leader>uu :MundoToggle<CR>
@@ -1366,14 +1408,14 @@ let g:pasta_disabled_filetypes = ['netrw']
 
 " vim-phpfmt {{{
 let g:phpfmt_autosave = 0 " default: 1 autoformats with phpcbf on save
-if isdirectory(expand('~/.vim/plugged/vim-phpfmt'))
+if has_key(g:plugs, 'vim-phpfmt')
     command! FormatPhp PhpFmt
 endif
 " }}}
 
 " {{{ vim-php-namespace
 let g:php_namespace_sort_after_insert = 1 " auto sort use after inserting use statement
-if isdirectory(expand('~/.vim/plugged/vim-php-namespace'))
+if has_key(g:plugs, 'vim-php-namespace')
     " php add use statement for current class
     augroup phpnamespacegroup
         autocmd!
@@ -1425,7 +1467,7 @@ let g:vrc_curl_opts = {
 let g:vrc_response_default_content_type = 'json'
 " sometimes the output is html but the default type is json so it looks like
 " crap.
-" if isdirectory(expand('~/.vim/plugged/vim-rest-console'))
+" if has_key(g:plugs, 'vim-rest-console')
 "     command! RestJson let b:vrc_response_default_content_type = 'application/json'
 "     command! RestXml let g:vrc_response_default_content_type = 'text/xml'
 " endif
@@ -1458,7 +1500,7 @@ let g:php_refactor_command='refactor'
 " }}}
 
 " vim-slash {{{
-if isdirectory(expand('~/.vim/plugged/vim-slash')) && isdirectory(expand('~/.vim/plugged/vim-indexed-search'))
+if has_key(g:plugs, 'vim-slash') && has_key(g:plugs, 'vim-indexed-search')
     let g:indexed_search_mappings = 0
     noremap <Plug>(slash-after) :ShowSearchIndex<CR>
 endif
@@ -1532,7 +1574,7 @@ let g:startify_lists = [
 " \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
 
 " commented out because I'm trying out gitsessions.vim instead
-" if isdirectory(expand('~/.vim/plugged/vim-startify'))
+" if has_key(g:plugs, 'vim-startify')
 "     " TODO integrate this to automatically :Obsess somehow...
 "     nnoremap <leader>ss :SSave<cr>
 "     nnoremap <leader>sl :SLoad<cr>
@@ -1565,7 +1607,7 @@ let g:task_highlight_field = 0
 " }}}
 
 " vim-tbone {{{
-if isdirectory(expand('~/.vim/plugged/vim-tbone'))
+if has_key(g:plugs, 'vim-tbone')
     " highlight text and g> to send text to bottom right split. Useful for sql window.
     nnoremap g> <ESC>vap:Twrite bottom-right<CR>
     xnoremap g> :Twrite bottom-right<CR>
@@ -1576,8 +1618,8 @@ endif
 " let test#php#phpunit#options = '--testdox'
 " let test#php#phpunit#options = '--colors=never'
 " if isdirectory(expand("~/.vim/plugged/asyncrun.vim")) | let test#strategy = 'asyncrun' | endif
-if isdirectory(expand('~/.vim/plugged/vimux')) | let g:test#strategy = 'vimux' | endif
-if isdirectory(expand('~/.vim/plugged/vim-test'))
+if has_key(g:plugs, 'vimux') | let g:test#strategy = 'vimux' | endif
+if has_key(g:plugs, 'vim-test')
     nnoremap <silent> <leader>tn :TestNearest<CR>
     nnoremap <silent> <leader>tf :TestFile<CR>
     nnoremap <silent> <leader>ts :TestSuite<CR>
@@ -1593,7 +1635,7 @@ let g:vcm_s_tab_behavior = 1
 
 " vimux {{{
 let g:VimuxHeight = '40'
-if isdirectory(expand('~/.vim/plugged/vimux')) && executable('tmux')
+if has_key(g:plugs, 'vimux') && executable('tmux')
     " nnoremap <leader>vp :VimuxPromptCommand<cr>
     " open vimux window at the current directory and focus it
     " nnoremap <leader>vc :VimuxPromptCommand<cr>cd $PWD<cr>:VimuxInspectRunner<cr>
@@ -1619,7 +1661,7 @@ endif
 " [count]<Leader>wi or <Plug>VimwikiDiaryIndex Open diary index file of the [count]'s wiki.
 " [count]<Leader>w<Leader>w or <Plug>VimwikiMakeDiaryNote Open diary wiki-file for today of the [count]'s wiki.
 let g:vimwiki_list = [{'path': '~/.private-stuff/notes/', 'syntax': 'markdown', 'ext': '.md'}]
-if isdirectory(expand('~/.vim/plugged/vimwiki'))
+if has_key(g:plugs, 'vimwiki')
     command! Note :e ~/.private-stuff/notes/saatchiart/
 endif
 let g:vimwiki_folding = 'expr'
@@ -1628,7 +1670,7 @@ let g:vimwiki_ext2syntax = { '.md': 'markdown' }
 
 " vista.vim {{{
 let g:vista_close_on_jump = 1
-if isdirectory(expand('~/.vim/plugged/vista.vim'))
+if has_key(g:plugs, 'vista.vim')
     nnoremap <silent> <leader>bb :Vista nvim_lsp<CR>
 endif
 " }}}

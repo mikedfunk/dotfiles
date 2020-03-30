@@ -119,7 +119,7 @@ Plug 'AndrewRadev/splitjoin.vim', { 'for': ['php', 'javascript', 'html'] } " spl
 " Plug 'arecarn/vim-auto-autoread' " make autoread work as expected
 Plug 'tmux-plugins/vim-tmux-focus-events' " makes FocusGained and FocusLost events work in terminal vim. Also handles functionality of vim-auto-autoread.
 Plug 'tpope/vim-endwise' " auto add end/endif for vimscript/ruby. no lazy load or per-filetype load.
-" Plug 'tpope/vim-tbone', { 'on': ['Twrite', 'Tmux', 'Tattach'] } " do stuff with tmux like send visual text to a split
+Plug 'tpope/vim-tbone', { 'on': ['Tmux', 'Tput', 'Tyank', 'Twrite', 'Tattach'] } " do stuff with tmux like send visual text to a split. Handy for repls.
 " Plug 'mtth/scratch.vim' " :Scratch to open scratch buffer in split
 Plug 'tpope/vim-rsi' " readline mappings for insert and command modes
 " Plug 'google/vim-maktaba' | Plug 'google/vim-coverage' " coverage for python
@@ -358,6 +358,7 @@ Plug 'ap/vim-css-color', { 'for': ['scss', 'css'] } " colorize css colors e.g. #
 " Plug 'scrooloose/vim-slumlord' " plantuml live preview for sequence diagrams
 " Plug 'ryanoasis/vim-devicons' " file type icons in netrw, etc.
 " Plug 'TaDaa/vimade' " fade inactive buffers, preserving color scheme (I don't really need this)
+" Plug 'junegunn/goyo.vim' | Plug 'junegunn/limelight.vim' " focus mode
 
 " color schemes: 256-friendly {{{
 " Plug 'MarioRicalde/vim-lucius'

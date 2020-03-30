@@ -89,6 +89,13 @@ if executable('cscope') && has('cscope') && exists('g:gutentags_modules')
 endif
 " }}}
 
+" vim-tbone {{{
+if has_key(g:plugs, 'vim-tbone')
+    " send selection to repl
+    vnoremap T :Twrite 2<CR>
+endif
+" }}}
+
 " lsp {{{
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
