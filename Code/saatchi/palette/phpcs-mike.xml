@@ -165,6 +165,7 @@
     <exclude name="PEAR.WhiteSpace.ObjectOperatorIndent" />
     <exclude name="PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket" />
     <exclude name="PEAR.Functions.FunctionCallSignature.CloseBracketLine" />
+    <exclude name="PEAR.Formatting.MultiLineAssignment.EqualSignLine" />
   </rule>
 
   <!-- PSR1 (3 sniffs) -->
