@@ -114,11 +114,14 @@ set display+=lastline
 
 " turn on relative line numbers unless I'm in terminal mode. In that case turn
 " it off.
-augroup numbertoggle
-  autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &number | set relativenumber | endif
-  autocmd BufLeave,FocusLost,InsertEnter,WinLeave * if &number | set norelativenumber | endif
-augroup END
+" augroup numbertoggle
+"   autocmd!
+"   autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &number | set relativenumber | endif
+"   autocmd BufLeave,FocusLost,InsertEnter,WinLeave * if &number | set norelativenumber | endif
+" augroup END
+
+" above wasn't really needed and made pairing difficult
+set relativenumber
 
 if &encoding ==# 'latin1' && has('gui_running')
   set encoding=utf-8

@@ -53,7 +53,7 @@ windows:
       - ts
       - bundle install; rails c
       - litecli db/development.sqlite3
-      - sleep 60 && rails server
+      - sleep 240 && rails server
       # - multitail -cT ANSI -i log/development.log
 # }}}
 

@@ -96,8 +96,8 @@ bind generic gfrf !git frf "%(prompt Enter release version: )"
 bind generic gfhs !git fhs "%(prompt Enter hotfix version: )"
 bind generic gfhf !git fhf "%(prompt Enter hotfix version: )"
 bind generic gcob !@git checkout -b "%(prompt Enter branch name: )"
-bind generic grbd !git rbd
-bind generic grbm !git rbm
+bind generic grbd !git rbd --autosquash
+bind generic grbm !git rbm --autosquash
 bind generic gsd !git synchd
 bind generic gsm !git synchm
 bind generic gsb !@git synch "%(prompt Enter branch name: )"

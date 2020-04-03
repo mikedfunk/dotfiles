@@ -105,6 +105,7 @@ _create_dirs () {
 _install_xcode_command_line_tools () {
     _log_info "Installing xcode command line tools"
     xcode-select --install || true
+    # /System/Library/CoreServices/Install Command Line Developer Tools.app
 }
 # }}}
 
@@ -221,7 +222,10 @@ _install_upgrade_phpenv () {
         # https://github.com/phpenv/phpenv-installer
         curl -L https://raw.githubusercontent.com/phpenv/phpenv-installer/master/bin/phpenv-installer | bash
         # Modified version to actually support their half-assed hooks feature so I can make this work with cgr
-        cp $HOME/.support/phpenv-with-hooks $(phpenv root)/libexec/phpenv
+        # cp $HOME/.support/phpenv-with-hooks $(phpenv root)/libexec/phpenv
+
+        # there is some problem with getting tidy-html5 to work for php70 so lets just skip it
+        gsed -i '/--with-tidy/d' $HOME/.phpenv/plugins/php-build/share/php-build/default_configure_options
     fi
 }
 # }}}
@@ -393,16 +397,36 @@ _install_php_version () {
     # NOTE if I set php 7.1+.x to global and I use directory-specific php
     # versions and I install global composer dependencies then they will fail
     # when I have php 7.0.29 active! Same problem with rbenv, pyenv, and perlenv.
-    ( phpenv versions | grep --quiet "$PHP_VERSION" ) || phpenv install "$PHP_VERSION"
-    # phpenv global $PHP_VERSION
-    # phpenv rehash
+    if ! ( phpenv versions | grep --quiet "$PHP_VERSION" ); then
+        # all this extra config is from here
+        # https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
+        # however I started over and added things one-by-one until it built
+        # successfully. This is the miminal setup.
+        #
+        # disable-mbregex is because I can't seem to point this to a version of
+        # oniguruma (whatever the fuck that is) that php 7.0 will build
+        # mbstring with :/. This workaround is not needed for php 7.3+.
+        #
+        # related: https://bugs.php.net/bug.php?id=76113
+        #
+        PHP_BUILD_CONFIGURE_OPTS="--with-zlib-dir=$(brew --prefix zlib) \
+            --with-bz2=$(brew --prefix bzip2) \
+            --with-curl=$(brew --prefix curl) \
+            --with-iconv=$(brew --prefix libiconv) \
+            --with-libedit=$(brew --prefix libedit) \
+            --disable-mbregex" \
+            phpenv install $PHP_VERSION
+    fi
+    phpenv global $PHP_VERSION
+    phpenv rehash
 
     # install pear so we can use pecl to install extensions
     if ! _has pecl; then
         _log_info "Installing pear"
         [ -f "$HOME/.bin/go-pear.phar" ] || wget -O "$HOME/.bin/go-pear.phar" http://pear.php.net/go-pear.phar
+        chmod +x "$HOME"/.bin/go-pear.phar
         PHP_VERSION="$PHP_VERSION" "$HOME/.support/install-pear.sh" # installs pear non-interactively
-        [ -f "$HOME/.bin/go-pear.phar" ] && rm "$HOME/.bin/go-pear.phar"
+        # [ -f "$HOME/.bin/go-pear.phar" ] && rm "$HOME/.bin/go-pear.phar"
     fi
 
     _log_info "Installing additional php extensions"
@@ -419,7 +443,7 @@ _install_php_version () {
 }
 
 _install_php_versions () {
-    _install_php_version "7.0.29"
+    _install_php_version "7.0.33"
     _install_php_version "7.3.2"
 
     local PHP_VERSION
@@ -849,7 +873,6 @@ _enable_python_versions
 _install_update_ruby_gems
 _update_python3_pip_packages
 _install_upgrade_ntfy
-_install_update_composer_packages
 # _parse_php_language_server_stubs
 # _install_ls_colors
 _update_antibody_plugins

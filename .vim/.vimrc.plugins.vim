@@ -13,6 +13,8 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     augroup END
 endif
 call plug#begin('~/.vim/plugged')
+
+Plug 'semanser/vim-outdated-plugins' " show a message on startup about outdated plugins
 " }}}
 
 " Unplug command {{{
@@ -204,6 +206,8 @@ Plug 'simeji/winresizer' " ctrl-E to go to resize mode, hjkl, enter to finish, s
 "     Plug 'vim-scripts/VOoM' " outliner like tagbar but for folds (python2?
 "     not worth the trouble.)
 " endif
+" navigate markdown headers with ]] and [[
+Plug 'https://gist.github.com/ac63e108c3d11084be62b3c04156c263.git', { 'as': 'markdown-nav', 'for': 'markdown' }
 " }}}
 
 " Php {{{

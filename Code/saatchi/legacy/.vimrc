@@ -107,6 +107,6 @@ augroup END
 " vim-tbone {{{
 if has_key(g:plugs, 'vim-tbone')
     " send selection to repl
-    vnoremap T :Twrite 2<CR>
+    vnoremap <leader>r :Twrite 2<CR>
 endif
 " }}}
