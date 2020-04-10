@@ -20,7 +20,7 @@ windows:
           - while true; do clear && yadm st; sleep 60; done
           # - wait-on http://www.local.saatchiart.com && docker-stats
           # - sourcegraph
-      - htop
+      - while true; do htop; sleep 1; done
 # }}}
 
 # legacy {{{

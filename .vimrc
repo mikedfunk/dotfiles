@@ -910,6 +910,15 @@ command! HighlightLine :exe "let m = matchadd('WildMenu','\\%" . line('.') . "l'
 " clear all highlights for the current buffer only
 command! ClearHighlights :call clearmatches() | IndentGuidesEnable
 
+" underline lsp errors
+" https://old.reddit.com/r/neovim/comments/fw7qj0/the_new_builtin_lsp_support_is_so_awesome/
+augroup neovim_lsp_colors
+    autocmd!
+    autocmd ColorScheme * hi! link LspDiagnosticsUnderlineError SpellCap
+    autocmd ColorScheme * hi! link LspDiagnosticsUnderlineWarning SpellBad
+    autocmd ColorScheme * hi! link LspDiagnosticsUnderlineHint SpellRare
+    autocmd ColorScheme * hi! link LspDiagnosticsUnderlineInformation SpellRare
+augroup END
 " }}}
 
 " Commands and Functions {{{

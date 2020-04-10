@@ -5,13 +5,13 @@
   <description>Mike's more strict, experimental version of the Saatchi Art Coding Standard (phpcs v3.5.2 as of 11-25-2019)</description>
 
   <!-- NOTE this can only be declared once!! if you do it multiple times it will override the previous one. comma-delimited. -->
-  <config name="installed_paths" value="/Users/mikefunk/.phpenv/versions/7.0.29/composer/global/slevomat/coding-standard/vendor/slevomat/coding-standard,/Users/mikefunk/.phpenv/versions/7.0.29/composer/global/sirbrillig/phpcs-variable-analysis/vendor/sirbrillig/phpcs-variable-analysis" />
+  <config name="installed_paths" value="/Users/mikefunk/.phpenv/versions/7.0.33/composer/global/slevomat/coding-standard/vendor/slevomat/coding-standard,/Users/mikefunk/.phpenv/versions/7.0.33/composer/global/sirbrillig/phpcs-variable-analysis/vendor/sirbrillig/phpcs-variable-analysis" />
 
   <!-- start php compatibility -->
   <!-- I disabled this because it included phpcs/phpcbf and overrode my global version -->
-  <!-- <config name="installed_paths" value="/Users/mikefunk/.phpenv/versions/7.0.29/composer/global/phpcompatibility/php-compatibility/vendor/phpcompatibility/php-compatibility" /> -->
+  <!-- <config name="installed_paths" value="/Users/mikefunk/.phpenv/versions/7.0.33/composer/global/phpcompatibility/php-compatibility/vendor/phpcompatibility/php-compatibility" /> -->
   <!-- ensure php code is compatible with this version -->
-  <!-- <config name="testVersion" value="7.0.29" /> -->
+  <!-- <config name="testVersion" value="7.0.33" /> -->
   <!-- adding this rule is apparently not necessary. It redeclares a class. -->
   <!-- <rule ref="PhpCompatibility" /> -->
   <!-- end php compatibility -->
@@ -21,14 +21,14 @@
     - skip import because it's in your current namespace? error.
     - arrow at and of line, indent on next line and method call? error.
   -->
-  <!-- <config name="installed_paths" value="/Users/mikefunk/.phpenv/versions/7.0.29/composer/global/sirbrillig/phpcs-import-detection/vendor/sirbrillig/phpcs-import-detection" /> -->
+  <!-- <config name="installed_paths" value="/Users/mikefunk/.phpenv/versions/7.0.33/composer/global/sirbrillig/phpcs-import-detection/vendor/sirbrillig/phpcs-import-detection" /> -->
   <!-- <rule ref="ImportDetection" /> -->
   <!-- end phpcs-import-detection -->
 
   <!-- start phpcs-type-sniff -->
   <!-- NOTE this only works for php 7.1+ -->
   <!-- cgr gskema/phpcs-type-sniff:^0.14.0 -->
-  <!-- <config name="installed_paths" value="/Users/mikefunk/.phpenv/versions/7.0.29/composer/global/gskema/phpcs-type-sniff/vendor/gskema/phpcs-type-sniff" /> -->
+  <!-- <config name="installed_paths" value="/Users/mikefunk/.phpenv/versions/7.0.33/composer/global/gskema/phpcs-type-sniff/vendor/gskema/phpcs-type-sniff" /> -->
   <!-- <rule ref="CompositeCodeElementSniff" /> -->
   <!-- end phpcs-import-detection -->
 

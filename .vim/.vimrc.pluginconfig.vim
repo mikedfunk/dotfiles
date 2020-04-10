@@ -1246,7 +1246,9 @@ let g:indentLine_char = '┊'
 " let g:indentLine_char = '▏'
 " let g:indentLine_char = '│'
 " let g:indentLine_char_list = ['|', '¦', '┆', '┊'] " each level has a distinct character
-"
+
+" TODO figure out how to enable list for just yaml
+
 let g:indentLine_faster = 1
 let g:indentLine_fileTypeExclude = [
     \ 'fzf',
@@ -1257,6 +1259,35 @@ let g:indentLine_fileTypeExclude = [
 
 " ensure json shows quotes
 let g:vim_json_syntax_conceal = 0
+
+let s:indentline_is_uniform = 1
+function! IndentLinesStaggered() abort
+    let g:indentLine_char = ''
+    let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+    IndentLinesDisable
+    IndentLinesEnable
+    let s:indentline_is_uniform = 0
+endfunction
+
+function! IndentLinesUniform() abort
+    let g:indentLine_char = '┊'
+    let g:indentLine_char_list = []
+    IndentLinesDisable
+    IndentLinesEnable
+    let s:indentline_is_uniform = 1
+endfunction
+
+function! IndentLinesToggleSymbols() abort
+    if s:indentline_is_uniform
+        call IndentLinesStaggered()
+    else
+        call IndentLinesUniform()
+    endif
+endfunction
+
+if has_key(g:plugs, 'indentLine')
+    nnoremap <leader>ii :call IndentLinesToggleSymbols()<CR>
+endif
 
 " if you want to see dots for all leading spaces
 " let g:indentLine_leadingSpaceEnabled = 1

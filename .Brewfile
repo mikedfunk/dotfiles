@@ -174,6 +174,7 @@ brew "sqlite3" # used as the default db for rails
 # brew "stone-soup" # roguelike called dungeon-crawl-stone-soup `crawl`
 # brew "stow" # http://brandon.invergo.net/news/2012-05-26-using-gnu-stow-to-manage-your-dotfiles.html (I use yadm instead)
 # brew "stripe/stripe-cli/stripe" # test webooks with stripe, tail api events, etc.
+brew "swagger-codegen" # openapi codegen - depends on adoptopenjdk8.
 # brew "task" # taskwarrior https://taskwarrior.org (I don't need this unless I don't have jira. Doesn't let you assign points! Has an opaque priority selection algorithm.)
 # brew "teleconsole" # share your console with others easily (Extremely rare that I need something like this)
 brew "telnet" # I don't have telnet? How am I going to watch star wars?
@@ -215,6 +216,7 @@ brew "zsh" # awesome bash shell replacement
 
 # cask {{{
 cask "adoptopenjdk" # needed to install akamai cli
+cask "adoptopenjdk8" # needed for swagger-codegen
 # cask "bettertouchtool" # with a config file this lets me vimify any cocoa app https://raw.githubusercontent.com/Vincent-Carrier/CocoaVim/master/CocoaVim.bttpreset
 # cask "bitbar" # use any cli command to show stuff in the menubar with colors and icons and provide menu options
 # cask "beardedspice" # keyboard media controls for media sites. Always seems to be broken :/
@@ -244,9 +246,11 @@ cask "iterm2" # I was using kitty but they use opengl and macos deprecated openg
 cask "java" # required for plantuml, etc.
 # cask "joplin" # desktop joplin (I use the terminal interface)
 cask "jumpcut" # clipboard manager recommended by Michael Zick (slightly annoying interface but I haven't found any better on brew) ctrl-cmd-p (forward) or ctrl-cmd-shift-p (backward)
+cask "keeper-password-manager" # password manager used at my work
 # cask "kitematic" # mac native docker container browser (I just use docker cli tools)
 # cask "kitty" # fast terminal emulator (see iterm2 above for why I switched back to iTerm)
 # cask "launchcontrol" # launchctl gui. (I use lunchy gem instead)
+cask "licecap" # shitty, simple gif screen capture. OSX used to have this but I think they got rid of the gif exporting :/
 # cask "lunchy" # launchctl cli wrapper. Port of lunchy gem. (Tried this, was missing options, back to gem)
 # cask "macfusion" # other half of tool to mount ssh directories in the finder
 # cask "macgdbp" # xdebug gui client (I use vdebug)
@@ -312,6 +316,6 @@ cask "xscreensaver" # shitload of old screensavers... downside is there are so m
 mas "Downlink", id: 1454269192 # cool live (20 min refresh) earth view on my desktop (tries to reinstall every time :/ )
 mas "Xcode", id: 497799835 # needed for some tools (TODO which tools?)
 mas "Amphetamine", id: 937984704 # replacement for discontinued "caffeine" menubar app
-mas "Keeper", id: 414781829 # used by leaf group, like lastpass
+# mas "Keeper", id: 414781829 # used by leaf group, like lastpass (There's a brew cask version)
 mas "GIPHY CAPTURE", id: 668208984
 # }}}
