@@ -498,7 +498,7 @@ _install_perl_version () {
 # }}}
 
 # install python2 version {{{
-PYTHON2_INSTALL_VERSION="3.7.2"
+PYTHON2_INSTALL_VERSION="2.7.16"
 _install_python2_version () {
     [[ "$(pyenv global | grep $PYTHON2_INSTALL_VERSION)" ]] && return
     _log_info "Installing python $PYTHON2_INSTALL_VERSION"
