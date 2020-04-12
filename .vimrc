@@ -921,6 +921,14 @@ augroup neovim_lsp_colors
 augroup END
 " }}}
 
+" Navigation and Search {{{
+augroup folding_for_some_filetypes
+    autocmd!
+    autocmd FileType json setlocal foldmethod=indent
+    autocmd FileType yaml setlocal foldmethod=indent
+augroup END
+" }}}
+
 " Commands and Functions {{{
 augroup formattersgroup
     autocmd!

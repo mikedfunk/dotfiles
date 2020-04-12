@@ -8,7 +8,7 @@
     "bash-language-server": "^1.5.5",
     "battery-level": "^3.0.0",
     "commitizen": "^3.0.2",
-    "cypress": "^2.1.0",
+    "cypress": "^4.3.0",
     "cz-jira-smart-commit": "^3.0.0",
     "dockerfile-language-server-nodejs": "^0.0.22",
     "dockerfile_lint": "^0.3.3",

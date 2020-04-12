@@ -39,7 +39,7 @@ windows:
       - wd legacy && cd ./assets/react && yarn && yarn write-rev && yarn start
       # - saatchi-eslint-watch-legacy
       # - saatchi-grunt-watch-legacy
-      # - saatchi-docs-serve-legacy
+      - saatchi-docs-serve-legacy
       - wait-on http://www.local.saatchiart.com && while true; do saatchi-tail-legacy-local; sleep 1; done
 # }}}
 
@@ -73,9 +73,9 @@ windows:
       - wait-on http://www.local.saatchiart.com && while true; do saatchi-tinker-gallery-local; sleep 1; done
       - while true; do puw; sleep 1; done
       # - yarn jest --watch
-      - saatchi-docs-serve-gallery
       - while true; do saatchi-gulp-watch-gallery; sleep 1; done
       # - saatchi-start-gallery
+      - saatchi-docs-serve-gallery
       - wait-on http://www.local.saatchiart.com && while true; do saatchi-tail-gallery-local; sleep 1; done
 # }}}
 
@@ -92,8 +92,8 @@ windows:
       - ts
       - wait-on http://www.local.saatchiart.com && while true; do saatchi-tinker-palette-local; sleep 1; done
       - while true; do psw; sleep 1; done
-      - saatchi-docs-serve-palette
       # - saatchi-phing-watch
+      - saatchi-docs-serve-palette
       - wait-on http://www.local.saatchiart.com && while true; do saatchi-tail-palette-local; sleep 1; done
 # }}}
 
@@ -111,7 +111,7 @@ windows:
       - wait-on http://www.local.saatchiart.com && while true; do saatchi-tinker-zed-local; sleep 1; done
       - wait-on http://www.local.saatchiart.com && while true; do saatchi-phpunit-watch-zed; sleep 1; done
       - saatchi-grunt-watch-zed
-      # - saatchi-docs-serve-zed
+      - saatchi-docs-serve-zed
       - wait-on http://www.local.saatchiart.com && while true; do saatchi-tail-zed-local; sleep 1; done
 # }}}
 
@@ -143,14 +143,24 @@ windows:
   #     - ts
 # }}}
 
-# e2e tests (disabled) {{{
-  # - window_name: e2e
+# ui-tests from iryna (disabled) {{{
+  # - window_name: ui-tests
   #   start_directory: ~/Code/saatchi/ui-test-automation
   #   layout: main-horizontal
   #   panes:
   #     - v -S
   #     - echo "dme && docker-compose run saatchi-tests"
   #     - ts
+# }}}
+
+# e2e tests {{{
+  - window_name: e2e
+    start_directory: ~/Code/saatchi/e2e-tests
+    layout: main-horizontal
+    panes:
+      - v -S
+      - ts
+      # - cypress open
 # }}}
 
 # xdocker {{{
