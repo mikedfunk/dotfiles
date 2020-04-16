@@ -39,8 +39,8 @@ set refs-view = line-number:no \
 
 # main {{{
 #
-# Cherry-pick current commit onto current branch (C in main view)
-bind main C @git cherry-pick %(commit)
+# Cherry-pick current commit onto current branch
+bind main P ?@git cherry-pick %(commit)
 
 # bind main ! !git revert %(commit)
 bind main grv !git revert %(commit)
@@ -77,6 +77,9 @@ bind status gcfm !git cfm
 
 # commit and sign with gpg key
 bind status gcs @git cs
+
+# commit but ignore pre-commit hooks (useful when my yelp pre-commit checks are buggy, mostly because my phpcs rules are old versions that are compatible with php 7.0 :/ )
+bind status N !git commit -n
 # }}}
 
 # pager {{{

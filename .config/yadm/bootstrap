@@ -532,12 +532,14 @@ _install_update_ruby_gems () {
     _log_info "Installing/upgrading ruby gems"
     gem install bundler
     builtin cd || return
-    bundle install --system
+    bundle config set system true
+    bundle install
     bundle binstubs
     bundle update
     bundle clean --force
     builtin cd - || return
     _has rbenv && rbenv rehash
+    bundle config set system false
 }
 # }}}
 
