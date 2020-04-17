@@ -233,7 +233,7 @@ GEM
     ruby-progressbar (1.10.1)
     safe_yaml (1.0.5)
     sass (3.3.14)
-    sassc (2.2.1)
+    sassc (2.3.0)
       ffi (~> 1.9)
     sawyer (0.8.2)
       addressable (>= 2.3.5)

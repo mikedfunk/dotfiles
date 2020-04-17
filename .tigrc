@@ -53,30 +53,13 @@ bind main U +sh -c 'git --no-pager shortlog -s --author="$(git show -s --format=
 # }}}
 
 # status {{{
-bind status gps +git push
-bind status gpf +git push --force
-bind status gpl +git pull --rebase
-bind status gss @git stash save "%(prompt Enter stash name: )"
-bind status gsl !git stash list
-bind status gsa @git stash apply stash@{"%(prompt Enter stash position e.g. 0: )"}
-bind status grh @git reset --hard
-bind status gclf @git clean -f
-bind status gprc !gh pr create
-# pneumonic: git pr get
-bind status gprg @gh pr checkout "%(prompt Enter pull request number: )"
-bind status gprs !gh pr status
-bind status gprv @gh pr view
+bind status P !gh pr create
+bind status V @gh pr view
 
 # Go to the first file in the status view
 bind status <Ctrl-n> :/^.$
 
 bind status go @git open
-
-bind status gcfd !git cfd
-bind status gcfm !git cfm
-
-# commit and sign with gpg key
-bind status gcs @git cs
 
 # commit but ignore pre-commit hooks (useful when my yelp pre-commit checks are buggy, mostly because my phpcs rules are old versions that are compatible with php 7.0 :/ )
 bind status N !git commit -n
@@ -93,6 +76,15 @@ bind pager <Ctrl-p> :?^commit
 bind stage <Enter> :/^@@
 # }}}
 
+# stash {{{
+bind stash S @git stash save "%(prompt Enter stash name: )"
+# default bindings:
+# A ?git stash apply %(stash)
+# P ?git stash pop %(stash)
+# ! ?git stash drop %(stash)
+bind stash D ?git stash drop %(stash)
+# }}}
+
 # refs {{{
 # Reload ~/.tigrc when 'S' is pressed
 # bind generic S :source .tigrc
@@ -100,9 +92,11 @@ bind stage <Enter> :/^@@
 bind refs R @?git rebase %(branch)
 bind refs B @git checkout -b "%(prompt Enter new branch name: )"
 bind refs D @?git branch -D %(branch) && git push origin --delete %(branch)
+bind refs F @git flow feature start "%(prompt Enter feature branch name: )"
 
 # same thing but without output
 bind refs C @git switch %(branch)
+bind refs P @gh pr checkout "%(prompt Enter pull request number: )"
 # }}}
 
 # reflog {{{
@@ -114,23 +108,41 @@ bind refs C @git switch %(branch)
 bind generic g none
 bind generic grep view-grep
 
-bind generic gsv !git semver
-bind generic gffs @git flow feature start "%(prompt Enter feature branch name: )"
-bind generic gfrs @git frs "%(prompt Enter release version: )"
-bind generic gfrf !git frf "%(prompt Enter release version: )"
-bind generic gfhs @git fhs "%(prompt Enter hotfix version: )"
-bind generic gfhf !git fhf "%(prompt Enter hotfix version: )"
-bind generic gcob @git checkout -b "%(prompt Enter branch name: )"
-bind generic grbd !git rbd --autosquash
-bind generic grbm !git rbm --autosquash
-bind generic gsd @git synchd
-bind generic gsm @git synchm
-bind generic gsb @git synch "%(prompt Enter branch name: )"
-bind generic glm !git lm
-bind generic gld !git ld
-
 # amend last commit  (+ in any view)
 bind generic gca !git commit --amend
+bind generic gcfd !git cfd
+bind generic gcfm !git cfm
+bind generic gclf @git clean -f
+bind generic gcob @git checkout -b "%(prompt Enter branch name: )"
+# commit and sign with gpg key
+bind generic gcs @git cs
+bind generic gffs @git flow feature start "%(prompt Enter feature branch name: )"
+bind generic gfhf !git fhf "%(prompt Enter hotfix version: )"
+bind generic gfhs @git fhs "%(prompt Enter hotfix version: )"
+bind generic gfrf !git frf "%(prompt Enter release version: )"
+bind generic gfrs @git frs "%(prompt Enter release version: )"
+bind generic gld !git ld
+bind generic glm !git lm
+bind generic go @git open
+bind generic gpf ?git push --force
+bind generic gpl @git pull --rebase
+bind generic gprc !gh pr create
+# pneumonic: git pr get
+bind generic gprg @gh pr checkout "%(prompt Enter pull request number: )"
+bind generic gprl !gh pr list
+bind generic gprs !gh pr status
+bind generic gprv @gh pr view
+bind generic gps @git push
+bind generic grbd !git rbd --autosquash
+bind generic grbm !git rbm --autosquash
+bind generic grh @git reset --hard
+bind generic gsa @git stash apply stash@{"%(prompt Enter stash position e.g. 0: )"}
+bind generic gsb !git synch "%(prompt Enter branch name: )"
+bind generic gsd !git synchd
+bind generic gsl !git stash list
+bind generic gsm !git synchm
+bind generic gss @git stash save "%(prompt Enter stash name: )"
+bind generic gsv !git semver
 
 # Go back to the previous view state
 bind generic <C-O> back
