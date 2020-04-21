@@ -54,7 +54,8 @@ bind main U +sh -c 'git --no-pager shortlog -s --author="$(git show -s --format=
 
 # status {{{
 bind status P !gh pr create
-bind status V @gh pr view
+# bind status V @gh pr view
+bind status V @sh -c "gh pr view | grep 'View this pull request' | awk 'NF>1{print $NF}' | xargs open"
 
 # Go to the first file in the status view
 bind status <Ctrl-n> :/^.$
@@ -63,6 +64,10 @@ bind status go @git open
 
 # commit but ignore pre-commit hooks (useful when my yelp pre-commit checks are buggy, mostly because my phpcs rules are old versions that are compatible with php 7.0 :/ )
 bind status N !git commit -n
+bind status A none
+bind status A ?git commit --amend
+
+bind status D ?@rm %(file)
 # }}}
 
 # pager {{{
@@ -93,6 +98,7 @@ bind refs R @?git rebase %(branch)
 bind refs B @git checkout -b "%(prompt Enter new branch name: )"
 bind refs D @?git branch -D %(branch) && git push origin --delete %(branch)
 bind refs F @git flow feature start "%(prompt Enter feature branch name: )"
+bind refs V @sh -c "gh pr view | grep 'View this pull request' | awk 'NF>1{print $NF}' | xargs open"
 
 # same thing but without output
 bind refs C @git switch %(branch)
@@ -100,13 +106,14 @@ bind refs P @gh pr checkout "%(prompt Enter pull request number: )"
 # }}}
 
 # reflog {{{
-#
 # }}}
 
 # generic {{{
 # move grep command to grep. since gg is taken, ggr won't work :/
 bind generic g none
 bind generic grep view-grep
+
+# bind generic A none
 
 # amend last commit  (+ in any view)
 bind generic gca !git commit --amend
@@ -177,6 +184,8 @@ bind generic zl scroll-right
 # log {{{
 bind log <Ctrl-n> :/^commit
 bind log <Ctrl-p> :?^commit
+bind log A none
+bind log A ?git commit --amend
 # }}}
 
 # }}}

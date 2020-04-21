@@ -52,6 +52,7 @@ brew "git"
 # brew "git-extras" # adds some cool additional git commands (conflicts with npm git-standup)
 # brew "git-flow" # adds first class git commands for the git-flow workflow (I use avh version below)
 brew "git-flow-avh" # adds first class git commands for the git-flow workflow. This version will delete remote feature, release, and hotfix branches on finishing.
+brew "gitlab-gem" # gitlab cli
 # brew "global" # gnu global tags aka gtags. More powerful than ctags but has a different interface with a learning curve. Also depends on ctags which conflicts with universal-ctags.
 brew "gnu-sed" # linux version of sed - saves as gsed (required for diff-so-fancy)
 # brew "gnu-tar" # linux version of tar so stuff actually works
@@ -255,7 +256,7 @@ cask "licecap" # shitty, simple gif screen capture. OSX used to have this but I 
 # cask "macfusion" # other half of tool to mount ssh directories in the finder
 # cask "macgdbp" # xdebug gui client (I use vdebug)
 cask "malwarebytes" # ya neva know
-# cask "microsoft-edge-beta" # not out of beta yet as of 2019-09-27
+# cask "microsoft-edge"
 cask "minikube" # for learning `minikube start`
 cask "mpv" # video player like vlc
 # cask "mudlet" # muds are rad
