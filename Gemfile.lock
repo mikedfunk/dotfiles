@@ -129,7 +129,8 @@ GEM
     jist (1.5.1)
       json
     json (2.3.0)
-    kramdown (2.1.0)
+    kramdown (2.2.0)
+      rexml
     kramdown-parser-gfm (1.1.0)
       kramdown (~> 2.0)
     liquid (4.0.3)

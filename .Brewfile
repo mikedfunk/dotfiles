@@ -52,6 +52,7 @@ brew "git"
 # brew "git-extras" # adds some cool additional git commands (conflicts with npm git-standup)
 # brew "git-flow" # adds first class git commands for the git-flow workflow (I use avh version below)
 brew "git-flow-avh" # adds first class git commands for the git-flow workflow. This version will delete remote feature, release, and hotfix branches on finishing.
+brew "git-standup" # show commits in the last day. works in parent dir too.
 brew "gitlab-gem" # gitlab cli
 # brew "global" # gnu global tags aka gtags. More powerful than ctags but has a different interface with a learning curve. Also depends on ctags which conflicts with universal-ctags.
 brew "gnu-sed" # linux version of sed - saves as gsed (required for diff-so-fancy)

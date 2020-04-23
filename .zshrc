@@ -716,10 +716,8 @@ sourcegraph() {
                 --publish 3370:3370 \
                 --rm \
                 --volume ~/.sourcegraph/config:/etc/sourcegraph \
-                --volume ~/.sourcegraph/data:/var/opt/sourcegraph \
-                # --volume /var/run/docker.sock:/var/run/docker.sock \
-                sourcegraph/server:3.13.2 || \
-                sleep 15
+                --volume ~/.sourcegraph/data:/var/opt/sourcegraph sourcegraph/server:3.15.0 \
+                || sleep 15
             # open http://127.0.0.1:7080
         done
     fi
@@ -823,6 +821,31 @@ letsbreak () {
     noti --message "$MESSAGE"
     return 0
 }
+# }}}
+
+# npx wrappers {{{
+alias babel-init="npx babel-init"
+alias babel="npx @babel/cli"
+alias commitizen="npx commitizen"
+alias cypress="npx cypress"
+alias ec="npx editorconfig-cli"
+alias gatsby="npx gatsby-cli"
+alias gen="npx gen"
+alias git-open="npx git-open"
+alias glow="npx glow"
+alias grunt="npx grunt-cli"
+alias jest="npx jest"
+alias parcel="npx parcel-bundler"
+alias poi="npx poi"
+alias redoc-cli="npx redoc-cli"
+alias speccy="npx speccy"
+alias swagger-cli="npx swagger-cli"
+alias vue="npx vue-cli"
+alias wait-on="npx wait-on"
+alias webpack-cli="npx webpack-cli"
+alias webpack-dev-server="npx webpack-dev-server"
+alias webpack="npx webpack"
+alias yo="npx yo"
 # }}}
 
 # }}}
