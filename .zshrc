@@ -82,6 +82,7 @@ path=(
   /usr/local/{bin,sbin}
   # homebrew doesn't like to link curl
   /usr/local/opt/curl/bin
+  /usr/local/opt/perl/bin
   # rust cargo packages
   # $HOME/.cargo/bin
   # golang packages
@@ -627,7 +628,7 @@ docker-machine-start() {
 alias dmr="dme && docker-machine restart && dme"
 alias dps="dme && docker ps"
 alias dmt="dme && docker-machine status"
-alias dmu="dme && docker-machine upgrade"
+# alias dmu="dme && docker-machine upgrade"
 
 # docker-compose
 alias dcr="dme && docker-compose restart"
@@ -742,7 +743,7 @@ swagger-ui() {
     docker run \
         --publish 8090:8080 \
         --env SWAGGER_JSON=/tmp/"$1" \
-        --env SPEC="{ \"openapi\": \"3.0.0\" }" \
+        --env SPEC="{ \"openapi\": \"3.0.2\" }" \
         --volume "$(pwd)"/"$1":/tmp/"$1" \
         swaggerapi/swagger-ui
 }

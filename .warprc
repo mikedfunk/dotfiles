@@ -43,3 +43,4 @@ linux:~/Code/vagrant-ubuntu
 affirm:~/Code/php-affirm-sdk
 e2e:~/Code/saatchi/e2e-tests
 zoho:~/Code/saatchi/zcrm-php-sdk
+api-tests:~/Code/saatchi/api-tests

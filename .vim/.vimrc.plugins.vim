@@ -286,10 +286,10 @@ Plug 'wting/gitsessions.vim' " sessions based on git branches!
 Plug 'tpope/vim-jdaddy' "`gqaj` to pretty-print json, `gwaj` to merge the json object in the clipboard with the one under the cursor
 " Plug 'chemzqm/vim-jsx-improve' " better jsx formatting
 Plug 'MaxMEllon/vim-jsx-pretty' " jsx formatting (NOT in vim-polyglot)
-if has('python3')
-    Plug 'ternjs/tern_for_vim', { 'do': '/usr/local/bin/npm install' }
-endif " javascript omnifunc and jump to def. requires a .tern-project or ~/.tern-config file. http://ternjs.net/doc/manual.html#configuration
-Plug 'othree/javascript-libraries-syntax.vim' " syntax completion for common libraries (react, lodash, jquery, etc.)
+" if has('python3')
+"     Plug 'ternjs/tern_for_vim', { 'do': '/usr/local/bin/npm install' }
+" endif " javascript omnifunc and jump to def. requires a .tern-project or ~/.tern-config file. http://ternjs.net/doc/manual.html#configuration
+" Plug 'othree/javascript-libraries-syntax.vim' " syntax completion for common libraries (react, lodash, jquery, etc.)
 " Plug 'kristijanhusak/vim-js-file-import' " Go to definition: <leader>ig Import file: <Leader>if
 Plug 'tpope/vim-apathy' " tweak built-in vim features to allow jumping to javascript (and others) module location with gf
 Plug 'tomarrell/vim-npr' " make gf work with index.js and search js files more intelligently

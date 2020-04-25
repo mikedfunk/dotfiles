@@ -12,6 +12,7 @@
 # .saatchi-ansible-hosts.ini
 .saatchirc
 Code/saatchi/http
+Code/saatchi/api-tests
 Code/saatchi/kubernetes
 Code/saatchi/queries
 # .config/monitoror/saatchi.json

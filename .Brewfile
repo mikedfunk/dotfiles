@@ -16,6 +16,7 @@ brew "bat" # much cooler looking cat
 # brew "bison" # needed for phpenv build. The default mac one is too old. https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
 brew "broot" # use `br` to do something between tree and ls. File browser with lots of vim patterns.
 brew "bzip2" # needed for phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
+# brew "bzt" # taurus http and performance test runner
 # brew "chromedriver" # like selenium for chrome. (These drivers feel pretty outdated to me)
 brew "codespell" # neat little utility to show and fix code misspellings
 # brew "colortail" # tail with support for colors (I use multitail)
@@ -125,6 +126,7 @@ brew "openssl" # needed for rbenv https://github.com/rbenv/ruby-build/issues/377
 # brew "pandoc" # transform between document formats e.g. markdown <-> pdf (used for inline vim php documentation, which I no longer use)
 # brew "pass" # unix password manager using gpg
 # brew "peco" # interactively filter results and print the filtered version. can be used to print filtered one or e.g. `vim $(dosomething | peco)` (FZF does this)
+brew "perl" # for swat cpan package
 # brew "perl-build" # needed for perlenv (which I don't use currently)
 # brew "percona-toolkit" # mysql schema migrator among other things. requires java and perl.
 brew "pgcli" # like mycli for postgres (used for toaf judging app)
@@ -217,8 +219,8 @@ brew "zsh" # awesome bash shell replacement
 # }}}
 
 # cask {{{
-cask "adoptopenjdk" # needed to install akamai cli
-cask "adoptopenjdk8" # needed for swagger-codegen
+# cask "adoptopenjdk" # needed to install akamai cli
+# cask "adoptopenjdk8" # needed for swagger-codegen
 # cask "bettertouchtool" # with a config file this lets me vimify any cocoa app https://raw.githubusercontent.com/Vincent-Carrier/CocoaVim/master/CocoaVim.bttpreset
 # cask "bitbar" # use any cli command to show stuff in the menubar with colors and icons and provide menu options
 # cask "beardedspice" # keyboard media controls for media sites. Always seems to be broken :/

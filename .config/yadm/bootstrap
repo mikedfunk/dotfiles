@@ -144,6 +144,21 @@ _install_update_homebrew_packages () {
 }
 # }}}
 
+# install cpanm {{{
+_install_cpanm () {
+    _has cpanm && return
+    log_info "installing perl cpanm"
+    yes | cpan App::cpanminus
+}
+# }}}
+
+# install cpanm packages {{{
+_install_cpanm_packages () {
+    log_info "installing/upgrading perl cpanm packages"
+    cpanm swat
+}
+# }}}
+
 # install ievms {{{
 # homebrew formula is broken for this :/
 _install_ievms () {
@@ -877,6 +892,8 @@ _update_python3_pip_packages
 _install_upgrade_ntfy
 # _parse_php_language_server_stubs
 # _install_ls_colors
+# _install_cpanm
+# _install_cpanm_packages
 _update_antibody_plugins
 _apply_hosts_file
 _let_iterm_see_italics

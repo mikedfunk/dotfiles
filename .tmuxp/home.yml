@@ -26,7 +26,7 @@ windows:
       - bundle install && bundle exec jekyll serve --watch
 # }}}
 
-# magento {{{
+# magento (disabled) {{{
   # - window_name: magento
   #   start_directory: ~/Code/magento
   #   layout: main-horizontal
@@ -42,19 +42,19 @@ windows:
       - notes
 # }}}
 
-# railsblog {{{
-  - window_name: railsblog
-    start_directory: ~/Code/railsblog
-    layout: main-horizontal
-    panes:
-      - shell_command:
-          - vim -S
-        focus: true
-      - ts
-      - bundle install; rails c
-      - litecli db/development.sqlite3
-      - sleep 240 && rails server
-      # - multitail -cT ANSI -i log/development.log
+# railsblog (disabled) {{{
+  # - window_name: railsblog
+  #   start_directory: ~/Code/railsblog
+  #   layout: main-horizontal
+  #   panes:
+  #     - shell_command:
+  #         - vim -S
+  #       focus: true
+  #     - ts
+  #     - bundle install; rails c
+  #     - litecli db/development.sqlite3
+  #     - sleep 240 && rails server
+  #     # - multitail -cT ANSI -i log/development.log
 # }}}
 
 # news {{{
