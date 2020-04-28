@@ -219,6 +219,7 @@ brew "zsh" # awesome bash shell replacement
 # }}}
 
 # cask {{{
+cask "ableton-live-lite" # music production
 # cask "adoptopenjdk" # needed to install akamai cli
 # cask "adoptopenjdk8" # needed for swagger-codegen
 # cask "bettertouchtool" # with a config file this lets me vimify any cocoa app https://raw.githubusercontent.com/Vincent-Carrier/CocoaVim/master/CocoaVim.bttpreset

@@ -430,9 +430,12 @@ _install_php_version () {
             --with-iconv=$(brew --prefix libiconv) \
             --with-libedit=$(brew --prefix libedit) \
             --disable-mbregex" \
-            phpenv install $PHP_VERSION
+            phpenv install "$PHP_VERSION"
     fi
-    phpenv global $PHP_VERSION
+
+    # for pecl extensions to install correctly this php version must be the global one
+    PREVIOUS_PHP_VERSION="$(phpenv global)"
+    phpenv global "$PHP_VERSION"
     phpenv rehash
 
     # install pear so we can use pecl to install extensions
@@ -445,7 +448,8 @@ _install_php_version () {
     fi
 
     _log_info "Installing additional php extensions"
-    # their sdk has breaking changes all the time so I need a specific version
+
+    # couchbase sdk has breaking changes all the time so I need a specific version
     yes "" | "$(phpenv root)"/versions/"$PHP_VERSION"/pear/bin/pecl install couchbase-2.2.2 && ( echo 'extension="couchbase.so"' >"$HOME/.phpenv/versions/$PHP_VERSION/etc/conf.d/couchbase.ini" )
     yes "" | "$(phpenv root)"/versions/"$PHP_VERSION"/pear/bin/pecl install memcached && ( echo 'extension="memcached.so"' >"$HOME/.phpenv/versions/$PHP_VERSION/etc/conf.d/memcached.ini" )
     yes "" | "$(phpenv root)"/versions/"$PHP_VERSION"/pear/bin/pecl install imagick && ( echo 'extension="imagick.so"' >"$HOME/.phpenv/versions/$PHP_VERSION/etc/conf.d/imagick.ini" )
@@ -455,6 +459,10 @@ _install_php_version () {
 
     # each php version has their own composer global folder
     _install_update_composer_packages "$PHP_VERSION"
+
+    # restore previous php global version (no-op if current version is same)
+    phpenv global "$PREVIOUS_PHP_VERSION"
+    phpenv rehash
 }
 
 _install_php_versions () {

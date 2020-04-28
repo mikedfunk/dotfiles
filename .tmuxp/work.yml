@@ -215,6 +215,14 @@ windows:
     window_name: http
 # }}}
 
+# api-tests {{{
+  - panes:
+      - v -S
+      - ./watch.sh
+    start_directory: ~/Code/saatchi/api-tests
+    window_name: api
+# }}}
+
 # notes {{{
   - window_name: notes
     start_directory: ~/.config/joplin
