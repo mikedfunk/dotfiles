@@ -35,11 +35,11 @@ windows:
         focus: true
       - ts
       - wait-on http://www.local.saatchiart.com && while true; do saatchi-tinker-legacy-local; sleep 1; done
-      - while true; do puw; sleep 1; done
+      # - while true; do puw; sleep 1; done
       - wd legacy && cd ./assets/react && yarn && yarn write-rev && yarn start
       # - saatchi-eslint-watch-legacy
       # - saatchi-grunt-watch-legacy
-      - saatchi-docs-serve-legacy
+      # - saatchi-docs-serve-legacy
       - wait-on http://www.local.saatchiart.com && while true; do saatchi-tail-legacy-local; sleep 1; done
 # }}}
 
@@ -55,7 +55,7 @@ windows:
         focus: true
       - ts
       - wait-on http://www.local.saatchiart.com && while true; do saatchi-tinker-easel-local; sleep 1; done
-      - yarn jest --watchAll
+      # - yarn jest --watchAll
       - wait-on http://www.local.saatchiart.com && while true; do saatchi-tail-easel-local; sleep 1; done
 # }}}
 
@@ -71,7 +71,7 @@ windows:
         focus: true
       - ts
       - wait-on http://www.local.saatchiart.com && while true; do saatchi-tinker-gallery-local; sleep 1; done
-      - while true; do puw; sleep 1; done
+      # - while true; do puw; sleep 1; done
       # - yarn jest --watch
       - while true; do saatchi-gulp-watch-gallery; sleep 1; done
       # - saatchi-start-gallery
@@ -109,9 +109,9 @@ windows:
         focus: true
       - ts
       - wait-on http://www.local.saatchiart.com && while true; do saatchi-tinker-zed-local; sleep 1; done
-      - wait-on http://www.local.saatchiart.com && while true; do saatchi-phpunit-watch-zed; sleep 1; done
+      # - wait-on http://www.local.saatchiart.com && while true; do saatchi-phpunit-watch-zed; sleep 1; done
       - saatchi-grunt-watch-zed
-      - saatchi-docs-serve-zed
+      # - saatchi-docs-serve-zed
       - wait-on http://www.local.saatchiart.com && while true; do saatchi-tail-zed-local; sleep 1; done
 # }}}
 
@@ -153,14 +153,14 @@ windows:
   #     - ts
 # }}}
 
-# e2e tests {{{
-  - window_name: e2e
-    start_directory: ~/Code/saatchi/e2e-tests
-    layout: main-horizontal
-    panes:
-      - v -S
-      - ts
-      # - cypress open
+# e2e tests (disabled) {{{
+  # - window_name: e2e
+  #   start_directory: ~/Code/saatchi/e2e-tests
+  #   layout: main-horizontal
+  #   panes:
+  #     - v -S
+  #     - ts
+  #     # - cypress open
 # }}}
 
 # xdocker {{{
@@ -189,8 +189,8 @@ windows:
           - v -S
         focus: true
       - ts
-      - while true; do k9s -n develop --context saatchi-qa; sleep 60; done
-      - while true; do k9s -n master --context saatchi-prod; sleep 60; done
+      # - while true; do k9s -n develop --context saatchi-qa; sleep 60; done
+      # - while true; do k9s -n master --context saatchi-prod; sleep 60; done
 # }}}
 
 # mysql {{{
@@ -215,12 +215,12 @@ windows:
     window_name: http
 # }}}
 
-# api-tests {{{
-  - panes:
-      - v -S
-      - ./watch.sh
-    start_directory: ~/Code/saatchi/api-tests
-    window_name: api
+# api-tests (disabled) {{{
+  # - panes:
+  #     - v -S
+  #     - cd ~/Code/saatchi/api-tests/palette/local && wait-on http://www.local.saatchiart.com && ./watch.sh
+  #   start_directory: ~/Code/saatchi/api-tests
+  #   window_name: api
 # }}}
 
 # notes {{{
@@ -263,7 +263,7 @@ windows:
   #     - printf "\033]2;%s\033\\r:r" 'catalog' && saatchi-tail-catalog-kqa
 # }}}
 
-# logs (kprod) {{{
+# logs (kprod) (disabled) {{{
   # kprod logs are kind of flaky. Sometimes they time out. Haven't figured out why
   # yet. Workaround: R will restart the tail without quitting multitail.
   # - window_name: kprod.logs

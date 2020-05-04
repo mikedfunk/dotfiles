@@ -46,13 +46,14 @@ autocmd BufReadPre *.js let b:javascript_lib_use_underscore = 1 " lodash
 autocmd BufReadPre *.js let b:javascript_lib_use_react = 1
 " }}}
 
-" nvim-lsp (works!) {{{
+" nvim-lsp (does nothing for some reason... wish this were typescript) {{{
 if (has('nvim'))
 lua << EOF
-require'nvim_lsp'.flow.setup{
-  cmd = { "yarn", "flow", "lsp" }
-}
+require'nvim_lsp'.flow.setup{}
 EOF
+" cmd = { "npm", "run", "flow", "lsp", "--" }
+" cmd = { "node", "./node_modules/bin/flow", "lsp" }
+
   augroup nvim_lsp_easel
     autocmd!
     autocmd filetype javascript.jsx setlocal omnifunc=v:lua.vim.lsp.omnifunc

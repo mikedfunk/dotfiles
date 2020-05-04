@@ -96,7 +96,7 @@ if has_key(g:plugs, 'vim-tbone')
 endif
 " }}}
 
-" lsp {{{
+" nvim-lsp {{{
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
