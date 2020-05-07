@@ -146,6 +146,7 @@ brew "pspg" # , args: ["HEAD"] # "postgres pager" also useful for mysql, etc.
 brew "pyenv" # python version manager (same api as rbenv)
 brew "python" # updated version of python with updated pip. Useful for installing pip packages without root. NOTE: homebrew "pip" breaks neovim. Needed for ntfy, see ~/.yadm/config.
 # brew "python3" # required for tmuxomatic (but I use pyenv)
+brew "qcachegrind" # this is really kcachegrind which is useful for profiling php apps with xdebug
 # brew "ranger" # vim-like file system browser (cool but I don't use it)
 brew "rbenv" # ruby environment switcher
 # brew "reattach-to-user-namespace" # used to fix mac issues with copy/paste in tmux (not needed after tmux 2.6! https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard/issues/66)
@@ -229,6 +230,7 @@ cask "browserstacklocal" # local ie11, etc? If I have to. Otherwise, easy altern
 # cask "bubo" # menubar app that lets you use media and bluetooth keys with spotify web in chrome (but not in firefox, boo!)
 # cask "caffeine" # keep mac awake (replaced with amphetamine)
 # cask "cheatsheet" # hold <cmd> for a bit to get a modal of available keyboard shortcuts (kind of annoying - rarely comes up when I actually want it to, too much info)
+cask "cold-turkey-blocker" # blocks distracting website access so I can work
 # cask "discord" # chat
 cask "docker" # docker for mac desktop app
 cask "dozer" # little menubar app that allows hiding menubar icon clutter

@@ -240,7 +240,7 @@ windows:
       - shell_command:
           - v -S
         focus: true
-      - ts
+      # - ts
       - ./watch.sh
 # }}}
 
