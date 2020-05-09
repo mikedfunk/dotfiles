@@ -3,7 +3,7 @@ appdirs==1.4.3
 arrow==0.15.6
 asn1crypto==1.3.0
 aspy.yaml==1.3.0
-astroid==2.4.0
+astroid==2.4.1
 attrs==19.3.0
 certifi==2020.4.5.1
 cffi==1.14.0
@@ -45,11 +45,11 @@ pycparser==2.20
 Pygments==2.6.1
 PyJWT==1.7.1
 pykwalify==1.7.0
-pylint==2.5.0
+pylint==2.5.2
 PyMySQL==0.9.3
 pynvim==0.4.1
 pyparsing==2.4.7
-pytest==5.4.1
+pytest==5.4.2
 python-box==4.2.3
 python-dateutil==2.8.1
 python-slugify==4.0.0
@@ -71,7 +71,7 @@ tmuxp==1.5.4
 toml==0.10.0
 typed-ast==1.4.1
 urllib3==1.25.9
-virtualenv==20.0.19
+virtualenv==20.0.20
 wcwidth==0.1.9
 wrapt==1.12.1
 zipp==3.1.0
