@@ -262,6 +262,7 @@ cask "licecap" # shitty, simple gif screen capture. OSX used to have this but I 
 # cask "macfusion" # other half of tool to mount ssh directories in the finder
 # cask "macgdbp" # xdebug gui client (I use vdebug)
 cask "malwarebytes" # ya neva know
+# cask "menubar-stats" # used to show bluetooth headphones battery level in menubar (Doesn't work with my headphones for some reason... and it's $5)
 # cask "microsoft-edge"
 cask "minikube" # for learning `minikube start`
 cask "mpv" # video player like vlc
