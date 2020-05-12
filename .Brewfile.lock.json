@@ -128,22 +128,22 @@
         }
       },
       "bat": {
-        "version": "0.15.0",
+        "version": "0.15.1",
         "bottle": {
           "cellar": ":any_skip_relocation",
           "prefix": "/usr/local",
           "files": {
             "catalina": {
-              "url": "https://homebrew.bintray.com/bottles/bat-0.15.0.catalina.bottle.tar.gz",
-              "sha256": "cf23ebb66078b8a02236dce0d10792d1f27a7683853702ced404ac25857bf815"
+              "url": "https://homebrew.bintray.com/bottles/bat-0.15.1.catalina.bottle.tar.gz",
+              "sha256": "91c579ebf644aa95d80ae8d2b6933e40f6fddcaa2ae4f3bc25f256e2cf1965c2"
             },
             "mojave": {
-              "url": "https://homebrew.bintray.com/bottles/bat-0.15.0.mojave.bottle.tar.gz",
-              "sha256": "ae0f2d5568a547176cb6f7998cf5a2cb29aa51575a272210b02bd000fe8f2d45"
+              "url": "https://homebrew.bintray.com/bottles/bat-0.15.1.mojave.bottle.tar.gz",
+              "sha256": "264089371abb121af065a9e36aa922bdc9d34867f0d68c707c9f2e628e1c68cf"
             },
             "high_sierra": {
-              "url": "https://homebrew.bintray.com/bottles/bat-0.15.0.high_sierra.bottle.tar.gz",
-              "sha256": "799c255bf21723f2388e24c07a39ecedd528d9cbfc2c1aa2ca7681c9ae15efaf"
+              "url": "https://homebrew.bintray.com/bottles/bat-0.15.1.high_sierra.bottle.tar.gz",
+              "sha256": "df070a491d0da67bce3fb30be7dd2da5705ce15bcf14f8e8101c124afe621e06"
             }
           }
         }
@@ -1067,22 +1067,22 @@
         "bottle": false
       },
       "pre-commit": {
-        "version": "2.3.0_1",
+        "version": "2.4.0",
         "bottle": {
           "cellar": ":any",
           "prefix": "/usr/local",
           "files": {
             "catalina": {
-              "url": "https://homebrew.bintray.com/bottles/pre-commit-2.3.0_1.catalina.bottle.tar.gz",
-              "sha256": "c46ab414ba7666da2b99e81e9b9ed211f0d7e34e6066567fbc2a17bb51ba2302"
+              "url": "https://homebrew.bintray.com/bottles/pre-commit-2.4.0.catalina.bottle.tar.gz",
+              "sha256": "1d73a6c0cc2dc9869e415095454a41b224a6093c60194fe8dead9aba328ba872"
             },
             "mojave": {
-              "url": "https://homebrew.bintray.com/bottles/pre-commit-2.3.0_1.mojave.bottle.tar.gz",
-              "sha256": "22914d6b165db3cdedfba801781bac776c905333706dc2e0b6ff4c69c8441dc5"
+              "url": "https://homebrew.bintray.com/bottles/pre-commit-2.4.0.mojave.bottle.tar.gz",
+              "sha256": "d82e9f3265020af2af98aac3d79cda31be8213742c9a9cf0e8e0700a3771852c"
             },
             "high_sierra": {
-              "url": "https://homebrew.bintray.com/bottles/pre-commit-2.3.0_1.high_sierra.bottle.tar.gz",
-              "sha256": "8f625eee08bd94ac1d4c586e4d29bf606b044633a054b38770de157dd88ca967"
+              "url": "https://homebrew.bintray.com/bottles/pre-commit-2.4.0.high_sierra.bottle.tar.gz",
+              "sha256": "4affd7ab48dbe342d22ff1382a32c2569189dadf2e5610026efdf768598fd18e"
             }
           }
         }
@@ -2356,6 +2356,12 @@
         "options": {
           "full_name": "cold-turkey-blocker"
         }
+      },
+      "aerial": {
+        "version": "1.8.2",
+        "options": {
+          "full_name": "aerial"
+        }
       }
     },
     "mas": {
@@ -2389,9 +2395,9 @@
         "macOS": "10.14.6"
       },
       "catalina": {
-        "HOMEBREW_VERSION": "2.2.16-28-gfa980e9",
+        "HOMEBREW_VERSION": "2.2.16-44-geffeb5a",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "a02ca588643ddff966601cc31422d8f7e50ca28e",
+        "Homebrew/homebrew-core": "c8be98d8c24c79277e46fc34df5106a11863499a",
         "CLT": "1103.0.32.29",
         "Xcode": "11.4.1",
         "macOS": "10.15.4"

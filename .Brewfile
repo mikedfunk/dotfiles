@@ -317,6 +317,7 @@ cask "virtualbox" # virtual machine software (needed by docker-machine at least)
 # cask "wireshark" # analyze network data (but not on virtualbox networks)
 # cask "xquartz" # needed to install xclip, which is needed to copy text from multitail (I installed all of that, copy still didn't work :/ ) also needed for wine-stable
 # cask "xscreensaver" # shitload of old screensavers... downside is there are so many it slows down selecting Desktop & Screen Saver the first time in System Preferences :/ Upside: it has GLMatrix :)
+# cask "zdoom" # doom, hexen, heretic, etc.
 # cask "zoomus" # zoom video conferencing (installed and managed via my company)
 # }}}
 
