@@ -223,6 +223,7 @@ brew "zsh" # awesome bash shell replacement
 cask "ableton-live-lite" # music production
 # cask "adoptopenjdk" # needed to install akamai cli
 # cask "adoptopenjdk8" # needed for swagger-codegen
+cask "aerial" # cool apple tv style screensavers
 # cask "bettertouchtool" # with a config file this lets me vimify any cocoa app https://raw.githubusercontent.com/Vincent-Carrier/CocoaVim/master/CocoaVim.bttpreset
 # cask "bitbar" # use any cli command to show stuff in the menubar with colors and icons and provide menu options
 # cask "beardedspice" # keyboard media controls for media sites. Always seems to be broken :/
@@ -315,7 +316,7 @@ cask "virtualbox" # virtual machine software (needed by docker-machine at least)
 # cask "wineskin-winery" # run windows apps in macos via wine (doesn't work in macOS catalina)
 # cask "wireshark" # analyze network data (but not on virtualbox networks)
 # cask "xquartz" # needed to install xclip, which is needed to copy text from multitail (I installed all of that, copy still didn't work :/ ) also needed for wine-stable
-cask "xscreensaver" # shitload of old screensavers... downside is there are so many it slows down selecting Desktop & Screen Saver the first time in System Preferences :/ Upside: it has GLMatrix :)
+# cask "xscreensaver" # shitload of old screensavers... downside is there are so many it slows down selecting Desktop & Screen Saver the first time in System Preferences :/ Upside: it has GLMatrix :)
 # cask "zoomus" # zoom video conferencing (installed and managed via my company)
 # }}}
 
