@@ -132,6 +132,27 @@ _install_homebrew_if_its_missing () {
 # }}}
 
 # install/update homebrew packages {{{
+_pin_if_needed () {
+    PACKAGE="$1"
+    ( brew info "$PACKAGE" | grep --quiet "pinned" ) || brew pin "$PACKAGE"
+}
+
+_pin_homebrew_packages () {
+    _log_info "Pinning brew packages that need pinning"
+    _pin_if_needed bzip2
+    _pin_if_needed curl
+    _pin_if_needed intltool
+    _pin_if_needed libedit
+    _pin_if_needed libiconv
+    _pin_if_needed libmemcached
+    _pin_if_needed libmcrypt
+    _pin_if_needed openssl
+    _pin_if_needed config
+    _pin_if_needed readline
+    _pin_if_needed xz
+    _pin_if_needed zlib
+}
+
 _install_update_homebrew_packages () {
     [ -e "$HOME/.Brewfile" ] || return
     _log_info "Installing/upgrading homebrew packages"
@@ -141,8 +162,11 @@ _install_update_homebrew_packages () {
     brew cask upgrade    # upgrade all homebrew casks
     brew cleanup         # remove outdated versions and dead symlinks from the homebrew prefix
     # brew bundle --global cleanup --force # remove brew packages not in ~/.Brewfile
+    _pin_homebrew_packages
 }
+
 # }}}
+
 
 # install cpanm {{{
 _install_cpanm () {

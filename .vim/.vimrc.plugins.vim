@@ -75,6 +75,7 @@ if (has('nvim'))
     " actual official lsp config \o/
     Plug 'neovim/nvim-lsp'
 endif
+" Plug 'weilbith/nvim-lsp-smag' " use lsp as tagfunc if available
 " }}}
 
 " General {{{
