@@ -396,6 +396,8 @@ export CLICOLOR=1 # ls colors by default
 pretty-path() { tr : '\n' <<<"$PATH"; }
 # alias vit="vim +TW" # until vit gets its act together
 # alias tree="alder" # colorized tree from npm (I colorize tree with "lsd" now so this is not needed)
+#
+_has npx && npx --shell-auto-fallback zsh
 # }}}
 
 # games {{{

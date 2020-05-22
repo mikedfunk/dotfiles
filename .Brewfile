@@ -229,6 +229,7 @@ cask "aerial" # cool apple tv style screensavers
 # cask "beardedspice" # keyboard media controls for media sites. Always seems to be broken :/
 cask "browserstacklocal" # local ie11, etc? If I have to. Otherwise, easy alternative is xdissent's ievms.
 # cask "bubo" # menubar app that lets you use media and bluetooth keys with spotify web in chrome (but not in firefox, boo!)
+# cask "burp-suite" # web vulnerability scanner (eclipse-based)
 # cask "caffeine" # keep mac awake (replaced with amphetamine)
 # cask "cheatsheet" # hold <cmd> for a bit to get a modal of available keyboard shortcuts (kind of annoying - rarely comes up when I actually want it to, too much info)
 cask "cold-turkey-blocker" # blocks distracting website access so I can work
@@ -317,6 +318,7 @@ cask "virtualbox" # virtual machine software (needed by docker-machine at least)
 # cask "wireshark" # analyze network data (but not on virtualbox networks)
 # cask "xquartz" # needed to install xclip, which is needed to copy text from multitail (I installed all of that, copy still didn't work :/ ) also needed for wine-stable
 # cask "xscreensaver" # shitload of old screensavers... downside is there are so many it slows down selecting Desktop & Screen Saver the first time in System Preferences :/ Upside: it has GLMatrix :)
+# cask "zappy" # screenshot and video recorder (buggy solid black screenshots and pins, also privacy concerns)
 # cask "zdoom" # doom, hexen, heretic, etc.
 # cask "zoomus" # zoom video conferencing (installed and managed via my company)
 # }}}

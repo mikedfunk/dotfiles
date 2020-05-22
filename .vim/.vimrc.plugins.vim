@@ -74,6 +74,7 @@ Plug 'wellle/tmux-complete.vim' " add tmux as a completion source with user-defi
 if (has('nvim'))
     " actual official lsp config \o/
     Plug 'neovim/nvim-lsp'
+    " Plug 'haorenW1025/completion-nvim' " use neovim completion to autocomplete and show auto popup (disabled: errors with lsp disrupt my workflow)
 endif
 " Plug 'weilbith/nvim-lsp-smag' " use lsp as tagfunc if available
 " }}}

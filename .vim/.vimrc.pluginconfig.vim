@@ -247,6 +247,26 @@ endif
 " endif
 " }}}
 
+" completion-nvim {{{
+if has_key(g:plugs, 'completion-nvim')
+
+    " Use <Tab> and <S-Tab> to navigate through popup menu
+    inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>
+
+    " Set completeopt to have a better completion experience
+    set completeopt=menuone,noinsert,noselect
+
+    " Avoid showing message extra message when using completion
+    set shortmess+=c
+    augroup completion-nvim
+
+        autocmd!
+        autocmd filetype php lua require'nvim_lsp'.intelephense.setup{on_attach=require'completion'.on_attach}
+    augroup END
+endif
+" }}}
+
 " completor.vim {{{
 " enabling this slows down completion. just use c-x c-o when you want omni.
 " let g:completor_php_omni_trigger = '([$\w]+|use\s*|->[$\w]*|::[$\w]*|implements\s*|extends\s*|class\s+[$\w]+|new\s*)$'
