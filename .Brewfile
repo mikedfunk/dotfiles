@@ -245,6 +245,7 @@ cask "firefox-developer-edition" # I use dev edition for my work profile
 # cask "font-iosevka"
 cask "font-iosevka-nerd-font-mono" # note: homebrew doesn't need a tap for these any more
 # cask "font-meslo-for-powerline" # whoa there are a ton of fonts on brew "cask"!
+cask "grandperspective" # visualize storage hogs in the hard drive
 # cask "gog-galaxy" # good old games
 # cask "google-chrome"
 # cask "google-drive" (menubar app for google drive access)

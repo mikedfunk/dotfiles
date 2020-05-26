@@ -199,6 +199,7 @@ _has direnv && _evalcache direnv hook zsh # (evalcache version)
 _has ntfy && _evalcache ntfy shell-integration # notify when long-running command finishes. pip package, breaks in pyenv - see yadm bootstrap for unique setup.
 _has nodenv && _evalcache nodenv init - # (evalcache version)
 _has pyenv && _evalcache pyenv init - # (evalcache version)
+_has npx && _evalcache npx --shell-auto-fallback zsh
 # #slow
 [[ -f "$HOME"/.phpenv/bin/phpenv ]] && _evalcache "$HOME"/.phpenv/bin/phpenv init - # (evalcache version)
 _has rbenv && _evalcache rbenv init - # (evalcache version)
@@ -396,8 +397,6 @@ export CLICOLOR=1 # ls colors by default
 pretty-path() { tr : '\n' <<<"$PATH"; }
 # alias vit="vim +TW" # until vit gets its act together
 # alias tree="alder" # colorized tree from npm (I colorize tree with "lsd" now so this is not needed)
-#
-_has npx && npx --shell-auto-fallback zsh
 # }}}
 
 # games {{{
