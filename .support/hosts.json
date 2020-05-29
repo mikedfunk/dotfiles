@@ -5,6 +5,11 @@
     "enabled": true
   },
   {
+    "domain": "kubernetes.docker.internal",
+    "ip": "127.0.0.1",
+    "enabled": true
+  },
+  {
     "domain": "smo.leaf.io",
     "ip": "23.227.28.10",
     "enabled": true
@@ -45,6 +50,11 @@
     "enabled": true
   },
   {
+    "domain": "local.rancher.com",
+    "ip": "192.168.99.107",
+    "enabled": true
+  },
+  {
     "domain": "local.saatchiart.com",
     "ip": "192.168.99.107",
     "enabled": true
@@ -77,6 +87,11 @@
   {
     "domain": "broadcasthost",
     "ip": "255.255.255.255",
+    "enabled": true
+  },
+  {
+    "domain": "localhost",
+    "ip": "::1",
     "enabled": true
   }
 ]
