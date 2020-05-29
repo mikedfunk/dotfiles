@@ -275,6 +275,7 @@ cask "multifirefox" # profile picker until firefox fixes this glaring omission
 cask "muzzle" # stop notifications while screensharing
 # cask "noti" # mac native pushbullet notifications (I use the chrome extension)
 # cask "ngrok" # securely expose your local site to the internet and inspect and repeat traffic
+# cask "nvidia-geforce-now"
 # cask "onecast" # cast xbox one to mac.
 # cask "osxfuse" # half of tool to mount ssh directories in the finder (useful if working on a shared dev environment)
 # cask "openemu" # multi game system emulator
