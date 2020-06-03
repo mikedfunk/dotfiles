@@ -74,9 +74,17 @@ Plug 'wellle/tmux-complete.vim' " add tmux as a completion source with user-defi
 if (has('nvim'))
     " actual official lsp config \o/
     Plug 'neovim/nvim-lsp'
+
     " Plug 'haorenW1025/completion-nvim' " use neovim completion to autocomplete and show auto popup (disabled: errors with lsp disrupt my workflow)
+    " error: Error executing vim.schedule lua callback: ....vim/plugged/completion-nvim/lua/completion/matching.lua:50: attempt to index field 'b' (a nil value)
+    " I think this error is related to intelephense
+    " this plugin also breaks nvim_lsp hover
+    "
 endif
-" Plug 'weilbith/nvim-lsp-smag' " use lsp as tagfunc if available
+" Plug 'weilbith/nvim-lsp-smag' " use lsp as tagfunc if available (Doesn't
+" work - I found a
+" function in an article that actually works, but it's just as innacurate as
+" vim's built-in tagfunc)
 " }}}
 
 " General {{{

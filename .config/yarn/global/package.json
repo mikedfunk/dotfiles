@@ -10,7 +10,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.12.4",
     "flow": "^0.2.3",
-    "flow-bin": "^0.93.0",
+    "flow-bin": "^0.126.1",
     "intelephense": "^1.2.3",
     "intelephense-server": "^0.8.8",
     "neovim": "^4.2.1",

@@ -259,11 +259,6 @@ if has_key(g:plugs, 'completion-nvim')
 
     " Avoid showing message extra message when using completion
     set shortmess+=c
-    augroup completion-nvim
-
-        autocmd!
-        autocmd filetype php lua require'nvim_lsp'.intelephense.setup{on_attach=require'completion'.on_attach}
-    augroup END
 endif
 " }}}
 
@@ -532,15 +527,19 @@ if (has('nvim')) && has_key(g:plugs, 'nvim-lsp')
     " example config from :help lsp:
     " nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
     " nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
-    " nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+    nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
     " nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
     " nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
     " nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
-    " nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+    nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 
     " working for palette, legacy, etc!
     if (executable('intelephense'))
-        lua require'nvim_lsp'.intelephense.setup{}
+        if (has_key(g:plugs, 'completion-nvim'))
+            lua require'nvim_lsp'.intelephense.setup{on_attach=require'completion'.on_attach}
+        else
+            lua require'nvim_lsp'.intelephense.setup{}
+        endif
         augroup nvim_lsp_php
             autocmd!
             autocmd filetype php setlocal omnifunc=v:lua.vim.lsp.omnifunc
@@ -567,6 +566,75 @@ if (has('nvim')) && has_key(g:plugs, 'nvim-lsp')
     " moved this to easel .vimrc ... legacy doesn't have flow and gallery's
     " version is so old it doesn't have lsp.
     " require'nvim_lsp'.flow.setup{}
+
+" tagfunc {{{
+" https://qrunch.net/@igrep/entries/K6sUDofcmvtnRqzk
+lua << EOF
+local lsp = require 'vim.lsp'
+local util = require 'vim.lsp.util'
+local log = require 'vim.lsp.log'
+local vim = vim
+
+-- Ref (in Japanese): https://daisuzu.hatenablog.com/entry/2019/12/06/005543
+function tagfunc_nvim_lsp(pattern, flags, info)
+ local result = {}
+ local isSearchingFromNormalMode = flags == "c"
+
+ local method
+ local params
+ if isSearchingFromNormalMode then
+   -- Jump to the definition of the symbol under the cursor
+   -- when called by CTRL-]
+   method = 'textDocument/definition'
+   params = util.make_position_params()
+ else
+   -- NOTE: Currently I'm not sure how this clause is tested
+   --       because `:tag` command doesn't seem to use `tagfunc`.
+
+   -- Search with `pattern` when called by ex command (e.g. `:tag`)
+   method = 'workspace/symbol'
+
+   -- Delete "\<" from `pattern` when prepended.
+   -- Perhaps the server doesn't support regex in vim!
+   params = {}
+   if string.find(flags, 'i') then
+     params.query = string.sub(pattern, '^\\<', '')
+   else
+     params.query = pattern
+   end
+ end
+ local client_id_to_results, err = lsp.buf_request_sync(0, method, params)
+ if err then
+   print('Error when calling tagfunc: ' .. err)
+   return result
+ end
+
+ for _client_id, results in pairs(client_id_to_results) do
+   for i, lsp_result in ipairs(results.result) do
+     local name
+     local location
+     if isSearchingFromNormalMode then
+       name = pattern
+       location = lsp_result
+     else
+       name = lsp_result.name
+       location = lsp_result.location
+     end
+     local location_for_tagfunc = {
+       name = name,
+       filename = vim.uri_to_fname(location.uri),
+       cmd = tostring(location.range.start.line + 1)
+     }
+     table.insert(result, location_for_tagfunc)
+   end
+ end
+ return result
+end
+EOF
+
+set tagfunc=v:lua.tagfunc_nvim_lsp
+" }}}
+
 endif
 " }}}
 

@@ -9,6 +9,7 @@
 " (in an easel branch that's waiting to be merged)
 " https://prettier.io/docs/en/eslint.html#docsNav
 " let g:ale_fixers['javascript'] = ['prettier', 'eslint', 'importjs']
+let g:ale_fixers = get(g:, 'ale_fixers', {})
 let g:ale_fixers['javascript'] = ['eslint', 'importjs']
 let g:ale_javascript_prettier_options = '--trailing-comma es5'
 " }}}
@@ -49,8 +50,11 @@ autocmd BufReadPre *.js let b:javascript_lib_use_react = 1
 " nvim-lsp (does nothing for some reason... wish this were typescript) {{{
 if (has('nvim'))
 lua << EOF
-require'nvim_lsp'.flow.setup{}
+require'nvim_lsp'.flow.setup{
+  cmd = { "/usr/local/bin/flow", "lsp" }
+}
 EOF
+" cmd = { "/usr/local/bin/flow", "lsp" }
 " cmd = { "npm", "run", "flow", "lsp", "--" }
 " cmd = { "node", "./node_modules/bin/flow", "lsp" }
 
