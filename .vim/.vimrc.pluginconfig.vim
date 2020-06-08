@@ -161,6 +161,21 @@ endif
 let g:airline_theme = 'base16'
 " }}}
 
+" asyncomplete.vim {{{
+let g:asyncomplete_auto_completeopt = 0
+" }}}
+
+" asyncomplete-omni.vim {{{
+if has_key(g:plugs, 'asyncomplete-omni.vim')
+    call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
+                \ 'name': 'omni',
+                \ 'whitelist': ['*'],
+                \ 'blacklist': ['c', 'cpp', 'html'],
+                \ 'completor': function('asyncomplete#sources#omni#completor')
+                \  }))
+endif
+" }}}
+
 " asyncrun.vim {{{
 if has_key(g:plugs, 'asyncrun.vim')
     " trying to search without the annoying neovim bug
@@ -632,7 +647,8 @@ function tagfunc_nvim_lsp(pattern, flags, info)
 end
 EOF
 
-set tagfunc=v:lua.tagfunc_nvim_lsp
+" this breaks php use plugin - it can't find basic tags
+" set tagfunc=v:lua.tagfunc_nvim_lsp
 " }}}
 
 endif

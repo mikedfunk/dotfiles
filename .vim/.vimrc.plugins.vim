@@ -50,7 +50,6 @@ endif
 " Plug 'Shougo/deoplete.nvim' | Plug 'roxma/nvim-yarp' | Plug 'roxma/vim-hug-neovim-rpc' " Autocomplete as you type, which is cool, but it's difficult to integrate with other completion tools. I also can't get echodoc to work with it.
 
 Plug 'Shougo/echodoc.vim' " Displays function signatures from completions in the command line. Really helpful for omnicompletion!
-Plug 'wellle/tmux-complete.vim' " add tmux as a completion source with user-defined completion <c-x><c-u>
 
 " Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 " Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
@@ -63,6 +62,11 @@ Plug 'wellle/tmux-complete.vim' " add tmux as a completion source with user-defi
 " Plug 'prabirshrestha/vim-lsp', { 'for': ['php'] }
 " Plug 'mattn/vim-lsp-settings', { 'for': ['php'] }
 "
+
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'yami-beta/asyncomplete-omni.vim'
+" Plug 'wellle/tmux-complete.vim' " add tmux as a completion source with user-defined completion <c-x><c-u>
+
 " Plug 'natebosch/vim-lsc' " vim language server support https://bluz71.github.io/2019/10/16/lsp-in-vim-with-the-lsc-plugin.html (tried, I think the problem is with php-language-server. I get a shitload of errors. Tried again with intelephense. I don't know why but on completion the mode is changing to insert completion but I get no completion menu.)
 " Plug 'prabirshrestha/async.vim' | Plug 'prabirshrestha/vim-lsp' " language server features
 " Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'} " language server completion

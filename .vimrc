@@ -189,15 +189,15 @@ set secure " Always append set secure when exrc option is enabled!
 " completeopt {{{
 " completeopt default: 'menu,preview' :h completeopt
 set completeopt-=preview " turn off omnicomplete preview window because it is a bit slow and flashes the completion tooltip between selections
-set completeopt+=longest " only autofill the common text between all completion options
+" set completeopt+=longest " only autofill the common text between all completion options
 " if !has('nvim')
 "     set completeopt+=popup
 " endif
 if has('nvim')
     set pumblend=20 " pseudo-transparency in popups (neovim only)
 endif
-" set completeopt+=noinsert,noselect " For as-you-type completion. avoids automatically inserting text as you type.
-" set completeopt-=menu | set completeopt+=menuone " display completion even if there is one result. Useful for as-you-type completion.
+set completeopt+=noinsert,noselect " For as-you-type completion. avoids automatically inserting text as you type.
+set completeopt-=menu | set completeopt+=menuone " display completion even if there is one result. Useful for as-you-type completion.
 "
 " all completeopt options:
 " menu	    Use a popup menu to show the possible completions.  The
@@ -225,7 +225,7 @@ endif
 " noselect  Do not select a match in the menu, force the user to
 "      select one from the menu. Only works in combination with
 "      'menu' or 'menuone'.
-"
+
 " }}}
 
 set fileformat=unix " Any non-unix line endings are converted to unix
@@ -590,6 +590,20 @@ augroup END
 set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png,*.ico,*.pdf,*.psd,node_modules/*,.git/*,Session.vim
 set wildoptions+=tagfile " When using CTRL-D to list matching tags, the kind of tag and the file of the tag is listed.	Only one match is displayed per line.
 
+" auto close preview when completion is done {{{
+augroup auto_close_completion_preview
+    autocmd!
+    autocmd CompleteDone * if pumvisible() == 0 | pclose | endif
+augroup END
+" }}}
+
+" tab completion {{{
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" this is already handled by autopairs, adding it again breaks it
+" inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
+" }}}
+
 " }}}
 
 " Abbreviations {{{
@@ -599,6 +613,7 @@ abbrev shouldREturn shouldReturn
 abbrev willTHrow willThrow
 abbrev sectino section
 abbrev colleciton collection
+abbrev Colleciton Collection
 
 cabbr note: ~/Notes/
 cabbrev snote: ~/Notes/saatchiart/
