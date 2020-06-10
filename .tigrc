@@ -132,14 +132,14 @@ bind generic gld !git ld
 bind generic glm !git lm
 bind generic go @git open
 bind generic gpf ?git push --force
-bind generic gpl @git pull --rebase
+bind generic gpl !git pull --rebase
 bind generic gprc !gh pr create
 # pneumonic: git pr get
 bind generic gprg @gh pr checkout "%(prompt Enter pull request number: )"
 bind generic gprl !gh pr list
 bind generic gprs !gh pr status
 bind generic gprv @gh pr view
-bind generic gps @git push
+bind generic gps !git push
 bind generic grbd !git rbd --autosquash
 bind generic grbm !git rbm --autosquash
 bind generic grh @git reset --hard
