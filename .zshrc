@@ -89,12 +89,8 @@ path=(
   # $HOME/go/bin
   # golang executables
   # /usr/local/opt/go/libexec/bin
-  $HOME/.phpenv/bin # this isn't set by shell integration for some reason :/
   # $HOME/.{pl,nod,py}env/bin # these will be set up by shell integration
-  # $HOME/.pyenv/shims # these will be set up by shell integration
-  $HOME/.phpenv/pear/bin
   $HOME/.composer/vendor/bin
-  # "$(phpenv root)/versions/$(phpenv version | cut -d' ' -f1)/composer/vendor/bin"
   $(gem env home)
   /usr/{bin,sbin}
   /{bin,sbin}
@@ -159,9 +155,6 @@ fi
 
 # lazyload {{{
 # _has lazyload && lazyload nodenv -- '_has nodenv && eval "$(nodenv init -)"' # TOO SLOW
-# _has lazyload && lazyload phpenv -- '[[ -f "$HOME/.phpenv/bin/phpenv" ]] && eval "$($HOME/.phpenv/bin/phpenv init -)"' # TOO SLOW
-# _has lazyload && lazyload pyenv -- '_has pyenv && eval "$(pyenv init -)"' # TOO SLOW
-# _has lazyload && lazyload rbenv -- '_has rbenv && eval "$(rbenv init -)"' # TOO SLOW
 _has lazyload && lazyload akamai -- '_has akamai && eval "$(akamai --zsh)"'
 # }}}
 
@@ -180,13 +173,6 @@ ZSH_ALIAS_FINDER_AUTOMATIC=true # https://github.com/ohmyzsh/ohmyzsh/tree/master
 [ -f /usr/local/etc/openssl/cert.pem ] && export SSL_CERT_FILE=/usr/local/etc/openssl/cert.pem
 # [ -d "$HOME/.zsh/completion" ] && find "$HOME/.zsh/completion" | while read f; do source "$f"; done
 # _has plenv && eval "$(plenv init -)"
-# https://github.com/pyenv/pyenv/blob/master/COMMANDS.md#pyenv-global
-# strangely these is already set BEFORE this file is sourced!
-unset PYENV_VERSION
-unset PHPENV_VERSION
-# use pipenv instead of virtualenv. It comes with pyenv! There's also support for it with direnv.
-# _has pyenv-virtualenv-init && eval "$(pyenv virtualenv-init -)"
-export MY_PHPENV_VERSION="$(cat $HOME/.phpenv/version)"
 # [ -f "/usr/local/opt/asdf/asdf.sh" ] && source "/usr/local/opt/asdf/asdf.sh"
 # [ -n "$DESK_ENV" ] && source "$DESK_ENV" || true # Hook for desk activation
 # tabtab source for yo package
@@ -198,11 +184,8 @@ _has tmuxp && _evalcache "$HOME"/.support/enable-tmuxp-completion.sh # workaroun
 _has direnv && _evalcache direnv hook zsh # (evalcache version)
 _has ntfy && _evalcache ntfy shell-integration # notify when long-running command finishes. pip package, breaks in pyenv - see yadm bootstrap for unique setup.
 _has nodenv && _evalcache nodenv init - # (evalcache version)
-_has pyenv && _evalcache pyenv init - # (evalcache version)
 _has npx && _evalcache npx --shell-auto-fallback zsh
 # #slow
-[[ -f "$HOME"/.phpenv/bin/phpenv ]] && _evalcache "$HOME"/.phpenv/bin/phpenv init - # (evalcache version)
-_has rbenv && _evalcache rbenv init - # (evalcache version)
 _has hub && _evalcache hub alias -s # alias git to hub with completion intact
 
 # https://github.com/black7375/zsh-lazyenv
@@ -245,44 +228,14 @@ export PSQL_PAGER="pspg"
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 'builtin' 'setopt' 'aliases' # weird, this should have already been done :/
 
-# configure cgr and composer {{{
-# Internal: this ensures composer and cgr both point to my php version's composer
-# directory so I don't have broken tools when I switch php versions
-#
-# NOTE: when switching global versions I have to run this manually to also
-# update cgr and composer config. I also have to `phpenv rehash` This is
-# because I put my global composer packages in
-# ~/.phpenv/versions/{version}/composer so I get different globals
-# in each phpenv version.
-_configure_cgr_and_composer () {
-    export COMPOSER_HOME="$(phpenv root)/versions/${MY_PHPENV_VERSION}/composer"
-    # this fucks up cgr
-    # export COMPOSER_VENDOR_DIR="$(phpenv root)/versions/${MY_PHPENV_VERSION}/composer/vendor"
-    # export COMPOSER_BIN_DIR="$(phpenv root)/versions/${MY_PHPENV_VERSION}/composer/vendor/bin"
-    export CGR_COMPOSER_PATH="$(phpenv root)/shims/composer"
-    export CGR_BASE_DIR="$(phpenv root)/versions/${MY_PHPENV_VERSION}/composer/global"
-    export CGR_BIN_DIR="$(phpenv root)/versions/${MY_PHPENV_VERSION}/composer/vendor/bin"
-}
-_configure_cgr_and_composer
-# }}}
-
 _has kubectl && source <(kubectl completion zsh)
 _has stern && source <(stern --completion=zsh)
 _has cod && source <(cod init $$ zsh)
 # NOTE any completions in the brew completions dir are already added!
-# This is already added by phpenv init
-# _has phpenv && [[ -f "$HOME"/.phpenv/completions/phpenv.zsh ]] && source "$HOME"/.phpenv/completions/phpenv.zsh
 # [[ -e /usr/local/opt/coreutils/libexec/gnubin/dircolors && -f "$HOME"/.dircolors ]] && eval $( /usr/local/opt/coreutils/libexec/gnubin/dircolors -b "$HOME"/.dircolors )
 # _has zsh-startify && zsh-startify (neat, but doesn't really help)
 [[ -f "$HOME"/.iterm2_shell_integration.zsh ]] && source "$HOME"/.iterm2_shell_integration.zsh
 
-# fix an rbenv build openssl issue https://github.com/rbenv/ruby-build/issues/377#issuecomment-391427324
-if ( _has brew && ( brew list | grep -q openssl ) ); then
-    # this takes about a second :/ f it, just hardcode
-    # OPENSSL_VERSION="$(brew info openssl | head -n1 | awk '{print $3}')"
-    OPENSSL_VERSION="1.0.2t"
-    export RUBY_CONFIGURE_OPTS=--with-openssl-dir=/usr/local/Cellar/openssl/"$OPENSSL_VERSION"
-fi
 # broot file browser https://dystroy.org/broot/documentation/installation/##installation-completion-the-br-shell-function
 [ -f "$HOME"/Library/Preferences/org.dystroy.broot/launcher/bash/br ] && source "$HOME"/Library/Preferences/org.dystroy.broot/launcher/bash/br
 
@@ -443,15 +396,15 @@ alias pu="phpunitnotify"
 puc() { pu --coverage-html=./coverage $@ && open coverage/index.html; }
 
 # Public: phpspec coverage
-psc() { phpdbg -qrr -dmemory_limit=2048M  ./vendor/bin/phpspec run --config ./phpspec-coverage-html.yml $@ && open coverage/index.html; }
+psc() { php -dmemory_limit=2048M  ./vendor/bin/phpspec run --config ./phpspec-coverage-html.yml $@ && open coverage/index.html; }
 alias puf="pu --filter="
 
 # Public: phpunit watch
 puw() {
     noglob ag -l -g \
         '(application\/controllers|application\/modules\/*\/controllers|application\/models|library|src|app|tests)/.*\.php' \
-        | entr -r -c \
-        "$HOME/.phpenv/shims/phpdbg" -qrr \
+        | entr -c \
+        php \
         -dmemory_limit=2048M \
         -ddisplay_errors=on \
         ./vendor/bin/phpunit \
@@ -463,7 +416,7 @@ puw() {
 puw-pretty() {
     noglob ag -l -g \
         '(application\/controllers|application\/modules\/*\/controllers|application\/models|library|src|tests)/.*\.php' \
-        | entr -r -c \
+        | entr -c \
         "$HOME/.bin/pu-pretty" \
         $@
 }
@@ -508,23 +461,11 @@ alias yga="yarn global add"
 alias ygu="yarn global upgrade"
 # }}}
 
-# phpenv {{{
-phpenv-switch() {
-    # because phpenv's hook system is not implemented correctly, I wrap the
-    # global command so I can also change composer and cgr config
-    [ -z "$1" ] && ( echo "Usage: $0 {version_number}"; return 1 )
-    phpenv global "$1"
-    _configure_cgr_and_composer
-    # not needed unless there were missing packages in the previous global vendor dir
-    # phpenv rehash
-}
-# }}}
-
 # phpspec {{{
 alias psr="phpspecnotify"
 alias psd="phpspec describe"
 # alias psw="phpspec-watcher watch"
-alias psw="noglob ag -l -g '.*\\.php' | entr -r -c noti --message \"PHPSpec passed 👍\" php -dmemory_limit=1024M -ddisplay_errors=on ./vendor/bin/phpspec run -vvv"
+alias psw="noglob ag -l -g '.*\\.php' | entr -c noti --message \"PHPSpec passed 👍\" php -dmemory_limit=1024M -ddisplay_errors=on ./vendor/bin/phpspec run -vvv"
 # phpspecnotify() {
 #     php -dmemory_limit=2048M -ddisplay_errors=on ./vendor/bin/phpspec "${@}"
 #     [[ $? == 0 ]] && noti --message "PHPSpec specs passed 👍" ||
@@ -562,43 +503,6 @@ export EDITOR=nvim # aww yeah
 export LANG=en_US.UTF-8
 KEYTIMEOUT=1 # no vim delay entering normal mode
 # }}}
-
-# }}}
-
-# xdebug-toggle {{{
-# alias xdebug-on="xdebug-toggle on --no-server-restart"
-# alias xdebug-off="xdebug-toggle off --no-server-restart"
-# alias xdebug-status="xdebug-toggle"
-# usage: `xdb on` or `xdb off` or `xdb` for status
-# xdb () { xdebug-toggle $1 --no-server-restart; }
-
-xdebug-off() {
-    builtin cd "$(phpenv root)/versions/${MY_PHPENV_VERSION}/etc/conf.d"
-    if ! [ -f xdebug.ini ]; then
-        echo "xdebug.ini does not exist"
-        return 1
-    fi
-    mv xdebug.ini xdebug.ini.DISABLED
-    builtin cd -
-    echo "xdebug disabled"
-}
-
-xdebug-on() {
-    builtin cd "$(phpenv root)/versions/${MY_PHPENV_VERSION}/etc/conf.d"
-    if ! [ -f xdebug.ini.DISABLED ]; then
-        echo "xdebug.ini.DISABLED does not exist"
-        return 1
-    fi
-    mv xdebug.ini.DISABLED xdebug.ini
-    builtin cd -
-    echo "xdebug disabled"
-}
-
-xdebug-status() {
-    builtin cd "$(phpenv root)/versions/${MY_PHPENV_VERSION}/etc/conf.d"
-    [ -f ./xdebug.ini  ] && echo 'xdebug enabled' || echo 'xdebug disabled'
-    builtin cd -
-}
 
 # }}}
 
@@ -674,7 +578,6 @@ phpunitnotify() {
     # xdebug-off > /dev/null
     # php -dmemory_limit=2048M -ddisplay_errors=on ./vendor/bin/phpunit --colors "${@}"
     # autoloader is failing :(
-    # phpdbg -qrr -dmemory_limit=2048M -ddisplay_errors=on ./vendor/bin/phpunit --colors "${@}"
     phpdbg -qrr -dmemory_limit=4096M -ddisplay_errors=on ./vendor/bin/phpunit --colors "${@}"
     [[ $? == 0 ]] && noti --message "PHPUnit tests passed 👍" ||
         noti --message "PHPUnit tests failed 👎"
@@ -687,8 +590,7 @@ alias magento-phpunit="pu -c dev/tests/unit/phpunit.xml.dist"
 # Public: runs phpspec run and uses noti to show the results
 phpspecnotify() {
     # xdebug-off > /dev/null
-    # php -dmemory_limit=2048M -ddisplay_errors=on ./vendor/bin/phpspec run "${@}"
-    phpdbg -qrr -dmemory_limit=2048M -ddisplay_errors=on ./vendor/bin/phpspec run "${@}"
+    php -dmemory_limit=2048M -ddisplay_errors=on ./vendor/bin/phpspec run "${@}"
     # php -dxdebug.remote_autostart=1 -dxdebug.remote_connect_back=1 -dxdebug.idekey=${XDEBUG_IDE_KEY} -dxdebug.remote_port=9015 -dmemory_limit=2048M -ddisplay_errors=on ./vendor/bin/phpspec run "${@}"
     [[ $? == 0 ]] && noti --message "Specs passed 👍" ||
         noti --message "Specs failed 👎"
@@ -778,7 +680,7 @@ php-language-server-script() {
 # }}}
 
 # glow {{{
-alias glow-watch="ag -l -g '\.js$' | entr -r -c /usr/local/bin/glow"
+alias glow-watch="ag -l -g '\.js$' | entr -c /usr/local/bin/glow"
 # }}}
 
 # letsfun / letsbreak (formerly letswork / letsfun) {{{

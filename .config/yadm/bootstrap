@@ -110,7 +110,6 @@ _install_xcode_command_line_tools () {
 # }}}
 
 # install necessary headers in /include on mojave {{{
-# needed for phpenv and pyenv
 # fyi the CommandLineTools directory doesn't even exist until you run `xcode-select --install`
 # https://github.com/pyenv/pyenv/issues/1219#issuecomment-428700763
 # TODO catalina https://apple.stackexchange.com/questions/373316/missing-headers-in-macos-10-15-catalina
@@ -137,22 +136,6 @@ _pin_if_needed () {
     ( brew info "$PACKAGE" | grep --quiet "pinned" ) || brew pin "$PACKAGE"
 }
 
-_pin_homebrew_packages () {
-    _log_info "Pinning brew packages that need pinning"
-    _pin_if_needed bzip2
-    _pin_if_needed curl
-    _pin_if_needed intltool
-    _pin_if_needed libedit
-    _pin_if_needed libiconv
-    _pin_if_needed libmemcached
-    _pin_if_needed libmcrypt
-    _pin_if_needed openssl
-    _pin_if_needed config
-    _pin_if_needed readline
-    _pin_if_needed xz
-    _pin_if_needed zlib
-}
-
 _install_update_homebrew_packages () {
     [ -e "$HOME/.Brewfile" ] || return
     _log_info "Installing/upgrading homebrew packages"
@@ -162,11 +145,9 @@ _install_update_homebrew_packages () {
     brew cask upgrade    # upgrade all homebrew casks
     brew cleanup         # remove outdated versions and dead symlinks from the homebrew prefix
     # brew bundle --global cleanup --force # remove brew packages not in ~/.Brewfile
-    _pin_homebrew_packages
 }
 
 # }}}
-
 
 # install cpanm {{{
 _install_cpanm () {
@@ -180,23 +161,6 @@ _install_cpanm () {
 _install_cpanm_packages () {
     log_info "installing/upgrading perl cpanm packages"
     cpanm swat
-}
-# }}}
-
-# install ievms {{{
-# homebrew formula is broken for this :/
-_install_ievms () {
-    if ! _has VBoxManage; then
-        _log_error "VBoxManage not installed, unable to install ievms"
-        return
-    fi
-    if ( VBoxManage list vms | grep --quiet "IE11 - Win7" ); then
-        # ie11 is already installed
-        return
-    fi
-
-    _log_info "Installing IE11 VirtualBox VM"
-    curl -s https://raw.githubusercontent.com/xdissent/ievms/master/ievms.sh | env IEVMS_VERSIONS="11" bash
 }
 # }}}
 
@@ -238,37 +202,6 @@ _install_upgrade_akamai () {
 }
 # }}}
 
-# phpenv {{{
-# I only use this because homebrew is making it difficult to install php 7.0
-# and extensions right now.
-#
-# Update 11-16-2018: php 7.0 is still not on homebrew. I looked into asdf
-# instead but the php plugin is in very shoddy condition. You have to install
-# about 10 brew packages, set several env vars, and add to path before
-# building. And it doesn't handle php extensions.
-#
-# NOTE: On mojave this won't work without `xcode-select --install` and
-# installing the additional headers for libz, etc., which I do in the first few
-# steps of this file
-_install_upgrade_phpenv () {
-    _log_info "Installing/updating phpenv"
-    if _has phpenv; then
-        # this is provided by the php-build plugin /Users/mikefunk/.phpenv/plugins/php-build/bin/phpenv-update
-        # it just runs git pull in the phpenv home dir
-        phpenv update
-    else
-        # https://github.com/phpenv/phpenv
-        # https://github.com/phpenv/phpenv-installer
-        curl -L https://raw.githubusercontent.com/phpenv/phpenv-installer/master/bin/phpenv-installer | bash
-        # Modified version to actually support their half-assed hooks feature so I can make this work with cgr
-        # cp $HOME/.support/phpenv-with-hooks $(phpenv root)/libexec/phpenv
-
-        # there is some problem with getting tidy-html5 to work for php70 so lets just skip it
-        gsed -i '/--with-tidy/d' $HOME/.phpenv/plugins/php-build/share/php-build/default_configure_options
-    fi
-}
-# }}}
-
 # update yarn {{{
 _install_upgrade_yarn () {
     _log_info "Installing/upgrading yarn packages"
@@ -287,38 +220,6 @@ _set_zsh_as_shell () {
     if [[ "$SHELL" != "/usr/local/bin/zsh" ]]; then
         _log_info "Changing shell to homebrew zsh" chsh -s "$(which zsh)"
     fi
-}
-# }}}
-
-# install legacy tmux 2.8 {{{
-# this is HORRIFIC but tmux 2.9a is currently (2019-04-05) broken for me in several crucial ways:
-# 1. layout `main-horizontal` will break occasionally when sprintf modified terminal output changes e.g. when text flows beyond the bottom of the pane. It crashes tmux!
-# 2. <prefix>q does not show accurate data
-# 3. If htop is in a right-most pane, the right side of the text will bleed over to the left side of the left-most pane by one character.
-# 4. All of this happens without using tic to install tmux-256color terminfo, with an empty ~/.tmux.conf, and with an empty ~/.zshrc.
-#
-# tmux org seems to be aggressively removing issues and is kind of nasty in
-# their responses. I think they're missing these issues because of how hostile
-# they are toward any issues.
-#
-# TODO find minimal way to reproduce and create github issue
-#
-# UPDATE 2019-08-07 tmux 2.9a (latest, brew install tmux) STILL has problems:
-# 1. htop sometimes bleeds vertically - the bottom pushes itself one line down into the statusbar
-# 2. <prefix>q still has missing numbers
-# 3. tmux occasionally crashes
-_install_tmux_2_8 () {
-    _has tmux && return
-    _log_info "installing tmux 2.8"
-    builtin cd || return
-    wget https://github.com/tmux/tmux/releases/download/2.8/tmux-2.8.tar.gz
-    tar xzvf tmux-2.8.tar.gz
-    rm tmux-2.8.tar.gz
-    builtin cd tmux-2.8 || return
-    ./configure && make
-    sudo make install
-    builtin cd .. || return
-    rm -rf tmux-2.8
 }
 # }}}
 
@@ -390,20 +291,6 @@ _install_node_version () {
 }
 # }}}
 
-# configure cgr and composer {{{
-_configure_cgr_and_composer () {
-    local PHP_VERSION
-    PHP_VERSION="$1"
-    [ -z "$PHP_VERSION" ] && ( _log_error "Please provide a php version"; return 1 )
-    [ -d "$(phpenv root)/versions/$PHP_VERSION" ] || ( _log_error "Php version ${PHP_VERSION} not found"; return 1 )
-    export COMPOSER_HOME="$(phpenv root)/versions/$PHP_VERSION/composer"
-    export CGR_COMPOSER_PATH="$(phpenv root)/shims/composer"
-    export CGR_BASE_DIR="$(phpenv root)/versions/$PHP_VERSION/composer/global"
-    export CGR_BIN_DIR="$(phpenv root)/versions/$PHP_VERSION/composer/vendor/bin"
-    # export CGR_COMPOSER_PATH="$(phpenv root)/versions/${PHP_VERSION}"
-}
-# }}}
-
 # install phive {{{
 # NOTE: phive requires php 7.2+
 _install_upgrade_phive () {
@@ -425,154 +312,6 @@ _install_upgrade_phive () {
 }
 # }}}
 
-# install php version {{{
-# I only use phpenv because homebrew is making it difficult to install php 7.0
-# and extensions right now.
-
-_install_php_version () {
-    export PHP_VERSION="$1" # needs exporting for the non-interactive install pear script
-    ( phpenv versions | grep --quiet "$PHP_VERSION" ) && return
-    _log_info "Installing php $PHP_VERSION"
-    # NOTE if I set php 7.1+.x to global and I use directory-specific php
-    # versions and I install global composer dependencies then they will fail
-    # when I have php 7.0.29 active! Same problem with rbenv, pyenv, and perlenv.
-    if ! ( phpenv versions | grep --quiet "$PHP_VERSION" ); then
-        # all this extra config is from here
-        # https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
-        # however I started over and added things one-by-one until it built
-        # successfully. This is the miminal setup.
-        #
-        # disable-mbregex is because I can't seem to point this to a version of
-        # oniguruma (whatever the fuck that is) that php 7.0 will build
-        # mbstring with :/. This workaround is not needed for php 7.3+.
-        #
-        # related: https://bugs.php.net/bug.php?id=76113
-        #
-        PHP_BUILD_CONFIGURE_OPTS="--with-zlib-dir=$(brew --prefix zlib) \
-            --with-bz2=$(brew --prefix bzip2) \
-            --with-curl=$(brew --prefix curl) \
-            --with-iconv=$(brew --prefix libiconv) \
-            --with-libedit=$(brew --prefix libedit) \
-            --disable-mbregex" \
-            phpenv install "$PHP_VERSION"
-    fi
-
-    # for pecl extensions to install correctly this php version must be the global one
-    PREVIOUS_PHP_VERSION="$(phpenv global)"
-    phpenv global "$PHP_VERSION"
-    phpenv rehash
-
-    # install pear so we can use pecl to install extensions
-    if ! _has pecl; then
-        _log_info "Installing pear"
-        [ -f "$HOME/.bin/go-pear.phar" ] || wget -O "$HOME/.bin/go-pear.phar" http://pear.php.net/go-pear.phar
-        chmod +x "$HOME"/.bin/go-pear.phar
-        PHP_VERSION="$PHP_VERSION" "$HOME/.support/install-pear.sh" # installs pear non-interactively
-        # [ -f "$HOME/.bin/go-pear.phar" ] && rm "$HOME/.bin/go-pear.phar"
-    fi
-
-    _log_info "Installing additional php extensions"
-
-    # couchbase sdk has breaking changes all the time so I need a specific version
-    yes "" | "$(phpenv root)"/versions/"$PHP_VERSION"/pear/bin/pecl install couchbase-2.2.2 && ( echo 'extension="couchbase.so"' >"$HOME/.phpenv/versions/$PHP_VERSION/etc/conf.d/couchbase.ini" )
-    yes "" | "$(phpenv root)"/versions/"$PHP_VERSION"/pear/bin/pecl install memcached && ( echo 'extension="memcached.so"' >"$HOME/.phpenv/versions/$PHP_VERSION/etc/conf.d/memcached.ini" )
-    yes "" | "$(phpenv root)"/versions/"$PHP_VERSION"/pear/bin/pecl install imagick && ( echo 'extension="imagick.so"' >"$HOME/.phpenv/versions/$PHP_VERSION/etc/conf.d/imagick.ini" )
-
-    # link global composer requirements
-    ln -sf "$HOME/.composer/composer.json" "$(phpenv root)/versions/$PHP_VERSION/composer/composer.json"
-
-    # each php version has their own composer global folder
-    _install_update_composer_packages "$PHP_VERSION"
-
-    # restore previous php global version (no-op if current version is same)
-    phpenv global "$PREVIOUS_PHP_VERSION"
-    phpenv rehash
-}
-
-_install_php_versions () {
-    _install_php_version "7.0.33"
-    _install_php_version "7.3.2"
-
-    local PHP_VERSION
-    PHP_VERSION="7.3.2"
-    # PHP_VERSION="7.0.29"
-    phpenv global "$PHP_VERSION"
-    _configure_cgr_and_composer "$PHP_VERSION"
-
-    phpenv rehash
-}
-
-# }}}
-
-# install ruby version {{{
-_install_ruby_version () {
-    # 2.2.2 needed for catalog codebase
-    if ! ( rbenv versions | grep --quiet "2.2.2" ); then
-        _log_info "Installing ruby 2.2.2"
-        rbenv install 2.2.2 && \
-            rbenv global 2.2.2 && \
-            rbenv rehash && \
-            gem install bundler
-    fi
-
-    # 2.5.6 needed for ios chromatic codebase
-    if ! ( rbenv versions | grep --quiet "2.5.6" ); then
-        _log_info "Installing ruby 2.5.6"
-        rbenv install 2.5.6 && \
-            rbenv global 2.5.6 && \
-            rbenv rehash && \
-            gem install bundler
-    fi
-
-    RUBY_VERSION="2.6.5"
-    ( rbenv versions | grep --quiet $RUBY_VERSION ) && return
-    _log_info "Installing ruby $RUBY_VERSION"
-    rbenv install $RUBY_VERSION && \
-        rbenv global $RUBY_VERSION && \
-        rbenv rehash && \
-        gem install bundler && \
-        gem install rails
-}
-# }}}
-
-# install perl version {{{
-_install_perl_version () {
-    PERL_VERSION="5.27.8"
-    [[ "$(plenv version | grep $PERL_VERSION)" ]] && return
-    _log_info "Installing perl $PERL_VERSION"
-    plenv install $PERL_VERSION && plenv rehash && plenv global $PERL_VERSION
-}
-# }}}
-
-# install python2 version {{{
-PYTHON2_INSTALL_VERSION="2.7.16"
-_install_python2_version () {
-    [[ "$(pyenv global | grep $PYTHON2_INSTALL_VERSION)" ]] && return
-    _log_info "Installing python $PYTHON2_INSTALL_VERSION"
-    # CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" pyenv install $PYTHON2_INSTALL_VERSION && pyenv rehash && pyenv global $PYTHON2_INSTALL_VERSION
-    # https://github.com/pyenv/pyenv/issues/1066#issuecomment-387211005
-    pyenv install $PYTHON2_INSTALL_VERSION && pyenv rehash
-}
-# }}}
-
-# install python3 version {{{
-PYTHON3_INSTALL_VERSION="3.7.2"
-_install_python3_version () {
-    [[ "$(pyenv global | grep $PYTHON3_INSTALL_VERSION)" ]] && return
-    _log_info "Installing python $PYTHON3_INSTALL_VERSION"
-    # CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" pyenv install $PYTHON3_INSTALL_VERSION && pyenv rehash && pyenv global $PYTHON3_INSTALL_VERSION
-    # https://github.com/pyenv/pyenv/issues/1066#issuecomment-387211005
-    pyenv install $PYTHON3_INSTALL_VERSION && pyenv rehash
-}
-# }}}
-
-# enable python versions {{{
-_enable_python_versions () {
-    # you can enable python3 versions and python2 versions at the same time
-    pyenv global $PYTHON3_INSTALL_VERSION  $PYTHON2_INSTALL_VERSION
-}
-# }}}
-
 # install/update ruby gems {{{
 # Installs from ~/Gemfile
 _install_update_ruby_gems () {
@@ -585,7 +324,6 @@ _install_update_ruby_gems () {
     bundle update
     bundle clean --force
     builtin cd - || return
-    _has rbenv && rbenv rehash
     bundle config set system false
 }
 # }}}
@@ -602,7 +340,7 @@ _pip-update () {
 }
 _update_python3_pip_packages () {
     _log_info "Installing/upgrading pip3 packages"
-    /usr/local/bin/pip3 install neovim --user # neovim uses this pip/python version
+    pip3 install neovim --user # neovim uses this pip/python version
     PIP_SUCCESSFUL=1
     pip3 install -r "$HOME/requirements.txt" --user || PIP_SUCCESSFUL=0
     # pip-review broke recently:
@@ -613,7 +351,6 @@ _update_python3_pip_packages () {
     _pip-update || PIP_SUCCESSFUL=0
     # otherwise it might freeze a failed state
     [[ $PIP_SUCCESSFUL ]] && pip3 freeze >"$HOME/requirements.txt"
-    _has pyenv && pyenv rehash
 }
 # }}}
 
@@ -626,25 +363,16 @@ _install_update_composer_packages () {
     # fi
     _log_info "Installing/upgrading composer packages"
 
-    local PHP_VERSION
-    PHP_VERSION=$1
-    if [ -z "$PHP_VERSION" ]; then
-        PHP_VERSION=$(phpenv version | cut -d' ' -f1)
-    fi
-
-    _configure_cgr_and_composer "$PHP_VERSION"
-    # use global composer.json
-    [ -f "$COMPOSER_HOME/composer.json" ] || ln -sf "$HOME/.composer/composer.json" "$COMPOSER_HOME/composer.json"
-
-    builtin cd "$(phpenv root)/versions/$PHP_VERSION/composer" >/dev/null || return
-
-    # workaround for php language server
-    mkdir -p "$(phpenv root)/versions/$PHP_VERSION/composer/global/felixfbecker/language-server/"
-    ln -sf "$HOME/.composer/global/felixfbecker/language-server/composer.json" "$(phpenv root)/versions/$PHP_VERSION/composer/global/felixfbecker/language-server/composer.json"
-
     composer selfupdate
     composer global install
     composer global update
+    builtin cd - || return
+}
+# }}}
+
+# install/update cgr packages {{{
+_install_update_cgr_packages () {
+    CGR_BASE_DIR="$HOME/.composer/global"
     if [[ ! -d "$CGR_BASE_DIR" ]]; then
         # ^ this will install cgr. Now install cgr packages...
         _log_info "Installing cgr packages"
@@ -658,8 +386,6 @@ _install_update_composer_packages () {
         _log_info "Upgrading cgr packages"
         cgr update
     fi
-    builtin cd - || return
-    _has phpenv && phpenv rehash
 }
 # }}}
 
@@ -710,17 +436,6 @@ _install_cod () {
     mv cod-Darwin/cod /usr/local/bin/
     chmod +x /usr/local/bin/cod
     rm -rf cod-Darwin
-    builtin cd - || return
-}
-# }}}
-
-# php-language-server {{{
-_parse_php_language_server_stubs () {
-    builtin cd "$HOME/.composer" || return
-    _log_info "Parsing php-language-server stubs"
-    local PHP_VERSION
-    PHP_VERSION=$(phpenv version | cut -d' ' -f1)
-    composer global run-script --working-dir="$(phpenv root)/versions/$PHP_VERSION/composer/global/felixfbecker/language-server/vendor/felixfbecker/language-server" parse-stubs
     builtin cd - || return
 }
 # }}}
@@ -901,28 +616,21 @@ _install_xcode_command_line_tools
 _install_necessary_headers_in_include_on_mojave
 _install_homebrew_if_its_missing
 _install_update_homebrew_packages
-_install_ievms
+_install_update_composer_packages
+# _install_update_cgr_packages
 _install_upgrade_akamai
-_install_upgrade_phpenv
 _install_upgrade_yarn
 _set_zsh_as_shell
-_install_tmux_2_8
 _install_tmux_plugin_manager
 _install_upgrade_tmux_plugins
 _create_vim_directories
 _install_vim_plug
 _install_upgrade_vim_plugins
 _install_node_version
-_install_php_versions
 # _install_upgrade_phive
-_install_ruby_version
-_install_python2_version
-_install_python3_version
-_enable_python_versions
 _install_update_ruby_gems
 _update_python3_pip_packages
 _install_upgrade_ntfy
-# _parse_php_language_server_stubs
 # _install_ls_colors
 # _install_cpanm
 # _install_cpanm_packages
