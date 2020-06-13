@@ -326,6 +326,8 @@
     # master/develop when pushing the branch without also pushing lightweight
     # tags.
     followTag = true
+[pull]
+    rebase = true
 [rerere]
     enabled = 1
     autoupdate = true

@@ -293,11 +293,18 @@ _install_upgrade_vim_plugins () {
 
 # }}}
 
+# update asdf plugins {{{
+_update_asdf_plugins () {
+    _log_info "Updating asdf plugins"
+    asdf plugin update --all
+}
+# }}}
+
 # install php versions {{{
 _install_php_70 () {
     ( asdf list php | grep --quiet 7.0.33 ) && return
     log_info "installing php 7.0.33"
-    asdf php install 7.0.33
+    asdf install php 7.0.33
     asdf global php 7.0.33
     local PHP_PATH="$(asdf where php)"
 
@@ -319,14 +326,14 @@ _install_php_70 () {
 
 _install_php_versions () {
     builtin cd $HOME >/dev/null || return
-    _log_info "installing php version(s)"
+    _log_info "Installing php version(s)"
     asdf plugin add php && ( sed -i '' "/--enable-intl/d" $HOME/.asdf/plugins/php/bin/install )
 
     # 7.0.33
     _install_php_70
 
     # 7.4.7
-    ( asdf list php | grep --quiet 7.4.7 ) || asdf php install 7.4.7
+    ( asdf list php | grep --quiet 7.4.7 ) || asdf install php 7.4.7
     asdf global php 7.4.7
 
     builtin cd - >/dev/null || return
@@ -336,13 +343,35 @@ _install_php_versions () {
 # install node version(s) {{{
 _install_node_versions () {
     builtin cd $HOME >/dev/null || return
-    _log_info "installing node version(s)"
+    _log_info "Installing node version(s)"
     asdf plugin add nodejs
     # https://github.com/asdf-vm/asdf-nodejs/issues/40#issuecomment-297053730
     bash "$HOME/.asdf/plugins/nodejs/bin/import-release-team-keyring"
-    ( asdf list nodejs | grep --quiet 9.11.2 ) || asdf nodejs install 9.11.2
-    ( asdf list nodejs | grep --quiet 14.4.0 ) || asdf nodejs install 14.4.0
+    ( asdf list nodejs | grep --quiet 9.11.2 ) || asdf install nodejs 9.11.2
+    ( asdf list nodejs | grep --quiet 14.4.0 ) || asdf install nodejs 14.4.0
     asdf global nodejs 14.4.0
+    builtin cd - >/dev/null || return
+}
+# }}}
+
+# install python version(s) {{{
+_install_python_versions () {
+    builtin cd $HOME >/dev/null || return
+    _log_info "Installing python version(s)"
+    asdf plugin add ruby
+    ( asdf list python | grep --quiet 3.8.3 ) || asdf install python 3.8.3
+    asdf global python 3.8.3
+    builtin cd - >/dev/null || return
+}
+# }}}
+
+# install ruby version(s) {{{
+_install_ruby_versions () {
+    builtin cd $HOME >/dev/null || return
+    _log_info "Installing ruby version(s)"
+    asdf plugin add ruby
+    ( asdf list ruby | grep --quiet 2.7.1 ) || asdf install ruby 2.7.1
+    asdf global ruby 2.7.1
     builtin cd - >/dev/null || return
 }
 # }}}
@@ -376,7 +405,6 @@ _install_update_ruby_gems () {
     builtin cd || return
     bundle config set system true
     bundle install
-    bundle binstubs
     bundle update
     bundle clean --force
     builtin cd - || return
@@ -396,7 +424,8 @@ _pip-update () {
 }
 _update_python3_pip_packages () {
     _log_info "Installing/upgrading pip3 packages"
-    pip3 install neovim --user # neovim uses this pip/python version
+    # pip3 install neovim --user # neovim uses this pip/python version
+    pip install --upgrade pip
     PIP_SUCCESSFUL=1
     pip3 install -r "$HOME/requirements.txt" --user || PIP_SUCCESSFUL=0
     # pip-review broke recently:
@@ -656,8 +685,11 @@ _install_xcode_command_line_tools
 _install_necessary_headers_in_include_on_mojave
 _install_homebrew_if_its_missing
 _install_update_homebrew_packages
+_update_asdf_plugins
 _install_php_versions
 _install_node_versions
+_install_python_versions
+_install_ruby_versions
 # _install_update_composer_packages
 # _install_update_cgr_packages
 _install_upgrade_akamai

@@ -119,7 +119,7 @@ brew "newsboat" # terminal rss reader. I'm debating on whether this is worth it.
 # brew "neovim" # vim re-imagined (temporarily disabled so I can build from source to address the extremely annoying quickfix bug)
 brew "nextdns/tap/nextdns" # dns privacy service
 brew "node" # nodejs and npm (non-nodenv version required by joplin, yarn)
-brew "nodenv" # node version manager (same api as rbenv)
+# brew "nodenv" # node version manager (same api as rbenv) (I use asdf now)
 brew "noti" # simple terminal notifier
 brew "nss" # required by mkcert to make certs trusted in firefox
 brew "openssl" # needed for rbenv https://github.com/rbenv/ruby-build/issues/377#issuecomment-391427324 and phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
@@ -148,7 +148,7 @@ brew "python" # updated version of python with updated pip. Useful for installin
 # brew "python3" # required for tmuxomatic (but I use pyenv)
 brew "qcachegrind" # this is really kcachegrind which is useful for profiling php apps with xdebug
 # brew "ranger" # vim-like file system browser (cool but I don't use it)
-brew "rbenv" # ruby environment switcher
+# brew "rbenv" # ruby environment switcher (I use asdf now)
 # brew "reattach-to-user-namespace" # used to fix mac issues with copy/paste in tmux (not needed after tmux 2.6! https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard/issues/66)
 brew "re2c" # needed by phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
 brew "readline" # needed for phpenv
