@@ -5,7 +5,7 @@
   <description>Mike's more strict, experimental version of the Saatchi Art Coding Standard (phpcs v3.5.2 as of 11-25-2019)</description>
 
   <!-- NOTE this can only be declared once!! if you do it multiple times it will override the previous one. comma-delimited. -->
-  <config name="installed_paths" value="/Users/mikefunk/.phpenv/versions/7.0.33/composer/global/slevomat/coding-standard/vendor/slevomat/coding-standard,/Users/mikefunk/.phpenv/versions/7.0.33/composer/global/sirbrillig/phpcs-variable-analysis/vendor/sirbrillig/phpcs-variable-analysis" />
+  <!-- <config name="installed_paths" value="/Users/mikefunk/.phpenv/versions/7.0.33/composer/global/slevomat/coding-standard/vendor/slevomat/coding-standard,/Users/mikefunk/.phpenv/versions/7.0.33/composer/global/sirbrillig/phpcs-variable-analysis/vendor/sirbrillig/phpcs-variable-analysis" /> -->
 
   <!-- start php compatibility -->
   <!-- I disabled this because it included phpcs/phpcbf and overrode my global version -->
@@ -42,17 +42,17 @@
   <!-- <rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes"> -->
   <!--   <property name="spacesCountAroundEqualsSign" value="0" /> -->
   <!-- </rule> -->
-  <rule ref="SlevomatCodingStandard.Classes.UnusedPrivateElements" />
+  <!-- <rule ref="SlevomatCodingStandard.Classes.UnusedPrivateElements" /> -->
   <!-- NOTE this is unreliable when it comes to importing constants and functions e.g. shape and arr -->
-  <rule ref="SlevomatCodingStandard.Namespaces.UnusedUses" />
-  <rule ref="SlevomatCodingStandard.Exceptions.DeadCatch" />
-  <rule ref="SlevomatCodingStandard.Arrays.TrailingArrayComma" />
-  <rule ref="SlevomatCodingStandard.Namespaces.DisallowGroupUse" />
-  <rule ref="SlevomatCodingStandard.Namespaces.FullyQualifiedGlobalConstants" />
-  <rule ref="SlevomatCodingStandard.Namespaces.FullyQualifiedGlobalFunctions" />
-  <rule ref="SlevomatCodingStandard.Namespaces.MultipleUsesPerLine" />
+  <!-- <rule ref="SlevomatCodingStandard.Namespaces.UnusedUses" /> -->
+  <!-- <rule ref="SlevomatCodingStandard.Exceptions.DeadCatch" /> -->
+  <!-- <rule ref="SlevomatCodingStandard.Arrays.TrailingArrayComma" /> -->
+  <!-- <rule ref="SlevomatCodingStandard.Namespaces.DisallowGroupUse" /> -->
+  <!-- <rule ref="SlevomatCodingStandard.Namespaces.FullyQualifiedGlobalConstants" /> -->
+  <!-- <rule ref="SlevomatCodingStandard.Namespaces.FullyQualifiedGlobalFunctions" /> -->
+  <!-- <rule ref="SlevomatCodingStandard.Namespaces.MultipleUsesPerLine" /> -->
   <!-- NOTE this has proven to result in false positives -->
-  <rule ref="SlevomatCodingStandard.Classes.UnusedPrivateElements.WriteOnlyProperty" />
+  <!-- <rule ref="SlevomatCodingStandard.Classes.UnusedPrivateElements.WriteOnlyProperty" /> -->
   <!-- <rule ref="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly"> -->
   <!--   <property name="allowFullyQualifiedNameForCollidingClasses" value="true" /> -->
   <!--   <property name="allowFullyQualifiedGlobalClasses" value="true" /> -->
@@ -66,7 +66,7 @@
   <!-- TODO implement https://github.com/object-calisthenics/phpcs-calisthenics-rules/tree/v2.0.1 . Kind of hard to do as the docs for 2.0.1 don't have examples and it's the newest version that supports php 7.0 :( -->
 
   <!-- begin phpcs-variable-analysis -->
-  <rule ref="VariableAnalysis" />
+  <!-- <rule ref="VariableAnalysis" /> -->
   <!-- end phpcs-variable-analysis -->
 
   <arg name="colors" />

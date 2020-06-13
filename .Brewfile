@@ -13,9 +13,9 @@ brew "autossh" # ssh that reconnects (I use this a lot for tunnels, etc)
 brew "awscli" # aws command - used to upload to s3, etc. `aws configure` to set up credentials. (set up access keys here https://console.aws.amazon.com/iam/home?region=us-west-1#/users/mike.funk?section=security_credentials)
 brew "bandwhich" # top-like tool to see which processes are using the most bandwidth (sudo bandwhich)
 brew "bat" # much cooler looking cat
-# brew "bison" # needed for phpenv build. The default mac one is too old. https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
+brew "bison" # needed for phpenv build. The default mac one is too old. https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
 brew "broot" # use `br` to do something between tree and ls. File browser with lots of vim patterns.
-# brew "bzip2" # needed for phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
+brew "bzip2" # needed for phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
 # brew "bzt" # taurus http and performance test runner
 # brew "chromedriver" # like selenium for chrome. (These drivers feel pretty outdated to me)
 brew "codespell" # neat little utility to show and fix code misspellings
@@ -89,12 +89,12 @@ brew "kubectx" # quick way to switch contexts with a fzf picker
 brew "derailed/k9s/k9s" # handy kubernetes dashboard `k9s -n develop`
 # brew "lastpass-cli" # TODO move all of my cli private_stuff over to lastpass
 # brew "lftp" # fancy scp, torrent, http, ftp download and upload client with queues, backgrounding, and more
-brew "libcouchbase" # nosql fast data storage. I install this for the cli tool `cbc`
-# brew "libedit" # needed for phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
-# brew "libiconv" # needed for phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
+brew "libcouchbase@2" # nosql fast data storage. I install this for the cli tool `cbc` and to build the php couchbase extension (note: requires brew link libcouchbase@2 --force)
+brew "libedit" # needed for phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
+brew "libiconv" # needed for phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
 # brew "libjpeg" # needed for phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
 brew "libmemcached" # needed by php70 memcached pecl extension
-# brew "libmcrypt" # needed by php-build, which is used by phpenv DO NOT DELETE php will break
+brew "libmcrypt" # needed by php-build, which is used by phpenv DO NOT DELETE php will break
 # brew "libpng" # needed for phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
 # brew "libxml2" # needed by phpenv php70 https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
 # brew "libzip" # needed for phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
@@ -122,7 +122,7 @@ brew "node" # nodejs and npm (non-nodenv version required by joplin, yarn)
 brew "nodenv" # node version manager (same api as rbenv)
 brew "noti" # simple terminal notifier
 brew "nss" # required by mkcert to make certs trusted in firefox
-# brew "openssl" # needed for rbenv https://github.com/rbenv/ruby-build/issues/377#issuecomment-391427324 and phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
+brew "openssl" # needed for rbenv https://github.com/rbenv/ruby-build/issues/377#issuecomment-391427324 and phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
 # brew "pandoc" # transform between document formats e.g. markdown <-> pdf (used for inline vim php documentation, which I no longer use)
 # brew "pass" # unix password manager using gpg
 # brew "peco" # interactively filter results and print the filtered version. can be used to print filtered one or e.g. `vim $(dosomething | peco)` (FZF does this)
@@ -135,7 +135,7 @@ brew "pgcli" # like mycli for postgres (used for toaf judging app)
 brew "pinentry" # gpg terminal pin entry (used by yadm encrypt/decrypt)
 # brew "pinentry-mac" # native gpg pin entry for yadm and others. Opens a native window.
 brew "pinfo" # man-like command to get manuals on tools written for info
-# brew "pkg-config" # needed for phpenv to build https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
+brew "pkg-config" # needed for phpenv to build https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
 brew "plantuml" # uml generation from text. requires java (I use regularly for diagramming processes and sometimes uml class diagrams)
 # brew "plenv" # perl version manager. better than perlbrew and consistent with my other env managers (rbenv, phpenv, nodenv, pyenv). used to get percona-toolkit working.
 # brew "postgresql" # database similar to mysql (install if needed)
@@ -143,15 +143,15 @@ brew "pre-commit" # yelp git pre-commit framework (local hooks ftw! Easily creat
 # brew "prettyping" # ping with a cool sparkline graph of status
 brew "pspg" # , args: ["HEAD"] # "postgres pager" also useful for mysql, etc.
 # brew "pv" # pipe something to pv to see progress of data through a pipeline. pv works like cat so `pv /path/to/myfile.sql > mysql ...`
-# brew "pyenv" # python version manager (same api as rbenv)
+brew "pyenv" # python version manager (same api as rbenv)
 brew "python" # updated version of python with updated pip. Useful for installing pip packages without root. NOTE: homebrew "pip" breaks neovim. Needed for ntfy, see ~/.yadm/config.
 # brew "python3" # required for tmuxomatic (but I use pyenv)
 brew "qcachegrind" # this is really kcachegrind which is useful for profiling php apps with xdebug
 # brew "ranger" # vim-like file system browser (cool but I don't use it)
-# brew "rbenv" # ruby environment switcher
+brew "rbenv" # ruby environment switcher
 # brew "reattach-to-user-namespace" # used to fix mac issues with copy/paste in tmux (not needed after tmux 2.6! https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard/issues/66)
-# brew "re2c" # needed by phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
-# brew "readline" # needed for phpenv
+brew "re2c" # needed by phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
+brew "readline" # needed for phpenv
 # brew "redis" # key/value store (If I need this I'll use docker)
 # brew "rlwrap" # wrap a command in readline to enable up for history, etc. Useful for python repl: `rlwrap python`
 # brew "ruby" # (rbenv covers it for me)
@@ -205,13 +205,13 @@ brew "wget" # latest version
 # brew "wifi-password" # get your current wifi password quickly without mucking about with keychain access (install if needed)
 # brew "xdebug-osx" # xdebug toggler for homebrew php (which I don't currently use)
 # brew "xmlto" # convert xml to other formats because fuck xml
-# brew "xz" # needed for phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
+brew "xz" # needed for phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
 # brew "vim" # macvim requires xcode. This also allows you to get vim 8 without using a separate tap. (switched back to neovim)
 # brew "vit" # ncurses taskwarrior interface - like tig for taskwarrior (This is cool but I don't really use taskwarrior anymore. Freeform daily task list with notes are more helpful to me.)
 brew "yamllint" # used by vim-ale
 brew "yarn" # wrapper for npm with real lock files and caching (installing via npm is deprecated)
 brew "yadm" # yet another dotfiles manager
-# brew "zlib" # needed for pyenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864 (but can be used from /usr/include after installing developer package on mojave)
+brew "zlib" # needed for pyenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864 (but can be used from /usr/include after installing developer package on mojave)
 brew "zork" # seriously? yes. tip: `save` and `restore` And yes, there's only one save slot, what do you think this is, 1990?
 # brew "zplug" # zsh plugin manager like composer. bash installer crashes for some reason. works fine via homebrew. (switched to antibody)
 brew "zsh" # awesome bash shell replacement

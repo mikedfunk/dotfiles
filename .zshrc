@@ -142,7 +142,6 @@ if [[ ! $ANTIBODY_LOADED ]]; then
     # antibody bundle zsh-users/zsh-history-substring-search # up arrow after typing part of command
     antibody bundle romkatv/powerlevel10k # zsh prompt theme (see ~/.p10k.zsh)
     antibody bundle qoomon/zsh-lazyload # lazyload various commands
-    # antibody bundle black7375/zsh-lazyenv # like lazyload but provides lazy loading of nodenv, phpenv, etc. with one command: `lazyenv-enabled` (kept caching phpenv over and over, wasn't actually faster anyway)
     antibody bundle mroth/evalcache # speeds up subsequent runs of eval init functions. if you make a change just call `_evalcache_clear`.
     antibody bundle hlissner/zsh-autopair # auto close parens, etc.
     # antibody bundle oldratlee/hacker-quotes # just add some cool hacker quotes in shell init like MOTD
@@ -154,7 +153,6 @@ fi
 # }}}
 
 # lazyload {{{
-# _has lazyload && lazyload nodenv -- '_has nodenv && eval "$(nodenv init -)"' # TOO SLOW
 _has lazyload && lazyload akamai -- '_has akamai && eval "$(akamai --zsh)"'
 # }}}
 
@@ -183,10 +181,11 @@ ZSH_ALIAS_FINDER_AUTOMATIC=true # https://github.com/ohmyzsh/ohmyzsh/tree/master
 _has tmuxp && _evalcache "$HOME"/.support/enable-tmuxp-completion.sh # workaround to make evalcache happy
 _has direnv && _evalcache direnv hook zsh # (evalcache version)
 _has ntfy && _evalcache ntfy shell-integration # notify when long-running command finishes. pip package, breaks in pyenv - see yadm bootstrap for unique setup.
-_has nodenv && _evalcache nodenv init - # (evalcache version)
 _has npx && _evalcache npx --shell-auto-fallback zsh
 # #slow
 _has hub && _evalcache hub alias -s # alias git to hub with completion intact
+
+[ -f /usr/local/opt/asdf/asdf.sh ] && source /usr/local/opt/asdf/asdf.sh
 
 # https://github.com/black7375/zsh-lazyenv
 # _has lazyenv-enabled && lazyenv-enabled
@@ -396,7 +395,7 @@ alias pu="phpunitnotify"
 puc() { pu --coverage-html=./coverage $@ && open coverage/index.html; }
 
 # Public: phpspec coverage
-psc() { php -dmemory_limit=2048M  ./vendor/bin/phpspec run --config ./phpspec-coverage-html.yml $@ && open coverage/index.html; }
+psc() { phpdbg -qrr -dmemory_limit=2048M  ./vendor/bin/phpspec run --config ./phpspec-coverage-html.yml $@ && open coverage/index.html; }
 alias puf="pu --filter="
 
 # Public: phpunit watch
@@ -404,7 +403,7 @@ puw() {
     noglob ag -l -g \
         '(application\/controllers|application\/modules\/*\/controllers|application\/models|library|src|app|tests)/.*\.php' \
         | entr -c \
-        php \
+        phpdbg -qrr \
         -dmemory_limit=2048M \
         -ddisplay_errors=on \
         ./vendor/bin/phpunit \
@@ -465,7 +464,7 @@ alias ygu="yarn global upgrade"
 alias psr="phpspecnotify"
 alias psd="phpspec describe"
 # alias psw="phpspec-watcher watch"
-alias psw="noglob ag -l -g '.*\\.php' | entr -c noti --message \"PHPSpec passed 👍\" php -dmemory_limit=1024M -ddisplay_errors=on ./vendor/bin/phpspec run -vvv"
+alias psw="noglob ag -l -g '.*\\.php' | entr -c noti --message \"PHPSpec passed 👍\" phpdbg -qrr -dmemory_limit=1024M -ddisplay_errors=on ./vendor/bin/phpspec run -vvv"
 # phpspecnotify() {
 #     php -dmemory_limit=2048M -ddisplay_errors=on ./vendor/bin/phpspec "${@}"
 #     [[ $? == 0 ]] && noti --message "PHPSpec specs passed 👍" ||
@@ -590,7 +589,7 @@ alias magento-phpunit="pu -c dev/tests/unit/phpunit.xml.dist"
 # Public: runs phpspec run and uses noti to show the results
 phpspecnotify() {
     # xdebug-off > /dev/null
-    php -dmemory_limit=2048M -ddisplay_errors=on ./vendor/bin/phpspec run "${@}"
+    phpdbg -qrr -dmemory_limit=2048M -ddisplay_errors=on ./vendor/bin/phpspec run "${@}"
     # php -dxdebug.remote_autostart=1 -dxdebug.remote_connect_back=1 -dxdebug.idekey=${XDEBUG_IDE_KEY} -dxdebug.remote_port=9015 -dmemory_limit=2048M -ddisplay_errors=on ./vendor/bin/phpspec run "${@}"
     [[ $? == 0 ]] && noti --message "Specs passed 👍" ||
         noti --message "Specs failed 👎"

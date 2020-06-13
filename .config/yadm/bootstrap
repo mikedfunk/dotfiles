@@ -145,6 +145,7 @@ _install_update_homebrew_packages () {
     brew cask upgrade    # upgrade all homebrew casks
     brew cleanup         # remove outdated versions and dead symlinks from the homebrew prefix
     # brew bundle --global cleanup --force # remove brew packages not in ~/.Brewfile
+    brew link libcouchbase@2 --force
 }
 
 # }}}
@@ -278,16 +279,57 @@ _install_upgrade_vim_plugins () {
 
 # }}}
 
-# install node version {{{
-_install_node_version () {
-    local NODE_VERSION
-    # NODE_VERSION="9.3.0"
-    # NODE_VERSION="9.11.2"
-    # NODE_VERSION="10.11.0"
-    NODE_VERSION="13.2.0"
-    [[ "$(nodenv version | grep $NODE_VERSION)" ]] && return
-    _log_info "Installing node $NODE_VERSION"
-    nodenv install $NODE_VERSION && nodenv rehash && nodenv global $NODE_VERSION
+# install php versions {{{
+_install_php_70 () {
+    ( asdf list php | grep --quiet 7.0.33 ) && return
+    log_info "installing php 7.0.33"
+    asdf php install 7.0.33
+    asdf global php 7.0.33
+    local PHP_PATH="$(asdf where php)"
+
+    # install pear so we can use pecl to install extensions
+    [ -f "$HOME/.bin/go-pear.phar" ] || wget -O "$HOME/.bin/go-pear.phar" http://pear.php.net/go-pear.phar
+    chmod +x "$HOME"/.bin/go-pear.phar
+    PHP_PATH="${PHP_PATH}" "$HOME/.support/install-pear.sh" # installs pear non-interactively
+
+    mkdir -p "${PHP_PATH}"/conf.d
+    # this is a sub requirement of couchbase
+    yes "" | "${PHP_PATH}"/pear/bin/pecl install pcs && ( echo 'extension="phpcs.so"' >"${PHP_PATH}"/conf.d/pcs.ini )
+    yes "" | "${PHP_PATH}"/pear/bin/pecl install couchbase-2.2.4 && ( echo 'extension="couchbase.so"' >"${PHP_PATH}"/conf.d/couchbase.ini )
+    yes "" | "${PHP_PATH}"/pear/bin/pecl install memcached && ( echo 'extension="memcached.so"' >"${PHP_PATH}"/conf.d/memcached.ini )
+    yes "" | "${PHP_PATH}"/pear/bin/pecl install imagick && ( echo 'extension="imagick.so"' >"${PHP_PATH}"/conf.d/imagick.ini )
+    ln -sf "$HOME/.composer/composer.json" "${PHP_PATH}"/.composer/composer.json
+    _install_update_composer_packages
+    asdf reshim php 7.0.33
+}
+
+_install_php_versions () {
+    builtin cd $HOME >/dev/null || return
+    _log_info "installing php version(s)"
+    asdf plugin add php && ( sed -i '' "/--enable-intl/d" $HOME/.asdf/plugins/php/bin/install )
+
+    # 7.0.33
+    _install_php_70
+
+    # 7.4.7
+    ( asdf list php | grep --quiet 7.4.7 ) || asdf php install 7.4.7
+    asdf global php 7.4.7
+
+    builtin cd - >/dev/null || return
+}
+# }}}
+
+# install node version(s) {{{
+_install_node_versions () {
+    builtin cd $HOME >/dev/null || return
+    _log_info "installing node version(s)"
+    asdf plugin add nodejs
+    # https://github.com/asdf-vm/asdf-nodejs/issues/40#issuecomment-297053730
+    bash "$HOME/.asdf/plugins/nodejs/bin/import-release-team-keyring"
+    ( asdf list nodejs | grep --quiet 9.11.2 ) || asdf nodejs install 9.11.2
+    ( asdf list nodejs | grep --quiet 14.4.0 ) || asdf nodejs install 14.4.0
+    asdf global nodejs 14.4.0
+    builtin cd - >/dev/null || return
 }
 # }}}
 
@@ -357,35 +399,11 @@ _update_python3_pip_packages () {
 # install/update composer and packages {{{
 _install_update_composer_packages () {
     builtin cd $HOME/.composer >/dev/null || return
-    # if ! has composer; then
-    #     _log_info "Installing composer"
-    #     _install-composer
-    # fi
     _log_info "Installing/upgrading composer packages"
-
     composer selfupdate
     composer global install
     composer global update
     builtin cd - || return
-}
-# }}}
-
-# install/update cgr packages {{{
-_install_update_cgr_packages () {
-    CGR_BASE_DIR="$HOME/.composer/global"
-    if [[ ! -d "$CGR_BASE_DIR" ]]; then
-        # ^ this will install cgr. Now install cgr packages...
-        _log_info "Installing cgr packages"
-        # https://github.com/consolidation/cgr
-        while read -r package; do
-            ( echo "$package" | grep --quiet "^$" ) && continue
-            ( echo "$package" | grep --quiet "^#" ) && continue
-            cgr "$package"
-        done <"$HOME/.composer/cgr-versions.txt"
-    else
-        _log_info "Upgrading cgr packages"
-        cgr update
-    fi
 }
 # }}}
 
@@ -592,6 +610,14 @@ _link_docker_for_mac () {
 }
 # }}}
 
+# fix yarn link {{{
+# not sure why this happens
+_fix_yarn_link () {
+    _log_info "Fixing yarn link"
+    brew unlink yarn && brew link yarn
+}
+# }}}
+
 # clear evalcache {{{
 _clear_evalcache () {
     _log_info "Clearing evalcache"
@@ -616,7 +642,9 @@ _install_xcode_command_line_tools
 _install_necessary_headers_in_include_on_mojave
 _install_homebrew_if_its_missing
 _install_update_homebrew_packages
-_install_update_composer_packages
+_install_php_versions
+_install_node_versions
+# _install_update_composer_packages
 # _install_update_cgr_packages
 _install_upgrade_akamai
 _install_upgrade_yarn
@@ -626,7 +654,6 @@ _install_upgrade_tmux_plugins
 _create_vim_directories
 _install_vim_plug
 _install_upgrade_vim_plugins
-_install_node_version
 # _install_upgrade_phive
 _install_update_ruby_gems
 _update_python3_pip_packages
@@ -648,6 +675,7 @@ _link_docker_for_mac
 # _install_nix_package_manager
 _install_upgrade_ix_io
 _install_cod
+_fix_yarn_link
 _clear_evalcache
 # _show_reminders
 _log_info "Installation complete"

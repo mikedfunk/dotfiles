@@ -32,54 +32,15 @@ command! -nargs=1 Eqa execute "e scp://appdeploy@saatchi-xqa-palette-services-01
 " }}}
 
 " ale {{{
-
-" fixers {{{
+" If I don't do this, phpcbf fails on any file in the exclude-pattern :/
+let g:ale_php_phpcs_standard = '/Users/mikefunk/Code/saatchi/palette/phpcs-mike.xml'
+let g:ale_php_phpcbf_standard = '/Users/mikefunk/Code/saatchi/palette/phpcs-mike.xml'
 let g:ale_php_phpcbf_executable = '/Users/mikefunk/.support/phpcbf-helper.sh'
 let g:ale_php_phpcbf_use_global = 1
-" let g:ale_php_phpstan_level = 4
-" remove php_cs_fixer
-" let ale_fixers['php'] = ['phpcbf', 'php_cs_fixer']
-" let ale_fixers['php'] = ['php_cs_fixer']
-" If I don't do this, phpcbf fails on any file in the exclude-pattern :/
-" let g:ale_php_phpcbf_executable = '/Users/mikefunk/.support/phpcbf-helper.sh'
-
-" This is a pain in the ass, but phpcbf and ale kept wiping any files in the
-" exclude-pattern. I couldn't get the executable above to be recognized, so I
-" set it directly in the plugin config to test. I STILL got the dreaded 'No
-" fixable errors were found' message replaced over the contents of the file.
-"
-" I could get the bash wrapper to work sometimes
-" let g:ale_php_fixers_backup = get(g:, "ale_fixers")['php']
-" function! RestoreAlePhpFixers() abort
-"     let g:ale_fixers['php'] = get(g:, 'ale_php_fixers_backup')
-" endfunction
-
-" function! RemoveAlePhpFixers() abort
-"     let g:ale_php_fixers_backup = g:ale_fixers['php']
-"     let g:ale_fixers['php'] = ['php_cs_fixer']
-" endfunction
-
-" augroup phpcbf_not_tests
-"     autocmd!
-"     autocmd BufEnter *.php call RestoreAlePhpFixers()
-" augroup END
-
-" augroup phpcbf_tests
-"     autocmd!
-"     autocmd BufEnter *{Test,Spec}.php call RemoveAlePhpFixers()
-" augroup END
-
-" let g:ale_fixers = {
-" \   'javascript': ['eslint'],
-" \   'php': ['phpcbf', 'php_cs_fixer'],
-" \   'ruby': ['rubocop']
-" \}
-" }}}
-
-" linters {{{
-" call add(g:ale_linters['php'], 'langserver')
-" }}}
-
+let ale_fixers = {'php': ['phpcbf']}
+let g:ale_php_phpstan_level = 4
+let g:ale_php_phpstan_configuration = '/Users/mikefunk/Code/saatchi/palette/phpstan.neon'
+" let g:ale_php_phpstan_executable = 'php /Users/mikefunk/Code/saatchi/palette/vendor/bin/phpstan'
 " }}}
 
 " vim-gutentags {{{
@@ -98,14 +59,17 @@ endif
 
 " nvim-lsp {{{
 " nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> <leader><c-]> mz:tabe %<CR>`z<cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> <c-w><c-]> :vsp<CR><cmd>lua vim.lsp.buf.definition()<CR>
-" nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-" nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
-" nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-" nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
-" nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+" nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+augroup php_lsp_mappings
+    autocmd!
+    autocmd FileType php nnoremap <silent> <leader><c-]> mz:tabe %<CR>`z<cmd>lua vim.lsp.buf.definition()<CR>
+    autocmd FileType php nnoremap <silent> <c-w><c-]> :vsp<CR><cmd>lua vim.lsp.buf.definition()<CR>
+    " autocmd FileType php nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+    " autocmd FileType php nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+    " autocmd FileType php nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+    " autocmd FileType php nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+    " autocmd FileType php nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+augroup END
 " }}}
 
 " vista {{{
