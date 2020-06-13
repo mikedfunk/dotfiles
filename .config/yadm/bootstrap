@@ -131,9 +131,22 @@ _install_homebrew_if_its_missing () {
 # }}}
 
 # install/update homebrew packages {{{
-_pin_if_needed () {
-    PACKAGE="$1"
-    ( brew info "$PACKAGE" | grep --quiet "pinned" ) || brew pin "$PACKAGE"
+_pin_homebrew_packages () {
+    _log_info "Pinning brew packages that need pinning"
+    ( brew info bzip2 | grep --quiet "pinned" ) || brew pin bzip2
+    ( brew info curl | grep --quiet "pinned" ) || brew pin curl
+    ( brew info intltool | grep --quiet "pinned" ) || brew pin intltool
+    ( brew info libedit | grep --quiet "pinned" ) || brew pin libedit
+    ( brew info libiconv | grep --quiet "pinned" ) || brew pin libiconv
+    ( brew info libmemcached | grep --quiet "pinned" ) || brew pin libmemcached
+    ( brew info libmcrypt | grep --quiet "pinned" ) || brew pin libmcrypt
+    ( brew info openssl | grep --quiet "pinned" ) || brew pin openssl
+    ( brew info pkg-config | grep --quiet "pinned" ) || brew pin pkg-config
+    ( brew info readline | grep --quiet "pinned" ) || brew pin readline
+    ( brew info xz | grep --quiet "pinned" ) || brew pin xz
+    ( brew info zlib | grep --quiet "pinned" ) || brew pin zlib
+    ( brew info icu4c | grep --quiet "pinned" ) || brew pin icu4c
+    ( brew info "libcouchbase@2" | grep --quiet "pinned" ) || brew pin "libcouchbase@2"
 }
 
 _install_update_homebrew_packages () {
@@ -146,6 +159,7 @@ _install_update_homebrew_packages () {
     brew cleanup         # remove outdated versions and dead symlinks from the homebrew prefix
     # brew bundle --global cleanup --force # remove brew packages not in ~/.Brewfile
     brew link libcouchbase@2 --force
+    _pin_homebrew_packages
 }
 
 # }}}
