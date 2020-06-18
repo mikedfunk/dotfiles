@@ -175,6 +175,8 @@
     rbm = rebase -i master
     rbs = rebase --skip
     rba = rebase --abort
+    # release create (useful for github-flow)
+    rc = "!f() { git checkout develop && git pull && hub release create $1 -m $1; }; f"
     # rebase interactively on to the upstream to this branch
     ready = rebase -i @{u}
     rh = reset --hard

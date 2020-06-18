@@ -180,7 +180,7 @@ ZSH_ALIAS_FINDER_AUTOMATIC=true # https://github.com/ohmyzsh/ohmyzsh/tree/master
 # evaluated startup commands {{{
 _has tmuxp && _evalcache "$HOME"/.support/enable-tmuxp-completion.sh # workaround to make evalcache happy
 _has direnv && _evalcache direnv hook zsh # (evalcache version)
-_has ntfy && _evalcache ntfy shell-integration # notify when long-running command finishes. pip package, breaks in pyenv - see yadm bootstrap for unique setup.
+# _has ntfy && _evalcache ntfy shell-integration # notify when long-running command finishes. pip package, breaks in pyenv - see yadm bootstrap for unique setup.
 _has npx && _evalcache npx --shell-auto-fallback zsh
 # #slow
 _has hub && _evalcache hub alias -s # alias git to hub with completion intact
@@ -464,7 +464,7 @@ alias ygu="yarn global upgrade"
 alias psr="phpspecnotify"
 alias psd="phpspec describe"
 # alias psw="phpspec-watcher watch"
-alias psw="noglob ag -l -g '.*\\.php' | entr -c noti --message \"PHPSpec passed 👍\" phpdbg -qrr -dmemory_limit=1024M -ddisplay_errors=on ./vendor/bin/phpspec run -vvv"
+alias psw="noglob ag -l -g '.*\\.php' | entr -c noti --message \"PHPSpec passed 👍\" php -dmemory_limit=1024M -ddisplay_errors=on ./vendor/bin/phpspec run -vvv"
 # phpspecnotify() {
 #     php -dmemory_limit=2048M -ddisplay_errors=on ./vendor/bin/phpspec "${@}"
 #     [[ $? == 0 ]] && noti --message "PHPSpec specs passed 👍" ||

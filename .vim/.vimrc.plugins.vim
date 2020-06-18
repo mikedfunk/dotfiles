@@ -263,6 +263,7 @@ Plug 'tpope/vim-projectionist' " link tests and classes together
 " Plug 'editorconfig/editorconfig-vim' " use per-project editor settings
 Plug 'sgur/vim-editorconfig' " faster version of editorconfig
 Plug 'scrooloose/vim-orgymode' " kind of like emacs org-mode. <c-c> will toggle markdown checkbox. Also some syntax highlighting and ultisnips snippets. I use it in my notes.
+
 " Plug 'dkarter/bullets.vim' " does cool stuff with numbered and bullet lists in markdown, etc. <c-t> to indent, <c-d> to outdent.
 " Plug 'blindFS/vim-taskwarrior' " vim taskwarrior integration. :TW to interact with tasks
 " }}}
@@ -337,6 +338,7 @@ Plug 'fpob/nette.vim' " .neon format
 " Plug 'heavenshell/vim-syntax-flowtype' " js flowtype (included in pangloss/vim-javascript)
 Plug 'rhysd/vim-gfm-syntax' " github-flavored markdown. yum!
 " Plug 'tpope/vim-markdown' " This is supposed to be included with vim but I don't think it is included with neovim
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'plantuml', 'vim-plug']}
 " Plug 'nelstrom/vim-markdown-folding' " just markdown folding (markdown folding functionality is actually provided by default, you just have to enable it with let g:markdown_folding=1)
 " Plug 'osyo-manga/vim-precious' | Plug 'Shougo/context_filetype.vim' " code block syntax highlighting for markdown, etc. _really_ helpful! Also really helps to see the surrounding code block text! MUST USE for markdown.
 Plug 'qnighy/vim-ssh-annex' " ssh files syntax coloring e.g. ssh config

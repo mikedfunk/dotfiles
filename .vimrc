@@ -614,6 +614,8 @@ abbrev willTHrow willThrow
 abbrev sectino section
 abbrev colleciton collection
 abbrev Colleciton Collection
+abbrev leagcy legacy
+abbrev Leagcy Legacy
 
 cabbr note: ~/Notes/
 cabbrev snote: ~/Notes/saatchiart/

@@ -133,20 +133,21 @@ _install_homebrew_if_its_missing () {
 # install/update homebrew packages {{{
 _pin_homebrew_packages () {
     _log_info "Pinning brew packages that need pinning"
-    ( brew info bzip2 | grep --quiet "pinned" ) || brew pin bzip2
-    ( brew info curl | grep --quiet "pinned" ) || brew pin curl
-    ( brew info intltool | grep --quiet "pinned" ) || brew pin intltool
-    ( brew info libedit | grep --quiet "pinned" ) || brew pin libedit
-    ( brew info libiconv | grep --quiet "pinned" ) || brew pin libiconv
-    ( brew info libmemcached | grep --quiet "pinned" ) || brew pin libmemcached
-    ( brew info libmcrypt | grep --quiet "pinned" ) || brew pin libmcrypt
-    ( brew info openssl | grep --quiet "pinned" ) || brew pin openssl
-    ( brew info pkg-config | grep --quiet "pinned" ) || brew pin pkg-config
-    ( brew info readline | grep --quiet "pinned" ) || brew pin readline
-    ( brew info xz | grep --quiet "pinned" ) || brew pin xz
-    ( brew info zlib | grep --quiet "pinned" ) || brew pin zlib
-    ( brew info icu4c | grep --quiet "pinned" ) || brew pin icu4c
-    ( brew info "libcouchbase@2" | grep --quiet "pinned" ) || brew pin "libcouchbase@2"
+    brew pin "libcouchbase@2"
+    brew pin bison
+    brew pin bzip2
+    brew pin curl
+    brew pin icu4c
+    brew pin intltool
+    brew pin libedit
+    brew pin libiconv
+    brew pin libmcrypt
+    brew pin libmemcached
+    brew pin openssl
+    brew pin pkg-config
+    brew pin readline
+    brew pin xz
+    brew pin zlib
 }
 
 _install_update_homebrew_packages () {
@@ -308,20 +309,37 @@ _install_php_70 () {
     asdf global php 7.0.33
     local PHP_PATH="$(asdf where php)"
 
-    # install pear so we can use pecl to install extensions
-    [ -f "$HOME/.bin/go-pear.phar" ] || wget -O "$HOME/.bin/go-pear.phar" http://pear.php.net/go-pear.phar
-    chmod +x "$HOME"/.bin/go-pear.phar
-    PHP_PATH="${PHP_PATH}" "$HOME/.support/install-pear.sh" # installs pear non-interactively
-
+    # install php extensions
     mkdir -p "${PHP_PATH}"/conf.d
-    # this is a sub requirement of couchbase
-    yes "" | "${PHP_PATH}"/pear/bin/pecl install pcs && ( echo 'extension="phpcs.so"' >"${PHP_PATH}"/conf.d/pcs.ini )
-    yes "" | "${PHP_PATH}"/pear/bin/pecl install couchbase-2.2.4 && ( echo 'extension="couchbase.so"' >"${PHP_PATH}"/conf.d/couchbase.ini )
-    yes "" | "${PHP_PATH}"/pear/bin/pecl install memcached && ( echo 'extension="memcached.so"' >"${PHP_PATH}"/conf.d/memcached.ini )
-    yes "" | "${PHP_PATH}"/pear/bin/pecl install imagick && ( echo 'extension="imagick.so"' >"${PHP_PATH}"/conf.d/imagick.ini )
-    ln -sf "$HOME/.composer/composer.json" "${PHP_PATH}"/.composer/composer.json
+    # pcs is a sub requirement of couchbase
+    yes "" | pecl install pcs && ( echo 'extension="phpcs.so"' >"${PHP_PATH}"/conf.d/pcs.ini )
+    yes "" | pecl install couchbase-2.2.4 && ( echo 'extension="couchbase.so"' >"${PHP_PATH}"/conf.d/couchbase.ini )
+    yes "" | pecl install memcached && ( echo 'extension="memcached.so"' >"${PHP_PATH}"/conf.d/memcached.ini )
+    yes "" | pecl install imagick && ( echo 'extension="imagick.so"' >"${PHP_PATH}"/conf.d/imagick.ini )
+
+    # install composer packages
+    mkdir -p  "${PHP_PATH}"/{.,}composer
+    ln -sf "$HOME/.composer/composer.json" "${PHP_PATH}"/composer/composer.json
     _install_update_composer_packages
     asdf reshim php 7.0.33
+}
+
+_install_php_74 () {
+    ( asdf list php | grep --quiet 7.4.7 ) || asdf install php 7.4.7
+    asdf global php 7.4.7
+
+    # install php extensions
+    local PHP_PATH="$(asdf where php)"
+    mkdir -p "${PHP_PATH}"/conf.d
+    yes "" | pecl install couchbase && ( echo 'extension="couchbase.so"' >"${PHP_PATH}"/conf.d/couchbase.ini )
+    yes "" | pecl install memcached && ( echo 'extension="memcached.so"' >"${PHP_PATH}"/conf.d/memcached.ini )
+    yes "" | pecl install imagick && ( echo 'extension="imagick.so"' >"${PHP_PATH}"/conf.d/imagick.ini )
+
+    # install composer packages
+    mkdir -p  "${PHP_PATH}"/{.,}composer
+    ln -sf "$HOME/.composer/composer.json" "${PHP_PATH}"/composer/composer.json
+    _install_update_composer_packages
+    asdf reshim php 7.4.7
 }
 
 _install_php_versions () {
@@ -329,12 +347,34 @@ _install_php_versions () {
     _log_info "Installing php version(s)"
     asdf plugin add php && ( sed -i '' "/--enable-intl/d" $HOME/.asdf/plugins/php/bin/install )
 
-    # 7.0.33
-    _install_php_70
+    # configure openssl {{{
+    export PATH="/usr/local/opt/openssl@1.1/bin:${PATH}"
+    # For compilers to find openssl@1.1 you may need to set:
+    export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
+    export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
+    # For pkg-config to find openssl@1.1 you may need to set:
+    export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig:${PKG_CONFIG_PATH}"
+    # }}}
 
-    # 7.4.7
-    ( asdf list php | grep --quiet 7.4.7 ) || asdf install php 7.4.7
-    asdf global php 7.4.7
+    # configure bison {{{
+    export PATH="/usr/local/opt/bison/bin:${PATH}"
+    # For compilers to find bison you may need to set:
+    export LDFLAGS="-L/usr/local/opt/bison/lib"
+    # }}}
+
+    # configure icu4c {{{
+    # If you need to have icu4c first in your PATH run:
+    export PATH="/usr/local/opt/icu4c/bin:${PATH}"
+    export PATH="/usr/local/opt/icu4c/sbin:${PATH}"
+    # For compilers to find icu4c you may need to set:
+    export LDFLAGS="-L/usr/local/opt/icu4c/lib"
+    export CPPFLAGS="-I/usr/local/opt/icu4c/include"
+    # For pkg-config to find icu4c you may need to set:
+    export PKG_CONFIG_PATH="/usr/local/opt/icu4c/lib/pkgconfig:${PKG_CONFIG_PATH}"
+    # }}}
+
+    _install_php_70
+    _install_php_74
 
     builtin cd - >/dev/null || return
 }
@@ -685,11 +725,8 @@ _install_xcode_command_line_tools
 _install_necessary_headers_in_include_on_mojave
 _install_homebrew_if_its_missing
 _install_update_homebrew_packages
-_update_asdf_plugins
 _install_php_versions
 _install_node_versions
-_install_python_versions
-_install_ruby_versions
 # _install_update_composer_packages
 # _install_update_cgr_packages
 _install_upgrade_akamai
