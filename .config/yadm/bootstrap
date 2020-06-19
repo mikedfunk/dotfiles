@@ -138,7 +138,6 @@ _pin_homebrew_packages () {
     brew pin bzip2
     brew pin curl
     brew pin icu4c
-    brew pin intltool
     brew pin libedit
     brew pin libiconv
     brew pin libmcrypt
@@ -309,7 +308,7 @@ _install_php_70 () {
     asdf global php 7.0.33
     local PHP_PATH="$(asdf where php)"
 
-    # install php extensions
+    # install php extensions (different set for 7.0.33)
     mkdir -p "${PHP_PATH}"/conf.d
     # pcs is a sub requirement of couchbase
     yes "" | pecl install pcs && ( echo 'extension="phpcs.so"' >"${PHP_PATH}"/conf.d/pcs.ini )
@@ -328,7 +327,7 @@ _install_php_74 () {
     ( asdf list php | grep --quiet 7.4.7 ) || asdf install php 7.4.7
     asdf global php 7.4.7
 
-    # install php extensions
+    # install php extensions (different set for 7.4.7)
     local PHP_PATH="$(asdf where php)"
     mkdir -p "${PHP_PATH}"/conf.d
     yes "" | pecl install couchbase && ( echo 'extension="couchbase.so"' >"${PHP_PATH}"/conf.d/couchbase.ini )
@@ -727,7 +726,7 @@ _install_homebrew_if_its_missing
 _install_update_homebrew_packages
 _install_php_versions
 _install_node_versions
-# _install_update_composer_packages
+_install_update_composer_packages
 # _install_update_cgr_packages
 _install_upgrade_akamai
 _install_upgrade_yarn

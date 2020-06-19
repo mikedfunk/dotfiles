@@ -14,7 +14,7 @@ brew "awscli" # aws command - used to upload to s3, etc. `aws configure` to set 
 brew "bandwhich" # top-like tool to see which processes are using the most bandwidth (sudo bandwhich)
 brew "bat" # much cooler looking cat
 brew "bison" # needed for phpenv build. The default mac one is too old. https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
-brew "broot" # use `br` to do something between tree and ls. File browser with lots of vim patterns.
+# brew "broot" # use `br` to do something between tree and ls. File browser with lots of vim patterns.
 brew "bzip2" # needed for phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
 # brew "bzt" # taurus http and performance test runner
 # brew "chromedriver" # like selenium for chrome. (These drivers feel pretty outdated to me)
@@ -48,7 +48,7 @@ brew "entr" # file watcher (I use this a lot in my shell functions)
 # brew "fpp" # facebook path picker. Used with tmux-fpp to easily open files in an editor. (I don't use it)
 brew "fx" # json funagler used by some of my shell functions
 brew "fzf" # fuzzy file finder `git branch | fzf | xargs git checkout`
-brew "github/gh/gh" # new github cli in beta!
+brew "github/gh/gh" # new github cli
 brew "git"
 # brew "git-extras" # adds some cool additional git commands (conflicts with npm git-standup)
 # brew "git-flow" # adds first class git commands for the git-flow workflow (I use avh version below)
@@ -72,10 +72,9 @@ brew "hub" # , args: ["devel"] # github tool is a superset of git with extra com
 # brew "icu4c" # needed for php70-intl extension (it seems this is included with node https://stackoverflow.com/questions/27896229/library-not-loaded-error-after-brew-install-php56) https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
 # brew "ievms" # internet explorer VirtualBox VMs to test a site in various IE versions
 brew "imagemagick" # image transformation tool - needed by php imagemagick extension (latest version needed to install host machine pecl imagick php extension)
-brew "imagemagick@6" # image transformation tool - v6 needed for catalog
+# brew "imagemagick@6" # image transformation tool - v6 needed for catalog
 # brew "interactive-rebase-tool" # awesome ncurses tool to spiff up interactive rebases (I use vim with a plugin instead)
 # brew "intellij-idea-ce" # there's a community edition?? Just bookmarking this for later
-brew "intltool" # needed for php intl extension
 # brew "irssi" # irc client (I use web app)
 # brew "jenkins-zh/jcli/jcli" # jenkins cli - alternative to .jar version
 # brew "jsawk" # parse json in bash
@@ -92,7 +91,6 @@ brew "derailed/k9s/k9s" # handy kubernetes dashboard `k9s -n develop`
 brew "libcouchbase@2" # nosql fast data storage. I install this for the cli tool `cbc` and to build the php couchbase extension (note: requires brew link libcouchbase@2 --force)
 brew "libedit" # needed for phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
 brew "libiconv" # needed for phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
-# brew "libjpeg" # needed for phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
 brew "libmemcached" # needed by php70 memcached pecl extension
 brew "libmcrypt" # needed by php-build, which is used by phpenv DO NOT DELETE php will break
 # brew "libpng" # needed for phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
@@ -126,7 +124,7 @@ brew "openssl" # needed for rbenv https://github.com/rbenv/ruby-build/issues/377
 # brew "pandoc" # transform between document formats e.g. markdown <-> pdf (used for inline vim php documentation, which I no longer use)
 # brew "pass" # unix password manager using gpg
 # brew "peco" # interactively filter results and print the filtered version. can be used to print filtered one or e.g. `vim $(dosomething | peco)` (FZF does this)
-brew "perl" # for swat cpan package
+# brew "perl" # for swat cpan package
 # brew "perl-build" # needed for perlenv (which I don't use currently)
 # brew "percona-toolkit" # mysql schema migrator among other things. requires java and perl.
 brew "pgcli" # like mycli for postgres (used for toaf judging app)
@@ -146,12 +144,12 @@ brew "pspg" # , args: ["HEAD"] # "postgres pager" also useful for mysql, etc.
 # brew "pyenv" # python version manager (same api as rbenv)
 brew "python" # updated version of python with updated pip. Useful for installing pip packages without root. NOTE: homebrew "pip" breaks neovim. Needed for ntfy, see ~/.config/yadm/bootstrap
 # brew "python3" # required for tmuxomatic (but I use pyenv)
-brew "qcachegrind" # this is really kcachegrind which is useful for profiling php apps with xdebug
+brew "qcachegrind" # like kcachegrind which is useful for profiling php apps with xdebug
 # brew "ranger" # vim-like file system browser (cool but I don't use it)
 # brew "rbenv" # ruby environment switcher (I use asdf now)
 # brew "reattach-to-user-namespace" # used to fix mac issues with copy/paste in tmux (not needed after tmux 2.6! https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard/issues/66)
-brew "re2c" # needed by phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
-brew "readline" # needed for phpenv
+# brew "re2c" # needed by phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
+# brew "readline" # needed for phpenv
 # brew "redis" # key/value store (If I need this I'll use docker)
 # brew "rlwrap" # wrap a command in readline to enable up for history, etc. Useful for python repl: `rlwrap python`
 # brew "ruby" # (rbenv covers it for me)
@@ -179,7 +177,7 @@ brew "sqlite3" # used as the default db for rails
 # brew "stone-soup" # roguelike called dungeon-crawl-stone-soup `crawl`
 # brew "stow" # http://brandon.invergo.net/news/2012-05-26-using-gnu-stow-to-manage-your-dotfiles.html (I use yadm instead)
 # brew "stripe/stripe-cli/stripe" # test webooks with stripe, tail api events, etc.
-brew "swagger-codegen" # openapi codegen - depends on adoptopenjdk8.
+# brew "swagger-codegen" # openapi codegen - depends on adoptopenjdk8.
 # brew "task" # taskwarrior https://taskwarrior.org (I don't need this unless I don't have jira. Doesn't let you assign points! Has an opaque priority selection algorithm.)
 # brew "teleconsole" # share your console with others easily (Extremely rare that I need something like this)
 brew "telnet" # I don't have telnet? How am I going to watch star wars?
@@ -195,7 +193,6 @@ brew "tldr" # more consise community man pages
 brew "trash-cli" # a trash can for the terminal
 brew "tree" # display file/folder hierarchies in a visual tree format
 brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"] # tag creator for use by vim to navigate by symbols. head only.
-brew "unixodbc" # needed by php70
 brew "urlview" # used by <prefix>u tmux urlview plugin
 # brew "virtualhost".sh # (crappy) virtualhost management script
 brew "watch" # Executes a program periodically, showing output fullscreen (an npm package which is a child dependency of another sometimes replaces this binary: https://www.npmjs.com/package/watch . If so, just `brew link --overwrite watch` )
@@ -205,13 +202,11 @@ brew "wget" # latest version
 # brew "wifi-password" # get your current wifi password quickly without mucking about with keychain access (install if needed)
 # brew "xdebug-osx" # xdebug toggler for homebrew php (which I don't currently use)
 # brew "xmlto" # convert xml to other formats because fuck xml
-brew "xz" # needed for phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
 # brew "vim" # macvim requires xcode. This also allows you to get vim 8 without using a separate tap. (switched back to neovim)
 # brew "vit" # ncurses taskwarrior interface - like tig for taskwarrior (This is cool but I don't really use taskwarrior anymore. Freeform daily task list with notes are more helpful to me.)
 brew "yamllint" # used by vim-ale
 brew "yarn" # wrapper for npm with real lock files and caching (installing via npm is deprecated)
 brew "yadm" # yet another dotfiles manager
-brew "zlib" # needed for pyenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864 (but can be used from /usr/include after installing developer package on mojave)
 brew "zork" # seriously? yes. tip: `save` and `restore` And yes, there's only one save slot, what do you think this is, 1990?
 # brew "zplug" # zsh plugin manager like composer. bash installer crashes for some reason. works fine via homebrew. (switched to antibody)
 brew "zsh" # awesome bash shell replacement
@@ -303,7 +298,7 @@ cask "slack" # needed for screen sharing features. I mostly use the web app.
 cask "spectacle" # keyboard window splitter/resizer/mover. Kind of like a lightweight i3 window manager. I use it a lot.
 # cask "spotify" # mac native spotify player (I use the web app, but sometimes it gets stuck in an offline state or randomly stops playing)
 # cask "stoplight-studio" # openapi ide. This is cool but you can also just use the web version at https://stoplight.io/p/studio but the desktop app works with local files _and_ automatically mocks local apis with prism - their built-in api mocker (this is really only useful as a fancy local openapi spec editor since even their ci docs generator just hits their api)
-cask "synthesia" # piano learning software
+# cask "synthesia" # piano learning software
 # cask "ssh-tunnel-manager" # mac native gui to manage running ssh tunnels (I just put tunnels in launchctl with autossh and forget about them)
 # cask "steam" # yep
 # cask "suspicious-package" # quicklook plugin for mac dmg package inspection (I don't care about inspecting these)
