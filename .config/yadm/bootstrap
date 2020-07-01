@@ -186,10 +186,8 @@ _install_neovim_from_source () {
     if [[ ! -d "$HOME/Code/neovim" ]]; then
         cd "$HOME/Code"
         git clone git@github.com:neovim/neovim.git
-        cd neovim
-    else
-        cd "$HOME/Code/neovim"
     fi
+    cd "$HOME/Code/neovim"
     git pull
     rm build/.ran-third-party-cmake 2>/dev/null || true
     make CMAKE_BUILD_TYPE=RelWithDebInfo
@@ -285,9 +283,16 @@ _install_vim_plug () {
 _install_upgrade_vim_plugins () {
     _log_info "Installing/upgrading vim plugins"
     # vim +PlugInstall +PlugUpdate +PlugClean! +qall
-    nvim +PlugUpgrade +PlugInstall +PlugUpdate +PlugClean! +UpdateRemotePlugins "+LspInstall intelephense" +qall
+    nvim \
+        +PlugUpgrade \
+        +PlugInstall \
+        +PlugUpdate \
+        +PlugClean! \
+        "+LspInstall intelephense" \
+        +qall
     # coc.nvim extension updates
-    # nvim +"CocInstall coc-phpls" +CocUpdate +qall
+    #     +"CocInstall coc-phpls" \
+    #     +CocUpdate \
 }
 # }}}
 
@@ -752,7 +757,7 @@ _fix_file_size_limit_for_watching_with_entr
 # _install_activate_nextdns
 # _upgrade_docker_machine
 _link_docker_for_mac
-# _install_neovim_from_source
+_install_neovim_from_source
 # _install_mc
 # _install_nix_package_manager
 _install_upgrade_ix_io
