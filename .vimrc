@@ -543,6 +543,15 @@ endif
 " https://dev.to/petermbenjamin/comment/7ng0
 if has('nvim')
     set inccommand=split
+    " set inccommand=nosplit
+endif
+
+" https://blog.kdheepak.com/three-built-in-neovim-features.html#highlight-yanked-text
+if has('nvim')
+    augroup LuaHighlight
+        autocmd!
+        autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()
+    augroup END
 endif
 
 if has('nvim')

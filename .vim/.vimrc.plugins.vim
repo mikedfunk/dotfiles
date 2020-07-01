@@ -85,10 +85,24 @@ if (has('nvim'))
     " this plugin also breaks nvim_lsp hover
     "
 endif
+
+" nvim-lsp-smag {{{
+" as of 2020-06-23:
+"
+" Vim(let):E5108: Error executing lua .../.vim/plugged/nvim-lsp-smag/lua/lsp_smag/utils/lists.lua:4: bad argument #1 to 'ipairs' (table expected, got nil)
+"
+" it's apparently because php doesn't support most of the default providers.
+" If I pair this down to just 'definition' it just fails to find it but
+" doesn't break.
+"
+" let g:lsp_smag_enabled_providers = ['definition']
+"
 " Plug 'weilbith/nvim-lsp-smag' " use lsp as tagfunc if available (Doesn't
 " work - I found a
 " function in an article that actually works, but it's just as innacurate as
 " vim's built-in tagfunc)
+" }}}
+
 " }}}
 
 " General {{{
@@ -202,7 +216,7 @@ Plug 'AndrewRadev/undoquit.vim' " another one to reopen closed buffers/windows/t
 " Plug 'google/vim-searchindex' " show search index in cmd area e.g. [4/7]
 " Plug 'henrik/vim-indexed-search' " works better with vim-slash
 " Plug 'matze/vim-move' " move lines up/down with <a-j> and <a-k>
-Plug 'frioux/vim-lost' " gL to see what function you're in. I use this in php sometimes to avoid expensive similar functionality in vim-airline.
+Plug 'frioux/vim-lost', { 'branch': 'main' } " gL to see what function you're in. I use this in php sometimes to avoid expensive similar functionality in vim-airline.
 " Plug 'ramele/agrep' " async grep that shows found context in a split. Cool!
 " Plug 'wincent/ferret' " enhances search, quickfix window, etc. with :Ack command
 " Plug 'dhruvasagar/vim-zoom' " zoom toggle. Can kind of do the same thing with <c-w>_ or <c-w><bar> or permanently with :only

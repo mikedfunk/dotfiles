@@ -163,6 +163,7 @@
     <exclude name="PEAR.Commenting.ClassComment" />
     <exclude name="PEAR.Commenting.FunctionComment" />
     <exclude name="PEAR.WhiteSpace.ObjectOperatorIndent" />
+    <exclude name="PEAR.WhiteSpace.ScopeIndent" />
     <exclude name="PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket" />
     <exclude name="PEAR.Functions.FunctionCallSignature.CloseBracketLine" />
     <exclude name="PEAR.Formatting.MultiLineAssignment.EqualSignLine" />
@@ -211,6 +212,7 @@
     <exclude name="Squiz.PHP.DisallowComparisonAssignment" />
     <exclude name="Squiz.WhiteSpace.ObjectOperatorSpacing" />
     <exclude name="Squiz.ControlStructures.InlineIfDeclaration" />
+    <exclude name="Squiz.ControlStructures.SwitchDeclaration.BreakIndent" />
     <exclude name="Squiz.Commenting.InlineComment" />
     <exclude name="Squiz.Arrays.ArrayDeclaration" />
     <exclude name="Squiz.Objects.ObjectInstantiation" />

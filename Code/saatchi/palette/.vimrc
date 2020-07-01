@@ -58,10 +58,10 @@ endif
 " }}}
 
 " nvim-lsp {{{
-" nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
-" nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
 augroup php_lsp_mappings
     autocmd!
+    autocmd FileType php nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+    autocmd FileType php nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
     autocmd FileType php nnoremap <silent> <leader><c-]> mz:tabe %<CR>`z<cmd>lua vim.lsp.buf.definition()<CR>
     autocmd FileType php nnoremap <silent> <c-w><c-]> :vsp<CR><cmd>lua vim.lsp.buf.definition()<CR>
     " autocmd FileType php nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>

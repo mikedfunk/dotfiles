@@ -120,6 +120,7 @@ bind generic gca !git commit --amend
 bind generic gcfd !git cfd
 bind generic gcfm !git cfm
 bind generic gclf @git clean -f
+bind generic gco- !git checkout -
 bind generic gcob @git checkout -b "%(prompt Enter branch name: )"
 # commit and sign with gpg key
 bind generic gcs @git cs

@@ -285,7 +285,7 @@ _install_vim_plug () {
 _install_upgrade_vim_plugins () {
     _log_info "Installing/upgrading vim plugins"
     # vim +PlugInstall +PlugUpdate +PlugClean! +qall
-    nvim +PlugUpgrade +PlugInstall +PlugUpdate +PlugClean! +UpdateRemotePlugins +qall
+    nvim +PlugUpgrade +PlugInstall +PlugUpdate +PlugClean! +UpdateRemotePlugins "+LspInstall intelephense" +qall
     # coc.nvim extension updates
     # nvim +"CocInstall coc-phpls" +CocUpdate +qall
 }

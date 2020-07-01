@@ -458,11 +458,112 @@ if (has('nvim')) && has_key(g:plugs, 'nvim-lsp')
 
     " working for palette, legacy, etc!
     if (executable('intelephense'))
-        if (has_key(g:plugs, 'completion-nvim'))
-            lua require'nvim_lsp'.intelephense.setup{on_attach=require'completion'.on_attach}
-        else
-            lua require'nvim_lsp'.intelephense.setup{}
-        endif
+
+        " https://github.com/Mte90/dotfiles/blob/master/.vim/custom/custom-lsp.vim
+        " available stubs: https://github.com/JetBrains/phpstorm-stubs
+        " added: couchbase, redis, memcached
+
+lua <<EOF
+    local nvim_lsp = require'nvim_lsp'
+    nvim_lsp.intelephense.setup{
+        settings = {
+            intelephense = {
+                environment = {
+                    phpVersion = "7.0.0"
+                },
+                completion = {
+                    insertUseDeclaration = true,
+                    fullyQualifyGlobalConstantsAndFunctions = true
+                },
+                stubs = {
+                    "apache",
+                    "bcmath",
+                    "bz2",
+                    "calendar",
+                    "com_dotnet",
+                    "Core",
+                    "ctype",
+                    "couchbase",
+                    "curl",
+                    "date",
+                    "dba",
+                    "dom",
+                    "enchant",
+                    "exif",
+                    "fileinfo",
+                    "filter",
+                    "fpm",
+                    "ftp",
+                    "gd",
+                    "hash",
+                    "iconv",
+                    "imap",
+                    "interbase",
+                    "intl",
+                    "json",
+                    "ldap",
+                    "libxml",
+                    "mbstring",
+                    "mcrypt",
+                    "memcached",
+                    "meta",
+                    "mssql",
+                    "mysqli",
+                    "oci8",
+                    "odbc",
+                    "openssl",
+                    "pcntl",
+                    "pcre",
+                    "PDO",
+                    "pdo_ibm",
+                    "pdo_mysql",
+                    "pdo_pgsql",
+                    "pdo_sqlite",
+                    "pgsql",
+                    "Phar",
+                    "posix",
+                    "pspell",
+                    "readline",
+                    "recode",
+                    "redis",
+                    "Reflection",
+                    "regex",
+                    "session",
+                    "shmop",
+                    "SimpleXML",
+                    "snmp",
+                    "soap",
+                    "sockets",
+                    "sodium",
+                    "SPL",
+                    "sqlite3",
+                    "standard",
+                    "superglobals",
+                    "sybase",
+                    "sysvmsg",
+                    "sysvsem",
+                    "sysvshm",
+                    "tidy",
+                    "tokenizer",
+                    "wddx",
+                    "xml",
+                    "xmlreader",
+                    "xmlrpc",
+                    "xmlwriter",
+                    "Zend OPcache",
+                    "zip",
+                    "zlib"
+                }
+            }
+        }
+    }
+EOF
+
+        " if (has_key(g:plugs, 'completion-nvim'))
+        "     lua require'nvim_lsp'.intelephense.setup{on_attach=require'completion'.on_attach}
+        " else
+        "     lua require'nvim_lsp'.intelephense.setup{}
+        " endif
         augroup nvim_lsp_php
             autocmd!
             autocmd filetype php setlocal omnifunc=v:lua.vim.lsp.omnifunc
@@ -489,75 +590,6 @@ if (has('nvim')) && has_key(g:plugs, 'nvim-lsp')
     " moved this to easel .vimrc ... legacy doesn't have flow and gallery's
     " version is so old it doesn't have lsp.
     " require'nvim_lsp'.flow.setup{}
-
-" tagfunc {{{
-" https://qrunch.net/@igrep/entries/K6sUDofcmvtnRqzk
-lua << EOF
-local lsp = require 'vim.lsp'
-local util = require 'vim.lsp.util'
-local log = require 'vim.lsp.log'
-local vim = vim
-
--- Ref (in Japanese): https://daisuzu.hatenablog.com/entry/2019/12/06/005543
-function tagfunc_nvim_lsp(pattern, flags, info)
- local result = {}
- local isSearchingFromNormalMode = flags == "c"
-
- local method
- local params
- if isSearchingFromNormalMode then
-   -- Jump to the definition of the symbol under the cursor
-   -- when called by CTRL-]
-   method = 'textDocument/definition'
-   params = util.make_position_params()
- else
-   -- NOTE: Currently I'm not sure how this clause is tested
-   --       because `:tag` command doesn't seem to use `tagfunc`.
-
-   -- Search with `pattern` when called by ex command (e.g. `:tag`)
-   method = 'workspace/symbol'
-
-   -- Delete "\<" from `pattern` when prepended.
-   -- Perhaps the server doesn't support regex in vim!
-   params = {}
-   if string.find(flags, 'i') then
-     params.query = string.sub(pattern, '^\\<', '')
-   else
-     params.query = pattern
-   end
- end
- local client_id_to_results, err = lsp.buf_request_sync(0, method, params)
- if err then
-   print('Error when calling tagfunc: ' .. err)
-   return result
- end
-
- for _client_id, results in pairs(client_id_to_results) do
-   for i, lsp_result in ipairs(results.result) do
-     local name
-     local location
-     if isSearchingFromNormalMode then
-       name = pattern
-       location = lsp_result
-     else
-       name = lsp_result.name
-       location = lsp_result.location
-     end
-     local location_for_tagfunc = {
-       name = name,
-       filename = vim.uri_to_fname(location.uri),
-       cmd = tostring(location.range.start.line + 1)
-     }
-     table.insert(result, location_for_tagfunc)
-   end
- end
- return result
-end
-EOF
-
-" this breaks php use plugin - it can't find basic tags
-" set tagfunc=v:lua.tagfunc_nvim_lsp
-" }}}
 
 endif
 " }}}

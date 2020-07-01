@@ -50,7 +50,9 @@ autocmd BufReadPre *.js let b:javascript_lib_use_react = 1
 " nvim-lsp (does nothing for some reason... wish this were typescript) {{{
 if (has('nvim'))
 lua << EOF
-require'nvim_lsp'.flow.setup{}
+require'nvim_lsp'.flow.setup{
+  cmd = { "/usr/local/bin/flow", "lsp" }
+}
 EOF
 " cmd = { "/usr/local/bin/flow", "lsp" }
 " cmd = { "npm", "run", "flow", "lsp", "--" }
