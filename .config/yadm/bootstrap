@@ -757,7 +757,7 @@ _fix_file_size_limit_for_watching_with_entr
 # _install_activate_nextdns
 # _upgrade_docker_machine
 _link_docker_for_mac
-_install_neovim_from_source
+# _install_neovim_from_source
 # _install_mc
 # _install_nix_package_manager
 _install_upgrade_ix_io
