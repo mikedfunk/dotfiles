@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!-- vim:set sw=2 ts=2 et: -->
+<ruleset name="Mike's Palette PHPMD Ruleset">
+
+  <description>Mike's more strict, experimental version of the Saatchi Art PHP Mess Detector ruleset</description>
+
+  <arg name="ansi" />
+
+  <exclude-pattern>_couchbase_stubs.php</exclude-pattern>
+  <exclude-pattern>_ide_helper.php</exclude-pattern>
+  <exclude-pattern>bootstrap/cache</exclude-pattern>
+  <exclude-pattern>composer.phar</exclude-pattern>
+  <exclude-pattern>coverage/*</exclude-pattern>
+  <exclude-pattern>resources/views*</exclude-pattern>
+  <exclude-pattern>spec/*</exclude-pattern>
+  <exclude-pattern>storage/*</exclude-pattern>
+  <exclude-pattern>tags</exclude-pattern>
+  <exclude-pattern>tests/*</exclude-pattern>
+  <exclude-pattern>vendor/*</exclude-pattern>
+
+  <rule ref="rulesets/cleancode.xml">
+    <!-- ignore error on e.g. \UnexpectedValueException -->
+    <exclude name="MissingImport" />
+
+    <!-- yes, this is the only way to exclude a rule for specific files in phpmd :/ -->
+    <exclude name="StaticAccess" />
+    <exclude-pattern>database/seeds/*</exclude-pattern>
+  </rule>
+
+  <rule ref="rulesets/codesize.xml">
+  </rule>
+
+  <rule ref="rulesets/controversial.xml">
+  </rule>
+
+  <rule ref="rulesets/design.xml">
+  </rule>
+
+  <rule ref="rulesets/naming.xml">
+    <!-- https://stackoverflow.com/a/29433750/557215 -->
+    <exclude name="LongVariable" />
+    <exclude name="ShortMethodName" />
+    <exclude name="ShortVariable" />
+  </rule>
+
+  <rule ref="rulesets/naming.xml/LongVariable">
+    <properties>
+      <property name="maximum" value="50" />
+    </properties>
+  </rule>
+  <rule ref="rulesets/naming.xml/ShortVariable">
+    <properties>
+      <property name="minimum" value="2" />
+    </properties>
+  </rule>
+  <rule ref="rulesets/naming.xml/ShortMethodName">
+    <properties>
+      <property name="minimum" value="2" />
+    </properties>
+  </rule>
+
+  <rule ref="rulesets/unusedcode.xml">
+  </rule>
+
+</ruleset>

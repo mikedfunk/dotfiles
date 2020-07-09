@@ -223,7 +223,10 @@
     <!-- this doesn't take into account ?? >:( -->
     <exclude name="Squiz.Formatting.OperatorBracket" />
     <exclude name="Squiz.ControlStructures.ElseIfDeclaration" />
+    <!-- this rule does not allow even \stdClass->my_var, which is fine -->
+    <exclude name="Squiz.NamingConventions.ValidVariableName.NotCamelCaps" />
   </rule>
+  <!-- phpspec uses it_does_this() format for functions -->
   <rule ref="Squiz.NamingConventions.ValidFunctionName.ScopeNotCamelCaps">
     <exclude-pattern>spec/*</exclude-pattern>
   </rule>

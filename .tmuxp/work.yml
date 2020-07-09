@@ -190,7 +190,7 @@ windows:
           - v -S
         focus: true
       - ts
-      # - while true; do k9s -n develop --context saatchi-qa; sleep 60; done
+      - while true; do k9s -n develop --context saatchi-qa; sleep 60; done
       # - while true; do k9s -n master --context saatchi-prod; sleep 60; done
 # }}}
 

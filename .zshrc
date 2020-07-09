@@ -395,7 +395,7 @@ alias pu="phpunitnotify"
 puc() { pu --coverage-html=./coverage $@ && open coverage/index.html; }
 
 # Public: phpspec coverage
-psc() { phpdbg -qrr -dmemory_limit=2048M  ./vendor/bin/phpspec run --config ./phpspec-coverage-html.yml $@ && open coverage/index.html; }
+psc() { php -dmemory_limit=2048M ./vendor/bin/phpspec run --config ./phpspec-coverage-html.yml $@ && open coverage/index.html; }
 alias puf="pu --filter="
 
 # Public: phpunit watch

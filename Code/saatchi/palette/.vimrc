@@ -37,6 +37,7 @@ let g:ale_php_phpcs_standard = '/Users/mikefunk/Code/saatchi/palette/phpcs-mike.
 let g:ale_php_phpcbf_standard = '/Users/mikefunk/Code/saatchi/palette/phpcs-mike.xml'
 let g:ale_php_phpcbf_executable = '/Users/mikefunk/.support/phpcbf-helper.sh'
 let g:ale_php_phpcbf_use_global = 1
+let g:ale_php_phpmd_ruleset = '/Users/mikefunk/Code/saatchi/palette/phpmd-mike.xml'
 let ale_fixers = {'php': ['phpcbf']}
 let g:ale_php_phpstan_level = 4
 let g:ale_php_phpstan_configuration = '/Users/mikefunk/Code/saatchi/palette/phpstan.neon'

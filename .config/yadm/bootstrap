@@ -206,6 +206,20 @@ _install_mc () {
 }
 # }}}
 
+# install psysh {{{
+# docs say it's installable via phive but it's not currently
+# https://github.com/bobthecow/psysh/issues/489
+_install_psysh () {
+    _has psysh && return
+    _log_info "installing psysh (php repl)"
+    builtin cd || return
+    wget https://psysh.org/psysh
+    chmod +x psysh
+    mv psysh /usr/local/bin/psysh
+    builtin cd - || return
+}
+# }}}
+
 # akamai {{{
 _install_upgrade_akamai () {
     _has akamai && return
@@ -315,17 +329,30 @@ _install_php_70 () {
 
     # install php extensions (different set for 7.0.33)
     mkdir -p "${PHP_PATH}"/conf.d
-    # pcs is a sub requirement of couchbase
-    yes "" | pecl install pcs && ( echo 'extension="phpcs.so"' >"${PHP_PATH}"/conf.d/pcs.ini )
-    yes "" | pecl install couchbase-2.2.4 && ( echo 'extension="couchbase.so"' >"${PHP_PATH}"/conf.d/couchbase.ini )
-    yes "" | pecl install memcached && ( echo 'extension="memcached.so"' >"${PHP_PATH}"/conf.d/memcached.ini )
-    yes "" | pecl install imagick && ( echo 'extension="imagick.so"' >"${PHP_PATH}"/conf.d/imagick.ini )
+
+    _has pecl || _install_pear "7.0.33"
+    PECL="$(asdf where php)/pear/bin/pecl"
+
+    # TODO this doesn't work with php 7.0.33 :( the installer doesn't install pear any more.
+    yes "" | "$PECL" install pcs && ( echo 'extension="phpcs.so"' >"${PHP_PATH}"/conf.d/pcs.ini )
+    # NOTE: pcs is a sub requirement of couchbase
+    yes "" | "$PECL" install couchbase-2.2.4 && ( echo 'extension="couchbase.so"' >"${PHP_PATH}"/conf.d/couchbase.ini )
+    yes "" | "$PECL" install memcached && ( echo 'extension="memcached.so"' >"${PHP_PATH}"/conf.d/memcached.ini )
+    yes "" | "$PECL" install imagick && ( echo 'extension="imagick.so"' >"${PHP_PATH}"/conf.d/imagick.ini )
 
     # install composer packages
     mkdir -p  "${PHP_PATH}"/{.,}composer
     ln -sf "$HOME/.composer/composer.json" "${PHP_PATH}"/composer/composer.json
     _install_update_composer_packages
     asdf reshim php 7.0.33
+}
+
+_install_pear () {
+    _log_info "Installing pear"
+    local PHP_VERSION="$1"
+    wget -O "$HOME/.bin/go-pear.phar" http://pear.php.net/go-pear.phar
+    PHP_VERSION="$PHP_VERSION" "$HOME/.support/install-pear.sh" # installs pear non-interactively
+    rm "$HOME/.bin/go-pear.phar"
 }
 
 _install_php_74 () {
@@ -335,9 +362,13 @@ _install_php_74 () {
     # install php extensions (different set for 7.4.7)
     local PHP_PATH="$(asdf where php)"
     mkdir -p "${PHP_PATH}"/conf.d
-    yes "" | pecl install couchbase && ( echo 'extension="couchbase.so"' >"${PHP_PATH}"/conf.d/couchbase.ini )
-    yes "" | pecl install memcached && ( echo 'extension="memcached.so"' >"${PHP_PATH}"/conf.d/memcached.ini )
-    yes "" | pecl install imagick && ( echo 'extension="imagick.so"' >"${PHP_PATH}"/conf.d/imagick.ini )
+
+    _has pecl || _install_pear "7.4.7"
+    PECL="$(asdf where php)/pear/bin/pecl"
+
+    yes "" | "$PECL" install couchbase && ( echo 'extension="couchbase.so"' >"${PHP_PATH}"/conf.d/couchbase.ini )
+    yes "" | "$PECL" install memcached && ( echo 'extension="memcached.so"' >"${PHP_PATH}"/conf.d/memcached.ini )
+    yes "" | "$PECL" install imagick && ( echo 'extension="imagick.so"' >"${PHP_PATH}"/conf.d/imagick.ini )
 
     # install composer packages
     mkdir -p  "${PHP_PATH}"/{.,}composer
@@ -732,7 +763,6 @@ _install_update_homebrew_packages
 _install_php_versions
 _install_node_versions
 _install_update_composer_packages
-# _install_update_cgr_packages
 _install_upgrade_akamai
 _install_upgrade_yarn
 _set_zsh_as_shell
@@ -741,7 +771,8 @@ _install_upgrade_tmux_plugins
 _create_vim_directories
 _install_vim_plug
 _install_upgrade_vim_plugins
-# _install_upgrade_phive
+_install_upgrade_phive
+_install_psysh
 _install_update_ruby_gems
 _update_python3_pip_packages
 _install_upgrade_ntfy
