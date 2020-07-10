@@ -598,10 +598,20 @@ phpspecnotify() {
 
 # Public: phpunit with xdebug turned on
 pux() {
-    # xdebug-off > /dev/null
+    # xdebug-off 2> /dev/null
     phpx -dmemory_limit=2048M -ddisplay_errors=on ./vendor/bin/phpunit --colors "${@}"
     [[ $? == 0 ]] && noti --message "PHPUnit tests passed 👍" || noti --message "PHPUnit tests failed 👎"
-    xdebug-on > /dev/null
+    # xdebug-on > /dev/null
+}
+# }}}
+
+# xdebug {{{
+xdebug-off () {
+    ( mv "$(asdf where php)"/conf.d/04_xdebug.ini{,_OLD} 2> /dev/null ) || true
+}
+
+xdebug-on () {
+    ( mv "$(asdf where php)"/conf.d/04_xdebug.ini{_OLD,} 2>/dev/null ) || true
 }
 # }}}
 
