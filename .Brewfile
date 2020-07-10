@@ -148,7 +148,7 @@ brew "qcachegrind" # like kcachegrind which is useful for profiling php apps wit
 # brew "ranger" # vim-like file system browser (cool but I don't use it)
 # brew "rbenv" # ruby environment switcher (I use asdf now)
 # brew "reattach-to-user-namespace" # used to fix mac issues with copy/paste in tmux (not needed after tmux 2.6! https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard/issues/66)
-# brew "re2c" # needed by phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
+brew "re2c" # needed by phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
 # brew "readline" # needed for phpenv
 # brew "redis" # key/value store (If I need this I'll use docker)
 # brew "rlwrap" # wrap a command in readline to enable up for history, etc. Useful for python repl: `rlwrap python`

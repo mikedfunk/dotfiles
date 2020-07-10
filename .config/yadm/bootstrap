@@ -179,7 +179,7 @@ _install_cpanm_packages () {
 }
 # }}}
 
-# _install_neovim_from_source {{{
+# install neovim from source {{{
 _install_neovim_from_source () {
     _log_info "Installing neovim from source"
     pushd .
@@ -206,12 +206,11 @@ _install_mc () {
 }
 # }}}
 
-# install psysh {{{
+# install/upgrade psysh {{{
 # docs say it's installable via phive but it's not currently
 # https://github.com/bobthecow/psysh/issues/489
-_install_psysh () {
-    _has psysh && return
-    _log_info "installing psysh (php repl)"
+_install_upgrade_psysh () {
+    _log_info "installing/upgrading psysh (php repl)"
     builtin cd || return
     wget https://psysh.org/psysh
     chmod +x psysh
@@ -229,8 +228,8 @@ _install_upgrade_akamai () {
 }
 # }}}
 
-# update yarn {{{
-_install_upgrade_yarn () {
+# install/upgrade yarn packages {{{
+_install_upgrade_yarn_packages () {
     _log_info "Installing/upgrading yarn packages"
     builtin cd || return
     yarn global upgrade
@@ -245,7 +244,8 @@ _set_zsh_as_shell () {
         sudo /bin/sh -c "echo /usr/local/bin/zsh >> /etc/shells"
     fi
     if [[ "$SHELL" != "/usr/local/bin/zsh" ]]; then
-        _log_info "Changing shell to homebrew zsh" chsh -s "$(which zsh)"
+        _log_info "Changing shell to homebrew zsh"
+        chsh -s "$(which zsh)"
     fi
 }
 # }}}
@@ -272,13 +272,11 @@ _install_upgrade_tmux_plugins () {
 _create_vim_directories () {
     if [[ ! -d "$HOME/.vim/autoload" ]]; then
         _log_info "Creating required vim autoload directory"
-        mkdir -p "$HOME/.vim/autoload" &&
-            chmod +w "$HOME/.vim/autoload"
+        mkdir -p "$HOME/.vim/autoload" && chmod +w "$HOME/.vim/autoload"
     fi
     if [[ ! -d "$HOME/.vim/files/info" ]]; then
         _log_info "Creating required vim info directory"
-        mkdir -p "$HOME/.vim/files/info" &&
-            chmod a+w "$HOME/.vim/files/info"
+        mkdir -p "$HOME/.vim/files/info" && chmod a+w "$HOME/.vim/files/info"
     fi
 }
 # }}}
@@ -329,18 +327,19 @@ _install_php_70 () {
 
     # install php extensions (different set for 7.0.33)
     mkdir -p "${PHP_PATH}"/conf.d
-
     _has pecl || _install_pear "7.0.33"
-    PECL="$(asdf where php)/pear/bin/pecl"
+    PECL="${PHP_PATH}"/pear/bin/pecl
 
-    # TODO this doesn't work with php 7.0.33 :( the installer doesn't install pear any more.
     yes "" | "$PECL" install pcs && ( echo 'extension="phpcs.so"' >"${PHP_PATH}"/conf.d/pcs.ini )
     # NOTE: pcs is a sub requirement of couchbase
-    yes "" | "$PECL" install couchbase-2.2.4 && ( echo 'extension="couchbase.so"' >"${PHP_PATH}"/conf.d/couchbase.ini )
-    yes "" | "$PECL" install memcached && ( echo 'extension="memcached.so"' >"${PHP_PATH}"/conf.d/memcached.ini )
-    yes "" | "$PECL" install imagick && ( echo 'extension="imagick.so"' >"${PHP_PATH}"/conf.d/imagick.ini )
+    # NOTE: this requires `brew install couchbase@2`
+    yes "" | "$PECL" install couchbase-2.2.4 && ( echo 'extension="couchbase.so"' >"${PHP_PATH}"/conf.d/01_couchbase.ini )
+    yes "" | "$PECL" install memcached && ( echo 'extension="memcached.so"' >"${PHP_PATH}"/conf.d/02_memcached.ini )
+    yes "" | "$PECL" install imagick && ( echo 'extension="imagick.so"' >"${PHP_PATH}"/conf.d/03_imagick.ini )
+    # xdebug master is now php 7.1+ :(
+    yes "" | "$PECL" install xdebug-2.8.1 && ( echo 'zend_extension="xdebug.so"' >"${PHP_PATH}"/conf.d/04_xdebug.ini )
 
-    # install composer packages
+    # install composer global packages
     mkdir -p  "${PHP_PATH}"/{.,}composer
     ln -sf "$HOME/.composer/composer.json" "${PHP_PATH}"/composer/composer.json
     _install_update_composer_packages
@@ -364,13 +363,14 @@ _install_php_74 () {
     mkdir -p "${PHP_PATH}"/conf.d
 
     _has pecl || _install_pear "7.4.7"
-    PECL="$(asdf where php)/pear/bin/pecl"
+    PECL="${PHP_PATH}"/pear/bin/pecl
 
-    yes "" | "$PECL" install couchbase && ( echo 'extension="couchbase.so"' >"${PHP_PATH}"/conf.d/couchbase.ini )
-    yes "" | "$PECL" install memcached && ( echo 'extension="memcached.so"' >"${PHP_PATH}"/conf.d/memcached.ini )
-    yes "" | "$PECL" install imagick && ( echo 'extension="imagick.so"' >"${PHP_PATH}"/conf.d/imagick.ini )
+    yes "" | "$PECL" install couchbase && ( echo 'extension="couchbase.so"' >"${PHP_PATH}"/conf.d/01_couchbase.ini )
+    yes "" | "$PECL" install memcached && ( echo 'extension="memcached.so"' >"${PHP_PATH}"/conf.d/02_memcached.ini )
+    yes "" | "$PECL" install imagick && ( echo 'extension="imagick.so"' >"${PHP_PATH}"/conf.d/03_imagick.ini )
+    yes "" | "$PECL" install xdebug && ( echo 'zend_extension="xdebug.so"' >"${PHP_PATH}"/conf.d/04_xdebug.ini )
 
-    # install composer packages
+    # install global composer packages
     mkdir -p  "${PHP_PATH}"/{.,}composer
     ln -sf "$HOME/.composer/composer.json" "${PHP_PATH}"/composer/composer.json
     _install_update_composer_packages
@@ -433,7 +433,7 @@ _install_node_versions () {
 _install_python_versions () {
     builtin cd $HOME >/dev/null || return
     _log_info "Installing python version(s)"
-    asdf plugin add ruby
+    asdf plugin add python
     ( asdf list python | grep --quiet 3.8.3 ) || asdf install python 3.8.3
     asdf global python 3.8.3
     builtin cd - >/dev/null || return
@@ -469,6 +469,16 @@ _install_upgrade_phive () {
         mv phive.phar /usr/local/bin/phive
         cd -
     fi
+}
+# }}}
+
+# install/upgrade phive packages {{{
+_install_upgrade_phive_packages () {
+    local PACKAGES="dephpend"
+    for PACKAGE in $PACKAGES; do
+        ( cat "$HOME"/.phive/global.xml | grep --quiet "$PACKAGE" ) && phive update "$PACKAGE" && continue
+        phive install "$PACKAGE"
+    done
 }
 # }}}
 
@@ -746,9 +756,8 @@ _clear_evalcache () {
 
 # reminders {{{
 _show_reminders () {
-    true # noop
-    # _log_info "Don't forget to 'docker-machine upgrade' once in a while!"
-    # _log_info "Don't forget to 'brew cask upgrade virtualbox virtualbox-extension-pack' once in a while!"
+    _log_info "Don't forget to 'docker-machine upgrade' once in a while!"
+    _log_info "Don't forget to 'brew cask upgrade virtualbox virtualbox-extension-pack' once in a while!"
 }
 # }}}
 
@@ -761,10 +770,15 @@ _install_necessary_headers_in_include_on_mojave
 _install_homebrew_if_its_missing
 _install_update_homebrew_packages
 _install_php_versions
-_install_node_versions
 _install_update_composer_packages
+_install_node_versions
+_install_upgrade_yarn_packages
+_fix_yarn_link
+_install_python_versions
+_update_python3_pip_packages
+_install_ruby_versions
+_install_update_ruby_gems
 _install_upgrade_akamai
-_install_upgrade_yarn
 _set_zsh_as_shell
 _install_tmux_plugin_manager
 _install_upgrade_tmux_plugins
@@ -772,9 +786,8 @@ _create_vim_directories
 _install_vim_plug
 _install_upgrade_vim_plugins
 _install_upgrade_phive
-_install_psysh
-_install_update_ruby_gems
-_update_python3_pip_packages
+_install_upgrade_phive_packages
+_install_upgrade_psysh
 _install_upgrade_ntfy
 # _install_ls_colors
 # _install_cpanm
@@ -793,7 +806,7 @@ _link_docker_for_mac
 # _install_nix_package_manager
 _install_upgrade_ix_io
 _install_cod
-_fix_yarn_link
+_update_asdf_plugins
 _clear_evalcache
 # _show_reminders
 _log_info "Installation complete"
