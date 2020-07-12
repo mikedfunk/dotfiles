@@ -15,6 +15,7 @@ brew "bandwhich" # top-like tool to see which processes are using the most bandw
 brew "bat" # much cooler looking cat
 brew "bison" # needed for phpenv build. The default mac one is too old. https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
 # brew "broot" # use `br` to do something between tree and ls. File browser with lots of vim patterns.
+brew "browser" # pipe html to a temp file and open in browser e.g. `ls | browser`
 brew "bzip2" # needed for phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
 # brew "bzt" # taurus http and performance test runner
 # brew "chromedriver" # like selenium for chrome. (These drivers feel pretty outdated to me)

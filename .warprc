@@ -44,3 +44,4 @@ affirm:~/Code/php-affirm-sdk
 e2e:~/Code/saatchi/e2e-tests
 zoho:~/Code/saatchi/zcrm-php-sdk
 api-tests:~/Code/saatchi/api-tests
+couch:~/Code/saatchi/php-couchbase-sdk-adapter
