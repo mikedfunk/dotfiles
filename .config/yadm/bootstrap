@@ -114,11 +114,11 @@ _install_xcode_command_line_tools () {
 # https://github.com/pyenv/pyenv/issues/1219#issuecomment-428700763
 # TODO catalina https://apple.stackexchange.com/questions/373316/missing-headers-in-macos-10-15-catalina
 _install_necessary_headers_in_include_on_mojave () {
-    if ! [ -f "/Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg" ] || [ -f "$HOME/.mojave-lock" ]; then
+    if ! [ -f /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg ] || [ -f "$HOME"/.mojave-lock ]; then
         return
     fi
     _log_info "Installing additional tools needed for mojave"
-    sudo installer -pkg "/Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg" -target / && touch "$HOME/.mojave-lock"
+    sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target / && touch "$HOME"/.mojave-lock
 }
 # }}}
 
@@ -131,26 +131,8 @@ _install_homebrew_if_its_missing () {
 # }}}
 
 # install/update homebrew packages {{{
-_pin_homebrew_packages () {
-    _log_info "Pinning brew packages that need pinning"
-    brew pin "libcouchbase@2"
-    brew pin bison
-    brew pin bzip2
-    brew pin curl
-    brew pin icu4c
-    brew pin libedit
-    brew pin libiconv
-    brew pin libmcrypt
-    brew pin libmemcached
-    brew pin openssl
-    brew pin pkg-config
-    brew pin readline
-    brew pin xz
-    brew pin zlib
-}
-
 _install_update_homebrew_packages () {
-    [ -e "$HOME/.Brewfile" ] || return
+    [ -e "$HOME"/.Brewfile ] || return
     _log_info "Installing/upgrading homebrew packages"
     brew update # update homebrew itself and the list of brew package versions
     brew bundle --global # install/upgrade from ~/.Brewfile
@@ -164,17 +146,38 @@ _install_update_homebrew_packages () {
 
 # }}}
 
+# pin homebrew packages {{{
+_pin_homebrew_packages () {
+    _log_info "Pinning brew packages that need pinning"
+    brew pin "libcouchbase@2"
+    brew pin bison
+    brew pin bzip2
+    brew pin curl
+    brew pin icu4c
+    brew pin libedit
+    brew pin libiconv
+    brew pin libmcrypt
+    brew pin libmemcached
+    brew pin openssl
+    brew pin pkg-config
+    brew pin re2c
+    brew pin readline
+    brew pin xz
+    brew pin zlib
+}
+# }}}
+
 # install cpanm {{{
 _install_cpanm () {
     _has cpanm && return
-    log_info "installing perl cpanm"
+    _log_info "installing perl cpanm"
     yes | cpan App::cpanminus
 }
 # }}}
 
 # install cpanm packages {{{
 _install_cpanm_packages () {
-    log_info "installing/upgrading perl cpanm packages"
+    _log_info "installing/upgrading perl cpanm packages"
     cpanm swat
 }
 # }}}
@@ -183,16 +186,16 @@ _install_cpanm_packages () {
 _install_neovim_from_source () {
     _log_info "Installing neovim from source"
     pushd .
-    if [[ ! -d "$HOME/Code/neovim" ]]; then
-        cd "$HOME/Code"
+    if [[ ! -d "$HOME"/Code/neovim ]]; then
+        cd "$HOME"/Code || return
         git clone git@github.com:neovim/neovim.git
     fi
-    cd "$HOME/Code/neovim"
+    cd "$HOME"/Code/neovim || return
     git pull
     rm build/.ran-third-party-cmake 2>/dev/null || true
     make CMAKE_BUILD_TYPE=RelWithDebInfo
     sudo make install
-    popd
+    popd || return
 }
 # }}}
 
@@ -223,7 +226,7 @@ _install_upgrade_psysh () {
 _install_upgrade_akamai () {
     _has akamai && return
     _log_info "Updating akamai commands"
-    [[ "$(akamai list | grep purge)" ]] || akamai install purge
+    ( akamai list | grep --quiet purge ) || akamai install purge
     akamai update
 }
 # }}}
@@ -252,17 +255,17 @@ _set_zsh_as_shell () {
 
 # install tmux plugin manager {{{
 _install_tmux_plugin_manager () {
-    [[ -d "$HOME/.tmux/plugins/tpm" ]] && return
+    [[ -d "$HOME"/.tmux/plugins/tpm ]] && return
     _log_info "Installing tmux plugin manager. Upgrade packages with \`<c-a>U\`."
-    git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
+    git clone https://github.com/tmux-plugins/tpm "$HOME"/.tmux/plugins/tpm
 }
 # }}}
 
 # install/update tmux plugins {{{
 _install_upgrade_tmux_plugins () {
     _log_info "Install/upgrade tmux plugins"
-    $HOME/.tmux/plugins/tpm/bin/install_plugins
-    $HOME/.tmux/plugins/tpm/bin/update_plugins all
+    "$HOME"/.tmux/plugins/tpm/bin/install_plugins
+    "$HOME"/.tmux/plugins/tpm/bin/update_plugins all
 }
 # }}}
 
@@ -270,20 +273,20 @@ _install_upgrade_tmux_plugins () {
 
 # Directories {{{
 _create_vim_directories () {
-    if [[ ! -d "$HOME/.vim/autoload" ]]; then
+    if [[ ! -d "$HOME"/.vim/autoload ]]; then
         _log_info "Creating required vim autoload directory"
-        mkdir -p "$HOME/.vim/autoload" && chmod +w "$HOME/.vim/autoload"
+        mkdir -p "$HOME"/.vim/autoload && chmod +w "$HOME"/.vim/autoload
     fi
-    if [[ ! -d "$HOME/.vim/files/info" ]]; then
+    if [[ ! -d "$HOME"/.vim/files/info ]]; then
         _log_info "Creating required vim info directory"
-        mkdir -p "$HOME/.vim/files/info" && chmod a+w "$HOME/.vim/files/info"
+        mkdir -p "$HOME"/.vim/files/info && chmod a+w "$HOME"/.vim/files/info
     fi
 }
 # }}}
 
 # install vim-plug {{{
 _install_vim_plug () {
-    [ -f $HOME/.vim/autoload/plug.vim ] && return
+    [ -f "$HOME"/.vim/autoload/plug.vim ] && return
     _log_info "Installing vim-plug"
     curl -fLo \
         ~/.vim/autoload/plug.vim \
@@ -320,28 +323,29 @@ _update_asdf_plugins () {
 # install php versions {{{
 _install_php_70 () {
     ( asdf list php | grep --quiet 7.0.33 ) && return
-    log_info "installing php 7.0.33"
+    _log_info "installing php 7.0.33"
     asdf install php 7.0.33
     asdf global php 7.0.33
-    local PHP_PATH="$(asdf where php)"
+    local PHP_PATH
+    PHP_PATH="$(asdf where php)"
 
     # install php extensions (different set for 7.0.33)
     mkdir -p "${PHP_PATH}"/conf.d
     _has pecl || _install_pear "7.0.33"
     PECL="${PHP_PATH}"/pear/bin/pecl
 
-    yes "" | "$PECL" install pcs && ( echo 'extension="phpcs.so"' >"${PHP_PATH}"/conf.d/pcs.ini )
     # NOTE: pcs is a sub requirement of couchbase
+    yes "" | "${PECL}" install pcs && ( echo 'extension="phpcs.so"' >"${PHP_PATH}"/conf.d/01_pcs.ini )
     # NOTE: this requires `brew install couchbase@2`
-    yes "" | "$PECL" install couchbase-2.2.4 && ( echo 'extension="couchbase.so"' >"${PHP_PATH}"/conf.d/01_couchbase.ini )
-    yes "" | "$PECL" install memcached && ( echo 'extension="memcached.so"' >"${PHP_PATH}"/conf.d/02_memcached.ini )
-    yes "" | "$PECL" install imagick && ( echo 'extension="imagick.so"' >"${PHP_PATH}"/conf.d/03_imagick.ini )
+    yes "" | "${PECL}" install couchbase-2.2.4 && ( echo 'extension="couchbase.so"' >"${PHP_PATH}"/conf.d/02_couchbase.ini )
+    yes "" | "${PECL}" install memcached && ( echo 'extension="memcached.so"' >"${PHP_PATH}"/conf.d/03_memcached.ini )
+    yes "" | "${PECL}" install imagick && ( echo 'extension="imagick.so"' >"${PHP_PATH}"/conf.d/04_imagick.ini )
     # xdebug master is now php 7.1+ :(
-    yes "" | "$PECL" install xdebug-2.8.1 && ( echo 'zend_extension="xdebug.so"' >"${PHP_PATH}"/conf.d/04_xdebug.ini )
+    yes "" | "${PECL}" install xdebug-2.8.1 && ( echo 'zend_extension="xdebug.so"' >"${PHP_PATH}"/conf.d/05_xdebug.ini )
 
     # install composer global packages
     mkdir -p  "${PHP_PATH}"/{.,}composer
-    ln -sf "$HOME/.composer/composer.json" "${PHP_PATH}"/composer/composer.json
+    ln -sf "$HOME"/.composer/composer.json "${PHP_PATH}"/composer/composer.json
     _install_update_composer_packages
     asdf reshim php 7.0.33
 }
@@ -349,38 +353,42 @@ _install_php_70 () {
 _install_pear () {
     _log_info "Installing pear"
     local PHP_VERSION="$1"
-    wget -O "$HOME/.bin/go-pear.phar" http://pear.php.net/go-pear.phar
-    PHP_VERSION="$PHP_VERSION" "$HOME/.support/install-pear.sh" # installs pear non-interactively
-    rm "$HOME/.bin/go-pear.phar"
+    wget -O "$HOME"/.bin/go-pear.phar http://pear.php.net/go-pear.phar
+    PHP_VERSION="${PHP_VERSION}" "$HOME"/.support/install-pear.sh # installs pear non-interactively
+    rm "$HOME"/.bin/go-pear.phar
 }
 
 _install_php_74 () {
-    ( asdf list php | grep --quiet 7.4.7 ) || asdf install php 7.4.7
+    ( asdf list php | grep --quiet 7.4.7 ) && return
+    _log_info "installing php 7.4.7"
+    asdf install php 7.4.7
     asdf global php 7.4.7
 
     # install php extensions (different set for 7.4.7)
-    local PHP_PATH="$(asdf where php)"
+    local PHP_PATH
+    PHP_PATH="$(asdf where php)"
     mkdir -p "${PHP_PATH}"/conf.d
 
     _has pecl || _install_pear "7.4.7"
     PECL="${PHP_PATH}"/pear/bin/pecl
 
-    yes "" | "$PECL" install couchbase && ( echo 'extension="couchbase.so"' >"${PHP_PATH}"/conf.d/01_couchbase.ini )
-    yes "" | "$PECL" install memcached && ( echo 'extension="memcached.so"' >"${PHP_PATH}"/conf.d/02_memcached.ini )
-    yes "" | "$PECL" install imagick && ( echo 'extension="imagick.so"' >"${PHP_PATH}"/conf.d/03_imagick.ini )
-    yes "" | "$PECL" install xdebug && ( echo 'zend_extension="xdebug.so"' >"${PHP_PATH}"/conf.d/04_xdebug.ini )
+    yes "" | "${PECL}" install couchbase && ( echo 'extension="couchbase.so"' >"${PHP_PATH}"/conf.d/01_couchbase.ini )
+    yes "" | "${PECL}" install memcached && ( echo 'extension="memcached.so"' >"${PHP_PATH}"/conf.d/02_memcached.ini )
+    yes "" | "${PECL}" install imagick && ( echo 'extension="imagick.so"' >"${PHP_PATH}"/conf.d/03_imagick.ini )
+    yes "" | "${PECL}" install xdebug && ( echo 'zend_extension="xdebug.so"' >"${PHP_PATH}"/conf.d/04_xdebug.ini )
 
     # install global composer packages
     mkdir -p  "${PHP_PATH}"/{.,}composer
-    ln -sf "$HOME/.composer/composer.json" "${PHP_PATH}"/composer/composer.json
+    ln -sf "$HOME"/.composer/composer.json "${PHP_PATH}"/composer/composer.json
     _install_update_composer_packages
     asdf reshim php 7.4.7
 }
 
 _install_php_versions () {
-    builtin cd $HOME >/dev/null || return
+    pushd .
+    builtin cd "$HOME" >/dev/null || return
     _log_info "Installing php version(s)"
-    asdf plugin add php && ( sed -i '' "/--enable-intl/d" $HOME/.asdf/plugins/php/bin/install )
+    asdf plugin add php && ( sed -i '' "/--enable-intl/d" "$HOME"/.asdf/plugins/php/bin/install )
 
     # configure openssl {{{
     export PATH="/usr/local/opt/openssl@1.1/bin:${PATH}"
@@ -411,17 +419,17 @@ _install_php_versions () {
     _install_php_70
     _install_php_74
 
-    builtin cd - >/dev/null || return
+    popd || return
 }
 # }}}
 
 # install node version(s) {{{
 _install_node_versions () {
-    builtin cd $HOME >/dev/null || return
+    builtin cd >/dev/null || return
     _log_info "Installing node version(s)"
     asdf plugin add nodejs
     # https://github.com/asdf-vm/asdf-nodejs/issues/40#issuecomment-297053730
-    bash "$HOME/.asdf/plugins/nodejs/bin/import-release-team-keyring"
+    bash "$HOME"/.asdf/plugins/nodejs/bin/import-release-team-keyring
     ( asdf list nodejs | grep --quiet 9.11.2 ) || asdf install nodejs 9.11.2
     ( asdf list nodejs | grep --quiet 14.4.0 ) || asdf install nodejs 14.4.0
     asdf global nodejs 14.4.0
@@ -431,7 +439,7 @@ _install_node_versions () {
 
 # install python version(s) {{{
 _install_python_versions () {
-    builtin cd $HOME >/dev/null || return
+    builtin cd >/dev/null || return
     _log_info "Installing python version(s)"
     asdf plugin add python
     ( asdf list python | grep --quiet 3.8.3 ) || asdf install python 3.8.3
@@ -442,7 +450,7 @@ _install_python_versions () {
 
 # install ruby version(s) {{{
 _install_ruby_versions () {
-    builtin cd $HOME >/dev/null || return
+    builtin cd "$HOME" >/dev/null || return
     _log_info "Installing ruby version(s)"
     asdf plugin add ruby
     ( asdf list ruby | grep --quiet 2.7.1 ) || asdf install ruby 2.7.1
@@ -459,7 +467,7 @@ _install_upgrade_phive () {
         phive selfupdate
     else
         _log_info "Installing phive"
-        cd
+        cd || return
         wget -O phive.phar "https://phar.io/releases/phive.phar"
         wget -O phive.phar.asc "https://phar.io/releases/phive.phar.asc"
         gpg --keyserver hkps.pool.sks-keyservers.net --recv-keys 0x9D8A98B29B2D5D79
@@ -467,7 +475,7 @@ _install_upgrade_phive () {
         rm phive.phar.asc
         chmod +x phive.phar
         mv phive.phar /usr/local/bin/phive
-        cd -
+        cd - || return
     fi
 }
 # }}}
@@ -475,9 +483,9 @@ _install_upgrade_phive () {
 # install/upgrade phive packages {{{
 _install_upgrade_phive_packages () {
     local PACKAGES="dephpend"
-    for PACKAGE in $PACKAGES; do
-        ( cat "$HOME"/.phive/global.xml | grep --quiet "$PACKAGE" ) && phive update "$PACKAGE" && continue
-        phive install "$PACKAGE"
+    for PACKAGE in ${PACKAGES}; do
+        ( grep --quiet "${PACKAGE}" "$HOME"/.phive/global.xml ) && phive update "${PACKAGE}" && continue
+        phive install "${PACKAGE}"
     done
 }
 # }}}
@@ -512,7 +520,7 @@ _update_python3_pip_packages () {
     # pip3 install neovim --user # neovim uses this pip/python version
     pip install --upgrade pip
     PIP_SUCCESSFUL=1
-    pip3 install -r "$HOME/requirements.txt" --user || PIP_SUCCESSFUL=0
+    pip3 install -r "$HOME"/requirements.txt --user || PIP_SUCCESSFUL=0
     # pip-review broke recently:
     # zsh: /usr/local/bin/pip-review: bad interpreter: /usr/local/opt/python/bin/python3.6: no such file or directory
     # pip-review --local --auto &&
@@ -520,13 +528,13 @@ _update_python3_pip_packages () {
     # pip3 list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip3 install -U
     _pip-update || PIP_SUCCESSFUL=0
     # otherwise it might freeze a failed state
-    [[ $PIP_SUCCESSFUL ]] && pip3 freeze >"$HOME/requirements.txt"
+    [[ $PIP_SUCCESSFUL ]] && pip3 freeze >"$HOME"/requirements.txt
 }
 # }}}
 
 # install/update composer and packages {{{
 _install_update_composer_packages () {
-    builtin cd $HOME/.composer >/dev/null || return
+    builtin cd "$HOME"/.composer >/dev/null || return
     _log_info "Installing/upgrading composer packages"
     composer selfupdate
     composer global install
@@ -538,7 +546,7 @@ _install_update_composer_packages () {
 # install nextdns service {{{
 _install_activate_nextdns () {
     _log_info "Installing nextdns service and activating it"
-    sudo nextdns install --config "$NEXTDNS_CONFIG"
+    sudo nextdns install --config "${NEXTDNS_CONFIG}"
     sudo nextdns activate
 }
 # }}}
@@ -548,15 +556,15 @@ _install_activate_nextdns () {
 _install_upgrade_ntfy () {
     if _has ntfy; then
         _log_info "Updating ntfy"
-        cd
+        cd || return
         /usr/local/bin/python3 -m pip install --upgrade ntfy
-        cd -
+        cd - || return
         return
     fi
     _log_info "Installing ntfy"
-    cd
+    cd || return
     /usr/local/bin/python3 -m pip install ntfy
-    cd -
+    cd - || return
 }
 # }}}
 
@@ -590,7 +598,7 @@ _install_cod () {
 _install_ls_colors () {
     [ -d "$HOME"/.dircolors ] && return
     _log_info "installing LS_COLORS"
-    wget https://raw.github.com/trapd00r/LS_COLORS/master/LS_COLORS -O $HOME/.dircolors
+    wget https://raw.github.com/trapd00r/LS_COLORS/master/LS_COLORS -O "$HOME"/.dircolors
 }
 # }}}
 
