@@ -348,8 +348,6 @@
 # }}}
 
 # tools {{{
-[credential]
-    helper = osxkeychain
 [difftool "sourcetree"]
     cmd = opendiff \"$LOCAL\" \"$REMOTE\"
     path =
@@ -382,3 +380,8 @@
     name = Mike Funk
     email = mike@mikefunk.com
 # }}}
+[credential]
+	helper = manager-core # github credentials helper https://github.blog/2020-07-02-git-credential-manager-core-building-a-universal-authentication-experience/
+    # helper = osxkeychain
+[credential "https://dev.azure.com"]
+	useHttpPath = true

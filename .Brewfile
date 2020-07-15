@@ -242,6 +242,8 @@ cask "firefox-developer-edition" # I use dev edition for my work profile
 # cask "font-iosevka"
 cask "font-iosevka-nerd-font-mono" # note: homebrew doesn't need a tap for these any more
 # cask "font-meslo-for-powerline" # whoa there are a ton of fonts on brew "cask"!
+tap "microsoft/git"
+cask "git-credential-manager-core" # new github credentials manager https://github.blog/2020-07-02-git-credential-manager-core-building-a-universal-authentication-experience/
 cask "grandperspective" # visualize storage hogs in the hard drive
 # cask "gog-galaxy" # good old games
 # cask "google-chrome"
@@ -294,6 +296,7 @@ cask "qlimagesize" # quicklook plugin (display image size and resolution in the 
 # cask "scummvm" # old school
 # cask "sequel-pro" # mysql gui client. I mostly use mycli.
 cask "sequel-pro-nightly" # nightly has bug fixes and dark mode! B)
+# cask "shadow" # cloud gaming system https://shadow.tech
 cask "skype" # Dad uses skype. Skype web requires chrome. I don't like chrome.
 cask "slack" # needed for screen sharing features. I mostly use the web app.
 cask "spectacle" # keyboard window splitter/resizer/mover. Kind of like a lightweight i3 window manager. I use it a lot.
