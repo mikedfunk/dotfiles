@@ -65,7 +65,7 @@ augroup php_lsp_mappings
     autocmd FileType php nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
     autocmd FileType php nnoremap <silent> <leader><c-]> mz:tabe %<CR>`z<cmd>lua vim.lsp.buf.definition()<CR>
     autocmd FileType php nnoremap <silent> <c-w><c-]> :vsp<CR><cmd>lua vim.lsp.buf.definition()<CR>
-    " autocmd FileType php nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+    autocmd FileType php nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
     " autocmd FileType php nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
     " autocmd FileType php nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
     " autocmd FileType php nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>

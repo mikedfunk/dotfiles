@@ -55,7 +55,8 @@ windows:
         focus: true
       - ts
       - cd && wait-on http://www.local.saatchiart.com && while true; do saatchi-tinker-easel-local; sleep 1; done
-      - yarn docs
+      # - yarn docs
+      - saatchi-docs-serve-easel
       # - yarn jest --watchAll
       - wait-on http://www.local.saatchiart.com && while true; do saatchi-tail-easel-local; sleep 1; done
 # }}}
