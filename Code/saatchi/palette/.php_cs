@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 use PhpCsFixer\Fixer\Import\OrderedImportsFixer;
 
-$path = \shell_exec('phpenv prefix').
-    '/composer/global/pedrotroller/php-cs-custom-fixer/vendor/autoload.php';
-$path = \preg_replace("/[\r\n]*/", '', $path);
-require_once $path;
+// $path = \shell_exec('phpenv prefix').
+//     '/composer/global/pedrotroller/php-cs-custom-fixer/vendor/autoload.php';
+// $path = \preg_replace("/[\r\n]*/", '', $path);
+// require_once $path;
 
 $finder = PhpCsFixer\Finder::create()
     ->exclude('vendor')
@@ -22,8 +22,9 @@ $finder = PhpCsFixer\Finder::create()
     ->notPath('_ide_helper.php');
 
 return PhpCsFixer\Config::create()
-    ->registerCustomFixers(new \PedroTroller\CS\Fixer\Fixers())
+    // ->registerCustomFixers(new \PedroTroller\CS\Fixer\Fixers())
     ->setRules([
+        // https://cs.symfony.com/
         'align_multiline_comment' => true, // Each line of multi-line DocComments must have an asterisk [PSR-5] and must be aligned with the first one. @PhpCsFixer
         'array_indentation' => true, // Each element of an array must be indented exactly once. @PhpCsFixer
         'array_syntax' => ['syntax' => 'short'], // PHP arrays should be declared using the configured syntax. @PhpCsFixer@Symfony
@@ -46,6 +47,9 @@ return PhpCsFixer\Config::create()
         'concat_space' => [
             'spacing' => 'one',
         ], // Concatenation should be spaced according configuration. @PhpCsFixer@Symfony
+        'constant_case' => [
+            'case' => 'lower',
+        ], // The PHP constants true, false, and null MUST be written using the correct casing. @PSR2@Symfony@PhpCsFixer
         'date_time_immutable' => true, // Class DateTimeImmutable should be used instead of DateTime.
         'declare_equal_normalize' => true, // Equal sign in declare statement should be surrounded by spaces or not following configuration. @PhpCsFixer@Symfony
         'declare_strict_types' => true, // Force strict types declaration in all files. Requires PHP >= 7.0. @PHP70Migration:risky@PHP71Migration:risky
@@ -63,6 +67,8 @@ return PhpCsFixer\Config::create()
         'explicit_string_variable' => true, // Converts implicit variables into explicit ones in double-quoted strings or heredoc syntax. @PhpCsFixer
         // 'final_class' => true, // All classes must be final, except abstract ones and Doctrine entities.
         // 'final_internal_class' => true, // Internal classes should be final. @PhpCsFixer:risky
+        'final_public_method_for_abstract_class' => true, // All public methods of abstract classes should be final.
+        'final_static_access' => true, // Converts static access to self access in final classes.
         'fopen_flag_order' => true, // Order the flags in fopen calls, b and t must be last. @PhpCsFixer:risky@Symfony:risky
         'fopen_flags' => true, // The flags in fopen calls must omit t, and b must be omitted or included consistently. @PhpCsFixer:risky@Symfony:risky
         'full_opening_tag' => true, // PHP code must use the long <?php tags or short-echo <?= tags and not other tag variations. @PSR1@PSR2@PhpCsFixer@Symfony
@@ -70,7 +76,15 @@ return PhpCsFixer\Config::create()
         'function_declaration' => true, // Spaces should be properly placed in a function declaration. @PSR2@PhpCsFixer@Symfony
         'function_to_constant' => true, // Replace core functions calls returning constants with the constants. @PhpCsFixer:risky@Symfony:risky
         'function_typehint_space' => true, // Ensure single space between function's argument and its typehint. @PhpCsFixer@Symfony
-        'general_phpdoc_annotation_remove' => true, // Configured annotations should be omitted from PHPDoc.
+        'general_phpdoc_annotation_remove' => [
+            'author',
+            'copyright',
+        ], // Configured annotations should be omitted from PHPDoc.
+        'global_namespace_import' => [
+            'import_classes' => true,
+            'import_constants' => true,
+            'import_functions' => true,
+        ],
         'hash_to_slash_comment' => true, // Single line comments should use double slashes // and not hash #.
         // 'header_comment' => [
         //    'header' => '',
@@ -80,15 +94,17 @@ return PhpCsFixer\Config::create()
         'heredoc_to_nowdoc' => true, // Convert heredoc to nowdoc where possible. @PhpCsFixer
         'implode_call' => true, // Function implode must be called with 2 arguments in the documented order. @PhpCsFixer:risky@Symfony:risky
         'include' => true, // Include/Require and file path should be divided with a single space. File path should not be placed under brackets. @PhpCsFixer@Symfony
-        'increment_style' => true, // Pre- or post-increment and decrement operators should be used if possible. @PhpCsFixer@Symfony
+        'increment_style' => [
+            'style' => 'post',
+        ], // Pre- or post-increment and decrement operators should be used if possible. @PhpCsFixer@Symfony
         'indentation_type' => true, // Code MUST use configured indentation type. @PSR2@PhpCsFixer@Symfony
-        'is_null' => true, // Replaces is_null($var) expression with null === $var. @PhpCsFixer:risky@Symfony:risky
+        // 'is_null' => true, // Replaces is_null($var) expression with null === $var. @PhpCsFixer:risky@Symfony:risky
         'line_ending' => true, // All PHP files must use same line ending. @PSR2@PhpCsFixer@Symfony
         'linebreak_after_opening_tag' => true, // Ensure there is no code on the same line as the PHP open tag.
         // 'list_syntax' => true, // List (array destructuring) assignment should be declared using the configured syntax. Requires PHP >= 7.1.
         'logical_operators' => true, // Use && and || logical operators instead of and and or. @PhpCsFixer:risky
         'lowercase_cast' => true, // Cast should be written in lower case. @PhpCsFixer@Symfony
-        'lowercase_constants' => true, // The PHP constants true, false, and null MUST be in lower case. @PSR2@PhpCsFixer@Symfony
+        // 'lowercase_constants' => true, // The PHP constants true, false, and null MUST be in lower case. @PSR2@PhpCsFixer@Symfony
         'lowercase_keywords' => true, // PHP keywords MUST be in lower case. @PSR2@PhpCsFixer@Symfony
         'lowercase_static_reference' => true, // Class static references self, static and parent MUST be in lower case. @PhpCsFixer@Symfony
         'magic_constant_casing' => true, // Magic constants should be referred to using the correct casing. @PhpCsFixer@Symfony
@@ -153,6 +169,9 @@ return PhpCsFixer\Config::create()
         'normalize_index_brace' => true, // Array index should always be written by using square braces. @PhpCsFixer@Symfony
         // 'not_operator_with_space' => true, // Logical NOT operators (!) should have leading and trailing whitespaces.
         // 'not_operator_with_successor_space' => true, // Logical NOT operators (!) should have one trailing whitespace.
+        'nullable_type_declaration_for_default_null_value' => [
+            'use_nullable_type_declaration' => false,
+        ], // Adds or removes ? before type declarations for parameters with a default null value. (Requires php 7.1)
         'object_operator_without_whitespace' => true, // There should not be space before or after object T_OBJECT_OPERATOR ->. @PhpCsFixer@Symfony
         'ordered_class_elements' => [
             'order' => [
@@ -175,8 +194,8 @@ return PhpCsFixer\Config::create()
         ], // Orders the elements of classes/interfaces/traits. @PhpCsFixer
         // 'ordered_imports' => true, // Ordering use statements. @PhpCsFixer@Symfony
         'ordered_imports' => [
-            'sortAlgorithm' => OrderedImportsFixer::SORT_ALPHA,
-            'importsOrder' => [
+            'sort_algorithm' => OrderedImportsFixer::SORT_ALPHA,
+            'imports_order' => [
                 'class',
                 'function',
                 'const',
@@ -188,11 +207,13 @@ return PhpCsFixer\Config::create()
         'php_unit_dedicate_assert_internal_type' => true, // PHPUnit assertions like assertIsArray should be used over assertInternalType. @PHPUnit75Migration:risky
         'php_unit_expectation' => true, // Usages of ->setExpectedException* methods MUST be replaced by ->expectException* methods. @PHPUnit52Migration:risky@PHPUnit54Migration:risky@PHPUnit55Migration:risky@PHPUnit56Migration:risky@PHPUnit57Migration:risky@PHPUnit60Migration:risky@PHPUnit75Migration:risky
         'php_unit_fqcn_annotation' => true, // PHPUnit annotations should be a FQCNs including a root namespace. @PhpCsFixer@Symfony
-        'php_unit_internal_class' => true, // All PHPUnit test classes should be marked as internal. @PhpCsFixer
-        'php_unit_method_casing' => true, // Enforce camel (or snake) case for PHPUnit test methods, following configuration. @PhpCsFixer
+        'php_unit_internal_class' => false, // All PHPUnit test classes should be marked as internal. @PhpCsFixer
+        'php_unit_method_casing' => [
+            'case' => 'camel_case',
+        ], // Enforce camel (or snake) case for PHPUnit test methods, following configuration. @PhpCsFixer
         'php_unit_mock' => true, // Usages of ->getMock and ->getMockWithoutInvokingTheOriginalConstructor methods MUST be replaced by ->createMock or ->createPartialMock methods. @PHPUnit54Migration:risky@PHPUnit55Migration:risky@PHPUnit56Migration:risky@PHPUnit57Migration:risky@PHPUnit60Migration:risky@PHPUnit75Migration:risky
         'php_unit_mock_short_will_return' => true, // Usage of PHPUnit's mock e.g. ->will($this->returnValue(..)) must be replaced by its shorter equivalent such as ->willReturn(...). @PhpCsFixer:risky@Symfony:risky
-        'php_unit_namespaced' => true, // HPUnit\Framework\TestCase instead of \PHPUnit_Framework_TestCase. @PHPUnit48Migration:risky@PHPUnit50Migration:risky@PHPUnit52Migration:risky@PHPUnit54Migration:risky@PHPUnit55Migration:risky@PHPUnit56Migration:risky@PHPUnit57Migration:risky@PHPUnit60Migration:risky@PHPUnit75Migration:risky
+        'php_unit_namespaced' => false, // PHPUnit\Framework\TestCase instead of \PHPUnit_Framework_TestCase. @PHPUnit48Migration:risky@PHPUnit50Migration:risky@PHPUnit52Migration:risky@PHPUnit54Migration:risky@PHPUnit55Migration:risky@PHPUnit56Migration:risky@PHPUnit57Migration:risky@PHPUnit60Migration:risky@PHPUnit75Migration:risky
         'php_unit_no_expectation_annotation' => true, // Usages of @expectedException* annotations MUST be replaced by ->setExpectedException* methods. @PHPUnit32Migration:risky@PHPUnit35Migration:risky@PHPUnit43Migration:risky@PHPUnit48Migration:risky@PHPUnit50Migration:risky@PHPUnit52Migration:risky@PHPUnit54Migration:risky@PHPUnit55Migration:risky@PHPUnit56Migration:risky@PHPUnit57Migration:risky@PHPUnit60Migration:risky@PHPUnit75Migration:risky
         'php_unit_ordered_covers' => true, // Order @covers annotation of PHPUnit tests. @PhpCsFixer
         'php_unit_set_up_tear_down_visibility' => true, // Changes the visibility of the setUp() and tearDown() functions of PHPUnit to protected, to match the PHPUnit TestCase. @PhpCsFixer:risky
@@ -200,14 +221,15 @@ return PhpCsFixer\Config::create()
         'php_unit_strict' => true, // PHPUnit methods like assertSame should be used instead of assertEquals. @PhpCsFixer:risky
         'php_unit_test_annotation' => true, // Adds or removes @test annotations from tests, following configuration. @PhpCsFixer:risky
         'php_unit_test_case_static_method_calls' => true, // ramework\TestCase static methods must all be of the same type, either $this->, self:: or static::. @PhpCsFixer:risky
-        'php_unit_test_class_requires_covers' => true, // Adds a default @coversNothing annotation to PHPUnit test classes that have no @covers* annotation. @PhpCsFixer
-        'phpdoc_add_missing_param_annotation' => true, // PHPDoc should contain @param for all params. @PhpCsFixer
+        'php_unit_test_class_requires_covers' => false, // Adds a default @coversNothing annotation to PHPUnit test classes that have no @covers* annotation. @PhpCsFixer
+        'phpdoc_add_missing_param_annotation' => false, // PHPDoc should contain @param for all params. @PhpCsFixer
         // 'phpdoc_align' => [
         //     'align' => 'left',
         // ], // All items of the given phpdoc tags must be either left-aligned or (by default) aligned vertically. @PhpCsFixer@Symfony
         'phpdoc_annotation_without_dot' => true, // PHPDoc annotation descriptions should not be a sentence. @PhpCsFixer@Symfony
         'phpdoc_indent' => true, // Docblocks should have the same indentation as the documented subject. @PhpCsFixer@Symfony
         'phpdoc_inline_tag' => true, // Fix PHPDoc inline tags, make @inheritdoc always inline. @PhpCsFixer@Symfony
+        // 'phpdoc_line_span' => true, // Changes doc blocks from single to multi line, or reversed. Works for class constants, properties and methods only.
         // 'phpdoc_no_access' => true, // @access annotations should be omitted from PHPDoc. @PhpCsFixer@Symfony
         'phpdoc_no_alias_tag' => true, // No alias PHPDoc tags should be used. @PhpCsFixer@Symfony
         // 'phpdoc_no_empty_return' => true, // @return void and @return null annotations should be omitted from PHPDoc. @PhpCsFixer
@@ -238,6 +260,7 @@ return PhpCsFixer\Config::create()
         'return_assignment' => true, // Local, dynamic and directly referenced variables should not be assigned and directly returned by a function or method. @PhpCsFixer
         'return_type_declaration' => true, // There should be one or no space before colon, and one space after it in return type declarations, according to configuration. @PhpCsFixer@Symfony
         'self_accessor' => true, // Inside class or interface element self should be preferred to the class name itself. @PhpCsFixer:risky@Symfony:risky
+        'self_static_accessor' => true, // Inside a final class or anonymous class self should be preferred to static.
         'semicolon_after_instruction' => true, // Instructions must be terminated with a semicolon. @PhpCsFixer@Symfony
         'set_type_to_cast' => true, // Cast shall be used, not settype. @PhpCsFixer:risky@Symfony:risky
         'short_scalar_cast' => true, // Cast (boolean) and (integer) should be written as (bool) and (int), (double) and (real) as (float), (binary) as (string). @PhpCsFixer@Symfony
@@ -250,7 +273,8 @@ return PhpCsFixer\Config::create()
         'single_import_per_statement' => true, // There MUST be one use keyword per declaration. @PSR2@PhpCsFixer@Symfony
         'single_line_after_imports' => true, // Each namespace use MUST go on its own line and there MUST be one blank line after the use statements block. @PSR2@PhpCsFixer@Symfony
         'single_line_comment_style' => true, // Single-line comments and multi-line comments with only one line of actual content should use the // syntax. @PhpCsFixer@Symfony
-        'single_quote' => true, // Convert double quotes to single quotes for simple strings. @PhpCsFixer@Symfony
+        'single_line_throw' => true, // Throwing exception must be done in single line.
+        // 'single_quote' => true, // Convert double quotes to single quotes for simple strings. @PhpCsFixer@Symfony
         'single_trait_insert_per_statement' => true, // Each trait use must be done as single statement. @PhpCsFixer@Symfony
         'space_after_semicolon' => true, // Fix whitespace after a semicolon. @PhpCsFixer@Symfony
         'standardize_increment' => true, // Increment and decrement operators should be used if possible. @PhpCsFixer@Symfony
@@ -272,14 +296,14 @@ return PhpCsFixer\Config::create()
         // 'yoda_style' => true, // Write conditions in Yoda style (true), non-Yoda style (false) or ignore those conditions (null) based on configuration. @PhpCsFixer@Symfony
 
         // THIRD_PARTY FIXERS
-        'PedroTroller/line_break_between_method_arguments' => ['max-length' => 90, 'automatic-argument-merge' => true], // 'max-args' => 4,
-        'PedroTroller/comment_line_to_phpdoc_block' => true,
+        // 'PedroTroller/line_break_between_method_arguments' => ['max-length' => 90, 'automatic-argument-merge' => true], // 'max-args' => 4,
+        // 'PedroTroller/comment_line_to_phpdoc_block' => true,
 
         // this is 3 fixers in one but I don't like one of them and there's no way to whitelist each fixer >:/ So I'll use the "deprecated" one-by-one versions instead.
         // 'PedroTroller/phpspec' => ['instanceof' => ['PhpSpec\ObjectBehavior']],
-        'PedroTroller/phpspec_scenario_return_type_declaration' => ['instanceof' => ['PhpSpec\ObjectBehavior']],
+        // 'PedroTroller/phpspec_scenario_return_type_declaration' => ['instanceof' => ['PhpSpec\ObjectBehavior']],
         // 'PedroTroller/phpspec_scenario_scope' => ['instanceof' => ['PhpSpec\ObjectBehavior']], // WHY would I want to remove the `public` from each phpspec method?
-        'PedroTroller/ordered_spec_elements' => ['instanceof' => ['PhpSpec\ObjectBehavior']],
+        // 'PedroTroller/ordered_spec_elements' => ['instanceof' => ['PhpSpec\ObjectBehavior']],
     ])
     ->setRiskyAllowed(true)
     ->setFinder($finder);

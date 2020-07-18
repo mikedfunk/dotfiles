@@ -25,6 +25,7 @@ let g:ale_lint_on_filetype_changed = 0
 let g:ale_lint_on_text_changed = 'never'
 
 " let g:ale_fix_on_save = 1 " This is off by default. You could do it manually with :ALEFix
+let g:ale_php_cs_fixer_options = '--config=.php_cs'
 
 let g:ale_sign_column_always = 1 " otherwise screen keeps jumping left and right
 let g:airline#extensions#ale#error_symbol = 'Errors:' " default is a bit sparse: E
@@ -1498,8 +1499,8 @@ if has_key(g:plugs, 'vim-php-namespace')
     " php add use statement for current class
     augroup phpnamespacegroup
         autocmd!
-        autocmd FileType php inoremap <Leader><Leader>u <C-O>:call PhpInsertUse()<CR>
-        autocmd FileType php nnoremap <Leader><Leader>u :call PhpInsertUse()<CR>
+        autocmd FileType php inoremap <Leader><Leader>u <C-O>:call PhpInsertUseInLine()<CR>
+        autocmd FileType php nnoremap <Leader><Leader>u :call PhpInsertUseInLine()<CR>
         " expand the namespace for the current class name
         autocmd FileType php inoremap <Leader><Leader>e <C-O>:call PhpExpandClass()<CR>
         autocmd FileType php nnoremap <Leader><Leader>e :call PhpExpandClass()<CR>
@@ -1749,6 +1750,8 @@ let g:vimwiki_ext2syntax = { '.md': 'markdown' }
 
 " vista.vim {{{
 let g:vista_close_on_jump = 1
+" let g:vista#renderer#enable_icon = 1
+let g:vista_fzf_preview = ['right:50%']
 if has_key(g:plugs, 'vista.vim')
     nnoremap <silent> <leader>bb :Vista!!<CR>
 endif

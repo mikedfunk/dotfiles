@@ -131,6 +131,7 @@ brew "openssl" # needed for rbenv https://github.com/rbenv/ruby-build/issues/377
 brew "pgcli" # like mycli for postgres (used for toaf judging app)
 # php has been moved to homebrew-php. In the process, php70 was removed >:( I've switched to phpenv and pecl instead. I don't even know how extensions work in the new homebrew php.
 # brew "php@7.1", args: ["--with-pear"], link: true
+brew "php-cs-fixer" # fix php code according to configuration
 brew "pinentry" # gpg terminal pin entry (used by yadm encrypt/decrypt)
 # brew "pinentry-mac" # native gpg pin entry for yadm and others. Opens a native window.
 brew "pinfo" # man-like command to get manuals on tools written for info
@@ -192,7 +193,7 @@ brew "tldr" # more consise community man pages
 # brew "trash" # a trash can for the terminal
 brew "trash-cli" # a trash can for the terminal
 brew "tree" # display file/folder hierarchies in a visual tree format
-brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"] # tag creator for use by vim to navigate by symbols. head only.
+brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD", " --with-jansson"] # tag creator for use by vim to navigate by symbols. head only.
 brew "urlview" # used by <prefix>u tmux urlview plugin
 # brew "virtualhost".sh # (crappy) virtualhost management script
 brew "watch" # Executes a program periodically, showing output fullscreen (an npm package which is a child dependency of another sometimes replaces this binary: https://www.npmjs.com/package/watch . If so, just `brew link --overwrite watch` )

@@ -1,4 +1,6 @@
 " vim: set foldmethod=marker:
+
+" general {{{
 " colo hybrid_material
 " let g:airline_theme="base16_ocean"
 " colo onedark
@@ -6,6 +8,7 @@ silent! colo base16-onedark
 let g:airline_theme="onedark"
 " set wildignore+=*/vendor/*
 set wildignore+=*/build/*,cscope.out,tags,.git/*,Session.vim
+" }}}
 
 " vdebug {{{
 " can add multiple path maps to this array, just duplicate the line
@@ -38,7 +41,8 @@ let g:ale_php_phpcbf_standard = '/Users/mikefunk/Code/saatchi/palette/phpcs-mike
 let g:ale_php_phpcbf_executable = '/Users/mikefunk/.support/phpcbf-helper.sh'
 let g:ale_php_phpcbf_use_global = 1
 let g:ale_php_phpmd_ruleset = '/Users/mikefunk/Code/saatchi/palette/phpmd-mike.xml'
-let ale_fixers = {'php': ['phpcbf']}
+let g:ale_php_cs_fixer_use_global = 1
+let ale_fixers = {'php': ['phpcbf', 'php_cs_fixer']}
 let g:ale_php_phpstan_level = 4
 let g:ale_php_phpstan_configuration = '/Users/mikefunk/Code/saatchi/palette/phpstan.neon'
 " let g:ale_php_phpstan_executable = 'php /Users/mikefunk/Code/saatchi/palette/vendor/bin/phpstan'
@@ -61,18 +65,21 @@ endif
 " nvim-lsp {{{
 augroup php_lsp_mappings
     autocmd!
-    autocmd FileType php nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+    autocmd FileType php nnoremap <silent> gd <cmd>lua vim.lsp.buf.declaration()<CR>
     autocmd FileType php nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
     autocmd FileType php nnoremap <silent> <leader><c-]> mz:tabe %<CR>`z<cmd>lua vim.lsp.buf.definition()<CR>
     autocmd FileType php nnoremap <silent> <c-w><c-]> :vsp<CR><cmd>lua vim.lsp.buf.definition()<CR>
-    autocmd FileType php nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-    " autocmd FileType php nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+    autocmd FileType php nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
+    " autocmd FileType php nnoremap <silent> gD <cmd>lua vim.lsp.buf.implementation()<CR>
     " autocmd FileType php nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-    " autocmd FileType php nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
-    " autocmd FileType php nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+    " autocmd FileType php nnoremap <silent> 1gD <cmd>lua vim.lsp.buf.type_definition()<CR>
+    autocmd FileType php nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
 augroup END
 " }}}
 
 " vista {{{
 let g:vista_disable_statusline = 1
+let g:vista_executive_for = {
+  \ 'php': 'nvim_lsp',
+  \ }
 " }}}
