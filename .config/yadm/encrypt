@@ -5,7 +5,6 @@
 # vim: set foldmethod=marker filetype=conf:
 
 # leafgroup {{{
-.bin/saatchi-haproxy-status.sh
 .mjm-ansible-hosts.ini
 .mjmrc
 .toafrc
