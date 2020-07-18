@@ -217,11 +217,13 @@ export AUTO_NTFY_DONE_IGNORE=(
     y
     yadm
 )
-# _has vivid && export LS_COLORS="$(vivid generate molokai)" # https://github.com/sharkdp/vivid
 # colorize less... I get weird indentations all over the place with this
 # https://www.reddit.com/r/linux/comments/b5n1l5/whats_your_favorite_cli_tool_nobody_knows_about/ejex2pm/
 # export LESSOPEN="| /usr/local/opt/source-highlight/bin/src-hilite-lesspipe.sh %s"
 # alias less="less -R"
+lessc () {
+    rougify highlight $@ | \less -R -M
+}
 export GITWEB_PROJECTROOT="$HOME/Code"
 export PRE_COMMIT_COLOR=always # https://pre-commit.com/#cli
 export PSQL_PAGER="pspg"

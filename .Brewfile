@@ -23,7 +23,7 @@ brew "circleci" # circleci cli e.g. `circleci open`
 brew "codespell" # neat little utility to show and fix code misspellings
 # brew "colortail" # tail with support for colors (I use multitail)
 # brew "composer" # php dependency management (now installed via phpenv)
-brew "coreutils" # used by k zsh plugin and msgpack gem which is a dependency of rouge and neovim gems. Also used by vivid for gls.
+brew "coreutils" # used by k zsh plugin and msgpack gem which is a dependency of rouge and neovim gems.
 # brew "cmake" # used by youcompleteme (which I no longer use)
 # brew "ctags" # allows jumping to function/class definitions, etc. in vim (I use universal-ctags)
 brew "ctop" # like top for docker containers (really great!)
@@ -156,7 +156,6 @@ brew "re2c" # needed by phpenv https://github.com/phpenv/phpenv/issues/90#issuec
 # brew "rlwrap" # wrap a command in readline to enable up for history, etc. Useful for python repl: `rlwrap python`
 # brew "ruby" # (rbenv covers it for me)
 # brew "ruby-build" # an rbenv plugin that provides an rbenv install command to compile and install different versions of ruby
-# brew "rust" # used for "vivid" LS_COLORS package (I now download the executable until it's on homebrew)
 # brew "rvm" # ruby version manager (I use rbenv instead)
 # brew "s3cmd" # amazon s3 uploader (I use awscli instead)
 # brew "scummvm" # never have I seen a more wretched hive of scum(m) and villainy
