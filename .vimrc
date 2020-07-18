@@ -945,6 +945,11 @@ augroup neovim_lsp_colors
     autocmd ColorScheme * hi! link LspDiagnosticsUnderlineHint SpellRare
     autocmd ColorScheme * hi! link LspDiagnosticsUnderlineInformation SpellRare
 augroup END
+
+" TIP: z= will show spell completion options. zg will add the word to the
+" spelling library. zw will mark a word as incorrect spelling. set spell or
+" yos will turn on spellcheck. ]s [s will go to next/prev spell error.
+set spelllang=en_us
 " }}}
 
 " Navigation and Search {{{

@@ -127,13 +127,15 @@ if [[ ! $ANTIBODY_LOADED ]]; then
     # antibody bundle djui/alias-tips # tell you when an alias would shorten the command you ran
     # antibody bundle sei40kr/fast-alias-tips-bin branch:v0.1.1 (doesn't work - he doesn't put the executable on a branch, it's in a release, which antibody doesn't know how to get)
     # antibody bundle sei40kr/zsh-fast-alias-tips (this does not play nice with antibody)
+    antibody bundle robbyrussell/oh-my-zsh path:lib/functions.zsh # some dependencies for oh-my-zsh plugins
     antibody bundle robbyrussell/oh-my-zsh path:plugins/alias-finder # supposed to be 10x faster than alias-tips O_O https://github.com/djui/alias-tips/issues/49#issuecomment-569726313
-    antibody bundle robbyrussell/oh-my-zsh path:plugins/command-not-found # suggest packages to install if command not found
     antibody bundle robbyrussell/oh-my-zsh path:plugins/colored-man-pages
     antibody bundle robbyrussell/oh-my-zsh path:plugins/colorize # Plugin for highlighting file content
-    antibody bundle robbyrussell/oh-my-zsh path:plugins/wd/wd.plugin.zsh # warp directory
-    antibody bundle robbyrussell/oh-my-zsh path:plugins/vi-mode
+    antibody bundle robbyrussell/oh-my-zsh path:plugins/command-not-found # suggest packages to install if command not found
     antibody bundle robbyrussell/oh-my-zsh path:plugins/gitfast # fix git completion issues https://unix.stackexchange.com/a/204308 downside: this also adds a TON of gxx aliases https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/gitfast it also adds MORE git aliases and functions from the main git plugin https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/git/git.plugin.zsh
+    antibody bundle robbyrussell/oh-my-zsh path:plugins/jira # simple command-line tool that just opens jira on different pages. No fancy shit.
+    antibody bundle robbyrussell/oh-my-zsh path:plugins/vi-mode
+    antibody bundle robbyrussell/oh-my-zsh path:plugins/wd/wd.plugin.zsh # warp directory
     # antibody bundle marzocchi/zsh-notify # notify when a command fails or lasts longer than 30 seconds and the terminal is in the background (requires terminal-notifier and reattach-to-user-namespace from within tmux)
     antibody bundle zsh-users/zsh-autosuggestions # OLD COMMENT: buggy if enabled along with zsh-syntax-highlighting. crashes the shell regularly.
     antibody bundle zsh-users/zsh-completions # do-everything argument completions
@@ -225,10 +227,10 @@ export PRE_COMMIT_COLOR=always # https://pre-commit.com/#cli
 export PSQL_PAGER="pspg"
 # [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ] && . "$HOME/.nix-profile/etc/profile.d/nix.sh" # this seems to conflict with direnv. Direnv seems to wipe the PATH changes this applies.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-'builtin' 'setopt' 'aliases' # weird, this should have already been done :/
+builtin setopt aliases # weird, this should have already been done :/
 
-_has kubectl && source <(kubectl completion zsh)
-_has stern && source <(stern --completion=zsh)
+_has kubectl && source <(kubectl completion zsh) # brew doesn't install this, I checked
+# _has stern && source <(stern --completion zsh) # unfortunately I still get no completion. cod works better for this.
 _has cod && source <(cod init $$ zsh)
 # NOTE any completions in the brew completions dir are already added!
 # [[ -e /usr/local/opt/coreutils/libexec/gnubin/dircolors && -f "$HOME"/.dircolors ]] && eval $( /usr/local/opt/coreutils/libexec/gnubin/dircolors -b "$HOME"/.dircolors )

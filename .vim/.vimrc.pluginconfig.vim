@@ -258,6 +258,21 @@ if has_key(g:plugs, 'fzf.vim')
     " :HFiles - Files in the git staging area
     command! -count=1 HFiles call fzf#run({ 'source': 'git log HEAD -n <count> --diff-filter=MA --name-only --pretty=format: | sed -e /^$/d'})
 
+    " FZF Most recent files
+    command! MRU call fzf#run({
+                \ 'source':  reverse(s:all_files()),
+                \ 'sink':    'edit',
+                \ 'options': '-m -x +s',
+                \ 'down':    '40%' })
+    nnoremap <leader>rr :MRU<cr>
+
+    function! s:all_files()
+        return extend(
+                    \ filter(copy(v:oldfiles),
+                    \        "v:val !~ 'fugitive:\\|NERD_tree\\|^/tmp/\\|.git/'"),
+                    \ map(filter(range(1, bufnr('$')), 'buflisted(v:val)'), 'bufname(v:val)'))
+    endfunction
+
     nnoremap <leader>ag :Ag<cr>
     nnoremap <leader>ff :Files<cr>
     nnoremap <leader>tt :Tags<cr>
@@ -302,6 +317,14 @@ endif
 " gist-vim {{{
 if has_key(g:plugs, 'gist-vim')
     nnoremap <leader>gi :Gist<cr>
+endif
+" }}}
+
+" git-messenger.vim {{{
+let g:git_messenger_always_into_popup = 1
+let g:git_messenger_no_default_mappings = 1
+if has_key(g:plugs, 'git-messenger.vim')
+    nnoremap <leader>mm :GitMessenger<cr>
 endif
 " }}}
 
@@ -868,7 +891,8 @@ let g:UltiSnipsExpandTrigger='<c-l>' " Default: <Tab>
 " this breaks in neovim (:UltiSnipsEdit doesn't work right) but if I switch
 " it, it doesn't load third-party snippets right :/
 " let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips', 'UltiSnips']
-let g:UltiSnipsSnippetDirectories=['UltiSnips', $HOME.'/.config/vim-ultisnips/snippets']
+" let g:UltiSnipsSnippetDirectories=['UltiSnips', $HOME.'/.config/vim-ultisnips/snippets']
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/vim-ultisnips/snippets']
 
 " UltiSnips somehow forgets this mapping when I open a new file :/
 if has_key(g:plugs, 'ultisnips')

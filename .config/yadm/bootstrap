@@ -573,11 +573,16 @@ _install_upgrade_ntfy () {
 # ix.io lets you copy/paste to/from a web service
 # less $(which ix) for details
 # or ix -h
+# e.g. cat myfile.txt | ix
 _install_upgrade_ix_io () {
     _log_info "installing/upgrading ix.io client"
     curl ix.io/client > /usr/local/bin/ix
     chmod +x /usr/local/bin/ix
 }
+# }}}
+
+# immersed vr {{{
+# TODO https://immersedvr.com/dl/Immersed.dmg
 # }}}
 
 # install cod {{{

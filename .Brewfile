@@ -19,6 +19,7 @@ brew "browser" # pipe html to a temp file and open in browser e.g. `ls | browser
 brew "bzip2" # needed for phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
 # brew "bzt" # taurus http and performance test runner
 # brew "chromedriver" # like selenium for chrome. (These drivers feel pretty outdated to me)
+brew "circleci" # circleci cli e.g. `circleci open`
 brew "codespell" # neat little utility to show and fix code misspellings
 # brew "colortail" # tail with support for colors (I use multitail)
 # brew "composer" # php dependency management (now installed via phpenv)
@@ -188,7 +189,7 @@ brew "the_silver_searcher" # awesome fast grep replacement: `ag --help`
 brew "tig" # git? tig! (note: this requires asciidoc)
 # brew "timewarrior" # taskwarrior-like interface for tracking time (I don't use this)
 brew "tldr" # more consise community man pages
-# brew "tmux" # terminal multiplexer similar to screen. (Latest tmux 2.9a has some crash-inducing bugs. I am manually installing 2.8 from a tarball temporarily. See ~/.yadm/bootstrap for details.)
+brew "tmux" # terminal multiplexer similar to screen.
 # brew "tofrodos" # line ending conversion (install if needed)
 # brew "trash" # a trash can for the terminal
 brew "trash-cli" # a trash can for the terminal

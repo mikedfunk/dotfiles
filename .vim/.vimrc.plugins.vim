@@ -306,6 +306,7 @@ if executable('git')
     Plug 'tpope/vim-git' " Git file mappings and functions (e.g. rebase helpers) and syntax highlighting, etc. I add mappings in my plugin config.
 endif
 Plug 'wting/gitsessions.vim' " sessions based on git branches!
+Plug 'rhysd/git-messenger.vim', { 'on': 'GitMessenger' } " show last commit for line, or even the one before that!
 " }}}
 
 " Javascript {{{

@@ -65,15 +65,15 @@ endif
 " nvim-lsp {{{
 augroup php_lsp_mappings
     autocmd!
-    autocmd FileType php nnoremap <silent> gd <cmd>lua vim.lsp.buf.declaration()<CR>
-    autocmd FileType php nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
-    autocmd FileType php nnoremap <silent> <leader><c-]> mz:tabe %<CR>`z<cmd>lua vim.lsp.buf.definition()<CR>
-    autocmd FileType php nnoremap <silent> <c-w><c-]> :vsp<CR><cmd>lua vim.lsp.buf.definition()<CR>
-    autocmd FileType php nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
-    " autocmd FileType php nnoremap <silent> gD <cmd>lua vim.lsp.buf.implementation()<CR>
-    " autocmd FileType php nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-    " autocmd FileType php nnoremap <silent> 1gD <cmd>lua vim.lsp.buf.type_definition()<CR>
-    autocmd FileType php nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
+    autocmd FileType php nnoremap <buffer> <silent> gd <cmd>lua vim.lsp.buf.declaration()<CR>
+    autocmd FileType php nnoremap <buffer> <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+    autocmd FileType php nnoremap <buffer> <silent> <leader><c-]> mz:tabe %<CR>`z<cmd>lua vim.lsp.buf.definition()<CR>
+    autocmd FileType php nnoremap <buffer> <silent> <c-w><c-]> :vsp<CR><cmd>lua vim.lsp.buf.definition()<CR>
+    autocmd FileType php nnoremap <buffer> <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
+    " autocmd FileType php nnoremap <buffer> <silent> gD <cmd>lua vim.lsp.buf.implementation()<CR>
+    " autocmd FileType php nnoremap <buffer> <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+    " autocmd FileType php nnoremap <buffer> <silent> 1gD <cmd>lua vim.lsp.buf.type_definition()<CR>
+    autocmd FileType php nnoremap <buffer> <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
 augroup END
 " }}}
 
