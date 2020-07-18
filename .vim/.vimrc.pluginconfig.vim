@@ -175,7 +175,7 @@ if has_key(g:plugs, 'completion-nvim')
 
     " Use <Tab> and <S-Tab> to navigate through popup menu
     inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>
+    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
     " Set completeopt to have a better completion experience
     set completeopt=menuone,noinsert,noselect
@@ -253,6 +253,9 @@ if has_key(g:plugs, 'fzf.vim')
     command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, <bang>0 ? fzf#vim#with_preview('up:60%') : fzf#vim#with_preview('right:50%', '?'), <bang>0)
     " Likewise, :Files command with preview window
     command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+    " :HFiles - Files in the git staging area
+    command! -count=1 HFiles call fzf#run({ 'source': 'git log HEAD -n <count> --diff-filter=MA --name-only --pretty=format: | sed -e /^$/d'})
 
     nnoremap <leader>ag :Ag<cr>
     nnoremap <leader>ff :Files<cr>
@@ -977,9 +980,10 @@ let g:airline_highlighting_cache = 1 " cache syntax highlighting for better perf
 let g:airline#extensions#tabline#enabled = 1 " advanced tabline
 let g:airline#extensions#tabline#close_symbol = '✕' " configure symbol used to represent close button
 let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
+let g:airline#extensions#tabline#show_tab_count = 0 " hide tab count on right
 " let g:airline#extensions#tabline#exclude_preview = 0
 let g:airline#extensions#tabline#show_buffers = 0 " shows buffers when no tabs
-let g:airline#extensions#tabline#show_splits = 0 " shows how many splits are in each tab
+let g:airline#extensions#tabline#show_splits = 1 " shows how many splits are in each tab and which split you're on
 let g:airline#extensions#tabline#show_tab_type = 0 " right side says either 'buffers' or 'tabs'
 let g:airline#extensions#tagbar#enabled = 0 " cool but slows down php
 
@@ -1746,6 +1750,6 @@ let g:vimwiki_ext2syntax = { '.md': 'markdown' }
 " vista.vim {{{
 let g:vista_close_on_jump = 1
 if has_key(g:plugs, 'vista.vim')
-    nnoremap <silent> <leader>bb :Vista nvim_lsp<CR>
+    nnoremap <silent> <leader>bb :Vista!!<CR>
 endif
 " }}}

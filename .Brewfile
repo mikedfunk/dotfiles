@@ -143,8 +143,7 @@ brew "pre-commit" # yelp git pre-commit framework (local hooks ftw! Easily creat
 brew "pspg" # , args: ["HEAD"] # "postgres pager" also useful for mysql, etc.
 # brew "pv" # pipe something to pv to see progress of data through a pipeline. pv works like cat so `pv /path/to/myfile.sql > mysql ...`
 # brew "pyenv" # python version manager (same api as rbenv)
-brew "python" # updated version of python with updated pip. Useful for installing pip packages without root. NOTE: homebrew "pip" breaks neovim. Needed for ntfy, see ~/.config/yadm/bootstrap
-# brew "python3" # required for tmuxomatic (but I use pyenv)
+# brew "python" # updated version of python with updated pip. Useful for installing pip packages without root. NOTE: homebrew "pip" breaks neovim. Needed for ntfy, see ~/.config/yadm/bootstrap
 brew "qcachegrind" # like kcachegrind which is useful for profiling php apps with xdebug
 # brew "ranger" # vim-like file system browser (cool but I don't use it)
 # brew "rbenv" # ruby environment switcher (I use asdf now)
@@ -260,7 +259,7 @@ cask "keeper-password-manager" # password manager used at my work
 # cask "kitematic" # mac native docker container browser (I just use docker cli tools)
 # cask "kitty" # fast terminal emulator (see iterm2 above for why I switched back to iTerm)
 # cask "launchcontrol" # launchctl gui. (I use lunchy gem instead)
-cask "licecap" # shitty, simple gif screen capture. OSX used to have this but I think they got rid of the gif exporting :/
+# cask "licecap" # shitty, simple gif screen capture. OSX used to have this but I think they got rid of the gif exporting :/
 # cask "lunchy" # launchctl cli wrapper. Port of lunchy gem. (Tried this, was missing options, back to gem)
 # cask "macfusion" # other half of tool to mount ssh directories in the finder
 # cask "macgdbp" # xdebug gui client (I use vdebug)
@@ -334,5 +333,6 @@ mas "Downlink", id: 1454269192 # cool live (20 min refresh) earth view on my des
 mas "Xcode", id: 497799835 # needed for some tools (TODO which tools?)
 mas "Amphetamine", id: 937984704 # replacement for discontinued "caffeine" menubar app
 # mas "Keeper", id: 414781829 # used by leaf group, like lastpass (There's a brew cask version)
-mas "GIPHY CAPTURE", id: 668208984
+mas "GIPHY CAPTURE", id: 668208984 # capture screen to gif (alternative to licecap, etc.)
+mas "Jira", id: 1475897096 # official jira cloud desktop app
 # }}}
