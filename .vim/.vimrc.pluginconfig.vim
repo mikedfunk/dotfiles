@@ -71,7 +71,23 @@ let g:airline_theme = 'base16'
 " }}}
 
 " asyncomplete.vim {{{
+" allow modifying the completeopt variable, or it will
+" be overridden all the time
 let g:asyncomplete_auto_completeopt = 0
+" }}}
+
+" asyncomplete-buffer.vim {{{
+if has_key(g:plugs, 'asyncomplete.vim') && has_key(g:plugs, 'asyncomplete-buffer.vim')
+    call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+                \ 'name': 'buffer',
+                \ 'allowlist': ['*'],
+                \ 'blocklist': ['go'],
+                \ 'completor': function('asyncomplete#sources#buffer#completor'),
+                \ 'config': {
+                \    'max_buffer_size': 5000000,
+                \  },
+                \ }))
+endif
 " }}}
 
 " asyncomplete-omni.vim {{{
@@ -802,6 +818,23 @@ set ttimeoutlen=0 " Timeout for escape sequences https://github.com/wincent/term
 
 " tender (color scheme) {{{
 let g:tender_airline = 1
+" }}}
+
+" tmux-complete.vim {{{
+if has_key(g:plugs, 'asyncomplete.vim') && has_key(g:plugs, 'tmux-complete.vim')
+    let g:tmuxcomplete#asyncomplete_source_options = {
+                \ 'name': 'tmuxcomplete',
+                \ 'whitelist': ['*'],
+                \ 'config': {
+                \     'splitmode': 'words',
+                \     'filter_prefix': 1,
+                \     'show_incomplete': 1,
+                \     'sort_candidates': 0,
+                \     'scrollback': 0,
+                \     'truncate': 0
+                \     }
+                \ }
+endif
 " }}}
 
 " {{{ tmuxline

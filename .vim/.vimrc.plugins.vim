@@ -65,6 +65,7 @@ Plug 'Shougo/echodoc.vim' " Displays function signatures from completions in the
 
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'yami-beta/asyncomplete-omni.vim'
+" Plug 'prabirshrestha/asyncomplete-buffer.vim'
 " Plug 'wellle/tmux-complete.vim' " add tmux as a completion source with user-defined completion <c-x><c-u>
 
 " Plug 'natebosch/vim-lsc' " vim language server support https://bluz71.github.io/2019/10/16/lsp-in-vim-with-the-lsc-plugin.html (tried, I think the problem is with php-language-server. I get a shitload of errors. Tried again with intelephense. I don't know why but on completion the mode is changing to insert completion but I get no completion menu.)
