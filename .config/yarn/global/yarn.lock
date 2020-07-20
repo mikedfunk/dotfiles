@@ -2075,10 +2075,10 @@ intelephense@^0.8.8:
     php7parser "^1.0.8"
     vscode-languageserver-types "^3.5.0"
 
-intelephense@^1.5.2:
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/intelephense/-/intelephense-1.5.2.tgz#f2120e79aede2a917941bc90af2f077c63dbcb5b"
-  integrity sha512-EnhDnR+e+oYud8xaNIgxjXHn3hkckcRh7DShECNfTu8zaXLm7qn1wTCOwyA3MFog+x1gUAc43iWMcEUQ//Qwyw==
+intelephense@^1.5.3:
+  version "1.5.3"
+  resolved "https://registry.yarnpkg.com/intelephense/-/intelephense-1.5.3.tgz#62958e4b84ad45d82d66ed97e9c661ac71b0d728"
+  integrity sha512-4kH+Udr/LeHOLkF4rV9+IPPdu1oQGumH4FFdfLEgAHifaMmc8NNjIAuO13ickUB1Kd+ehx2kMc8Y+lPLVjbXWA==
   dependencies:
     "@bmewburn/js-beautify" "^1.10.4"
     "@bmewburn/turndown" "^5.0.3"

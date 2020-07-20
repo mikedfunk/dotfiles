@@ -71,6 +71,8 @@ let g:airline_theme = 'base16'
 " }}}
 
 " asyncomplete.vim {{{
+" for asyncomplete.vim log
+" let g:asyncomplete_log_file = expand('~/asyncomplete.log')
 " allow modifying the completeopt variable, or it will
 " be overridden all the time
 let g:asyncomplete_auto_completeopt = 0
@@ -500,6 +502,7 @@ if (has('nvim')) && has_key(g:plugs, 'nvim-lsp')
     " nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 
     " working for palette, legacy, etc!
+    " NOTE: `:LspInstall intelephense` doesn't play nice with asdf
     if (executable('intelephense'))
 
         " https://github.com/Mte90/dotfiles/blob/master/.vim/custom/custom-lsp.vim
@@ -1479,9 +1482,6 @@ let g:lsp_diagnostics_enabled = 0
 " having trouble?
 " let g:lsp_log_verbose = 1
 " let g:lsp_log_file = expand('~/vim-lsp.log')
-
-" for asyncomplete.vim log
-" let g:asyncomplete_log_file = expand('~/asyncomplete.log')
 " }}}
 
 " vim-markbar {{{
