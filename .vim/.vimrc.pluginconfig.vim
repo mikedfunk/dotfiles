@@ -927,8 +927,8 @@ let g:UltiSnipsExpandTrigger='<c-l>' " Default: <Tab>
 " this breaks in neovim (:UltiSnipsEdit doesn't work right) but if I switch
 " it, it doesn't load third-party snippets right :/
 " let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips', 'UltiSnips']
-" let g:UltiSnipsSnippetDirectories=['UltiSnips', $HOME.'/.config/vim-ultisnips/snippets']
-let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/vim-ultisnips/snippets']
+" I need to keep UltiSnips in order for e.g. orgymode snippets to work
+let g:UltiSnipsSnippetDirectories=['UltiSnips', $HOME.'/.config/vim-ultisnips/snippets']
 
 " UltiSnips somehow forgets this mapping when I open a new file :/
 if has_key(g:plugs, 'ultisnips')
@@ -1556,8 +1556,8 @@ if has_key(g:plugs, 'vim-php-namespace')
     " php add use statement for current class
     augroup phpnamespacegroup
         autocmd!
-        autocmd FileType php inoremap <Leader><Leader>u <C-O>:call PhpInsertUseInLine()<CR>
-        autocmd FileType php nnoremap <Leader><Leader>u :call PhpInsertUseInLine()<CR>
+        autocmd FileType php inoremap <Leader><Leader>u <C-O>:call PhpInsertUse()<CR>
+        autocmd FileType php nnoremap <Leader><Leader>u :call PhpInsertUse()<CR>
         " expand the namespace for the current class name
         autocmd FileType php inoremap <Leader><Leader>e <C-O>:call PhpExpandClass()<CR>
         autocmd FileType php nnoremap <Leader><Leader>e :call PhpExpandClass()<CR>

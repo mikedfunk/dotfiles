@@ -25,11 +25,13 @@ repos:
       - id: php-stan
         args: [--level=4, -c, phpstan.neon]
         types: [php]
-  - repo: https://github.com/codespell-project/codespell
-    rev: v1.17.1
-    hooks:
-      - id: codespell
-        args: [--skip="tags, vendor, .git, coverage, build"]
+  # - repo: https://github.com/codespell-project/codespell
+  #   rev: v1.17.1
+  #   hooks:
+  #     - id: codespell
+  #       args:
+  #         - "--skip=tags,vendor,.git,coverage,build"
+  #         - app
   - repo: local
     hooks:
       - id: phpspec

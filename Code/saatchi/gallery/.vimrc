@@ -55,19 +55,32 @@ nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 
 " nvim-lsp {{{
 
-" flow (NOT WORKING) {{{
-" if (has('nvim'))
-  " NOT WORKING: this old-ass version of flow doesn't have an lsp included :facepalm:
-" lua << EOF
-" require'nvim_lsp'.flow.setup{
-"   cmd = { "yarn", "flow", "lsp" }
-" }
-" EOF
-"   augroup nvim_lsp_easel
-"     autocmd!
-"     autocmd filetype javascript.jsx setlocal omnifunc=v:lua.vim.lsp.omnifunc
-"   augroup END
-" endif
+" flow {{{
+if (has('nvim'))
+lua << EOF
+require'nvim_lsp'.flow.setup{
+  cmd = { "flow", "lsp" }
+}
+EOF
+" cmd = { "/usr/local/bin/flow", "lsp" }
+" cmd = { "npm", "run", "flow", "lsp", "--" }
+" cmd = { "node", "./node_modules/bin/flow", "lsp" }
+
+  augroup nvim_lsp_easel
+    autocmd!
+    autocmd filetype javascript.jsx setlocal omnifunc=v:lua.vim.lsp.omnifunc
+  augroup END
+endif
+
+nnoremap <silent> gd <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> <leader><c-]> mz:tabe %<CR>`z<cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> <c-w><c-]> :vsp<CR><cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gD <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> 1gD <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
 " }}}
 
 " typescript (obviously NOT WORKING because this is in flowtype) {{{
