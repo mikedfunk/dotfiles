@@ -5,8 +5,10 @@ global !p
 def namespace(snip, path, prepend = ''):
     import os
     namespace = pathToNamespace(path)
-    if (len(namespace) == 0):
+    if (prepend == '' and len(namespace) == 0):
         return ''
+    if (prepend != '' and len(namespace) > 0):
+        prepend = prepend + '\\'
     return os.linesep + snip.mkline('namespace ' + prepend + namespace + ';') + os.linesep
 
 def pathToNamespace(path):
@@ -228,7 +230,7 @@ snippet pcla "palette class"
 <?php
 
 declare(strict_types=1);
-`!p snip.rv = namespace(snip, path, "Palette\\")`
+`!p snip.rv = namespace(snip, path, "Palette")`
 ${1:/** @see \\Palette`!p snip.rv = "\\" if pathToNamespace(path) else ""``!p snip.rv = pathToNamespace(path)`\\`!v substitute(expand("%:t:r"), "Spec", "", "")` */
 }class `!v expand("%:t:r")`$4
 {
@@ -257,7 +259,7 @@ snippet preq "palette laravel validating request"
 <?php
 
 declare(strict_types=1);
-`!p snip.rv = namespace(snip, path, "Palette\\")`
+`!p snip.rv = namespace(snip, path, "Palette")`
 use Palette\Http\Requests\ApiRequest;
 
 final class `!v expand("%:t:r")` extends ApiRequest
@@ -291,7 +293,7 @@ snippet greq "gallery validating request"
 <?php
 
 declare(strict_types=1);
-`!p snip.rv = namespace(snip, path, "Palette\\")`
+`!p snip.rv = namespace(snip, path, "Palette")`
 use Gallery\Http\Requests\ApiRequest;
 
 final class `!v expand("%:t:r")` extends ApiRequest
@@ -525,7 +527,7 @@ snippet pscla "mike's phpspec (palette) template"
 <?php
 
 declare(strict_types=1);
-`!p snip.rv = namespace(snip, path, "spec\\Palette\\")`
+`!p snip.rv = namespace(snip, path, "spec\\Palette")`
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -626,7 +628,7 @@ snippet pinte "palette interface"
 <?php
 
 declare(strict_types=1);
-`!p snip.rv = namespace(snip, path, "Palette\\")`$1
+`!p snip.rv = namespace(snip, path, "Palette")`$1
 interface `!v expand("%:t:r")`
 {
     $2
@@ -821,7 +823,7 @@ snippet evt "saatchi palette domain event"
 <?php
 
 declare(strict_types=1);
-`!p snip.rv = namespace(snip, path, "Palette\\")`
+`!p snip.rv = namespace(snip, path, "Palette")`
 use Palette\SaatchiArt\DomainEvent;
 
 class `!v expand("%:t:r")` extends DomainEvent
@@ -852,7 +854,7 @@ snippet hnd "saatchi palette domain event handler"
 <?php
 
 declare(strict_types=1);
-`!p snip.rv = namespace(snip, path, "Palette\\")`
+`!p snip.rv = namespace(snip, path, "Palette")`
 use Palette\SaatchiArt\DomainEvent;
 
 class ${1:`!v expand("%:t:r")`} implements DomainEventHandlerInterface

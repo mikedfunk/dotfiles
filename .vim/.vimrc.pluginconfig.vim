@@ -699,14 +699,62 @@ endif
 " current phpenv version of php
 let g:phpactorPhpBin = $HOME . "/.asdf/installs/php/7.4.7/bin/php"
 if has_key(g:plugs, 'phpactor')
+
+    function! PHPModify(transformer) abort
+        :update
+        let l:cmd = "silent !" . g:phpactorPhpBin . " " . $HOME . "/.vim/plugged/phpactor/bin/phpactor class:transform " . expand('%') . ' --transform='.a:transformer
+        execute l:cmd
+    endfunction
+
+    function! PHPConstructorArgumentMagic()
+        " update phpdoc
+        if exists("*UpdatePhpDocIfExists")
+            normal! gg
+            /__construct
+            normal! n
+            :call UpdatePhpDocIfExists()
+            :w
+        endif
+        :call PHPModify("complete_constructor")
+    endfunction
+
+    function! PHPFixEverything()
+        call PHPConstructorArgumentMagic()
+        call PHPModify("implement_contracts")
+        call PHPModify("fix_namespace_class_name")
+        call PHPModify("add_missing_properties")
+        :PhpactorImportMissingClasses
+    endfunction
+
+    function! PHPMoveDir() abort
+        :w
+        let l:oldPath = input("Old path: ", expand('%:p:h'))
+        let l:newPath = input("New path: ", l:oldPath)
+        let l:cmd = "silent !" . g:phpactorPhpBin . " " . $HOME . "/.vim/plugged/phpactor/bin/phpactor class:move " . l:oldPath . ' ' . l:newPath
+        execute l:cmd
+    endfunction
+
     augroup phpactor_mappings
         autocmd!
-        au FileType php nnoremap <buffer> <Leader>rcm :PhpactorContextMenu<CR>
-        au FileType php nnoremap <buffer> <Leader>rcr :PhpactorMoveFile<CR>
-        au FileType php vnoremap <buffer> <Leader>rem :'< ,'>PhpactorExtractMethod<CR>
-        au FileType php nnoremap <buffer> <Leader>rec :PhpactorExtractConstant<CR>
-        au FileType php nnoremap <buffer> <Leader>rtv :PhpactorChangeVisibility<CR>
+        au FileType php nnoremap <buffer> <Leader>rsm :PhpactorContextMenu<CR>
+        au FileType php nnoremap <buffer> <Leader>rcv :PhpactorChangeVisibility<CR>
         au FileType php nnoremap <buffer> ]v :PhpactorChangeVisibility<CR>
+        au FileType php nnoremap <buffer> <leader>rcf :call PHPFixEverything()<cr>
+        au FileType php nnoremap <buffer> <leader>raa :call PHPModify("add_missing_properties")<cr>
+        au fileType php nnoremap <buffer> <leader>ric :call PHPModify("implement_contracts")<cr>
+
+        au FileType php nnoremap <buffer> <Leader>rrc :PhpactorMoveFile<CR>
+        au FileType php nnoremap <buffer> <leader>rrd :call PHPMoveDir()<cr>
+        au FileType php nnoremap <buffer> <Leader>rcc :PhpactorCopyFile<CR>
+        " this could be better but just hover over the method name and press
+        " (r) for replace references. Otherwise I have to write a lot more
+        " code to skip one keypress.
+        au FileType php nnoremap <buffer> <Leader>rrm :PhpactorContextMenu<CR>
+
+        au FileType php vnoremap <buffer> <Leader>rem :'< ,'>PhpactorExtractMethod<CR>
+        au FileType php vnoremap <buffer> <Leader>rev :'< ,'>PhpactorExtractExpression<CR>
+        au FileType php nnoremap <buffer> <Leader>rev :PhpactorExtractExpression<CR>
+        au FileType php nnoremap <buffer> <Leader>rei :PhpactorClassInflect<CR>
     augroup END
 
 endif
@@ -1675,8 +1723,8 @@ let g:vim_php_refactoring_phpdoc = "pdv#DocumentCurrentLine"
 if has_key(g:plugs, 'vim-php-refactoring-toolbox')
     augroup vrt_map
         autocmd!
-        autocmd FileType php nnoremap <Leader>rlv :call PhpRenameLocalVariable()<CR>
-        autocmd FileType php nnoremap <Leader>rcv :call PhpRenameClassVariable()<CR>
+        autocmd FileType php nnoremap <Leader>rrv :call PhpRenameLocalVariable()<CR>
+        autocmd FileType php nnoremap <Leader>rrp :call PhpRenameClassVariable()<CR>
         " autocmd FileType php nnoremap <Leader>rcm :call PhpRenameMethod()<CR>
         "
         " this is useful to expand to FQCN, then extract _as_ a given different name, then sort use statements

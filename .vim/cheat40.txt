@@ -493,13 +493,21 @@ Eval expression persist  :VdebugEval! …N
 Trace variable           :VdebugTrace …N
 }}}
 Refactoring {{{1
-Refactor context menu    <leader>rcm   N
-Rename local variable    <leader>rlv   N
-Rename class variable    <leader>rcv   N
-Rename class/interface   <leader>rcr   N
+Show refactor menu       <leader>rsm   N
+Fix everything in class  <leader>rcf   N
+Change visibility     ]v <leader>rcv   N
+
+Rename local variable    <leader>rrv   N
+Rename class property    <leader>rrp   N
+Rename class method      <leader>rrm   N
+Rename classy            <leader>rrc   N
+Copy classy              <leader>rcc   N
+Rename directory         <leader>rrd   N
+
+Extract to local var     <leader>rev  VN
 Extract class property   <leader>rep   N
 Extract class use        <leader>reu   N
 Extract class method     <leader>rem   V
 Extract class const      <leader>rec   N
-Toggle visibility     ]v <leader>rtv   N
+Extract interface        <leader>rei   N
 }}}
