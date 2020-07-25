@@ -702,6 +702,10 @@ if has_key(g:plugs, 'phpactor')
     augroup phpactor_mappings
         autocmd!
         au FileType php nnoremap <buffer> <Leader>rcm :PhpactorContextMenu<CR>
+        au FileType php vnoremap <buffer> <Leader>rem :'< ,'>PhpactorExtractMethod<CR>
+        au FileType php nnoremap <buffer> <Leader>rec :PhpactorExtractConstant<CR>
+        au FileType php nnoremap <buffer> <Leader>rtv :PhpactorChangeVisibility<CR>
+        au FileType php nnoremap <buffer> ]v :PhpactorChangeVisibility<CR>
     augroup END
 
 endif

@@ -495,11 +495,13 @@ Trace variable           :VdebugTrace …N
 Php Refactoring Toolbox {{{1
 Rename local variable    <leader>rlv   N
 Rename class variable    <leader>rcv   N
-Extract class const      <leader>rec   V
 Extract class property   <leader>rep   N
 Extract class use        <leader>reu   N
-Extract class method     <leader>rem   V
 }}}
 Phpactor {{{1
 Refactor context menu    <leader>rcm   N
+Extract class method     <leader>rem   V
+Extract class const      <leader>rec   N
+Toggle visibility        <leader>rtv   N
+Toggle visibility        ]v            N
 }}}

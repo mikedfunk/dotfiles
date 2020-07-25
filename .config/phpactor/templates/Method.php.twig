@@ -1,5 +1,5 @@
 {% if prototype.docblock.notNone %}
-{% if prototype.docblock.asLines|count > 1 %}
+{% if prototype.docblock.asLines|length > 1 %}
 /**
 {% for line in prototype.docblock.asLines %}
  * {{ line|raw }}
