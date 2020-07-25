@@ -935,6 +935,9 @@ let g:UltiSnipsExpandTrigger='<c-l>' " Default: <Tab>
 " I need to keep UltiSnips in order for e.g. orgymode snippets to work
 let g:UltiSnipsSnippetDirectories=['UltiSnips', $HOME.'/.config/vim-ultisnips/snippets']
 
+" my crappy workaround to above problem
+command! EditUltiSnips exec ":vsp ".$HOME."/.config/vim-ultisnips/snippets/".&filetype.".snippets"
+
 " UltiSnips somehow forgets this mapping when I open a new file :/
 if has_key(g:plugs, 'ultisnips')
     inoremap <c-j> <c-r>=UltiSnips#JumpForwards()<CR>
