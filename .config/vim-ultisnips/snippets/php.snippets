@@ -29,7 +29,7 @@ snippet itr "prophecy mock iterator functions"
 $$1->rewind()->shouldBeCalled();
 $returns = [true, false];
 $$1->valid()->will(function () use (&$returns) {
-	return array_shift($returns);
+    return array_shift($returns);
 });
 $$1->current()->willReturn($2);
 $$1->next()->shouldBeCalled();
@@ -131,10 +131,10 @@ snippet ig "PHP Class Immutable With and Getter" !b
  */
 public function with${1/\w+\s*/\u$0/}($$1)
 {
-	$copy = clone $this;
-	$copy->$1 = $$1;
+    $copy = clone $this;
+    $copy->$1 = $$1;
 
-	return $copy;
+    return $copy;
 }
 
 /**
@@ -144,39 +144,6 @@ public function with${1/\w+\s*/\u$0/}($$1)
  */
 public function get${1/\w+\s*/\u$0/}()
 {
-	return $this->$1;
-}
-endsnippet
-
-snippet ght "Ghetto dependency injection" !b
-
-/**
- * Setter - ghetto dependency injection. Allows for setting this as a mock
- * in testing.
- *
- * @param ${2:mixed} $$1
-
- * @return static the current instance for chainability
- */
-public function set${1/\w+\s*/\u$0/}($$1)
-{
-    $this->$1 = $$1;
-
-    return $this;
-}
-
-/**
- * Getter - singleton.
- *
- * @return $2
- */
-public function get${1/\w+\s*/\u$0/}()
-{
-    if (is_null($this->$1)) {
-        $this->$1 = new $2();
-        return $this->$1;
-    }
-
     return $this->$1;
 }
 endsnippet
@@ -193,10 +160,8 @@ snippet mti "phpunit incomplete test"
 $this->markTestIncomplete();${1}
 endsnippet
 
-snippet codingStandardsIgnore "magical docblock to make phpcs shut up!"
-/**
- * @codingStandardsIgnoreFile
- */
+snippet csi "magical docblock to make phpcs shut up!"
+@codingStandardsIgnoreFile
 endsnippet
 
 snippet mck
@@ -205,6 +170,18 @@ $$1Mock->shouldReceive('$3')
     ->once()
     ->andReturn(${4:true});
 endsnippet
+
+global !p
+def capitalizeMatch(match):
+    out = match.group(1).capitalize()
+    out += match.group(2)
+    return out
+endglobal
+
+# snippet tst
+# $1
+# `!p snip.rv = re.sub(r'^([a-z])(\w*)$', capitalizeMatch, t[1])`
+# endsnippet
 
 snippet cstr "DI construct"
 `!p snip.rv = "/** @var " + t[1].capitalize() + " */\n    $" + t[1] + ";\n"`
@@ -236,7 +213,7 @@ snippet php "opening php tag"
 $1
 endsnippet
 
-snippet cla "mike's class with namespace, file and class docblocks"
+snippet cla "mike's class with all the good stuff"
 <?php
 
 declare(strict_types=1);
@@ -251,8 +228,9 @@ snippet pcla "palette class"
 <?php
 
 declare(strict_types=1);
-`!p snip.rv = namespace(snip, path, "Palette\\")`$5
-class `!v expand("%:t:r")`$4
+`!p snip.rv = namespace(snip, path, "Palette\\")`
+${1:/** @see \\Palette`!p snip.rv = "\\" if pathToNamespace(path) else ""``!p snip.rv = pathToNamespace(path)`\\`!v substitute(expand("%:t:r"), "Spec", "", "")` */
+}class `!v expand("%:t:r")`$4
 {
     $6
 }
@@ -275,7 +253,7 @@ class `!v expand("%:t:r")`$1 extends ServiceProvider
 }
 endsnippet
 
-snippet req "laravel validating request"
+snippet preq "palette laravel validating request"
 <?php
 
 declare(strict_types=1);
@@ -309,22 +287,22 @@ final class `!v expand("%:t:r")` extends ApiRequest
 }
 endsnippet
 
-snippet greq "gallery laravel validating request"
+snippet greq "gallery validating request"
 <?php
 
 declare(strict_types=1);
-`!p snip.rv = namespace(snip, path, "Gallery\\")`
-use Gallery\Http\Requests\Request as ApiRequest;
+`!p snip.rv = namespace(snip, path, "Palette\\")`
+use Gallery\Http\Requests\ApiRequest;
 
-class `!v expand("%:t:r")`$4 extends ApiRequest
+final class `!v expand("%:t:r")` extends ApiRequest
 {
     /** {@inheritdoc} */
     public function rules()
     {
         return [
-            ${1://}
+            ${1:// TODO}
         ];
-    }
+    }${2:
 
     /** {@inheritdoc} */
     public function messages()
@@ -333,7 +311,7 @@ class `!v expand("%:t:r")`$4 extends ApiRequest
             // key/value pairs for validation type => message e.g.
             // 'first_name.required' => 'wtf dont leave this blank',
         ];
-    }
+    }}
 
     /** {@inheritdoc} */
     public function authorize()
@@ -364,10 +342,10 @@ class ${2:MyScript} extends ProcessAbstract
 
     public function __construct()
     {
-	    $this->_additionalOptionalFlags[] = ['flag' => 'dry-run', 'description' => 'If in dry run, don\'t actually do anything'];
-	    ${3:// $this->_optionalParameters[] = ['param' => '-param1', 'description' => 'My Desc'];
-	    // $this->_requiredParameters[] = ['param' => '-param2', 'description' => 'My Desc'];}
-	    parent::__construct();
+        $this->_additionalOptionalFlags[] = ['flag' => 'dry-run', 'description' => 'If in dry run, don\'t actually do anything'];
+        ${3:// $this->_optionalParameters[] = ['param' => '-param1', 'description' => 'My Desc'];
+        // $this->_requiredParameters[] = ['param' => '-param2', 'description' => 'My Desc'];}
+        parent::__construct();
     }
 
     /**
@@ -402,67 +380,7 @@ try {
 }
 endsnippet
 
-snippet qscr "saatchi queue process abstract script"
-<?php
-
-declare(strict_types=1);
-
-require_once __DIR__ . '/../../vendor/autoload.php';
-
-use Zend_Controller_Front as FrontController;
-
-/**
- * ${1:Description}
- *
- * usage: php /data/code_base/current/`!v @%` {environment} {-v} {--dry-run}
- */
-class ${2:MyScript} extends QueueProcessAbstract
-{
-    /** @var bool */
-    private $isDryRun = true;
-
-	public function __construct()
-	{
-        $this->_additionalOptionalFlags[] = ['flag' => 'dry-run', 'description' => 'If in dry run, don\'t actually do anything'];
-        ${3:// $this->_optionalParameters[] = ['param' => '-param1', 'description' => 'My Desc'];
-        // $this->_requiredParameters[] = ['param' => '-param2', 'description' => 'My Desc'];}
-		parent::__construct();
-		$this->setDefaultQueue('${3:config-key-for-sqs-queue}');
-		// number of messages to retrieve at once
-		// $this->setDefaultPull(10);
-	}
-
-	/** Handle each sqs event. */
-	public function processData()
-	{
-        $this->isDryRun = $this->_isFlagSet('dry-run');
-        if ($this->isDryRun) {
-            $this->output->success("DRY RUN ONLY no changes will be made");
-        }
-        ${4:// $this->_getParam('-param1', 'default val');}
-		/** @var array $event */
-		foreach ($this->updateData as $event) {
-            ${5:// TODO write script...}
-		}
-		$this->output->success('All done processing.');
-	}
-}
-
-/* @var \DI\Container $container */
-$container = FrontController::getInstance()->getDispatcher()->getContainer();
-$script = $container->get($2::class);
-$script->setConcurrency(5);
-try {
-	$script->run();
-} catch (\Throwable $thrown) {
-	if ($script->isVerbose()) {
-		$script->logMsg($thrown);
-	}
-	throw $thrown;
-}
-endsnippet
-
-snippet trt "mike's trait with namespace, file and class docblocks"
+snippet trt "mike's trait"
 <?php
 
 declare(strict_types=1);
@@ -470,30 +388,6 @@ declare(strict_types=1);
 trait `!v expand("%:t:r")`
 {
     $6
-}
-endsnippet
-
-snippet sfctl "symfony controller"
-<?php
-
-declare(strict_types=1);`!p snip.rv = namespace(snip, path)`
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-
-/** @Route(service="app.${1/\w+/\l$0/}_controller") */
-class `!v expand("%:t:r")` extends Controller
-{
-    /**
-     * @Route("/${1/\w+/\l$0/}", name="${1/\w+/\l$0/}_index")
-     * @Template()
-     * @return array
-     */
-    public function indexAction()
-    {
-        return [];
-    }
 }
 endsnippet
 
@@ -512,17 +406,13 @@ use Illuminate\Database\Migrations\Migration;
 
 class Create$1Table extends Migration
 {
-
-    /**
-     * Run the migrations.
-     */
+    /** {@inheritdoc}
     public function up()
     {
         Schema::create(
             '${3:table_name}',
             function ($table) {
-                $table->increments('id');
-                $4
+                ${4:$table->increments('id');
                 // $table->integer('member_ad_id')->index();
                 // $table->string('city', 255)->nullable();
                 // $table->enum(
@@ -536,14 +426,12 @@ class Create$1Table extends Migration
                 // $table->decimal('price', 12, 2)->nullable();
                 // $table->date('featured_expiration_date')->nullable();
                 // $table->boolean('is_bigger');
-                // $table->timestamps();
+                // $table->timestamps();}
             }
         );
     }
 
-    /**
-     * Reverse the migrations.
-     */
+    /** {@inheritdoc} */
     public function down()
     {
         Schema::drop('$3');
@@ -561,36 +449,24 @@ use Str;
 
 class $4 extends Seeder
 {
-
-    /**
-     * getTableName
-     *
-     * @return string
-     */
+    /** {@inheritdoc} */
     private function getTableName()
     {
         return '${5:table_name}';
     }
 
-    /**
-     * run seeder
-     */
+    /** {@inheritdoc} */
     public function run()
     {
         $this->seedFakeRows(10);
         $this->command->info('$5 table seeded!');
     }
 
-    /**
-     * provide one fake row
-     *
-     * @return array
-     */
+    /** {@inheritdoc} */
     private function provideOneRow()
     {
-        return array(
-            $6
-            // 'title' => Str::limit($this->faker()->sentence(3), 45),
+        return [
+            ${6:// 'title' => Str::limit($this->faker()->sentence(3), 45),
             // 'price' => $this->faker()->randomNumber(5),
             // 'fax' => $this->faker()->phoneNumber(),
             // 'additional_notes' => $this->faker()->text(),
@@ -598,11 +474,16 @@ class $4 extends Seeder
             // 'height' => $this->faker()->randomNumber(),
             // 'current_step' => $this->faker()->word(),
             // 'is_exclusive' => $this->faker()->boolean(),
-            // 'exclusive_expiration_date' => $this->faker()->dateTimeThisYear()->format('Y-m-d G:i:s'),
-        );
-    }
+            // 'exclusive_expiration_date' => $this->faker()->dateTimeThisYear()->format('Y-m-d G:i:s'),}
+        ];
 }
 endsnippet
+
+# snippet tst
+# test
+# `!p snip.rv = pathToNamespace(path)`\\`!v substitute(expand("%:t:r"), "Test", "", "")`
+# `!p snip.rv = re.sub(r'^([A-Z])(\w*)$', lambda match: match.group(1).lower() . match.group(2), re.sub(expand("%:t:r"), "Test", "", ""))`
+# endsnippet
 
 snippet pucla "mike's phpunit test template with docblocks"
 <?php
@@ -614,31 +495,29 @@ use PHPUnit_Framework_TestCase as TestCase;
 /**
  * Unit Tests
  *
- * @see \\`!p snip.rv = pathToNamespace(path)`\\$2
+ * @see \\`!p snip.rv = pathToNamespace(path)`\\`!v substitute(expand("%:t:r"), "Test", "", "")`
  *
  * @group unit
  */
-final class `!v expand("%:t:r")` extends TestCase
+final class ${2:`!v expand("%:t:r")`} extends TestCase
 {
+    /** @var \\`!p snip.rv = pathToNamespace(path)`\\`!v substitute(expand("%:t:r"), "Test", "", "")` system under test */
+    private \$${2/(\w+)Test\s*/\l$1/};
 
-    /** @var \\`!p snip.rv = pathToNamespace(path)`\\${2:ActualClass} system under test */
-    private \$${2/\w+\s*/\l$0/};
-
-    /** Phpunit setup. Runs before each test. */
+    /** {@inheritdoc} */
     public function setUp()
     {
-		// mock dependencies
-
+        ${1:// TODO mock dependencies}
 
         // instantiate class under test
-        $this->${2/\w+\s*/\l$0/} = new $2();
+        $this->${2/(\w+)Test\s*/\l$1/} = new `!v substitute(expand("%:t:r"), "Test", "", "")`($3);
     }
 
     /** @test */
     public function it_is_initializable()
     {
-        $this->assertInstanceOf($2::class, $this->${2/\w+\s*/\l$0/});
-    }
+        $this->assertInstanceOf(`!v substitute(expand("%:t:r"), "Test", "", "")`::class, $this->${2/(\w+)Test\s*/\l$1/});
+    }$4
 }
 endsnippet
 
@@ -651,52 +530,34 @@ use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
 /**
- * Specification unit test for \\Palette\\`!p snip.rv = pathToNamespace(path)`\\`!v substitute(expand("%:t:r"), "Spec", "", "")`.
+ * Specification unit test
  *
- * @see \\Palette\\`!p snip.rv = pathToNamespace(path)`\\`!v substitute(expand("%:t:r"), "Spec", "", "")`
+ * {@inheritdoc}
+ *
+ * @see \\Palette`!p snip.rv = "\\" if pathToNamespace(path) else ""``!v substitute(expand("%:t:r"), "Spec", "", "")`
  */
 final class `!v expand("%:t:r")` extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('\\Palette\\`!p snip.rv = pathToNamespace(path)`\\`!v substitute(expand("%:t:r"), "Spec", "", "")`');
-    }
-    $1
-}
-endsnippet
-
-snippet pupcla "mike's phpunit prophecy test template with docblocks"
-<?php
-
-declare(strict_types=1);
-`!p snip.rv = namespace(snip, path)`
-use DemandMedia\Test\AbstractProphecyTest;
-
-/** Unit Tests */
-class `!v expand("%:t:r")` extends AbstractProphecyTest
-{
-
-    /**
-     * @var \\$0${2:ActualClass} class under test
-     */
-    private \$${2/\w+\s*/\l$0/};
-
-    /**
-     * phpunit setup
-     */
-    public function setUp()
-    {
-        parent::setUp();
-
-        // instantiate class under test
-        $this->${2/\w+\s*/\l$0/} = new $2();
-    }
+        $this->shouldHaveType('\\Palette`!p snip.rv = "\\" if pathToNamespace(path) else ""``!p snip.rv = pathToNamespace(path)``!p snip.rv = pathToNamespace(path)`\\`!v substitute(expand("%:t:r"), "Spec", "", "")`');
+    }$1
 }
 endsnippet
 
 snippet meth "php method"
-$7
-${3:public} function ${4:functionname}(${5})$6
+${5:/**${6:
+ *} @return ${7:void}`!p snip.rv = "\n    " if t[6] else ""` */
+}${2:public} function ${2:foo}(${3})$4
+{
+    ${8:// TODO}
+}
+endsnippet
+
+snippet mt "php method"
+${5:/**${6:
+ *} @return ${7:void}`!p snip.rv = "\n    " if t[6] else ""` */
+}${2:public} function ${2:foo}(${3})$4
 {
     ${8:// TODO}
 }
@@ -708,29 +569,11 @@ ${1:static} function ($2) {
 }
 endsnippet
 
-snippet scmeth "symfony controller method"
-
-/**
- * ${1:Description}
- *
- * @Route("${1:/}", name="${2:route_name}")
- * @Template($3)
- * @return ${4:array}
- */
-public function ${5:functionname}Action($6)
-{
-    $7
-}
-endsnippet
-
 snippet imeth "php interface method"
 
-/**
- * ${1:Description}
- *
- * @return ${4:void}
- */
-public function ${2:functionname}(${3});
+${5:/**${6:
+ *} @return ${7:void}`!p snip.rv = "\n    " if t[6] else ""` */
+}public function ${2:foo}(${3})$4;
 endsnippet
 
 snippet pumeth "phpunit method"
@@ -744,25 +587,23 @@ endsnippet
 
 snippet psmeth "phpspec method"
 
-public function it_${2:does_something}()
+public function it_${1:does_something}($2)
 {
-    $3
+    ${3:// TODO}
 }
 endsnippet
 
 snippet it "phpspec method"
 
-public function it_${2:does_something}($3)
+public function it_${1:does_something}($2)
 {
-    ${4:// TODO}
+    ${3:// TODO}
 }
 endsnippet
 
 snippet stp "phpunit setup"
 
-/**
- * phpunit setup
- */
+/** {@inheritdoc} */
 public function setUp()
 {
     parent::setUp();
@@ -775,9 +616,9 @@ snippet inte "interface"
 
 declare(strict_types=1);
 `!p snip.rv = namespace(snip, path)`
-interface `!v expand("%:t:r")`
+interface `!v expand("%:t:r")`$1
 {
-    $1
+    $2
 }
 endsnippet
 
@@ -785,27 +626,27 @@ snippet pinte "palette interface"
 <?php
 
 declare(strict_types=1);
-`!p snip.rv = namespace(snip, path, "Palette\\")`$5
+`!p snip.rv = namespace(snip, path, "Palette\\")`$1
 interface `!v expand("%:t:r")`
 {
-    $1
+    $2
 }
 endsnippet
 
 snippet vr "local var docblock"
-/** @var ${1:mixed} \$${2:myVar} */
+/** @var ${1:Foo} \$${1/\w+/\l$0/} */
 endsnippet
 
 snippet va "class-based var with docblock"
 
-/** @var \\${1:MyClass} */
+/** @var ${1:MyClass} */
 private \$${1/\w+/\l$0/};
 endsnippet
 
 snippet sva "scalar var with docblock"
 
-/** @var ${1:mixed} */
-private \$${2:myvar};
+/** @var ${1:string} */
+private \$${2:foo};
 endsnippet
 
 snippet iva "var with docblock with @Inject for php-di"
@@ -813,65 +654,19 @@ snippet iva "var with docblock with @Inject for php-di"
 /**
  * @Inject
  *
- * @var ${1:mixed}
+ * @var ${1:Foo}
  */
-private \$${2:myvar};
+private \$${1/\w+/\l$0/};
 endsnippet
 
-# snippet iva "var with docblock implementing an interface"
-
-# /**
-#  * ${1/\w+\s*/\u$0/} instance
-#  *
-#  * @var ${1/\w+\s*/\u$0/}Interface
-#  */
-# protected $$1;
-# endsnippet
-
-snippet srs "shouldReceive something andReturnSelf"
-->shouldReceive('$1')
-->once()
-->with($2)
-->andReturnSelf()
-endsnippet
-
-snippet sro "should receive once with no args"
-${1:\$file}->shouldReceive('$2')->once()->withNoArgs()->andReturn($3);
-endsnippet
-
-snippet mva "assign mock to instance variable"
-$ns = 'DemandMedia\\${1:Listing}\\${2:Interfaces}'
-    . '\\${3:MyClassName}${4:Interface}';
-${5:$myvar} = Mockery::mock($ns);
-endsnippet
-
-snippet cnst "constant with docblock"
+snippet cnst "php 7.0 constant with docblock"
 
 /** @access ${1:private} */
 const ${3:MY_CONST} = '$4';
 endsnippet
 
-snippet varblock "var docblock"
-/**
- * ${1:description}
- *
- * @var ${2:mixed}
- * @access ${3:public}
- */
-endsnippet
-
 snippet rn "nullable return type"
-/**
- * @return $1|null
- */
-endsnippet
-
-snippet methodblock "method level docblock"
-/**
- * ${1:title}
- *
- * @param ${2:string $myvar my description here}
- */
+/** @return $1|null */
 endsnippet
 
 snippet lng "laravel Lang::get()"
@@ -882,8 +677,18 @@ snippet vw "View::make"
 return View::make('$1');
 endsnippet
 
-snippet r:g "Laravel Route::get"
+snippet rg "Laravel Route::get"
 Route::get(
+    '${1:route/path}',
+    [
+        'uses' => '${2:Namespace\To\Controller}',
+        'as' => '${3:route.name}'
+    ]
+);
+endsnippet
+
+snippet rp "Laravel Route::post"
+Route::post(
     '${1:route/path}',
     [
         'uses' => '${2:Namespace\To\Controller}',
@@ -896,23 +701,11 @@ snippet rdr "Redirect::route"
 return Redirect::route('$1');
 endsnippet
 
-# snippet if "php if" !b
-# if (${1}) {
-    # ${2}
-# }
-# endsnippet
-
 snippet ife "php if/else" !b
 if (${1}) {
-    ${2}
+    ${2:// TODO}
 } else {
-    ${3}
-}
-endsnippet
-
-snippet foreach "php foreach"
-foreach (${1:$things as $thing}) {
-    $2
+    ${3:// TODO}
 }
 endsnippet
 
@@ -924,14 +717,6 @@ endsnippet
 
 snippet -- "// ---"
 // ------------------------------------------------------------------------
-endsnippet
-
-snippet me "@author"
-@author Michael Funk <`!v g:snips_author`>
-endsnippet
-
-snippet hm "@author home address"
-@author Michael Funk <mike@mikefunk.com>
 endsnippet
 
 snippet uns "Laravel Unsigned Integer"
@@ -950,195 +735,8 @@ snippet vd "var_dump and exit"
 var_dump($1); exit;
 endsnippet
 
-snippet dd "symfony dump and die"
-dump($1); exit;
-endsnippet
-
 snippet cl "Laravel http call"
 $this->call('${1:GET}', ${2:myurl});
-endsnippet
-
-snippet zmodule "Zend Framework Module class"
-<?php
-
-declare(strict_types=1);
-
-namespace ${2:Namespace};
-
-class Module
-{
-
-    /**
-     * use composer instead of Zend's autoloader
-     *
-     * @return null
-     */
-    public function getAutoloaderConfig()
-    {
-    }
-
-    /**
-     * get module config
-     *
-     * @return array
-     */
-    public function getConfig()
-    {
-        return require_once __DIR__ . '/config/module.config.php';
-    }
-}
-endsnippet
-
-snippet zendbootstrap "Zend Framework Unit Testing Bootstrap File"
-<?php
-
-namespace AlbumTest;
-
-use Zend\Loader\AutoloaderFactory;
-use Zend\Mvc\Service\ServiceManagerConfig;
-use Zend\ServiceManager\ServiceManager;
-use RuntimeException;
-
-error_reporting(E_ALL | E_STRICT);
-chdir(__DIR__);
-
-/**
- * Test bootstrap, for setting up autoloading
- */
-class Bootstrap
-{
-    protected static $serviceManager;
-
-    public static function init()
-    {
-        $zf2ModulePaths = array(dirname(dirname(__DIR__)));
-        if (($path = static::findParentPath('vendor'))) {
-            $zf2ModulePaths[] = $path;
-        }
-        if (($path = static::findParentPath('module')) !== $zf2ModulePaths[0]) {
-            $zf2ModulePaths[] = $path;
-        }
-
-        static::initAutoloader();
-
-        // use ModuleManager to load this module and it's dependencies
-        $config = array(
-            'module_listener_options' => array(
-                'module_paths' => $zf2ModulePaths,
-            ),
-            'modules' => array(
-                '${1:MyModuleName}'
-            )
-        );
-
-        $serviceManager = new ServiceManager(new ServiceManagerConfig());
-        $serviceManager->setService('ApplicationConfig', $config);
-        $serviceManager->get('ModuleManager')->loadModules();
-        static::$serviceManager = $serviceManager;
-    }
-
-    public static function getServiceManager()
-    {
-        return static::$serviceManager;
-    }
-
-    protected static function initAutoloader()
-    {
-        $vendorPath = static::findParentPath('vendor');
-
-        $zf2Path = getenv('ZF2_PATH');
-        if (!$zf2Path) {
-            if (defined('ZF2_PATH')) {
-                $zf2Path = ZF2_PATH;
-            } elseif (is_dir($vendorPath . '/ZF2/library')) {
-                $zf2Path = $vendorPath . '/ZF2/library';
-            } elseif (is_dir($vendorPath . '/zendframework/zendframework/library')) {
-                $zf2Path = $vendorPath . '/zendframework/zendframework/library';
-            }
-        }
-
-        if (!$zf2Path) {
-            throw new RuntimeException('Unable to load ZF2. Run "php composer.phar install" or define a ZF2_PATH environment variable.');
-        }
-
-        include $zf2Path . '/Zend/Loader/AutoloaderFactory.php';
-        AutoloaderFactory::factory(array(
-            'Zend\Loader\StandardAutoloader' => array(
-                'autoregister_zf' => true,
-                'namespaces' => array(
-                    __NAMESPACE__ => __DIR__ . '/' . __NAMESPACE__,
-                ),
-            ),
-        ));
-    }
-
-    protected static function findParentPath($path)
-    {
-        $dir = __DIR__;
-        $previousDir = '.';
-        while (!is_dir($dir . '/' . $path)) {
-            $dir = dirname($dir);
-            if ($previousDir === $dir) return false;
-            $previousDir = $dir;
-        }
-        return $dir . '/' . $path;
-    }
-}
-
-Bootstrap::init();
-endsnippet
-
-snippet zendmodule "Zend Framework module config"
-<?php
-return array(
-    'controllers' => array(
-        'invokables' => array(
-            '${1:ZendSkeletonModule\Controller\Skeleton}' => '$1Controller',
-        ),
-    ),
-    'router' => array(
-        'routes' => array(
-            'module-name-here' => array(
-                'type'    => 'Literal',
-                'options' => array(
-                    // Change this to something specific to your module
-                    'route'    => '${2:/module-specific-root}',
-                    'defaults' => array(
-                        // Change this value to reflect the namespace in which
-                        // the controllers for your module are found
-                        '__NAMESPACE__' => '$1',
-                        'controller'    => '${4:Skeleton}',
-                        'action'        => 'index',
-                    ),
-                ),
-                'may_terminate' => true,
-                'child_routes' => array(
-                    // This route is a sane default when developing a module;
-                    // as you solidify the routes for your module, however,
-                    // you may want to remove it and replace it with more
-                    // specific routes.
-                    'default' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route'    => '/[:controller[/:action]]',
-                            'constraints' => array(
-                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
-                            ),
-                            'defaults' => array(
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-        ),
-    ),
-    'view_manager' => array(
-        'template_path_stack' => array(
-            'ZendSkeletonModule' => __DIR__ . '/../view',
-        ),
-    ),
-);
 endsnippet
 
 snippet mit "MIT License"
@@ -1163,25 +761,19 @@ if ($1) {
 }
 endsnippet
 
-# snippet fe "php foreach"
-# foreach ($1) {
-    # $2
-# }
-# endsnippet
-
 snippet asn "assign variable to instance variable"
 $this->${1:listingModel} = \$$1;
 endsnippet
 
 snippet arg "set up class instance arg"
-${1:MyClass} $${1/\w+\s*/\l$0/}
+${1:Foo} $${1/\w+\s*/\l$0/}
 endsnippet
 
 snippet exp "$expected common line in unit tests"
-$expected = '${1:random string}';
+$expected = '${1:foo}';
 
 // call and verify
-$actual = $this->${2:listingRepository}->${3:myMethod()};
+$actual = $this->${2:bar}->${3:baz($4)};
 $this->assertEquals($expected, $actual);
 endsnippet
 
@@ -1193,28 +785,29 @@ declare(strict_types=1);
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 
-/** $2 */
-class ${1:`!v expand("%:t:r")`} extends Command
+$2class ${1:`!v expand("%:t:r")`} extends Command
 {
 
     /** {@inheritdoc} */
-    protected $description = '$3';
+    protected $description = '${3:foo}';
 
     /** {@inheritdoc} */
-    protected $signature = '${4:email:send {--dry-run}}';
+    protected $signature = '${4:foo:bar {--dry-run} {--user-id=}}';
 
-    public function __construct()
+    `!p snip.rv = "/** @var " + re.sub(r'^([a-z])(\w*)$', capitalizeMatch, t[5]) + " */\n    private $" + t[5] + ";\n"`
+    public function __construct(${5/\w+\s*/\u$0/} $${5:foo})
     {
-        parent::__construct();
+        $this->$5 = $$5;
     }
 
     /** {@inheritdoc} */
     public function handle()
     {
-        $this->info("Starting script");
-        $this->info("DRY RUN ONLY no changes will be made");
-        ${6:// TODO write command}
-        $this->info("Script finished");
+        if ($this->isDryRun()) {
+            $this->info("DRY RUN ONLY no changes will be made");
+        }
+        ${6:// TODO}
+        $this->info("Finished");
     }
 
     private function isDryRun(): bool
@@ -1228,15 +821,16 @@ snippet evt "saatchi palette domain event"
 <?php
 
 declare(strict_types=1);
-`!p snip.rv = namespace(snip, path, "Palette\\")
+`!p snip.rv = namespace(snip, path, "Palette\\")`
+use Palette\SaatchiArt\DomainEvent;
 
-class ${1:`!v expand("%:t:r")`} extends DomainEvent
+class `!v expand("%:t:r")` extends DomainEvent
 {
-
-    public function __construct(${5/\w+\s*/\u$0/} $${5:myClass})
+    `!p snip.rv = "/** @var " + re.sub(r'^([a-z])(\w*)$', capitalizeMatch, t[1]) + " */\n    private $" + t[1] + ";\n"`
+    public function __construct(${1/\w+\s*/\u$0/} $${1:foo})
     {
-        $this->$5 = $$5;
-    }
+        $this->$1 = $$1;
+    }$6
 }
 endsnippet
 
@@ -1263,12 +857,11 @@ use Palette\SaatchiArt\DomainEvent;
 
 class ${1:`!v expand("%:t:r")`} implements DomainEventHandlerInterface
 {
-`!p 'heeey' if match.group(5) else 'n'`
-
-    public function __construct(${5/\w+\s*/\u$0/} $${5:foo})
+    `!p snip.rv = "/** @var " + re.sub(r'^([a-z])(\w*)$', capitalizeMatch, t[1]) + " */\n    private $" + t[1] + ";\n"`
+    public function __construct(${1/\w+\s*/\u$0/} $${1:foo})
     {
-        $this->$5 = $$5;
-    }
+        $this->$1 = $$1;
+    }$6
 
     /** {@inheritdoc} */
     public function handle(DomainEvent $event)
@@ -1276,204 +869,30 @@ class ${1:`!v expand("%:t:r")`} implements DomainEventHandlerInterface
         if (!$event instanceof ${6:MyEventClass}) {
             throw new \InvalidArgumentException("Wrong event type received");
         }
-        ${7:// TODO handle event}
+        ${7:// TODO}
     }
 }
-endsnippet
-
-snippet dpa "docblock part of param with matching interface"
-@param \\${1:ImageRepository}Interface $${1/\w+/\l$0/}
-endsnippet
-
-snippet mpa "method parameter input for typehinted class with matching interface"
-${1:Whatever}Interface $${1/\w+/\l$0/},
-endsnippet
-
-snippet apa "assign parameter to class variable"
-$this->${1:whatever} = $$1;
-endsnippet
-
-snippet rcmd "Register an artisan command in the service provider"
-// register $1 command
-$this->app->bind(
-    '${1:listing.import}',
-    'DemandMedia\\${2:Listing}\Commands'
-    . '\\${3:ListingImport}Command'
-);
-$this->commands('$1');
-endsnippet
-
-snippet ibap "DemandMedia"
-DemandMedia\
-endsnippet
-
-snippet behatspin "Behat keep trying until it succeeds"
-
-/**
- * keep trying until this succeeds with a timeout of 60 seconds
- *
- * @param function $lambda
- */
-public function spin ($lambda, $wait = 60)
-{
-    for ($i = 0; $i < $wait; $i++)
-    {
-        try {
-            if ($lambda($this)) {
-                return true;
-            }
-        } catch (Exception $e) {
-            // do nothing
-        }
-
-        sleep(1);
-    }
-
-    $backtrace = debug_backtrace();
-
-    throw new Exception(
-        "Timeout thrown by " . $backtrace[1]['class'] . "::" . $backtrace[1]['function'] . "()\n" .
-        $backtrace[1]['file'] . ", line " . $backtrace[1]['line']
-    );
-}
-endsnippet
-
-snippet dcli "doctrine cli config"
-<?php
-/**
- * this file is required for the doctrine cli tool to work
- *
- * ${2:@license MIT License <http://opensource.org/licenses/mit-license.html>}
- */
-use Doctrine\ORM\Tools\Console\ConsoleRunner;
-use Doctrine\ORM\Tools\Setup;
-use Doctrine\ORM\EntityManager;
-
-require_once __DIR__ . '/vendor/autoload.php';
-
-// Create a simple yaml Doctrine ORM configuration for Annotations
-$isDevMode = true;
-$config = Setup::createYAMLMetadataConfiguration([__DIR__."/config/yaml"], $isDevMode);
-
-// database configuration parameters
-$conn = array(
-    'driver' => 'pdo_sqlite',
-    'path' => __DIR__ . '/db.sqlite',
-);
-
-// obtaining the entity manager
-$entityManager = EntityManager::create($conn, $config);
-
-return ConsoleRunner::createHelperSet($entityManager);
 endsnippet
 
 snippet ep "doctrine entity manager persist"
 $entityManager->persist($1);
 endsnippet
 
-snippet efl "doctrine entity manager flush"
+snippet ef "doctrine entity manager flush"
 $entityManager->flush();
 endsnippet
 
-snippet serializable "doctrine entity serializable methods"
-/**
- * serialize
- *
- * @return string|null representation of the object or null
- */
-public function serialize()
-{
-    return serialize([
-        ${1:$this->id,
-        $this->username,
-        $this->password}
-    ]);
-}
-
-/**
- * unserialize
- */
-public function unserialize($serialized)
-{
-    list(
-        ${2:$this->id,
-        $this->username,
-        $this->password}
-    ) = unserialize($serialized);
-}
-endsnippet
-
-snippet asrt "symfony assert use statement for entities"
-use Symfony\Component\Validator\Constraints as Assert;
-endsnippet
-
-snippet dcol "doctrine entity column"
-
-/**
- * ${1:column_name}
- *
- * @var ${2:int}
- * @ORM\Column(name="$1", type="${3:integer}")
- */
-protected $$1;
-endsnippet
-
-snippet sfft "symfony form type"
-<?php
-
-declare(strict_types=1);
-`!p snip.rv = namespace(snip, path)`
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-
-class `!v expand("%:t:r")` extends AbstractType
-{
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        return '${1\w+/\l$0}';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-
-        // define the fields
-        return $builder->add('${4:username}', 'text')
-
-            // no field type guessing :(
-            // ->add('email', 'email')
-
-            // field type guessing! :) set second arg to null
-            // ->add('email', null)
-            // ->add('plainPassword', 'repeated', [
-            //     'type' => 'password'
-            // ]);
-        ;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        // data class indicates which entity the finished form will hydrate
-        $settings = ['data_class' => '${3:UserBundle\Entity\User}'];
-        $resolver->setDefaults($settings);
-        $this->configureOptions($resolver);
-    }
-}
-endsnippet
-
 snippet let "phpspec let (before each test)"
+/** {@inheritdoc} */
+public function let($1)
+{
+    $this->beConstructedWith($2);
+}
+endsnippet
 
-/** Runs before each test */
+snippet lt "phpspec let (before each test)"
+
+/** {@inheritdoc} */
 public function let($1)
 {
     $this->beConstructedWith($2);
@@ -1482,10 +901,6 @@ endsnippet
 
 snippet bcw "phpspec beConstructedWith()"
 $this->beConstructedWith($1);
-endsnippet
-
-snippet rpo "symfony get repo"
-$this->doctrine->getRepository('DemandMediaAirlinersAppBundle:${1:EntityName}')$2
 endsnippet
 
 snippet prp "PRophet Prophesize"
@@ -1646,9 +1061,9 @@ for (${1:$i = 0;}, ${2:$i < $total;}, ${3:$i++}) {
 endsnippet
 
 snippet case "case 'value': ... break"
-	case '${1:value}':
-		${0:${VISUAL}}
-		break;
+    case '${1:value}':
+        ${0:${VISUAL}}
+        break;
 endsnippet
 
 snippet if "if"
