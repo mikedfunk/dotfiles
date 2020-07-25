@@ -734,6 +734,7 @@ if has_key(g:plugs, 'phpactor')
         execute l:cmd
     endfunction
 
+    " NOTE: to see available refactor mappings: <leader>?
     augroup phpactor_mappings
         autocmd!
         au FileType php nnoremap <buffer> <Leader>rsm :PhpactorContextMenu<CR>
@@ -1649,10 +1650,6 @@ if has_key(g:plugs, 'vim-php-namespace')
 endif
 " }}}
 
-" vim-php-refactoring {{{
-let g:php_refactor_command='php /usr/local/bin/refactor.phar'
-" }}}
-
 " vim-phpqa {{{
 let g:phpqa_messdetector_autorun = 0 "default: 1
 let g:phpqa_codesniffer_autorun = 0 "default: 1
@@ -1721,7 +1718,8 @@ let g:vim_php_refactoring_auto_validate_visibility = 1
 let g:vim_php_refactoring_phpdoc = "pdv#DocumentCurrentLine"
 
 if has_key(g:plugs, 'vim-php-refactoring-toolbox')
-    augroup vrt_map
+    " NOTE: to see available refactor mappings: <leader>?
+    augroup vim_php_refactoring_toolbox_mappings
         autocmd!
         autocmd FileType php nnoremap <Leader>rrv :call PhpRenameLocalVariable()<CR>
         autocmd FileType php nnoremap <Leader>rrp :call PhpRenameClassVariable()<CR>
