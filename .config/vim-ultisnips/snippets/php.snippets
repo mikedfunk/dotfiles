@@ -37,7 +37,7 @@ $$1->key()->willReturn(0);
 endsnippet
 
 snippet id "inherit doc"
-/** {@inheritDoc} */
+/** {@inheritdoc} */
 endsnippet
 
 snippet rv "return void"
@@ -79,6 +79,14 @@ public function get${1/\w+\s*/\u$0/}(): $2
 {
     return $this->$1;
 }
+endsnippet
+
+snippet gt "get"
+$${1:this}->get${2:Foo}();
+endsnippet
+
+snippet st "set"
+$${1:this}->set${2:Foo}($3);
 endsnippet
 
 snippet str "PHP Class Setter" !b
@@ -198,8 +206,8 @@ $$1Mock->shouldReceive('$3')
     ->andReturn(${4:true});
 endsnippet
 
-snippet cstr "laravel 4 DI construct"
-
+snippet cstr "DI construct"
+`!p snip.rv = "/** @var " + t[1].capitalize() + " */\n    $" + t[1] + ";\n"`
 public function __construct(${1/\w+\s*/\u$0/} $${1:myClass})
 {
     $this->$1 = $$1;
@@ -259,16 +267,9 @@ use Illuminate\Support\ServiceProvider;
 
 class `!v expand("%:t:r")`$1 extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
+    /** {@inheritdoc} */
     public function register()
     {
-        // $this->app->when(LegacyApi::class)
-        //     ->needs(GuzzleHttpClientInterface::class)
-        //     ->give(GuzzleHttpClient::instance);
         $2
     }
 }
@@ -281,26 +282,26 @@ declare(strict_types=1);
 `!p snip.rv = namespace(snip, path, "Palette\\")`
 use Palette\Http\Requests\ApiRequest;
 
-final class `!v expand("%:t:r")`$4 extends ApiRequest
+final class `!v expand("%:t:r")` extends ApiRequest
 {
-    /** {@inheritDoc} */
+    /** {@inheritdoc} */
     public function rules()
     {
         return [
-            ${1://}
+            ${1:// TODO}
         ];
-    }
+    }${2:
 
-    /** {@inheritDoc} */
+    /** {@inheritdoc} */
     public function messages()
     {
         return [
             // key/value pairs for validation type => message e.g.
             // 'first_name.required' => 'wtf dont leave this blank',
         ];
-    }
+    }}
 
-    /** {@inheritDoc} */
+    /** {@inheritdoc} */
     public function authorize()
     {
         return true;
@@ -317,7 +318,7 @@ use Gallery\Http\Requests\Request as ApiRequest;
 
 class `!v expand("%:t:r")`$4 extends ApiRequest
 {
-    /** {@inheritDoc} */
+    /** {@inheritdoc} */
     public function rules()
     {
         return [
@@ -325,7 +326,7 @@ class `!v expand("%:t:r")`$4 extends ApiRequest
         ];
     }
 
-    /** {@inheritDoc} */
+    /** {@inheritdoc} */
     public function messages()
     {
         return [
@@ -334,7 +335,7 @@ class `!v expand("%:t:r")`$4 extends ApiRequest
         ];
     }
 
-    /** {@inheritDoc} */
+    /** {@inheritdoc} */
     public function authorize()
     {
         return true;
@@ -650,16 +651,17 @@ use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
 /**
- * Specification unit test for \\Palette\\`!p snip.rv = pathToNamespace(path)`\\$2.
+ * Specification unit test for \\Palette\\`!p snip.rv = pathToNamespace(path)`\\`!v substitute(expand("%:t:r"), "Spec", "", "")`.
  *
- * @see \\Palette\\`!p snip.rv = pathToNamespace(path)`\\$2
+ * @see \\Palette\\`!p snip.rv = pathToNamespace(path)`\\`!v substitute(expand("%:t:r"), "Spec", "", "")`
  */
 final class `!v expand("%:t:r")` extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('\\Palette\\`!p snip.rv = pathToNamespace(path)`\\${2:ActualClass}');
+        $this->shouldHaveType('\\Palette\\`!p snip.rv = pathToNamespace(path)`\\`!v substitute(expand("%:t:r"), "Spec", "", "")`');
     }
+    $1
 }
 endsnippet
 
@@ -697,6 +699,12 @@ $7
 ${3:public} function ${4:functionname}(${5})$6
 {
     ${8:// TODO}
+}
+endsnippet
+
+snippet fn "function"
+${1:static} function ($2) {
+    $3
 }
 endsnippet
 
@@ -742,6 +750,14 @@ public function it_${2:does_something}()
 }
 endsnippet
 
+snippet it "phpspec method"
+
+public function it_${2:does_something}($3)
+{
+    ${4:// TODO}
+}
+endsnippet
+
 snippet stp "phpunit setup"
 
 /**
@@ -758,10 +774,21 @@ snippet inte "interface"
 <?php
 
 declare(strict_types=1);
-`!p snip.rv = namespace(snip, path)`$5
-interface `!v expand("%:t:r")`$4
+`!p snip.rv = namespace(snip, path)`
+interface `!v expand("%:t:r")`
 {
-    $6
+    $1
+}
+endsnippet
+
+snippet pinte "palette interface"
+<?php
+
+declare(strict_types=1);
+`!p snip.rv = namespace(snip, path, "Palette\\")`$5
+interface `!v expand("%:t:r")`
+{
+    $1
 }
 endsnippet
 
@@ -1170,10 +1197,10 @@ use Symfony\Component\Console\Input\InputOption;
 class ${1:`!v expand("%:t:r")`} extends Command
 {
 
-    /** {@inheritDoc} */
+    /** {@inheritdoc} */
     protected $description = '$3';
 
-    /** {@inheritDoc} */
+    /** {@inheritdoc} */
     protected $signature = '${4:email:send {--dry-run}}';
 
     public function __construct()
@@ -1181,7 +1208,7 @@ class ${1:`!v expand("%:t:r")`} extends Command
         parent::__construct();
     }
 
-    /** {@inheritDoc} */
+    /** {@inheritdoc} */
     public function handle()
     {
         $this->info("Starting script");
@@ -1201,8 +1228,7 @@ snippet evt "saatchi palette domain event"
 <?php
 
 declare(strict_types=1);
-`!p snip.rv = namespace(snip, path, "Palette\\")`
-use Palette\SaatchiArt\DomainEvent;
+`!p snip.rv = namespace(snip, path, "Palette\\")
 
 class ${1:`!v expand("%:t:r")`} extends DomainEvent
 {
@@ -1214,6 +1240,20 @@ class ${1:`!v expand("%:t:r")`} extends DomainEvent
 }
 endsnippet
 
+# snippet tst "testing some patterns"
+# $1
+# `!p snip.rv = re.sub(r'\$', r'', t[1])`
+# endsnippet
+
+# snippet tst "testing some patterns"
+# $1`!p snip.rv = "\n\n/** @var " + t[1].capitalize() + " */\n$" + t[1] if t[1] else ""`
+# endsnippet
+
+# snippet tst "testing some patterns"
+# $1
+# `!p snip.rv = 'y' if t[1] else 'n'`
+# endsnippet
+
 snippet hnd "saatchi palette domain event handler"
 <?php
 
@@ -1223,13 +1263,14 @@ use Palette\SaatchiArt\DomainEvent;
 
 class ${1:`!v expand("%:t:r")`} implements DomainEventHandlerInterface
 {
+`!p 'heeey' if match.group(5) else 'n'`
 
-    public function __construct(${5/\w+\s*/\u$0/} $${5:myClass})
+    public function __construct(${5/\w+\s*/\u$0/} $${5:foo})
     {
         $this->$5 = $$5;
     }
 
-    /** {@inheritDoc} */
+    /** {@inheritdoc} */
     public function handle(DomainEvent $event)
     {
         if (!$event instanceof ${6:MyEventClass}) {
@@ -1550,9 +1591,9 @@ endsnippet
 
 snippet tc "try/catch block"
 try {
-    ${1://}
-} catch (${2:\Exception} $e) {
-    ${3:echo get_class($e) . ': ' . $e->getMessage() . "\n"; exit;}
+    ${2:// TODO}
+} catch (${1:\Throwable} $e) {
+    ${3:// TODO}
 }
 endsnippet
 
@@ -1590,4 +1631,124 @@ endsnippet
 
 snippet tne "throw new exception for debug purposes (palette)"
 throw new \Exception(print_r($1, true));
+endsnippet
+
+snippet fe "foreach"
+foreach ($1 as $2) {
+    $3
+}
+endsnippet
+
+snippet fo "for"
+for (${1:$i = 0;}, ${2:$i < $total;}, ${3:$i++}) {
+    $4
+}
+endsnippet
+
+snippet case "case 'value': ... break"
+	case '${1:value}':
+		${0:${VISUAL}}
+		break;
+endsnippet
+
+snippet if "if"
+if ($1) {
+    $2
+}
+endsnippet
+
+snippet am "array_map"
+\array_map(function ($2) {
+    $3
+}, $1);
+endsnippet
+
+snippet af "array_filter"
+\array_filter($1, function ($2) {
+    $3
+});
+endsnippet
+
+snippet us "usort"
+\usort($1, function ($2, $3) {
+    ${4:return \$var2 <=> \$var1;}
+});
+endsnippet
+
+snippet /* "comment"
+/**
+ * $1
+ */
+endsnippet
+
+snippet ve "var_export"
+\var_export($1, true)
+endsnippet
+
+snippet rt "return true"
+return true;
+endsnippet
+
+snippet rt "return false"
+return false;
+endsnippet
+
+snippet te "throw exception"
+throw new ${1:\Exception}($2);
+endsnippet
+
+snippet sr "phpspec should return"
+->shouldReturn(${2:'bar'});
+endsnippet
+
+snippet wr "phpspec will return"
+->willReturn(${3:'baz'});
+endsnippet
+
+snippet sr1 "phpspec should return - one line"
+$this->${1:foo}->shouldReturn(${2:'bar'});
+endsnippet
+
+snippet wr1 "phpspec will return - one line"
+$${1:foo}->${2:bar()}->willReturn(${3:'baz'});
+endsnippet
+
+snippet sbc "phpspec should be called"
+->shouldBeCalled()
+endsnippet
+
+snippet snbc "phpspec should not be called"
+->shouldNotBeCalled()
+endsnippet
+
+snippet st "phpspec should throw"
+->shouldThrow(${1:\Exception::class})
+->during${2:Foo}($3);
+endsnippet
+
+snippet wt "phpspec will throw"
+->willThrow(${1:new \Exception('oops')});
+endsnippet
+
+snippet wt1 "phpspec will throw - one line"
+$${1:foo}->${2:bar}($3)->willThrow(${4:new \Exception('oops')});
+endsnippet
+
+snippet st1 "phpspec should throw - one line"
+$this->shouldThrow(${1:\Exception::class})->during${2:Foo}($3);
+endsnippet
+
+snippet ca "call a method on its own line"
+->${1:foo}($2)
+endsnippet
+
+snippet act "laravel controller action"
+public function ${1:foo}(${2:Request $request}): JsonResponse
+{
+    ${3:// TODO}
+}
+endsnippet
+
+snippet rte "laravel route"
+Route::${1:post}('${2:foo/bar}', '${3:BarController}@${4:baz}');
 endsnippet

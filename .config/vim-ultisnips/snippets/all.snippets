@@ -1,3 +1,110 @@
+global !p
+import vim, re
+
+def complete(tab, opts):
+    """
+    get options that match with tab
+    :param tab: query string
+    :param opts: list that needs to be completed
+    :return: a string that match with tab
+    """
+    el = [x for x in tab]
+    pat = "".join(list(map(lambda x: x + "\w*" if re.match("\w", x) else x,
+                           el)))
+    try:
+        opts = [x for x in opts if re.search(pat, x, re.IGNORECASE)]
+    except:
+        opts = [x for x in opts if x.startswith(tab)]
+    if not len(opts) or str.lower(tab) in list(map(str.lower, opts)):
+        return ""
+    cads = "|".join(opts[:5])
+    if len(opts) > 5: cads += "|..."
+    return "({0})".format(cads)
+
+def _parse_comments(s):
+    """ Parses vim's comments option to extract comment format """
+    i = iter(s.split(","))
+
+    rv = []
+    try:
+        while True:
+            # get the flags and text of a comment part
+            flags, text = next(i).split(':', 1)
+
+            if len(flags) == 0:
+                rv.append(('OTHER', text, text, text, ""))
+            # parse 3-part comment, but ignore those with O flag
+            elif 's' in flags and 'O' not in flags:
+                ctriple = ["TRIPLE"]
+                indent = ""
+
+                if flags[-1] in string.digits:
+                    indent = " " * int(flags[-1])
+                ctriple.append(text)
+
+                flags, text = next(i).split(':', 1)
+                assert flags[0] == 'm'
+                ctriple.append(text)
+
+                flags, text = next(i).split(':', 1)
+                assert flags[0] == 'e'
+                ctriple.append(text)
+                ctriple.append(indent)
+
+                rv.append(ctriple)
+            elif 'b' in flags:
+                if len(text) == 1:
+                    rv.insert(0, ("SINGLE_CHAR", text, text, text, ""))
+    except StopIteration:
+        return rv
+
+def get_comment_format():
+    """ Returns a 4-element tuple (first_line, middle_lines, end_line, indent)
+    representing the comment format for the current file.
+    It first looks at the 'commentstring', if that ends with %s, it uses that.
+    Otherwise it parses '&comments' and prefers single character comment
+    markers if there are any.
+    """
+    commentstring = vim.eval("&commentstring")
+    if commentstring.endswith("%s"):
+        c = commentstring[:-2]
+        return (c.rstrip(), c.rstrip(), c.rstrip(), "")
+    comments = _parse_comments(vim.eval("&comments"))
+    for c in comments:
+        if c[0] == "SINGLE_CHAR":
+            return c[1:]
+    return comments[0][1:]
+
+
+def make_box(twidth, bwidth=None):
+    b, m, e, i = (s.strip() for s in get_comment_format())
+    bwidth_inner = bwidth - 3 - max(len(b), len(i + e)) if bwidth else twidth + 2
+    sline = b + m + bwidth_inner * m[0] + 2 * m[0]
+    nspaces = (bwidth_inner - twidth) // 2
+    mlines = i + m + " " + " " * nspaces
+    mlinee = " " + " "*(bwidth_inner - twidth - nspaces) + m
+    eline = i + m + bwidth_inner * m[0] + 2 * m[0] + e
+    return sline, mlines, mlinee, eline
+
+def foldmarker():
+    "Return a tuple of (open fold marker, close fold marker)"
+    return vim.eval("&foldmarker").split(",")
+
+
+def display_width(str):
+    """Return the required over-/underline length for str."""
+    try:
+        # Respect &ambiwidth and &tabstop, but old vim may not support this
+        return vim.strdisplaywidth(str)
+    except AttributeError:
+        # Fallback
+        from unicodedata import east_asian_width
+        result = 0
+        for c in str:
+            result += 2 if east_asian_width(c) in ('W', 'F') else 1
+        return resultendglobal
+endglobal
+
 snippet urlto
 {{ URL::to('$1') }}$2
 endsnippet
@@ -27,58 +134,6 @@ ${1:=head1 USAGE
 =cut
 endsnippet
 
-snippet mike
-@author Michael Funk <mike.funk@demandmedia.com>
-endsnippet
-
-# snippet ethan
-# @author Ethan Brigham <ebrigham@motorheadmedia.com>
-# endsnippet
-
-# snippet aaron
-# @author Aaron Brigham <abrigham@motorheadmedia.com>
-# endsnippet
-
-# snippet chris
-# @author Chris Tero <ctero@motorheadmedia.com>
-# endsnippet
-
-# snippet carl
-# @author Carl Oman <coman@motorheadmedia.com>
-# endsnippet
-
-# snippet heming
-# @author Heming Wang <heming.wang@internetbrands.com>
-# endsnippet
-
-# snippet miguel
-# @author Miguel Huerta <miguel.huerta@internetbrands.com>
-# endsnippet
-
-# snippet matt
-# @author Matt Whelan <matt.whelan@demandmedia.com>
-# endsnippet
-
-# snippet larry
-# @author Larry Ortiz <larry.ortiz@demandmedia.com>
-# endsnippet
-
-snippet sergey
-@author Sergey Tsibel <sergey.tsibel@saatchiart.com>
-endsnippet
-
-snippet rick
-@author Rick Jones <rick.jones@saatchiart.com>
-endsnippet
-
-snippet matt
-@author Matthew Day <matthew.day@saatchiart.com>
-endsnippet
-
-snippet copyright
-@copyright `date + %Y` Demand Media, Inc. All Rights Reserved.
-endsnippet
-
 snippet vhost
 <VirtualHost *:80>
     DocumentRoot "$1"
@@ -95,4 +150,40 @@ snippet brc "bowerrc"
 {
   "directory": "$1"
 }
+endsnippet
+
+snippet box "A nice box with the current comment symbol" b
+`!p
+box = make_box(len(t[1]))
+snip.rv = box[0]
+snip += box[1]
+`${1:${VISUAL:content}}`!p
+box = make_box(len(t[1]))
+snip.rv = box[2]
+snip += box[3]`
+$0
+endsnippet
+
+snippet bbox "A nice box over the full width" b
+`!p
+if not snip.c:
+	width = int(vim.eval("&textwidth - (virtcol('.') == 1 ? 0 : virtcol('.'))")) or 71
+box = make_box(len(t[1]), width)
+snip.rv = box[0]
+snip += box[1]
+`${1:${VISUAL:content}}`!p
+box = make_box(len(t[1]), width)
+snip.rv = box[2]
+snip += box[3]`
+$0
+endsnippet
+
+snippet fld "Insert a vim fold marker pair" b
+`!p snip.rv = get_comment_format()[0]` ${1:Fold description} `!p snip.rv = foldmarker()[0]`
+${2:${VISUAL:Content}}
+`!p snip.rv = get_comment_format()[0]` `!p snip.rv = foldmarker()[1]`
+endsnippet
+
+snippet date "YYYY-MM-DD" w
+`!v strftime("%Y-%m-%d")`
 endsnippet
