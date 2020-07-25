@@ -180,6 +180,9 @@ bind generic zl scroll-right
 # move in diff view with arrow keys (up or down in diff view)
 # bind diff <Up> move-up
 # bind diff <Down> move-down
+# I can't seem to make this work inside of tig... it appears tig's diff options are limited
+bind generic gdd !git diff develop..
+bind generic gdm !git diff master..
 # }}}
 
 # log {{{

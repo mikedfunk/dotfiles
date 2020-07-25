@@ -82,8 +82,8 @@ return PhpCsFixer\Config::create()
         ], // Configured annotations should be omitted from PHPDoc.
         'global_namespace_import' => [
             'import_classes' => true,
-            'import_constants' => true,
-            'import_functions' => true,
+            'import_constants' => false,
+            'import_functions' => false,
         ],
         'hash_to_slash_comment' => true, // Single line comments should use double slashes // and not hash #.
         // 'header_comment' => [

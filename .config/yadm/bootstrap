@@ -377,6 +377,7 @@ _install_php_74 () {
     yes "" | "${PECL}" install memcached && ( echo 'extension="memcached.so"' >"${PHP_PATH}"/conf.d/02_memcached.ini )
     yes "" | "${PECL}" install imagick && ( echo 'extension="imagick.so"' >"${PHP_PATH}"/conf.d/03_imagick.ini )
     yes "" | "${PECL}" install xdebug && ( echo 'zend_extension="xdebug.so"' >"${PHP_PATH}"/conf.d/04_xdebug.ini )
+    echo 'phar.readonly = false' > "${PHP_PATH}"/conf.d/05_phar.ini
 
     # install global composer packages
     mkdir -p  "${PHP_PATH}"/{.,}composer
@@ -600,6 +601,16 @@ _install_cod () {
 }
 # }}}
 
+# install import {{{
+# import and cache shell scripts via url like python https://github.com/importpw/import/blob/master/docs/install.md
+_install_import () {
+    _has import && return
+    _log_info "Installing import"
+    curl -sfLS https://import.pw > /usr/local/bin/import
+    chmod +x /usr/local/bin/import
+}
+# }}}
+
 # ls_colors {{{
 _install_ls_colors () {
     [ -d "$HOME"/.dircolors ] && return
@@ -820,6 +831,7 @@ _link_docker_for_mac
 # _install_nix_package_manager
 _install_upgrade_ix_io
 _install_cod
+_install_import
 _update_asdf_plugins
 _clear_evalcache
 # _show_reminders

@@ -43,20 +43,11 @@ augroup jsxgrp
 augroup END
 " }}}
 
-" lsp {{{
-nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
-nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
-" }}}
-
 " nvim-lsp {{{
 
-" flow {{{
 if (has('nvim'))
+
+" flow {{{
 lua << EOF
 require'nvim_lsp'.flow.setup{
   cmd = { "flow", "lsp" }
@@ -65,22 +56,41 @@ EOF
 " cmd = { "/usr/local/bin/flow", "lsp" }
 " cmd = { "npm", "run", "flow", "lsp", "--" }
 " cmd = { "node", "./node_modules/bin/flow", "lsp" }
+" }}}
 
-  augroup nvim_lsp_easel
+  augroup nvim_lsp_jsx
     autocmd!
     autocmd filetype javascript.jsx setlocal omnifunc=v:lua.vim.lsp.omnifunc
   augroup END
+
+  augroup php_lsp_mappings
+    autocmd!
+    " autocmd FileType php nnoremap <buffer> <silent> gd <cmd>lua vim.lsp.buf.declaration()<CR>
+    " autocmd FileType php nnoremap <buffer> <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+    " autocmd FileType php nnoremap <buffer> <silent> <leader><c-]> mz:tabe %<CR>`z<cmd>lua vim.lsp.buf.definition()<CR>
+    " autocmd FileType php nnoremap <buffer> <silent> <c-w><c-]> :vsp<CR><cmd>lua vim.lsp.buf.definition()<CR>
+    " autocmd FileType php nnoremap <buffer> <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
+    " autocmd FileType php nnoremap <buffer> <silent> gD <cmd>lua vim.lsp.buf.implementation()<CR>
+    " autocmd FileType php nnoremap <buffer> <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+    " autocmd FileType php nnoremap <buffer> <silent> 1gD <cmd>lua vim.lsp.buf.type_definition()<CR>
+    " autocmd FileType php nnoremap <buffer> <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
+  augroup end
+
+  augroup javascript_lsp_mappings
+    autocmd!
+    autocmd FileType javascript nnoremap <buffer> <silent> gd <cmd>lua vim.lsp.buf.declaration()<CR>
+    autocmd FileType javascript nnoremap <buffer> <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+    autocmd FileType javascript nnoremap <buffer> <silent> <leader><c-]> mz:tabe %<CR>`z<cmd>lua vim.lsp.buf.definition()<CR>
+    autocmd FileType javascript nnoremap <buffer> <silent> <c-w><c-]> :vsp<CR><cmd>lua vim.lsp.buf.definition()<CR>
+    autocmd FileType javascript nnoremap <buffer> <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
+    autocmd FileType javascript nnoremap <buffer> <silent> gD <cmd>lua vim.lsp.buf.implementation()<CR>
+    autocmd FileType javascript nnoremap <buffer> <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+    autocmd FileType javascript nnoremap <buffer> <silent> 1gD <cmd>lua vim.lsp.buf.type_definition()<CR>
+    autocmd FileType javascript nnoremap <buffer> <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
+  augroup end
+
 endif
 
-nnoremap <silent> gd <cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> <leader><c-]> mz:tabe %<CR>`z<cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> <c-w><c-]> :vsp<CR><cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> gD <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> 1gD <cmd>lua vim.lsp.buf.type_definition()<CR>
-nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
 " }}}
 
 " typescript (obviously NOT WORKING because this is in flowtype) {{{

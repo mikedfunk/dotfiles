@@ -282,7 +282,8 @@ if has_key(g:plugs, 'fzf.vim')
                 \ 'sink':    'edit',
                 \ 'options': '-m -x +s',
                 \ 'down':    '40%' })
-    nnoremap <leader>rr :MRU<cr>
+    " this conflicts with php refactoring
+    " nnoremap <leader>rr :MRU<cr>
 
     function! s:all_files()
         return extend(
@@ -696,13 +697,13 @@ endif
 
 " phpactor {{{
 " current phpenv version of php
-let g:phpactorPhpBin = $HOME . "/.phpenv/shims/php"
+let g:phpactorPhpBin = $HOME . "/.asdf/installs/php/7.4.7/bin/php"
 if has_key(g:plugs, 'phpactor')
-    let g:phpactorOmniError = v:true " enable debugging for failed completions
-    augroup phpactorcompletephp
+    augroup phpactor_mappings
         autocmd!
-        autocmd FileType php setlocal omnifunc=phpactor#Complete
+        au FileType php nnoremap <buffer> <Leader>rcm :PhpactorContextMenu<CR>
     augroup END
+
 endif
 " }}}
 
@@ -1539,6 +1540,10 @@ if has_key(g:plugs, 'vim-mundo')
 endif
 " }}}
 
+" vim-notes {{{
+let g:notes_directories = ['~/notes']
+" }}}
+
 " vim-pasta {{{
 let g:pasta_disabled_filetypes = ['netrw']
 " }}}
@@ -1553,16 +1558,42 @@ endif
 " {{{ vim-php-namespace
 let g:php_namespace_sort_after_insert = 1 " auto sort use after inserting use statement
 if has_key(g:plugs, 'vim-php-namespace')
+
+    function! PhpExpandClassWithRootNamespace()
+        let restorepos = line(".") . "normal!" . virtcol(".") . "|"
+        " move to last element
+        call search('\%#[[:alnum:]\\_]\+', 'cW')
+        " move to first char of last element
+        call search('[[:alnum:]_]\+', 'bcW')
+        let cur_class = expand("<cword>")
+        let fqn = PhpFindFqn(cur_class)
+        if fqn is 0
+            return
+        endif
+        let pfqn = "\\" . fqn[1]
+        substitute /\%#[[:alnum:]\\_]\+/\=pfqn/
+        exe restorepos
+        " move cursor after fqn
+        call search('\([[:blank:]]*[[:alnum:]\\_]\)*', 'ceW')
+    endfunction
+
     " php add use statement for current class
     augroup phpnamespacegroup
         autocmd!
         autocmd FileType php inoremap <Leader><Leader>u <C-O>:call PhpInsertUse()<CR>
         autocmd FileType php nnoremap <Leader><Leader>u :call PhpInsertUse()<CR>
-        " expand the namespace for the current class name
-        autocmd FileType php inoremap <Leader><Leader>e <C-O>:call PhpExpandClass()<CR>
-        autocmd FileType php nnoremap <Leader><Leader>e :call PhpExpandClass()<CR>
+        " expand the namespace for the current class name with \ before
+        autocmd FileType php inoremap <Leader><Leader>e <C-O>:call PhpExpandClassWithRootNamespace()<CR>
+        autocmd FileType php nnoremap <Leader><Leader>e :call PhpExpandClassWithRootNamespace()<CR>
+        " expand the namespace for the current class name without \ before
+        autocmd FileType php inoremap <Leader><Leader>x <C-O>:call PhpExpandClass()<CR>
+        autocmd FileType php nnoremap <Leader><Leader>x :call PhpExpandClass()<CR>
     augroup END
 endif
+" }}}
+
+" vim-php-refactoring {{{
+let g:php_refactor_command='php /usr/local/bin/refactor.phar'
 " }}}
 
 " vim-phpqa {{{
@@ -1624,16 +1655,34 @@ augroup END
 
 " }}}
 
-" vim-notes {{{
-let g:notes_directories = ['~/notes']
-" }}}
-
-" vim-php-refactoring {{{
-let g:php_refactor_command='refactor'
-" }}}
-
 " vim-php-refactoring-toolbox {{{
 " http://kushellig.de/neovim-php-ide/#write-less-messy-code-with-neomake
+let g:vim_php_refactoring_use_default_mapping = 0
+let g:vim_php_refactoring_default_property_visibility = 'private'
+let g:vim_php_refactoring_default_method_visibility = 'private'
+let g:vim_php_refactoring_auto_validate_visibility = 1
+let g:vim_php_refactoring_phpdoc = "pdv#DocumentCurrentLine"
+
+if has_key(g:plugs, 'vim-php-refactoring-toolbox')
+    augroup vrt_map
+        autocmd!
+        autocmd FileType php nnoremap <Leader>rlv :call PhpRenameLocalVariable()<CR>
+        autocmd FileType php nnoremap <Leader>rcv :call PhpRenameClassVariable()<CR>
+        " autocmd FileType php nnoremap <Leader>rcm :call PhpRenameMethod()<CR>
+        "
+        " this is useful to expand to FQCN, then extract _as_ a given different name, then sort use statements
+        autocmd FileType php nnoremap <Leader>reu :call PhpExtractUse()<CR>
+        autocmd FileType php vnoremap <Leader>rec :call PhpExtractConst()<CR>
+        autocmd FileType php nnoremap <Leader>rep :call PhpExtractClassProperty()<CR>
+        autocmd FileType php vnoremap <Leader>rem :call PhpExtractMethod()<CR>
+        " autocmd FileType php nnoremap <Leader>rcp :call PhpCreateProperty()<CR>
+        " autocmd FileType php nnoremap <Leader>rdu :call PhpDetectUnusedUseStatements()<CR>
+        " autocmd FileType php vnoremap <Leader>== :call PhpAlignAssigns()<CR>
+        " autocmd FileType php nnoremap <Leader>sg :call PhpCreateSettersAndGetters()<CR>
+        " autocmd FileType php nnoremap <Leader>cog :call PhpCreateGetters()<CR>
+        " autocmd FileType php nnoremap <Leader>da :call PhpDocAll()<CR>
+    augroup END
+endif
 " }}}
 
 " vim-slash {{{

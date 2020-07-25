@@ -5,7 +5,7 @@
 brew "akamai" # interact with akamai caching
 # brew "angband" # middle-earth themed dungeon crawler (requires java)
 brew "ansible" # used in some of my company-specific stuff to run ssh commands on multiple servers.
-# brew "ant" # apache build tool (used to build plantuml) (I now just save the plantuml jar in my dotfiles)
+# brew "ant" # apache build tool
 brew "getantibody/tap/antibody" # like antigen but faster! (zsh plugin system)
 # brew "antigen" # zsh package manager. I switched to antibody for speed
 # brew "autoconf" # needed to build some php70 libs from source https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864

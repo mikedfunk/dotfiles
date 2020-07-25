@@ -66,7 +66,7 @@
     # Fire up your difftool (e.g. Kaleidescope) with all the changes that
     # are on the current branch.
     # code-review = difftool origin/develop...
-    committers = shortlog --nse --no-merges
+    committers = shortlog -nse --no-merges
     # commit and sign with gpg key
     cs = commit -S
     dc = diff --cached
@@ -204,7 +204,7 @@
     synch = "!f() { echo \"Syncing current branch with $1\" && git checkout $1 && git pull -r && git checkout - && git rebase $1; }; f"
     undo = reset HEAD~1 --mixed # uncommit the last commit
     unstage = reset HEAD # hard to remember
-    who = shortlog -n -s --no-merges # who has contributed to a project
+    who = shortlog -ns --no-merges # who has contributed to a project
     wiff = diff --color-words
     # wip = !git add -u && git commit -m "WIP" # work in progress commit
     # uncommit the last commit... but make a backup ref first just in case
