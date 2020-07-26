@@ -34,3 +34,4 @@ sonar-project.properties
 # .ctags
 .notags
 coverage
+nohup.out

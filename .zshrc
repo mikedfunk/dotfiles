@@ -111,6 +111,9 @@ compinit
 #  $ scp file username@<TAB><TAB>:/<TAB>
 zstyle ':completion:*:(ssh|scp|sftp|sshrc|autossh|sshfs):*' hosts $hosts
 zstyle ':completion:*:(ssh|scp|sftp|sshrc|autossh|sshfs):*' users $users
+
+# https://www.justingarrison.com/blog/2020-05-28-shell-shortcuts/
+bindkey '^q' push-line-or-edit
 # }}}
 
 # antibody (#slow) {{{
@@ -358,7 +361,7 @@ pretty-path() { tr : '\n' <<<"$PATH"; }
 # games {{{
 alias play-starwars="telnet towel.blinkenlights.nl" # :)
 # alias play-gameboy="telnet gameboy.live 1989" # not working any more
-alias play-nethack="telnetnethack@alt.org" # :)
+alias play-nethack="ssh nethack@alt.org" # :)
 alias play-chess="telnet freechess.org" # :)
 alias play-aardwolf="telnet aardmud.org" # :)
 alias play-tron="ssh sshtron.zachlatta.com" # :)
@@ -807,5 +810,8 @@ PROMPT_EOL_MARK=''
 # bindkey "[A" history-beginning-search-backward
 # bindkey "[B" history-beginning-search-forward
 # }}}
+
+# fix problem with zsh autosuggest color getting overwritten somewhere
+typeset -g ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 
 # }}}

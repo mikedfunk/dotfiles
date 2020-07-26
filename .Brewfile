@@ -209,6 +209,7 @@ brew "wget" # latest version
 brew "yamllint" # used by vim-ale
 brew "yarn" # wrapper for npm with real lock files and caching (installing via npm is deprecated)
 brew "yadm" # yet another dotfiles manager
+brew "yq" # jq is to json what yq is to yaml. yaml parser and searcher. I use it to read configs my circleci stuff, etc.
 brew "zork" # seriously? yes. tip: `save` and `restore` And yes, there's only one save slot, what do you think this is, 1990?
 # brew "zplug" # zsh plugin manager like composer. bash installer crashes for some reason. works fine via homebrew. (switched to antibody)
 brew "zsh" # awesome bash shell replacement
@@ -309,6 +310,7 @@ cask "spectacle" # keyboard window splitter/resizer/mover. Kind of like a lightw
 # cask "steam" # yep
 # cask "suspicious-package" # quicklook plugin for mac dmg package inspection (I don't care about inspecting these)
 # cask "transmission" # unleash a torrent of files ;)
+cask "unshaky" # fix double keypress on macbook butterfly keyboard
 cask "vagrant" # development VM maker/manager (I use docker now, but this is helpful for a linux training course I'm taking)
 cask "pvinis/pvinis/vimac" # control mac with vimium-style vi controls
 #
