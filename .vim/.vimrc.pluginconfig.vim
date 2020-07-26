@@ -984,7 +984,7 @@ let g:UltiSnipsSnippetDirectories=['UltiSnips', $HOME.'/.config/nvim/UltiSnips']
 
 " If you're on native vim, just use this instead of :UltiSnipsEdit. Trust me,
 " I've spent way too much time on this.
-command! EditUltiSnips exec ":vsp ".$HOME."/.config/nvim/UltiSnips/".&filetype.".snippets"
+" command! EditUltiSnips exec ":vsp ".$HOME."/.config/nvim/UltiSnips/".&filetype.".snippets"
 
 " UltiSnips somehow forgets this mapping when I open a new file :/
 if has_key(g:plugs, 'ultisnips')
