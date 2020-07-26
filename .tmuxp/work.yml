@@ -39,7 +39,7 @@ windows:
       - wd legacy && cd ./assets/react && yarn && yarn write-rev && yarn start
       # - saatchi-eslint-watch-legacy
       # - saatchi-grunt-watch-legacy
-      # - saatchi-docs-serve-legacy
+      # - saatchi-apidocs-serve-legacy
       - cd && wait-on http://www.local.saatchiart.com && while true; do saatchi-tail-legacy-local; sleep 1; done
 # }}}
 
@@ -77,7 +77,7 @@ windows:
       # - yarn jest --watch
       - while true; do saatchi-gulp-watch-gallery; sleep 1; done
       # - saatchi-start-gallery
-      - saatchi-docs-serve-gallery
+      - saatchi-apidocs-serve-gallery
       - cd && wait-on http://www.local.saatchiart.com && while true; do saatchi-tail-gallery-local; sleep 1; done
 # }}}
 
@@ -95,7 +95,7 @@ windows:
       - cd && wait-on http://www.local.saatchiart.com && while true; do saatchi-tinker-palette-local; sleep 1; done
       - while true; do psw; sleep 1; done
       # - saatchi-phing-watch
-      - saatchi-docs-serve-palette
+      - saatchi-apidocs-serve-palette
       - wait-on http://www.local.saatchiart.com && while true; do saatchi-tail-palette-local; sleep 1; done
 # }}}
 
@@ -113,7 +113,7 @@ windows:
       - cd && wait-on http://www.local.saatchiart.com && while true; do saatchi-tinker-zed-local; sleep 1; done
       # - wait-on http://www.local.saatchiart.com && while true; do saatchi-phpunit-watch-zed; sleep 1; done
       - saatchi-grunt-watch-zed
-      # - saatchi-docs-serve-zed
+      # - saatchi-apidocs-serve-zed
       - wait-on http://www.local.saatchiart.com && while true; do saatchi-tail-zed-local; sleep 1; done
 # }}}
 
