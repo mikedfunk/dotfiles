@@ -979,14 +979,12 @@ let g:UltiSnipsExpandTrigger='<c-l>' " Default: <Tab>
 " let g:UltiSnipsExpandTrigger='<c-e>' " conflicts with cancel completion. Default: <Tab>
 " let g:UltiSnipsListSnippets='<c-l>' " default: <c-Tab>
 
-" this breaks in neovim (:UltiSnipsEdit doesn't work right) but if I switch
-" it, it doesn't load third-party snippets right :/
-" let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips', 'UltiSnips']
-" I need to keep UltiSnips in order for e.g. orgymode snippets to work
-let g:UltiSnipsSnippetDirectories=['UltiSnips', $HOME.'/.config/vim-ultisnips/snippets']
+" NOTE: do not mess with this config value, you are going to have a bad time.
+let g:UltiSnipsSnippetDirectories=['UltiSnips', $HOME.'/.config/nvim/UltiSnips']
 
-" my crappy workaround to above problem
-command! EditUltiSnips exec ":vsp ".$HOME."/.config/vim-ultisnips/snippets/".&filetype.".snippets"
+" If you're on native vim, just use this instead of :UltiSnipsEdit. Trust me,
+" I've spent way too much time on this.
+command! EditUltiSnips exec ":vsp ".$HOME."/.config/nvim/UltiSnips/".&filetype.".snippets"
 
 " UltiSnips somehow forgets this mapping when I open a new file :/
 if has_key(g:plugs, 'ultisnips')

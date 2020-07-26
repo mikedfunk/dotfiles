@@ -136,6 +136,7 @@ brew "php-cs-fixer" # fix php code according to configuration
 brew "pinentry" # gpg terminal pin entry (used by yadm encrypt/decrypt)
 # brew "pinentry-mac" # native gpg pin entry for yadm and others. Opens a native window.
 brew "pinfo" # man-like command to get manuals on tools written for info
+brew "codekitchen/pipeline/pipeline" # cool subshell to let you interactively view unix pipeline results as you write
 brew "pkg-config" # needed for phpenv to build https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
 brew "plantuml" # uml generation from text. requires java (I use regularly for diagramming processes and sometimes uml class diagrams)
 # brew "plenv" # perl version manager. better than perlbrew and consistent with my other env managers (rbenv, phpenv, nodenv, pyenv). used to get percona-toolkit working.
@@ -242,13 +243,14 @@ cask "firefox-developer-edition" # I use dev edition for my work profile
 # cask "font-iosevka"
 cask "font-iosevka-nerd-font-mono" # note: homebrew doesn't need a tap for these any more
 # cask "font-meslo-for-powerline" # whoa there are a ton of fonts on brew "cask"!
-tap "microsoft/git"
-cask "git-credential-manager-core" # new github credentials manager https://github.blog/2020-07-02-git-credential-manager-core-building-a-universal-authentication-experience/
+cask "microsoft/git/git-credential-manager-core" # new github credentials manager https://github.blog/2020-07-02-git-credential-manager-core-building-a-universal-authentication-experience/
+cask "glance" # all-in-one quicklook app that works with dark mode
 cask "grandperspective" # visualize storage hogs in the hard drive
 # cask "gog-galaxy" # good old games
 # cask "google-chrome"
 # cask "google-drive" (menubar app for google drive access)
 cask "haptickey" # give haptic feedback on touchpad when pressing the touchbar
+# cask "helium" # android backup without root (doesn't seem to work, but the chrome app does)
 # cask "http-toolkit" # kind of like charles or wireshark, but with support for docker. (docker support seems to be coming soon)
 # cask "insomnia" # http api client like postman but nicer looking (I use this for sharing with my team but I mostly use vim-rest-console)
 cask "insomnia-designer" # like insomnia but includes openapi features
@@ -273,7 +275,7 @@ cask "mpv" # video player like vlc
 cask "multifirefox" # profile picker until firefox fixes this glaring omission
 # cask "multipass" # "ubuntu LTS on tap" launch instances of ubuntu and itialize them with cloud-init metadata in a matter of seconds. Uses hypervisor or virtualbox behind the scenes.
 cask "muzzle" # stop notifications while screensharing
-# cask "noti" # mac native pushbullet notifications (I use the chrome extension)
+# cask "noti" # mac native pushbullet notifications (I use the chrome/firefox extension)
 # cask "ngrok" # securely expose your local site to the internet and inspect and repeat traffic
 # cask "nvidia-geforce-now"
 # cask "onecast" # cast xbox one to mac.
