@@ -1,39 +1,17 @@
 #!/bin/bash
 
+# USAGE:
+# Add this to your pre-push hook:
+#
+# #!/bin/bash
+# rm nohup.out || true
+# nohup "$HOME"/.support/circleci-notify.sh {CIRCLECI_USERNAME} {CIRCLECI_PROJECT} $(git branch --show-current) &>/dev/null
+# exit 0
+
 TOKEN=$(yq r "$HOME"/.circleci/cli.yml token)
-# USERNAME=saatchiart
 USERNAME=$1
-# PROJECT=palette
 PROJECT=$2
-# BRANCH="feature/user-checkin"
-# BRANCH=$3
-
-# PRE_COMMIT_REMOTE_URL is available in env
-# I wish there was an easier way to do this, but pre-commit just does not let
-# you assign evaluated code to a variable in hooks :(
-# e.g. I can't do circleci-notify.sh $(git branch --show-current)
-# TODO ask about this in an issue
-if [[ "$PROJECT" == 'palette' ]]; then
-    CODEBASE_URL="$HOME"/Code/saatchi/palette
-elif [[ "$PROJECT" == 'zed' ]]; then
-    CODEBASE_URL="$HOME"/Code/saatchi/zed
-elif [[ "$PROJECT" == 'gallery' ]]; then
-    CODEBASE_URL="$HOME"/Code/saatchi/gallery
-elif [[ "$PROJECT" == 'easel' ]]; then
-    CODEBASE_URL="$HOME"/Code/saatchi/gallery
-elif [[ "$PROJECT" == 'legacy' ]]; then
-    CODEBASE_URL="$HOME"/Code/saatchi/legacy
-fi
-
-if [[ ! "$CODEBASE_URL" ]]; then
-    echo "Unknown codebase $CODEBASE_URL"
-    exit 1
-fi
-
-pushd .
-cd "$CODEBASE_URL" || return
-BRANCH=$(git branch --show-current)
-popd
+BRANCH=$3
 
 function uriencode { jq -nr --arg v "$1" '$v|@uri'; }
 BRANCH_ENCODED=$(uriencode "${BRANCH}")
