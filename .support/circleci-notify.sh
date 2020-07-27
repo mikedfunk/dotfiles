@@ -1,6 +1,11 @@
 #!/bin/bash
 
 # USAGE:
+#
+# Ensure you have these tools
+# brew install circleci terminal-notifier yq jq
+# and that you have run `circleci setup` at least once (stores your api credentials)
+#
 # Add this to your .git/hooks/pre-push hook:
 #
 # #!/bin/bash
@@ -25,7 +30,7 @@ function notify () {
     MESSAGE=$2
     SOUND=$3
     URL=$4
-    COMMAND="/usr/local/bin/terminal-notifier -title '$TITLE' -message '$MESSAGE' -sound '$SOUND' -appIcon 'https://crowdin-static.downloads.crowdin.com/avatar/13528254/medium/23fbef0e445c48537ce85ed21a3fee07.jpg'"
+    COMMAND="terminal-notifier -title '$TITLE' -message '$MESSAGE' -sound '$SOUND' -appIcon 'https://crowdin-static.downloads.crowdin.com/avatar/13528254/medium/23fbef0e445c48537ce85ed21a3fee07.jpg'"
     if [[ "$URL" ]]; then
         COMMAND="$COMMAND -open '$URL'"
     fi
