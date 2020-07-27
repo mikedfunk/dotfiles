@@ -104,3 +104,7 @@ if has_key(g:plugs, 'vim-tbone')
     vnoremap <leader>r :Twrite 2<CR>
 endif
 " }}}
+
+" vim-dispatch {{{
+" command! Restart :Dispatch saatchi-restart-easel-local
+" }}}

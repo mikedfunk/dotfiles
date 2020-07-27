@@ -3,7 +3,7 @@
 # USAGE:
 #
 # Ensure you have these tools
-# brew install circleci terminal-notifier yq jq
+# `brew install circleci terminal-notifier yq jq`
 # and that you have run `circleci setup` at least once (stores your api credentials)
 #
 # Add this to your .git/hooks/pre-push hook:

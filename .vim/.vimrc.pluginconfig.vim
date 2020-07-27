@@ -1210,7 +1210,7 @@ endif
 " }}}
 
 " vim-dispatch {{{
-let g:dispatch_no_tmux_make = 1  " Prefer job strategy even in tmux.
+" let g:dispatch_no_tmux_make = 1  " Prefer job strategy even in tmux.
 " }}}
 
 " vim-doge {{{

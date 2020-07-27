@@ -140,6 +140,7 @@ Plug 'tpope/vim-eunuch', { 'on': ['Mkdir!', 'Remove!'] } " :Mkdir!, :Remove!, an
 " if executable('curl') | Plug 'mattn/webapi-vim', { 'on': 'Gist' } | Plug 'mattn/gist-vim', { 'on': 'Gist' } | endif " make gists with :Gist
 " Plug 'vitalk/vim-shebang' " detect filetype from shebang
 Plug 'skywind3000/asyncrun.vim' " vim 8 async to quickfix plugin
+" Plug 'tpope/vim-dispatch' " I only use this to dispatch alias commands in a tmux split, then close the split
 " Plug 'aquach/vim-http-client' " postman for vim
 " Plug 'diepm/vim-rest-console', { 'for': 'rest', 'tag': 'v2.6.0' } " like above but more capable
 Plug 'diepm/vim-rest-console', { 'for': 'rest' } " like above but more capable (latest version) NOTE see ~/.yadm/bootstrap for notes on wuzz as a replacement for this
