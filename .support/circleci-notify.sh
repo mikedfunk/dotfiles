@@ -25,7 +25,6 @@ function notify () {
     MESSAGE=$2
     SOUND=$3
     URL=$4
-    # only optional param
     if [[ "$URL" ]]; then
         /usr/local/bin/terminal-notifier -title "$TITLE" -message "$MESSAGE" -sound "$SOUND" -open "https://google.com" -appIcon "https://crowdin-static.downloads.crowdin.com/avatar/13528254/medium/23fbef0e445c48537ce85ed21a3fee07.jpg"
         return
@@ -56,9 +55,9 @@ function check_result () {
         return
     fi
     if [[ "$STATUS" == '"success"' ]]; then
-        "✅ CI: $PROJECT $BRANCH" "CI passed in CircleCI" glass "$BUILD_URL"
+        notify "✅ CI: $PROJECT $BRANCH" "CI passed in CircleCI" glass "$BUILD_URL"
     elif [[ "$STATUS" == '"failed"' ]]; then
-        "❌ CI: $PROJECT $BRANCH" "CI failed in CircleCI" basso "$BUILD_URL"
+        notify "❌ CI: $PROJECT $BRANCH" "CI failed in CircleCI" basso "$BUILD_URL"
     fi
 }
 
