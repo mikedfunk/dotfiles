@@ -991,7 +991,7 @@ if has_key(g:plugs, 'ultisnips')
     inoremap <c-j> <c-r>=UltiSnips#JumpForwards()<CR>
 endif
 
-" }}}"
+" }}}
 
 " undoclosewin.vim {{{
 if exists(':UcwRestoreWindow') | nnoremap <leader>uc :UcwRestoreWindow<cr> | endif

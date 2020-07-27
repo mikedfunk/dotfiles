@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # USAGE:
-# Add this to your pre-push hook:
+# Add this to your .git/hooks/pre-push hook:
 #
 # #!/bin/bash
-# rm nohup.out || true
-# nohup "$HOME"/.support/circleci-notify.sh {CIRCLECI_USERNAME} {CIRCLECI_PROJECT} $(git branch --show-current) &>/dev/null
+# "$HOME"/.support/circleci-notify.sh {CIRCLECI_USERNAME} {CIRCLECI_PROJECT_NAME} $(git branch --show-current) &
+# disown
 # exit 0
 
 TOKEN=$(yq r "$HOME"/.circleci/cli.yml token)
@@ -17,16 +17,33 @@ function uriencode { jq -nr --arg v "$1" '$v|@uri'; }
 BRANCH_ENCODED=$(uriencode "${BRANCH}")
 IS_FINISHED=0
 
+function notify () {
+    TITLE=$1
+    MESSAGE=$2
+    SOUND=$3
+    URL=$4
+    # only optional param
+    if [[ "$URL" ]]; then
+        /usr/local/bin/terminal-notifier -title "$TITLE" -message "$MESSAGE" -sound "$SOUND" -open "https://google.com" -appIcon "https://crowdin-static.downloads.crowdin.com/avatar/13528254/medium/23fbef0e445c48537ce85ed21a3fee07.jpg"
+        return
+    fi
+    /usr/local/bin/terminal-notifier -title "$TITLE" -message "$MESSAGE" -sound "$SOUND" -appIcon "https://crowdin-static.downloads.crowdin.com/avatar/13528254/medium/23fbef0e445c48537ce85ed21a3fee07.jpg"
+}
+
 function check_result () {
     # echo "http --check-status GET https://circleci.com/api/v1.1/project/github/${USERNAME}/${PROJECT}/tree/${BRANCH_ENCODED}?circle-token=${TOKEN}&limit=1"
     RESULT=$(http --check-status GET "https://circleci.com/api/v1.1/project/github/${USERNAME}/${PROJECT}/tree/${BRANCH_ENCODED}?circle-token=${TOKEN}&limit=1")
     if [[ $? != 0 ]]; then
-        echo "Non-200 response code received"
-        exit 1
+        # echo "Non-200 response code received"
+        # NOTI_NSUSER_SOUNDNAME=ping /usr/local/bin/noti --title "❌ CI: ${PROJECT} ${BRANCH}" --message "CircleCI API check failed"
+        notify "❌ CI: ${PROJECT} ${BRANCH}" "CircleCI API check failed" basso
+        IS_FINISHED=1
+        return 1
     fi
     FIRST_BUILD=$(echo ${RESULT} | jq '.[0]')
     if [[ "${FIRST_BUILD}" == 'null' ]]; then
-        echo "No builds found for this branch"
+        # echo "No builds found for this branch"
+        notify "❌ CI: ${PROJECT} ${BRANCH}" "No CircleCI builds found for this branch" basso
         IS_FINISHED=1
         return 1
     fi
@@ -36,15 +53,13 @@ function check_result () {
     if [[ "${LIFECYCLE}" == '"finished"' ]]; then
         IS_FINISHED=1
     else
-        echo "Lifecycle is not yet finished"
+        # echo "Lifecycle is not yet finished"
         return
     fi
     if [[ "${STATUS}" == '"success"' ]]; then
-        echo "Build success"
-        NOTI_NSUSER_SOUNDNAME=glass /usr/local/bin/noti --title "✅ CI: ${PROJECT} ${BRANCH}" --message "${BUILD_URL}"
+        "✅ CI: ${PROJECT} ${BRANCH}" "CI passed in CircleCI" glass "${BUILD_URL}"
     elif [[ "${STATUS}" == '"failed"' ]]; then
-        echo "Build failed"
-        NOTI_NSUSER_SOUNDNAME=ping /usr/local/bin/noti --title "❌ CI: ${PROJECT} ${BRANCH}" --message "${BUILD_URL}"
+        "❌ CI: ${PROJECT} ${BRANCH}" "CI failed in CircleCI" basso "${BUILD_URL}"
     fi
 }
 

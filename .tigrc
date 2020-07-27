@@ -135,6 +135,7 @@ bind generic go @git open
 bind generic gpf ?git push --force
 bind generic gpl !git pull --rebase
 bind generic gprc !gh pr create
+bind generic gpro !git pro
 # pneumonic: git pr get
 bind generic gprg @gh pr checkout "%(prompt Enter pull request number: )"
 bind generic gprl !gh pr list

@@ -125,6 +125,8 @@
     # git commit fixup using fzf to select which commit to fixup on
     cfd = "!f() { git commit --fixup $(git ld | fzf | awk '{print $1}'); }; f"
     cfm = "!f() { git commit --fixup $(git lm | fzf | awk '{print $1}'); }; f"
+    # PR open
+    pro = "!f() { gh pr list | fzf | head -n 1 | cut -c 1- | awk '{print $1}' | xargs hub pr show; }; f"
     # show the sha ref of the current HEAD
     # headref = "!git show-ref --head -s | awk 'NR==1'"
     # Show files ignored by git
@@ -354,6 +356,11 @@
 [mergetool "sourcetree"]
     cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
     trustExitCode = true
+[credential]
+    helper = manager-core # github credentials helper https://github.blog/2020-07-02-git-credential-manager-core-building-a-universal-authentication-experience/
+    # helper = osxkeychain
+[credential "https://dev.azure.com"]
+    useHttpPath = true
 # }}}
 
 # yadm settings {{{
@@ -380,8 +387,3 @@
     name = Mike Funk
     email = mike@mikefunk.com
 # }}}
-[credential]
-	helper = manager-core # github credentials helper https://github.blog/2020-07-02-git-credential-manager-core-building-a-universal-authentication-experience/
-    # helper = osxkeychain
-[credential "https://dev.azure.com"]
-	useHttpPath = true
