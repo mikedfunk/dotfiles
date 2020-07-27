@@ -25,11 +25,11 @@ function notify () {
     MESSAGE=$2
     SOUND=$3
     URL=$4
+    COMMAND="/usr/local/bin/terminal-notifier -title '$TITLE' -message '$MESSAGE' -sound '$SOUND' -appIcon 'https://crowdin-static.downloads.crowdin.com/avatar/13528254/medium/23fbef0e445c48537ce85ed21a3fee07.jpg'"
     if [[ "$URL" ]]; then
-        /usr/local/bin/terminal-notifier -title "$TITLE" -message "$MESSAGE" -sound "$SOUND" -open "https://google.com" -appIcon "https://crowdin-static.downloads.crowdin.com/avatar/13528254/medium/23fbef0e445c48537ce85ed21a3fee07.jpg"
-        return
+        COMMAND="$COMMAND -open '$URL'"
     fi
-    /usr/local/bin/terminal-notifier -title "$TITLE" -message "$MESSAGE" -sound "$SOUND" -appIcon "https://crowdin-static.downloads.crowdin.com/avatar/13528254/medium/23fbef0e445c48537ce85ed21a3fee07.jpg"
+    eval "$COMMAND"
 }
 
 function check_result () {
