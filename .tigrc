@@ -121,6 +121,11 @@ bind generic gcfd !git cfd
 bind generic gcfm !git cfm
 bind generic gclf @git clean -f
 bind generic gco- !git checkout -
+# fzf fuzzy checkout branch
+bind generic gfco !git fco
+# bind generic <C-B> !git fco
+# this is easier to type than gfco
+bind generic gbb !git fco
 bind generic gcob @git checkout -b "%(prompt Enter branch name: )"
 # commit and sign with gpg key
 bind generic gcs @git cs

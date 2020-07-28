@@ -42,6 +42,11 @@ UNDERLINE="$(tput smul)"
 
 # }}}
 
+# env parallel {{{
+# _has env_parallel.zsh && source $(which env_parallel.zsh)
+# _has env_parallel && env_parallel --record-env
+# }}}
+
 # set up homebrew paths {{{
 # _has brew && eval $(brew shellenv) # this MUST be done before setting the rest of paths
 # }}}
@@ -297,6 +302,10 @@ export GPG_TTY=`tty` # make gpg prompt for a password
 export PINENTRY_USER_DATA="USE_CURSES=1"
 # }}}
 
+# fzf {{{
+export FZF_DEFAULT_OPTS="--multi"
+# }}}
+
 # functions and aliases {{{
 
 # misc {{{
@@ -311,6 +320,7 @@ cd () { builtin cd "$@" && ls -FAG; } # auto ls on cd
 alias ..="cd .."
 alias ...="cd ../.."
 # _has lsd && alias ls="lsd" # fancy ls augmentation (disabled because it's missing flags that ls _has >:(  )
+alias du="grc --colour=auto /usr/bin/du"
 # https://github.com/sharkdp/vivid/issues/25#issuecomment-450423306
 # _has gls && alias ls="gls --color"
 alias ll='ls -lhGFA'
@@ -348,6 +358,12 @@ alias notes="joplin"
 # alias jsc="/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc" # javascript repl for testing javascript wonkiness
 alias ncdu="ncdu --color dark -rr -x --exclude .git --exclude vendor" # enhanced interactive disk usage command
 alias tmux-layout="tmux display-message -p \"#{window_layout}\""
+# fuzzy wd
+wf () {
+    # this doesn't work because xargs runs in a subshell
+    # wd list | gsed '1d' | fzf | gsed -E 's/^ +(\w+).*$/\1/' | xargs wd
+    wd $(wd list | gsed '1d' | fzf | gsed -E 's/^ +(\w+).*$/\1/')
+}
 
 export CLICOLOR=1 # ls colors by default
 # export NODE_PATH="/usr/local/lib/node_modules" # zombie.js doesn't work without this

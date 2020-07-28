@@ -1085,6 +1085,10 @@ if has_key(g:plugs, 'vim-agriculture')
     " this is EXACTLY what I wanted. Search with raw ag args but allow
     " filtering down with fzf. No quickfix problems with neovim. Perfect.
     nnoremap <leader>gg :AgRaw<space>
+    " nnoremap <leader>gg <Plug>AgRawSearch
+    " these don't open a fzf window for some reason
+    vnoremap <leader>gv <Plug>AgRawVisualSelection
+    nnoremap <leader>g* <Plug>AgRawWordUnderCursor
 endif
 " }}}
 
