@@ -85,8 +85,6 @@
     # like git exec make. This works because shell aliases are always executed in
     # the top-level directory.
     exec = "!exec "
-    # "fuzzy checkout"
-    fco = "!f() { ( git branch | fzf | xargs git co ); }; f"
     # git flow feature shortcuts
     # ffc = flow feature checkout
     # ffd = flow feature diff
@@ -119,19 +117,21 @@
     # show change for one file
     # filelog = log -u
     # fl = log -u
-    # fuzzy stash apply
-    fsa = "!f() { ( git stash list | fzf | awk -F':' '{print $1}' | xargs git stash apply ); }; f"
     ft = fetch --tags
     # git commit fixup using fzf to select which commit to fixup on
     cfd = "!f() { git commit --fixup $(git ld | fzf | awk '{print $1}'); }; f"
+    cnd = "!f() { git commit --no-verify --fixup $(git ld | fzf | awk '{print $1}'); }; f"
     cfm = "!f() { git commit --fixup $(git lm | fzf | awk '{print $1}'); }; f"
-    # PR open
-    pro = "!f() { gh pr list | fzf | head -n 1 | cut -c 1- | awk '{print $1}' | xargs hub pr show; }; f"
+    cnm = "!f() { git commit --no-verify --fixup $(git lm | fzf | awk '{print $1}'); }; f"
+    # fuzzy checkout
+    cof = "!f() { ( git branch | fzf | xargs git co ); }; f"
     # show the sha ref of the current HEAD
     # headref = "!git show-ref --head -s | awk 'NR==1'"
     # Show files ignored by git
     # ign = ls-files -o -i --exclude-standard
     iw = instaweb --httpd webrick
+    # jira open
+    jo = "!f() { git log develop.. --oneline | awk '/SAAT-[0-9]{4}/' | head -n 1 | gsed --regexp-extended 's/^.*(SAAT-[0-9]{4}).*$/https:\\/\\/saatchiart.atlassian.net\\/browse\\/\\1/' | xargs open; }; f"
     # list aliases
     la = "!git config -l | grep alias | cut -c 7-"
     # show latest commits on all branches by most recent
@@ -165,6 +165,9 @@
     # po = !echo 'Ah push it' && git push origin && echo 'PUSH IT REAL GOOD'
     # pp = !git pull && git push
     prc = "!gh pr create"
+    # PR fuzzy search
+    prf = "!f() { gh pr list | fzf | head -n 1 | cut -c 1- | awk '{print $1}' | xargs hub pr show; }; f"
+    pro = "!hub pr show"
     ps = push
     # pull and update submodules... i hate submodules...
     pup = !git pull --recurse-submodules && git submodule update
@@ -194,6 +197,8 @@
     sshow = "!f() { git stash show stash^{/$*} -p; }; f"
     # apply a stash by saved description e.g. "git sapply my_stash_name"
     sapply = "!f() { git stash apply stash^{/$*}; }; f"
+    # fuzzy stash apply
+    saf = "!f() { ( git stash list | fzf | awk -F':' '{print $1}' | xargs git stash apply ); }; f"
     sh = show HEAD
     st = status -sb
     # show all of my commits since yesterday

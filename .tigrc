@@ -114,15 +114,19 @@ bind generic g none
 bind generic grep view-grep
 
 # bind generic A none
+# jira open
+bind generic gjo @git jo
 
 # amend last commit  (+ in any view)
 bind generic gca !git commit --amend
 bind generic gcfd !git cfd
+bind generic gcnd !git cnd
 bind generic gcfm !git cfm
+bind generic gcnm !git cnm
 bind generic gclf @git clean -f
 bind generic gco- !git checkout -
 # fzf fuzzy checkout branch
-bind generic gfco !git fco
+bind generic gcof !git cof
 # bind generic <C-B> !git fco
 # this is easier to type than gfco
 bind generic gbb !git fco
@@ -140,6 +144,8 @@ bind generic go @git open
 bind generic gpf ?git push --force
 bind generic gpl !git pull --rebase
 bind generic gprc !gh pr create
+# PR fuzzy search
+bind generic gprf @git prf
 bind generic gpro !git pro
 # pneumonic: git pr get
 bind generic gprg @gh pr checkout "%(prompt Enter pull request number: )"
@@ -154,6 +160,8 @@ bind generic gsa @git stash apply stash@{"%(prompt Enter stash position e.g. 0: 
 bind generic gsb !git synch "%(prompt Enter branch name: )"
 bind generic gsd !git synchd
 bind generic gsl !git stash list
+# fuzzy stash apply
+bind generic gsaf !git saf
 bind generic gsm !git synchm
 bind generic gss @git stash save "%(prompt Enter stash name: )"
 bind generic gsv !git semver
