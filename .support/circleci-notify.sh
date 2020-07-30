@@ -17,6 +17,8 @@ TOKEN=$(yq r "$HOME"/.circleci/cli.yml token)
 USERNAME=$1
 PROJECT=$2
 BRANCH=$3
+COMMIT_MESSAGE=$([[ "$4" ]] && echo ": $4" || echo '')
+
 
 function uriencode () {
     jq -nr --arg v "$1" '$v|@uri';
@@ -30,7 +32,7 @@ function notify () {
     MESSAGE=$2
     SOUND=$3
     URL=$4
-    COMMAND="terminal-notifier -title '$TITLE' -message '$MESSAGE' -sound '$SOUND' -appIcon 'https://crowdin-static.downloads.crowdin.com/avatar/13528254/medium/23fbef0e445c48537ce85ed21a3fee07.jpg'"
+    COMMAND="terminal-notifier -title '${TITLE}' -message '${MESSAGE}${COMMIT_MESSAGE}' -sound '${SOUND}' -appIcon 'https://crowdin-static.downloads.crowdin.com/avatar/13528254/medium/23fbef0e445c48537ce85ed21a3fee07.jpg'"
     if [[ "$URL" ]]; then
         COMMAND="$COMMAND -open '$URL'"
     fi
