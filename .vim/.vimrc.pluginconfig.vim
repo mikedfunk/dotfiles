@@ -1213,6 +1213,11 @@ if has_key(g:plugs, 'vim-commentary')
 endif
 " }}}
 
+" vim-devicons {{{
+" this takes up too much horizontal space
+let g:webdevicons_enable_airline_tabline = 0
+" }}}
+
 " vim-dispatch {{{
 " let g:dispatch_no_tmux_make = 1  " Prefer job strategy even in tmux.
 " }}}

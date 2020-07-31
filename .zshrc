@@ -95,8 +95,10 @@ path=(
   # golang executables
   # /usr/local/opt/go/libexec/bin
   # $HOME/.{pl,nod,py}env/bin # these will be set up by shell integration
+  # $HOME/.config/yarn/global/node_modules/.bin
+  $(_has yarn && yarn global bin)
   $HOME/.composer/vendor/bin
-  $(gem env home)
+  $(_has gem && gem env home)
   /usr/{bin,sbin}
   /{bin,sbin}
   # /usr/local/opt/icu4c/{bin,sbin}

@@ -179,8 +179,6 @@ Plug 'andymass/vim-matchup' " better matchit and match highlighter
 Plug 'mhinz/vim-startify' " better vim start screen. Strangely includes session management, which I don't use. I use vim-obsession for that.
 " NOTE: this also installs ~/.fzf and stuff
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim' " fuzzy finder. lazy load will prevent other commands from being loaded unless you add them all.
-Plug 'jesseleite/vim-agriculture' " Add :AgRaw to search with args
-" Plug 'yuki-ycino/fzf-preview.vim' " use vim fzf in a floating window with sensible defaults (I prefer fzf's suggested approach. This adds separate search commands and doesn't use ag.)
 " FZF TERMINAL TIPS!
 "
 " <ctrl-t> will open a fzf browser at the current pwd
@@ -189,6 +187,12 @@ Plug 'jesseleite/vim-agriculture' " Add :AgRaw to search with args
 " ssh **<TAB>
 " export **<TAB>
 " unalias **<TAB>
+Plug 'jesseleite/vim-agriculture' " Add :AgRaw to search with args
+"
+" if has('node')
+    " Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release', 'do': ':UpdateRemotePlugins' } " use vim fzf in a floating window with sensible defaults (I prefer fzf's suggested approach. This adds separate search commands and doesn't use ag.) 2020-07-31 it breaks my existing fzf commands
+" endif
+"
 "
 " Plug 'junegunn/vim-slash' " after finding and moving cursor, turn off search highlights
 Plug 'tpope/vim-abolish' " search and replace for various naming types e.g. :S/someWord/someOtherWord/g
@@ -397,7 +401,7 @@ Plug 'itchyny/vim-cursorword' " highlight matching words. What I like about this
 Plug 'ap/vim-css-color', { 'for': ['scss', 'css'] } " colorize css colors e.g. #333 with the actual color in the background
 " Plug 'chrisbra/NrrwRgn' " work in a separate window with a sub-region of a document. :NR
 " Plug 'scrooloose/vim-slumlord' " plantuml live preview for sequence diagrams
-" Plug 'ryanoasis/vim-devicons' " file type icons in netrw, etc.
+Plug 'ryanoasis/vim-devicons' " file type icons in netrw, etc.
 " Plug 'TaDaa/vimade' " fade inactive buffers, preserving color scheme (I don't really need this)
 " Plug 'junegunn/goyo.vim' | Plug 'junegunn/limelight.vim' " focus mode
 

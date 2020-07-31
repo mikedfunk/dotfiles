@@ -6,6 +6,7 @@
     "flow-bin": "^0.126.1",
     "intelephense": "^1.5.3",
     "intelephense-server": "^0.8.8",
+    "neovim": "^4.9.0",
     "redoc-cli": "^0.9.8",
     "scsslint": "^0.0.3",
     "stylelint": "^8.4.0",

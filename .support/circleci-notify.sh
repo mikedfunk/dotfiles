@@ -9,7 +9,7 @@
 # Add this to your .git/hooks/pre-push hook:
 #
 # #!/bin/bash
-# "$HOME"/.support/circleci-notify.sh {CIRCLECI_USERNAME} {CIRCLECI_PROJECT_NAME} $(git branch --show-current) &
+# "$HOME"/.support/circleci-notify.sh {CIRCLECI_USERNAME} {CIRCLECI_PROJECT_NAME} $(git branch --show-current) "$(git log -1 --pretty=%B | head -n1)" &
 # disown
 # exit 0
 
@@ -17,7 +17,7 @@ TOKEN=$(yq r "$HOME"/.circleci/cli.yml token)
 USERNAME=$1
 PROJECT=$2
 BRANCH=$3
-COMMIT_MESSAGE=$([[ "$4" ]] && echo ": $4" || echo '')
+COMMIT_MESSAGE=$4
 
 
 function uriencode () {
@@ -32,7 +32,7 @@ function notify () {
     MESSAGE=$2
     SOUND=$3
     URL=$4
-    COMMAND="terminal-notifier -title '${TITLE}' -message '${MESSAGE}${COMMIT_MESSAGE}' -sound '${SOUND}' -appIcon 'https://crowdin-static.downloads.crowdin.com/avatar/13528254/medium/23fbef0e445c48537ce85ed21a3fee07.jpg'"
+    COMMAND="terminal-notifier -title '${TITLE}' -subtitle '${MESSAGE}' -message '${COMMIT_MESSAGE}' -sound '${SOUND}' -appIcon 'https://crowdin-static.downloads.crowdin.com/avatar/13528254/medium/23fbef0e445c48537ce85ed21a3fee07.jpg'"
     if [[ "$URL" ]]; then
         COMMAND="$COMMAND -open '$URL'"
     fi

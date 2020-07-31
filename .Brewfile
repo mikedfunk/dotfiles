@@ -89,6 +89,7 @@ brew "jq" # simple json pretty-printer `echo '{"my" => "json"}' | jq .` (Used in
 brew "kubectx" # quick way to switch contexts with a fzf picker
 brew "derailed/k9s/k9s" # handy kubernetes dashboard `k9s -n develop`
 # brew "lastpass-cli" # TODO move all of my cli private_stuff over to lastpass
+brew "less" # huh, there's a newer version of less available
 # brew "lftp" # fancy scp, torrent, http, ftp download and upload client with queues, backgrounding, and more
 brew "libcouchbase@2" # nosql fast data storage. I install this for the cli tool `cbc` and to build the php couchbase extension (note: requires brew link libcouchbase@2 --force)
 brew "libedit" # needed for phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864

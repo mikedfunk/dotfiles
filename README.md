@@ -20,7 +20,7 @@ My Bash, Vim, Git, and other dotfiles. Managed by [yadm](https://thelocehiliosan
 * [Node packages (yarn)](.config/yarn/global/package.json)
 * [Python packages (pip3)](requirements.txt)
 * [Ruby packages (bundler)](Gemfile)
-* [PHP packages (composer, cgr)](.composer/cgr-versions.txt)
+* [PHP packages (composer)](.composer/composer.json)
 
 * [Yadm bootstrap file](.config/yadm/bootstrap) (script to install/upgrade everything)
 * [Vimrc](.vimrc)
