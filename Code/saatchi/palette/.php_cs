@@ -12,6 +12,15 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 $hasPedroTroller = \class_exists('PedroTroller\CS\Fixer\Fixers');
 
+// Updating dependencies (including require-dev)
+// Your requirements could not be resolved to an installable set of packages.
+//
+//   Problem 1
+//     - Installation request for symplify/coding-standard v1.3.3 -> satisfiable by symplify/coding-standard[v1.3.3].
+//     - symplify/coding-standard v1.3.3 requires squizlabs/php_codesniffer ^2.7 -> satisfiable by squizlabs/php_codesniffer[2.7.0, 2.7.1, 2.8.0, 2.8.1, 2.9.0, 2.9.1, 2.9.2, 2.9.x-dev] but these conflict with your requirements or minimum-stability.
+$hasSymplify =false; // version that works for php 7.0 requires a version of php_codesniffer that requires newer php_cs_fixer :/
+
+
 $finder = PhpCsFixer\Finder::create()
     ->exclude('vendor')
     ->exclude('tests')
@@ -322,6 +331,17 @@ if ($hasPedroTroller) {
         'PedroTroller/phpspec_scenario_return_type_declaration' => true,
         // 'PedroTroller/phpspec_scenario_scope' => true, // WHY would I want to remove the `public` from each phpspec method?
         'PedroTroller/ordered_spec_elements' => true,
+    ]);
+}
+
+if ($hasSymplify) {
+    $rules = \array_merge($rules, [
+        'VarPropertyCommentSniff' => true, // Property should have docblock comment.
+        'MethodCommentSniff' => true, // Method without parameter typehints should have docblock comment.
+        'MethodReturnTypeSniff' => true, // Getters should have return type (except for {@inheritdoc}).
+        'ClassNamesWithoutPreSlashSniff' => true, // Class name after new/instanceof should not start with slash
+        'InterfaceNameSniff' => true, // Interface should have suffix "Interface"
+
     ]);
 }
 
