@@ -201,7 +201,8 @@ Plug 'michaeljsmith/vim-indent-object' " select in indentation level e.g. vii
 " Plug 'kana/vim-textobj-entire' " select in entire document
 " Plug 'coderifous/textobj-word-column.vim' " add a text object c and C for a column - visual block mode for current indentation level
 " Plug 'wellle/visual-split.vim' " adds mappings and commands to split out the visual selection vertically
-Plug 'tpope/vim-vinegar' " netrw helper
+" Plug 'tpope/vim-vinegar' " netrw helper
+Plug 'preservim/nerdtree' " I have turned back to the dark side because they have icons and less bugs
 " Plug 'matthewd/vim-vinegar', { 'branch': 'netrw-plug' } " temporary fork that fixes a bug
 Plug 'justinmk/vim-ipmotion' " makes blank line with spaces only the end of a paragraph
 Plug 'machakann/vim-swap' " move args left/right with g< g> or gs for interactive mode
@@ -234,7 +235,7 @@ Plug 'lifepillar/vim-cheat40' " Customizable cheatsheet. Mine is in ~/.vim/plugg
 " Plug 'dyng/ctrlsf.vim' " Contextual search plugin ala sublime.
 " Plug 'andymass/vim-tradewinds' " <c-w>gh to move the current split one to the left, etc. in other directions
 " Plug 'Yilin-Yang/vim-markbar' " <leader>mm to show marks
-Plug 'simeji/winresizer' " ctrl-E to go to resize mode, hjkl, enter to finish, simple
+" Plug 'simeji/winresizer' " ctrl-E to go to resize mode, hjkl, enter to finish, simple
 " Plug 'haya14busa/vim-edgemotion' " c-j and c-k to go to 'edge'. Try it. It's hard to explain. (uninstalled because it conflicts with ultisnips mapping)
 " if has('python2')
 "     Plug 'vim-scripts/VOoM' " outliner like tagbar but for folds (python2?

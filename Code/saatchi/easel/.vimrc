@@ -47,7 +47,7 @@ autocmd BufReadPre *.js let b:javascript_lib_use_underscore = 1 " lodash
 autocmd BufReadPre *.js let b:javascript_lib_use_react = 1
 " }}}
 
-" nvim-lsp (does nothing for some reason... wish this were typescript) {{{
+" nvim-lsp {{{
 if (has('nvim'))
 lua << EOF
 require'nvim_lsp'.flow.setup{

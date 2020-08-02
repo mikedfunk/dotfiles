@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # Get the status of each saatchi docker container heartbeat from the haproxy dashboard.
 #
 # I tried to set this up as a bash function in my zshrc but tmux did not have
@@ -6,6 +7,13 @@
 #
 # e.g. L+++S++++
 CURRENT_SESSION=$(tmux display-message -p '#S')
+timeout 1s docker-machine status 1> /dev/null
+# timeout 1s sleep 20
+if [[ $? != 0 ]]; then
+    # docker-machine is probably hanging for some reason... something with virtualbox I think
+    echo "🐳 x"
+    exit 0
+fi
 DOCKER_STATUS=$(docker-machine status) # docker-machine version
 
 # docker for mac version:

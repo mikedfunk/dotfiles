@@ -37,15 +37,52 @@ command! -nargs=1 Eqa execute "e scp://appdeploy@saatchi-xqa-palette-services-01
 " ale {{{
 " If I don't do this, phpcbf fails on any file in the exclude-pattern :/
 let g:ale_php_phpcs_standard = '/Users/mikefunk/Code/saatchi/palette/phpcs-mike.xml'
+
 let g:ale_php_phpcbf_standard = '/Users/mikefunk/Code/saatchi/palette/phpcs-mike.xml'
 let g:ale_php_phpcbf_executable = '/Users/mikefunk/.support/phpcbf-helper.sh'
 let g:ale_php_phpcbf_use_global = 1
+
 let g:ale_php_phpmd_ruleset = '/Users/mikefunk/Code/saatchi/palette/phpmd-mike.xml'
+
 let g:ale_php_cs_fixer_use_global = 1
-let ale_fixers = {'php': ['phpcbf', 'php_cs_fixer']}
+
 let g:ale_php_phpstan_level = 4
 let g:ale_php_phpstan_configuration = '/Users/mikefunk/Code/saatchi/palette/phpstan.neon'
 " let g:ale_php_phpstan_executable = 'php /Users/mikefunk/Code/saatchi/palette/vendor/bin/phpstan'
+" let g:ale_linters = ['intelephense', 'langserver', 'phan', 'php', 'phpcs', 'phpmd', 'phpstan', 'psalm']
+let g:ale_linters = {'php': ['intelephense', 'php', 'phpcs', 'phpmd', 'phpstan']}
+" let g:ale_linters = {'php': ['intelephense']}
+" let ale_fixers = {'php': ['phpcbf', 'php_cs_fixer', 'trim_whitespace', 'remove_trailing_lines', 'prettier']}
+let ale_fixers = {'php': ['phpcbf', 'php_cs_fixer', 'trim_whitespace', 'remove_trailing_lines']}
+" I hope to remove some of these someday... in the mean time just ,af to fix
+" everything in greenfield files
+" let g:ale_fix_on_save_ignore = {'php': ['phpcbf', 'php_cs_fixer', 'prettier']}
+let g:ale_fix_on_save_ignore = {'php': ['phpcbf', 'php_cs_fixer']}
+let g:ale_fix_on_save = 1
+let g:ale_lint_on_enter = 1
+
+" if has_key(g:plugs, 'ale')
+"     augroup ale_php_symbol_search
+"         autocmd!
+"         autocmd FileType php nmap <leader>tt :ALESymbolSearch -relative<space>
+"     augroup END
+" endif
+
+let g:preview_window_is_open = 0
+function! TriggerALEHover () abort
+    if g:preview_window_is_open
+        :pclose
+        let g:preview_window_is_open = 0
+        return
+    endif
+    :ALEHover
+    let g:preview_window_is_open = 1
+endfunction
+
+if has_key(g:plugs, 'ale')
+    nnoremap <c-k> :call TriggerALEHover()<cr>
+endif
+
 " }}}
 
 " vim-gutentags {{{
@@ -63,6 +100,10 @@ endif
 " }}}
 
 " nvim-lsp {{{
+augroup nvim_lsp_php
+    autocmd!
+    autocmd filetype php setlocal omnifunc=v:lua.vim.lsp.omnifunc
+augroup END
 augroup php_lsp_mappings
     autocmd!
     autocmd FileType php nnoremap <buffer> <silent> gd <cmd>lua vim.lsp.buf.declaration()<CR>
@@ -73,7 +114,11 @@ augroup php_lsp_mappings
     " autocmd FileType php nnoremap <buffer> <silent> gD <cmd>lua vim.lsp.buf.implementation()<CR>
     " autocmd FileType php nnoremap <buffer> <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
     " autocmd FileType php nnoremap <buffer> <silent> 1gD <cmd>lua vim.lsp.buf.type_definition()<CR>
-    autocmd FileType php nnoremap <buffer> <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
+    " trying ALE instead
+    " autocmd FileType php nnoremap <buffer> <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
+    if has_key(g:plugs, 'ale')
+      autocmd FileType php nnoremap <silent> gr :ALEFindReferences -relative<cr>
+    endif
 augroup END
 " }}}
 

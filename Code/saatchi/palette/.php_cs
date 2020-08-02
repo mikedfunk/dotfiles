@@ -53,7 +53,7 @@ $rules = [
     'cast_spaces' => ['space' => 'single'], // A single space or none should be between cast and variable. @PhpCsFixer@Symfony
     'class_attributes_separation' => true, // Class, trait and interface elements must be separated with one blank line. @PhpCsFixer@Symfony
     'class_definition' => true, // Whitespace around the keywords of a class, trait or interfaces definition should be one space. @PSR2@PhpCsFixer@Symfony
-    'class_keyword_remove' => true, // Converts ::class keywords to FQCN strings.
+    // 'class_keyword_remove' => true, // Converts ::class keywords to FQCN strings.
     'combine_consecutive_issets' => true, // Using isset($var) && multiple times should be done in one call. @PhpCsFixer
     'combine_consecutive_unsets' => true, // Calling unset on multiple items should be done in one call. @PhpCsFixer
     'combine_nested_dirname' => true, // Replace multiple nested calls of dirname by only one call with second $level parameter. Requires PHP >= 7.0. @PHP70Migration:risky@PHP71Migration:risky

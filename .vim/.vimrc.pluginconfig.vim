@@ -9,6 +9,114 @@ let g:ac_smooth_scroll_min_limit_msec = 80 " confusiong option to speed up scrol
 " ale {{{
 " aka vim-ale or ale.vim
 
+" intelephense {{{
+" add intelephense linter for php
+" based on https://github.com/dense-analysis/ale/blob/master/ale_linters/php/langserver.vim
+if has_key(g:plugs, 'ale') && executable('intelephense')
+    call ale#Set('php_intelephense_executable', 'intelephense')
+    call ale#Set('php_intelephense_use_global', get(g:, 'ale_use_global_executables', 1))
+
+    " same config as for nvim-lsp
+    call ale#linter#Define('php', {
+                \  'name': 'intelephense',
+                \  'lsp': 'stdio',
+                \  'lsp_config': {
+                \    'environment': {
+                \      'phpVersion': "7.0.0",
+                \    },
+                \    'completion': {
+                \      'insertUseDeclaration': v:true,
+                \      'fullyQualifyGlobalConstantsAndFunctions': v:true
+                \    },
+                \    'stubs': [
+                \      "apache",
+                \      "bcmath",
+                \      "bz2",
+                \      "calendar",
+                \      "com_dotnet",
+                \      "Core",
+                \      "ctype",
+                \      "couchbase",
+                \      "curl",
+                \      "date",
+                \      "dba",
+                \      "dom",
+                \      "enchant",
+                \      "exif",
+                \      "fileinfo",
+                \      "filter",
+                \      "fpm",
+                \      "ftp",
+                \      "gd",
+                \      "hash",
+                \      "iconv",
+                \      "imap",
+                \      "interbase",
+                \      "intl",
+                \      "json",
+                \      "ldap",
+                \      "libxml",
+                \      "mbstring",
+                \      "mcrypt",
+                \      "memcached",
+                \      "meta",
+                \      "mssql",
+                \      "mysqli",
+                \      "oci8",
+                \      "odbc",
+                \      "openssl",
+                \      "pcntl",
+                \      "pcre",
+                \      "PDO",
+                \      "pdo_ibm",
+                \      "pdo_mysql",
+                \      "pdo_pgsql",
+                \      "pdo_sqlite",
+                \      "pgsql",
+                \      "Phar",
+                \      "posix",
+                \      "pspell",
+                \      "readline",
+                \      "recode",
+                \      "redis",
+                \      "Reflection",
+                \      "regex",
+                \      "session",
+                \      "shmop",
+                \      "SimpleXML",
+                \      "snmp",
+                \      "soap",
+                \      "sockets",
+                \      "sodium",
+                \      "SPL",
+                \      "sqlite3",
+                \      "standard",
+                \      "superglobals",
+                \      "sybase",
+                \      "sysvmsg",
+                \      "sysvsem",
+                \      "sysvshm",
+                \      "tidy",
+                \      "tokenizer",
+                \      "wddx",
+                \      "xml",
+                \      "xmlreader",
+                \      "xmlrpc",
+                \      "xmlwriter",
+                \      "Zend OPcache",
+                \      "zip",
+                \      "zlib"
+                \    ]
+                \  },
+                \  'executable': {b -> ale#node#FindExecutable(b, 'php_intelephense', [
+                \      'node_modules/.bin/intelephense',
+                \  ])},
+                \  'command': '%e --stdio',
+                \  'project_root': function('ale_linters#php#langserver#GetProjectRoot'),
+                \})
+endif
+" }}}
+
 " https://github.com/w0rp/ale/issues/1176#issuecomment-348149374
 " I have added an option for caching failing executable checks. Use let
 " g:ale_cache_executable_check_failures = 1 in vimrc, and failing executable
@@ -20,7 +128,8 @@ let g:ale_cache_executable_check_failures = 1
 " syntastic-style - lint on save only
 " Active mode - turn these off in .vimrc if it's too slow (use manual maps instead)
 let g:ale_lint_on_save = 1 " acceptable speed
-" let g:ale_lint_on_enter = 0
+let g:ale_lint_on_enter = 0
+" let g:ale_lint_on_enter = 1
 let g:ale_lint_on_filetype_changed = 0
 let g:ale_lint_on_text_changed = 'never'
 
@@ -29,8 +138,12 @@ let g:ale_php_cs_fixer_options = '--config=.php_cs'
 
 let g:ale_sign_column_always = 1 " otherwise screen keeps jumping left and right
 let g:airline#extensions#ale#error_symbol = 'Errors:' " default is a bit sparse: E
-let g:airline#extensions#ale#warning_symbol = 'Warnings:' " default is W
+" let g:airline#extensions#ale#error_symbol = '🛑'
+let g:airline#extensions#ale#warning_symbol = 'Warnings:'
+" let g:airline#extensions#ale#warning_symbol = '⚠️' " default is W
 let g:zenburn_high_Contrast = 1
+let g:ale_virtualtext_cursor = 1
+" let g:ale_change_sign_column_color = 1
 
 " mappings {{{
 if has_key(g:plugs, 'ale')
@@ -47,17 +160,79 @@ endif
 " You will need to try different settings, depending on your terminal.
 " set mouse=a
 " set ttymouse=xterm
-let g:ale_set_balloons = 1
+" let g:ale_set_balloons = 1
+let g:ale_hover_to_preview = 1
+
+" let g:preview_window_is_open = 0
+" function! TriggerALEHover () abort
+"     if g:preview_window_is_open
+"         :pclose
+"         let g:preview_window_is_open = 0
+"         return
+"     endif
+"     :ALEHover
+"     let g:preview_window_is_open = 1
+" endfunction
+
+" moved to palette due to legacy, etc.
+" if has_key(g:plugs, 'ale')
+"     nnoremap <c-k> :call TriggerALEHover()<cr>
+" endif
 " }}}
 
 " completion {{{
 " :h ale-completion
-" completion is failing silently for me even with intelephense added and working :/
+" Finally got ale completion to work! It's laggy though, I'd rather run it
+" through neovim in lua.
 " let g:ale_completion_enabled = 1
 " set completeopt=menu,menuone,preview,noselect,noinsert
 
 " Use ALE's function for omnicompletion.
 " autocmd FileType php setlocal omnifunc=ale#completion#OmniFunc
+"
+" if has_key(g:plugs, 'ale')
+    " doesn't do anything in intelephense... paid feature?
+    " nnoremap <c-[> :ALEGoToTypeDefinition<cr>
+    " nnoremap <c-w><c-[> :vsp<cr>:ALEGoToTypeDefinition<cr>
+
+    " function! OpenTypeInNewTab () abort
+    "     :normal! mz
+    "     :tabe %
+    "     :normal! `z
+    "     :AleGoToTypeDefinition
+    " endfunction
+
+    " nnoremap <leader><c-[> :tabe %<cr>:call OpenTypeInNewTab()<cr>
+" endif
+
+let g:ale_completion_symbols = {
+            \ 'text': '',
+            \ 'method': '',
+            \ 'function': '',
+            \ 'constructor': '',
+            \ 'field': '',
+            \ 'variable': '',
+            \ 'class': '',
+            \ 'interface': '',
+            \ 'module': '',
+            \ 'property': '',
+            \ 'unit': 'unit',
+            \ 'value': 'val',
+            \ 'enum': '',
+            \ 'keyword': 'keyword',
+            \ 'snippet': '',
+            \ 'color': 'color',
+            \ 'file': '',
+            \ 'reference': 'ref',
+            \ 'folder': '',
+            \ 'enum member': '',
+            \ 'constant': '',
+            \ 'struct': '',
+            \ 'event': 'event',
+            \ 'operator': '',
+            \ 'type_parameter': 'type param',
+            \ '<default>': 'v'
+            \ }
 " }}}
 
 " }}}
@@ -76,6 +251,18 @@ let g:airline_theme = 'base16'
 " allow modifying the completeopt variable, or it will
 " be overridden all the time
 let g:asyncomplete_auto_completeopt = 0
+
+" ale + asyncomplete {{{
+" if has_key(g:plugs, 'ale') && has_key(g:plugs, 'asyncomplete.vim')
+"     augroup ale_asyncomplete
+"         autocmd!
+"         autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#ale#get_source_options({
+"             \ 'priority': 10,
+"             \ }))
+"     augroup END
+" endif
+" }}}
+
 " }}}
 
 " asyncomplete-buffer.vim {{{
@@ -294,7 +481,9 @@ if has_key(g:plugs, 'fzf.vim')
 
     nnoremap <leader>ag :Ag<cr>
     nnoremap <leader>ff :Files<cr>
-    nnoremap <leader>tt :Tags<cr>
+    " I remap this in palette
+    nmap <leader>tt :Tags<cr>
+
     " nnoremap <leader>bb :Buffers<cr>
     " nnoremap <leader>hh :History<cr>
     nnoremap <leader>hh :Helptags<cr>
@@ -463,6 +652,26 @@ let g:NERDSpaceDelims='1'
             " \ }
 " }}}
 
+" NERDTree {{{
+" I switched from NERDTree to netrw years ago but I'm tired of the bugs and
+" believe it or not, I actually want a sidebar file explorer again. Also this
+" integrates with devicons, which is a plus.
+let g:NERDTreeHijackNetrw = 1
+let g:NERDTreeQuitOnOpen = 1
+if has_key(g:plugs, 'nerdtree')
+    augroup nerdtree_autocmds
+        autocmd!
+
+        " close nerdtree if it's the last thing open
+        autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+        nnoremap <leader>ee :NERDTreeToggleVCS<cr>
+        " netrw-like
+        nnoremap - :NERDTreeFind<cr>
+    augroup END
+endif
+" }}}
+
 " neoformat {{{
 " use phpcbf instead of old-ass PHP_Beautifier
 let g:neoformat_php_phpcbf = {
@@ -492,7 +701,7 @@ let g:neoformat_basic_format_trim = 1 " Enable trimmming of trailing whitespace
 " }}}
 
 " nvim-lsp {{{
-if (has('nvim')) && has_key(g:plugs, 'nvim-lsp')
+if has('nvim') && has_key(g:plugs, 'nvim-lsp')
     " example config from :help lsp:
     " nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
     " nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
@@ -504,7 +713,7 @@ if (has('nvim')) && has_key(g:plugs, 'nvim-lsp')
 
     " working for palette, legacy, etc!
     " NOTE: `:LspInstall intelephense` doesn't play nice with asdf
-    if (executable('intelephense'))
+    if executable('intelephense')
 
         " https://github.com/Mte90/dotfiles/blob/master/.vim/custom/custom-lsp.vim
         " available stubs: https://github.com/JetBrains/phpstorm-stubs
@@ -611,10 +820,13 @@ EOF
         " else
         "     lua require'nvim_lsp'.intelephense.setup{}
         " endif
-        augroup nvim_lsp_php
-            autocmd!
-            autocmd filetype php setlocal omnifunc=v:lua.vim.lsp.omnifunc
-        augroup END
+
+        " moved to palette vimrc because of legacy, zed, etc.
+        " augroup nvim_lsp_php
+        "     autocmd!
+        "     autocmd filetype php setlocal omnifunc=v:lua.vim.lsp.omnifunc
+        " augroup END
+
     endif
 
     " so far this is not working, it's just failing silently for catalog.
@@ -1094,7 +1306,7 @@ endif
 
 " {{{ vim-airline
 " let g:airline_skip_empty_sections = 1
-let g:airline_powerline_fonts=1 " airline use cool powerline symbols
+let g:airline_powerline_fonts = 1 " airline use cool powerline symbols (this also makes vista.vim use powerline symbols)
 let g:airline#extensions#whitespace#enabled = 1 " show whitespace warnings
 let g:airline_highlighting_cache = 1 " cache syntax highlighting for better performance
 
@@ -1610,7 +1822,7 @@ let g:notes_directories = ['~/notes']
 " }}}
 
 " vim-pasta {{{
-let g:pasta_disabled_filetypes = ['netrw']
+let g:pasta_disabled_filetypes = ['netrw', 'nerdtree']
 " }}}
 
 " vim-phpfmt {{{

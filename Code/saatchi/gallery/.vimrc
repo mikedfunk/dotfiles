@@ -7,6 +7,22 @@ if exists('g:ale_fixers')
     let g:ale_fixers['javascript'] = ['prettier', 'eslint', 'importjs']
     " let g:ale_fixers['javascript'] = ['prettier_eslint', 'eslint', 'importjs']
 endif
+
+let g:preview_window_is_open = 0
+function! TriggerALEHover () abort
+    if g:preview_window_is_open
+        :pclose
+        let g:preview_window_is_open = 0
+        return
+    endif
+    :ALEHover
+    let g:preview_window_is_open = 1
+endfunction
+
+if has_key(g:plugs, 'ale')
+    nnoremap <c-k> :call TriggerALEHover()<cr>
+endif
+
 " }}}
 
 " color {{{
@@ -60,20 +76,23 @@ EOF
 
   augroup nvim_lsp_jsx
     autocmd!
-    autocmd filetype javascript.jsx setlocal omnifunc=v:lua.vim.lsp.omnifunc
+    autocmd filetype javascript.jsx,php setlocal omnifunc=v:lua.vim.lsp.omnifunc
   augroup END
 
   augroup php_lsp_mappings
     autocmd!
-    " autocmd FileType php nnoremap <buffer> <silent> gd <cmd>lua vim.lsp.buf.declaration()<CR>
-    " autocmd FileType php nnoremap <buffer> <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
-    " autocmd FileType php nnoremap <buffer> <silent> <leader><c-]> mz:tabe %<CR>`z<cmd>lua vim.lsp.buf.definition()<CR>
-    " autocmd FileType php nnoremap <buffer> <silent> <c-w><c-]> :vsp<CR><cmd>lua vim.lsp.buf.definition()<CR>
-    " autocmd FileType php nnoremap <buffer> <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
+    autocmd FileType php nnoremap <buffer> <silent> gd <cmd>lua vim.lsp.buf.declaration()<CR>
+    autocmd FileType php nnoremap <buffer> <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+    autocmd FileType php nnoremap <buffer> <silent> <leader><c-]> mz:tabe %<CR>`z<cmd>lua vim.lsp.buf.definition()<CR>
+    autocmd FileType php nnoremap <buffer> <silent> <c-w><c-]> :vsp<CR><cmd>lua vim.lsp.buf.definition()<CR>
+    autocmd FileType php nnoremap <buffer> <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
     " autocmd FileType php nnoremap <buffer> <silent> gD <cmd>lua vim.lsp.buf.implementation()<CR>
     " autocmd FileType php nnoremap <buffer> <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
     " autocmd FileType php nnoremap <buffer> <silent> 1gD <cmd>lua vim.lsp.buf.type_definition()<CR>
     " autocmd FileType php nnoremap <buffer> <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
+    if has_key(g:plugs, 'ale')
+      autocmd FileType php nnoremap <silent> gr :ALEFindReferences -relative<cr>
+    endif
   augroup end
 
   augroup javascript_lsp_mappings
