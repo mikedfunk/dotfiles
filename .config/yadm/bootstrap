@@ -484,10 +484,10 @@ _install_upgrade_phive () {
 
 # install/upgrade phive packages {{{
 _install_upgrade_phive_packages () {
-    local PACKAGES="dephpend"
+    local PACKAGES="dephpend psalm"
     for PACKAGE in ${PACKAGES}; do
         ( grep --quiet "${PACKAGE}" "$HOME"/.phive/global.xml ) && phive update "${PACKAGE}" && continue
-        phive install "${PACKAGE}"
+        phive install --global --trust-gpg-keys "${PACKAGE}"
     done
 }
 # }}}
