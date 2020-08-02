@@ -68,6 +68,7 @@ let g:ale_lint_on_enter = 1
 "     augroup END
 " endif
 
+" moved here so I could do it differently in legacy/zed
 let g:preview_window_is_open = 0
 function! TriggerALEHover () abort
     if g:preview_window_is_open
@@ -81,6 +82,7 @@ endfunction
 
 if has_key(g:plugs, 'ale')
     nnoremap <c-k> :call TriggerALEHover()<cr>
+    nnoremap <silent> gr :ALEFindReferences -relative<cr>
 endif
 
 " }}}
@@ -100,10 +102,13 @@ endif
 " }}}
 
 " nvim-lsp {{{
+
+" moved this here to avoid probs with legacy, zed, etc.
 augroup nvim_lsp_php
     autocmd!
     autocmd filetype php setlocal omnifunc=v:lua.vim.lsp.omnifunc
 augroup END
+
 augroup php_lsp_mappings
     autocmd!
     autocmd FileType php nnoremap <buffer> <silent> gd <cmd>lua vim.lsp.buf.declaration()<CR>
@@ -116,10 +121,8 @@ augroup php_lsp_mappings
     " autocmd FileType php nnoremap <buffer> <silent> 1gD <cmd>lua vim.lsp.buf.type_definition()<CR>
     " trying ALE instead
     " autocmd FileType php nnoremap <buffer> <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
-    if has_key(g:plugs, 'ale')
-      autocmd FileType php nnoremap <silent> gr :ALEFindReferences -relative<cr>
-    endif
 augroup END
+
 " }}}
 
 " vista {{{
