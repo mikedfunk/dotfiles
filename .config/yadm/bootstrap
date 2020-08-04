@@ -150,11 +150,13 @@ _install_update_homebrew_packages () {
 # pin homebrew packages {{{
 _pin_homebrew_packages () {
     _log_info "Pinning brew packages that need pinning"
-    brew pin "libcouchbase@2"
     brew pin bison
     brew pin bzip2
     brew pin curl
     brew pin icu4c
+    brew pin imagemagick
+    brew pin libcouchbase
+    brew pin "libcouchbase@2"
     brew pin libedit
     brew pin libiconv
     brew pin libmcrypt

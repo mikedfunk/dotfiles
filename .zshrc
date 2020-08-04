@@ -375,6 +375,8 @@ export CLICOLOR=1 # ls colors by default
 pretty-path() { tr : '\n' <<<"$PATH"; }
 # alias vit="vim +TW" # until vit gets its act together
 # alias tree="alder" # colorized tree from npm (I colorize tree with "lsd" now so this is not needed)
+# https://unix.stackexchange.com/a/293608/287898
+alias mc="mc --nosubshell --xterm"
 # }}}
 
 # games {{{
@@ -525,6 +527,8 @@ compdef v="nvim"
 alias vim="nvim"
 compdef vim="nvim"
 export EDITOR=nvim # aww yeah
+# useful for mc
+export VIEWER="bat --paging=always"
 export LANG=en_US.UTF-8
 KEYTIMEOUT=1 # no vim delay entering normal mode
 # }}}

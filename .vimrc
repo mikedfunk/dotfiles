@@ -546,6 +546,12 @@ if has('nvim')
     " set inccommand=nosplit
 endif
 
+" preview window - close it on leave insert
+augroup close_preview_on_insert
+    autocmd!
+    autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+augroup END
+
 " https://blog.kdheepak.com/three-built-in-neovim-features.html#highlight-yanked-text
 if has('nvim')
     augroup LuaHighlight
@@ -598,13 +604,6 @@ augroup END
 
 set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png,*.ico,*.pdf,*.psd,node_modules/*,.git/*,Session.vim
 set wildoptions+=tagfile " When using CTRL-D to list matching tags, the kind of tag and the file of the tag is listed.	Only one match is displayed per line.
-
-" auto close preview when completion is done {{{
-augroup auto_close_completion_preview
-    autocmd!
-    autocmd CompleteDone * if pumvisible() == 0 | pclose | endif
-augroup END
-" }}}
 
 " tab completion {{{
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -851,8 +850,9 @@ endfunction
 command! PhpPrefixNamespaces :call PhpPrefixNamespaces()
 
 " http://vim.wikia.com/wiki/Highlight_current_line
-nnoremap <silent> <leader>hl ml:execute 'match Search /\%'.line('.').'l/'<CR>
-" `:match` to clear highlighting when finished
+nnoremap <silent> <Leader>hl :exe "let m = matchadd('Search','\\%" . line('.') . "l')"<CR>
+nnoremap <silent> <Leader>hw :exe "let m=matchadd('Search','\\<\\w*\\%" . line(".") . "l\\%" . col(".") . "c\\w*\\>')"<CR>
+nnoremap <silent> <Leader>hc :call clearmatches()<CR>
 " }}}
 
 " Visuals {{{
@@ -930,11 +930,6 @@ if (has('termguicolors'))
     " neovim bug: if you enable termguicolors it disables italics :/
     set termguicolors
 endif
-
-" highlight the current line in yellow
-command! HighlightLine :exe "let m = matchadd('WildMenu','\\%" . line('.') . "l')"
-" clear all highlights for the current buffer only
-command! ClearHighlights :call clearmatches() | IndentGuidesEnable
 
 " underline lsp errors
 " https://old.reddit.com/r/neovim/comments/fw7qj0/the_new_builtin_lsp_support_is_so_awesome/

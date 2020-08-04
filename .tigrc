@@ -10,11 +10,13 @@
 # }}}
 
 # settings {{{
-# all refresh modes are broken right now :(
+# this is the only refresh mode that works right now. At least it works! I
+# would prefer listening for filesystem changes.
 # https://github.com/jonas/tig/issues/794
 set refresh-mode = periodic
 set refresh-interval = 1
 # set refresh-mode = auto
+# I have a meticulously mapped ~/.mailmap to dedupe committers.
 set mailmap = true
 set line-graphics = utf-8
 # set diff-highlight = true

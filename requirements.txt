@@ -7,7 +7,7 @@ astroid==2.4.2
 attrs==19.3.0
 certifi==2020.6.20
 cffi==1.14.1
-cfgv==3.1.0
+cfgv==3.2.0
 chardet==3.0.4
 cli-helpers==2.1.0
 click==7.1.2
@@ -23,13 +23,13 @@ greenlet==0.4.16
 identify==1.4.25
 idna==2.10
 importlib-metadata==1.7.0
-importlib-resources==1.0.2
-iniconfig==1.0.0
+importlib-resources==3.0.0
+iniconfig==1.0.1
 iredis==1.9.0
-isort==5.2.1
+isort==4.3.21
 jmespath==0.10.0
 kaptan==0.5.12
-lazy-object-proxy==1.5.1
+lazy-object-proxy==1.4.3
 libtmux==0.8.2
 mccabe==0.6.1
 mistune==0.8.4
@@ -169,7 +169,7 @@ pyobjc-framework-VideoToolbox==6.2.2
 pyobjc-framework-Vision==6.2.2
 pyobjc-framework-WebKit==6.2.2
 pyparsing==2.4.7
-pytest==6.0.0
+pytest==6.0.1
 python-box==5.1.0
 python-dateutil==2.8.1
 python-slugify==4.0.1
@@ -185,7 +185,7 @@ six==1.15.0
 sqlparse==0.3.1
 stevedore==3.2.0
 tabulate==0.8.7
-tavern==1.2.2
+tavern==1.2.3
 termcolor==1.1.0
 terminaltables==3.1.0
 text-unidecode==1.3
@@ -193,7 +193,7 @@ tmuxp==1.5.5
 toml==0.10.1
 typed-ast==1.4.1
 urllib3==1.25.10
-virtualenv==20.0.28
-wcwidth==0.1.9
+virtualenv==20.0.29
+wcwidth==0.2.5
 wrapt==1.12.1
 zipp==3.1.0

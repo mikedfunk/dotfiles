@@ -82,6 +82,7 @@ endfunction
 
 if has_key(g:plugs, 'ale')
     nnoremap <c-k> :call TriggerALEHover()<cr>
+    inoremap <c-k> :call TriggerALEHover()<cr>
     nnoremap <silent> gr :ALEFindReferences -relative<cr>
 endif
 

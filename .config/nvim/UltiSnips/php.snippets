@@ -231,7 +231,7 @@ snippet pcla "palette class"
 
 declare(strict_types=1);
 `!p snip.rv = namespace(snip, path, "Palette")`
-${1:/** @see \\Palette`!p snip.rv = "\\" if pathToNamespace(path) else ""``!p snip.rv = pathToNamespace(path)`\\`!v substitute(expand("%:t:r"), "Spec", "", "")` */
+${1:/** @see \\Palette`!p snip.rv = "\\" if pathToNamespace(path) else ""``!p snip.rv = pathToNamespace(path)`\\`!v expand("%:t:r")`Spec */
 }class `!v expand("%:t:r")`$4
 {
     $6
