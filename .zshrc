@@ -243,7 +243,7 @@ export PSQL_PAGER="pspg"
 builtin setopt aliases # weird, this should have already been done :/
 
 _has kubectl && source <(kubectl completion zsh) # brew doesn't install this, I checked
-# _has stern && source <(stern --completion zsh) # unfortunately I still get no completion. cod works better for this.
+# _has stern && source <(stern --completion=zsh) # unfortunately I still get no completion. cod works better for this.
 _has cod && source <(cod init $$ zsh)
 # NOTE any completions in the brew completions dir are already added!
 # [[ -e /usr/local/opt/coreutils/libexec/gnubin/dircolors && -f "$HOME"/.dircolors ]] && eval $( /usr/local/opt/coreutils/libexec/gnubin/dircolors -b "$HOME"/.dircolors )

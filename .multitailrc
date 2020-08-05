@@ -500,6 +500,7 @@ cs_re:red:Unusually long lock of doc keys
 cs_re:red,,bold/blink/reverse:\[error\]
 cs_re:yellow,,bold/reverse:\[warn\]
 cs_re:yellow,,bold/reverse:WARNING
+cs_re:green,,bold/reverse:NOTICE
 # zed error codes show up here sometimes
 cs_re:red,,bold/reverse/blink:[A-Z_]*ERROR[A-Z_]*
 

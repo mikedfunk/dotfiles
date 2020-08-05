@@ -279,8 +279,10 @@
     # use diff-so-fancy and diff-highlight together
     # Below lets you jump to each item in a diff with n and N, but there are other things the pager is used for that errors with "pattern not found"
     # pager = diff-so-fancy | less --tabs=4 -RFX --pattern '^(Date|added|deleted|modified): '
-    pager = diff-so-fancy | less --tabs=4
+    # pager = diff-so-fancy | less --tabs=4
     # https://github.com/dandavison/delta
+    # pager = delta --diff-so-fancy
+    pager = delta
     # pager = delta --dark --theme="OneHalfDark"
 	# askPass =
     # use tig as git pager
@@ -290,12 +292,19 @@
     # excludesfile = /Users/mikefunk/.config/git/ignore
 # }}}
 
+# interactive settings {{{
+[interactive]
+    diffFilter = delta --color-only
+# }}}
+
 # diff and mergetool {{{
 [diff]
     # tool = opendiff
     # tool = vimdiff
     compactionHeuristic = 1
 	tool = vimdiff3
+    # https://github.com/dandavison/delta#--color-moved-support
+    colorMoved = default
 [diftool "vimdiff3"]
     path = nvim
 [merge]
@@ -391,4 +400,20 @@
 [profile "Home"]
     name = Mike Funk
     email = mike@mikefunk.com
+# }}}
+
+# delta settings {{{
+[delta]
+    # features = "unobtrusive-line-numbers side-by-side decorations"
+    # features = unobtrusive-line-numbers decorations
+    line-numbers = true
+    syntax-theme = Dracula
+    file-style = "yellow bold"
+    file-decoration-style = "yellow bold ol ul"
+    # hunk-header-decoration-style = "blue ul ol"
+    hunk-header-style = "omit"
+    hunk-header-decoration-style = "omit"
+    side-by-side = true
+    # keep-plus-minus-markers = true
+    # syntax-theme = DarkNeon
 # }}}

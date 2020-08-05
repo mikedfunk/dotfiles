@@ -28,11 +28,10 @@ brew "coreutils" # used by k zsh plugin and msgpack gem which is a dependency of
 # brew "ctags" # allows jumping to function/class definitions, etc. in vim (I use universal-ctags)
 brew "ctop" # like top for docker containers (really great!)
 brew "curl" # http cli tool. Included with mac of course, but this gives me the updated version. Also needed for phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
-# tap "dandavison/delta" "https://github.com/dandavison/delta"
-# brew "dandavison/delta/git-delta" # git pager with syntax highlighting, language aware (kind of buggy right now, will stick with diff-so-fancy but check this out later)
+brew "git-delta" # git pager with syntax highlighting, language aware
 # brew "denisidoro/tools/navi" # cool interactive command helper (eh, I like aliases and functions. this is basically just a persistent <ctrl-r> with fzf.)
 # brew "desk" # shell workspace manager. (I use direnv instead)
-brew "diff-so-fancy" # better git diff viewer (note: diff-highlight is in pip)
+# brew "diff-so-fancy" # better git diff viewer (note: diff-highlight is in pip) (I now use delta instead)
 brew "direnv" # allow .envrc in directories to be loaded at every prompt to add relative bins to PATH, etc. easy. (I use this a lot to adjust path, kubernetes context, etc.)
 # brew "dnsmasq" # easily set up dynamic dev domains such as myproject.dev `sudo brew services start dnsmasq` (WARNING: this _could_ cause problems with docker-machine certs)
 # brew "docker" # virtualization software (I use docker-for-mac, which comes with executables but doesn't link them to /usr/local/bin any more, so I'm doing that manually in my yadm bootstrap)
@@ -106,6 +105,7 @@ brew "dbcli/tap/litecli" # like mycli for sqlite
 # brew "macvim" # mac gui vim client
 brew "mas" # mac app store cli. e.g. `mas install Xcode`
 # brew "andersjanmyr/homebrew-tap/mc" # memcached cli. Use the full path to avoid conflicting with midnight commander, or just uninstall midnight commander (Trouble using on saatchi due to networking limitations, also this tap is in a private github repo!! I have an installer in my yadm config instead)
+# brew "mc" # old-school file manager, editor, viewer, script runner, remote filesystem access, etc.
 brew "memcached" # needed by php70 memcached pecl extension
 # brew "mkcert" # create a certificate, create a local CA, add the cert as trusted in the CA (Only needed to _create_ certs)
 # brew "mono" # .NET compiler for mac. Useful for OmniSharp. (not needed)
@@ -326,6 +326,7 @@ cask "virtualbox" # virtual machine software (needed by docker-machine at least)
 # cask wine-staging # run windows apps on mac (with bugfixes not in the stable package yet)
 # cask "wineskin-winery" # run windows apps in macos via wine (doesn't work in macOS catalina)
 # cask "wireshark" # analyze network data (but not on virtualbox networks)
+# cask "wormhole" # interact with your phone screen from your computer
 # cask "xquartz" # needed to install xclip, which is needed to copy text from multitail (I installed all of that, copy still didn't work :/ ) also needed for wine-stable
 # cask "xscreensaver" # shitload of old screensavers... downside is there are so many it slows down selecting Desktop & Screen Saver the first time in System Preferences :/ Upside: it has GLMatrix :)
 # cask "zappy" # screenshot and video recorder (buggy solid black screenshots and pins, also privacy concerns)
