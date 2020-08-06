@@ -186,7 +186,7 @@ endglobal
 # endsnippet
 
 snippet cstr "DI construct"
-`!p snip.rv = "/** @var " + t[1].capitalize() + " */\n    $" + t[1] + ";\n"`
+`!p snip.rv = "/** @var " + t[1].capitalize() + " */\n    private $" + t[1] + ";\n"`
 public function __construct(${1/\w+\s*/\u$0/} $${1:myClass})
 {
     $this->$1 = $$1;
@@ -532,8 +532,6 @@ use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
 /**
- * Specification unit test
- *
  * {@inheritdoc}
  *
  * @see \\Palette`!p snip.rv = "\\" if pathToNamespace(path) else ""``!v substitute(expand("%:t:r"), "Spec", "", "")`

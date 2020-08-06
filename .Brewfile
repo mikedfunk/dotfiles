@@ -148,6 +148,7 @@ brew "pspg" # , args: ["HEAD"] # "postgres pager" also useful for mysql, etc.
 # brew "pv" # pipe something to pv to see progress of data through a pipeline. pv works like cat so `pv /path/to/myfile.sql > mysql ...`
 # brew "pyenv" # python version manager (same api as rbenv)
 # brew "python" # updated version of python with updated pip. Useful for installing pip packages without root. NOTE: homebrew "pip" breaks neovim. Needed for ntfy, see ~/.config/yadm/bootstrap
+brew "python-yq" # like yq but also comes with xq for xml
 brew "qcachegrind" # like kcachegrind which is useful for profiling php apps with xdebug
 # brew "ranger" # vim-like file system browser (cool but I don't use it)
 # brew "rbenv" # ruby environment switcher (I use asdf now)
@@ -210,7 +211,7 @@ brew "wget" # latest version
 brew "yamllint" # used by vim-ale
 brew "yarn" # wrapper for npm with real lock files and caching (installing via npm is deprecated)
 brew "yadm" # yet another dotfiles manager
-brew "yq" # jq is to json what yq is to yaml. yaml parser and searcher. I use it to read configs my circleci stuff, etc.
+# brew "yq" # jq is to json what yq is to yaml (and xml!). yaml parser and searcher. I use it to read configs my circleci stuff, etc. (I use the python-yq version instead because it also installs xq)
 brew "zork" # seriously? yes. tip: `save` and `restore` And yes, there's only one save slot, what do you think this is, 1990?
 # brew "zplug" # zsh plugin manager like composer. bash installer crashes for some reason. works fine via homebrew. (switched to antibody)
 brew "zsh" # awesome bash shell replacement
@@ -223,6 +224,7 @@ cask "ableton-live-lite" # music production
 # cask "adoptopenjdk" # needed to install akamai cli
 # cask "adoptopenjdk8" # needed for swagger-codegen
 cask "aerial" # cool apple tv style screensavers
+cask "authy" # desktop 2-factor!
 # cask "bettertouchtool" # with a config file this lets me vimify any cocoa app https://raw.githubusercontent.com/Vincent-Carrier/CocoaVim/master/CocoaVim.bttpreset
 # cask "bitbar" # use any cli command to show stuff in the menubar with colors and icons and provide menu options
 # cask "beardedspice" # keyboard media controls for media sites. Always seems to be broken :/

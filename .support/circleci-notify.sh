@@ -3,7 +3,7 @@
 # USAGE:
 #
 # Ensure you have these tools
-# `brew install circleci terminal-notifier yq jq`
+# `brew install circleci httpie terminal-notifier python-yq jq`
 # and that you have run `circleci setup` at least once (stores your api credentials)
 #
 # Add this to your .git/hooks/pre-push hook:
@@ -13,21 +13,21 @@
 # disown
 # exit 0
 
-TOKEN=$(yq r "$HOME"/.circleci/cli.yml token)
+TOKEN=$(yq ".token" < "$HOME"/.circleci/cli.yml | tr -d '"')
 USERNAME=$1
 PROJECT=$2
 BRANCH=$3
 COMMIT_MESSAGE=$4
 
 
-function uriencode () {
+function _uriencode () {
     jq -nr --arg v "$1" '$v|@uri';
 }
 
-BRANCH_ENCODED=$(uriencode "$BRANCH")
+BRANCH_ENCODED=$(_uriencode "$BRANCH")
 IS_FINISHED=0
 
-function notify () {
+function _notify () {
     TITLE=$1
     MESSAGE=$2
     SOUND=$3
@@ -39,36 +39,43 @@ function notify () {
     eval "$COMMAND"
 }
 
-function check_result () {
-    RESULT=$(http --check-status GET "https://circleci.com/api/v1.1/project/github/${USERNAME}/${PROJECT}/tree/${BRANCH_ENCODED}?circle-token=${TOKEN}&limit=1")
+function _check_result () {
+    RESULT=$(http --check-status GET "https://circleci.com/api/v1.1/project/github/${USERNAME}/${PROJECT}/tree/${BRANCH_ENCODED}?circle-token=${TOKEN}&limit=1" 2>/dev/null)
+
     if [[ $? != 0 ]]; then
-        notify "❌ CI: $PROJECT $BRANCH" "CircleCI API check failed" basso
+        _notify "❌ CI: $PROJECT $BRANCH" "CircleCI API check failed: $?" basso
         IS_FINISHED=1
-        return 1
+        return
     fi
+
     FIRST_BUILD=$(echo $RESULT | jq '.[0]')
+
     if [[ "$FIRST_BUILD" == 'null' ]]; then
-        notify "❌ CI: $PROJECT $BRANCH" "No CircleCI builds found for this branch" basso
+        _notify "❌ CI: $PROJECT $BRANCH" "No CircleCI builds found for this branch" basso
         IS_FINISHED=1
-        return 1
+        return
     fi
+
     STATUS=$(echo $RESULT | jq '.[0].status') # e.g. success or failed
     BUILD_URL=$(echo $RESULT | jq '.[0].build_url')
     LIFECYCLE=$(echo $RESULT | jq '.[0].lifecycle') # e.g. finished
-    if [[ "$LIFECYCLE" == '"finished"' ]]; then
-        IS_FINISHED=1
-    else
+
+    if [[ "$LIFECYCLE" != '"finished"' ]]; then
         # echo "Lifecycle is not yet finished"
         return
     fi
-    if [[ "$STATUS" == '"success"' ]]; then
-        notify "✅ CI: $PROJECT $BRANCH" "CI passed in CircleCI" glass "$BUILD_URL"
-    elif [[ "$STATUS" == '"failed"' ]]; then
-        notify "❌ CI: $PROJECT $BRANCH" "CI failed in CircleCI" basso "$BUILD_URL"
+
+    IS_FINISHED=1
+
+    if [[ "$STATUS" != '"success"' ]]; then
+        _notify "❌ CI: $PROJECT $BRANCH" "CI failed in CircleCI" basso "$BUILD_URL"
+        return
     fi
+
+    _notify "✅ CI: $PROJECT $BRANCH" "CI passed in CircleCI" glass "$BUILD_URL"
 }
 
 while [[ "$IS_FINISHED" == 0 ]]; do
     sleep 30
-    check_result
+    _check_result
 done

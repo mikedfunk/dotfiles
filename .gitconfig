@@ -416,4 +416,6 @@
     side-by-side = true
     # keep-plus-minus-markers = true
     # syntax-theme = DarkNeon
+    # navigate = true
+    # hyperlinks = true
 # }}}
