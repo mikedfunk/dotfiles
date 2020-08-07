@@ -316,6 +316,12 @@ endif
 " let g:AutoPairsFlyMode = 1 " Fly Mode will always force closed-pair jumping instead of inserting. only for ')', '}', ']'
 " }}}
 
+" chadtree {{{
+if has_key(g:plugs, 'chadtree')
+    nnoremap - :CHADopen<cr>
+endif
+" }}}
+
 " challenger-deep-theme {{{
 let g:challenger_deep_termcolors = 16
 " }}}
@@ -700,8 +706,24 @@ let g:neoformat_basic_format_trim = 1 " Enable trimmming of trailing whitespace
 " augroup END
 " }}}
 
+" nnn.vim {{{
+if has_key(g:plugs, 'nvim-lsp')
+    nnoremap - :NnnPicker %<cr>
+    nnoremap <leader>ee :NnnPicker<cr>
+    command! -bang -nargs=* -complete=file Ex NnnPicker <args>
+    command! -bang -nargs=* -complete=file Explore NnnPicker <args>
+endif
+let g:nnn#replace_netrw = 1
+let g:nnn#set_default_mappings = 0
+let g:nnn#action = {
+            \ '<c-t>': 'tab split',
+            \ '<c-s>': 'split',
+            \ '<c-v>': 'vsplit'
+            \ }
+" }}}
+
 " nvim-lsp {{{
-if has('nvim') && has_key(g:plugs, 'nvim-lsp')
+if has_key(g:plugs, 'nvim-lsp')
     " example config from :help lsp:
     " nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
     " nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
@@ -1176,7 +1198,7 @@ let g:tmuxline_preset = {
 " 			\ })
 let g:airline#extensions#tmuxline#snapshot_file = '~/.tmuxline.conf'
 
-if executable('tmux') && has_key(g:plugs, 'tmuxline.vim')
+if has_key(g:plugs, 'tmuxline.vim')
     " apply tmuxline settings and snapshot to file
     command! MyTmuxline :Tmuxline | TmuxlineSnapshot! ~/.support/tmuxline.conf
 endif
@@ -1461,25 +1483,27 @@ let g:flow#timeout = 4 " increase timeout to avoid errors on init
 " vim-fugivite {{{
 " cd to git root: :Gcd
 let g:fugitive_git_executable = 'git -c "color.ui=never"' " Why is this not default?
-if has_key(g:plugs, 'vim-fugitive')
-    nnoremap <leader>gpl :Gpull<cr>
-    nnoremap <leader>gps :Gpush<cr>
-    nnoremap <leader>gs :Gstatus<cr>
-    nnoremap <leader>gw :Gwrite<cr>
-    nnoremap <leader>gr :Gread<cr>
-    nnoremap <leader>gbl :Gblame<cr>
-    nnoremap <leader>gbr :Gbrowse<cr>
-    nnoremap <leader>gl :Glog<cr>
-    nnoremap <leader>gm :Gmove<space>
-    nnoremap <leader>gco :Git co<space>
-    nnoremap <leader>go :Git open<space>
-    nnoremap <leader>ge :Gedit<cr>
-    nnoremap <Leader>g- :Git stash<CR>:e<CR>
-    nnoremap <Leader>g+ :Git stash apply<CR>:e<CR>
-    " nnoremap <leader>gc :!git add -A<cr> :Gcommit<cr>
-    nnoremap <leader>gc :Gcommit<cr>
-    command! WorkingCommit :!git add -A && git commit -m 'working'<cr>
-endif
+" I don't use these but keeping them around in case I ever switch from tig to
+" fugitive
+" if has_key(g:plugs, 'vim-fugitive')
+"     nnoremap <leader>gpl :Gpull<cr>
+"     nnoremap <leader>gps :Gpush<cr>
+"     nnoremap <leader>gs :Gstatus<cr>
+"     nnoremap <leader>gw :Gwrite<cr>
+"     nnoremap <leader>gr :Gread<cr>
+"     nnoremap <leader>gbl :Gblame<cr>
+"     nnoremap <leader>gbr :Gbrowse<cr>
+"     nnoremap <leader>gl :Glog<cr>
+"     nnoremap <leader>gm :Gmove<space>
+"     nnoremap <leader>gco :Git co<space>
+"     nnoremap <leader>go :Git open<space>
+"     nnoremap <leader>ge :Gedit<cr>
+"     nnoremap <Leader>g- :Git stash<CR>:e<CR>
+"     nnoremap <Leader>g+ :Git stash apply<CR>:e<CR>
+"     " nnoremap <leader>gc :!git add -A<cr> :Gcommit<cr>
+"     nnoremap <leader>gc :Gcommit<cr>
+"     command! WorkingCommit :!git add -A && git commit -m 'working'<cr>
+" endif
 " }}}
 
 " vim-http-client {{{
@@ -1522,6 +1546,10 @@ let g:gitsessions_disable_auto_load = 1
 
 " vim-ghost {{{
 let g:ghost_darwin_app="iTerm2"
+if has_key(g:plugs, 'vim-ghost')
+    nnoremap <leader>g+ :GhostStart<cr>
+    nnoremap <leader>g- :GhostStop<cr>
+endif
 " }}}
 
 " vim-gutentags {{{
@@ -2096,7 +2124,7 @@ let g:vcm_s_tab_behavior = 1
 
 " vimux {{{
 let g:VimuxHeight = '40'
-if has_key(g:plugs, 'vimux') && executable('tmux')
+if has_key(g:plugs, 'vimux')
     " nnoremap <leader>vp :VimuxPromptCommand<cr>
     " open vimux window at the current directory and focus it
     " nnoremap <leader>vc :VimuxPromptCommand<cr>cd $PWD<cr>:VimuxInspectRunner<cr>

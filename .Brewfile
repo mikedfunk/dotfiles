@@ -45,7 +45,7 @@ brew "docker-machine-nfs" # enables nfs mounts for docker-machine via `docker-ma
 # brew "knes1/tap/elktail" # tail kibana logs (doesn't work with latest elk version)
 brew "entr" # file watcher (I use this a lot in my shell functions)
 # brew "fasd" # Command-line productivity booster, offers quick access to files and directories, inspired by autojump, z and v. (I use wd)
-# brew "fd" # prettier alternative to find that respects gitignore (haven't used it yet)
+brew "fd" # prettier alternative to find that respects gitignore (haven't used it yet)
 # brew "fpp" # facebook path picker. Used with tmux-fpp to easily open files in an editor. (I don't use it)
 brew "fx" # json funagler used by some of my shell functions
 brew "fzf" # fuzzy file finder `git branch | fzf | xargs git checkout`
@@ -119,6 +119,7 @@ brew "mysql" # I haven't been using the server lately but I use the cli tool to 
 brew "newsboat" # terminal rss reader. I'm debating on whether this is worth it. It's kind of handy to read the headlines in hackernews, reddit programming, etc.
 # brew "neovim" # vim re-imagined (temporarily disabled so I can build from source to address the extremely annoying quickfix bug)
 brew "nextdns/tap/nextdns" # dns privacy service
+brew "nnn" # file picker I use inside of vim
 brew "node" # nodejs and npm (non-nodenv version required by joplin, yarn)
 # brew "nodenv" # node version manager (same api as rbenv) (I use asdf now)
 brew "noti" # simple terminal notifier

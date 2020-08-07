@@ -220,7 +220,7 @@ snippet cla "mike's class with all the good stuff"
 
 declare(strict_types=1);
 `!p snip.rv = namespace(snip, path)`$5
-class `!v expand("%:t:r")`$4
+${1:final }class `!v expand("%:t:r")`$4
 {
     $6
 }
@@ -232,7 +232,7 @@ snippet pcla "palette class"
 declare(strict_types=1);
 `!p snip.rv = namespace(snip, path, "Palette")`
 ${1:/** @see \\Palette`!p snip.rv = "\\" if pathToNamespace(path) else ""``!p snip.rv = pathToNamespace(path)`\\`!v expand("%:t:r")`Spec */
-}class `!v expand("%:t:r")`$4
+}${1:final }class `!v expand("%:t:r")`$4
 {
     $6
 }
@@ -1166,4 +1166,8 @@ endsnippet
 
 snippet rte "laravel route"
 Route::${1:post}('${2:foo/bar}', '${3:BarController}@${4:baz}');
+endsnippet
+
+snippet lgr "import logger interface"
+use Psr\Log\LoggerInterface as Logger;
 endsnippet

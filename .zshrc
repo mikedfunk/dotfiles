@@ -238,6 +238,11 @@ lessc () {
 export GITWEB_PROJECTROOT="$HOME/Code"
 export PRE_COMMIT_COLOR=always # https://pre-commit.com/#cli
 export PSQL_PAGER="pspg"
+
+# https://github.com/jarun/nnn
+export NNN_PLUG='p:preview-tui'
+export NNN_OPTS="adg"
+
 # [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ] && . "$HOME/.nix-profile/etc/profile.d/nix.sh" # this seems to conflict with direnv. Direnv seems to wipe the PATH changes this applies.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 builtin setopt aliases # weird, this should have already been done :/
@@ -248,6 +253,7 @@ _has cod && source <(cod init $$ zsh)
 # NOTE any completions in the brew completions dir are already added!
 # [[ -e /usr/local/opt/coreutils/libexec/gnubin/dircolors && -f "$HOME"/.dircolors ]] && eval $( /usr/local/opt/coreutils/libexec/gnubin/dircolors -b "$HOME"/.dircolors )
 # _has zsh-startify && zsh-startify (neat, but doesn't really help)
+export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=YES
 [[ -f "$HOME"/.iterm2_shell_integration.zsh ]] && source "$HOME"/.iterm2_shell_integration.zsh
 
 # broot file browser https://dystroy.org/broot/documentation/installation/##installation-completion-the-br-shell-function

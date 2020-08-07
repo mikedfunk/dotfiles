@@ -147,7 +147,9 @@ Plug 'diepm/vim-rest-console', { 'for': 'rest' } " like above but more capable (
 Plug 'AndrewRadev/splitjoin.vim', { 'for': ['php', 'javascript', 'html'] } " split and join php arrays to/from multiline/single line (gS, gJ) SO USEFUL
 " Plug 'sunaku/vim-shortcut' " search for shortcuts with :Shortcuts with fzf completion
 " Plug 'tweekmonster/startuptime.vim' " a plugin to find slow plugins. it's like rain on your wedding day.
-" Plug 'benmills/vimux' " run stuff in a tmux split
+" if executable('tmux')
+    " Plug 'benmills/vimux' " run stuff in a tmux split
+" endif
 " Plug 'arecarn/vim-auto-autoread' " make autoread work as expected
 Plug 'tmux-plugins/vim-tmux-focus-events' " makes FocusGained and FocusLost events work in terminal vim. Also handles functionality of vim-auto-autoread.
 Plug 'tpope/vim-endwise' " auto add end/endif for vimscript/ruby. no lazy load or per-filetype load.
@@ -202,11 +204,17 @@ Plug 'michaeljsmith/vim-indent-object' " select in indentation level e.g. vii
 " Plug 'coderifous/textobj-word-column.vim' " add a text object c and C for a column - visual block mode for current indentation level
 " Plug 'wellle/visual-split.vim' " adds mappings and commands to split out the visual selection vertically
 " Plug 'tpope/vim-vinegar' " netrw helper
-Plug 'preservim/nerdtree' " I have turned back to the dark side because they have icons and less bugs
+" Plug 'preservim/nerdtree' " I have turned back to the dark side because they have icons and less bugs
+" if has('python3')
+"     Plug 'ms-jpq/chadtree', { 'branch': 'chad', 'do': ':UpdateRemotePlugins' } " that didn't last long
+" endif
+if executable('nnn')
+    Plug 'mcchrish/nnn.vim'
+endif
 " Plug 'matthewd/vim-vinegar', { 'branch': 'netrw-plug' } " temporary fork that fixes a bug
 Plug 'justinmk/vim-ipmotion' " makes blank line with spaces only the end of a paragraph
 Plug 'machakann/vim-swap' " move args left/right with g< g> or gs for interactive mode
-" Plug 'EinfachToll/DidYouMean' " tries to help opening mistyped files
+Plug 'EinfachToll/DidYouMean' " tries to help opening mistyped files
 " Plug 'unblevable/quick-scope' " highlights chars for f, F, t, T
 " Plug 'severin-lemaignan/vim-minimap' " sublime-style minimap with <leader>mm (no lazy load)
 " Plug 'terryma/vim-multiple-cursors' " sublime-style with <c-n>
@@ -230,7 +238,7 @@ Plug 'frioux/vim-lost', { 'branch': 'main' } " gL to see what function you're in
 Plug 'lifepillar/vim-cheat40' " Customizable cheatsheet. Mine is in ~/.vim/plugged/cheat40.txt. Open cheatsheet with <leader>? . I use this to avoid written cheatsheets on my desk for refactor tools and vdebug.
 " Plug 'auwsmit/vim-active-numbers' " Only show line numbers on active window. Helps to show which is active. (but... doesn't let you see line numbers of unfocused windows, which I often want to do)
 " if has('nvim')
-    " Plug 'IMOKURI/line-number-interval.nvim' " highlight line numbers 10 lines away, etc. This is so cool! Buuut the actual display is different than the gif shows. line numbers not in the interval are hidden completely!
+    " Plug 'IMOKURI/line-number-interval.nvim' " highlight line numbers 10 lines away, etc. This is so cool! Buuut the actual display is different than the gif shows. line numbers not in the interval are hidden completely! (UPDATE I tried again 2020-08-06, same)
 " endif
 " Plug 'dyng/ctrlsf.vim' " Contextual search plugin ala sublime.
 " Plug 'andymass/vim-tradewinds' " <c-w>gh to move the current split one to the left, etc. in other directions
@@ -388,7 +396,9 @@ Plug 'vim-airline/vim-airline-themes' " pretty colors for airline
 Plug 'Yggdroot/indentLine' " show vertical lines for levels of indentions
 " }}}
 
-Plug 'edkolev/tmuxline.vim' " tmux statusline file generator
+if executable('tmux')
+    Plug 'edkolev/tmuxline.vim' " tmux statusline file generator
+endif
 " Plug 'edkolev/promptline.vim', { 'on': ['Promptline', 'PromptlineSnapshot'] } " custom bash prompt creation in sync with airline
 " Plug 'ntpeters/vim-better-whitespace' " highlight tabs and trailing whitespace. Slows down typing considerably though!
 " Plug 'thirtythreeforty/lessspace.vim' " remove trailing whitespace only on lines you edit. Messes up paste indent!

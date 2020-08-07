@@ -46,8 +46,8 @@ function _check_result () {
     if [[ $? != 0 ]]; then
         (( GET_BUILDS_ATTEMPTS++ ))
 
-        if [[ "$GET_BUILDS_ATTEMPTS" > "$MAX_GET_BUILDS_ATTEMPTS" ]]; then
-            _notify "❌ $PROJECT $BRANCH" "Could not get jenkins builds. VPN? Queue?" basso
+        if (( "$GET_BUILDS_ATTEMPTS" > "$MAX_GET_BUILDS_ATTEMPTS" )); then
+            _notify "❌ $PROJECT $BRANCH" "Could not get Jenkins builds after $GET_BUILDS_ATTEMPTS attempts." basso
             IS_FINISHED=1
             return
         fi
