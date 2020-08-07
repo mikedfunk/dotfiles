@@ -25,6 +25,8 @@ function _uriencode () {
 BRANCH_ENCODED=$(_uriencode "$BRANCH")
 BRANCH_ENCODED=$(_uriencode "$BRANCH_ENCODED")
 IS_FINISHED=0
+GET_BUILDS_ATTEMPTS=0
+MAX_GET_BUILDS_ATTEMPTS=10
 
 function _notify () {
     TITLE=$1
@@ -42,8 +44,15 @@ function _check_result () {
     BUILDS=$(http --check-status GET "$JENKINS_URL"/job/"$PROJECT"/job/"$BRANCH_ENCODED"/api/json --auth "$JENKINS_USER_ID":"$JENKINS_API_TOKEN" 2>/dev/null)
 
     if [[ $? != 0 ]]; then
-        _notify "❌ $PROJECT $BRANCH" "Jenkins builds API check failed. VPN? Queue backed up?" basso
-        IS_FINISHED=1
+        (( GET_BUILDS_ATTEMPTS++ ))
+
+        if [[ "$GET_BUILDS_ATTEMPTS" > "$MAX_GET_BUILDS_ATTEMPTS" ]]; then
+            _notify "❌ $PROJECT $BRANCH" "Could not get jenkins builds. VPN? Queue?" basso
+            IS_FINISHED=1
+            return
+        fi
+
+        sleep $((60 * 2))
         return
     fi
 
@@ -71,7 +80,6 @@ function _check_result () {
     fi
 
     IS_FINISHED=1
-
     JOB_RESULT=$(echo "$JOB" | jq ".result")
 
     if [[ "$JOB_RESULT" != '"SUCCESS"' ]]; then
@@ -82,8 +90,7 @@ function _check_result () {
     _notify "✅ CI: $PROJECT $BRANCH" "Jenkins build passed" glass "$BUILD_URL"
 }
 
-sleep 120
 while [[ "$IS_FINISHED" == 0 ]]; do
-    sleep 10
+    sleep 30
     _check_result
 done
