@@ -1152,7 +1152,7 @@ let g:airline#extensions#tmuxline#enabled = 0 " use current airline theme stuff 
 let g:tmuxline_preset = {
     \ 'a': ['🏠 #S'],
     \ 'c': [
-        \ '#{online_status} #{cpu_fg_color}#{cpu_icon}#[fg=default] #{ram_fg_color}#{ram_icon}#[fg=default] #{battery_color_charge_fg}#{battery_icon_charge} #{battery_percentage}#[fg=default]',
+        \ '#{online_status} #{cpu_fg_color}#{cpu_icon}#[fg=default] #{ram_fg_color}#{ram_icon}#[fg=default] #{battery_color_charge_fg}#{battery_icon_charge}#[fg=default] #{battery_percentage}',
         \ '#(~/.support/saatchi-haproxy-status.sh)'
     \ ],
     \ 'win': ['#I', '#W'],
