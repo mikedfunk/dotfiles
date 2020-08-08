@@ -1149,10 +1149,13 @@ let g:airline#extensions#tmuxline#enabled = 0 " use current airline theme stuff 
 " I would like to use 'b' and 'c' but I found 'b' is actually lighter than
 " 'y', so it's insonsistent with the other side. And they won't provide a 'd'.
 " At least both on 'c' looks better than splitting between 'b' and 'c'.
+"
+"  unused:
+"  #{battery_percentage}
 let g:tmuxline_preset = {
     \ 'a': ['🏠 #S'],
     \ 'c': [
-        \ '#{online_status} #{cpu_fg_color}#{cpu_icon}#[fg=default] #{ram_fg_color}#{ram_icon}#[fg=default] #{battery_color_charge_fg}#{battery_icon_charge}#[fg=default] #{battery_percentage}',
+        \ '#{online_status} #{cpu_fg_color}#{cpu_icon}#[fg=default] #{ram_fg_color}#{ram_icon}#[fg=default] #{battery_color_charge_fg}#{battery_icon_charge}#[fg=default]',
         \ '#(~/.support/saatchi-haproxy-status.sh)'
     \ ],
     \ 'win': ['#I', '#W'],
