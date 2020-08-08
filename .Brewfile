@@ -4,7 +4,8 @@
 # brew {{{
 brew "akamai" # interact with akamai caching
 # brew "angband" # middle-earth themed dungeon crawler (requires java)
-brew "ansible" # used in some of my company-specific stuff to run ssh commands on multiple servers.
+# brew "ansible" # used in some of my company-specific stuff to run ssh commands on multiple servers.
+brew "ansifilter" # filter out ansi codes. used by tmux-logging tpm plugin.
 # brew "ant" # apache build tool
 brew "getantibody/tap/antibody" # like antigen but faster! (zsh plugin system)
 # brew "antigen" # zsh package manager. I switched to antibody for speed

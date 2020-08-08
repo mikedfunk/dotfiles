@@ -1137,7 +1137,7 @@ let g:airline#extensions#tmuxline#enabled = 0 " use current airline theme stuff 
 
 " let g:tmuxline_preset = 'full' " the layout and data to show
 " a: session name
-" b: hostname
+" c: cpu ram battery haproxy
 " win: unselected tab
 " cwin: current tab
 " x: UTC
@@ -1152,18 +1152,18 @@ let g:airline#extensions#tmuxline#enabled = 0 " use current airline theme stuff 
 let g:tmuxline_preset = {
     \ 'a': ['🏠 #S'],
     \ 'c': [
-        \ "🔋 #(pmset -g batt | egrep '\d+%' | awk '{print $3}' | awk -F';' '{print $1}')",
-        \ '#(~/.bin/saatchi-haproxy-status.sh)'
+        \ '#{cpu_fg_color}#{cpu_icon}#[fg=default] #{ram_fg_color}#{ram_icon}#[fg=default] #{online_status} #{battery_color_charge_fg}#{battery_icon_charge} #{battery_percentage}#[fg=default]',
+        \ '#(~/.support/saatchi-haproxy-status.sh)'
     \ ],
     \ 'win': ['#I', '#W'],
     \ 'cwin': ['#I', '#W#F'],
-    \ 'x': [
-        \ "#(TZ=Etc/UTC date '+%%R UTC')"
-    \ ],
+    \ 'x': ["#(TZ=Etc/UTC date '+%%R UTC')"],
     \ 'y': ['%l:%M %p'],
     \ 'z': ['%a', '%b %d']
 \}
 " disabled:
+"
+" \ "🔋 #(pmset -g batt | egrep '\d+%' | awk '{print $3}' | awk -F';' '{print $1}')",
 "
 " this is just distracting
 " \ '#{prefix_text} #{synchronized_text} #{sharedsession_text}',
@@ -1200,7 +1200,7 @@ let g:airline#extensions#tmuxline#snapshot_file = '~/.tmuxline.conf'
 
 if has_key(g:plugs, 'tmuxline.vim')
     " apply tmuxline settings and snapshot to file
-    command! MyTmuxline :Tmuxline | TmuxlineSnapshot! ~/.support/tmuxline.conf
+    command! MyTmuxline :Tmuxline | TmuxlineSnapshot! ~/.tmux/tmuxline.conf
 endif
 " }}}
 
@@ -1512,6 +1512,11 @@ let g:http_client_focus_output_window = 0
 " if isdirectory(expand("~/.vim/plugged/vim-http-client"))
 "     nnoremap <leader>pp :HTTPClientDoRequest<cr>
 " endif
+" }}}
+
+" vim-gist {{{
+let g:gist_detect_filetype = 1
+let g:gist_open_browser_after_post = 1
 " }}}
 
 " vim-git {{{

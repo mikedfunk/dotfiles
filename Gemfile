@@ -15,7 +15,6 @@ gem 'github_changelog_generator' # generate changelogs from tags, issues, and me
 # gem "haste"
 gem 'heytmux' # fine-grained control to open a tmuxp window
 gem 'jekyll' # blogging platform used by github
-gem 'jist' # github gist cli tool
 # gem "json_pure"
 # gem "kramdown" # another markdown parser option that can be used by Jekyll.
 # gem 'libv8' # this was needed to run `ruby --help` on ruby 2.2.2 apparently in the catalog dir, not sure why

@@ -326,6 +326,7 @@ if executable('git')
 endif
 Plug 'wting/gitsessions.vim' " sessions based on git branches!
 Plug 'rhysd/git-messenger.vim', { 'on': 'GitMessenger' } " show last commit for line, or even the one before that!
+Plug 'mattn/webapi-vim' | Plug 'mattn/vim-gist' " :Gist to create a github gist
 " }}}
 
 " Javascript {{{
