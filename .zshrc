@@ -427,9 +427,11 @@ alias pu="phpunitnotify"
 
 # Public: phpunit coverage
 puc() { pu --coverage-html=./coverage $@ && open coverage/index.html; }
+puc-clover() { pu --coverage-clover=./coverage/clover.xml $@; }
 
 # Public: phpspec coverage
 psc() { php -dmemory_limit=2048M ./vendor/bin/phpspec run --config ./phpspec-coverage-html.yml $@ && open coverage/index.html; }
+psc-clover() { php -dmemory_limit=2048M ./vendor/bin/phpspec run --config ./phpspec-coverage-clover.yml $@; }
 alias puf="pu --filter="
 
 # Public: phpunit watch

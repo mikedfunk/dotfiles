@@ -5,12 +5,16 @@
 " https://github.com/prettier/prettier-eslint/pull/194
 " call add(g:ale_fixers['javascript'], 'prettier_eslint')
 "
+let g:ale_linters = get(g:, 'ale_linters', {})
+let g:ale_linters['javascript'] = ['eslint', 'flow', 'flow-language-server']
+"
 " disabled prettier because I'm using the recommended eslint plugin instead
 " (in an easel branch that's waiting to be merged)
 " https://prettier.io/docs/en/eslint.html#docsNav
 " let g:ale_fixers['javascript'] = ['prettier', 'eslint', 'importjs']
 let g:ale_fixers = get(g:, 'ale_fixers', {})
-let g:ale_fixers['javascript'] = ['eslint', 'importjs']
+let g:ale_fixers['javascript'] = ['eslint', 'importjs', 'prettier', 'prettier_eslint', 'trim_whitespace', 'remove_trailing_lines']
+let g:ale_fix_on_save = 1 " This is off by default. You could do it manually with :ALEFix
 let g:ale_javascript_prettier_options = '--trailing-comma es5'
 " }}}
 

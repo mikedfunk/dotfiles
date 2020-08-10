@@ -742,15 +742,6 @@ _install_update_nnn_plugins () {
 }
 # }}}
 
-# install nix package manager {{{
-_install_nix_package_manager () {
-    [[ -d "/nix" ]] && return
-    _log_info "Installing nix package manager (will require sudo)"
-    # curl https://nixos.org/nix/install | sh
-    bash <(curl https://nixos.org/nix/install)
-}
-# }}}
-
 # upgrade docker-machine {{{
 _upgrade_docker_machine () {
     _log_info "Upgrading docker-machine"
@@ -843,7 +834,6 @@ _fix_file_size_limit_for_watching_with_entr
 _link_docker_for_mac
 # _install_neovim_from_source
 # _install_mc
-# _install_nix_package_manager
 _install_upgrade_ix_io
 _install_cod
 _install_import

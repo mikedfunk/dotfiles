@@ -276,8 +276,14 @@ Plug 'phpactor/phpactor', {'for': 'php', 'branch': 'master', 'do': 'composer ins
 " Plug 'tobyS/vmustache', { 'for': 'php' } | Plug 'FlickerBean/pdv', { 'for': 'php' } " phpdoc generator (I just use ultisnips)
 " Plug '2072/PHP-Indenting-for-VIm', { 'for': ['php', 'phtml'] } " apparently better php indenting for PHP 5.4+ (Is it though?)
 " Plug 'janko-m/vim-test', { 'for': 'php' } | Plug 'benmills/vimux', { 'for': 'php' } " test runner :TestNearest :TestFile :TestLast in tmux split (I had a problem with the characters being sent to tmux VERY slowly)
-" if has("python") | Plug 'joonty/vim-phpqa', { 'for': 'php' } | endif " Only used for code coverage markers :Phpcc
-" if has("python3") | Plug 'trendfischer/vim-phpqa', { 'for': 'php' } | endif " maintained fork
+if has("python3")
+    " Only used for code coverage markers :Phpcc.
+    " Use with my alias psc-clover or puc-clover.
+    " TODO write a provider to replace this with vim-coverage https://github.com/google/vim-coverage
+    " Plug 'joonty/vim-phpqa', { 'for': 'php' }
+    " maintained fork
+    Plug 'trendfischer/vim-phpqa', { 'for': 'php' }
+endif
 Plug 'adoy/vim-php-refactoring-toolbox', { 'for': 'php' }
 " refactor php, get started with <leader>r
 " DO NOT USE. (php parser is horribly outdated and composer dependency is broken.)
