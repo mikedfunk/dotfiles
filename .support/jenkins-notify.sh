@@ -33,7 +33,7 @@ function _notify () {
     MESSAGE=$2
     SOUND=$3
     URL=$4
-    COMMAND="terminal-notifier -title '${TITLE}' -subtitle '${MESSAGE}' -message '${COMMIT_MESSAGE}' -sound '${SOUND}' -appIcon 'https://saatchi-jenkins.leaf.io/static/c598813c/images/headshot.png'"
+    COMMAND="terminal-notifier -title '${TITLE}' -subtitle '${MESSAGE}' -message '${COMMIT_MESSAGE}' -sound '${SOUND}' -appIcon 'https://saatchi-jenkins.leaf.io/static/c598813c/images/jenkins.svg'"
     if [[ "$URL" ]]; then
         COMMAND="$COMMAND -open '$URL'"
     fi
@@ -83,11 +83,11 @@ function _check_result () {
     JOB_RESULT=$(echo "$JOB" | jq ".result")
 
     if [[ "$JOB_RESULT" != '"SUCCESS"' ]]; then
-        _notify "❌ $PROJECT $BRANCH" "Jenkins build did not pass: $JOB_RESULT" basso
+        _notify "❌ $PROJECT $BRANCH" "Jenkins build failed: $JOB_RESULT" basso
         return
     fi
 
-    _notify "✅ CI: $PROJECT $BRANCH" "Jenkins build passed" glass "$BUILD_URL"
+    _notify "✅ CI: $PROJECT $BRANCH" "Jenkins build completed" glass "$BUILD_URL"
 }
 
 while [[ "$IS_FINISHED" == 0 ]]; do
