@@ -4,9 +4,13 @@
 " colo hybrid_material
 " let g:airline_theme="base16_ocean"
 " colo onedark
-silent! colo base16-onedark
-let g:airline_theme="onedark"
+" silent! colo base16-onedark
+" let g:airline_theme="onedark"
+" silent! colo base16-synth-midnight-dark
+silent! colo base16-horizon-dark
+" silent! colo base16-outrun-dark
 " set wildignore+=*/vendor/*
+let g:airline_theme = "base16"
 set wildignore+=*/build/*,cscope.out,tags,.git/*,Session.vim
 " }}}
 

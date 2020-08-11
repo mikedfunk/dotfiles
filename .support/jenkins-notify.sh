@@ -33,7 +33,7 @@ function _notify () {
     MESSAGE=$2
     SOUND=$3
     URL=$4
-    COMMAND="terminal-notifier -title '${TITLE}' -subtitle '${MESSAGE}' -message '${COMMIT_MESSAGE}' -sound '${SOUND}' -appIcon 'https://saatchi-jenkins.leaf.io/static/c598813c/images/jenkins.svg'"
+    COMMAND="terminal-notifier -title '${TITLE}' -subtitle '${MESSAGE}' -message '${COMMIT_MESSAGE}' -sound '${SOUND}' -appIcon 'https://saatchi-jenkins.leaf.io/static/c598813c/images/headshot.png'"
     if [[ "$URL" ]]; then
         COMMAND="$COMMAND -open '$URL'"
     fi
@@ -46,8 +46,10 @@ function _check_result () {
     if [[ $? != 0 ]]; then
         (( GET_BUILDS_ATTEMPTS++ ))
 
+        BRANCH_URL="$JENKINS_URL"/job/"$PROJECT"/job/"$BRANCH_ENCODED"
+
         if (( "$GET_BUILDS_ATTEMPTS" > "$MAX_GET_BUILDS_ATTEMPTS" )); then
-            _notify "❌ $PROJECT $BRANCH" "Could not get Jenkins builds after $GET_BUILDS_ATTEMPTS attempts." basso
+            _notify "❌ $PROJECT $BRANCH" "Could not get Jenkins builds after $GET_BUILDS_ATTEMPTS attempts." basso "$BRANCH_URL"
             IS_FINISHED=1
             return
         fi
@@ -57,9 +59,10 @@ function _check_result () {
     fi
 
     BUILD_NUMBER=$(echo "$BUILDS" | jq '.builds[0].number')
+    BUILD_URL="$JENKINS_URL"/job/"$PROJECT"/job/"$BRANCH_ENCODED"/"$BUILD_NUMBER"
 
     if [[ "$BUILD_NUMBER" == 'null' ]]; then
-        _notify "❌ $PROJECT $BRANCH" "No Jenkins builds found for this branch" basso
+        _notify "❌ $PROJECT $BRANCH" "No Jenkins builds found for this branch" basso "$BUILD_URL"
         IS_FINISHED=1
         return
     fi
@@ -67,7 +70,7 @@ function _check_result () {
     JOB=$(http --check-status GET "$JENKINS_URL"/job/"$PROJECT"/job/"$BRANCH_ENCODED"/"$BUILD_NUMBER"/api/json --auth "$JENKINS_USER_ID":"$JENKINS_API_TOKEN" 2>/dev/null)
 
     if [[ $? != 0 ]]; then
-        _notify "❌ $PROJECT $BRANCH" "Jenkins job API check failed" basso
+        _notify "❌ $PROJECT $BRANCH" "Jenkins job API check failed" basso "$BUILD_URL"
         IS_FINISHED=1
         return
     fi
@@ -83,7 +86,7 @@ function _check_result () {
     JOB_RESULT=$(echo "$JOB" | jq ".result")
 
     if [[ "$JOB_RESULT" != '"SUCCESS"' ]]; then
-        _notify "❌ $PROJECT $BRANCH" "Jenkins build failed: $JOB_RESULT" basso
+        _notify "❌ $PROJECT $BRANCH" "Jenkins build failed: $JOB_RESULT" basso "$BUILD_URL"
         return
     fi
 
@@ -91,6 +94,6 @@ function _check_result () {
 }
 
 while [[ "$IS_FINISHED" == 0 ]]; do
-    sleep 30
+    sleep 10
     _check_result
 done

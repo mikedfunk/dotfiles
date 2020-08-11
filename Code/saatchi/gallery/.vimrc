@@ -1,5 +1,21 @@
 " vim: set foldmethod=marker:
 
+" color {{{
+" silent! colo base16-atelier-sulphurpool
+" colo base16-woodland
+" colo badwolf
+" colo base16-default-dark
+" let g:airline_theme = 'base16'
+" colo sierra
+" let g:airline_theme = 'base16_ashes'
+" colo ayu
+" let g:airline_theme = 'ayu'
+" silent! colo base16-zenburn
+silent! colo base16-outrun-dark
+" silent! colo base16-helios
+let g:airline_theme = 'base16'
+" }}}
+
 " ale {{{
 " if executable('prettier-eslint') | call add(js_linters, 'prettier_eslint') | endif
 " * JavaScript: `eslint`, `flow`, `jscs`, `jshint`, `prettier`, `prettier-eslint` >= 4.2.0, `prettier-standard`, `standard`, `xo`
@@ -23,21 +39,6 @@ if has_key(g:plugs, 'ale')
     nnoremap <c-k> :call TriggerALEHover()<cr>
 endif
 
-" }}}
-
-" color {{{
-" colo base16-atelier-sulphurpool
-" colo base16-woodland
-" colo badwolf
-" colo base16-default-dark
-" let g:airline_theme = 'base16'
-" colo sierra
-" let g:airline_theme = 'base16_ashes'
-" colo ayu
-" let g:airline_theme = 'ayu'
-" silent! colo base16-zenburn
-silent! colo base16-outrun-dark
-let g:airline_theme = 'base16'
 " }}}
 
 " general {{{

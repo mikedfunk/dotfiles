@@ -140,6 +140,7 @@ bind generic gfhf !git fhf "%(prompt Enter hotfix version: )"
 bind generic gfhs @git fhs "%(prompt Enter hotfix version: )"
 bind generic gfrf !git frf "%(prompt Enter release version: )"
 bind generic gfrs @git frs "%(prompt Enter release version: )"
+bind generic grc @git rc "%(prompt Enter release version: )"
 bind generic gld !git ld
 bind generic glm !git lm
 bind generic go @git open

@@ -423,6 +423,10 @@ Plug 'ryanoasis/vim-devicons' " file type icons in netrw, etc.
 " Plug 'TaDaa/vimade' " fade inactive buffers, preserving color scheme (I don't really need this)
 " Plug 'junegunn/goyo.vim' | Plug 'junegunn/limelight.vim' " focus mode
 
+if has('popupwin')
+    Plug 'mnishz/colorscheme-preview.vim' " :ColorschemePreview only for vim
+endif
+
 " color schemes: 256-friendly {{{
 " Plug 'MarioRicalde/vim-lucius'
 " Plug 'adelarsq/vim-grimmjow'
@@ -483,6 +487,7 @@ Plug 'chriskempson/base16-vim' " themes made of 16 colors
 " Plug 'flrnprz/taffy.vim'
 " Plug 'patstockwell/vim-monokai-tasty'
 " }}}
+
 " }}}
 
 " Vim-plug close {{{

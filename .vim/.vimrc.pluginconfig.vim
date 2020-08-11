@@ -137,12 +137,33 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_php_cs_fixer_options = '--config=.php_cs'
 
 let g:ale_sign_column_always = 1 " otherwise screen keeps jumping left and right
+
 let g:airline#extensions#ale#error_symbol = 'Errors:' " default is a bit sparse: E
 " let g:airline#extensions#ale#error_symbol = '🛑'
+" let g:airline#extensions#ale#error_symbol = '🚨 '
+" let g:airline#extensions#ale#error_symbol = '✖'
+" let g:airline#extensions#ale#error_symbol = '⚠'
+" ⚠
+
 let g:airline#extensions#ale#warning_symbol = 'Warnings:'
-" let g:airline#extensions#ale#warning_symbol = '⚠️' " default is W
+" let g:airline#extensions#ale#warning_symbol = '⚠️  ' " default is W
+
+let g:ale_sign_warning = '⚠️'
+"
+" let g:ale_sign_error = '🛑'
+" let g:ale_sign_error = '⚠'
+" let g:ale_sign_error = '💣'
+" let g:ale_sign_error = '💩'
+let g:ale_sign_error = '🚨'
+"
+let g:ale_sign_info = 'ℹ️'
+
 let g:zenburn_high_Contrast = 1
 let g:ale_virtualtext_cursor = 1
+"
+" let g:ale_sign_highlight_linenrs = 1
+" let g:ale_sign_error = 'E'
+"
 " let g:ale_change_sign_column_color = 1
 
 " mappings {{{
@@ -235,14 +256,17 @@ let g:ale_completion_symbols = {
             \ }
 " }}}
 
+" do not set the error sign background color to red. If I don't do this it looks weird with an emoji icon.
+highlight! link ALEErrorSign ALEWarningSign
+
 " }}}
 
 " base16-vim {{{
 " set the default color scheme
 if has_key(g:plugs, 'base16-vim')
     silent! colorscheme base16-atlas " very solarized-y but more colorful
+    let g:airline_theme = 'base16'
 endif
-let g:airline_theme = 'base16'
 " }}}
 
 " asyncomplete.vim {{{
