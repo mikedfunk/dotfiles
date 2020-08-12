@@ -486,6 +486,8 @@ Plug 'chriskempson/base16-vim' " themes made of 16 colors
 " Plug 'mr-ubik/vim-hackerman-syntax'
 " Plug 'flrnprz/taffy.vim'
 " Plug 'patstockwell/vim-monokai-tasty'
+" Plug 'bcicen/vim-vice'
+" Plug 'flazz/vim-colorschemes' " a bunch of colorschemes from vim.org
 " }}}
 
 " }}}

@@ -1,5 +1,10 @@
 ---
 repos:
+  # - repo: https://github.com/commitizen-tools/commitizen
+  #   rev: master
+  #   hooks:
+  #     - id: commitizen
+  #       stages: [commit-msg]
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v3.1.0
     hooks:
