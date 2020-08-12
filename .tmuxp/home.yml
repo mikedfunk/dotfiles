@@ -13,7 +13,10 @@ windows:
       - yadm st
       # - sourcegraph
       # - ctop
-      - htop
+      # htop has been giving me major trouble lately, will have to fall back to
+      # top or some other *top app.
+      # - htop
+      - top -F -u -stats pid,command,cpu,mem,time,user,state
 # }}}
 
 # blog {{{

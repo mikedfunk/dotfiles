@@ -82,6 +82,7 @@ path=(
   $HOME/bin
   # global python pip packages
   $HOME/.local/bin
+  /Applications/Docker.app/Contents/Resources/bin
   # (homebrew is already covered by the eval above)
   # wtf homebrew? this is too far down the list!
   /usr/local/{bin,sbin}
@@ -151,6 +152,7 @@ if [[ ! $ANTIBODY_LOADED ]]; then
     antibody bundle zsh-users/zsh-autosuggestions # OLD COMMENT: buggy if enabled along with zsh-syntax-highlighting. crashes the shell regularly.
     antibody bundle zsh-users/zsh-completions # do-everything argument completions
     # antibody bundle zsh-users/zsh-syntax-highlighting # colored input... see above
+    antibody bundle marlonrichert/zsh-autocomplete # automatically show flags/options completion
     antibody bundle zdharma/fast-syntax-highlighting # colored input but faster
     # antibody bundle zsh-users/zsh-history-substring-search # up arrow after typing part of command
     antibody bundle romkatv/powerlevel10k # zsh prompt theme (see ~/.p10k.zsh)
@@ -170,7 +172,8 @@ _has lazyload && lazyload akamai -- '_has akamai && eval "$(akamai --zsh)"'
 # }}}
 
 # source additional files and env vars {{{
-ZSH_ALIAS_FINDER_AUTOMATIC=true # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/alias-finder#usage
+export ZSH_ALIAS_FINDER_AUTOMATIC=true # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/alias-finder#usage
+export ZSH_AUTOSUGGEST_USE_ASYNC=true # https://github.com/zsh-users/zsh-autosuggestions#enable-asynchronous-mode
 # ZSH_AUTOSUGGEST_STRATEGY=(history completion) # https://github.com/zsh-users/zsh-autosuggestions#suggestion-strategy (this prevents me from typing more e.g. `php artisan ...`!)
 [ -f ~/.private_vars.sh ] && source ~/.private_vars.sh # where I store my secret env vars
 # [ -f ~/.support/promptline.theme.bash ] && source ~/.support/promptline.theme.bash # vim plugin generates this tmux status line file
@@ -242,6 +245,8 @@ export PSQL_PAGER="pspg"
 # https://github.com/jarun/nnn
 export NNN_PLUG='p:preview-tui'
 export NNN_OPTS="adg"
+export NNN_COLORS='1234'
+export NNN_FCOLORS='c1e2272e006033f7c6d6abc4'
 
 # [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ] && . "$HOME/.nix-profile/etc/profile.d/nix.sh" # this seems to conflict with direnv. Direnv seems to wipe the PATH changes this applies.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -797,6 +802,15 @@ alias webpack-cli="npx webpack-cli"
 alias webpack-dev-server="npx webpack-dev-server"
 alias webpack="npx webpack"
 alias yo="npx yo"
+# }}}
+
+# zsh-autocomplete {{{
+# so chatty
+zstyle ':autocomplete:*:no-matches-yet' message ''
+# zstyle ':autocomplete:*:too-many-matches' message '[⌥-↓] to complete'
+zstyle ':autocomplete:*:too-many-matches' message ''
+zstyle ':autocomplete:*:no-matches-at-all' message ''
+zstyle ':autocomplete:*' fuzzy-search off
 # }}}
 
 # }}}

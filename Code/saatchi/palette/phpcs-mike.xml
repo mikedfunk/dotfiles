@@ -213,6 +213,7 @@
     <exclude name="Squiz.WhiteSpace.ObjectOperatorSpacing" />
     <exclude name="Squiz.ControlStructures.InlineIfDeclaration" />
     <exclude name="Squiz.ControlStructures.SwitchDeclaration.BreakIndent" />
+    <exclude name="Generic.ControlStructures.DisallowYodaConditions" />
     <exclude name="Squiz.Commenting.InlineComment" />
     <exclude name="Squiz.Arrays.ArrayDeclaration" />
     <exclude name="Squiz.Objects.ObjectInstantiation" />

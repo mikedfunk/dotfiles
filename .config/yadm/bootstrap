@@ -489,6 +489,7 @@ _install_upgrade_phive_packages () {
     _log_info "Installing/upgrading phive packages"
     # manifest is in ~/.phive/global.xml
     phive install --global --trust-gpg-keys
+    phive update-repository-list --global
     phive update --global
 }
 # }}}
@@ -742,23 +743,19 @@ _install_update_nnn_plugins () {
 }
 # }}}
 
+# install/upgrade sshrc {{{
+# for some reason this was removed from homebrew??
+_install_upgrade_sshrc () {
+    _log_info "Installing/upgrading sshrc"
+    curl "https://raw.githubusercontent.com/JesusContributions/sshrc/master/sshrc" > /usr/local/bin/sshrc
+    chmod +x /usr/local/bin/sshrc
+}
+# }}}
+
 # upgrade docker-machine {{{
 _upgrade_docker_machine () {
     _log_info "Upgrading docker-machine"
     docker-machine upgrade
-}
-# }}}
-
-# link docker-for-mac {{{
-_link_docker_for_mac () {
-    # brew cask upgrade docker removes all docker-for-mac executables but doesn't link them, and there's no "brew cask link docker". I assume this is a temporary bug with the cask formula.
-    _log_info "Linking docker-for-mac binaries"
-    DOCKER_APP_BIN="/Applications/Docker.app/Contents/Resources/bin"
-    ln -sf "$DOCKER_APP_BIN"/docker /usr/local/bin/docker
-    ln -sf "$DOCKER_APP_BIN"/docker-credential-osxkeychain /usr/local/bin/docker-credential-osxkeychain
-    ln -sf "$DOCKER_APP_BIN"/docker-credential-desktop /usr/local/bin/docker-credential-desktop
-    # ln -sf "$DOCKER_APP_BIN"/docker-machine /usr/local/bin/docker-machine # this is no longer included in docker-for-mac
-    # ln -sf "$DOCKER_APP_BIN"/docker-compose /usr/local/bin/docker-compose # this is weirdly a directory in docker-for-mac
 }
 # }}}
 
@@ -831,13 +828,13 @@ _start_launch_agents
 _fix_file_size_limit_for_watching_with_entr
 # _install_activate_nextdns
 # _upgrade_docker_machine
-_link_docker_for_mac
 # _install_neovim_from_source
 # _install_mc
 _install_upgrade_ix_io
 _install_cod
 _install_import
 _install_update_nnn_plugins
+_install_upgrade_sshrc
 _update_asdf_plugins
 _fix_delta_syntax_highlighting_for_php
 _clear_evalcache
