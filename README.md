@@ -3,7 +3,7 @@
 ## TL;DR
 
 ```
-~/install.sh
+curl https://raw.githubusercontent.com/mikedfunk/dotfiles/master/install.sh | sh
 ```
 
 My Bash, Vim, Git, and other dotfiles. Managed by [yadm](https://thelocehiliosan.github.io/yadm/docs).
@@ -23,5 +23,5 @@ My Bash, Vim, Git, and other dotfiles. Managed by [yadm](https://thelocehiliosan
 * [Yadm bootstrap file](.config/yadm/bootstrap) (script to install/upgrade everything)
 * [Vimrc](.vimrc)
 * [Zshrc](.zshrc)
-* [Gitconfig](.gitconfig)
+* [Git config](.gitconfig)
 * [Tmux config](.tmux.conf)
