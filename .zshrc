@@ -810,6 +810,7 @@ zstyle ':autocomplete:*:no-matches-yet' message ''
 # zstyle ':autocomplete:*:too-many-matches' message '[⌥-↓] to complete'
 zstyle ':autocomplete:*:too-many-matches' message ''
 zstyle ':autocomplete:*:no-matches-at-all' message ''
+# turn off fzf bindings
 zstyle ':autocomplete:*' fuzzy-search off
 # }}}
 

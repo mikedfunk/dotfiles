@@ -435,6 +435,7 @@ _install_node_versions () {
     # https://github.com/asdf-vm/asdf-nodejs/issues/40#issuecomment-297053730
     bash "$HOME"/.asdf/plugins/nodejs/bin/import-release-team-keyring
     ( asdf list nodejs | grep --quiet 9.11.2 ) || asdf install nodejs 9.11.2
+    ( asdf list nodejs | grep --quiet 10.11.0 ) || asdf install nodejs 10.11.0
     ( asdf list nodejs | grep --quiet 14.4.0 ) || asdf install nodejs 14.4.0
     asdf global nodejs 14.4.0
     builtin cd - >/dev/null || return
