@@ -885,7 +885,7 @@ EOF
     endif
 
     if (executable('docker-langserver'))
-        lua require'nvim_lsp'.solargraph.setup{}
+        lua require'nvim_lsp'.dockerls.setup{}
         augroup nvim_lsp_docker
             autocmd!
             autocmd filetype docker setlocal omnifunc=v:lua.vim.lsp.omnifunc
@@ -1370,6 +1370,7 @@ let g:airline#extensions#tabline#show_buffers = 0 " shows buffers when no tabs
 let g:airline#extensions#tabline#show_splits = 1 " shows how many splits are in each tab and which split you're on
 let g:airline#extensions#tabline#show_tab_type = 0 " right side says either 'buffers' or 'tabs'
 let g:airline#extensions#tagbar#enabled = 0 " cool but slows down php
+let g:airline#extensions#nvimlsp#enabled = 0 " this stopped working in a recent update - tons of errors
 
 " emacs-like slanted separators
 " let g:airline_left_sep="\ue0b8"

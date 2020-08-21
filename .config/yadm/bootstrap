@@ -614,6 +614,19 @@ _install_import () {
 }
 # }}}
 
+# install bpytop {{{
+_install_bpytop () {
+    _has bpytop && return
+    _log_info "Installing bpytop"
+    pushd .
+    cd "$HOME"/Code || return
+    git clone https://github.com/aristocratos/bpytop.git
+    cd bpytop || return
+    make install
+    popd || return
+}
+# }}}
+
 # ls_colors {{{
 _install_ls_colors () {
     [ -d "$HOME"/.dircolors ] && return
@@ -836,6 +849,7 @@ _install_cod
 _install_import
 _install_update_nnn_plugins
 _install_upgrade_sshrc
+_install_bpytop
 _update_asdf_plugins
 _fix_delta_syntax_highlighting_for_php
 _clear_evalcache

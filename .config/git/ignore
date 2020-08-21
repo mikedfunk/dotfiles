@@ -1,37 +1,38 @@
 # _ide_helper.php
 # composer.phar
+# .ctags
 *.swp
+*.tags
 *.un~
 .DS_Store
 .DS_Store
+.direnv
+.envrc
+.exrc
+.ignore
+.netrwhist
+.notags
 .phing_targets
+.php-version
 .php_cs.cache
 .phpspec
 .pre-commit-config.yaml
 .projections.json
-/.envrc
-/.exrc
-/.ignore
-/.vimrc
+.tern-project
+.vimrc
+.yo-rc.json
 Session.vim
 TAGS
 __LAST__
+coverage
 cscope.files
 cscope.out
 cscope.out.files
 cscope.out.lock
 cscope.out.temp
 ncscope.out.temp
-*.tags
+nohup.out
+sonar-project.properties
 tags
 tags*
-.yo-rc.json
 yarn-error.log
-.tern-project
-.php-version
-.netrwhist
-sonar-project.properties
-# .ctags
-.notags
-coverage
-nohup.out

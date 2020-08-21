@@ -250,7 +250,7 @@ cask "firefox-developer-edition" # I use dev edition for my work profile
 # cask "font-iosevka"
 cask "font-iosevka-nerd-font-mono" # note: homebrew doesn't need a tap for these any more
 # cask "font-meslo-for-powerline" # whoa there are a ton of fonts on brew "cask"!
-cask "microsoft/git/git-credential-manager-core" # new github credentials manager https://github.blog/2020-07-02-git-credential-manager-core-building-a-universal-authentication-experience/
+# cask "microsoft/git/git-credential-manager-core" # new github credentials manager https://github.blog/2020-07-02-git-credential-manager-core-building-a-universal-authentication-experience/
 cask "glance" # all-in-one quicklook app that works with dark mode
 cask "grandperspective" # visualize storage hogs in the hard drive
 # cask "gog-galaxy" # good old games

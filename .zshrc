@@ -152,7 +152,7 @@ if [[ ! $ANTIBODY_LOADED ]]; then
     antibody bundle zsh-users/zsh-autosuggestions # OLD COMMENT: buggy if enabled along with zsh-syntax-highlighting. crashes the shell regularly.
     antibody bundle zsh-users/zsh-completions # do-everything argument completions
     # antibody bundle zsh-users/zsh-syntax-highlighting # colored input... see above
-    antibody bundle marlonrichert/zsh-autocomplete # automatically show flags/options completion
+    # antibody bundle marlonrichert/zsh-autocomplete # automatically show flags/options completion (this plugin is really janky)
     antibody bundle zdharma/fast-syntax-highlighting # colored input but faster
     # antibody bundle zsh-users/zsh-history-substring-search # up arrow after typing part of command
     antibody bundle romkatv/powerlevel10k # zsh prompt theme (see ~/.p10k.zsh)
@@ -245,7 +245,7 @@ export PSQL_PAGER="pspg"
 # https://github.com/jarun/nnn
 export NNN_PLUG='p:preview-tui'
 export NNN_OPTS="adg"
-export NNN_COLORS='1234'
+export NNN_COLORS='#0a1b2c3d;1234'
 export NNN_FCOLORS='c1e2272e006033f7c6d6abc4'
 
 # [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ] && . "$HOME/.nix-profile/etc/profile.d/nix.sh" # this seems to conflict with direnv. Direnv seems to wipe the PATH changes this applies.

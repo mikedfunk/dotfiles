@@ -87,7 +87,7 @@
 
   <!-- Generic (28 sniffs) -->
   <rule ref="Generic">
-    <!-- <exclude name="Generic.Formatting.SpaceAfterNot" /> -->
+    <exclude name="Generic.Formatting.SpaceAfterNot" />
     <exclude name="Generic.Formatting.NoSpaceAfterCast" />
     <exclude name="Generic.Functions.OpeningFunctionBraceBsdAllman" />
     <exclude name="Generic.PHP.ClosingPHPTag" />
@@ -121,11 +121,16 @@
   </rule>
   <rule ref="Generic.PHP.ForbiddenFunctions">
     <properties>
-      <!-- this is set in order to remove is_null from forbidden functions, but it doesn't work. -->
+      <!-- this is set in order to remove is_null from forbidden functions -->
       <property name="forbiddenFunctions" type="array" value="sizeof=>count,delete=>unset,print=>echo" />
       <property name="error" value="false" />
     </properties>
   </rule>
+  <!-- <rule ref="Generic.PHP.DiscouragedFunctions"> -->
+  <!--   <properties> -->
+  <!--     <property name="forbiddenFunctions" type="array" value="error_log=>null,print_r=>null,var_dump=>null" /> -->
+  <!--   </properties> -->
+  <!-- </rule> -->
   <rule ref="Generic.NamingConventions.CamelCapsFunctionName.ScopeNotCamelCaps">
     <exclude-pattern>spec/*</exclude-pattern>
   </rule>
@@ -188,6 +193,13 @@
 
   <!-- Squiz (98 sniffs) -->
   <rule ref="Squiz">
+    <rule ref="Generic.PHP.ForbiddenFunctions">
+      <properties>
+        <!-- this is set in order to remove is_null from forbidden functions, but it doesn't work. -->
+        <property name="forbiddenFunctions" type="array" value="sizeof=>count,delete=>unset,print=>echo" />
+        <property name="error" value="false" />
+      </properties>
+    </rule>
     <exclude name="Squiz.PHP.DisallowMultipleAssignments" />
     <exclude name="Squiz.PHP.DisallowBooleanStatement" />
     <exclude name="Squiz.WhiteSpace.MemberVarSpacing" />
