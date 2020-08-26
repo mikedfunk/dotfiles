@@ -534,13 +534,13 @@ use Prophecy\Argument;
 /**
  * {@inheritdoc}
  *
- * @see \\Palette`!p snip.rv = "\\" if pathToNamespace(path) else ""``!v substitute(expand("%:t:r"), "Spec", "", "")`
+ * @see \\Palette`!p snip.rv = "\\" if pathToNamespace(path) else ""``!p snip.rv = pathToNamespace(path)`\\`!v substitute(expand("%:t:r"), "Spec", "", "")`
  */
 final class `!v expand("%:t:r")` extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('\\Palette`!p snip.rv = "\\" if pathToNamespace(path) else ""``!p snip.rv = pathToNamespace(path)``!p snip.rv = pathToNamespace(path)`\\`!v substitute(expand("%:t:r"), "Spec", "", "")`');
+        $this->shouldHaveType('\\Palette`!p snip.rv = "\\" if pathToNamespace(path) else ""``!p snip.rv = pathToNamespace(path)`\\`!v substitute(expand("%:t:r"), "Spec", "", "")`');
     }$1
 }
 endsnippet
