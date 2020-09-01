@@ -75,9 +75,15 @@ EOF
 " cmd = { "node", "./node_modules/bin/flow", "lsp" }
 " }}}
 
+  " moved this here to avoid probs with legacy, zed, etc.
+  augroup nvim_lsp_php
+      autocmd!
+      autocmd filetype php setlocal omnifunc=v:lua.vim.lsp.omnifunc
+  augroup END
+
   augroup nvim_lsp_jsx
     autocmd!
-    autocmd filetype javascript.jsx,php setlocal omnifunc=v:lua.vim.lsp.omnifunc
+    autocmd filetype javascript.jsx setlocal omnifunc=v:lua.vim.lsp.omnifunc
   augroup END
 
   augroup php_lsp_mappings

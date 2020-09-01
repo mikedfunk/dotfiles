@@ -160,8 +160,11 @@ let g:ale_sign_info = 'ℹ️'
 
 let g:zenburn_high_Contrast = 1
 let g:ale_virtualtext_cursor = 1
+let g:ale_virtualtext_prefix = ' '
 "
-" let g:ale_sign_highlight_linenrs = 1
+if has('nvim')
+    let g:ale_sign_highlight_linenrs = 1
+endif
 " let g:ale_sign_error = 'E'
 "
 " let g:ale_change_sign_column_color = 1
@@ -258,6 +261,14 @@ let g:ale_completion_symbols = {
 
 " do not set the error sign background color to red. If I don't do this it looks weird with an emoji icon.
 highlight! link ALEErrorSign ALEWarningSign
+
+" strange that these are white by default - hard to differentiate between
+" actual code
+highlight! link ALEVirtualTextError Comment
+highlight! link ALEVirtualTextWarning Comment
+highlight! link ALEVirtualTextInfo Comment
+highlight! link ALEVirtualTextStyleError Comment
+highlight! link ALEVirtualTextStyleWarning Comment
 
 " }}}
 
@@ -407,8 +418,9 @@ endif
 " }}}
 
 " completion-nvim {{{
-if has_key(g:plugs, 'completion-nvim')
+let g:completion_enable_snippet = 'UltiSnips'
 
+if has_key(g:plugs, 'completion-nvim')
     " Use <Tab> and <S-Tab> to navigate through popup menu
     inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
     inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -429,6 +441,17 @@ endif
 
 " deoplete.nvim {{{
 " let g:deoplete#enable_at_startup = 1
+" }}}
+
+" diagnostic-nvim {{{
+let g:diagnostic_virtual_text_prefix = ' '
+let g:diagnostic_insert_delay = 1 " prevent diagnostics from updating while in insert mode
+if has_key(g:plugs, 'completion-nvim')
+    call sign_define("LspDiagnosticsErrorSign", {"text" : "🚨", "texthl" : "LspDiagnosticsError"})
+    call sign_define("LspDiagnosticsWarningSign", {"text" : "⚠️", "texthl" : "LspDiagnosticsWarning"})
+    call sign_define("LspDiagnosticsInformationSign", {"text" : "ℹ️", "texthl" : "LspDiagnosticsInformation"})
+    " call sign_define('LspDiagnosticsHintSign', {'text' : 'H', 'texthl' : 'LspDiagnosticsHint'})
+endif
 " }}}
 
 " echodoc.vim {{{
@@ -731,7 +754,7 @@ let g:neoformat_basic_format_trim = 1 " Enable trimmming of trailing whitespace
 " }}}
 
 " nnn.vim {{{
-if has_key(g:plugs, 'nvim-lsp')
+if has_key(g:plugs, 'nnn.vim')
     nnoremap - :NnnPicker %<cr>
     nnoremap <leader>ee :NnnPicker<cr>
     command! -bang -nargs=* -complete=file Ex NnnPicker <args>
@@ -748,6 +771,8 @@ let g:nnn#action = {
 
 " nvim-lsp {{{
 if has_key(g:plugs, 'nvim-lsp')
+    command! CodeAction lua vim.lsp.buf.code_action()
+    nnoremap <c-i> :CodeAction<cr>
     " example config from :help lsp:
     " nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
     " nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
@@ -1179,7 +1204,7 @@ let g:airline#extensions#tmuxline#enabled = 0 " use current airline theme stuff 
 let g:tmuxline_preset = {
     \ 'a': ['🏠 #S'],
     \ 'c': [
-        \ '#{online_status} #{cpu_fg_color}#{cpu_icon}#[fg=default] #{ram_fg_color}#{ram_icon}#[fg=default] #{battery_color_charge_fg}#{battery_icon_charge}#[fg=default]',
+        \ '#{cpu_fg_color}#{cpu_icon}#[fg=default] #{ram_fg_color}#{ram_icon}#[fg=default] #{battery_color_charge_fg}#{battery_icon_charge}#[fg=default]',
         \ '#(~/.support/saatchi-haproxy-status.sh)'
     \ ],
     \ 'win': ['#I', '#W'],
@@ -1949,7 +1974,13 @@ if exists(':PlugUpdate') | nnoremap <leader>bu :Source<cr> :silent! :UpdateRemot
 " }}}
 
 " vim-polyglot {{{
-let g:polyglot_disabled=['php'] " I use a different php syntax plugin
+" This config was moved to ~/.vim/.vimrc.plugins.vim because it's required to
+" be set before the plugin loads :/
+" I use a different php syntax plugin
+" let g:polyglot_disabled = [
+"             \ 'php',
+"             \ 'rst'
+"             \ ]
 " }}}
 
 " vim-rest-console {{{

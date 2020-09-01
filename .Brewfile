@@ -5,7 +5,7 @@
 brew "akamai" # interact with akamai caching
 # brew "angband" # middle-earth themed dungeon crawler (requires java)
 # brew "ansible" # used in some of my company-specific stuff to run ssh commands on multiple servers.
-brew "ansifilter" # filter out ansi codes. used by tmux-logging tpm plugin.
+# brew "ansifilter" # filter out ansi codes. used by tmux-logging tpm plugin.
 # brew "ant" # apache build tool
 brew "getantibody/tap/antibody" # like antigen but faster! (zsh plugin system)
 # brew "antigen" # zsh package manager. I switched to antibody for speed
@@ -16,7 +16,7 @@ brew "bandwhich" # top-like tool to see which processes are using the most bandw
 brew "bat" # much cooler looking cat
 brew "bison" # needed for phpenv build. The default mac one is too old. https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
 # brew "broot" # use `br` to do something between tree and ls. File browser with lots of vim patterns.
-brew "browser" # pipe html to a temp file and open in browser e.g. `ls | browser`
+# brew "browser" # pipe html to a temp file and open in browser e.g. `ls | browser`
 brew "bzip2" # needed for phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
 # brew "bzt" # taurus http and performance test runner
 # brew "chromedriver" # like selenium for chrome. (These drivers feel pretty outdated to me)
@@ -55,8 +55,8 @@ brew "github/gh/gh" # new github cli
 brew "git"
 # brew "git-extras" # adds some cool additional git commands (conflicts with npm git-standup)
 # brew "git-flow" # adds first class git commands for the git-flow workflow (I use avh version below)
-brew "git-flow-avh" # adds first class git commands for the git-flow workflow. This version will delete remote feature, release, and hotfix branches on finishing.
-brew "git-standup" # show commits in the last day. works in parent dir too.
+# brew "git-flow-avh" # adds first class git commands for the git-flow workflow. This version will delete remote feature, release, and hotfix branches on finishing.
+# brew "git-standup" # show commits in the last day. works in parent dir too.
 brew "gitlab-gem" # gitlab cli
 # brew "global" # gnu global tags aka gtags. More powerful than ctags but has a different interface with a learning curve. Also depends on ctags which conflicts with universal-ctags.
 brew "gnu-sed" # linux version of sed - saves as gsed (required for diff-so-fancy)
@@ -119,7 +119,7 @@ brew "mysql" # I haven't been using the server lately but I use the cli tool to 
 # brew "nano" # text editor. This gets the latest version: 2.2.6 rather than 2.2.0 that comes with osx.
 # brew "ncdu" # interactive du
 brew "newsboat" # terminal rss reader. I'm debating on whether this is worth it. It's kind of handy to read the headlines in hackernews, reddit programming, etc.
-# brew "neovim" # vim re-imagined (temporarily disabled so I can build from source to address the extremely annoying quickfix bug)
+# brew "neovim" # vim re-imagined (temporarily disabled so I can build from source for lsp support and to fix bugs)
 brew "nextdns/tap/nextdns" # dns privacy service
 brew "nnn" # file picker I use inside of vim
 brew "node" # nodejs and npm (non-nodenv version required by joplin, yarn)
@@ -139,7 +139,7 @@ brew "pgcli" # like mycli for postgres (used for toaf judging app)
 brew "php-cs-fixer" # fix php code according to configuration
 brew "pinentry" # gpg terminal pin entry (used by yadm encrypt/decrypt)
 # brew "pinentry-mac" # native gpg pin entry for yadm and others. Opens a native window.
-brew "pinfo" # man-like command to get manuals on tools written for info
+# brew "pinfo" # man-like command to get manuals on tools written for info
 brew "codekitchen/pipeline/pipeline" # cool subshell to let you interactively view unix pipeline results as you write
 brew "pkg-config" # needed for phpenv to build https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
 brew "plantuml" # uml generation from text. requires java (I use regularly for diagramming processes and sometimes uml class diagrams)
@@ -168,7 +168,7 @@ brew "re2c" # needed by phpenv https://github.com/phpenv/phpenv/issues/90#issuec
 # brew "selenium-server-standalone" # controls a browser for automated testing
 brew "shellcheck" # Checks shell syntax (used by vim ALE)
 brew "shfmt" # formats shell scripts (used by vim ALE)
-brew "shml" # $(fgcolor red)wow$(fgcolor end)
+# brew "shml" # $(fgcolor red)wow$(fgcolor end)
 # brew "skaffold" # awesome local kubernetes cluster by google (TODO learn this! It looks freakin awesome)
 brew "ssh-copy-id" # copies ssh keys to remote servers
 # brew "sshrc" # use ~/.sshrc and ~/.sshrc.d on remote servers. bring your dotfiles with you! (not in homebfrew any more??)
@@ -187,13 +187,13 @@ brew "sqlite3" # used as the default db for rails
 # brew "swagger-codegen" # openapi codegen - depends on adoptopenjdk8.
 # brew "task" # taskwarrior https://taskwarrior.org (I don't need this unless I don't have jira. Doesn't let you assign points! Has an opaque priority selection algorithm.)
 # brew "teleconsole" # share your console with others easily (Extremely rare that I need something like this)
-brew "telnet" # I don't have telnet? How am I going to watch star wars?
+# brew "telnet" # I don't have telnet? How am I going to watch star wars?
 brew "terminal-notifier" # used by tmux plugin marzocchi/zsh-notify and my circleci pre-push hook (this is really just a gem so watch for it being installed by dependencies of other gems :/ ) This overlaps with noti but it provides full access to the desktop notification api unlike noti.
 brew "the_silver_searcher" # awesome fast grep replacement: `ag --help`
 # brew "tidy-html5" # needed by phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
 brew "tig" # git? tig! (note: this requires asciidoc)
 # brew "timewarrior" # taskwarrior-like interface for tracking time (I don't use this)
-brew "tldr" # more consise community man pages
+# brew "tldr" # more consise community man pages
 brew "tmux" # terminal multiplexer similar to screen.
 # brew "tofrodos" # line ending conversion (install if needed)
 # brew "trash" # a trash can for the terminal
@@ -256,16 +256,16 @@ cask "grandperspective" # visualize storage hogs in the hard drive
 # cask "gog-galaxy" # good old games
 # cask "google-chrome"
 # cask "google-drive" (menubar app for google drive access)
-cask "haptickey" # give haptic feedback on touchpad when pressing the touchbar
+# cask "haptickey" # give haptic feedback on touchpad when pressing the touchbar
 # cask "helium" # android backup without root (doesn't seem to work, but the chrome app does)
 # cask "http-toolkit" # kind of like charles or wireshark, but with support for docker. (docker support seems to be coming soon)
 # cask "insomnia" # http api client like postman but nicer looking (I use this for sharing with my team but I mostly use vim-rest-console)
 cask "insomnia-designer" # like insomnia but includes openapi features
 cask "iterm2" # I was using kitty but they use opengl and macos deprecated opengl support, so it crashes regularly. iTerm now has gpu rendering, so I'm back to iTerm! It has a bunch of other cool new stuff now anyway. (There's also iterm2-nightly and iterm2-beta, which I've found to be unstable.)
-cask "java" # required for plantuml, etc.
+# cask "java" # required for plantuml, etc.
 # cask "joplin" # desktop joplin (I use the terminal interface)
 cask "jumpcut" # clipboard manager recommended by Michael Zick (slightly annoying interface but I haven't found any better on brew) ctrl-cmd-p (forward) or ctrl-cmd-shift-p (backward)
-cask "keeper-password-manager" # password manager used at my work
+# cask "keeper-password-manager" # password manager used at my work
 # cask "kitematic" # mac native docker container browser (I just use docker cli tools)
 # cask "kitty" # fast terminal emulator (see iterm2 above for why I switched back to iTerm)
 # cask "launchcontrol" # launchctl gui. (I use lunchy gem instead)
@@ -273,15 +273,16 @@ cask "keeper-password-manager" # password manager used at my work
 # cask "lunchy" # launchctl cli wrapper. Port of lunchy gem. (Tried this, was missing options, back to gem)
 # cask "macfusion" # other half of tool to mount ssh directories in the finder
 # cask "macgdbp" # xdebug gui client (I use vdebug)
-cask "malwarebytes" # ya neva know
+# cask "malwarebytes" # ya neva know (company has another antivirus installed)
 # cask "menubar-stats" # used to show bluetooth headphones battery level in menubar (Doesn't work with my headphones for some reason... and it's $5)
 # cask "microsoft-edge"
-cask "minikube" # for learning `minikube start`
-cask "mpv" # video player like vlc
+# cask "minikube" # for learning `minikube start`
+# cask "mpv" # video player like vlc
 # cask "mudlet" # muds are rad
 cask "multifirefox" # profile picker until firefox fixes this glaring omission
 # cask "multipass" # "ubuntu LTS on tap" launch instances of ubuntu and itialize them with cloud-init metadata in a matter of seconds. Uses hypervisor or virtualbox behind the scenes.
 cask "muzzle" # stop notifications while screensharing
+cask "jason0x43/homebrew-neovim-nightly/neovim-nightly" # nightly neovim with lsp support
 # cask "noti" # mac native pushbullet notifications (I use the chrome/firefox extension)
 # cask "ngrok" # securely expose your local site to the internet and inspect and repeat traffic
 # cask "nvidia-geforce-now"
@@ -296,12 +297,12 @@ cask "https://raw.githubusercontent.com/popcorn-official/popcorn-desktop/develop
 # cask "postman" # http api client (I use insomnia to share, but vim-rest-console in the terminal)
 # https://github.com/sindresorhus/quick-look-plugins
 # cask "qlcolorcode" # quicklook plugin to provide syntax highlighting to code files (fails to install)
-cask "qlstephen" # quicklook plugin (preview plain text files without or with unknown file extension e.g. README, CHANGELOG)
-cask "qlmarkdown" # quicklook plugin (preview markdown)
-cask "quicklook-json" # quicklook plugin (preview json)
+# cask "qlstephen" # quicklook plugin (preview plain text files without or with unknown file extension e.g. README, CHANGELOG)
+# cask "qlmarkdown" # quicklook plugin (preview markdown)
+# cask "quicklook-json" # quicklook plugin (preview json)
 # cask "qlprettypatch" # quicklook plugin (preview patch files)
-cask "quicklook-csv" # quicklook plugin (preview csvs)
-cask "qlimagesize" # quicklook plugin (display image size and resolution in the title in preview)
+# cask "quicklook-csv" # quicklook plugin (preview csvs)
+# cask "qlimagesize" # quicklook plugin (display image size and resolution in the title in preview)
 # cask "scummvm" # old school
 # cask "sequel-pro" # mysql gui client. I mostly use mycli.
 cask "sequel-pro-nightly" # nightly has bug fixes and dark mode! B)
@@ -316,9 +317,9 @@ cask "spectacle" # keyboard window splitter/resizer/mover. Kind of like a lightw
 # cask "steam" # yep
 # cask "suspicious-package" # quicklook plugin for mac dmg package inspection (I don't care about inspecting these)
 # cask "transmission" # unleash a torrent of files ;)
-cask "unshaky" # fix double keypress on macbook butterfly keyboard
+# cask "unshaky" # fix double keypress on macbook butterfly keyboard
 cask "vagrant" # development VM maker/manager (I use docker now, but this is helpful for a linux training course I'm taking)
-cask "pvinis/pvinis/vimac" # control mac with vimium-style vi controls
+# cask "pvinis/pvinis/vimac" # control mac with vimium-style vi controls (this is really cool but I just don't use it)
 #
 # TODO these can't just be upgraded while virtualbox is running :/
 cask "virtualbox" # virtual machine software (needed by docker-machine at least)

@@ -14,6 +14,15 @@ let g:airline_theme = "base16"
 set wildignore+=*/build/*,cscope.out,tags,.git/*,Session.vim
 " }}}
 
+" completion-nvim {{{
+if has_key(g:plugs, 'completion-nvim')
+    augroup enable-completion-nvim
+        autocmd!
+        autocmd BufEnter *.php lua require'completion'.on_attach()
+    augroup END
+endif
+" }}}
+
 " vdebug {{{
 " can add multiple path maps to this array, just duplicate the line
 " below and add another. remote is first, local is second.
@@ -85,8 +94,8 @@ function! TriggerALEHover () abort
 endfunction
 
 if has_key(g:plugs, 'ale')
-    nnoremap <c-k> :call TriggerALEHover()<cr>
-    inoremap <c-k> :call TriggerALEHover()<cr>
+    " nnoremap <c-k> :call TriggerALEHover()<cr>
+    " inoremap <c-k> :call TriggerALEHover()<cr>
     nnoremap <silent> gr :ALEFindReferences -relative<cr>
 endif
 
@@ -120,10 +129,11 @@ augroup php_lsp_mappings
     autocmd FileType php nnoremap <buffer> <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
     autocmd FileType php nnoremap <buffer> <silent> <leader><c-]> mz:tabe %<CR>`z<cmd>lua vim.lsp.buf.definition()<CR>
     autocmd FileType php nnoremap <buffer> <silent> <c-w><c-]> :vsp<CR><cmd>lua vim.lsp.buf.definition()<CR>
-    autocmd FileType php nnoremap <buffer> <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
-    " autocmd FileType php nnoremap <buffer> <silent> gD <cmd>lua vim.lsp.buf.implementation()<CR>
+    " autocmd FileType php nnoremap <buffer> <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
+    autocmd FileType php nnoremap <buffer> <silent> <c-k> <cmd>lua vim.lsp.buf.hover()<CR>
+    autocmd FileType php nnoremap <buffer> <silent> gD <cmd>lua vim.lsp.buf.implementation()<CR>
     " autocmd FileType php nnoremap <buffer> <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-    " autocmd FileType php nnoremap <buffer> <silent> 1gD <cmd>lua vim.lsp.buf.type_definition()<CR>
+    autocmd FileType php nnoremap <buffer> <silent> 1gD <cmd>lua vim.lsp.buf.type_definition()<CR>
     " trying ALE instead
     " autocmd FileType php nnoremap <buffer> <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
 augroup END

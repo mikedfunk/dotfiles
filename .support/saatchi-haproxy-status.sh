@@ -31,12 +31,13 @@ DOCKER_STATUS=$(docker-machine status) # docker-machine version
 # fi
 
 
-DOCKER="🐳"
+# DOCKER="🐳 "
+DOCKER=""
 GOOD="#[fg=green]+#[fg=default]"
 if [[ $CURRENT_SESSION == 'Work' ]]; then
 	if [[ $DOCKER_STATUS == 'Running' ]]; then
 		HTML=$(curl --user admin:admin -s 'http://www.local.saatchiart.com/haproxy?stats')
-        status="$DOCKER "
+        status="$DOCKER"
         status+=$( (echo "$HTML" | grep -E '(active_up|active_no_check).*legacy01' >/dev/null) && echo $GOOD || echo "#[fg=red]L#[fg=default]")
         status+=$( (echo "$HTML" | grep -E '(active_up|active_no_check).*imgproc01' >/dev/null) && echo $GOOD || echo "#[fg=red]I#[fg=default]")
 		status+=$( (echo "$HTML" | grep -E '(active_up|active_no_check).*couchbase01' >/dev/null) && echo $GOOD || echo "#[fg=red]B#[fg=default]")

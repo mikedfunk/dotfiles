@@ -38,4 +38,5 @@ Library/Application Support/Sequel Pro/Data/Favorites.plist
 .aws/credentials
 .circleci/cli.yml
 .gist-vim
+intelephense/licence.txt
 # }}}

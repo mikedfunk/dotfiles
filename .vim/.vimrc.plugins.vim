@@ -63,8 +63,8 @@ Plug 'Shougo/echodoc.vim' " Displays function signatures from completions in the
 " Plug 'mattn/vim-lsp-settings', { 'for': ['php'] }
 "
 
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'yami-beta/asyncomplete-omni.vim'
+" Plug 'prabirshrestha/asyncomplete.vim'
+" Plug 'yami-beta/asyncomplete-omni.vim'
 " Plug 'prabirshrestha/asyncomplete-buffer.vim'
 " Plug 'wellle/tmux-complete.vim' " add tmux as a completion source with user-defined completion <c-x><c-u>
 
@@ -79,8 +79,9 @@ Plug 'yami-beta/asyncomplete-omni.vim'
 if (has('nvim'))
     " actual official lsp config \o/
     Plug 'neovim/nvim-lsp'
+    Plug 'nvim-lua/diagnostic-nvim' " better lsp diagnostics
 
-    " Plug 'haorenW1025/completion-nvim' " use neovim completion to autocomplete and show auto popup (disabled: errors with lsp disrupt my workflow)
+    Plug 'haorenW1025/completion-nvim' " use neovim completion to autocomplete and show auto popup (disabled: errors with lsp disrupt my workflow)
     " error: Error executing vim.schedule lua callback: ....vim/plugged/completion-nvim/lua/completion/matching.lua:50: attempt to index field 'b' (a nil value)
     " I think this error is related to intelephense
     " this plugin also breaks nvim_lsp hover
@@ -351,12 +352,18 @@ Plug 'tpope/vim-apathy' " tweak built-in vim features to allow jumping to javasc
 Plug 'tomarrell/vim-npr' " make gf work with index.js and search js files more intelligently
 " vim-apathy is useful to replace something like this https://stackoverflow.com/questions/33093491/vim-gf-with-file-extension-based-on-current-filetype#33096831
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' } " styled-components support
+Plug 'kristijanhusak/vim-js-file-import' " ctags-based importing
 " }}}
 
 " Syntax highlighting {{{
 " Plug 'rtfb/vim-dox-spell' " fix buggy doxygen support in php and others
 " Plug 'gerw/vim-HiLinkTrace' " adds an <leader>hlt command to get all highlight groups under cursor
 " Plug 'elzr/vim-json' " json syntax (in vim-polyglot)
+" annoyingly this must be loaded before polyglot is loaded :/
+let g:polyglot_disabled = [
+            \ 'php',
+            \ 'rst'
+            \ ]
 Plug 'sheerun/vim-polyglot' " just about every filetype under the sun in one package
 Plug 'neoclide/jsonc.vim' " jsonc syntax
 " Plug 'zimbatm/haproxy.vim' " haproxy syntax (in vim-polyglot)
