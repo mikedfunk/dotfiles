@@ -348,7 +348,7 @@ _install_php_70 () {
 
     # install composer global packages
     mkdir -p  "${PHP_PATH}"/{.,}composer
-    ln -sf "$HOME"/.composer/composer.json "${PHP_PATH}"/composer/composer.json
+    ln -sf "$HOME"/.composer/composer.json "${PHP_PATH}"/.composer/composer.json
     _install_update_composer_packages
     asdf reshim php 7.0.33
 }

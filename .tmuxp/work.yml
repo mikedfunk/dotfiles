@@ -20,10 +20,8 @@ windows:
           - while true; do clear && yadm st; sleep 60; done
           # - wait-on http://www.local.saatchiart.com && docker-stats
           # - sourcegraph
-      # htop has been giving me major trouble lately, will have to fall back to
-      # top or some other *top app.
-      # - while true; do htop; sleep 1; done
       - top -F -u -stats pid,command,cpu,mem,time,user,state
+      # - htop
 # }}}
 
 # legacy {{{

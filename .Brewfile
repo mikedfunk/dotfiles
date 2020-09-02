@@ -29,8 +29,8 @@ brew "coreutils" # used by k zsh plugin and msgpack gem which is a dependency of
 # brew "ctags" # allows jumping to function/class definitions, etc. in vim (I use universal-ctags)
 brew "ctop" # like top for docker containers (really great!)
 brew "curl" # http cli tool. Included with mac of course, but this gives me the updated version. Also needed for phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
-brew "dandavison/delta/git-delta" # git pager with syntax highlighting, language aware
-# brew "denisidoro/tools/navi" # cool interactive command helper (eh, I like aliases and functions. this is basically just a persistent <ctrl-r> with fzf.)
+brew "git-delta" # git pager with syntax highlighting, language aware
+# brew "navi" # cool interactive command helper / cheat sheet
 # brew "desk" # shell workspace manager. (I use direnv instead)
 # brew "diff-so-fancy" # better git diff viewer (note: diff-highlight is in pip) (I now use delta instead)
 brew "direnv" # allow .envrc in directories to be loaded at every prompt to add relative bins to PATH, etc. easy. (I use this a lot to adjust path, kubernetes context, etc.)
@@ -51,7 +51,7 @@ brew "fd" # prettier alternative to find that respects gitignore (haven't used i
 # brew "fpp" # facebook path picker. Used with tmux-fpp to easily open files in an editor. (I don't use it)
 brew "fx" # json funagler used by some of my shell functions
 brew "fzf" # fuzzy file finder `git branch | fzf | xargs git checkout`
-brew "github/gh/gh" # new github cli
+brew "gh" # new github cli
 brew "git"
 # brew "git-extras" # adds some cool additional git commands (conflicts with npm git-standup)
 # brew "git-flow" # adds first class git commands for the git-flow workflow (I use avh version below)
@@ -264,13 +264,14 @@ cask "insomnia-designer" # like insomnia but includes openapi features
 cask "iterm2" # I was using kitty but they use opengl and macos deprecated opengl support, so it crashes regularly. iTerm now has gpu rendering, so I'm back to iTerm! It has a bunch of other cool new stuff now anyway. (There's also iterm2-nightly and iterm2-beta, which I've found to be unstable.)
 # cask "java" # required for plantuml, etc.
 # cask "joplin" # desktop joplin (I use the terminal interface)
-cask "jumpcut" # clipboard manager recommended by Michael Zick (slightly annoying interface but I haven't found any better on brew) ctrl-cmd-p (forward) or ctrl-cmd-shift-p (backward)
+# cask "jumpcut" # clipboard manager recommended by Michael Zick (slightly annoying interface but I haven't found any better on brew) ctrl-cmd-p (forward) or ctrl-cmd-shift-p (backward) (I now use maccy instead)
 # cask "keeper-password-manager" # password manager used at my work
 # cask "kitematic" # mac native docker container browser (I just use docker cli tools)
 # cask "kitty" # fast terminal emulator (see iterm2 above for why I switched back to iTerm)
 # cask "launchcontrol" # launchctl gui. (I use lunchy gem instead)
 # cask "licecap" # shitty, simple gif screen capture. OSX used to have this but I think they got rid of the gif exporting :/
 # cask "lunchy" # launchctl cli wrapper. Port of lunchy gem. (Tried this, was missing options, back to gem)
+cask "maccy" # simple clipboard manager
 # cask "macfusion" # other half of tool to mount ssh directories in the finder
 # cask "macgdbp" # xdebug gui client (I use vdebug)
 # cask "malwarebytes" # ya neva know (company has another antivirus installed)
@@ -292,7 +293,7 @@ cask "jason0x43/homebrew-neovim-nightly/neovim-nightly" # nightly neovim with ls
 # cask "origin" # ea games store
 # cask "pdftotext" # used by ranger to preview pdfs (I don't use ranger these days)
 # cask "playonmac" # run windows apps on mac for free via wine
-cask "https://raw.githubusercontent.com/popcorn-official/popcorn-desktop/development/casks/popcorn-time.rb" # popcorn time!
+# cask "https://raw.githubusercontent.com/popcorn-official/popcorn-desktop/development/casks/popcorn-time.rb" # popcorn time!
 # cask "postico" # postgresql gui. Useful for some time saver capabilities like copy/paste rows, etc. (paid app, ugh)
 # cask "postman" # http api client (I use insomnia to share, but vim-rest-console in the terminal)
 # https://github.com/sindresorhus/quick-look-plugins

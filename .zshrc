@@ -255,6 +255,9 @@ builtin setopt aliases # weird, this should have already been done :/
 _has kubectl && source <(kubectl completion zsh) # brew doesn't install this, I checked
 # _has stern && source <(stern --completion=zsh) # unfortunately I still get no completion. cod works better for this.
 _has cod && source <(cod init $$ zsh)
+
+# https://github.com/denisidoro/navi/blob/master/docs/installation.md#installing-the-shell-widget
+_has navi && source <(echo "$(navi widget zsh)")
 # NOTE any completions in the brew completions dir are already added!
 # [[ -e /usr/local/opt/coreutils/libexec/gnubin/dircolors && -f "$HOME"/.dircolors ]] && eval $( /usr/local/opt/coreutils/libexec/gnubin/dircolors -b "$HOME"/.dircolors )
 # _has zsh-startify && zsh-startify (neat, but doesn't really help)
@@ -505,7 +508,7 @@ alias ygu="yarn global upgrade"
 alias psr="phpspecnotify"
 alias psd="phpspec describe"
 # alias psw="phpspec-watcher watch"
-alias psw="noglob ag -l -g '.*\\.php' | entr -c noti --message \"PHPSpec passed 👍\" php -dmemory_limit=1024M -ddisplay_errors=on ./vendor/bin/phpspec run -vvv"
+alias psw="noglob ag -l -g '.*\\.php' | entr -c noti --message \"PHPSpec passed 👍\" php -dmemory_limit=1024M -ddisplay_errors=on ./vendor/bin/phpspec run --no-interaction -vvv"
 # phpspecnotify() {
 #     php -dmemory_limit=2048M -ddisplay_errors=on ./vendor/bin/phpspec "${@}"
 #     [[ $? == 0 ]] && noti --message "PHPSpec specs passed 👍" ||
