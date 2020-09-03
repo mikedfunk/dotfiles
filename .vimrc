@@ -935,10 +935,14 @@ endif
 " https://old.reddit.com/r/neovim/comments/fw7qj0/the_new_builtin_lsp_support_is_so_awesome/
 augroup neovim_lsp_colors
     autocmd!
-    autocmd ColorScheme * hi! link LspDiagnosticsUnderlineError SpellCap
-    autocmd ColorScheme * hi! link LspDiagnosticsUnderlineWarning SpellBad
-    autocmd ColorScheme * hi! link LspDiagnosticsUnderlineHint SpellRare
-    autocmd ColorScheme * hi! link LspDiagnosticsUnderlineInformation SpellRare
+    autocmd FileType * hi! link LspDiagnosticsUnderlineError SpellCap
+    autocmd FileType * hi! link LspDiagnosticsUnderlineWarning SpellBad
+    autocmd FileType * hi! link LspDiagnosticsUnderlineHint SpellRare
+    autocmd FileType * hi! link LspDiagnosticsUnderlineInformation SpellRare
+    autocmd FileType * hi! link LspDiagnosticsError Comment
+    autocmd FileType * hi! link LspDiagnosticsWarning Comment
+    autocmd FileType * hi! link LspDiagnosticsHint Comment
+    autocmd FileType * hi! link LspDiagnosticsInformation Comment
 augroup END
 
 " TIP: z= will show spell completion options. zg will add the word to the

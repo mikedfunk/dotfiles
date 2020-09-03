@@ -81,9 +81,9 @@ if (has('nvim'))
     Plug 'neovim/nvim-lsp'
     Plug 'nvim-lua/diagnostic-nvim' " better lsp diagnostics
 
-    " Plug 'haorenW1025/completion-nvim' " use neovim completion to autocomplete and show auto popup (disabled: errors with lsp disrupt my workflow)
+    Plug 'nvim-lua/completion-nvim' " use neovim completion to autocomplete and show auto popup (disabled: this causes all kinds of problems in my workflow even if it's working perfectly)
+    " if I don't register intelephense:
     " error: Error executing vim.schedule lua callback: ....vim/plugged/completion-nvim/lua/completion/matching.lua:50: attempt to index field 'b' (a nil value)
-    " I think this error is related to intelephense
     " this plugin also breaks nvim_lsp hover
     "
 endif

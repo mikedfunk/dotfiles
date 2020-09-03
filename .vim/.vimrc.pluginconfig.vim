@@ -444,9 +444,10 @@ endif
 " }}}
 
 " diagnostic-nvim {{{
+let g:diagnostic_enable_virtual_text = 1
 let g:diagnostic_virtual_text_prefix = ' '
 let g:diagnostic_insert_delay = 1 " prevent diagnostics from updating while in insert mode
-if has_key(g:plugs, 'completion-nvim')
+if has_key(g:plugs, 'diagnostic-nvim')
     call sign_define("LspDiagnosticsErrorSign", {"text" : "🚨", "texthl" : "LspDiagnosticsError"})
     call sign_define("LspDiagnosticsWarningSign", {"text" : "⚠️", "texthl" : "LspDiagnosticsWarning"})
     call sign_define("LspDiagnosticsInformationSign", {"text" : "ℹ️", "texthl" : "LspDiagnosticsInformation"})
@@ -790,8 +791,17 @@ if has_key(g:plugs, 'nvim-lsp')
         " available stubs: https://github.com/JetBrains/phpstorm-stubs
         " added: couchbase, redis, memcached
 
+        " TODO figure out a way to conditionally include conpletion-nvim and
+        " diagnostic-nvim only if those plugins exist
+
 lua <<EOF
     local nvim_lsp = require'nvim_lsp'
+
+    local on_attach = function(client, bufnr)
+        require'completion'.on_attach(client, bufnr)
+        require'diagnostic'.on_attach(client, bufnr)
+    end
+
     nvim_lsp.intelephense.setup{
         settings = {
             intelephense = {
@@ -882,7 +892,8 @@ lua <<EOF
                     "zlib"
                 }
             }
-        }
+        },
+        on_attach = on_attach
     }
 EOF
 
