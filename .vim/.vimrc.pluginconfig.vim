@@ -652,7 +652,9 @@ if has_key(g:plugs, 'LanguageClient-neovim')
         autocmd filetype php set completefunc=LanguageClient#complete
     augroup END
     let g:airline#extensions#languageclient#enabled = 1
-    nnoremap <leader>zz :call LanguageClient_contextMenu()<cr>
+    " this function seems to be gone but I have a mapping in ~/.vimrc that
+    " works with just neovim lua.
+    " nnoremap <leader>zz :call LanguageClient_contextMenu()<cr>
 endif
 " }}}
 
@@ -798,7 +800,7 @@ lua <<EOF
     local nvim_lsp = require'nvim_lsp'
 
     local on_attach = function(client, bufnr)
-        require'completion'.on_attach(client, bufnr)
+        -- require'completion'.on_attach(client, bufnr)
         require'diagnostic'.on_attach(client, bufnr)
     end
 
@@ -1126,6 +1128,11 @@ let g:qfenter_keep_quickfixfocus = 0
 " if isdirectory(expand("~/.vim/plugged/quickpeek.vim"))
 "     nnoremap <c-p> :QuickpeekToggle<cr>
 " endif
+" }}}
+
+" quick-scope {{{
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+let g:qs_highlight_on_keys = ['f', 'F']
 " }}}
 
 " RootIgnore.vim {{{

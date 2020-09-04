@@ -81,7 +81,7 @@ if (has('nvim'))
     Plug 'neovim/nvim-lsp'
     Plug 'nvim-lua/diagnostic-nvim' " better lsp diagnostics
 
-    Plug 'nvim-lua/completion-nvim' " use neovim completion to autocomplete and show auto popup (disabled: this causes all kinds of problems in my workflow even if it's working perfectly)
+    " Plug 'nvim-lua/completion-nvim' " use neovim completion to autocomplete and show auto popup (disabled: this causes all kinds of problems in my workflow even if it's working perfectly)
     " if I don't register intelephense:
     " error: Error executing vim.schedule lua callback: ....vim/plugged/completion-nvim/lua/completion/matching.lua:50: attempt to index field 'b' (a nil value)
     " this plugin also breaks nvim_lsp hover
@@ -216,7 +216,7 @@ endif
 Plug 'justinmk/vim-ipmotion' " makes blank line with spaces only the end of a paragraph
 Plug 'machakann/vim-swap' " move args left/right with g< g> or gs for interactive mode
 Plug 'EinfachToll/DidYouMean' " tries to help opening mistyped files
-" Plug 'unblevable/quick-scope' " highlights chars for f, F, t, T
+Plug 'unblevable/quick-scope' " highlights chars for f, F, t, T
 " Plug 'severin-lemaignan/vim-minimap' " sublime-style minimap with <leader>mm (no lazy load)
 " Plug 'terryma/vim-multiple-cursors' " sublime-style with <c-n>
 " if has('signs') | Plug 'MattesGroeger/vim-bookmarks' | endif " bookmark lines with annotations and navigate them globally. especially useful for taking inline notes on a file without adding a comment.

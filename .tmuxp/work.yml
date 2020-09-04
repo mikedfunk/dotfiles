@@ -20,8 +20,8 @@ windows:
           - while true; do clear && yadm st; sleep 60; done
           # - wait-on http://www.local.saatchiart.com && docker-stats
           # - sourcegraph
-      - top -F -u -stats pid,command,cpu,mem,time,user,state
-      # - htop
+      # - top -F -u -stats pid,command,cpu,mem,time,user,state
+      - htop
 # }}}
 
 # legacy {{{

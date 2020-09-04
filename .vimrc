@@ -979,6 +979,12 @@ nnoremap <leader>so :Source<cr>
 " fix syntax highlighting when it goes away
 command! FixSyntax :filetype detect
 
+if has('nvim')
+    " neovim lsp context menu
+    command! CodeAction lua vim.lsp.buf.code_action()<cr>
+    nnoremap <leader>zz :CodeAction<cr>
+endif
+
 " fix issue with netrw {{{
 " https://github.com/tpope/vim-vinegar/issues/13#issuecomment-315584214
 augroup netrw_buf_hidden_fix
