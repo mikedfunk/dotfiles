@@ -271,7 +271,7 @@ cask "iterm2" # I was using kitty but they use opengl and macos deprecated openg
 # cask "launchcontrol" # launchctl gui. (I use lunchy gem instead)
 # cask "licecap" # shitty, simple gif screen capture. OSX used to have this but I think they got rid of the gif exporting :/
 # cask "lunchy" # launchctl cli wrapper. Port of lunchy gem. (Tried this, was missing options, back to gem)
-cask "maccy" # simple clipboard manager
+cask "maccy" # simple clipboard manager. WAY better than jumpcut!
 # cask "macfusion" # other half of tool to mount ssh directories in the finder
 # cask "macgdbp" # xdebug gui client (I use vdebug)
 # cask "malwarebytes" # ya neva know (company has another antivirus installed)
@@ -319,7 +319,7 @@ cask "spectacle" # keyboard window splitter/resizer/mover. Kind of like a lightw
 # cask "suspicious-package" # quicklook plugin for mac dmg package inspection (I don't care about inspecting these)
 # cask "transmission" # unleash a torrent of files ;)
 # cask "unshaky" # fix double keypress on macbook butterfly keyboard
-cask "vagrant" # development VM maker/manager (I use docker now, but this is helpful for a linux training course I'm taking)
+# cask "vagrant" # development VM maker/manager (I use docker now, but this is helpful for a linux training course I'm taking)
 # cask "pvinis/pvinis/vimac" # control mac with vimium-style vi controls (this is really cool but I just don't use it)
 #
 # TODO these can't just be upgraded while virtualbox is running :/
@@ -329,9 +329,6 @@ cask "virtualbox" # virtual machine software (needed by docker-machine at least)
 # cask "vivaldi" # chrome alternative with some cool features (I switched back to chrome for now - profiles are kind of buggy atm)
 # cask "vlc" # watch the videos I download (switchtd to mpv)
 # cask "webpquicklook" # quicklook plugin (preview webp images)
-# cask wine-stable # run windows apps on mac
-# cask wine-staging # run windows apps on mac (with bugfixes not in the stable package yet)
-# cask "wineskin-winery" # run windows apps in macos via wine (doesn't work in macOS catalina)
 # cask "wireshark" # analyze network data (but not on virtualbox networks)
 # cask "wormhole" # interact with your phone screen from your computer
 # cask "xquartz" # needed to install xclip, which is needed to copy text from multitail (I installed all of that, copy still didn't work :/ ) also needed for wine-stable
