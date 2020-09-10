@@ -132,6 +132,7 @@ let g:ale_lint_on_enter = 0
 " let g:ale_lint_on_enter = 1
 let g:ale_lint_on_filetype_changed = 0
 let g:ale_lint_on_text_changed = 'never'
+let g:ale_completion_autoimport = 1
 
 " let g:ale_fix_on_save = 1 " This is off by default. You could do it manually with :ALEFix
 let g:ale_php_cs_fixer_options = '--config=.php_cs'

@@ -1,13 +1,28 @@
 # Homebrew, brew cask, and mac app store package manifest
 # vim: set foldmethod=marker:
 
+# tap {{{
+tap "getantibody/tap" # antibody
+tap "derailed/k9s" # k9s
+tap "dbcli/tap" # litecli
+tap "nextdns/tap" # nextdns
+tap "codekitchen/pipeline" # pipeline
+tap "universal-ctags/universal-ctags" # universal-ctags
+tap "jason0x43/homebrew-neovim-nightly" # neovim-nightly
+tap "homebrew/cask" # brew cask
+# tap "knes1/tap" # elktail
+# tap "moncho/dry" # dry
+# tap "andersjanmyr/homebrew-tap" # mc
+# }}}
+
 # brew {{{
+brew "asdf"
 brew "akamai" # interact with akamai caching
 # brew "angband" # middle-earth themed dungeon crawler (requires java)
 # brew "ansible" # used in some of my company-specific stuff to run ssh commands on multiple servers.
 # brew "ansifilter" # filter out ansi codes. used by tmux-logging tpm plugin.
 # brew "ant" # apache build tool
-brew "getantibody/tap/antibody" # like antigen but faster! (zsh plugin system)
+brew "antibody" # like antigen but faster! (zsh plugin system)
 # brew "antigen" # zsh package manager. I switched to antibody for speed
 # brew "autoconf" # needed to build some php70 libs from source https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
 brew "autossh" # ssh that reconnects (I use this a lot for tunnels, etc)
@@ -41,10 +56,9 @@ brew "docker-credential-helper-ecr" # tell docker abount ECR so it can pull
 brew "docker-machine" # virtualbox VM for your docker images
 brew "docker-machine-nfs" # enables nfs mounts for docker-machine via `docker-machine-nfs default --mount-opts="async,noatime,actimeo=1,nolock,vers=3,udp" --force` (speeds up docker-machine a LOT)
 # brew "dos2unix" # converts dos line endings to unix in a file
-# tap "moncho/dry"
 # brew "dry" # docker monitoring (does not work with docker-machine. works with docker for mac because needs access to docker.sock.)
 # brew "dtrx" # do the right extraction - so you don't have to remember tar args (I found a helpful pneumonic to remember tar args: eXtract Ze Vucking Files, Compress Ze Vucking Files)
-# brew "knes1/tap/elktail" # tail kibana logs (doesn't work with latest elk version)
+# brew "elktail" # tail kibana logs (doesn't work with latest elk version)
 brew "entr" # file watcher (I use this a lot in my shell functions)
 # brew "fasd" # Command-line productivity booster, offers quick access to files and directories, inspired by autojump, z and v. (I use wd)
 brew "fd" # prettier alternative to find that respects gitignore (haven't used it yet)
@@ -88,11 +102,12 @@ brew "jq" # simple json pretty-printer `echo '{"my" => "json"}' | jq .` (Used in
 # brew "keychain" # manage ssh agent and adding keys to it automatically. (I don't use this now that I have an ssh config directive to store passphrases for ssh agent in my osx keychain, which is different from this project's "keychain". Confusing, I know.)
 # brew "kubernetes-cli" # already installed via brew cask install docker
 brew "kubectx" # quick way to switch contexts with a fzf picker
-brew "derailed/k9s/k9s" # handy kubernetes dashboard `k9s -n develop`
+brew "k9s" # handy kubernetes dashboard `k9s -n develop`
 # brew "lastpass-cli" # TODO move all of my cli private_stuff over to lastpass
 brew "less" # huh, there's a newer version of less available
 # brew "lftp" # fancy scp, torrent, http, ftp download and upload client with queues, backgrounding, and more
 brew "libcouchbase@2" # nosql fast data storage. I install this for the cli tool `cbc` and to build the php couchbase extension (note: requires brew link libcouchbase@2 --force)
+brew "asdf"
 brew "libedit" # needed for phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
 brew "libiconv" # needed for phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
 brew "libmemcached" # needed by php70 memcached pecl extension
@@ -100,13 +115,13 @@ brew "libmcrypt" # needed by php-build, which is used by phpenv DO NOT DELETE ph
 # brew "libpng" # needed for phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
 # brew "libxml2" # needed by phpenv php70 https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
 # brew "libzip" # needed for phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
-brew "dbcli/tap/litecli" # like mycli for sqlite
+brew "litecli" # like mycli for sqlite
 # brew "lockrun" # simple way to lock cron jobs with a lock file and clear them when done
 # brew "lsd" # pretty ls augmentation
 # brew "lynx" # console web browser. used by ranger to preview html.
 # brew "macvim" # mac gui vim client
 brew "mas" # mac app store cli. e.g. `mas install Xcode`
-# brew "andersjanmyr/homebrew-tap/mc" # memcached cli. Use the full path to avoid conflicting with midnight commander, or just uninstall midnight commander (Trouble using on saatchi due to networking limitations, also this tap is in a private github repo!! I have an installer in my yadm config instead)
+# brew "mc" # memcached cli. Use the full path to avoid conflicting with midnight commander, or just uninstall midnight commander (Trouble using on saatchi due to networking limitations, also this tap is in a private github repo!! I have an installer in my yadm config instead)
 # brew "mc" # old-school file manager, editor, viewer, script runner, remote filesystem access, etc.
 brew "memcached" # needed by php70 memcached pecl extension
 # brew "mkcert" # create a certificate, create a local CA, add the cert as trusted in the CA (Only needed to _create_ certs)
@@ -120,7 +135,7 @@ brew "mysql" # I haven't been using the server lately but I use the cli tool to 
 # brew "ncdu" # interactive du
 brew "newsboat" # terminal rss reader. I'm debating on whether this is worth it. It's kind of handy to read the headlines in hackernews, reddit programming, etc.
 # brew "neovim" # vim re-imagined (temporarily disabled so I can build from source for lsp support and to fix bugs)
-brew "nextdns/tap/nextdns" # dns privacy service
+brew "nextdns" # dns privacy service
 brew "nnn" # file picker I use inside of vim
 brew "node" # nodejs and npm (non-nodenv version required by joplin, yarn)
 # brew "nodenv" # node version manager (same api as rbenv) (I use asdf now)
@@ -140,7 +155,7 @@ brew "php-cs-fixer" # fix php code according to configuration
 brew "pinentry" # gpg terminal pin entry (used by yadm encrypt/decrypt)
 # brew "pinentry-mac" # native gpg pin entry for yadm and others. Opens a native window.
 # brew "pinfo" # man-like command to get manuals on tools written for info
-brew "codekitchen/pipeline/pipeline" # cool subshell to let you interactively view unix pipeline results as you write
+brew "pipeline" # cool subshell to let you interactively view unix pipeline results as you write
 brew "pkg-config" # needed for phpenv to build https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
 brew "plantuml" # uml generation from text. requires java (I use regularly for diagramming processes and sometimes uml class diagrams)
 # brew "plenv" # perl version manager. better than perlbrew and consistent with my other env managers (rbenv, phpenv, nodenv, pyenv). used to get percona-toolkit working.
@@ -164,7 +179,7 @@ brew "re2c" # needed by phpenv https://github.com/phpenv/phpenv/issues/90#issuec
 # brew "ruby-build" # an rbenv plugin that provides an rbenv install command to compile and install different versions of ruby
 # brew "rvm" # ruby version manager (I use rbenv instead)
 # brew "s3cmd" # amazon s3 uploader (I use awscli instead)
-# brew "scummvm" # never have I seen a more wretched hive of scum(m) and villainy
+brew "scummvm" # never have I seen a more wretched hive of scum(m) and villainy
 # brew "selenium-server-standalone" # controls a browser for automated testing
 brew "shellcheck" # Checks shell syntax (used by vim ALE)
 brew "shfmt" # formats shell scripts (used by vim ALE)
@@ -199,7 +214,7 @@ brew "tmux" # terminal multiplexer similar to screen.
 # brew "trash" # a trash can for the terminal
 brew "trash-cli" # a trash can for the terminal
 brew "tree" # display file/folder hierarchies in a visual tree format
-brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD", " --with-jansson"] # tag creator for use by vim to navigate by symbols. head only.
+brew "universal-ctags", args: ["HEAD", " --with-jansson"] # tag creator for use by vim to navigate by symbols. head only.
 brew "urlview" # used by <prefix>u tmux urlview plugin
 # brew "virtualhost".sh # (crappy) virtualhost management script
 brew "watch" # Executes a program periodically, showing output fullscreen (an npm package which is a child dependency of another sometimes replaces this binary: https://www.npmjs.com/package/watch . If so, just `brew link --overwrite watch` )
@@ -242,7 +257,7 @@ cask "docker" # docker for mac desktop app
 cask "dozer" # little menubar app that allows hiding menubar icon clutter
 # cask "dropbox" # I especially use this for synching my notes so I can view them in the joplin mobile app (not using this feature right now)
 # cask "emacs" # this actually makes sense as a cask. It becomes tmux, vim, and kitty all in one.
-# cask "epic-games" # game store
+cask "epic-games" # game store
 # cask "ferdi" # all messaging in one electron app (slack, discord, google voice, android messages, etc.) another approach to this is matrix (riot.im) with "bridges" to other services
 cask "firefox" # I use firefox for my home profile
 cask "firefox-developer-edition" # I use dev edition for my work profile
@@ -283,10 +298,10 @@ cask "maccy" # simple clipboard manager. WAY better than jumpcut!
 cask "multifirefox" # profile picker until firefox fixes this glaring omission
 # cask "multipass" # "ubuntu LTS on tap" launch instances of ubuntu and itialize them with cloud-init metadata in a matter of seconds. Uses hypervisor or virtualbox behind the scenes.
 cask "muzzle" # stop notifications while screensharing
-cask "jason0x43/homebrew-neovim-nightly/neovim-nightly" # nightly neovim with lsp support
+cask "neovim-nightly" # nightly neovim with lsp support
 # cask "noti" # mac native pushbullet notifications (I use the chrome/firefox extension)
 # cask "ngrok" # securely expose your local site to the internet and inspect and repeat traffic
-# cask "nvidia-geforce-now"
+cask "nvidia-geforce-now"
 # cask "onecast" # cast xbox one to mac.
 # cask "osxfuse" # half of tool to mount ssh directories in the finder (useful if working on a shared dev environment)
 # cask "openemu" # multi game system emulator
@@ -335,7 +350,7 @@ cask "virtualbox" # virtual machine software (needed by docker-machine at least)
 # cask "xscreensaver" # shitload of old screensavers... downside is there are so many it slows down selecting Desktop & Screen Saver the first time in System Preferences :/ Upside: it has GLMatrix :)
 # cask "zappy" # screenshot and video recorder (buggy solid black screenshots and pins, also privacy concerns)
 # cask "zdoom" # doom, hexen, heretic, etc.
-# cask "zoomus" # zoom video conferencing (installed and managed via my company)
+cask "zoomus" # zoom video conferencing (installed and managed via my company)
 # }}}
 
 # mac app store {{{

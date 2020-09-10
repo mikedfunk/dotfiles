@@ -138,7 +138,7 @@ _install_update_homebrew_packages () {
     brew update # update homebrew itself and the list of brew package versions
     brew bundle --global # install/upgrade from ~/.Brewfile
     brew upgrade         # upgrade all homebrew packages
-    brew cask upgrade    # upgrade all homebrew casks
+    brew upgrade --cask  # upgrade all homebrew casks
     brew cleanup         # remove outdated versions and dead symlinks from the homebrew prefix
     # brew bundle --global cleanup --force # remove brew packages not in ~/.Brewfile
     brew link libcouchbase@2 --force
