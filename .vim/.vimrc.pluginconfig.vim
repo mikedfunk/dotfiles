@@ -938,6 +938,78 @@ EOF
 endif
 " }}}
 
+" nvim-treesitter {{{
+if has_key(g:plugs, 'nvim-treesitter')
+
+    " Syntax based code folding
+    set foldmethod=expr
+    set foldexpr=nvim_treesitter#foldexpr()
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = { "javascript", "php" },
+  highlight = { enable = true },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "gnn",
+      node_incremental = "grn",
+      scope_incremental = "grc",
+      node_decremental = "grm",
+    },
+  },
+  refactor = {
+    highlight_definitions = { enable = true },
+    highlight_current_scope = { enable = true },
+    smart_rename = {
+      enable = true,
+      keymaps = { smart_rename = "grr" },
+    },
+    navigation = {
+      enable = true,
+      keymaps = {
+        goto_definition = "gnd",
+        list_definitions = "gnD",
+        goto_next_usage = "<a-*>",
+        goto_previous_usage = "<a-#>",
+      },
+    },
+  },
+  textobjects = {
+    select = {
+      enable = true,
+      keymaps = {
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = "@class.inner",
+      },
+    },
+    move = {
+      enable = true,
+      goto_next_start = {
+        ["]m"] = "@function.outer",
+        ["]]"] = "@class.outer",
+      },
+      goto_next_end = {
+        ["]M"] = "@function.outer",
+        ["]["] = "@class.outer",
+      },
+      goto_previous_start = {
+        ["[m"] = "@function.outer",
+        ["[["] = "@class.outer",
+      },
+      goto_previous_end = {
+        ["[M"] = "@function.outer",
+        ["[]"] = "@class.outer",
+      },
+    },
+  },
+}
+EOF
+endif
+" }}}
+
 " onedark.vim {{{
 let g:onedark_termcolors=16
 " }}}
@@ -2242,7 +2314,10 @@ let g:vimwiki_ext2syntax = { '.md': 'markdown' }
 
 " vista.vim {{{
 let g:vista_close_on_jump = 1
-" let g:vista#renderer#enable_icon = 1
+let g:vista_default_executive = 'nvim_lsp'
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+" Is there any font these icons fully work with?
+let g:vista#renderer#enable_icon = 0
 let g:vista_fzf_preview = ['right:50%']
 if has_key(g:plugs, 'vista.vim')
     nnoremap <silent> <leader>bb :Vista!!<CR>

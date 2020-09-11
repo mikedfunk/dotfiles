@@ -308,6 +308,12 @@ _install_upgrade_vim_plugins () {
         +PlugClean! \
         "+LspInstall intelephense" \
         +qall
+
+    # treesitter language parsers
+    # "+TSInstall php" \
+    # "+TSInstall javascript" \
+    # +TSUpdate \
+
     # coc.nvim extension updates
     #     +"CocInstall coc-phpls" \
     #     +CocUpdate \

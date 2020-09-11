@@ -2,6 +2,8 @@
 # vim: set foldmethod=marker:
 
 # tap {{{
+# separate taps are required to make `brew bundle --global cleanup --force`
+# work as expected
 tap "getantibody/tap" # antibody
 tap "derailed/k9s" # k9s
 tap "dbcli/tap" # litecli
