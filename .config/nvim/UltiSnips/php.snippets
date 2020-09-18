@@ -185,11 +185,19 @@ endglobal
 # `!p snip.rv = re.sub(r'^([a-z])(\w*)$', capitalizeMatch, t[1])`
 # endsnippet
 
+# snippet cstr "DI construct"
+# `!p snip.rv = "/** @var " + t[1].capitalize() + " */\n    private $" + t[1] + ";\n"`
+# public function __construct(${1/\w+\s*/\u$0/} $${1:myClass})
+# {
+#     $this->$1 = $$1;
+# }
+# endsnippet
+
 snippet cstr "DI construct"
-`!p snip.rv = "/** @var " + t[1].capitalize() + " */\n    private $" + t[1] + ";\n"`
-public function __construct(${1/\w+\s*/\u$0/} $${1:myClass})
+
+public function __construct($1)
 {
-    $this->$1 = $$1;
+    ${2://TODO}
 }
 endsnippet
 

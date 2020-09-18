@@ -96,7 +96,9 @@ $rules = [
         'copyright',
     ], // Configured annotations should be omitted from PHPDoc.
     'global_namespace_import' => [
-        'import_classes' => true,
+        // This will even try to import \DomainException, etc. Only turn this on when working with like configs or something.
+        // 'import_classes' => true,
+        'import_classes' => false,
         'import_constants' => false,
         'import_functions' => false,
     ],

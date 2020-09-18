@@ -724,6 +724,7 @@ _fix_file_size_limit_for_watching_with_entr () {
 # install/update nnn plugins {{{
 _install_update_nnn_plugins () {
     _log_info "Installing/updating nnn plugins"
+    rm -rf "$HOME"/.config/nnn/plugins
     curl -Ls https://raw.githubusercontent.com/jarun/nnn/master/plugins/getplugs | sh
 }
 # }}}

@@ -2315,7 +2315,8 @@ let g:vimwiki_ext2syntax = { '.md': 'markdown' }
 " vista.vim {{{
 let g:vista_close_on_jump = 1
 let g:vista_default_executive = 'nvim_lsp'
-let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+" let g:vista_default_executive = 'ctags'
+" let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 " Is there any font these icons fully work with?
 let g:vista#renderer#enable_icon = 0
 let g:vista_fzf_preview = ['right:50%']
