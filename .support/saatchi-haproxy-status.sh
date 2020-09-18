@@ -8,16 +8,19 @@
 #
 # e.g. L+++S++++
 
+# DOCKER="🐳 "
+DOCKER=""
+
 CURRENT_SESSION=$(tmux display-message -p '#S')
-timeout 1s docker-machine status 1> /dev/null
+timeout 2s docker-machine status 1> /dev/null
 # timeout 1s sleep 20
 if [[ $? != 0 ]]; then
     # docker-machine is probably hanging for some reason... something with virtualbox I think
-    # echo "🐳 x"
+    # echo "${DOCKER} x"
     # tmux colors
-    # echo "#[fg=red]🐳 ✖#[fg=default]"
-    # echo "#[fg=red]🐳 …#[fg=default]"
-    echo "#[fg=red]🐳 ⟳#[fg=default]"
+    # echo "#[fg=red]${DOCKER} ✖#[fg=default]"
+    # echo "#[fg=red]${DOCKER} …#[fg=default]"
+    echo "#[fg=red]${DOCKER} ⟳#[fg=default]"
     exit 0
 fi
 DOCKER_STATUS=$(docker-machine status) # docker-machine version
@@ -31,8 +34,6 @@ DOCKER_STATUS=$(docker-machine status) # docker-machine version
 # fi
 
 
-# DOCKER="🐳 "
-DOCKER=""
 GOOD="#[fg=green]+#[fg=default]"
 if [[ $CURRENT_SESSION == 'Work' ]]; then
 	if [[ $DOCKER_STATUS == 'Running' ]]; then

@@ -40,4 +40,5 @@ Library/Application Support/Sequel Pro/Data/Favorites.plist
 .circleci/cli.yml
 .gist-vim
 intelephense/licence.txt
+.config/gh/hosts.yml
 # }}}
