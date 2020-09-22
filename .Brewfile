@@ -264,11 +264,9 @@ cask "epic-games" # game store
 # cask "ferdi" # all messaging in one electron app (slack, discord, google voice, android messages, etc.) another approach to this is matrix (riot.im) with "bridges" to other services
 cask "firefox" # I use firefox for my home profile
 cask "firefox-developer-edition" # I use dev edition for my work profile
-# cask "font-fira-code"
-# cask "font-iosevka"
+# cask "font-fira-code-nerd-font"
 cask "font-iosevka-nerd-font"
-cask "font-jetbrains-mono-nerd-font"
-# cask "font-meslo-for-powerline" # whoa there are a ton of fonts on brew "cask"!
+# cask "font-jetbrains-mono-nerd-font"
 # cask "microsoft/git/git-credential-manager-core" # new github credentials manager https://github.blog/2020-07-02-git-credential-manager-core-building-a-universal-authentication-experience/
 cask "glance" # all-in-one quicklook app that works with dark mode
 cask "grandperspective" # visualize storage hogs in the hard drive

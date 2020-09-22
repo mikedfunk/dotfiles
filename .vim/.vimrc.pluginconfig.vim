@@ -776,7 +776,7 @@ let g:nnn#action = {
 " nvim-lsp {{{
 if has_key(g:plugs, 'nvim-lsp')
     command! CodeAction lua vim.lsp.buf.code_action()
-    nnoremap <c-i> :CodeAction<cr>
+    " nnoremap <c-i> :CodeAction<cr>
     " example config from :help lsp:
     " nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
     " nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
