@@ -243,7 +243,7 @@ export PRE_COMMIT_COLOR=always # https://pre-commit.com/#cli
 export PSQL_PAGER="pspg"
 
 # https://github.com/jarun/nnn
-export NNN_PLUG='p:preview-tui'
+export NNN_PLUG='u:getplugs;p:preview-tui'
 export NNN_OPTS="adg"
 export NNN_COLORS='#0a1b2c3d;1234'
 export NNN_FCOLORS='c1e2272e006033f7c6d6abc4'
@@ -563,7 +563,8 @@ alias dmc="docker-machine create --driver=virtualbox --virtualbox-memory=4096 --
 alias dmd="VBoxManage discardstate default" # the virtualbox vm doesn't like to come back up when suspended.
 alias dmi="dme && docker-machine ip"
 # alias dms="docker-machine start && dme"
-alias dms="docker-machine stop"
+# alias dms="docker-machine stop"
+alias dms="brew services stop docker-machine"
 
 # Public: docker-machine can get hung up by virtualbox sometimes during startup. Try
 # again after 15 seconds up to 5 times.

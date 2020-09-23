@@ -802,7 +802,7 @@ lua <<EOF
 
     local on_attach = function(client, bufnr)
         -- require'completion'.on_attach(client, bufnr)
-        require'diagnostic'.on_attach(client, bufnr)
+        -- require'diagnostic'.on_attach(client, bufnr)
     end
 
     nvim_lsp.intelephense.setup{
@@ -1723,7 +1723,16 @@ let g:gutentags_ctags_exclude_wildignore = 0
 " A List of file types that Gutentags should ignore. When a buffer is opened,
 " if its 'filetype' is found in this list, Gutentags features won't be
 " available for this buffer. (used to disable ctags on save)
-let g:gutentags_exclude_filetypes = ['gitcommit']
+" https://github.com/ludovicchabant/vim-gutentags/issues/178
+let g:gutentags_exclude_filetypes = [
+            \ 'gitcommit',
+            \ 'gitconfig',
+            \ 'gitrebase',
+            \ 'gitsendemail',
+            \ 'git',
+            \ 'json',
+            \ 'yaml'
+            \ ]
 
 " Some debugging/troubleshooting commands are also available if the
 " |gutentags_define_advanced_commands| global setting is set to 1.
@@ -2269,6 +2278,13 @@ if has_key(g:plugs, 'vim-test')
     nnoremap <silent> <leader>ts :TestSuite<CR>
     " nnoremap <silent> <leader>tl :TestLast<CR>
     " nnoremap <silent> <leader>tv :TestVisit<CR>
+endif
+" }}}
+
+" vim-togglelist {{{
+let g:toggle_list_no_mappings = 1
+if has_key(g:plugs, 'vim-togglelist')
+    nnoremap <leader>ll :call ToggleLocationList()<cr>
 endif
 " }}}
 

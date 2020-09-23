@@ -79,7 +79,7 @@ Plug 'Shougo/echodoc.vim' " Displays function signatures from completions in the
 if (has('nvim'))
     " actual official lsp config \o/
     Plug 'neovim/nvim-lsp'
-    Plug 'nvim-lua/diagnostic-nvim' " better lsp diagnostics
+    " Plug 'nvim-lua/diagnostic-nvim' " better lsp diagnostics
 
     " Plug 'nvim-lua/completion-nvim' " use neovim completion to autocomplete and show auto popup (disabled: this causes all kinds of problems in my workflow even if it's working perfectly)
     " if I don't register intelephense:
@@ -141,6 +141,7 @@ Plug 'tpope/vim-eunuch', { 'on': ['Mkdir!', 'Remove!'] } " :Mkdir!, :Remove!, an
 " if executable('curl') | Plug 'mattn/webapi-vim', { 'on': 'Gist' } | Plug 'mattn/gist-vim', { 'on': 'Gist' } | endif " make gists with :Gist
 " Plug 'vitalk/vim-shebang' " detect filetype from shebang
 Plug 'skywind3000/asyncrun.vim' " vim 8 async to quickfix plugin
+Plug 'milkypostman/vim-togglelist' " toggle quickfix and location lists. Barely a plugin.
 " Plug 'tpope/vim-dispatch' " I only use this to dispatch alias commands in a tmux split, then close the split
 " Plug 'aquach/vim-http-client' " postman for vim
 " Plug 'diepm/vim-rest-console', { 'for': 'rest', 'tag': 'v2.6.0' } " like above but more capable
