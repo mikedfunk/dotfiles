@@ -13,6 +13,7 @@ tap "universal-ctags/universal-ctags" # universal-ctags
 tap "jason0x43/homebrew-neovim-nightly" # neovim-nightly
 tap "homebrew/cask" # brew cask
 tap "homebrew/cask-fonts" # weird, I have to tap this manually?
+tap "wfxr/code-minimap" # for a vim plugin
 # tap "knes1/tap" # elktail
 # tap "moncho/dry" # dry
 # tap "andersjanmyr/homebrew-tap" # mc
@@ -39,6 +40,7 @@ brew "bzip2" # needed for phpenv https://github.com/phpenv/phpenv/issues/90#issu
 # brew "bzt" # taurus http and performance test runner
 # brew "chromedriver" # like selenium for chrome. (These drivers feel pretty outdated to me)
 brew "circleci" # circleci cli e.g. `circleci open`
+brew "code-minimap" # for a vim plugin
 brew "codespell" # neat little utility to show and fix code misspellings
 # brew "colortail" # tail with support for colors (I use multitail)
 # brew "composer" # php dependency management (now installed via phpenv)

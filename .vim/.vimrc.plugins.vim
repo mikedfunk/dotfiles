@@ -219,6 +219,7 @@ Plug 'machakann/vim-swap' " move args left/right with g< g> or gs for interactiv
 Plug 'EinfachToll/DidYouMean' " tries to help opening mistyped files
 Plug 'unblevable/quick-scope' " highlights chars for f, F, t, T
 " Plug 'severin-lemaignan/vim-minimap' " sublime-style minimap with <leader>mm (no lazy load)
+Plug 'wfxr/minimap.vim' " another minimap but faster, written in rust
 " Plug 'terryma/vim-multiple-cursors' " sublime-style with <c-n>
 " if has('signs') | Plug 'MattesGroeger/vim-bookmarks' | endif " bookmark lines with annotations and navigate them globally. especially useful for taking inline notes on a file without adding a comment.
 " Plug 'brooth/far.vim', { 'on': ['Far', 'Fardo', 'Farundo', 'Farp', 'Refar', 'F'] } " find and replace

@@ -587,7 +587,8 @@ endif
 let g:git_messenger_always_into_popup = 1
 let g:git_messenger_no_default_mappings = 1
 if has_key(g:plugs, 'git-messenger.vim')
-    nnoremap <leader>mm :GitMessenger<cr>
+    " pneumonic: commit message
+    nnoremap <leader>cm :GitMessenger<cr>
 endif
 " }}}
 
@@ -685,7 +686,11 @@ let g:mta_filetypes = {
 " }}}
 
 " minimap.vim {{{
-let g:minimap_toggle = '<leader>mm'
+" let g:minimap_toggle = '<leader>mm'
+" let g:minimap_auto_start = 1
+if has_key(g:plugs, 'minimap.vim')
+    nnoremap <leader>mm :MinimapToggle<cr>
+endif
 " }}}
 
 " mucomplete {{{
