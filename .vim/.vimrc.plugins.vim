@@ -79,7 +79,7 @@ Plug 'Shougo/echodoc.vim' " Displays function signatures from completions in the
 if (has('nvim'))
     " actual official lsp config \o/
     Plug 'neovim/nvim-lsp'
-    " Plug 'nvim-lua/diagnostic-nvim' " better lsp diagnostics
+    Plug 'nvim-lua/diagnostic-nvim' " better lsp diagnostics
 
     " Plug 'nvim-lua/completion-nvim' " use neovim completion to autocomplete and show auto popup (disabled: this causes all kinds of problems in my workflow even if it's working perfectly)
     " if I don't register intelephense:

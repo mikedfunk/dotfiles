@@ -324,14 +324,15 @@
     uri-js "^4.2.2"
 
 "@redocly/openapi-cli@^1.0.0-beta.2":
-  version "1.0.0-beta.15"
-  resolved "https://registry.yarnpkg.com/@redocly/openapi-cli/-/openapi-cli-1.0.0-beta.15.tgz#1c7197541e269d62abff8e482d06f4032c7bba0b"
-  integrity sha512-0O20CDc4JJrkWRS7BDsSki+FWQ6w3dDjfuVHaBAJDuydMd5lxlWNgRGMX4ES8r7XX1mtut5zTSq+wtlYsKvQGw==
+  version "1.0.0-beta.16"
+  resolved "https://registry.yarnpkg.com/@redocly/openapi-cli/-/openapi-cli-1.0.0-beta.16.tgz#4a824d892199f74fd944b56db25070bd6a702b6a"
+  integrity sha512-y8qQLzGHXKzJf8C5M4LGZerDiUeom7P5Dk+dljrzHVZ7N+2ST13GQ+Ix1v+mCtrv+VRr7/0jC4vLeOQWgPPX0A==
   dependencies:
     "@redocly/ajv" "^6.12.3"
     "@types/node" "^14.0.13"
     chokidar "^3.4.0"
     colorette "^1.2.0"
+    glob "^7.1.6"
     glob-promise "^3.4.0"
     handlebars "^4.7.6"
     js-levenshtein "^1.1.6"
@@ -1468,9 +1469,9 @@ editorconfig@^0.15.3:
     sigmund "^1.0.1"
 
 electron-to-chromium@^1.3.30:
-  version "1.3.572"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.572.tgz#62d87dfe32ca1f6b9a0f76917d24f66e94e19c01"
-  integrity sha512-TKqdEukCCl7JC20SwEoWTbtnGt4YjfHWAv4tcNky0a9qGo0WdM+Lrd60tps+nkaJCmktKBJjr99fLtEBU1ipWQ==
+  version "1.3.574"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.574.tgz#bdd87f62fe70165e5c862a0acf0cee9889e23aa3"
+  integrity sha512-kF8Bfe1h8X1pPwlw6oRoIXj0DevowviP6fl0wcljm+nZjy/7+Fos4THo1N/7dVGEJlyEqK9C8qNnbheH+Eazfw==
 
 elliptic@^6.5.3:
   version "6.5.3"
@@ -1849,7 +1850,7 @@ glob-promise@^3.4.0:
   dependencies:
     "@types/glob" "*"
 
-glob@^7.1.2, glob@^7.1.3:
+glob@^7.1.2, glob@^7.1.3, glob@^7.1.6:
   version "7.1.6"
   resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.6.tgz#141f33b81a7c2492e125594307480c46679278a6"
   integrity sha512-LwaxwyZ72Lk7vZINtNNrywX0ZuLyStrdDtabefZKAY5ZGJhVtgdznluResxNmPitE0SAO+O26sWTHeKSI2wMBA==
@@ -4535,9 +4536,9 @@ typescript@^3.3.3333, typescript@^3.9.3, typescript@^3.9.5:
   integrity sha512-BLbiRkiBzAwsjut4x/dsibSTB6yWpwT5qWmC2OfuCg3GgVQCSgMs4vEctYPhsaGtd0AeuuHMkjZ2h2WG8MSzRw==
 
 uglify-js@^3.1.4:
-  version "3.10.4"
-  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.10.4.tgz#dd680f5687bc0d7a93b14a3482d16db6eba2bfbb"
-  integrity sha512-kBFT3U4Dcj4/pJ52vfjCSfyLyvG9VYYuGYPmrPvAxRw/i7xHiT4VvCev+uiEMcEEiu6UNB6KgWmGtSUYIWScbw==
+  version "3.11.0"
+  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.11.0.tgz#67317658d76c21e0e54d3224aee2df4ee6c3e1dc"
+  integrity sha512-e1KQFRCpOxnrJsJVqDUCjURq+wXvIn7cK2sRAx9XL3HYLL9aezOP4Pb1+Y3/o693EPk111Yj2Q+IUXxcpHlygQ==
 
 unherit@^1.0.4:
   version "1.1.3"
