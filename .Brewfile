@@ -34,6 +34,7 @@ brew "awscli" # aws command - used to upload to s3, etc. `aws configure` to set 
 brew "bandwhich" # top-like tool to see which processes are using the most bandwidth (sudo bandwhich)
 brew "bat" # much cooler looking cat
 brew "bison" # needed for phpenv build. The default mac one is too old. https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
+# brew "bmon" # bandwidth monitor
 # brew "broot" # use `br` to do something between tree and ls. File browser with lots of vim patterns.
 # brew "browser" # pipe html to a temp file and open in browser e.g. `ls | browser`
 brew "bzip2" # needed for phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
@@ -78,6 +79,7 @@ brew "git"
 # brew "git-standup" # show commits in the last day. works in parent dir too.
 brew "gitlab-gem" # gitlab cli
 # brew "global" # gnu global tags aka gtags. More powerful than ctags but has a different interface with a learning curve. Also depends on ctags which conflicts with universal-ctags.
+# brew "glow" # markdown terminal renderer - conflicts with npm glow (pretty flowtype checker)
 brew "gnu-sed" # linux version of sed - saves as gsed (required for diff-so-fancy)
 # brew "gnu-tar" # linux version of tar so stuff actually works
 # brew "graphviz" # useful for xdebug profiler class maps
@@ -167,6 +169,7 @@ brew "plantuml" # uml generation from text. requires java (I use regularly for d
 # brew "postgresql" # database similar to mysql (install if needed)
 brew "pre-commit" # yelp git pre-commit framework (local hooks ftw! Easily create hooks that run various CI stuff before committing with pretty output, able to skip during rebases, yaml config.)
 # brew "prettyping" # ping with a cool sparkline graph of status
+# brew "procs" # process viewer - prettier ps. Not as cool as htop.
 brew "pspg" # , args: ["HEAD"] # "postgres pager" also useful for mysql, etc.
 # brew "pv" # pipe something to pv to see progress of data through a pipeline. pv works like cat so `pv /path/to/myfile.sql > mysql ...`
 # brew "pyenv" # python version manager (same api as rbenv)
@@ -220,7 +223,7 @@ brew "tmux" # terminal multiplexer similar to screen.
 brew "trash-cli" # a trash can for the terminal
 brew "tree" # display file/folder hierarchies in a visual tree format
 brew "universal-ctags", args: ["HEAD", " --with-jansson"] # tag creator for use by vim to navigate by symbols. head only.
-brew "urlview" # used by <prefix>u tmux urlview plugin
+# brew "urlview" # used by <prefix>u tmux urlview plugin
 # brew "virtualhost".sh # (crappy) virtualhost management script
 brew "watch" # Executes a program periodically, showing output fullscreen (an npm package which is a child dependency of another sometimes replaces this binary: https://www.npmjs.com/package/watch . If so, just `brew link --overwrite watch` )
 brew "watchman" # needed for `jest --watch` https://github.com/cm-pliser-tdd-by-example/tdd-by-example-js/issues/10

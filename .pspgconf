@@ -1,5 +1,9 @@
 # vim: set ft=dosini:
 # postgres pager config https://github.com/okbob/pspg
+
+# this config still works but strangely it has been removed from their docs and
+# readme. If it ever stops working I can s/_/-/g and put these in export PSPG
+
 force_uniborder = true
 ignore_case = false
 ignore_lower_case = false

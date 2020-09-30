@@ -433,7 +433,7 @@ Plug 'ap/vim-css-color', { 'for': ['scss', 'css'] } " colorize css colors e.g. #
 " Plug 'scrooloose/vim-slumlord' " plantuml live preview for sequence diagrams
 Plug 'ryanoasis/vim-devicons' " file type icons in netrw, etc.
 " Plug 'TaDaa/vimade' " fade inactive buffers, preserving color scheme (I don't really need this)
-" Plug 'junegunn/goyo.vim' | Plug 'junegunn/limelight.vim' " focus mode
+Plug 'junegunn/goyo.vim' | Plug 'junegunn/limelight.vim' " focus mode
 
 if has('popupwin')
     Plug 'mnishz/colorscheme-preview.vim' " :ColorschemePreview only for vim

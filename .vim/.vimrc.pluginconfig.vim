@@ -623,6 +623,11 @@ autocmd! User GoyoEnter
 autocmd! User GoyoLeave
 autocmd  User GoyoEnter nested call <SID>goyo_enter()
 autocmd  User GoyoLeave nested call <SID>goyo_leave()
+
+if has_key(g:plugs, 'goyo.vim')
+    " pneumonic: (fo)cus mode
+    nnoremap <leader>fo :Goyo<cr>
+endif
 " }}}
 
 " gruvbox {{{
@@ -776,11 +781,27 @@ let g:nnn#action = {
             \ '<c-s>': 'split',
             \ '<c-v>': 'vsplit'
             \ }
+
+" Floating window (neovim latest and vim with patch 8.2.191)
+let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Debug' } }
 " }}}
 
-" nvim-lsp {{{
+" nvim-lspconfig {{{
 if has_key(g:plugs, 'nvim-lsp')
+
+    " disable lsp diagnostics in vimdiff (mergetool) {{{
+    if &diff
+lua << EOF
+    local nvim_lsp = require'nvim_lsp'
+    -- Disable Diagnostcs globally
+    vim.lsp.callbacks["textDocument/publishDiagnostics"] = function() end
+EOF
+    endif
+    " }}}
+
+    " lsp commands and mappings {{{
     command! CodeAction lua vim.lsp.buf.code_action()
+    " moved this to local codebase .vimrcs:
     " nnoremap <c-i> :CodeAction<cr>
     " example config from :help lsp:
     " nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
@@ -790,7 +811,9 @@ if has_key(g:plugs, 'nvim-lsp')
     " nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
     " nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
     " nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+    " }}}
 
+    " enable php intelephense lsp {{{
     " working for palette, legacy, etc!
     " NOTE: `:LspInstall intelephense` doesn't play nice with asdf
     if executable('intelephense')
@@ -807,7 +830,7 @@ lua <<EOF
 
     local on_attach = function(client, bufnr)
         -- require'completion'.on_attach(client, bufnr)
-        -- require'diagnostic'.on_attach(client, bufnr)
+        require'diagnostic'.on_attach(client, bufnr)
     end
 
     nvim_lsp.intelephense.setup{
@@ -905,20 +928,16 @@ lua <<EOF
     }
 EOF
 
-        " if (has_key(g:plugs, 'completion-nvim'))
-        "     lua require'nvim_lsp'.intelephense.setup{on_attach=require'completion'.on_attach}
-        " else
-        "     lua require'nvim_lsp'.intelephense.setup{}
-        " endif
-
-        " moved to palette vimrc because of legacy, zed, etc.
-        " augroup nvim_lsp_php
-        "     autocmd!
-        "     autocmd filetype php setlocal omnifunc=v:lua.vim.lsp.omnifunc
-        " augroup END
+    " moved to palette vimrc because of legacy, zed, etc.
+    " augroup nvim_lsp_php
+    "     autocmd!
+    "     autocmd filetype php setlocal omnifunc=v:lua.vim.lsp.omnifunc
+    " augroup END
 
     endif
+    " }}}
 
+    " ruby (solargraph) lsp setup {{{
     " so far this is not working, it's just failing silently for catalog.
     if (executable('solargraph'))
         lua require'nvim_lsp'.solargraph.setup{}
@@ -927,7 +946,9 @@ EOF
             autocmd filetype ruby setlocal omnifunc=v:lua.vim.lsp.omnifunc
         augroup END
     endif
+    " }}}
 
+    " docker lsp setup {{{
     if (executable('docker-langserver'))
         lua require'nvim_lsp'.dockerls.setup{}
         augroup nvim_lsp_docker
@@ -935,10 +956,13 @@ EOF
             autocmd filetype docker setlocal omnifunc=v:lua.vim.lsp.omnifunc
         augroup END
     endif
+    " }}}
 
+    " flowtype lsp setup {{{
     " moved this to easel .vimrc ... legacy doesn't have flow and gallery's
     " version is so old it doesn't have lsp.
     " require'nvim_lsp'.flow.setup{}
+    " }}}
 
 endif
 " }}}
@@ -951,66 +975,66 @@ if has_key(g:plugs, 'nvim-treesitter')
     set foldexpr=nvim_treesitter#foldexpr()
 
 lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "javascript", "php" },
-  highlight = { enable = true },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "gnn",
-      node_incremental = "grn",
-      scope_incremental = "grc",
-      node_decremental = "grm",
-    },
-  },
-  refactor = {
-    highlight_definitions = { enable = true },
-    highlight_current_scope = { enable = true },
-    smart_rename = {
-      enable = true,
-      keymaps = { smart_rename = "grr" },
-    },
-    navigation = {
-      enable = true,
-      keymaps = {
-        goto_definition = "gnd",
-        list_definitions = "gnD",
-        goto_next_usage = "<a-*>",
-        goto_previous_usage = "<a-#>",
+    require'nvim-treesitter.configs'.setup {
+      ensure_installed = { "javascript", "php" },
+      highlight = { enable = true },
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = "gnn",
+          node_incremental = "grn",
+          scope_incremental = "grc",
+          node_decremental = "grm",
+        },
       },
-    },
-  },
-  textobjects = {
-    select = {
-      enable = true,
-      keymaps = {
-        ["af"] = "@function.outer",
-        ["if"] = "@function.inner",
-        ["ac"] = "@class.outer",
-        ["ic"] = "@class.inner",
+      refactor = {
+        highlight_definitions = { enable = true },
+        highlight_current_scope = { enable = true },
+        smart_rename = {
+          enable = true,
+          keymaps = { smart_rename = "grr" },
+        },
+        navigation = {
+          enable = true,
+          keymaps = {
+            goto_definition = "gnd",
+            list_definitions = "gnD",
+            goto_next_usage = "<a-*>",
+            goto_previous_usage = "<a-#>",
+          },
+        },
       },
-    },
-    move = {
-      enable = true,
-      goto_next_start = {
-        ["]m"] = "@function.outer",
-        ["]]"] = "@class.outer",
+      textobjects = {
+        select = {
+          enable = true,
+          keymaps = {
+            ["af"] = "@function.outer",
+            ["if"] = "@function.inner",
+            ["ac"] = "@class.outer",
+            ["ic"] = "@class.inner",
+          },
+        },
+        move = {
+          enable = true,
+          goto_next_start = {
+            ["]m"] = "@function.outer",
+            ["]]"] = "@class.outer",
+          },
+          goto_next_end = {
+            ["]M"] = "@function.outer",
+            ["]["] = "@class.outer",
+          },
+          goto_previous_start = {
+            ["[m"] = "@function.outer",
+            ["[["] = "@class.outer",
+          },
+          goto_previous_end = {
+            ["[M"] = "@function.outer",
+            ["[]"] = "@class.outer",
+          },
+        },
       },
-      goto_next_end = {
-        ["]M"] = "@function.outer",
-        ["]["] = "@class.outer",
-      },
-      goto_previous_start = {
-        ["[m"] = "@function.outer",
-        ["[["] = "@class.outer",
-      },
-      goto_previous_end = {
-        ["[M"] = "@function.outer",
-        ["[]"] = "@class.outer",
-      },
-    },
-  },
-}
+    }
 EOF
 endif
 " }}}
