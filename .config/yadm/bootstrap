@@ -563,20 +563,21 @@ _install_activate_nextdns () {
 # }}}
 
 # install or upgrade ntfy {{{
+# ntfy is broken: `AttributeError: 'NoneType' object has no attribute 'scheduleNotification_'`
 # https://github.com/dschep/ntfy/issues/171#issuecomment-433388371
-_install_upgrade_ntfy () {
-    if _has ntfy; then
-        _log_info "Updating ntfy"
-        cd || return
-        /usr/local/bin/python3 -m pip install --upgrade ntfy
-        cd - || return
-        return
-    fi
-    _log_info "Installing ntfy"
-    cd || return
-    /usr/local/bin/python3 -m pip install ntfy
-    cd - || return
-}
+# _install_upgrade_ntfy () {
+#     if _has ntfy; then
+#         _log_info "Updating ntfy"
+#         cd || return
+#         /usr/local/bin/python3 -m pip install --upgrade ntfy
+#         cd - || return
+#         return
+#     fi
+#     _log_info "Installing ntfy"
+#     cd || return
+#     /usr/local/bin/python3 -m pip install ntfy
+#     cd - || return
+# }
 # }}}
 
 # immersed vr {{{
@@ -802,7 +803,7 @@ _install_upgrade_vim_plugins
 _install_upgrade_phive
 _install_upgrade_phive_packages
 _install_upgrade_psysh
-_install_upgrade_ntfy
+# _install_upgrade_ntfy
 # _install_ls_colors
 # _install_cpanm
 # _install_cpanm_packages

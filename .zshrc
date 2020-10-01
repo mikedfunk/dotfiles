@@ -200,7 +200,7 @@ export ZSH_AUTOSUGGEST_USE_ASYNC=true # https://github.com/zsh-users/zsh-autosug
 # evaluated startup commands {{{
 _has tmuxp && _evalcache "$HOME"/.support/enable-tmuxp-completion.sh # workaround to make evalcache happy
 _has direnv && _evalcache direnv hook zsh # (evalcache version)
-_has ntfy && _evalcache ntfy shell-integration # notify when long-running command finishes. pip package, breaks in pyenv - see yadm bootstrap for unique setup.
+# _has ntfy && _evalcache ntfy shell-integration # notify when long-running command finishes. pip package, breaks in pyenv - see yadm bootstrap for unique setup. this is broken: `AttributeError: 'NoneType' object has no attribute 'scheduleNotification_'`
 _has npx && _evalcache npx --shell-auto-fallback zsh
 # #slow
 _has hub && _evalcache hub alias -s # alias git to hub with completion intact
