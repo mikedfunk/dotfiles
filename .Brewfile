@@ -254,16 +254,18 @@ cask "authy" # desktop 2-factor!
 # cask "bettertouchtool" # with a config file this lets me vimify any cocoa app https://raw.githubusercontent.com/Vincent-Carrier/CocoaVim/master/CocoaVim.bttpreset
 # cask "bitbar" # use any cli command to show stuff in the menubar with colors and icons and provide menu options
 # cask "beardedspice" # keyboard media controls for media sites. Always seems to be broken :/
-cask "browserstacklocal" # local ie11, etc? If I have to. Otherwise, easy alternative is xdissent's ievms. /usr/local/bin/BrowserStackLocal
+cask "browserstacklocal" # local ie11, etc? If I have to. Otherwise, easy alternative is xdissent's ievms. /usr/local/bin/BrowserStackLocal (note: this runs as a launchctl service)
 # cask "bubo" # menubar app that lets you use media and bluetooth keys with spotify web in chrome (but not in firefox, boo!)
 # cask "burp-suite" # web vulnerability scanner (eclipse-based)
 # cask "caffeine" # keep mac awake (replaced with amphetamine)
 # cask "cheatsheet" # hold <cmd> for a bit to get a modal of available keyboard shortcuts (kind of annoying - rarely comes up when I actually want it to, too much info)
+# cask "chromium" # no google tracking for me
 cask "cold-turkey-blocker" # blocks distracting website access so I can work
 # cask "discord" # chat
 cask "docker" # docker for mac desktop app
 cask "dozer" # little menubar app that allows hiding menubar icon clutter
 # cask "dropbox" # I especially use this for synching my notes so I can view them in the joplin mobile app (not using this feature right now)
+cask "eloston-chromium" # de-googled chromium
 # cask "emacs" # this actually makes sense as a cask. It becomes tmux, vim, and kitty all in one.
 cask "epic-games" # game store
 # cask "ferdi" # all messaging in one electron app (slack, discord, google voice, android messages, etc.) another approach to this is matrix (riot.im) with "bridges" to other services

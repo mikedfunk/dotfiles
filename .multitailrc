@@ -102,7 +102,7 @@ cs_re:cyan:P[0-9]+-U[0-9]+-A[0-9]+(-L)?(-T[0-9])?(-F[0-9]+)?(-W[0-9]+)?
 
 # urls
 cs_re:blue:(GET|POST|PUT|PATCH|DELETE|HEAD)
-cs_re:blue:https?:\\?/\\?/[a-zA-Z0-9._/\\?&=#@%-]+
+cs_re:blue:https?:\\?/\\?/[a-zA-Z0-9._/\\?&=#@%-]+(:\d+)?
 cs_re:blue:(GET|POST|PUT|PATCH|DELETE|HEAD) /[a-zA-Z0-9._/?&=#@%-]*
 cs_re:blue: //[a-zA-Z0-9._/?&=#@%-]+.[a-z]{2,5}
 
@@ -123,7 +123,7 @@ mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})$
 # log levels
 cs_re:blue,,bold/reverse:DEBUG
 cs_re:red,,blink/bold/reverse:EMERGENCY
-cs_re:red,,bold/blink/reverse:ERROR
+cs_re:red,,bold/blink/reverse:(FATAL )?ERROR
 cs_re:yellow,,bold/reverse:WARN
 cs_re:green,,bold/reverse:INFO
 
@@ -155,7 +155,7 @@ cs_re:cyan:P[0-9]+-U[0-9]+-A[0-9]+(-L)?(-T[0-9])?(-F[0-9]+)?(-W[0-9]+)?
 
 # urls
 cs_re:blue:(GET|POST|PUT|PATCH|DELETE|HEAD)
-cs_re:blue:https?:\\?/\\?/[a-zA-Z0-9._/\\?&=#@%-]+
+cs_re:blue:https?:\\?/\\?/[a-zA-Z0-9._/\\?&=#@%-]+(:\d+)?
 cs_re:blue:(GET|POST|PUT|PATCH|DELETE|HEAD) /[a-zA-Z0-9._/?&=#@%-]*
 cs_re:blue: //[a-zA-Z0-9._/?&=#@%-]+.[a-z]{2,5}
 
@@ -176,7 +176,7 @@ mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})$
 # log levels
 cs_re:blue,,bold/reverse:DEBUG
 cs_re:red,,blink/bold/reverse:EMERGENCY
-cs_re:red,,bold/blink/reverse:ERROR
+cs_re:red,,bold/blink/reverse:(FATAL )?ERROR
 cs_re:yellow,,bold/reverse:WARN
 cs_re:green,,bold/reverse:INFO
 
@@ -222,7 +222,7 @@ cs_re:cyan:P[0-9]+-U[0-9]+-A[0-9]+(-L)?(-T[0-9])?(-F[0-9]+)?(-W[0-9]+)?
 
 # urls
 cs_re:blue:(GET|POST|PUT|PATCH|DELETE|HEAD)
-cs_re:blue:https?:\\?/\\?/[a-zA-Z0-9._/\\?&=#@%-]+
+cs_re:blue:https?:\\?/\\?/[a-zA-Z0-9._/\\?&=#@%-]+(:\d+)?
 cs_re:blue:(GET|POST|PUT|PATCH|DELETE|HEAD) /[a-zA-Z0-9._/?&=#@%-]*
 cs_re:blue: //[a-zA-Z0-9._/?&=#@%-]+.[a-z]{2,5}
 
@@ -243,7 +243,7 @@ mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})$
 # log levels
 cs_re:blue,,bold/reverse:DEBUG
 cs_re:red,,blink/bold/reverse:EMERGENCY
-cs_re:red,,bold/blink/reverse:ERROR
+cs_re:red,,bold/blink/reverse:(FATAL )?ERROR
 cs_re:yellow,,bold/reverse:WARN
 cs_re:green,,bold/reverse:INFO
 
@@ -306,7 +306,7 @@ cs_re:cyan:P[0-9]+-U[0-9]+-A[0-9]+(-L)?(-T[0-9])?(-F[0-9]+)?(-W[0-9]+)?
 
 # urls
 cs_re:blue:(GET|POST|PUT|PATCH|DELETE|HEAD)
-cs_re:blue:https?:\\?/\\?/[a-zA-Z0-9._/\\?&=#@%-]+
+cs_re:blue:https?:\\?/\\?/[a-zA-Z0-9._/\\?&=#@%-]+(:\d+)?
 cs_re:blue:(GET|POST|PUT|PATCH|DELETE|HEAD) /[a-zA-Z0-9._/?&=#@%-]*
 cs_re:blue: //[a-zA-Z0-9._/?&=#@%-]+.[a-z]{2,5}
 
@@ -327,7 +327,7 @@ mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})$
 # log levels
 cs_re:blue,,bold/reverse:DEBUG
 cs_re:red,,blink/bold/reverse:EMERGENCY
-cs_re:red,,bold/blink/reverse:ERROR
+cs_re:red,,bold/blink/reverse:(FATAL )?ERROR
 cs_re:yellow,,bold/reverse:WARN
 cs_re:green,,bold/reverse:INFO
 
@@ -377,7 +377,7 @@ cs_re:cyan:P[0-9]+-U[0-9]+-A[0-9]+(-L)?(-T[0-9])?(-F[0-9]+)?(-W[0-9]+)?
 
 # urls
 cs_re:blue:(GET|POST|PUT|PATCH|DELETE|HEAD)
-cs_re:blue:https?:\\?/\\?/[a-zA-Z0-9._/\\?&=#@%-]+
+cs_re:blue:https?:\\?/\\?/[a-zA-Z0-9._/\\?&=#@%-]+(:\d+)?
 cs_re:blue:(GET|POST|PUT|PATCH|DELETE|HEAD) /[a-zA-Z0-9._/?&=#@%-]*
 cs_re:blue: //[a-zA-Z0-9._/?&=#@%-]+.[a-z]{2,5}
 
@@ -398,7 +398,7 @@ mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})$
 # log levels
 cs_re:blue,,bold/reverse:DEBUG
 cs_re:red,,blink/bold/reverse:EMERGENCY
-cs_re:red,,bold/blink/reverse:ERROR
+cs_re:red,,bold/blink/reverse:(FATAL )?ERROR
 cs_re:yellow,,bold/reverse:WARN
 cs_re:green,,bold/reverse:INFO
 
@@ -456,7 +456,7 @@ cs_re:cyan:P[0-9]+-U[0-9]+-A[0-9]+(-L)?(-T[0-9])?(-F[0-9]+)?(-W[0-9]+)?
 
 # urls
 cs_re:blue:(GET|POST|PUT|PATCH|DELETE|HEAD)
-cs_re:blue:https?:\\?/\\?/[a-zA-Z0-9._/\\?&=#@%-]+
+cs_re:blue:https?:\\?/\\?/[a-zA-Z0-9._/\\?&=#@%-]+(:\d+)?
 cs_re:blue:(GET|POST|PUT|PATCH|DELETE|HEAD) /[a-zA-Z0-9._/?&=#@%-]*
 cs_re:blue: //[a-zA-Z0-9._/?&=#@%-]+.[a-z]{2,5}
 
@@ -477,7 +477,7 @@ mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})$
 # log levels
 cs_re:blue,,bold/reverse:DEBUG
 cs_re:red,,blink/bold/reverse:EMERGENCY
-cs_re:red,,bold/blink/reverse:ERROR
+cs_re:red,,bold/blink/reverse:(FATAL )?ERROR
 cs_re:yellow,,bold/reverse:WARN
 cs_re:green,,bold/reverse:INFO
 
@@ -539,7 +539,7 @@ cs_re:cyan:P[0-9]+-U[0-9]+-A[0-9]+(-L)?(-T[0-9])?(-F[0-9]+)?(-W[0-9]+)?
 
 # urls
 cs_re:blue:(GET|POST|PUT|PATCH|DELETE|HEAD)
-cs_re:blue:https?:\\?/\\?/[a-zA-Z0-9._/\\?&=#@%-]+
+cs_re:blue:https?:\\?/\\?/[a-zA-Z0-9._/\\?&=#@%-]+(:\d+)?
 cs_re:blue:(GET|POST|PUT|PATCH|DELETE|HEAD) /[a-zA-Z0-9._/?&=#@%-]*
 cs_re:blue: //[a-zA-Z0-9._/?&=#@%-]+.[a-z]{2,5}
 
@@ -560,7 +560,7 @@ mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})$
 # log levels
 cs_re:blue,,bold/reverse:DEBUG
 cs_re:red,,blink/bold/reverse:EMERGENCY
-cs_re:red,,bold/blink/reverse:ERROR
+cs_re:red,,bold/blink/reverse:(FATAL )?ERROR
 cs_re:yellow,,bold/reverse:WARN
 cs_re:green,,bold/reverse:INFO
 
@@ -624,7 +624,7 @@ cs_re:cyan:P[0-9]+-U[0-9]+-A[0-9]+(-L)?(-T[0-9])?(-F[0-9]+)?(-W[0-9]+)?
 
 # urls
 cs_re:blue:(GET|POST|PUT|PATCH|DELETE|HEAD)
-cs_re:blue:https?:\\?/\\?/[a-zA-Z0-9._/\\?&=#@%-]+
+cs_re:blue:https?:\\?/\\?/[a-zA-Z0-9._/\\?&=#@%-]+(:\d+)?
 cs_re:blue:(GET|POST|PUT|PATCH|DELETE|HEAD) /[a-zA-Z0-9._/?&=#@%-]*
 cs_re:blue: //[a-zA-Z0-9._/?&=#@%-]+.[a-z]{2,5}
 
@@ -645,7 +645,7 @@ mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})$
 # log levels
 cs_re:blue,,bold/reverse:DEBUG
 cs_re:red,,blink/bold/reverse:EMERGENCY
-cs_re:red,,bold/blink/reverse:ERROR
+cs_re:red,,bold/blink/reverse:(FATAL )?ERROR
 cs_re:yellow,,bold/reverse:WARN
 cs_re:green,,bold/reverse:INFO
 
@@ -687,7 +687,7 @@ cs_re:cyan:P[0-9]+-U[0-9]+-A[0-9]+(-L)?(-T[0-9])?(-F[0-9]+)?(-W[0-9]+)?
 
 # urls
 cs_re:blue:(GET|POST|PUT|PATCH|DELETE|HEAD)
-cs_re:blue:https?:\\?/\\?/[a-zA-Z0-9._/\\?&=#@%-]+
+cs_re:blue:https?:\\?/\\?/[a-zA-Z0-9._/\\?&=#@%-]+(:\d+)?
 cs_re:blue:(GET|POST|PUT|PATCH|DELETE|HEAD) /[a-zA-Z0-9._/?&=#@%-]*
 cs_re:blue: //[a-zA-Z0-9._/?&=#@%-]+.[a-z]{2,5}
 
@@ -708,7 +708,7 @@ mcsre_s:yellow,,bold:([0-9]{2}:[0-9]{2}:[0-9]{2})$
 # log levels
 cs_re:blue,,bold/reverse:DEBUG
 cs_re:red,,blink/bold/reverse:EMERGENCY
-cs_re:red,,bold/blink/reverse:ERROR
+cs_re:red,,bold/blink/reverse:(FATAL )?ERROR
 cs_re:yellow,,bold/reverse:WARN
 cs_re:green,,bold/reverse:INFO
 
