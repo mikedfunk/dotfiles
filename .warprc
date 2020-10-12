@@ -25,6 +25,7 @@ potato:~/Code/saatchi/potato
 queries:~/Code/saatchi/queries
 railsblog:~/Code/railsblog
 saatchi:~/Code/saatchi
+storage:~/Code/saatchi/storage
 test:~/Code/test
 toaf-voting:~/Code/toaf/toaf-voting
 ui-tests:~/Code/saatchi/ui-test-automation

@@ -59,8 +59,8 @@ brew "direnv" # allow .envrc in directories to be loaded at every prompt to add 
 # brew "docker" # virtualization software (I use docker-for-mac, which comes with executables but doesn't link them to /usr/local/bin any more, so I'm doing that manually in my yadm bootstrap)
 brew "docker-compose" # manage multiple docker images and how they interact
 brew "docker-credential-helper-ecr" # tell docker abount ECR so it can pull
-brew "docker-machine" # virtualbox VM for your docker images
-brew "docker-machine-nfs" # enables nfs mounts for docker-machine via `docker-machine-nfs default --mount-opts="async,noatime,actimeo=1,nolock,vers=3,udp" --force` (speeds up docker-machine a LOT)
+# brew "docker-machine" # virtualbox VM for your docker images
+# brew "docker-machine-nfs" # enables nfs mounts for docker-machine via `docker-machine-nfs default --mount-opts="async,noatime,actimeo=1,nolock,vers=3,udp" --force` (speeds up docker-machine a LOT)
 # brew "dos2unix" # converts dos line endings to unix in a file
 # brew "dry" # docker monitoring (does not work with docker-machine. works with docker for mac because needs access to docker.sock.)
 # brew "dtrx" # do the right extraction - so you don't have to remember tar args (I found a helpful pneumonic to remember tar args: eXtract Ze Vucking Files, Compress Ze Vucking Files)
@@ -347,7 +347,7 @@ cask "spectacle" # keyboard window splitter/resizer/mover. Kind of like a lightw
 # cask "pvinis/pvinis/vimac" # control mac with vimium-style vi controls (this is really cool but I just don't use it)
 #
 # TODO these can't just be upgraded while virtualbox is running :/
-cask "virtualbox" # virtual machine software (needed by docker-machine at least)
+# cask "virtualbox" # virtual machine software (needed by docker-machine at least)
 # cask "virtualbox-extension-pack" # add-on to do stuff you'll always want... except for docker-machine
 #
 # cask "vivaldi" # chrome alternative with some cool features (I switched back to chrome for now - profiles are kind of buggy atm)

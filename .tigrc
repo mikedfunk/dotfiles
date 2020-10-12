@@ -165,7 +165,8 @@ bind generic gprv @gh pr view
 bind generic gps !git push
 bind generic grbd !git rbd --autosquash
 bind generic grbm !git rbm --autosquash
-bind generic grh @git reset --hard
+bind generic grh @?git reset --hard
+bind generic grs @?git reset --soft HEAD^
 bind generic gsa @git stash apply stash@{"%(prompt Enter stash position e.g. 0: )"}
 bind generic gsb !git synch "%(prompt Enter branch name: )"
 bind generic gsd !git synchd

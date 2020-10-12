@@ -5,83 +5,83 @@
     "enabled": true
   },
   {
+    "domain": "api.local.saatchiart.com",
+    "ip": "127.0.0.1",
+    "enabled": true
+  },
+  {
+    "domain": "assets.local.saatchiart.com",
+    "ip": "127.0.0.1",
+    "enabled": true
+  },
+  {
+    "domain": "couch.local.saatchiart.com",
+    "ip": "127.0.0.1",
+    "enabled": true
+  },
+  {
+    "domain": "docker",
+    "ip": "127.0.0.1",
+    "enabled": true
+  },
+  {
+    "domain": "gallery.local.saatchiart.com",
+    "ip": "127.0.0.1",
+    "enabled": true
+  },
+  {
+    "domain": "imgproc.local.saatchiart.com",
+    "ip": "127.0.0.1",
+    "enabled": true
+  },
+  {
     "domain": "kubernetes.docker.internal",
+    "ip": "127.0.0.1",
+    "enabled": true
+  },
+  {
+    "domain": "limited.local.saatchiart.com",
+    "ip": "127.0.0.1",
+    "enabled": true
+  },
+  {
+    "domain": "local.rancher.com",
+    "ip": "127.0.0.1",
+    "enabled": true
+  },
+  {
+    "domain": "local.saatchiart.com",
+    "ip": "127.0.0.1",
+    "enabled": true
+  },
+  {
+    "domain": "palette.local.saatchiart.com",
+    "ip": "127.0.0.1",
+    "enabled": true
+  },
+  {
+    "domain": "solr.local.saatchiart.com",
+    "ip": "127.0.0.1",
+    "enabled": true
+  },
+  {
+    "domain": "upload.local.saatchiart.com",
+    "ip": "127.0.0.1",
+    "enabled": true
+  },
+  {
+    "domain": "www.local.saatchiart.com",
+    "ip": "127.0.0.1",
+    "enabled": true
+  },
+  {
+    "domain": "zed.local.saatchiart.com",
     "ip": "127.0.0.1",
     "enabled": true
   },
   {
     "domain": "smo.leaf.io",
     "ip": "23.227.28.10",
-    "enabled": true
-  },
-  {
-    "domain": "api.local.saatchiart.com",
-    "ip": "192.168.99.107",
-    "enabled": true
-  },
-  {
-    "domain": "assets.local.saatchiart.com",
-    "ip": "192.168.99.107",
-    "enabled": true
-  },
-  {
-    "domain": "couch.local.saatchiart.com",
-    "ip": "192.168.99.107",
-    "enabled": true
-  },
-  {
-    "domain": "docker",
-    "ip": "192.168.99.107",
-    "enabled": true
-  },
-  {
-    "domain": "gallery.local.saatchiart.com",
-    "ip": "192.168.99.107",
-    "enabled": true
-  },
-  {
-    "domain": "imgproc.local.saatchiart.com",
-    "ip": "192.168.99.107",
-    "enabled": true
-  },
-  {
-    "domain": "limited.local.saatchiart.com",
-    "ip": "192.168.99.107",
-    "enabled": true
-  },
-  {
-    "domain": "local.rancher.com",
-    "ip": "192.168.99.107",
-    "enabled": true
-  },
-  {
-    "domain": "local.saatchiart.com",
-    "ip": "192.168.99.107",
-    "enabled": true
-  },
-  {
-    "domain": "palette.local.saatchiart.com",
-    "ip": "192.168.99.107",
-    "enabled": true
-  },
-  {
-    "domain": "solr.local.saatchiart.com",
-    "ip": "192.168.99.107",
-    "enabled": true
-  },
-  {
-    "domain": "upload.local.saatchiart.com",
-    "ip": "192.168.99.107",
-    "enabled": true
-  },
-  {
-    "domain": "www.local.saatchiart.com",
-    "ip": "192.168.99.107",
-    "enabled": true
-  },
-  {
-    "domain": "zed.local.saatchiart.com",
-    "ip": "192.168.99.107",
     "enabled": true
   },
   {

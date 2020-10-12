@@ -176,6 +176,7 @@ _has lazyload && lazyload akamai -- '_has akamai && eval "$(akamai --zsh)"'
 # }}}
 
 # source additional files and env vars {{{
+export COMPOSE_HTTP_TIMEOUT=120 # default is 60
 export ZSH_ALIAS_FINDER_AUTOMATIC=true # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/alias-finder#usage
 export ZSH_AUTOSUGGEST_USE_ASYNC=true # https://github.com/zsh-users/zsh-autosuggestions#enable-asynchronous-mode
 # ZSH_AUTOSUGGEST_STRATEGY=(history completion) # https://github.com/zsh-users/zsh-autosuggestions#suggestion-strategy (this prevents me from typing more e.g. `php artisan ...`!)

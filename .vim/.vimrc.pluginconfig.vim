@@ -1325,7 +1325,7 @@ let g:tmuxline_preset = {
     \ 'a': ['🏠 #S'],
     \ 'c': [
         \ '#{cpu_fg_color}#{cpu_icon}#[fg=default] #{ram_fg_color}#{ram_icon}#[fg=default] #{battery_color_charge_fg}#{battery_icon_charge}#[fg=default]',
-        \ '#(~/.support/saatchi-haproxy-status.sh)'
+        \ '#(~/.support/docker-status.sh)'
     \ ],
     \ 'win': ['#I', '#W'],
     \ 'cwin': ['#I', '#W#F'],
