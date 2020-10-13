@@ -769,7 +769,7 @@ let g:neoformat_basic_format_trim = 1 " Enable trimmming of trailing whitespace
 
 " nnn.vim {{{
 if has_key(g:plugs, 'nnn.vim')
-    nnoremap - :NnnPicker %<cr>
+    nnoremap - :NnnPicker %:p:h<cr>
     nnoremap <leader>ee :NnnPicker<cr>
     command! -bang -nargs=* -complete=file Ex NnnPicker <args>
     command! -bang -nargs=* -complete=file Explore NnnPicker <args>
@@ -1907,6 +1907,10 @@ augroup lostgrp
     autocmd!
     autocmd FileType php let b:lost_regex = '\v^    \w+.*function'
 augroup END
+
+if has_key(g:plugs, 'vim-lost')
+    nnoremap gL :Lost<cr>
+endif
 " }}}
 
 " vim-lotr {{{

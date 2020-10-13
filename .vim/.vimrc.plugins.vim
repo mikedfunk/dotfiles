@@ -145,7 +145,7 @@ Plug 'milkypostman/vim-togglelist' " toggle quickfix and location lists. Barely 
 " Plug 'tpope/vim-dispatch' " I only use this to dispatch alias commands in a tmux split, then close the split
 " Plug 'aquach/vim-http-client' " postman for vim
 " Plug 'diepm/vim-rest-console', { 'for': 'rest', 'tag': 'v2.6.0' } " like above but more capable
-Plug 'diepm/vim-rest-console', { 'for': 'rest' } " like above but more capable (latest version) NOTE see ~/.yadm/bootstrap for notes on wuzz as a replacement for this
+Plug 'diepm/vim-rest-console' " like above but more capable (latest version) NOTE see ~/.yadm/bootstrap for notes on wuzz as a replacement for this. NOTE: { 'for': 'rest' } prevents this from setting filetypes correctly
 Plug 'AndrewRadev/splitjoin.vim', { 'for': ['php', 'javascript', 'html'] } " split and join php arrays to/from multiline/single line (gS, gJ) SO USEFUL
 " Plug 'sunaku/vim-shortcut' " search for shortcuts with :Shortcuts with fzf completion
 " Plug 'tweekmonster/startuptime.vim' " a plugin to find slow plugins. it's like rain on your wedding day.

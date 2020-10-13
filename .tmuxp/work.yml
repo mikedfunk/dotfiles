@@ -166,6 +166,17 @@ windows:
   #     # - cypress open
 # }}}
 
+# xgateway {{{
+  - window_name: xgateway
+    start_directory: ~/Code/saatchi/xgateway
+    layout: main-horizontal
+    options:
+      main-pane-height: 40
+    panes:
+      - v +GitSessionLoad
+      - ts
+# }}}
+
 # xdocker {{{
   - window_name: xdocker
     start_directory: ~/Code/saatchi/xdocker
