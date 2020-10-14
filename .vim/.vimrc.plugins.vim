@@ -423,7 +423,7 @@ endif
 " Plug 'thirtythreeforty/lessspace.vim' " remove trailing whitespace only on lines you edit. Messes up paste indent!
 " Plug 'dodie/vim-disapprove-deep-indentation', { 'for': ['php', 'ruby'] } " too much indentation = ಠ_ಠ . messes up the quantum theme I use for saatchi
 " Plug 'xolox/vim-colorscheme-switcher' " F8 for next, Shift-F8 for previous color scheme
-" Plug 'chxuan/change-colorscheme' " :NextColorScheme :PreviousColorScheme
+Plug 'chxuan/change-colorscheme' " :NextColorScheme :PreviousColorScheme
 " Plug 'osyo-manga/vim-brightest' " highlight matching words. 1.5 seconds to load!
 " Plug 'dominikduda/vim_current_word' " highlight matching words. More intelligent.
 Plug 'itchyny/vim-cursorword' " highlight matching words. What I like about this one is it keeps the same color and bold/italic.
@@ -435,9 +435,9 @@ Plug 'ryanoasis/vim-devicons' " file type icons in netrw, etc.
 " Plug 'TaDaa/vimade' " fade inactive buffers, preserving color scheme (I don't really need this)
 Plug 'junegunn/goyo.vim' | Plug 'junegunn/limelight.vim' " focus mode
 
-if has('popupwin')
-    Plug 'mnishz/colorscheme-preview.vim' " :ColorschemePreview only for vim
-endif
+" if has('popupwin')
+    " Plug 'mnishz/colorscheme-preview.vim' " :ColorschemePreview only for vim
+" endif
 
 " color schemes: 256-friendly {{{
 " Plug 'MarioRicalde/vim-lucius'
@@ -499,7 +499,7 @@ Plug 'chriskempson/base16-vim' " themes made of 16 colors
 " Plug 'flrnprz/taffy.vim'
 " Plug 'patstockwell/vim-monokai-tasty'
 " Plug 'bcicen/vim-vice'
-" Plug 'flazz/vim-colorschemes' " a bunch of colorschemes from vim.org
+Plug 'flazz/vim-colorschemes' " a bunch of colorschemes from vim.org
 " }}}
 
 " }}}

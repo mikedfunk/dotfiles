@@ -200,6 +200,8 @@ bind generic zl scroll-right
 # bind generic <C-E> scroll-line-down
 # bind generic <C-B> scroll-page-up
 # bind generic <C-F> scroll-page-down
+bind generic gkn !git kn
+
 # }}}
 
 # diff {{{
