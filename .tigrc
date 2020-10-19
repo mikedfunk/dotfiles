@@ -70,6 +70,8 @@ bind status A none
 bind status A ?git commit --amend
 
 bind status D ?@rm %(file)
+
+bind status gst !git stash-staged
 # }}}
 
 # pager {{{

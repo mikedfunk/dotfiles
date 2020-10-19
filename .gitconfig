@@ -206,6 +206,7 @@
     # show all of my commits since yesterday
     # I use npm git-standup now instead
     # standup = log --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cD) %C(bold blue)<%an>%Creset' --since yesterday --author mike.funk@internetbrands.com
+    stash-staged = "!f() { git stash --keep-index && git stash push -m \"staged\" --keep-index && git stash pop stash@{1}; }; f"
     stash-unapply = !git stash show -p | git apply -R
     synchd = "!f() { echo \"Syncing current branch with develop\" && git checkout develop && git pull -r && git checkout - && git rebase develop; }; f"
     synchm = "!f() { echo \"Syncing current branch with master\" && git checkout master && git pull -r && git checkout - && git rebase master; }; f"

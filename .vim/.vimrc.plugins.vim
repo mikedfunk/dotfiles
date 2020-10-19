@@ -84,7 +84,7 @@ if (has('nvim'))
     " Plug 'nvim-lua/completion-nvim' " use neovim completion to autocomplete and show auto popup (disabled: this causes all kinds of problems in my workflow even if it's working perfectly)
     " if I don't register intelephense:
     " error: Error executing vim.schedule lua callback: ....vim/plugged/completion-nvim/lua/completion/matching.lua:50: attempt to index field 'b' (a nil value)
-    " this plugin also breaks nvim_lsp hover
+    " this plugin also breaks nvim-lsp hover
     "
 endif
 
@@ -284,8 +284,9 @@ if has("python3")
     " Use with my alias psc-clover or puc-clover.
     " TODO write a provider to replace this with vim-coverage https://github.com/google/vim-coverage
     " Plug 'joonty/vim-phpqa', { 'for': 'php' }
-    " maintained fork
-    Plug 'trendfischer/vim-phpqa', { 'for': 'php' }
+    " maintained fork NOTE: This will put all php lint errors in your location
+    " list! Not worth it. Especially problematic for vidiff in git mergetool.
+    " Plug 'trendfischer/vim-phpqa', { 'for': 'php' }
 endif
 Plug 'adoy/vim-php-refactoring-toolbox', { 'for': 'php' }
 " refactor php, get started with <leader>r
@@ -458,6 +459,7 @@ Plug 'junegunn/goyo.vim' | Plug 'junegunn/limelight.vim' " focus mode
 " Plug 'sonph/onehalf', { 'rtp': 'vim' }
 " Plug 'archSeer/colibri.vim'
 " Plug 'fenetikm/falcon'
+" Plug 'arzg/vim-colors-xcode'
 " Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 " Plug 'connorholyday/vim-snazzy'
 " }}}
@@ -500,6 +502,8 @@ Plug 'chriskempson/base16-vim' " themes made of 16 colors
 " Plug 'patstockwell/vim-monokai-tasty'
 " Plug 'bcicen/vim-vice'
 Plug 'flazz/vim-colorschemes' " a bunch of colorschemes from vim.org
+" Plug 'kaicataldo/material.vim', { 'branch': 'main' }
+" Plug 'ghifarit53/tokyonight-vim'
 " }}}
 
 " }}}

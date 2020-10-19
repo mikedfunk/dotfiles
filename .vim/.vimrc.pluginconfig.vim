@@ -790,13 +790,13 @@ let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Debu
 if has_key(g:plugs, 'nvim-lsp')
 
     " disable lsp diagnostics in vimdiff (mergetool) {{{
-    if &diff
-lua << EOF
-    local nvim_lsp = require'nvim_lsp'
-    -- Disable Diagnostcs globally
-    vim.lsp.callbacks["textDocument/publishDiagnostics"] = function() end
-EOF
-    endif
+    " if &diff
+" lua << EOF
+    " local nvim_lsp = require'nvim_lsp'
+    " -- Disable Diagnostcs globally
+    " vim.lsp.callbacks["textDocument/publishDiagnostics"] = function() end
+" EOF
+    " endif
     " }}}
 
     " lsp commands and mappings {{{
@@ -2157,6 +2157,7 @@ augroup END
 " vim-php-refactoring-toolbox {{{
 " http://kushellig.de/neovim-php-ide/#write-less-messy-code-with-neomake
 let g:vim_php_refactoring_use_default_mapping = 0
+" let g:vim_php_refactoring_auto_validate = 0
 let g:vim_php_refactoring_default_property_visibility = 'private'
 let g:vim_php_refactoring_default_method_visibility = 'private'
 let g:vim_php_refactoring_auto_validate_visibility = 1
