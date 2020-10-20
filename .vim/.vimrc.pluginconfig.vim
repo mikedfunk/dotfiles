@@ -2090,6 +2090,8 @@ endif
 " }}}
 
 " vim-phpqa {{{
+" this config value is misleading - it runs on write _and_ on read
+let g:phpqa_run_on_write = 0 " "default: 1
 let g:phpqa_messdetector_autorun = 0 "default: 1
 let g:phpqa_codesniffer_autorun = 0 "default: 1
 let g:phpqa_codecoverage_autorun = 0 "default: 1

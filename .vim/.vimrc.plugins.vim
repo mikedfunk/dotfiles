@@ -284,9 +284,8 @@ if has("python3")
     " Use with my alias psc-clover or puc-clover.
     " TODO write a provider to replace this with vim-coverage https://github.com/google/vim-coverage
     " Plug 'joonty/vim-phpqa', { 'for': 'php' }
-    " maintained fork NOTE: This will put all php lint errors in your location
-    " list! Not worth it. Especially problematic for vidiff in git mergetool.
-    " Plug 'trendfischer/vim-phpqa', { 'for': 'php' }
+    " maintained fork
+    Plug 'trendfischer/vim-phpqa', { 'for': 'php' }
 endif
 Plug 'adoy/vim-php-refactoring-toolbox', { 'for': 'php' }
 " refactor php, get started with <leader>r

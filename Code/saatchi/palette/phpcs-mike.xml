@@ -7,14 +7,8 @@
   <!-- NOTE this can only be declared once!! if you do it multiple times it will override the previous one. comma-delimited. -->
   <!-- <config name="installed_paths" value="/Users/mikefunk/.phpenv/versions/7.0.33/composer/global/slevomat/coding-standard/vendor/slevomat/coding-standard,/Users/mikefunk/.phpenv/versions/7.0.33/composer/global/sirbrillig/phpcs-variable-analysis/vendor/sirbrillig/phpcs-variable-analysis" /> -->
 
-  <!-- start php compatibility -->
-  <!-- I disabled this because it included phpcs/phpcbf and overrode my global version -->
-  <!-- <config name="installed_paths" value="/Users/mikefunk/.phpenv/versions/7.0.33/composer/global/phpcompatibility/php-compatibility/vendor/phpcompatibility/php-compatibility" /> -->
   <!-- ensure php code is compatible with this version -->
-  <!-- <config name="testVersion" value="7.0.33" /> -->
-  <!-- adding this rule is apparently not necessary. It redeclares a class. -->
-  <!-- <rule ref="PhpCompatibility" /> -->
-  <!-- end php compatibility -->
+  <config name="testVersion" value="7.0.33" />
 
   <!-- start phpcs-import-detection -->
   <!-- this is just too buggy.
@@ -65,9 +59,28 @@
 
   <!-- TODO implement https://github.com/object-calisthenics/phpcs-calisthenics-rules/tree/v2.0.1 . Kind of hard to do as the docs for 2.0.1 don't have examples and it's the newest version that supports php 7.0 :( -->
 
-  <!-- begin phpcs-variable-analysis -->
-  <!-- <rule ref="VariableAnalysis" /> -->
-  <!-- end phpcs-variable-analysis -->
+  <!-- begin inpsyde/php-coding-standards https://github.com/inpsyde/php-coding-standards -->
+  <rule ref="Inpsyde">
+    <exclude name="Inpsyde.CodeQuality.FunctionBodyStart.WrongForMultiLineDeclaration" />
+    <exclude name="Inpsyde.CodeQuality.NoAccessors" />
+  </rule>
+  <!-- end inpsyde/php-coding-standards -->
+
+  <!-- Packages requiring php 7.1+ that look useful -->
+  <!-- https://github.com/gskema/phpcs-type-sniff -->
+  <!-- https://github.com/infinityloop-dev/coding-standard -->
+  <!-- https://github.com/Rarst/phpcs-cognitive-complexity -->
+  <!-- https://github.com/mayflower/mo4-coding-standard -->
+
+  <!-- begin sirbrillig/phpcs-variable-analysis https://github.com/sirbrillig/phpcs-variable-analysis -->
+  <rule ref="VariableAnalysis">
+  </rule>
+  <!-- end sirbrillig/phpcs-variable-analysis -->
+
+  <!-- begin PHPCompatibility https://github.com/PHPCompatibility/PHPCompatibility -->
+  <rule ref="PHPCompatibility">
+  </rule>
+  <!-- end PHPCompatibility -->
 
   <arg name="colors" />
 

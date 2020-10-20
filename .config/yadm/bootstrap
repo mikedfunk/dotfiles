@@ -495,7 +495,7 @@ _install_upgrade_phive () {
 _install_upgrade_phive_packages () {
     _log_info "Installing/upgrading phive packages"
     # manifest is in ~/.phive/global.xml
-    phive install --global --trust-gpg-keys
+    phive install --global
     phive update-repository-list --global
     phive update --global
 }
