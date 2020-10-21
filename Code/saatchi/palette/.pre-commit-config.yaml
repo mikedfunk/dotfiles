@@ -51,6 +51,6 @@ repos:
         types: [php]
       - id: phpcs
         name: phpcs
-        entry: phpcs --standard=./phpcs-mike.xml -s -n -v --colors
+        entry: phpcs --standard=./phpcs-mike.xml -s --warning-severity=0 -v --colors
         language: system
         types: [php]

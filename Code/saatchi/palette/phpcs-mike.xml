@@ -63,6 +63,7 @@
   <rule ref="Inpsyde">
     <exclude name="Inpsyde.CodeQuality.FunctionBodyStart.WrongForMultiLineDeclaration" />
     <exclude name="Inpsyde.CodeQuality.NoAccessors" />
+    <exclude name="Inpsyde.CodeQuality.LineLength" />
   </rule>
   <!-- end inpsyde/php-coding-standards -->
 
@@ -73,13 +74,13 @@
   <!-- https://github.com/mayflower/mo4-coding-standard -->
 
   <!-- begin sirbrillig/phpcs-variable-analysis https://github.com/sirbrillig/phpcs-variable-analysis -->
-  <rule ref="VariableAnalysis">
-  </rule>
+  <!-- <rule ref="VariableAnalysis"> -->
+  <!-- </rule> -->
   <!-- end sirbrillig/phpcs-variable-analysis -->
 
   <!-- begin PHPCompatibility https://github.com/PHPCompatibility/PHPCompatibility -->
-  <rule ref="PHPCompatibility">
-  </rule>
+  <!-- <rule ref="PHPCompatibility"> -->
+  <!-- </rule> -->
   <!-- end PHPCompatibility -->
 
   <arg name="colors" />
