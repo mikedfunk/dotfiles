@@ -399,9 +399,9 @@ Plug 'qnighy/vim-ssh-annex' " ssh files syntax coloring e.g. ssh config
 " Plug 'framallo/taskwarrior.vim' " taskwarrior config and task edit syntax
 " Plug 'jwalton512/vim-blade' " laravel blade syntax (in vim-polyglot)
 Plug 'itchyny/vim-highlighturl' " just highlight urls like in a browser
-if has('nvim')
-    " Plug 'nvim-treesitter/nvim-treesitter' " fancy language-aware highlighting and other functions
-endif
+" if has('nvim')
+"     Plug 'nvim-treesitter/nvim-treesitter' " fancy language-aware highlighting and other functions
+" endif
 " }}}
 
 " Visuals {{{
