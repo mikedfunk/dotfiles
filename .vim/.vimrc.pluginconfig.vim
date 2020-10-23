@@ -16,7 +16,7 @@ if has_key(g:plugs, 'ale') && executable('intelephense')
     call ale#Set('php_intelephense_executable', 'intelephense')
     call ale#Set('php_intelephense_use_global', get(g:, 'ale_use_global_executables', 1))
 
-    " same config as for nvim-lsp
+    " same config as for nvim-lspconfig
     call ale#linter#Define('php', {
                 \  'name': 'intelephense',
                 \  'lsp': 'stdio',
@@ -787,7 +787,7 @@ let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Debu
 " }}}
 
 " nvim-lspconfig {{{
-if has_key(g:plugs, 'nvim-lsp')
+if has_key(g:plugs, 'nvim-lspconfig')
 
     " disable lsp diagnostics in vimdiff (mergetool) {{{
     " if &diff
@@ -831,6 +831,9 @@ lua <<EOF
     local on_attach = function(client, bufnr)
         -- require'completion'.on_attach(client, bufnr)
         require'diagnostic'.on_attach(client, bufnr)
+        -- Set the omnifunc for this buffer.
+        -- vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+
     end
 
     nvim_lsp.intelephense.setup{

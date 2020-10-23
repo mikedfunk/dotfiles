@@ -65,6 +65,11 @@
     <exclude name="Inpsyde.CodeQuality.NoAccessors" />
     <exclude name="Inpsyde.CodeQuality.LineLength" />
   </rule>
+
+  <rule ref="Inpsyde.CodeQuality.FunctionLength.TooLong">
+    <exclude-pattern>spec/*</exclude-pattern>
+  </rule>
+
   <!-- end inpsyde/php-coding-standards -->
 
   <!-- Packages requiring php 7.1+ that look useful -->

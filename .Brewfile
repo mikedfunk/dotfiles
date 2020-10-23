@@ -369,5 +369,5 @@ mas "Xcode", id: 497799835 # needed for some tools (TODO which tools?)
 mas "Amphetamine", id: 937984704 # replacement for discontinued "caffeine" menubar app
 # mas "Keeper", id: 414781829 # used by leaf group, like lastpass (There's a brew cask version)
 mas "GIPHY CAPTURE", id: 668208984 # capture screen to gif (alternative to licecap, etc.)
-mas "Jira", id: 1475897096 # official jira cloud desktop app
+# mas "Jira", id: 1475897096 # official jira cloud desktop app
 # }}}

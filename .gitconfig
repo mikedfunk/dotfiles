@@ -275,6 +275,7 @@
     # autocrlf = input
     # autocrlf = true
     excludesfile = ~/.config/git/ignore
+    attributesfile= ~/.config/git/attributes
     autocrlf = false
     ignorecase = false
     preloadindex = true

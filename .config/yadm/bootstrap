@@ -152,6 +152,7 @@ _pin_homebrew_packages () {
     _log_info "Pinning brew packages that need pinning"
     brew pin bison
     brew pin bzip2
+    # brew pin cmake
     brew pin curl
     brew pin icu4c
     brew pin imagemagick
@@ -167,48 +168,6 @@ _pin_homebrew_packages () {
     brew pin readline
     brew pin xz
     brew pin zlib
-}
-# }}}
-
-# install cpanm {{{
-_install_cpanm () {
-    _has cpanm && return
-    _log_info "installing perl cpanm"
-    yes | cpan App::cpanminus
-}
-# }}}
-
-# install cpanm packages {{{
-_install_cpanm_packages () {
-    _log_info "installing/upgrading perl cpanm packages"
-    cpanm swat
-}
-# }}}
-
-# install neovim from source {{{
-_install_neovim_from_source () {
-    _log_info "Installing neovim from source"
-    pushd .
-    if [[ ! -d "$HOME"/Code/neovim ]]; then
-        cd "$HOME"/Code || return
-        git clone git@github.com:neovim/neovim.git
-    fi
-    cd "$HOME"/Code/neovim || return
-    git pull
-    rm build/.ran-third-party-cmake 2>/dev/null || true
-    make CMAKE_BUILD_TYPE=RelWithDebInfo
-    sudo make install
-    popd || return
-}
-# }}}
-
-# install mc {{{
-_install_mc () {
-    # brew formula is broken for this because it's in a private github repo :/
-    _has mc && return
-    _log_info "installing mc (memcached)"
-    curl -L https://github.com/andersjanmyr/mc/releases/download/v1.4.3/mc-osx > /usr/local/bin/mc
-    chmod +x /usr/local/bin/mc
 }
 # }}}
 
@@ -562,24 +521,6 @@ _install_activate_nextdns () {
 }
 # }}}
 
-# install or upgrade ntfy {{{
-# ntfy is broken: `AttributeError: 'NoneType' object has no attribute 'scheduleNotification_'`
-# https://github.com/dschep/ntfy/issues/171#issuecomment-433388371
-# _install_upgrade_ntfy () {
-#     if _has ntfy; then
-#         _log_info "Updating ntfy"
-#         cd || return
-#         /usr/local/bin/python3 -m pip install --upgrade ntfy
-#         cd - || return
-#         return
-#     fi
-#     _log_info "Installing ntfy"
-#     cd || return
-#     /usr/local/bin/python3 -m pip install ntfy
-#     cd - || return
-# }
-# }}}
-
 # immersed vr {{{
 # TODO https://immersedvr.com/dl/Immersed.dmg
 # }}}
@@ -596,14 +537,6 @@ _install_cod () {
     chmod +x /usr/local/bin/cod
     rm -rf cod-Darwin
     builtin cd - || return
-}
-# }}}
-
-# ls_colors {{{
-_install_ls_colors () {
-    [ -d "$HOME"/.dircolors ] && return
-    _log_info "installing LS_COLORS"
-    wget https://raw.github.com/trapd00r/LS_COLORS/master/LS_COLORS -O "$HOME"/.dircolors
 }
 # }}}
 
@@ -739,13 +672,6 @@ _install_upgrade_sshrc () {
 }
 # }}}
 
-# upgrade docker-machine {{{
-_upgrade_docker_machine () {
-    _log_info "Upgrading docker-machine"
-    docker-machine upgrade
-}
-# }}}
-
 # fix yarn link {{{
 # not sure why this happens
 _fix_yarn_link () {
@@ -766,13 +692,6 @@ _clear_evalcache () {
     _log_info "Clearing evalcache"
     # This is what _evalcache_clear does
     rm -f "$ZSH_EVALCACHE_DIR"/init-*.sh
-}
-# }}}
-
-# reminders {{{
-_show_reminders () {
-    _log_info "Don't forget to 'docker-machine upgrade' once in a while!"
-    _log_info "Don't forget to 'brew cask upgrade virtualbox virtualbox-extension-pack' once in a while!"
 }
 # }}}
 
@@ -803,10 +722,6 @@ _install_upgrade_vim_plugins
 _install_upgrade_phive
 _install_upgrade_phive_packages
 _install_upgrade_psysh
-# _install_upgrade_ntfy
-# _install_ls_colors
-# _install_cpanm
-# _install_cpanm_packages
 _update_antibody_plugins
 _apply_hosts_file
 _let_iterm_see_italics
@@ -814,15 +729,11 @@ _apply_mac_preferences
 _start_launch_agents
 _fix_file_size_limit_for_watching_with_entr
 # _install_activate_nextdns
-# _upgrade_docker_machine
-# _install_neovim_from_source
-# _install_mc
 _install_cod
 _install_update_nnn_plugins
 _install_upgrade_sshrc
 _update_asdf_plugins
 _fix_delta_syntax_highlighting_for_php
 _clear_evalcache
-# _show_reminders
 _log_info "Installation complete"
 # }}}

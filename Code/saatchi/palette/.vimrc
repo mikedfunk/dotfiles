@@ -10,6 +10,7 @@
 silent! colo base16-horizon-dark
 " silent! colo base16-outrun-dark
 " set wildignore+=*/vendor/*
+set wildignore+=*/coverage/*
 let g:airline_theme = "base16"
 set wildignore+=*/build/*,cscope.out,tags,.git/*,Session.vim
 " }}}
@@ -115,9 +116,11 @@ endif
 " endif
 " }}}
 
-" nvim-lsp {{{
+" nvim-lspconfig {{{
 
 " moved this here to avoid probs with legacy, zed, etc.
+" moved again to the on_attach function. https://github.com/neovim/nvim-lspconfig/issues/124#issuecomment-585620235
+" moved it back here so I can disable it in other codebases
 augroup nvim_lsp_php
     autocmd!
     autocmd filetype php setlocal omnifunc=v:lua.vim.lsp.omnifunc
@@ -126,6 +129,7 @@ augroup END
 augroup php_lsp_mappings
     autocmd!
     autocmd FileType php nnoremap <buffer> <silent> gd <cmd>lua vim.lsp.buf.declaration()<CR>
+    unmap <c-]>
     autocmd FileType php nnoremap <buffer> <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
     autocmd FileType php nnoremap <buffer> <silent> <leader><c-]> mz:tabe %<CR>`z<cmd>lua vim.lsp.buf.definition()<CR>
     autocmd FileType php nnoremap <buffer> <silent> <c-w><c-]> :vsp<CR><cmd>lua vim.lsp.buf.definition()<CR>

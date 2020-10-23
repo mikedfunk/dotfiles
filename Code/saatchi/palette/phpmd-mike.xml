@@ -17,14 +17,16 @@
   <exclude-pattern>tags</exclude-pattern>
   <exclude-pattern>tests/*</exclude-pattern>
   <exclude-pattern>vendor/*</exclude-pattern>
+  <exclude-pattern>database/seeds/*</exclude-pattern>
 
   <rule ref="rulesets/cleancode.xml">
     <!-- ignore error on e.g. \UnexpectedValueException -->
     <exclude name="MissingImport" />
 
     <!-- yes, this is the only way to exclude a rule for specific files in phpmd :/ -->
-    <exclude name="StaticAccess" />
-    <exclude-pattern>database/seeds/*</exclude-pattern>
+    <!-- this unfortunately excludes the rule all together, not just for this one file. It appears the only way is to whitelist the ones you want to keep! It's a warning anyway :/ -->
+    <!-- <exclude name="StaticAccess" /> -->
+    <!-- <exclude-pattern>database/seeds/*</exclude-pattern> -->
   </rule>
 
   <rule ref="rulesets/codesize.xml">
@@ -38,6 +40,7 @@
 
   <rule ref="rulesets/naming.xml">
     <!-- https://stackoverflow.com/a/29433750/557215 -->
+    <!-- ^ The only way I have found to achieve this is using the exclude element, including all rules from the ruleset except the one you want to customize, and then including it separately. -->
     <exclude name="LongVariable" />
     <exclude name="ShortMethodName" />
     <exclude name="ShortVariable" />
