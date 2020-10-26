@@ -88,6 +88,16 @@
   <!-- </rule> -->
   <!-- end PHPCompatibility -->
 
+  <!-- begin Neutron standard https://github.com/Automattic/phpcs-neutron-standard -->
+  <rule ref="NeutronStandard">
+    <exclude name="NeutronStandard.Whitespace.RequireParenthesisSpacing" />
+    <!-- this overlaps with Inpsyde -->
+    <exclude name="NeutronStandard.Functions.LongFunction.LongFunction" />
+    <!-- this overlaps with Inpsyde -->
+    <exclude name="NeutronStandard.Functions.TypeHint" />
+  </rule>
+  <!-- end Neutron standard -->
+
   <arg name="colors" />
 
   <ini name="memory_limit" value="1024M"/>

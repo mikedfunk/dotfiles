@@ -892,9 +892,12 @@ endsnippet
 
 snippet let "phpspec let (before each test)"
 /** {@inheritdoc} */
-public function let($1)
-{
-    $this->beConstructedWith($2);
+public function let(
+    $1
+) {
+    $this->beConstructedWith(
+        $2
+    );
 }
 endsnippet
 

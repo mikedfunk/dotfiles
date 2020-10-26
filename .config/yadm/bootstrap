@@ -310,6 +310,7 @@ _install_php_70 () {
     yes "" | "${PECL}" install imagick && ( echo 'extension="imagick.so"' >"${PHP_PATH}"/conf.d/04_imagick.ini )
     # xdebug master is now php 7.1+ :(
     yes "" | "${PECL}" install xdebug-2.8.1 && ( echo 'zend_extension="xdebug.so"' >"${PHP_PATH}"/conf.d/05_xdebug.ini )
+    # NOTE: I have 05_memory_limit.ini already there in my yadm files
 
     # install composer global packages
     mkdir -p  "${PHP_PATH}"/{.,}composer

@@ -174,6 +174,8 @@ endif
 if has_key(g:plugs, 'ale')
     nmap <silent> [w <Plug>(ale_previous_wrap)
     nmap <silent> ]w <Plug>(ale_next_wrap)
+    nmap <silent> [e AlePrevious -error<cr>
+    nmap <silent> ]e AleNext -error<cr>
     nnoremap <leader>al :ALELint<cr>
     nnoremap <leader>af :ALEFix<cr>
 endif
@@ -2324,6 +2326,14 @@ endif
 let g:toggle_list_no_mappings = 1
 if has_key(g:plugs, 'vim-togglelist')
     nnoremap <leader>ll :call ToggleLocationList()<cr>
+endif
+" }}}
+
+" vim-unimpaired {{{
+if has_key(g:plugs, 'vim-unimpaired')
+    " I use these for jumping to ale errors
+    unmap ]e
+    unmap [e
 endif
 " }}}
 
