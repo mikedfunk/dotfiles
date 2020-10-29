@@ -42,6 +42,8 @@ endfunction
 if has_key(g:plugs, 'ale')
     nnoremap <c-k> :call TriggerPreviewHover()<cr>
 endif
+
+" set completeopt+=preview
 " }}}
 
 " ale {{{

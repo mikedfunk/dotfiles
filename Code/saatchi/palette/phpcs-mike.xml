@@ -64,6 +64,8 @@
     <exclude name="Inpsyde.CodeQuality.FunctionBodyStart.WrongForMultiLineDeclaration" />
     <exclude name="Inpsyde.CodeQuality.NoAccessors" />
     <exclude name="Inpsyde.CodeQuality.LineLength" />
+      <!-- this is already covered by phpmd -->
+    <exclude name="Inpsyde.CodeQuality.NoElse" />
   </rule>
 
   <rule ref="Inpsyde.CodeQuality.FunctionLength.TooLong">

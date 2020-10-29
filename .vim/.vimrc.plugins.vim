@@ -38,9 +38,9 @@ if executable('ctags')
     Plug 'liuchengxu/vista.vim' " like tagbar for lsp symbols
     " Plug 'vim-php/tagbar-phpctags.vim', { 'do': 'make' } " Better php support for tagbar. Without this tagbar will show nothing if you use a trait. However, the php parser used is not updated for php 7, so it will fail on null coalesce! The first problem is now fixed in majutsushi/tagbar.
 endif
-if has('nvim')
-    " Plug 'ncm2/float-preview.nvim' " nifty neovim floating window alternative to vim's preview window during omni completion (I prefer my simpler approach - this adds separate searching functions)
-endif
+" if has('nvim')
+"     Plug 'ncm2/float-preview.nvim' " nifty neovim floating window alternative to vim's preview window during omni completion (I prefer my simpler approach - this adds separate searching functions)
+" endif
 " use these shortcuts for completion! https://github.com/mikedfunk/learning/blob/master/vim/completion.md
 " Plug 'ajh17/VimCompletesMe' " simple tab omni completion with fallback to other types of completion (not sure I like this... I can just <c-x><c-o>, etc.)
 " Plug 'maralla/completor.vim', { 'do': 'make js' } " vim 8 async autocomplete

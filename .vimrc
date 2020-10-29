@@ -188,7 +188,7 @@ set secure " Always append set secure when exrc option is enabled!
 
 " completeopt {{{
 " completeopt default: 'menu,preview' :h completeopt
-set completeopt-=preview " turn off omnicomplete preview window because it is a bit slow and flashes the completion tooltip between selections
+set completeopt-=preview " turn off omnicomplete preview window because it is a bit slow and flashes the completion tooltip between selections. Doesn't show anything with lsp completion.
 " set completeopt+=longest " only autofill the common text between all completion options
 " if !has('nvim')
 "     set completeopt+=popup

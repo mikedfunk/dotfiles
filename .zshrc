@@ -337,6 +337,11 @@ export FZF_DEFAULT_OPTS="--multi"
 alias nb="BROWSER=\"open '%u'\" newsboat"
 alias info="info --vi-keys" # info -> pinfo is like top -> htop
 
+# https://www.youtube.com/watch?v=Wl7CDe9jsuo&feature=youtu.be
+alias mv="mv -iv"
+alias cp="cp -riv"
+alias mkdir="mkdir -vp"
+
 # tip: curl ping.gg to set up a pingdom-style alert
 shorten-url () { curl -s http://tinyurl.com/api-create.php?url=$1; }
 
