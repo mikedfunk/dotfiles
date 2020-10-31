@@ -315,11 +315,14 @@
     # tool = opendiff
     # tool = vimdiff
 	tool = vimdiff3
+    # tool = vim-conflicted
 
     # shows local, parent, then remote
     # http://psung.blogspot.com/2011/02/reducing-merge-headaches-git-meets.html
     # diff3 includes the ||||||| markers to give context, allowing us to deduce whether a change was an addition or a deletion.
-    # conflictstyle = diff3
+    conflictstyle = diff3
+[mergetool "vim-conflicted"]
+    cmd = nvim +Conflicted
 [mergetool "vimdiff3"]
     # path = nvim
     cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'

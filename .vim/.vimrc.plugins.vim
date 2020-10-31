@@ -326,6 +326,7 @@ if executable('git')
     " Plug 'junegunn/gv.vim', { 'on': 'GV' } " :GV for git/tig-style log
     " Plug 'mmozuras/vim-github-comment', { 'on': 'GHComment' } | Plug 'mattn/webapi-vim' " :GHComment my comment goes to latest commit on github (so cool but I haven't got into the habit of using it)
     Plug 'hotwatermorning/auto-git-diff' " cool git rebase diffs per commit
+    " Plug 'tpope/vim-fugitive' | Plug 'christoomey/vim-conflicted' " better mergetool that makes use of fugitive (this is worse - I still get problems with using local or remote changes not properly removing conflict symbols and the other code)
 
     " NOTE: gutentags by default does not tag files in wildignore!
     "

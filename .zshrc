@@ -82,6 +82,8 @@ path=(
   $HOME/bin
   # global python pip packages
   $HOME/.local/bin
+  # emacs
+  $HOME/.emacs.d/bin
   /Applications/Docker.app/Contents/Resources/bin
   # (homebrew is already covered by the eval above)
   # wtf homebrew? this is too far down the list!

@@ -139,6 +139,7 @@ let g:ale_php_cs_fixer_options = '--config=.php_cs'
 
 let g:ale_sign_column_always = 1 " otherwise screen keeps jumping left and right
 
+let airline#extensions#ale#show_line_numbers = 0
 let g:airline#extensions#ale#error_symbol = 'Errors:' " default is a bit sparse: E
 " let g:airline#extensions#ale#error_symbol = '🛑'
 " let g:airline#extensions#ale#error_symbol = '🚨 '
@@ -174,8 +175,11 @@ endif
 if has_key(g:plugs, 'ale')
     nmap <silent> [w <Plug>(ale_previous_wrap)
     nmap <silent> ]w <Plug>(ale_next_wrap)
-    nmap <silent> [e AlePrevious -error<cr>
-    nmap <silent> ]e AleNext -error<cr>
+    " unmap the vim-unimpaired version
+    silent! unmap ]e
+    silent! unmap [e
+    nnoremap <silent> [e :ALEPrevious -error<cr>
+    nnoremap <silent> ]e :ALENext -error<cr>
     nnoremap <leader>al :ALELint<cr>
     nnoremap <leader>af :ALEFix<cr>
 endif
@@ -485,6 +489,7 @@ let g:float_preview#docked = 0
 " }}}
 
 " fzf.vim {{{
+let g:airline#extensions#fzf#enabled = 1
 " this was making it ignore .agignore too :/
 let $FZF_DEFAULT_COMMAND = 'ag --files-with-matches --skip-vcs-ignores -g ""'
 " let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
@@ -771,7 +776,8 @@ let g:neoformat_basic_format_trim = 1 " Enable trimmming of trailing whitespace
 
 " nnn.vim {{{
 if has_key(g:plugs, 'nnn.vim')
-    nnoremap - :NnnPicker %:p:h<cr>
+    " nnoremap - :NnnPicker %:p:h<cr>
+    nnoremap - :NnnPicker %<cr>
     nnoremap <leader>ee :NnnPicker<cr>
     command! -bang -nargs=* -complete=file Ex NnnPicker <args>
     command! -bang -nargs=* -complete=file Explore NnnPicker <args>
@@ -1254,6 +1260,7 @@ endif
 " }}}
 
 " {{{ tagbar
+let g:airline#extensions#tagbar#enabled = 0 " cool but slows down php
 let g:tagbar_autofocus = 1
 let g:tagbar_autoclose = 1
 let g:tagbar_previewwin_pos = "botright"
@@ -1506,6 +1513,7 @@ endif
 
 " {{{ vim-airline
 " let g:airline_skip_empty_sections = 1
+let g:airline#extensions#branch#format = 1 " feature/foo -> foo
 let g:airline_powerline_fonts = 1 " airline use cool powerline symbols (this also makes vista.vim use powerline symbols)
 let g:airline#extensions#whitespace#enabled = 1 " show whitespace warnings
 let g:airline_highlighting_cache = 1 " cache syntax highlighting for better performance
@@ -1519,35 +1527,18 @@ let g:airline#extensions#tabline#show_tab_count = 0 " hide tab count on right
 let g:airline#extensions#tabline#show_buffers = 0 " shows buffers when no tabs
 let g:airline#extensions#tabline#show_splits = 1 " shows how many splits are in each tab and which split you're on
 let g:airline#extensions#tabline#show_tab_type = 0 " right side says either 'buffers' or 'tabs'
-let g:airline#extensions#tagbar#enabled = 0 " cool but slows down php
-let g:airline#extensions#nvimlsp#enabled = 0 " this stopped working in a recent update - tons of errors
+" let g:airline#extensions#nvimlsp#enabled = 1 " overlaps with ale
+" let g:airline#extensions#nvimlsp#error_symbol = 'Error:' " default is E:
+" let g:airline#extensions#nvimlsp#warning_symbol = 'Warning:' " default is W:
+let g:airline#extensions#obsession#enabled = 1
+let g:airline#extensions#searchcount#enabled = 1
+let g:airline#extensions#wordcount#enabled = 0
 
 " emacs-like slanted separators
 " let g:airline_left_sep="\ue0b8"
 " let g:airline_left_alt_sep = "\ue0b9"
 " let g:airline_right_sep="\ue0be"
 " let g:airline_right_alt_sep="\ue0b9"
-
-" vim-obsession indicator - show current session name {{{
-" e.g. '$ my-session-name.vim'
-let g:this_session = get(g:, 'this_session', '')
-let g:current_session_text = ''
-
-" cache current session text
-function! GetCurrentSessionText() abort
-    if g:current_session_text !=# ''
-        return g:current_session_text
-    endif
-    let g:current_session_text = '$ ' . fnamemodify(g:this_session, ':t')
-    return g:current_session_text
-endfunction
-
-" after the obsession session loads, set the airline obsession text
-augroup obsession_current
-    autocmd!
-    autocmd SessionLoadPost * let g:airline#extensions#obsession#indicator_text = GetCurrentSessionText()
-augroup end
-" }}}
 
 if has_key(g:plugs, 'vim-airline')
     " add asyncrun status for async tasks e.g. 'running' 'failure' 'success'
@@ -1567,8 +1558,6 @@ if has_key(g:plugs, 'vim-airline')
         augroup END
     endif
 endif
-
-
 " }}}
 
 " vim-better-whitespace {{{
@@ -2329,14 +2318,6 @@ if has_key(g:plugs, 'vim-togglelist')
 endif
 " }}}
 
-" vim-unimpaired {{{
-if has_key(g:plugs, 'vim-unimpaired')
-    " I use these for jumping to ale errors
-    unmap ]e
-    unmap [e
-endif
-" }}}
-
 " VimCompletesMe {{{
 let g:vcm_direction = 'p'
 let g:vcm_s_tab_behavior = 1
@@ -2378,6 +2359,7 @@ let g:vimwiki_ext2syntax = { '.md': 'markdown' }
 " }}}
 
 " vista.vim {{{
+let g:airline#extensions#vista#enabled = 1
 let g:vista_close_on_jump = 1
 let g:vista_default_executive = 'nvim_lsp'
 " let g:vista_default_executive = 'ctags'

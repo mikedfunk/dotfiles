@@ -618,15 +618,24 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " I am slow on the shift key
 abbrev willREturn willReturn
 abbrev shouldREturn shouldReturn
+
 abbrev willTHrow willThrow
+
 abbrev sectino section
+
 abbrev colleciton collection
 abbrev Colleciton Collection
+
+abbrev conneciton connection
+abbrev Conneciton Connection
+
+abbrev connecitno connection
+abbrev Connecitno Connection
+
 abbrev leagcy legacy
 abbrev Leagcy Legacy
 
-cabbr note: ~/Notes/
-cabbrev snote: ~/Notes/saatchiart/
+" cabbr note: ~/Notes/
 " }}}
 
 " Mappings {{{
