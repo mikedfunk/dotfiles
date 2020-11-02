@@ -10,6 +10,15 @@
   <!-- ensure php code is compatible with this version -->
   <config name="testVersion" value="7.0.33" />
 
+  <!-- wtf? it's called PHP code sniffer. -->
+  <arg name="extensions" value="php" />
+
+  <!-- Files or directories to check -->
+  <!-- <file>.</file> -->
+
+  <!-- Path to strip from the front of file paths inside reports (displays shorter paths) -->
+  <!-- <arg name="basepath" value="." /> -->
+
   <!-- start phpcs-import-detection -->
   <!-- this is just too buggy.
     - skip import because it's in your current namespace? error.
@@ -57,15 +66,31 @@
   <!-- <rule ref="SlevomatCodingStandard.TypeHints.LongTypeHints" /> -->
   <!-- end slevomat coding standard -->
 
+  <!-- compatible but not installed -->
+  <!-- readme reminds you that this was written 10 years ago, is prone to false positives, and is slow. issues are stale. https://github.com/FloeDesignTechnologies/phpcs-security-audit -->
+  <!-- joomla standards are ugly https://github.com/joomla/coding-standards -->
+  <!-- these seem focused on wordpress https://github.com/Automattic/VIP-Coding-Standards -->
+  <!-- end compatible but not installed -->
+
   <!-- TODO implement https://github.com/object-calisthenics/phpcs-calisthenics-rules/tree/v2.0.1 . Kind of hard to do as the docs for 2.0.1 don't have examples and it's the newest version that supports php 7.0 :( -->
+
+  <!-- begin humanmade standards -->
+  <!-- might remove... these are mostly based on wordpress and not easy to include -->
+  <rule ref="./vendor/humanmade/coding-standards/HM/Sniffs/Functions/NamespacedFunctionsSniff.php" />
+  <rule ref="./vendor/humanmade/coding-standards/HM/Sniffs/Namespaces/NoLeadingSlashOnUseSniff.php" />
+  <rule ref="./vendor/humanmade/coding-standards/HM/Sniffs/Whitespace/MultipleEmptyLinesSniff.php" />
+  <!-- end humanmade standards -->
+
 
   <!-- begin inpsyde/php-coding-standards https://github.com/inpsyde/php-coding-standards -->
   <rule ref="Inpsyde">
     <exclude name="Inpsyde.CodeQuality.FunctionBodyStart.WrongForMultiLineDeclaration" />
     <exclude name="Inpsyde.CodeQuality.NoAccessors" />
     <exclude name="Inpsyde.CodeQuality.LineLength" />
-      <!-- this is already covered by phpmd -->
+    <!-- this is already covered by phpmd -->
     <exclude name="Inpsyde.CodeQuality.NoElse" />
+    <!-- also covered by phpmd rulesets/codesize.xml/ExcessiveMethodLength -->
+    <exclude name="Inpsyde.CodeQuality.FunctionLength.TooLong" />
   </rule>
 
   <rule ref="Inpsyde.CodeQuality.FunctionLength.TooLong">

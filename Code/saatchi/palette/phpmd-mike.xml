@@ -32,6 +32,14 @@
   <rule ref="rulesets/codesize.xml">
   </rule>
 
+  <!-- see phpcs Inpsyde.CodeQuality.FunctionLength.TooLong -->
+  <rule ref="rulesets/codesize.xml/ExcessiveMethodLength" >
+    <properties>
+      <property name="minimum" value="50" />
+      <property name="ignore-whitespace" value="false" />
+    </properties>
+  </rule>
+
   <rule ref="rulesets/controversial.xml">
   </rule>
 
