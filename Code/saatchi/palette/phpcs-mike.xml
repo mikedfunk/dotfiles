@@ -76,9 +76,9 @@
 
   <!-- begin humanmade standards -->
   <!-- might remove... these are mostly based on wordpress and not easy to include -->
-  <rule ref="./vendor/humanmade/coding-standards/HM/Sniffs/Functions/NamespacedFunctionsSniff.php" />
-  <rule ref="./vendor/humanmade/coding-standards/HM/Sniffs/Namespaces/NoLeadingSlashOnUseSniff.php" />
-  <rule ref="./vendor/humanmade/coding-standards/HM/Sniffs/Whitespace/MultipleEmptyLinesSniff.php" />
+  <!-- <rule ref="./vendor/humanmade/coding-standards/HM/Sniffs/Functions/NamespacedFunctionsSniff.php" /> -->
+  <!-- <rule ref="./vendor/humanmade/coding-standards/HM/Sniffs/Namespaces/NoLeadingSlashOnUseSniff.php" /> -->
+  <!-- <rule ref="./vendor/humanmade/coding-standards/HM/Sniffs/Whitespace/MultipleEmptyLinesSniff.php" /> -->
   <!-- end humanmade standards -->
 
 
@@ -94,6 +94,10 @@
   </rule>
 
   <rule ref="Inpsyde.CodeQuality.FunctionLength.TooLong">
+    <exclude-pattern>spec/*</exclude-pattern>
+  </rule>
+
+  <rule ref="Inpsyde.CodeQuality.ArgumentTypeDeclaration">
     <exclude-pattern>spec/*</exclude-pattern>
   </rule>
 

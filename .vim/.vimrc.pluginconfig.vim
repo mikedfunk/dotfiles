@@ -24,6 +24,22 @@ if has_key(g:plugs, 'ale') && executable('intelephense')
                 \    'environment': {
                 \      'phpVersion': "7.0.0",
                 \    },
+                \    'files': {
+                \      'exclude': [
+                \        "**/.git/**",
+                \        "**/.svn/**",
+                \        "**/.hg/**",
+                \        "**/CVS/**",
+                \        "**/.DS_Store/**",
+                \        "**/node_modules/**",
+                \        "**/bower_components/**",
+                \        "**/vendor/**/{Tests,tests}/**",
+                \        "**/.history/**",
+                \        "**/vendor/**/vendor/**",
+                \        "**/spec/**",
+                \        "**/coverage/**"
+                \      ]
+                \    },
                 \    'completion': {
                 \      'insertUseDeclaration': v:true,
                 \      'fullyQualifyGlobalConstantsAndFunctions': v:true
@@ -827,6 +843,7 @@ if has_key(g:plugs, 'nvim-lspconfig')
     if executable('intelephense')
 
         " https://github.com/Mte90/dotfiles/blob/master/.vim/custom/custom-lsp.vim
+        " https://github.com/bmewburn/vscode-intelephense/blob/master/package.json#L149-L316
         " available stubs: https://github.com/JetBrains/phpstorm-stubs
         " added: couchbase, redis, memcached
 
@@ -852,7 +869,32 @@ lua <<EOF
                 },
                 completion = {
                     insertUseDeclaration = true,
-                    fullyQualifyGlobalConstantsAndFunctions = true
+                    fullyQualifyGlobalConstantsAndFunctions = true,
+                    triggerParameterHints = true
+                },
+                diagnostics = {
+                    run = {
+                        "onSave"
+                    }
+                },
+                format = {
+                    enable = true
+                },
+                files = {
+                    exclude = {
+                        "**/.git/**",
+                        "**/.svn/**",
+                        "**/.hg/**",
+                        "**/CVS/**",
+                        "**/.DS_Store/**",
+                        "**/node_modules/**",
+                        "**/bower_components/**",
+                        "**/vendor/**/{Tests,tests}/**",
+                        "**/.history/**",
+                        "**/vendor/**/vendor/**",
+                        "**/spec/**",
+                        "**/coverage/**"
+                    }
                 },
                 stubs = {
                     "apache",
@@ -932,6 +974,9 @@ lua <<EOF
                     "Zend OPcache",
                     "zip",
                     "zlib"
+                },
+                telemetry = {
+                    enabled = false
                 }
             }
         },
@@ -1527,7 +1572,7 @@ let g:airline#extensions#tabline#show_tab_count = 0 " hide tab count on right
 let g:airline#extensions#tabline#show_buffers = 0 " shows buffers when no tabs
 let g:airline#extensions#tabline#show_splits = 1 " shows how many splits are in each tab and which split you're on
 let g:airline#extensions#tabline#show_tab_type = 0 " right side says either 'buffers' or 'tabs'
-" let g:airline#extensions#nvimlsp#enabled = 1 " overlaps with ale
+let g:airline#extensions#nvimlsp#enabled = 0 " overlaps with ale
 " let g:airline#extensions#nvimlsp#error_symbol = 'Error:' " default is E:
 " let g:airline#extensions#nvimlsp#warning_symbol = 'Warning:' " default is W:
 let g:airline#extensions#obsession#enabled = 1
@@ -1650,6 +1695,7 @@ let g:flow#timeout = 4 " increase timeout to avoid errors on init
 " vim-fugivite {{{
 " cd to git root: :Gcd
 let g:fugitive_git_executable = 'git -c "color.ui=never"' " Why is this not default?
+let g:airline#extensions#fugitiveline#enabled = 1
 " I don't use these but keeping them around in case I ever switch from tig to
 " fugitive
 " if has_key(g:plugs, 'vim-fugitive')
@@ -1725,6 +1771,7 @@ endif
 " }}}
 
 " vim-gutentags {{{
+let g:airline#extensions#gutentags#enabled = 1
 " if isdirectory(expand("~/.vim/plugged/vim-gutentags"))
 "     nnoremap <leader>gu :execute 'GutentagsUpdate!'<cr>:redraw!<cr>
 " else

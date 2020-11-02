@@ -11,6 +11,7 @@ use PhpCsFixer\Fixer\Import\OrderedImportsFixer;
 require_once __DIR__ . '/vendor/autoload.php';
 
 $hasPedroTroller = \class_exists('PedroTroller\CS\Fixer\Fixers');
+$hasDebugStatementsFixers = \class_exists('Drew\DebugStatementsFixers\Dump');
 
 // Updating dependencies (including require-dev)
 // Your requirements could not be resolved to an installable set of packages.
@@ -36,6 +37,9 @@ $finder = PhpCsFixer\Finder::create()
 $config = PhpCsFixer\Config::create();
 if ($hasPedroTroller) {
     $config->registerCustomFixers(new PedroTroller\CS\Fixer\Fixers());
+}
+if ($hasDebugStatementsFixers) {
+    $config->registerCustomFixers([new Drew\DebugStatementsFixers\Dump()]);
 }
 
 $rules = [
@@ -333,6 +337,12 @@ if ($hasPedroTroller) {
         'PedroTroller/phpspec_scenario_return_type_declaration' => true,
         // 'PedroTroller/phpspec_scenario_scope' => true, // WHY would I want to remove the `public` from each phpspec method?
         'PedroTroller/ordered_spec_elements' => true,
+    ]);
+}
+
+if ($hasDebugStatementsFixers) {
+    $rules = \array_merge($rules, [
+        // 'RemoveDebugStatements/dump' => true, // this is just too risky - I could end up removing a var_dump or something
     ]);
 }
 

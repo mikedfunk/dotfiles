@@ -184,6 +184,15 @@ _install_upgrade_psysh () {
 }
 # }}}
 
+# install phpdcd {{{
+_install_phpdcd () {
+    _has phpdcd && return
+    _log_info "installing phpdcd"
+    wget -O /usr/local/bin/phpdcd https://phar.phpunit.de/phpdcd.phar
+    chmod +x /usr/local/bin/phpdcd
+}
+# }}}
+
 # akamai {{{
 _install_upgrade_akamai () {
     _has akamai && return
@@ -723,6 +732,7 @@ _install_upgrade_vim_plugins
 _install_upgrade_phive
 _install_upgrade_phive_packages
 _install_upgrade_psysh
+_install_phpdcd
 _update_antibody_plugins
 _apply_hosts_file
 _let_iterm_see_italics
