@@ -35,7 +35,8 @@ if executable('ctags')
     " evaluating https://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
     Plug 'ludovicchabant/vim-gutentags' " auto ctags runner. no lazy load.
     " Plug 'majutsushi/tagbar' "Shows methods/properties. no lazy load.
-    Plug 'liuchengxu/vista.vim' " like tagbar for lsp symbols
+    Plug 'liuchengxu/vista.vim' " like tagbar for lsp symbols (broke with
+    " latest neovim nightly)
     " Plug 'vim-php/tagbar-phpctags.vim', { 'do': 'make' } " Better php support for tagbar. Without this tagbar will show nothing if you use a trait. However, the php parser used is not updated for php 7, so it will fail on null coalesce! The first problem is now fixed in majutsushi/tagbar.
 endif
 " if has('nvim')
@@ -401,9 +402,9 @@ Plug 'qnighy/vim-ssh-annex' " ssh files syntax coloring e.g. ssh config
 " Plug 'framallo/taskwarrior.vim' " taskwarrior config and task edit syntax
 " Plug 'jwalton512/vim-blade' " laravel blade syntax (in vim-polyglot)
 Plug 'itchyny/vim-highlighturl' " just highlight urls like in a browser
-" if has('nvim')
-"     Plug 'nvim-treesitter/nvim-treesitter' " fancy language-aware highlighting and other functions
-" endif
+if has('nvim')
+    " Plug 'nvim-treesitter/nvim-treesitter' " fancy language-aware highlighting and other functions (it changes colors and is a little buggy with color rendering. I also just don't find it that useful at the moment. I can already do most of this stuff without it.)
+endif
 " }}}
 
 " Visuals {{{

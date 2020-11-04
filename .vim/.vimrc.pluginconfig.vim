@@ -1027,72 +1027,87 @@ endif
 if has_key(g:plugs, 'nvim-treesitter')
 
     " Syntax based code folding
-    set foldmethod=expr
-    set foldexpr=nvim_treesitter#foldexpr()
+    " set foldmethod=expr
+    " set foldexpr=nvim_treesitter#foldexpr()
 
 lua <<EOF
     require'nvim-treesitter.configs'.setup {
       ensure_installed = { "javascript", "php" },
       highlight = { enable = true },
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = "gnn",
-          node_incremental = "grn",
-          scope_incremental = "grc",
-          node_decremental = "grm",
-        },
-      },
       refactor = {
-        highlight_definitions = { enable = true },
         highlight_current_scope = { enable = true },
         smart_rename = {
           enable = true,
-          keymaps = { smart_rename = "grr" },
-        },
-        navigation = {
-          enable = true,
-          keymaps = {
-            goto_definition = "gnd",
-            list_definitions = "gnD",
-            goto_next_usage = "<a-*>",
-            goto_previous_usage = "<a-#>",
-          },
-        },
-      },
-      textobjects = {
-        select = {
-          enable = true,
-          keymaps = {
-            ["af"] = "@function.outer",
-            ["if"] = "@function.inner",
-            ["ac"] = "@class.outer",
-            ["ic"] = "@class.inner",
-          },
-        },
-        move = {
-          enable = true,
-          goto_next_start = {
-            ["]m"] = "@function.outer",
-            ["]]"] = "@class.outer",
-          },
-          goto_next_end = {
-            ["]M"] = "@function.outer",
-            ["]["] = "@class.outer",
-          },
-          goto_previous_start = {
-            ["[m"] = "@function.outer",
-            ["[["] = "@class.outer",
-          },
-          goto_previous_end = {
-            ["[M"] = "@function.outer",
-            ["[]"] = "@class.outer",
-          },
-        },
-      },
+          keymaps = { smart_rename = "grr" }
+        }
+      }
     }
 EOF
 endif
+
+" full example (lua):
+"
+" require'nvim-treesitter.configs'.setup {
+"   ensure_installed = { "javascript", "php" },
+"   highlight = { enable = true },
+"   incremental_selection = {
+"     enable = true,
+"     keymaps = {
+"       init_selection = "gnn",
+"       node_incremental = "grn",
+"       scope_incremental = "grc",
+"       node_decremental = "grm"
+"     },
+"   },
+"   refactor = {
+"     highlight_definitions = { enable = true },
+"     highlight_current_scope = { enable = true },
+"     smart_rename = {
+"       enable = true,
+"       keymaps = { smart_rename = "grr" }
+"     },
+"     navigation = {
+"       enable = true,
+"       keymaps = {
+"         goto_definition = "gnd",
+"         list_definitions = "gnD",
+"         goto_next_usage = "<a-*>",
+"         goto_previous_usage = "<a-#>"
+"       },
+"     },
+"   },
+"   textobjects = {
+"     select = {
+"       enable = true,
+"       keymaps = {
+"         ["af"] = "@function.outer",
+"         ["if"] = "@function.inner",
+"         ["ac"] = "@class.outer",
+"         ["ic"] = "@class.inner"
+"       },
+"     },
+"     move = {
+"       enable = true,
+"       goto_next_start = {
+"         ["]m"] = "@function.outer",
+"         ["]]"] = "@class.outer"
+"       },
+"       goto_next_end = {
+"         ["]M"] = "@function.outer",
+"         ["]["] = "@class.outer"
+"       },
+"       goto_previous_start = {
+"         ["[m"] = "@function.outer",
+"         ["[["] = "@class.outer"
+"       },
+"       goto_previous_end = {
+"         ["[M"] = "@function.outer",
+"         ["[]"] = "@class.outer"
+"       }
+"     }
+"   }
+" }
+
 " }}}
 
 " onedark.vim {{{
@@ -2406,15 +2421,25 @@ let g:vimwiki_ext2syntax = { '.md': 'markdown' }
 " }}}
 
 " vista.vim {{{
-let g:airline#extensions#vista#enabled = 1
 let g:vista_close_on_jump = 1
-let g:vista_default_executive = 'nvim_lsp'
+" let g:vista_default_executive = 'nvim_lsp'
+" temporary fix - something is broken with vista and nvim-lspconfig:
+"
+" ```
+" Error detected while processing function <SNR>104_do_vim_enter[3]..vista#RunForNearestMethodOrFunction[3]..vista#executive#nvim_lsp#Execute[12]..<SNR>259_RunAsync:
+" line   19:
+" E5108: Error executing lua Vim(call):E712: Argument of map() must be a List or Dictionary
+" ```
+let g:vista_default_executive = 'ale'
 " let g:vista_default_executive = 'ctags'
 " let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 " Is there any font these icons fully work with?
 let g:vista#renderer#enable_icon = 0
 let g:vista_fzf_preview = ['right:50%']
 if has_key(g:plugs, 'vista.vim')
-    nnoremap <silent> <leader>bb :Vista!!<CR>
+    let g:airline#extensions#vista#enabled = 1
+    " nnoremap <silent> <leader>bb :Vista!!<CR>
+    " temp fix for whatever is wrong with nvim_lsp (see above)
+    nnoremap <silent> <leader>bb :Vista ale<CR>
 endif
 " }}}

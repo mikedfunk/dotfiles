@@ -338,6 +338,7 @@ export FZF_DEFAULT_OPTS="--multi"
 # alias nb="BROWSER=\"echo '%u' | pbcopy\" newsboat" # when opening links, just copy to clipboard
 alias nb="BROWSER=\"open '%u'\" newsboat"
 alias info="info --vi-keys" # info -> pinfo is like top -> htop
+alias updatedb="/usr/libexec/locate.updatedb" # remember to sudo
 
 # https://www.youtube.com/watch?v=Wl7CDe9jsuo&feature=youtu.be
 alias mv="mv -iv"
