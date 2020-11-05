@@ -17,6 +17,7 @@ tap "wfxr/code-minimap" # for a vim plugin
 # tap "knes1/tap" # elktail
 # tap "moncho/dry" # dry
 # tap "andersjanmyr/homebrew-tap" # mc
+# tap "xvxx/code" # shy
 # }}}
 
 # brew {{{
@@ -192,6 +193,7 @@ brew "scummvm" # never have I seen a more wretched hive of scum(m) and villainy
 brew "shellcheck" # Checks shell syntax (used by vim ALE)
 brew "shfmt" # formats shell scripts (used by vim ALE)
 # brew "shml" # $(fgcolor red)wow$(fgcolor end)
+# brew "shy" # neat ssh fuzzy connector (I rarely even use ssh these days)
 # brew "skaffold" # awesome local kubernetes cluster by google (TODO learn this! It looks freakin awesome)
 brew "ssh-copy-id" # copies ssh keys to remote servers
 # brew "sshrc" # use ~/.sshrc and ~/.sshrc.d on remote servers. bring your dotfiles with you! (not in homebfrew any more??)
@@ -263,7 +265,7 @@ cask "browserstacklocal" # local ie11, etc? If I have to. Otherwise, easy altern
 cask "cold-turkey-blocker" # blocks distracting website access so I can work
 # cask "discord" # chat
 cask "docker" # docker for mac desktop app
-cask "dozer" # little menubar app that allows hiding menubar icon clutter
+# cask "dozer" # little menubar app that allows hiding menubar icon clutter (replaced by hiddenbar)
 # cask "dropbox" # I especially use this for synching my notes so I can view them in the joplin mobile app (not using this feature right now)
 cask "eloston-chromium" # de-googled chromium
 # cask "emacs" # this actually makes sense as a cask. It becomes tmux, vim, and kitty all in one.
@@ -283,6 +285,7 @@ cask "grandperspective" # visualize storage hogs in the hard drive
 # cask "haptickey" # give haptic feedback on touchpad when pressing the touchbar
 # cask "helium" # android backup without root (doesn't seem to work, but the chrome app does)
 # cask "http-toolkit" # kind of like charles or wireshark, but with support for docker. (docker support seems to be coming soon)
+cask "hiddenbar" # hide/show part of the menubvar. replaces dozer.
 # cask "insomnia" # http api client like postman but nicer looking (I use this for sharing with my team but I mostly use vim-rest-console)
 cask "insomnia-designer" # like insomnia but includes openapi features
 cask "iterm2" # I was using kitty but they use opengl and macos deprecated opengl support, so it crashes regularly. iTerm now has gpu rendering, so I'm back to iTerm! It has a bunch of other cool new stuff now anyway. (There's also iterm2-nightly and iterm2-beta, which I've found to be unstable.)
@@ -328,13 +331,14 @@ cask "nvidia-geforce-now"
 # cask "qlprettypatch" # quicklook plugin (preview patch files)
 # cask "quicklook-csv" # quicklook plugin (preview csvs)
 # cask "qlimagesize" # quicklook plugin (display image size and resolution in the title in preview)
+cask "rectangle" # snap window to screen edges with mouse or keyboard. replaces spectacle.
 # cask "scummvm" # old school
 # cask "sequel-pro" # mysql gui client. I mostly use mycli.
 cask "sequel-pro-nightly" # nightly has bug fixes and dark mode! B)
 # cask "shadow" # cloud gaming system https://shadow.tech
 cask "skype" # Dad uses skype. Skype web requires chrome. I don't like chrome.
 cask "slack" # needed for screen sharing features. I mostly use the web app.
-cask "spectacle" # keyboard window splitter/resizer/mover. Kind of like a lightweight i3 window manager. I use it a lot.
+# cask "spectacle" # keyboard window splitter/resizer/mover. Kind of like a lightweight i3 window manager. I use it a lot. (replaced with rectangle - a superset that also snaps to edges by dragging)
 # cask "spotify" # mac native spotify player (I use the web app, but sometimes it gets stuck in an offline state or randomly stops playing)
 # cask "stoplight-studio" # openapi ide. This is cool but you can also just use the web version at https://stoplight.io/p/studio but the desktop app works with local files _and_ automatically mocks local apis with prism - their built-in api mocker (this is really only useful as a fancy local openapi spec editor since even their ci docs generator just hits their api)
 # cask "synthesia" # piano learning software

@@ -188,7 +188,7 @@ windows:
       - shell_command:
           - saatchi-docker-start
         focus: true
-      - while true; do dme && ctop; sleep 1; done
+      - while true; do ctop; sleep 1; done
       - ts
 # }}}
 

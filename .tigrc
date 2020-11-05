@@ -48,7 +48,8 @@ bind main P ?@git cherry-pick %(commit)
 bind main grv !git revert %(commit)
 
 # open the commit on github (brs = browse)
-bind main gbrs @sh -c "open 'https://'$(git remote -v | grep -Eo 'github.com[:/][^.]+' | head -1 | tr : /)'/commit/%(commit)'"
+# bind main gbrs @sh -c "open 'https://'$(git remote -v | grep -Eo 'github.com[:/][^.]+' | head -1 | tr : /)'/commit/%(commit)'"
+bind main B @sh -c "open 'https://'$(git remote -v | grep -Eo 'github.com[:/][^.]+' | head -1 | tr : /)'/commit/%(commit)'"
 
 # Show commit statistics for the author under the cursor
 bind main U +sh -c 'git --no-pager shortlog -s --author="$(git show -s --format=%aE %(commit))" </dev/tty'
@@ -122,7 +123,7 @@ bind generic grep view-grep
 bind generic gjo @git jo
 
 # amend last commit  (+ in any view)
-bind generic gca !git commit --amend
+bind generic gca ?git commit --amend
 bind generic gcfd !git cfd
 bind generic gcnd !git cnd
 bind generic gcfm !git cfm
@@ -221,6 +222,7 @@ bind log <Ctrl-n> :/^commit
 bind log <Ctrl-p> :?^commit
 bind log A none
 bind log A ?git commit --amend
+bind log B @sh -c "open 'https://'$(git remote -v | grep -Eo 'github.com[:/][^.]+' | head -1 | tr : /)'/commit/%(commit)'"
 # }}}
 
 # }}}
