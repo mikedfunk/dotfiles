@@ -345,6 +345,7 @@ cask "slack" # needed for screen sharing features. I mostly use the web app.
 # cask "ssh-tunnel-manager" # mac native gui to manage running ssh tunnels (I just put tunnels in launchctl with autossh and forget about them)
 # cask "steam" # yep
 # cask "suspicious-package" # quicklook plugin for mac dmg package inspection (I don't care about inspecting these)
+# cask "tableplus" # alternative to sequelpro (paid)
 # cask "transmission" # unleash a torrent of files ;)
 # cask "unshaky" # fix double keypress on macbook butterfly keyboard
 # cask "vagrant" # development VM maker/manager (I use docker now, but this is helpful for a linux training course I'm taking)

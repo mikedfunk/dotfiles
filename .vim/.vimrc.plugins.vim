@@ -295,6 +295,7 @@ Plug 'adoy/vim-php-refactoring-toolbox', { 'for': 'php' }
 " this thing doesn't seem to work at all with php 7. Phar project is
 " abandoned and forks don't work.
 " Plug 'vim-php/vim-php-refactoring', { 'do': '/usr/local/bin/wget -O /usr/local/bin/refactor.phar https://github.com/QafooLabs/php-refactoring-browser/releases/download/v0.1/refactor.phar' }
+Plug 'noahfrederick/vim-laravel', { 'for': 'php' } " mostly junk commands like :Artisan but useful for gf improvement for config, blade template names, and translation keys
 " }}}
 
 " Projects and Tasks {{{
@@ -337,7 +338,11 @@ if executable('git')
     Plug 'tpope/vim-git' " Git file mappings and functions (e.g. rebase helpers) and syntax highlighting, etc. I add mappings in my plugin config.
 endif
 Plug 'wting/gitsessions.vim' " sessions based on git branches!
-Plug 'rhysd/git-messenger.vim', { 'on': 'GitMessenger' } " show last commit for line, or even the one before that!
+" Plug 'rhysd/git-messenger.vim', { 'on': 'GitMessenger' } " show last commit for line, or even the one before that!
+if has('nvim')
+    " Plug 'f-person/git-blame.nvim' " show commit message in virtual text to the right of code in muted colors. That's it.
+    Plug 'APZelos/blamer.nvim' " yet another git blame virtual text plugin
+endif
 Plug 'mattn/webapi-vim' | Plug 'mattn/vim-gist' " :Gist to create a github gist
 " }}}
 
@@ -416,6 +421,7 @@ Plug 'vim-airline/vim-airline-themes' " pretty colors for airline
 " Plug 'mikedfunk/vim-indent-guides' " my fork to enable color guessing with termguicolors
 " Plug 'thaerkh/vim-indentguides' " faster indent guides (lately it's only been showing every other one. Also they disappear when reloading vimrc.)
 Plug 'Yggdroot/indentLine' " show vertical lines for levels of indentions
+Plug 'lukas-reineke/indent-blankline.nvim' " works with above plugin to include indent symbols on blank lines. finally!
 " }}}
 
 if executable('tmux')

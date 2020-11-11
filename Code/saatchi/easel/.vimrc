@@ -5,8 +5,7 @@
 " https://github.com/prettier/prettier-eslint/pull/194
 " call add(g:ale_fixers['javascript'], 'prettier_eslint')
 "
-let g:ale_linters = get(g:, 'ale_linters', {})
-let g:ale_linters['javascript'] = ['eslint', 'flow', 'flow-language-server']
+let g:ale_linters = {'javascript.jsx': ['eslint', 'flow', 'flow-language-server']}
 "
 " disabled prettier because I'm using the recommended eslint plugin instead
 " (in an easel branch that's waiting to be merged)
@@ -62,21 +61,25 @@ EOF
 " cmd = { "npm", "run", "flow", "lsp", "--" }
 " cmd = { "node", "./node_modules/bin/flow", "lsp" }
 
-  augroup nvim_lsp_easel
-    autocmd!
-    autocmd filetype javascript.jsx setlocal omnifunc=v:lua.vim.lsp.omnifunc
+augroup nvim_lsp_easel
+  autocmd!
+  autocmd filetype javascript.jsx setlocal omnifunc=v:lua.vim.lsp.omnifunc
   augroup END
 endif
 
-nnoremap <silent> gd <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> <c-w>} <cmd>lua peek_definition()<CR>
 nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> <leader><c-]> mz:tabe %<CR>`z<cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> <c-w><c-]> :vsp<CR><cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> <c-w><c-]> <cmd>vsp<CR><cmd>lua vim.lsp.buf.definition()<CR>
+" nnoremap <silent> <c-w>} <cmd>lua vim.lsp.buf.definition()<CR><cmd>sleep 100m<CR><cmd>pedit<CR><c-o>
 nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> gD <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> 1gD <cmd>lua vim.lsp.buf.type_definition()<CR>
 nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
+
+" not supported by flow-language-server:
+" nnoremap <silent> gd <cmd>lua vim.lsp.buf.declaration()<CR>
+" nnoremap <silent> gD <cmd>lua vim.lsp.buf.implementation()<CR>
+" nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+" nnoremap <silent> 1gD <cmd>lua vim.lsp.buf.type_definition()<CR>
 " }}}
 
 " tern {{{
@@ -111,4 +114,8 @@ endif
 
 " vim-dispatch {{{
 " command! Restart :Dispatch saatchi-restart-easel-local
+" }}}
+
+" vim-npr {{{
+let g:vim_npr_default_dirs = ['', 'node_modules']
 " }}}

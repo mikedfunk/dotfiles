@@ -97,7 +97,7 @@ endfunction
 if has_key(g:plugs, 'ale')
     " nnoremap <c-k> :call TriggerALEHover()<cr>
     " inoremap <c-k> :call TriggerALEHover()<cr>
-    nnoremap <silent> gr :ALEFindReferences -relative<cr>
+    " nnoremap <silent> gr :ALEFindReferences -relative<cr>
 endif
 
 " }}}
@@ -128,18 +128,23 @@ augroup END
 
 augroup php_lsp_mappings
     autocmd!
-    autocmd FileType php nnoremap <buffer> <silent> gd <cmd>lua vim.lsp.buf.declaration()<CR>
+
     silent! unmap <c-]>
     autocmd FileType php nnoremap <buffer> <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+    silent! unmap <leader><c-]>
     autocmd FileType php nnoremap <buffer> <silent> <leader><c-]> mz:tabe %<CR>`z<cmd>lua vim.lsp.buf.definition()<CR>
     autocmd FileType php nnoremap <buffer> <silent> <c-w><c-]> :vsp<CR><cmd>lua vim.lsp.buf.definition()<CR>
-    " autocmd FileType php nnoremap <buffer> <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
-    autocmd FileType php nnoremap <buffer> <silent> <c-k> <cmd>lua vim.lsp.buf.hover()<CR>
+    autocmd FileType php nnoremap <silent> <c-w>} <cmd>lua peek_definition()<CR>
+
+
+    autocmd FileType php nnoremap <buffer> <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
     autocmd FileType php nnoremap <buffer> <silent> gD <cmd>lua vim.lsp.buf.implementation()<CR>
-    " autocmd FileType php nnoremap <buffer> <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+    autocmd FileType php nnoremap <buffer> <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
     autocmd FileType php nnoremap <buffer> <silent> 1gD <cmd>lua vim.lsp.buf.type_definition()<CR>
-    " trying ALE instead
-    " autocmd FileType php nnoremap <buffer> <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
+    autocmd FileType php nnoremap <buffer> <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
+    autocmd FileType php nnoremap <buffer> <silent> g0 <cmd>lua vim.lsp.buf.document_symbol()<CR>
+    autocmd FileType php nnoremap <buffer> <silent> gW <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+    autocmd FileType php nnoremap <buffer> <silent> gd <cmd>lua vim.lsp.buf.declaration()<CR>
 augroup END
 
 " }}}

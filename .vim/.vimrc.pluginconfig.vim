@@ -374,6 +374,14 @@ endif
 " let g:AutoPairsFlyMode = 1 " Fly Mode will always force closed-pair jumping instead of inserting. only for ')', '}', ']'
 " }}}
 
+" blamer.nvim {{{
+let g:blamer_enabled = 1
+let g:blamer_show_in_visual_modes = 0
+let g:blamer_show_in_insert_modes = 0
+let g:blamer_prefix = '✎  '
+let g:blamer_relative_time = 1
+" }}}
+
 " chadtree {{{
 if has_key(g:plugs, 'chadtree')
     nnoremap - :CHADopen<cr>
@@ -812,6 +820,27 @@ let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Debu
 
 " nvim-lspconfig {{{
 if has_key(g:plugs, 'nvim-lspconfig')
+
+    " define a lua function to preview a definition in a floating window {{{
+lua <<EOF
+local function preview_location_callback(_, method, result)
+  if result == nil or vim.tbl_isempty(result) then
+    vim.lsp.log.info(method, 'No location found')
+    return nil
+  end
+  if vim.tbl_islist(result) then
+    vim.lsp.util.preview_location(result[1])
+  else
+    vim.lsp.util.preview_location(result)
+  end
+end
+
+function peek_definition()
+  local params = vim.lsp.util.make_position_params()
+  return vim.lsp.buf_request(0, 'textDocument/definition', params, preview_location_callback)
+end
+EOF
+    " }}}
 
     " disable lsp diagnostics in vimdiff (mergetool) {{{
     " if &diff

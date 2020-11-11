@@ -139,7 +139,7 @@ _install_update_homebrew_packages () {
     brew bundle --global # install/upgrade from ~/.Brewfile
     brew upgrade         # upgrade all homebrew packages
     brew upgrade --cask  # upgrade all homebrew casks
-    brew cleanup         # remove outdated versions and dead symlinks from the homebrew prefix
+    # brew cleanup         # remove outdated versions and dead symlinks from the homebrew prefix. WARNING this could break dependencies if low level libs are not pinned!!
     # brew bundle --global cleanup --force # remove brew packages not in ~/.Brewfile
     brew link libcouchbase@2 --force
     _pin_homebrew_packages
@@ -363,11 +363,42 @@ _install_php_74 () {
     asdf reshim php 7.4.7
 }
 
+_install_php_80 () {
+    ( asdf list php | grep --quiet "8.0.0RC3" ) && return
+    _log_info "installing php 8.0.0RC3"
+    asdf install php 8.0.0RC3
+    asdf global php 8.0.0RC3
+
+    # install php extensions (different set for 8.0.0RC3)
+    local PHP_PATH="$(asdf where php)"
+    mkdir -p "${PHP_PATH}"/conf.d
+
+    # _has pecl || _install_pear "8.0.0RC3"
+    # local PECL="${PHP_PATH}"/pear/bin/pecl
+    local PECL="pecl" # php 8 install apparently comes with pecl
+
+    # yes "" | "${PECL}" install couchbase && ( echo 'extension="couchbase.so"' >"${PHP_PATH}"/conf.d/01_couchbase.ini )
+    # yes "" | "${PECL}" install memcached && ( echo 'extension="memcached.so"' >"${PHP_PATH}"/conf.d/02_memcached.ini )
+    # yes "" | "${PECL}" install imagick && ( echo 'extension="imagick.so"' >"${PHP_PATH}"/conf.d/03_imagick.ini )
+    # This doesn't work yet because xdebug 3 is not yet on pecl and <= 2 don't work with php 8
+    # yes "" | "${PECL}" install xdebug && ( echo 'zend_extension="xdebug.so"' >"${PHP_PATH}"/conf.d/04_xdebug.ini )
+    # echo 'phar.readonly = false' > "${PHP_PATH}"/conf.d/05_phar.ini
+
+    # install global composer packages
+    mkdir -p  "${PHP_PATH}"/{.,}composer
+    ln -sf "$HOME"/.composer/composer.json "${PHP_PATH}"/composer/composer.json
+    _install_update_composer_packages
+    asdf reshim php "8.0.0RC3"
+}
+
 _install_php_versions () {
     pushd .
     builtin cd "$HOME" >/dev/null || return
     _log_info "Installing php version(s)"
-    asdf plugin add php && ( sed -i '' "/--enable-intl/d" "$HOME"/.asdf/plugins/php/bin/install )
+    # gd fails to install in php 8.0
+    asdf plugin add php &&
+        ( sed -i '' "/--enable-intl/d" "$HOME"/.asdf/plugins/php/bin/install ) &&
+        ( sed -i '' "/--enable-gd/d" "$HOME"/.asdf/plugins/php/bin/install )
 
     # configure openssl {{{
     export PATH="/usr/local/opt/openssl@1.1/bin:${PATH}"
@@ -397,6 +428,8 @@ _install_php_versions () {
 
     _install_php_70
     _install_php_74
+    _install_php_80
+    asdf global php 7.4.7
 
     popd || return
 }
