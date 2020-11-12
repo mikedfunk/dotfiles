@@ -853,7 +853,7 @@ EOF
     " }}}
 
     " lsp commands and mappings {{{
-    command! CodeAction lua vim.lsp.buf.code_action()
+    command! CodeAction <cmd>lua vim.lsp.buf.code_action()<CR>
     " moved this to local codebase .vimrcs:
     " nnoremap <c-i> :CodeAction<cr>
     " example config from :help lsp:
@@ -1048,6 +1048,23 @@ EOF
     " version is so old it doesn't have lsp.
     " require'nvim_lsp'.flow.setup{}
     " }}}
+
+endif
+" }}}
+
+" nvim-lsputils {{{
+if has_key(g:plugs, 'nvim-lsputils')
+
+lua <<EOF
+vim.lsp.callbacks['textDocument/codeAction'] = require'lsputil.codeAction'.code_action_handler
+vim.lsp.callbacks['textDocument/references'] = require'lsputil.locations'.references_handler
+vim.lsp.callbacks['textDocument/definition'] = require'lsputil.locations'.definition_handler
+vim.lsp.callbacks['textDocument/declaration'] = require'lsputil.locations'.declaration_handler
+vim.lsp.callbacks['textDocument/typeDefinition'] = require'lsputil.locations'.typeDefinition_handler
+vim.lsp.callbacks['textDocument/implementation'] = require'lsputil.locations'.implementation_handler
+vim.lsp.callbacks['textDocument/documentSymbol'] = require'lsputil.symbols'.document_handler
+vim.lsp.callbacks['workspace/symbol'] = require'lsputil.symbols'.workspace_handler
+EOF
 
 endif
 " }}}

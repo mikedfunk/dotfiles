@@ -87,6 +87,7 @@ if (has('nvim'))
     " error: Error executing vim.schedule lua callback: ....vim/plugged/completion-nvim/lua/completion/matching.lua:50: attempt to index field 'b' (a nil value)
     " this plugin also breaks nvim-lsp hover
     "
+    Plug 'RishabhRD/popfix' | Plug 'RishabhRD/nvim-lsputils' " better code action selector, better references window, etc.
 endif
 
 " nvim-lsp-smag {{{
@@ -256,6 +257,7 @@ Plug 'lifepillar/vim-cheat40' " Customizable cheatsheet. Mine is in ~/.vim/plugg
 " endif
 " navigate markdown headers with ]] and [[
 Plug 'https://gist.github.com/ac63e108c3d11084be62b3c04156c263.git', { 'as': 'markdown-nav', 'for': 'markdown' }
+" Plug 'obcat/vim-hitspop' " when searching with / or ? show a tiny popup in the top right that shows the current match number and total number of matches (requires hlsearch and vim so I turned it off)
 " }}}
 
 " Php {{{

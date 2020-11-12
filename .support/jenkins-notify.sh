@@ -93,7 +93,8 @@ function _check_result () {
     _notify "✅ CI: $PROJECT $BRANCH" "Jenkins build completed" glass "$BUILD_URL"
 }
 
+sleep 60
 while [[ "$IS_FINISHED" == 0 ]]; do
-    sleep 10
     _check_result
+    sleep 10
 done

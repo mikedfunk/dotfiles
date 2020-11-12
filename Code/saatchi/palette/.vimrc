@@ -129,6 +129,7 @@ augroup END
 augroup php_lsp_mappings
     autocmd!
 
+    nnoremap <silent> <leader>cc <cmd>lua vim.lsp.buf.code_action()<CR>
     silent! unmap <c-]>
     autocmd FileType php nnoremap <buffer> <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
     silent! unmap <leader><c-]>

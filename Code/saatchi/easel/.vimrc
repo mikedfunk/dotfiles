@@ -67,6 +67,8 @@ augroup nvim_lsp_easel
   augroup END
 endif
 
+" NOTE flow lsp doesn't offer any code actions :(
+" nnoremap <silent> <leader>ca <cmd>lua vim.lsp.buf.code_action()<CR>
 nnoremap <silent> <c-w>} <cmd>lua peek_definition()<CR>
 nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> <leader><c-]> mz:tabe %<CR>`z<cmd>lua vim.lsp.buf.definition()<CR>
