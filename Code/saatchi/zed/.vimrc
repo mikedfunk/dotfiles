@@ -32,6 +32,10 @@ nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
 nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 " }}}
 
+" php.vim {{{
+let g:php_version_id = 70033
+" }}}
+
 " vdebug {{{
 " can add multiple path maps to this array, just duplicate the line
 " below and add another. remote is first, local is second.

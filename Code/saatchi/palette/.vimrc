@@ -102,6 +102,10 @@ endif
 
 " }}}
 
+" php.vim {{{
+let g:php_version_id = 70033
+" }}}
+
 " vim-gutentags {{{
 if executable('cscope') && has('cscope') && exists('g:gutentags_modules')
     call add(g:gutentags_modules, 'cscope')

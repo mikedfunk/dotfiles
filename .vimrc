@@ -306,16 +306,34 @@ let g:php_htmlInStrings = 1 " neat! :h php.vim
 let g:php_baselib = 1 " highlight php builtin functions
 " let g:php_folding = 1 " fold methods, control structures, etc.
 let g:php_noShortTags = 1
-" let g:php_parent_error_close = 1 " highlight missing closing ] or )
-" let g:php_parent_error_open = 1 " highlight missing opening [ or (
+let g:php_parent_error_close = 1 " highlight missing closing ] or )
+let g:php_parent_error_open = 1 " highlight missing opening [ or (
 let g:php_syncmethod = 10 " :help :syn-sync https://stackoverflow.com/a/30732393/557215
-" doxygen support is _extremely_ buggy for php.
-" e.g. if you go to the last curly brace in a class, it breaks syntax
-" highlighting for one page above that class :/
+
+" doxygen support is _extremely_ buggy for php in neovim. Works fine in vim.
+" e.g. if a class is taller than the current viewport and you go to the last
+" curly brace in a class, it breaks syntax until you page back up to whatever
+" line breaks it. Then if you go back to the last curly brace it breaks again.
+" Not worth it. Apparently it has something to do with php extending html as
+" the broken highlight group is `htmlError`.
 " :h doxygen
 " let g:load_doxygen_syntax = 1 " pretty docblocks in php, c, etc.
-" let g:doxygen_my_rendering = 0 " Q: does this fix it? I doubt it. A: nope.
 " let g:doxygen_enhanced_color = 1 " prettier docblocks
+
+" trying to fix php doxygen support but these don't work {{{
+" let php_html_load = 0
+" let php_xml_heredoc = 0
+" let php_xml_nowdoc = 0
+" let php_html_in_heredoc = 0
+" let php_html_in_nowdoc = 0
+" let g:php_syntax_extensions_disabled = 1
+" let php_sync_method = -1
+" let doxygen_my_rendering = 0
+" let doxygen_javadoc_autobrief = 0
+" let html_my_rendering = 1
+" let html_no_rendering = 1
+" let html_wrong_comments = 1
+" }}}
 
 " augroup phpfoldnestmax
 "     autocmd!

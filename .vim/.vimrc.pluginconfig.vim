@@ -482,7 +482,11 @@ if has_key(g:plugs, 'diagnostic-nvim')
     call sign_define("LspDiagnosticsErrorSign", {"text" : "🚨", "texthl" : "LspDiagnosticsError"})
     call sign_define("LspDiagnosticsWarningSign", {"text" : "⚠️", "texthl" : "LspDiagnosticsWarning"})
     call sign_define("LspDiagnosticsInformationSign", {"text" : "ℹ️", "texthl" : "LspDiagnosticsInformation"})
-    " call sign_define('LspDiagnosticsHintSign', {'text' : 'H', 'texthl' : 'LspDiagnosticsHint'})
+    call sign_define('LspDiagnosticsHintSign', {'text' : "💡", 'texthl' : 'LspDiagnosticsHint'})
+    " other possible signs:
+    "
+    "
+    "
 endif
 " }}}
 
@@ -842,6 +846,18 @@ end
 EOF
     " }}}
 
+    " shared on_attach lua handler for nvim lsp {{{
+lua <<EOF
+-- shared attach handler
+function on_attach(client, bufnr)
+    -- require'completion'.on_attach(client, bufnr)
+    require'diagnostic'.on_attach(client, bufnr)
+    -- Set the omnifunc for this buffer. (moved to project vimrcs)
+    -- vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+end
+EOF
+    " }}}
+
     " disable lsp diagnostics in vimdiff (mergetool) {{{
     " if &diff
 " lua << EOF
@@ -880,137 +896,129 @@ EOF
         " diagnostic-nvim only if those plugins exist
 
 lua <<EOF
-    local nvim_lsp = require'nvim_lsp'
+local nvim_lsp = require'nvim_lsp'
 
-    local on_attach = function(client, bufnr)
-        -- require'completion'.on_attach(client, bufnr)
-        require'diagnostic'.on_attach(client, bufnr)
-        -- Set the omnifunc for this buffer.
-        -- vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-
-    end
-
-    nvim_lsp.intelephense.setup{
-        settings = {
-            intelephense = {
-                environment = {
-                    phpVersion = "7.0.0"
-                },
-                completion = {
-                    insertUseDeclaration = true,
-                    fullyQualifyGlobalConstantsAndFunctions = true,
-                    triggerParameterHints = true
-                },
-                diagnostics = {
-                    run = {
-                        "onSave"
-                    }
-                },
-                format = {
-                    enable = true
-                },
-                files = {
-                    exclude = {
-                        "**/.git/**",
-                        "**/.svn/**",
-                        "**/.hg/**",
-                        "**/CVS/**",
-                        "**/.DS_Store/**",
-                        "**/node_modules/**",
-                        "**/bower_components/**",
-                        "**/vendor/**/{Tests,tests}/**",
-                        "**/.history/**",
-                        "**/vendor/**/vendor/**",
-                        "**/spec/**",
-                        "**/coverage/**"
-                    }
-                },
-                stubs = {
-                    "apache",
-                    "bcmath",
-                    "bz2",
-                    "calendar",
-                    "com_dotnet",
-                    "Core",
-                    "ctype",
-                    "couchbase",
-                    "curl",
-                    "date",
-                    "dba",
-                    "dom",
-                    "enchant",
-                    "exif",
-                    "fileinfo",
-                    "filter",
-                    "fpm",
-                    "ftp",
-                    "gd",
-                    "hash",
-                    "iconv",
-                    "imap",
-                    "interbase",
-                    "intl",
-                    "json",
-                    "ldap",
-                    "libxml",
-                    "mbstring",
-                    "mcrypt",
-                    "memcached",
-                    "meta",
-                    "mssql",
-                    "mysqli",
-                    "oci8",
-                    "odbc",
-                    "openssl",
-                    "pcntl",
-                    "pcre",
-                    "PDO",
-                    "pdo_ibm",
-                    "pdo_mysql",
-                    "pdo_pgsql",
-                    "pdo_sqlite",
-                    "pgsql",
-                    "Phar",
-                    "posix",
-                    "pspell",
-                    "readline",
-                    "recode",
-                    "redis",
-                    "Reflection",
-                    "regex",
-                    "session",
-                    "shmop",
-                    "SimpleXML",
-                    "snmp",
-                    "soap",
-                    "sockets",
-                    "sodium",
-                    "SPL",
-                    "sqlite3",
-                    "standard",
-                    "superglobals",
-                    "sybase",
-                    "sysvmsg",
-                    "sysvsem",
-                    "sysvshm",
-                    "tidy",
-                    "tokenizer",
-                    "wddx",
-                    "xml",
-                    "xmlreader",
-                    "xmlrpc",
-                    "xmlwriter",
-                    "Zend OPcache",
-                    "zip",
-                    "zlib"
-                },
-                telemetry = {
-                    enabled = false
+nvim_lsp.intelephense.setup{
+    settings = {
+        intelephense = {
+            environment = {
+                phpVersion = "7.0.0"
+            },
+            completion = {
+                insertUseDeclaration = true,
+                fullyQualifyGlobalConstantsAndFunctions = true,
+                triggerParameterHints = true
+            },
+            diagnostics = {
+                run = {
+                    "onSave"
                 }
+            },
+            format = {
+                enable = true
+            },
+            files = {
+                exclude = {
+                    "**/.git/**",
+                    "**/.svn/**",
+                    "**/.hg/**",
+                    "**/CVS/**",
+                    "**/.DS_Store/**",
+                    "**/node_modules/**",
+                    "**/bower_components/**",
+                    "**/vendor/**/{Tests,tests}/**",
+                    "**/.history/**",
+                    "**/vendor/**/vendor/**",
+                    "**/spec/**",
+                    "**/coverage/**"
+                }
+            },
+            stubs = {
+                "apache",
+                "bcmath",
+                "bz2",
+                "calendar",
+                "com_dotnet",
+                "Core",
+                "ctype",
+                "couchbase",
+                "curl",
+                "date",
+                "dba",
+                "dom",
+                "enchant",
+                "exif",
+                "fileinfo",
+                "filter",
+                "fpm",
+                "ftp",
+                "gd",
+                "hash",
+                "iconv",
+                "imap",
+                "interbase",
+                "intl",
+                "json",
+                "ldap",
+                "libxml",
+                "mbstring",
+                "mcrypt",
+                "memcached",
+                "meta",
+                "mssql",
+                "mysqli",
+                "oci8",
+                "odbc",
+                "openssl",
+                "pcntl",
+                "pcre",
+                "PDO",
+                "pdo_ibm",
+                "pdo_mysql",
+                "pdo_pgsql",
+                "pdo_sqlite",
+                "pgsql",
+                "Phar",
+                "posix",
+                "pspell",
+                "readline",
+                "recode",
+                "redis",
+                "Reflection",
+                "regex",
+                "session",
+                "shmop",
+                "SimpleXML",
+                "snmp",
+                "soap",
+                "sockets",
+                "sodium",
+                "SPL",
+                "sqlite3",
+                "standard",
+                "superglobals",
+                "sybase",
+                "sysvmsg",
+                "sysvsem",
+                "sysvshm",
+                "tidy",
+                "tokenizer",
+                "wddx",
+                "xml",
+                "xmlreader",
+                "xmlrpc",
+                "xmlwriter",
+                "Zend OPcache",
+                "zip",
+                "zlib"
+            },
+            telemetry = {
+                enabled = false
             }
-        },
-        on_attach = on_attach
-    }
+        }
+    },
+    on_attach = on_attach
+}
 EOF
 
     " moved to palette vimrc because of legacy, zed, etc.
@@ -1057,7 +1065,7 @@ if has_key(g:plugs, 'nvim-lsputils')
 
 lua <<EOF
 vim.lsp.callbacks['textDocument/codeAction'] = require'lsputil.codeAction'.code_action_handler
-vim.lsp.callbacks['textDocument/references'] = require'lsputil.locations'.references_handler
+-- vim.lsp.callbacks['textDocument/references'] = require'lsputil.locations'.references_handler
 vim.lsp.callbacks['textDocument/definition'] = require'lsputil.locations'.definition_handler
 vim.lsp.callbacks['textDocument/declaration'] = require'lsputil.locations'.declaration_handler
 vim.lsp.callbacks['textDocument/typeDefinition'] = require'lsputil.locations'.typeDefinition_handler
@@ -1186,28 +1194,35 @@ endif
 
 " php.vim {{{
 " I have most of this turned off because built-in doxygen support is more
-" comprehensive. I have it enabled in my main .vimrc. :h doxygen
-" let g:php_var_selector_is_identifier = 1
-" function! PhpSyntaxOverride() abort
-"     " docblock color
-"     hi! link phpDocTags phpDefine
-"     " docblock comments italic
-"     hi! PreProc cterm=italic
-"     hi! link phpDocTags phpDefine
-"     hi! link phpDocParam phpType
-"     hi! link phpDocParam phpRegion
-"     hi! link phpDocIdentifier phpIdentifier
-"     " Colorize namespace separator in use, extends and implements
-"     hi! link phpUseNamespaceSeparator Comment
-"     hi! link phpClassNamespaceSeparator Comment
-" endfunction
-" if has_key(g:plugs, 'php.vim')
-"     " highlight docblocks
-"     augroup phpdoctagsgroup
-"         autocmd!
-"         autocmd FileType php call PhpSyntaxOverride()
-"     augroup END
-" endif
+" comprehensive. I have it enabled in my main .vimrc. :h doxygen (update:
+" doxygen support is cool but buggy as hell... still)
+
+" make the $ sign in variables the same color as the word (doesn't work)
+" let php_var_selector_is_identifier = 1
+
+function! PhpSyntaxOverride() abort
+    " make the $ sign in variables the same color as the word
+    " hi! link phpVarSelector phpIdentifier
+    " docblock color
+    " hi! link phpDocTags phpDefine
+    " hi! phpDocTags cterm=italic
+    " docblock comments italic (doesn't work)
+    " hi! PreProc cterm=italic
+    hi! link phpDocTags phpDefine
+    hi! link phpDocParam phpType
+    hi! link phpDocParam phpRegion
+    hi! link phpDocIdentifier phpIdentifier
+    " Colorize namespace separator in use, extends and implements
+    hi! link phpUseNamespaceSeparator Comment
+    hi! link phpClassNamespaceSeparator Comment
+endfunction
+if has_key(g:plugs, 'php.vim') || has_key(g:plugs, 'vim-polyglot')
+    " highlight docblocks
+    " augroup phpdoctagsgroup
+    "     autocmd!
+    "     autocmd FileType php call PhpSyntaxOverride()
+    " augroup END
+endif
 " }}}
 
 " phpactor {{{

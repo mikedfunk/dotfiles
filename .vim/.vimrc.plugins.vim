@@ -87,7 +87,7 @@ if (has('nvim'))
     " error: Error executing vim.schedule lua callback: ....vim/plugged/completion-nvim/lua/completion/matching.lua:50: attempt to index field 'b' (a nil value)
     " this plugin also breaks nvim-lsp hover
     "
-    Plug 'RishabhRD/popfix' | Plug 'RishabhRD/nvim-lsputils' " better code action selector, better references window, etc.
+    " Plug 'RishabhRD/popfix' | Plug 'RishabhRD/nvim-lsputils' " better code action selector, better references window, etc. (disabled because it's buggy at the moment. Breaks references even if references are disabled. `t` no longer works to open a reference in a tab.)
 endif
 
 " nvim-lsp-smag {{{
@@ -369,7 +369,7 @@ Plug 'kristijanhusak/vim-js-file-import' " ctags-based importing
 
 " Syntax highlighting {{{
 " Plug 'rtfb/vim-dox-spell' " fix buggy doxygen support in php and others
-" Plug 'gerw/vim-HiLinkTrace' " adds an <leader>hlt command to get all highlight groups under cursor
+Plug 'gerw/vim-HiLinkTrace' " adds an <leader>hlt command to get all highlight groups under cursor
 " Plug 'elzr/vim-json' " json syntax (in vim-polyglot)
 " annoyingly this must be loaded before polyglot is loaded :/
 let g:polyglot_disabled = [

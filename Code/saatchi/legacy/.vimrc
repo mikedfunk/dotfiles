@@ -83,6 +83,10 @@ augroup END
 " nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 " }}}
 
+" php.vim {{{
+let g:php_version_id = 70033
+" }}}
+
 " phpcd {{{
 " let g:phpcd_autoload_path = 'application/command_line_bootstrap.php'
 " }}}

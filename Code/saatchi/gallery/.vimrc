@@ -60,7 +60,7 @@ augroup jsxgrp
 augroup END
 " }}}
 
-" nvim-lsp {{{
+" nvim-lspconfig {{{
 
 if (has('nvim'))
 
@@ -93,13 +93,13 @@ EOF
     autocmd FileType php nnoremap <buffer> <silent> <leader><c-]> mz:tabe %<CR>`z<cmd>lua vim.lsp.buf.definition()<CR>
     autocmd FileType php nnoremap <buffer> <silent> <c-w><c-]> :vsp<CR><cmd>lua vim.lsp.buf.definition()<CR>
     autocmd FileType php nnoremap <buffer> <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
-    " autocmd FileType php nnoremap <buffer> <silent> gD <cmd>lua vim.lsp.buf.implementation()<CR>
-    " autocmd FileType php nnoremap <buffer> <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-    " autocmd FileType php nnoremap <buffer> <silent> 1gD <cmd>lua vim.lsp.buf.type_definition()<CR>
-    " autocmd FileType php nnoremap <buffer> <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
-    if has_key(g:plugs, 'ale')
-      autocmd FileType php nnoremap <silent> gr :ALEFindReferences -relative<cr>
-    endif
+    autocmd FileType php nnoremap <buffer> <silent> gD <cmd>lua vim.lsp.buf.implementation()<CR>
+    autocmd FileType php nnoremap <buffer> <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+    autocmd FileType php nnoremap <buffer> <silent> 1gD <cmd>lua vim.lsp.buf.type_definition()<CR>
+    autocmd FileType php nnoremap <buffer> <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
+    " if has_key(g:plugs, 'ale')
+    "   autocmd FileType php nnoremap <silent> gr :ALEFindReferences -relative<cr>
+    " endif
   augroup end
 
   augroup javascript_lsp_mappings
@@ -119,6 +119,10 @@ endif
 
 " }}}
 
+" php.vim {{{
+let g:php_version_id = 70033
+" }}}
+
 " typescript (obviously NOT WORKING because this is in flowtype) {{{
 " lua << EOF
 " require'nvim_lsp'.tsserver.setup{}
@@ -128,8 +132,6 @@ endif
 "     autocmd filetype javascript.jsx setlocal omnifunc=v:lua.vim.lsp.omnifunc
 "   augroup END
 " endif
-" }}}
-
 " }}}
 
 " vdebug {{{
