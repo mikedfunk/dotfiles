@@ -172,6 +172,9 @@ let g:ale_sign_warning = '⚠️'
 " let g:ale_sign_error = '⚠'
 " let g:ale_sign_error = '💣'
 " let g:ale_sign_error = '💩'
+" let g:ale_sign_error = "🐛"
+" let g:ale_sign_warning = "⚠️"
+" let g:ale_sign_info = "ℹ"
 let g:ale_sign_error = '🚨'
 "
 let g:ale_sign_info = 'ℹ️'
@@ -179,6 +182,8 @@ let g:ale_sign_info = 'ℹ️'
 let g:zenburn_high_Contrast = 1
 let g:ale_virtualtext_cursor = 1
 let g:ale_virtualtext_prefix = ' '
+" nnoremap <leader>rn :ALERename<CR> " https://blog.ffff.lt/posts/typescript-and-ale/
+" let g:ale_virtualtext_prefix = "🔥 "
 "
 if has('nvim')
     let g:ale_sign_highlight_linenrs = 1
@@ -292,6 +297,16 @@ highlight! link ALEVirtualTextWarning Comment
 highlight! link ALEVirtualTextInfo Comment
 highlight! link ALEVirtualTextStyleError Comment
 highlight! link ALEVirtualTextStyleWarning Comment
+
+" rename bindings
+if has_key(g:plugs, 'ale')
+    " rename local variable
+    nnoremap <leader>rrv ALERename<cr>
+    " rename class variable
+    nnoremap <leader>rrp ALERename<cr>
+    " rename class method
+    nnoremap <leader>rrm ALERename<cr>
+endif
 
 " }}}
 
@@ -2286,8 +2301,8 @@ if has_key(g:plugs, 'vim-php-refactoring-toolbox')
     " NOTE: to see available refactor mappings: <leader>?
     augroup vim_php_refactoring_toolbox_mappings
         autocmd!
-        autocmd FileType php nnoremap <Leader>rrv :call PhpRenameLocalVariable()<CR>
-        autocmd FileType php nnoremap <Leader>rrp :call PhpRenameClassVariable()<CR>
+        " autocmd FileType php nnoremap <Leader>rrv :call PhpRenameLocalVariable()<CR> " replaced with ALERename
+        " autocmd FileType php nnoremap <Leader>rrp :call PhpRenameClassVariable()<CR> " replaced with ALERename
         " autocmd FileType php nnoremap <Leader>rcm :call PhpRenameMethod()<CR>
         "
         " this is useful to expand to FQCN, then extract _as_ a given different name, then sort use statements

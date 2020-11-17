@@ -29,6 +29,14 @@ windows:
       - bundle install && bundle exec jekyll serve --watch
 # }}}
 
+# bookymark {{{
+  - window_name: bookymark
+    panes:
+      - v -S
+      - ts
+      - php artisan serve
+# }}}
+
 # magento (disabled) {{{
   # - window_name: magento
   #   start_directory: ~/Code/magento

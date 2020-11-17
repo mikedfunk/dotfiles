@@ -26,18 +26,18 @@ _has() {
 }
 
 # colors {{{
-BLACK="$(tput setaf 0)"
-RED="$(tput setaf 1)"
-GREEN="$(tput setaf 2)"
-YELLOW="$(tput setaf 3)"
-BLUE="$(tput setaf 4)"
-PINK="$(tput setaf 5)"
-CYAN="$(tput setaf 6)"
-WHITE="$(tput setaf 7)"
-NORMAL="$(tput sgr0)"
-MAC_REMOVE_ANSI='gsed "s/\x1b\[[0-9;]*m//g"'
-LINUX_REMOVE_ANSI='sed \"s/\x1b\[[0-9;]*m//g\"'
-UNDERLINE="$(tput smul)"
+local BLACK="$(tput setaf 0)"
+local RED="$(tput setaf 1)"
+local GREEN="$(tput setaf 2)"
+local YELLOW="$(tput setaf 3)"
+local BLUE="$(tput setaf 4)"
+local PINK="$(tput setaf 5)"
+local CYAN="$(tput setaf 6)"
+local WHITE="$(tput setaf 7)"
+local NORMAL="$(tput sgr0)"
+local MAC_REMOVE_ANSI='gsed "s/\x1b\[[0-9;]*m//g"'
+local LINUX_REMOVE_ANSI='sed \"s/\x1b\[[0-9;]*m//g\"'
+local UNDERLINE="$(tput smul)"
 # }}}
 
 # }}}
@@ -52,10 +52,13 @@ UNDERLINE="$(tput smul)"
 # }}}
 
 # Paths {{{
-cdpath=(
-  $HOME/Code
-  $cdpath
-)
+# when CDing from anywhere, this will add the configured path to the
+# completions always. Why would I want to do this ever? It just looks like a
+# bug and gets in the way.
+# cdpath=(
+#   $HOME/Code
+#   $cdpath
+# )
 
 # https://github.com/denisidoro/navi
 navipath=(
@@ -113,8 +116,9 @@ path=(
 
 # zsh {{{
 # If I don't do this I get "compdef undefined"
-autoload -Uz compinit
-compinit
+# moved below plugins for zsh-users/zsh-completions to be happy
+# autoload -Uz compinit
+# compinit
 
 # https://github.com/machinshin/dotfiles/blob/master/.zshrc#L159-L160
 # Complete the hosts and - last but not least - the remote directories.
@@ -178,9 +182,12 @@ _has lazyload && lazyload akamai -- '_has akamai && eval "$(akamai --zsh)"'
 # }}}
 
 # source additional files and env vars {{{
+# moved here for zsh-users/zsh-completions
+autoload -Uz compinit
+compinit
+
 export COMPOSE_HTTP_TIMEOUT=120 # default is 60
 export ZSH_ALIAS_FINDER_AUTOMATIC=true # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/alias-finder#usage
-export ZSH_AUTOSUGGEST_USE_ASYNC=true # https://github.com/zsh-users/zsh-autosuggestions#enable-asynchronous-mode
 # ZSH_AUTOSUGGEST_STRATEGY=(history completion) # https://github.com/zsh-users/zsh-autosuggestions#suggestion-strategy (this prevents me from typing more e.g. `php artisan ...`!)
 [ -f ~/.private_vars.sh ] && source ~/.private_vars.sh # where I store my secret env vars
 # [ -f ~/.support/promptline.theme.bash ] && source ~/.support/promptline.theme.bash # vim plugin generates this tmux status line file
@@ -214,8 +221,8 @@ _has hub && _evalcache hub alias -s # alias git to hub with completion intact
 # _has lazyenv-enabled && lazyenv-enabled
 
 # https://github.com/trapd00r/LS_COLORS
-DIRCOLORS_CMD="/usr/local/opt/coreutils/libexec/gnubin/dircolors"
-DIRCOLORS_FILE="$HOME/.dircolors"
+local DIRCOLORS_CMD="/usr/local/opt/coreutils/libexec/gnubin/dircolors"
+local DIRCOLORS_FILE="$HOME/.dircolors"
 [[ -e "$DIRCOLORS_CMD" && -f "$DIRCOLORS_FILE" ]] && _evalcache "$DIRCOLORS_CMD" -b "$DIRCOLORS_FILE"
 # }}}
 

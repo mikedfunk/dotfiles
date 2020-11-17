@@ -15,7 +15,7 @@ chardet==3.0.4
 cli-helpers==2.1.0
 click==7.1.2
 colorama==0.4.4
-commitizen==2.6.0
+commitizen==2.8.0
 configobj==5.0.6
 cryptography==3.2.1
 dateparser==1.0.0
@@ -195,7 +195,7 @@ pytzdata==2020.1
 PyYAML==5.3.1
 questionary==1.8.0
 redis==3.5.3
-regex==2020.11.11
+regex==2020.11.13
 requests==2.25.0
 ruamel.yaml==0.16.12
 ruamel.yaml.clib==0.2.2
@@ -213,10 +213,10 @@ terminaltables==3.1.0
 text-unidecode==1.3
 tmuxp==1.6.2
 toml==0.10.2
-tomlkit==0.7.0
+tomlkit==0.5.11
 typed-ast==1.4.1
 tzlocal==2.1
-urllib3==1.26.1
+urllib3==1.26.2
 virtualenv==20.1.0
 wcwidth==0.2.5
 Werkzeug==1.0.1

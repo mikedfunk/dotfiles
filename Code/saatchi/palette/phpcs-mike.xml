@@ -8,7 +8,7 @@
   <!-- <config name="installed_paths" value="/Users/mikefunk/.phpenv/versions/7.0.33/composer/global/slevomat/coding-standard/vendor/slevomat/coding-standard,/Users/mikefunk/.phpenv/versions/7.0.33/composer/global/sirbrillig/phpcs-variable-analysis/vendor/sirbrillig/phpcs-variable-analysis" /> -->
 
   <!-- ensure php code is compatible with this version -->
-  <config name="testVersion" value="7.0.33" />
+  <config name="testVersion" value="7.0" />
 
   <!-- wtf? it's called PHP code sniffer. -->
   <arg name="extensions" value="php" />
@@ -21,7 +21,7 @@
   <!-- <file>.</file> -->
 
   <!-- Path to strip from the front of file paths inside reports (displays shorter paths) -->
-  <!-- <arg name="basepath" value="." /> -->
+  <arg name="basepath" value="." />
 
   <exclude-pattern>vendor/*</exclude-pattern>
   <!-- <exclude-pattern>tests/*</exclude-pattern> -->
@@ -35,117 +35,7 @@
   <exclude-pattern>storage/*</exclude-pattern>
   <!-- <exclude-pattern>app/Console/Commands/OneTimers/*</exclude-pattern> -->
 
-  <!-- start phpcs-import-detection -->
-  <!-- this is just too buggy.
-    - skip import because it's in your current namespace? error.
-    - arrow at and of line, indent on next line and method call? error.
-  -->
-  <!-- <config name="installed_paths" value="/Users/mikefunk/.phpenv/versions/7.0.33/composer/global/sirbrillig/phpcs-import-detection/vendor/sirbrillig/phpcs-import-detection" /> -->
-  <!-- <rule ref="ImportDetection" /> -->
-  <!-- end phpcs-import-detection -->
-
-  <!-- start phpcs-type-sniff -->
-  <!-- NOTE this only works for php 7.1+ -->
-  <!-- cgr gskema/phpcs-type-sniff:^0.14.0 -->
-  <!-- <config name="installed_paths" value="/Users/mikefunk/.phpenv/versions/7.0.33/composer/global/gskema/phpcs-type-sniff/vendor/gskema/phpcs-type-sniff" /> -->
-  <!-- <rule ref="CompositeCodeElementSniff" /> -->
-  <!-- end phpcs-import-detection -->
-
-  <!-- start slevomat coding standard -->
-  <!-- <rule ref="SlevomatCodingStandard.TypeHints.TypeHintDeclaration"> -->
-  <!--   <property name="enableNullableTypeHints" value="false" /> -->
-  <!--   <property name="enableVoidTypeHint" value="false" /> -->
-  <!--   <property name="enableEachParameterAndReturnInspection" value="false" /> -->
-  <!--   <!-1- <property name="enableEachParameterAndReturnInspection" value="true" /> -1-> -->
-  <!-- </rule> -->
-  <!-- <rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes"> -->
-  <!--   <property name="spacesCountAroundEqualsSign" value="0" /> -->
-  <!-- </rule> -->
-  <!-- <rule ref="SlevomatCodingStandard.Classes.UnusedPrivateElements" /> -->
-  <!-- NOTE this is unreliable when it comes to importing constants and functions e.g. shape and arr -->
-  <!-- <rule ref="SlevomatCodingStandard.Namespaces.UnusedUses" /> -->
-  <!-- <rule ref="SlevomatCodingStandard.Exceptions.DeadCatch" /> -->
-  <!-- <rule ref="SlevomatCodingStandard.Arrays.TrailingArrayComma" /> -->
-  <!-- <rule ref="SlevomatCodingStandard.Namespaces.DisallowGroupUse" /> -->
-  <!-- <rule ref="SlevomatCodingStandard.Namespaces.FullyQualifiedGlobalConstants" /> -->
-  <!-- <rule ref="SlevomatCodingStandard.Namespaces.FullyQualifiedGlobalFunctions" /> -->
-  <!-- <rule ref="SlevomatCodingStandard.Namespaces.MultipleUsesPerLine" /> -->
-  <!-- NOTE this has proven to result in false positives -->
-  <!-- <rule ref="SlevomatCodingStandard.Classes.UnusedPrivateElements.WriteOnlyProperty" /> -->
-  <!-- <rule ref="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly"> -->
-  <!--   <property name="allowFullyQualifiedNameForCollidingClasses" value="true" /> -->
-  <!--   <property name="allowFullyQualifiedGlobalClasses" value="true" /> -->
-  <!--   <property name="allowFullyQualifiedExceptions" value="true" /> -->
-  <!--   <property name="allowFullyQualifiedGlobalFunctions" value="true" /> -->
-  <!--   <property name="allowFullyQualifiedGlobalConstants" value="true" /> -->
-  <!-- </rule> -->
-  <!-- <rule ref="SlevomatCodingStandard.TypeHints.LongTypeHints" /> -->
-  <!-- end slevomat coding standard -->
-
-  <!-- compatible but not installed -->
-  <!-- readme reminds you that this was written 10 years ago, is prone to false positives, and is slow. issues are stale. https://github.com/FloeDesignTechnologies/phpcs-security-audit -->
-  <!-- joomla standards are ugly https://github.com/joomla/coding-standards -->
-  <!-- these seem focused on wordpress https://github.com/Automattic/VIP-Coding-Standards -->
-  <!-- end compatible but not installed -->
-
-  <!-- TODO implement https://github.com/object-calisthenics/phpcs-calisthenics-rules/tree/v2.0.1 . Kind of hard to do as the docs for 2.0.1 don't have examples and it's the newest version that supports php 7.0 :( -->
-
-  <!-- begin humanmade standards -->
-  <!-- might remove... these are mostly based on wordpress and not easy to include -->
-  <!-- <rule ref="./vendor/humanmade/coding-standards/HM/Sniffs/Functions/NamespacedFunctionsSniff.php" /> -->
-  <!-- <rule ref="./vendor/humanmade/coding-standards/HM/Sniffs/Namespaces/NoLeadingSlashOnUseSniff.php" /> -->
-  <!-- <rule ref="./vendor/humanmade/coding-standards/HM/Sniffs/Whitespace/MultipleEmptyLinesSniff.php" /> -->
-  <!-- end humanmade standards -->
-
-
-  <!-- begin inpsyde/php-coding-standards https://github.com/inpsyde/php-coding-standards -->
-  <rule ref="Inpsyde">
-    <exclude name="Inpsyde.CodeQuality.FunctionBodyStart.WrongForMultiLineDeclaration" />
-    <exclude name="Inpsyde.CodeQuality.NoAccessors" />
-    <exclude name="Inpsyde.CodeQuality.LineLength" />
-    <!-- this is already covered by phpmd -->
-    <exclude name="Inpsyde.CodeQuality.NoElse" />
-    <!-- also covered by phpmd rulesets/codesize.xml/ExcessiveMethodLength -->
-    <exclude name="Inpsyde.CodeQuality.FunctionLength.TooLong" />
-  </rule>
-
-  <rule ref="Inpsyde.CodeQuality.FunctionLength.TooLong">
-    <exclude-pattern>spec/*</exclude-pattern>
-  </rule>
-
-  <rule ref="Inpsyde.CodeQuality.ArgumentTypeDeclaration">
-    <exclude-pattern>spec/*</exclude-pattern>
-  </rule>
-
-  <!-- end inpsyde/php-coding-standards -->
-
-  <!-- Packages requiring php 7.1+ that look useful -->
-  <!-- https://github.com/gskema/phpcs-type-sniff -->
-  <!-- https://github.com/infinityloop-dev/coding-standard -->
-  <!-- https://github.com/Rarst/phpcs-cognitive-complexity -->
-  <!-- https://github.com/mayflower/mo4-coding-standard -->
-
-  <!-- begin sirbrillig/phpcs-variable-analysis https://github.com/sirbrillig/phpcs-variable-analysis -->
-  <!-- <rule ref="VariableAnalysis"> -->
-  <!-- </rule> -->
-  <!-- end sirbrillig/phpcs-variable-analysis -->
-
-  <!-- begin PHPCompatibility https://github.com/PHPCompatibility/PHPCompatibility -->
-  <!-- <rule ref="PHPCompatibility"> -->
-  <!-- </rule> -->
-  <!-- end PHPCompatibility -->
-
-  <!-- begin Neutron standard https://github.com/Automattic/phpcs-neutron-standard -->
-  <rule ref="NeutronStandard">
-    <exclude name="NeutronStandard.Whitespace.RequireParenthesisSpacing" />
-    <!-- this overlaps with Inpsyde -->
-    <exclude name="NeutronStandard.Functions.LongFunction.LongFunction" />
-    <!-- this overlaps with Inpsyde -->
-    <exclude name="NeutronStandard.Functions.TypeHint" />
-  </rule>
-  <!-- end Neutron standard -->
-
-  <!-- Generic (28 sniffs) -->
+  <!-- begin Generic -->
   <rule ref="Generic">
     <exclude name="Generic.Arrays.DisallowShortArraySyntax" />
     <exclude name="Generic.Classes.OpeningBraceSameLine" />
@@ -162,23 +52,25 @@
     <exclude name="Generic.Functions.OpeningFunctionBraceBsdAllman" />
     <exclude name="Generic.Functions.OpeningFunctionBraceKernighanRitchie" />
     <exclude name="Generic.PHP.ClosingPHPTag" />
+    <exclude name="Generic.PHP.RequireStrictTypes.MissingDeclaration" /><!-- overlaps with slevomat which is fixable -->
     <exclude name="Generic.PHP.UpperCaseConstant" />
     <exclude name="Generic.WhiteSpace.DisallowSpaceIndent" />
   </rule>
-  <!-- properties of rules used in other rulesets -->
+
+  <!-- Disabling to work with Sergey's if (! $myvar) or if ( ! $myVar) style -->
   <rule ref="Generic.Formatting.SpaceAfterNot">
     <properties>
-      <!-- This will not work with Sergey's style, will probably have to disable this -->
       <property name="spacing" value="0" />
     </properties>
   </rule>
+
   <rule ref="Generic.Strings.UnnecessaryStringConcat">
     <properties>
       <property name="allowMultiline" value="true" />
-        <!-- warning instead of error -->
-      <property name="error" value="false" />
+      <property name="error" value="false" /><!-- warning instead of error -->
     </properties>
   </rule>
+
   <rule ref="Generic.PHP.ForbiddenFunctions">
     <properties>
       <!-- this is set in order to remove is_null from forbidden functions -->
@@ -186,16 +78,26 @@
       <property name="error" value="false" />
     </properties>
   </rule>
+
   <!-- <rule ref="Generic.PHP.DiscouragedFunctions"> -->
   <!--   <properties> -->
   <!--     <property name="forbiddenFunctions" type="array" value="error_log=>null,print_r=>null,var_dump=>null" /> -->
   <!--   </properties> -->
   <!-- </rule> -->
+
   <rule ref="Generic.NamingConventions.CamelCapsFunctionName.ScopeNotCamelCaps">
     <exclude-pattern>spec/*</exclude-pattern>
   </rule>
 
-  <!-- MySource (16 sniffs) -->
+  <rule ref="Generic.PHP.ForbiddenFunctions">
+    <properties>
+      <property name="forbiddenFunctions" type="array" value="sizeof=>count,delete=>unset,print=>echo" /><!-- this is set in order to remove is_null from forbidden functions, but it doesn't work. -->
+      <property name="error" value="false" />
+    </properties>
+  </rule>
+  <!-- end Generic -->
+
+  <!-- begin MySource -->
   <rule ref="MySource">
     <rule ref="Squiz.Strings.ConcatenationSpacing">
       <properties>
@@ -217,8 +119,9 @@
     <exclude name="MySource.PHP.ReturnFunctionValue.NotAssigned" />
     <exclude name="MySource.Strings.JoinStrings" />
   </rule>
+  <!-- end MySource -->
 
-  <!-- PEAR (5 sniffs) -->
+  <!-- begin PEAR -->
   <rule ref="PEAR">
     <exclude name="PEAR.Functions.FunctionCallSignature" />
     <exclude name="PEAR.NamingConventions.ValidVariableName" />
@@ -233,77 +136,71 @@
     <exclude name="PEAR.Functions.FunctionCallSignature.CloseBracketLine" />
     <exclude name="PEAR.Formatting.MultiLineAssignment.EqualSignLine" />
   </rule>
+  <!-- end PEAR -->
 
-  <!-- PSR1 (3 sniffs) -->
+  <!-- begin PSR1 -->
   <rule ref="PSR1">
   </rule>
   <rule ref="PSR1.Methods.CamelCapsMethodName.NotCamelCaps">
     <exclude-pattern>spec/*</exclude-pattern>
   </rule>
+  <!-- end PSR1 -->
 
-  <!-- PSR2 (12 sniffs) -->
-  <rule ref="PSR2">
-  </rule>
+  <!-- begin PSR2 -->
+  <rule ref="PSR2" />
+  <!-- end PSR2 -->
 
-  <!-- PSR12 (16 sniffs) -->
+  <!-- begin PSR12 -->
   <rule ref="PSR12">
     <!-- constant visibility is not yet available in php 7.0 -->
     <exclude name="PSR12.Properties.ConstantVisibility.NotFound" />
   </rule>
+  <!-- end PSR12 -->
 
-  <!-- Squiz (98 sniffs) -->
+  <!-- begin Squiz -->
   <rule ref="Squiz">
-    <rule ref="Generic.PHP.ForbiddenFunctions">
-      <properties>
-        <!-- this is set in order to remove is_null from forbidden functions, but it doesn't work. -->
-        <property name="forbiddenFunctions" type="array" value="sizeof=>count,delete=>unset,print=>echo" />
-        <property name="error" value="false" />
-      </properties>
-    </rule>
-    <exclude name="Squiz.PHP.DisallowMultipleAssignments" />
-    <exclude name="Squiz.PHP.DisallowBooleanStatement" />
-    <exclude name="Squiz.WhiteSpace.MemberVarSpacing" />
-    <!-- this is a great rule but it doesn't respect {@inheritDoc} :( -->
-    <!-- <exclude name="Squiz.Commenting.FunctionCommentThrowTag.Missing" /> -->
-    <rule ref="Squiz.WhiteSpace.MemberVarSpacing">
-      <properties>
-        <property name="spacingBeforeFirst" value="0" />
-      </properties>
-    </rule>
+    <!-- <exclude name="Squiz.Commenting.FunctionCommentThrowTag.Missing" /> --><!-- this is a great rule but it doesn't respect {@inheritDoc} :( -->
     <!-- <exclude name="Squiz.PHP.CommentedOutCode" /> -->
-    <exclude name="Squiz.Strings.DoubleQuoteUsage" />
+    <exclude name="Generic.ControlStructures.DisallowYodaConditions" />
+    <exclude name="Squiz.Arrays.ArrayDeclaration" />
+    <exclude name="Squiz.Commenting.BlockComment" />
+    <exclude name="Squiz.Commenting.ClassComment" />
+    <exclude name="Squiz.Commenting.ClosingDeclarationComment" />
+    <exclude name="Squiz.Commenting.FileComment" />
+    <exclude name="Squiz.Commenting.FunctionComment" />
+    <exclude name="Squiz.Commenting.InlineComment" />
     <exclude name="Squiz.Commenting.LongConditionClosingComment" />
     <exclude name="Squiz.Commenting.PostStatementComment.Found" />
     <exclude name="Squiz.Commenting.VariableComment" />
-    <exclude name="Squiz.Commenting.BlockComment" />
-    <exclude name="Squiz.Commenting.ClassComment" />
-    <exclude name="Squiz.Files.FileExtension" />
-    <exclude name="Squiz.Commenting.FileComment" />
-    <exclude name="Squiz.Operators.ComparisonOperatorUsage" />
-    <exclude name="Squiz.PHP.DisallowInlineIf" />
-    <exclude name="Squiz.PHP.DisallowComparisonAssignment" />
-    <exclude name="Squiz.WhiteSpace.ObjectOperatorSpacing" />
+    <exclude name="Squiz.ControlStructures.ElseIfDeclaration" />
     <exclude name="Squiz.ControlStructures.InlineIfDeclaration" />
     <exclude name="Squiz.ControlStructures.SwitchDeclaration.BreakIndent" />
-    <exclude name="Generic.ControlStructures.DisallowYodaConditions" />
-    <exclude name="Squiz.Commenting.InlineComment" />
-    <exclude name="Squiz.Arrays.ArrayDeclaration" />
+    <exclude name="Squiz.Files.FileExtension" />
+    <exclude name="Squiz.Formatting.OperatorBracket" /><!-- this doesn't take into account ?? >:( -->
+    <exclude name="Squiz.NamingConventions.ValidVariableName.NotCamelCaps" /><!-- this rule does not allow even \stdClass->my_var, which is fine -->
     <exclude name="Squiz.Objects.ObjectInstantiation" />
-    <exclude name="Squiz.Commenting.ClosingDeclarationComment" />
-    <exclude name="Squiz.Commenting.FunctionComment" />
-    <!-- this conflicts with Mike's multiline ternary style -->
-    <exclude name="Squiz.WhiteSpace.FunctionClosingBraceSpace.SpacingBeforeClose" />
-    <!-- this doesn't take into account ?? >:( -->
-    <exclude name="Squiz.Formatting.OperatorBracket" />
-    <exclude name="Squiz.ControlStructures.ElseIfDeclaration" />
-    <!-- this rule does not allow even \stdClass->my_var, which is fine -->
-    <exclude name="Squiz.NamingConventions.ValidVariableName.NotCamelCaps" />
+    <exclude name="Squiz.Operators.ComparisonOperatorUsage" />
+    <exclude name="Squiz.PHP.DisallowBooleanStatement" />
+    <exclude name="Squiz.PHP.DisallowComparisonAssignment" />
+    <exclude name="Squiz.PHP.DisallowInlineIf" />
+    <exclude name="Squiz.PHP.DisallowMultipleAssignments" />
+    <exclude name="Squiz.Strings.DoubleQuoteUsage" />
+    <exclude name="Squiz.WhiteSpace.FunctionClosingBraceSpace.SpacingBeforeClose" /><!-- this conflicts with Mike's multiline ternary style -->
+    <exclude name="Squiz.WhiteSpace.MemberVarSpacing" />
+    <exclude name="Squiz.WhiteSpace.ObjectOperatorSpacing" />
   </rule>
-  <!-- phpspec uses it_does_this() format for functions -->
+  <!-- end Squiz -->
+
+  <rule ref="Squiz.WhiteSpace.MemberVarSpacing">
+    <properties>
+      <property name="spacingBeforeFirst" value="0" />
+    </properties>
+  </rule>
+
   <rule ref="Squiz.NamingConventions.ValidFunctionName.ScopeNotCamelCaps">
     <exclude-pattern>spec/*</exclude-pattern>
   </rule>
-  <!-- properties of rules used in other rulesets -->
+
   <rule ref="Squiz.WhiteSpace.FunctionSpacing">
     <properties>
       <property name="spacing" value="1" />
@@ -311,27 +208,131 @@
       <property name="spacingAfterLast" value="0" />
     </properties>
   </rule>
+
   <rule ref="Squiz.Strings.ConcatenationSpacing">
     <properties>
       <property name="ignoreNewlines" value="true" />
       <property name="spacing" value="1" />
     </properties>
   </rule>
+
   <rule ref="Squiz.WhiteSpace.ObjectOperatorSpacing">
     <properties>
       <property name="ignoreNewlines" value="true" />
     </properties>
   </rule>
+
   <rule ref="Squiz.WhiteSpace.OperatorSpacing">
     <properties>
       <property name="ignoreNewlines" value="true" />
     </properties>
   </rule>
 
-  <!-- Zend (2 sniffs) -->
+  <!-- start Zend -->
   <rule ref="Zend">
     <exclude name="Zend.NamingConventions.ValidVariableName" />
     <exclude name="Zend.Debug.CodeAnalyzer" />
   </rule>
+
+  <!-- begin SlevomatCodingStandard -->
+  <!-- NOTE: the last version that supported php 7.0 was slevomat v4.0.0, which is quite old. Upgrade when updating php! -->
+  <!-- https://github.com/slevomat/coding-standard/tree/4.0.0 -->
+  <rule ref="SlevomatCodingStandard">
+    <exclude name="SlevomatCodingStandard.Exceptions.ReferenceThrowableOnly" />
+    <exclude name="SlevomatCodingStandard.ControlStructures.RequireYodaComparison.RequiredYodaComparison" />
+    <exclude name="SlevomatCodingStandard.Files.TypeNameMatchesFileName" />
+    <exclude name="SlevomatCodingStandard.Files.TypeNameMatchesFileName" /><!-- doesn't respect relative basepath -->
+    <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation" />
+    <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedExceptions" />
+    <exclude name="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly" />
+    <exclude name="SlevomatCodingStandard.Namespaces.UseOnlyWhitelistedNamespaces" />
+    <exclude name="SlevomatCodingStandard.Namespaces.UseOnlyWhitelistedNamespaces" />
+    <exclude name="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingTraversableParameterTypeHintSpecification" />
+    <exclude name="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingTraversableReturnTypeHintSpecification" />
+    <exclude name="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.UselessDocComment" />
+  </rule>
+
+  <rule ref="SlevomatCodingStandard.TypeHints.TypeHintDeclaration">
+    <properties>
+      <property name="enableVoidTypeHint" value="0" />
+      <property name="enableNullableTypeHints" value="0" />
+    </properties>
+  </rule>
+
+  <rule ref="SlevomatCodingStandard.Types.EmptyLinesAroundTypeBraces">
+    <properties>
+      <property name="linesCountBeforeClosingBrace" value="0" />
+      <property name="linesCountAfterOpeningBrace" value="0" />
+    </properties>
+  </rule>
+
+  <rule ref="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly">
+    <properties>
+      <property name="allowFullyQualifiedNameForCollidingClasses" value="true" />
+      <property name="allowFullyQualifiedGlobalClasses" value="true" />
+      <property name="allowFullyQualifiedExceptions" value="true" />
+      <property name="allowFullyQualifiedGlobalFunctions" value="true" />
+      <property name="allowFullyQualifiedGlobalConstants" value="true" />
+    </properties>
+  </rule>
+
+  <rule ref="SlevomatCodingStandard.TypeHints.TypeHintDeclaration">
+    <properties>
+      <property name="enableNullableTypeHints" value="false" />
+      <property name="enableVoidTypeHint" value="false" />
+      <property name="enableEachParameterAndReturnInspection" value="false" />
+      <!-- <property name="enableEachParameterAndReturnInspection" value="true" /> -->
+    </properties>
+  </rule>
+
+  <rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes">
+    <properties>
+      <property name="newlinesCountBetweenOpenTagAndDeclare" value="2" />
+      <property name="newlinesCountAfterDeclare" value = "2" />
+      <property name="spacesCountAroundEqualsSign" value = "0" />
+      <property name="spacesCountAroundEqualsSign" value="0" />
+    </properties>
+  </rule>
+  <!-- end SlevomatCodingStandard -->
+
+  <!-- compatible with this php version but not installed -->
+  <!-- https://github.com/FloeDesignTechnologies/phpcs-security-audit readme reminds you that this was written 10 years ago, is prone to false positives, and is slow. issues are stale. -->
+  <!-- https://github.com/joomla/coding-standards joomla standards are ugly -->
+  <!-- https://github.com/Automattic/VIP-Coding-Standards these seem focused on wordpress -->
+  <!-- https://github.com/humanmade/coding-standards: these are mostly based on wordpress and not easy to include -->
+  <!-- https://github.com/object-calisthenics/phpcs-calisthenics-rules/tree/v2.0.1 TODO. Kind of hard to do as the docs for 2.0.1 don't have examples and it's the newest version that supports php 7.0 :( -->
+  <!-- https://github.com/sirbrillig/phpcs-variable-analysis -->
+  <!-- https://github.com/PHPCompatibility/PHPCompatibility -->
+  <!-- https://github.com/Automattic/phpcs-neutron-standard -->
+
+  <!-- Packages requiring php 7.1+ that look useful -->
+  <!-- https://github.com/gskema/phpcs-type-sniff -->
+  <!-- https://github.com/infinityloop-dev/coding-standard -->
+  <!-- https://github.com/Rarst/phpcs-cognitive-complexity -->
+  <!-- https://github.com/mayflower/mo4-coding-standard -->
+
+  <!-- begin Inpsyde https://github.com/inpsyde/php-coding-standards -->
+  <rule ref="Inpsyde">
+    <exclude name="Inpsyde.CodeQuality.FunctionBodyStart.WrongForMultiLineDeclaration" />
+    <exclude name="Inpsyde.CodeQuality.FunctionLength.TooLong" /><!-- also covered by phpmd rulesets/codesize.xml/ExcessiveMethodLength -->
+    <exclude name="Inpsyde.CodeQuality.LineLength" />
+    <exclude name="Inpsyde.CodeQuality.NoAccessors" />
+    <exclude name="Inpsyde.CodeQuality.NoElse" /><!-- this is already covered by phpmd -->
+  </rule>
+
+  <rule ref="Inpsyde.CodeQuality.ElementNameMinimalLength">
+    <properties>
+      <property name="allowedShortNames" type="array" value="id,db,x,y,e" />
+    </properties>
+  </rule>
+
+  <rule ref="Inpsyde.CodeQuality.FunctionLength.TooLong">
+    <exclude-pattern>spec/*</exclude-pattern>
+  </rule>
+
+  <rule ref="Inpsyde.CodeQuality.ArgumentTypeDeclaration">
+    <exclude-pattern>spec/*</exclude-pattern>
+  </rule>
+  <!-- end Inpsyde -->
 
 </ruleset>
