@@ -393,7 +393,8 @@ endif
 let g:blamer_enabled = 1
 let g:blamer_show_in_visual_modes = 0
 let g:blamer_show_in_insert_modes = 0
-let g:blamer_prefix = '✎  '
+" let g:blamer_prefix = '✎  '
+let g:blamer_prefix = '    '
 let g:blamer_relative_time = 1
 " }}}
 
@@ -876,7 +877,7 @@ EOF
     " disable lsp diagnostics in vimdiff (mergetool) {{{
     " if &diff
 " lua << EOF
-    " local nvim_lsp = require'nvim_lsp'
+    " local nvim_lsp = require'lspconfig'
     " -- Disable Diagnostcs globally
     " vim.lsp.callbacks["textDocument/publishDiagnostics"] = function() end
 " EOF
@@ -911,7 +912,7 @@ EOF
         " diagnostic-nvim only if those plugins exist
 
 lua <<EOF
-local nvim_lsp = require'nvim_lsp'
+local nvim_lsp = require'lspconfig'
 
 nvim_lsp.intelephense.setup{
     settings = {
@@ -1048,7 +1049,7 @@ EOF
     " ruby (solargraph) lsp setup {{{
     " so far this is not working, it's just failing silently for catalog.
     if (executable('solargraph'))
-        lua require'nvim_lsp'.solargraph.setup{}
+        lua require'lspconfig'.solargraph.setup{}
         augroup nvim_lsp_ruby
             autocmd!
             autocmd filetype ruby setlocal omnifunc=v:lua.vim.lsp.omnifunc
@@ -1058,7 +1059,7 @@ EOF
 
     " docker lsp setup {{{
     if (executable('docker-langserver'))
-        lua require'nvim_lsp'.dockerls.setup{}
+        lua require'lspconfig'.dockerls.setup{}
         augroup nvim_lsp_docker
             autocmd!
             autocmd filetype docker setlocal omnifunc=v:lua.vim.lsp.omnifunc
@@ -1069,7 +1070,7 @@ EOF
     " flowtype lsp setup {{{
     " moved this to easel .vimrc ... legacy doesn't have flow and gallery's
     " version is so old it doesn't have lsp.
-    " require'nvim_lsp'.flow.setup{}
+    " require'lspconfig'.flow.setup{}
     " }}}
 
 endif

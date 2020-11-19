@@ -94,7 +94,8 @@ windows:
         focus: true
       - ts
       - cd && wait-on http://www.local.saatchiart.com && while true; do saatchi-tinker-palette-local; sleep 1; done
-      - while true; do psw; sleep 1; done
+      # - while true; do psw; sleep 1; done
+      - while true; do saatchi-phpspec-watch-palette; sleep 1; done
       # - saatchi-phing-watch
       - saatchi-apidocs-serve-palette
       - wait-on http://www.local.saatchiart.com && while true; do saatchi-tail-palette-local; sleep 1; done

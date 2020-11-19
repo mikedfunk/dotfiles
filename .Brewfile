@@ -21,7 +21,7 @@ tap "wfxr/code-minimap" # for a vim plugin
 # }}}
 
 # brew {{{
-brew "asdf"
+brew "asdf" # language runtime version switcher like rbenv and phpenv
 brew "akamai" # interact with akamai caching
 # brew "angband" # middle-earth themed dungeon crawler (requires java)
 # brew "ansible" # used in some of my company-specific stuff to run ssh commands on multiple servers.
@@ -29,12 +29,17 @@ brew "akamai" # interact with akamai caching
 # brew "ant" # apache build tool
 brew "antibody" # like antigen but faster! (zsh plugin system)
 # brew "antigen" # zsh package manager. I switched to antibody for speed
-# brew "autoconf" # needed to build some php70 libs from source https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
+brew "apr" # needed to build php https://github.com/shivammathur/homebrew-php/blob/master/.github/deps/macos11_20201107.1
+brew "apr-util" # needed to build php https://github.com/shivammathur/homebrew-php/blob/master/.github/deps/macos11_20201107.1
+brew "argon2" # needed to build php https://github.com/shivammathur/homebrew-php/blob/master/.github/deps/macos11_20201107.1
+brew "aspell" # needed to build php https://github.com/shivammathur/homebrew-php/blob/master/.github/deps/macos11_20201107.1
+brew "autoconf" # needed to build some php70 libs from source https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
+brew "automake" # needed for building php70 from source
 brew "autossh" # ssh that reconnects (I use this a lot for tunnels, etc)
 brew "awscli" # aws command - used to upload to s3, etc. `aws configure` to set up credentials. (set up access keys here https://console.aws.amazon.com/iam/home?region=us-west-1#/users/mike.funk?section=security_credentials)
 brew "bandwhich" # top-like tool to see which processes are using the most bandwidth (sudo bandwhich)
 brew "bat" # much cooler looking cat
-brew "bison" # needed for phpenv build. The default mac one is too old. https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
+brew "bison" # needed to build php. The default mac one is too old. https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
 # brew "bmon" # bandwidth monitor
 # brew "broot" # use `br` to do something between tree and ls. File browser with lots of vim patterns.
 # brew "browser" # pipe html to a temp file and open in browser e.g. `ls | browser`
@@ -51,8 +56,7 @@ brew "coreutils" # used by k zsh plugin and msgpack gem which is a dependency of
 # brew "ctags" # allows jumping to function/class definitions, etc. in vim (I use universal-ctags)
 brew "ctop" # like top for docker containers (really great!)
 brew "curl" # http cli tool. Included with mac of course, but this gives me the updated version. Also needed for phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
-brew "git-delta" # git pager with syntax highlighting, language aware
-# brew "navi" # cool interactive command helper / cheat sheet
+brew "curl-openssl" # needed to build php https://github.com/shivammathur/homebrew-php/blob/master/.github/deps/macos11_20201107.1
 # brew "desk" # shell workspace manager. (I use direnv instead)
 # brew "diff-so-fancy" # better git diff viewer (note: diff-highlight is in pip) (I now use delta instead)
 brew "direnv" # allow .envrc in directories to be loaded at every prompt to add relative bins to PATH, etc. easy. (I use this a lot to adjust path, kubernetes context, etc.)
@@ -70,17 +74,24 @@ brew "entr" # file watcher (I use this a lot in my shell functions)
 # brew "fasd" # Command-line productivity booster, offers quick access to files and directories, inspired by autojump, z and v. (I use wd)
 brew "fd" # prettier alternative to find that respects gitignore (haven't used it yet)
 # brew "fpp" # facebook path picker. Used with tmux-fpp to easily open files in an editor. (I don't use it)
+brew "freetds" # needed to build php https://github.com/shivammathur/homebrew-php/blob/master/.github/deps/macos11_20201107.1
+brew "freetype" # needed to build php
 brew "fx" # json funagler used by some of my shell functions
 brew "fzf" # fuzzy file finder `git branch | fzf | xargs git checkout`
+brew "gd" # needed to build php https://github.com/shivammathur/homebrew-php/blob/master/.github/deps/macos11_20201107.1
+brew "gettext" # needed to build php
 brew "gh" # new github cli
 brew "git"
 # brew "git-extras" # adds some cool additional git commands (conflicts with npm git-standup)
+brew "git-delta" # git pager with syntax highlighting, language aware
 # brew "git-flow" # adds first class git commands for the git-flow workflow (I use avh version below)
 # brew "git-flow-avh" # adds first class git commands for the git-flow workflow. This version will delete remote feature, release, and hotfix branches on finishing.
 # brew "git-standup" # show commits in the last day. works in parent dir too.
 brew "gitlab-gem" # gitlab cli
+brew "glib" # needed to build php https://github.com/shivammathur/homebrew-php/blob/master/.github/deps/macos11_20201107.1
 # brew "global" # gnu global tags aka gtags. More powerful than ctags but has a different interface with a learning curve. Also depends on ctags which conflicts with universal-ctags.
 # brew "glow" # markdown terminal renderer - conflicts with npm glow (pretty flowtype checker)
+brew "gmp" # needed to build php https://github.com/shivammathur/homebrew-php/blob/master/.github/deps/macos11_20201107.1
 brew "gnu-sed" # linux version of sed - saves as gsed (required for diff-so-fancy)
 # brew "gnu-tar" # linux version of tar so stuff actually works
 # brew "graphviz" # useful for xdebug profiler class maps
@@ -94,7 +105,7 @@ brew "hostess" # manage hosts file `hostess help` TODO try https://github.com/fe
 brew "htop" # prettier, more powerful version of top. gets the top running processes. (see my notes)
 brew "httpie" # a cool alternative to curl (http --help) (NOTE: `man http` is something different :/ )
 brew "hub" # , args: ["devel"] # github tool is a superset of git with extra commands.
-# brew "icu4c" # needed for php70-intl extension (it seems this is included with node https://stackoverflow.com/questions/27896229/library-not-loaded-error-after-brew-install-php56) https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
+brew "icu4c" # needed for php70-intl extension (it seems this is included with node https://stackoverflow.com/questions/27896229/library-not-loaded-error-after-brew-install-php56) https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
 # brew "ievms" # internet explorer VirtualBox VMs to test a site in various IE versions
 brew "imagemagick" # image transformation tool - needed by php imagemagick extension (latest version needed to install host machine pecl imagick php extension)
 # brew "imagemagick@6" # image transformation tool - v6 needed for catalog
@@ -103,11 +114,12 @@ brew "imagemagick" # image transformation tool - needed by php imagemagick exten
 # brew "irssi" # irc client (I use web app)
 # brew "jenkins-zh/jcli/jcli" # jenkins cli - alternative to .jar version
 # brew "jsawk" # parse json in bash
-brew "joplin" # powerful note-taking app with cli version, multi-pane, search, etc.
+# brew "joplin" # powerful note-taking app with cli version, multi-pane, search, etc.
 brew "jsonlint" # used by vim ale to lint json
 brew "jq" # simple json pretty-printer `echo '{"my" => "json"}' | jq .` (Used in some of my shell functions)
 # brew "jrnl" # simple journaling wrapper (I use joplin)
 # brew "keychain" # manage ssh agent and adding keys to it automatically. (I don't use this now that I have an ssh config directive to store passphrases for ssh agent in my osx keychain, which is different from this project's "keychain". Confusing, I know.)
+brew "krb5" # needed to build php
 # brew "kubernetes-cli" # already installed via brew cask install docker
 brew "kubectx" # quick way to switch contexts with a fzf picker
 brew "k9s" # handy kubernetes dashboard `k9s -n develop`
@@ -115,14 +127,17 @@ brew "k9s" # handy kubernetes dashboard `k9s -n develop`
 brew "less" # huh, there's a newer version of less available
 # brew "lftp" # fancy scp, torrent, http, ftp download and upload client with queues, backgrounding, and more
 brew "libcouchbase@2" # nosql fast data storage. I install this for the cli tool `cbc` and to build the php couchbase extension (note: requires brew link libcouchbase@2 --force)
-brew "asdf"
 brew "libedit" # needed for phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
 brew "libiconv" # needed for phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
+brew "libffi" # needed to build php https://github.com/shivammathur/homebrew-php/blob/master/.github/deps/macos11_20201107.1
+brew "libjpeg" # needed to build php
 brew "libmemcached" # needed by php70 memcached pecl extension
 brew "libmcrypt" # needed by php-build, which is used by phpenv DO NOT DELETE php will break
-# brew "libpng" # needed for phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
-# brew "libxml2" # needed by phpenv php70 https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
-# brew "libzip" # needed for phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
+brew "libpng" # needed for phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
+brew "libpq" # needed to build php https://github.com/shivammathur/homebrew-php/blob/master/.github/deps/macos11_20201107.1
+brew "libsodium" # needed to build php https://github.com/shivammathur/homebrew-php/blob/master/.github/deps/macos11_20201107.1
+brew "libxml2" # needed by phpenv php70 https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
+brew "libzip" # needed for phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
 brew "litecli" # like mycli for sqlite
 # brew "lockrun" # simple way to lock cron jobs with a lock file and clear them when done
 # brew "lsd" # pretty ls augmentation
@@ -140,6 +155,7 @@ brew "mysql" # I haven't been using the server lately but I use the cli tool to 
 # brew "mysql-client" # If I ever need mysql client without mysql on local... downside: it doesn't link automatically - you have to brew link --force even if mysql isn't installed :/
 # brew "m-cli" # mac cli tools e.g. restart, screensaver, bluetooth, etc.
 # brew "nano" # text editor. This gets the latest version: 2.2.6 rather than 2.2.0 that comes with osx.
+# brew "navi" # cool interactive command helper / cheat sheet
 # brew "ncdu" # interactive du
 brew "newsboat" # terminal rss reader. I'm debating on whether this is worth it. It's kind of handy to read the headlines in hackernews, reddit programming, etc.
 # brew "neovim" # vim re-imagined (temporarily disabled so I can build from source for lsp support and to fix bugs)
@@ -149,9 +165,12 @@ brew "node" # nodejs and npm (non-nodenv version required by joplin, yarn)
 # brew "nodenv" # node version manager (same api as rbenv) (I use asdf now)
 brew "noti" # simple terminal notifier
 brew "nss" # required by mkcert to make certs trusted in firefox
-brew "openssl" # needed for rbenv https://github.com/rbenv/ruby-build/issues/377#issuecomment-391427324 and phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
+brew "oniguruma" # needed to build php https://github.com/shivammathur/homebrew-php/blob/master/.github/deps/macos11_20201107.1
+brew "openldap" # needed to build php https://github.com/shivammathur/homebrew-php/blob/master/.github/deps/macos11_20201107.1
+brew "openssl@1.1" # needed to build php https://github.com/shivammathur/homebrew-php/blob/master/.github/deps/macos11_20201107.1
 # brew "pandoc" # transform between document formats e.g. markdown <-> pdf (used for inline vim php documentation, which I no longer use)
 # brew "pass" # unix password manager using gpg
+brew "pcre2" # needed to build php https://github.com/shivammathur/homebrew-php/blob/master/.github/deps/macos11_20201107.1
 # brew "peco" # interactively filter results and print the filtered version. can be used to print filtered one or e.g. `vim $(dosomething | peco)` (FZF does this)
 # brew "perl" # for swat cpan package
 # brew "perl-build" # needed for perlenv (which I don't use currently)
@@ -215,7 +234,7 @@ brew "sqlite3" # used as the default db for rails
 # brew "telnet" # I don't have telnet? How am I going to watch star wars?
 brew "terminal-notifier" # used by tmux plugin marzocchi/zsh-notify and my circleci pre-push hook (this is really just a gem so watch for it being installed by dependencies of other gems :/ ) This overlaps with noti but it provides full access to the desktop notification api unlike noti.
 brew "the_silver_searcher" # awesome fast grep replacement: `ag --help`
-# brew "tidy-html5" # needed by phpenv https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
+brew "tidy-html5" # needed to build php https://github.com/shivammathur/homebrew-php/blob/master/.github/deps/macos11_20201107.1
 brew "tig" # git? tig! (note: this requires asciidoc)
 # brew "timewarrior" # taskwarrior-like interface for tracking time (I don't use this)
 # brew "tldr" # more consise community man pages
@@ -225,6 +244,7 @@ brew "tmux" # terminal multiplexer similar to screen.
 brew "trash-cli" # a trash can for the terminal
 brew "tree" # display file/folder hierarchies in a visual tree format
 brew "universal-ctags", args: ["HEAD", " --with-jansson"] # tag creator for use by vim to navigate by symbols. head only.
+brew "unixodbc" # needed to build php https://github.com/shivammathur/homebrew-php/blob/master/.github/deps/macos11_20201107.1
 # brew "urlview" # used by <prefix>u tmux urlview plugin
 # brew "virtualhost".sh # (crappy) virtualhost management script
 brew "watch" # Executes a program periodically, showing output fullscreen (an npm package which is a child dependency of another sometimes replaces this binary: https://www.npmjs.com/package/watch . If so, just `brew link --overwrite watch` )
@@ -240,6 +260,7 @@ brew "yamllint" # used by vim-ale
 brew "yarn" # wrapper for npm with real lock files and caching (installing via npm is deprecated)
 brew "yadm" # yet another dotfiles manager
 # brew "yq" # jq is to json what yq is to yaml (and xml!). yaml parser and searcher. I use it to read configs my circleci stuff, etc. (I use the python-yq version instead because it also installs xq)
+brew "zlib" # needed to build php
 brew "zork" # seriously? yes. tip: `save` and `restore` And yes, there's only one save slot, what do you think this is, 1990?
 # brew "zplug" # zsh plugin manager like composer. bash installer crashes for some reason. works fine via homebrew. (switched to antibody)
 brew "zsh" # awesome bash shell replacement

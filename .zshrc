@@ -102,9 +102,9 @@ path=(
   # /usr/local/opt/go/libexec/bin
   # $HOME/.{pl,nod,py}env/bin # these will be set up by shell integration
   # $HOME/.config/yarn/global/node_modules/.bin
-  $(_has yarn && yarn global bin)
+  $([ -f $HOME/.asdf/shims/yarn ] && $HOME/.asdf/shims/yarn global bin)
   $HOME/.composer/vendor/bin
-  $(_has gem && gem env home)
+  $([ -f $HOME/.asdf/shims/gem ] && $HOME/.asdf/shims/gem env home)
   /usr/{bin,sbin}
   /{bin,sbin}
   # /usr/local/opt/icu4c/{bin,sbin}
@@ -112,6 +112,7 @@ path=(
   # /usr/local/opt/coreutils/libexec/gnubin
   $path
 )
+# echo "PATH:----" $path
 # }}}
 
 # zsh {{{
@@ -211,7 +212,6 @@ export ZSH_ALIAS_FINDER_AUTOMATIC=true # https://github.com/ohmyzsh/ohmyzsh/tree
 _has tmuxp && _evalcache "$HOME"/.support/enable-tmuxp-completion.sh # workaround to make evalcache happy
 _has direnv && _evalcache direnv hook zsh # (evalcache version)
 # _has ntfy && _evalcache ntfy shell-integration # notify when long-running command finishes. pip package, breaks in pyenv - see yadm bootstrap for unique setup. this is broken: `AttributeError: 'NoneType' object has no attribute 'scheduleNotification_'`
-_has npx && _evalcache npx --shell-auto-fallback zsh
 # #slow
 _has hub && _evalcache hub alias -s # alias git to hub with completion intact
 
@@ -392,7 +392,6 @@ alias yb="yadm bootstrap"
 alias upgrades="yb"
 save-dotfiles () { yadm encrypt && yadm add -u && yadm ci -m ${1:-working} && yadm ps; }
 save-dotfiles-without-encryption () { yadm add -u && yadm ci -m ${1:-working} && yadm ps; }
-alias joplin="/usr/local/bin/node `which joplin`" # joplin and nodenv do not mix. this uses homebrew node.
 alias notes="joplin"
 # alias jsc="/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc" # javascript repl for testing javascript wonkiness
 alias ncdu="ncdu --color dark -rr -x --exclude .git --exclude vendor" # enhanced interactive disk usage command
@@ -530,7 +529,7 @@ alias ygu="yarn global upgrade"
 alias psr="phpspecnotify"
 alias psd="phpspec describe"
 # alias psw="phpspec-watcher watch"
-alias psw="noglob ag -l -g '.*\\.php' | entr -c noti --message \"PHPSpec passed 👍\" php -dmemory_limit=1024M -ddisplay_errors=on ./vendor/bin/phpspec run --no-interaction -vvv"
+alias psw="noglob ag -l -g '.*\\.php' | entr -c noti --message \"PHPSpec passed 👍\" php -dmemory_limit=1024M -ddisplay_errors=off ./vendor/bin/phpspec run --no-interaction -vvv"
 # phpspecnotify() {
 #     php -dmemory_limit=2048M -ddisplay_errors=on ./vendor/bin/phpspec "${@}"
 #     [[ $? == 0 ]] && noti --message "PHPSpec specs passed 👍" ||

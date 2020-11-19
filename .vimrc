@@ -475,6 +475,7 @@ augroup filetypessetgroup
     autocmd BufRead,BufNewFile {.env,.env.*} set ft=dosini
     autocmd BufRead,BufNewFile *.cnf set ft=dosini
     autocmd BufRead,BufNewFile .spacemacs set ft=lisp
+    autocmd BufRead,BufNewFile .envrc set ft=sh
 augroup END
 
 let g:netrw_liststyle=3 " tree style

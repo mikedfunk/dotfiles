@@ -29,6 +29,12 @@
     <!-- <exclude-pattern>database/seeds/*</exclude-pattern> -->
   </rule>
 
+  <rule ref="StaticAccess">
+    <properties>
+      <property type="array" name="exceptions" value="Carbon\Carbon" />
+    </properties>
+  </rule>
+
   <rule ref="rulesets/codesize.xml">
   </rule>
 

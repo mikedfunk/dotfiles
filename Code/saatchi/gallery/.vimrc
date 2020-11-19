@@ -66,7 +66,7 @@ if (has('nvim'))
 
 " flow {{{
 lua << EOF
-require'nvim_lsp'.flow.setup{
+require'lspconfig'.flow.setup{
   cmd = { "flow", "lsp" }
 }
 EOF
@@ -125,7 +125,7 @@ let g:php_version_id = 70033
 
 " typescript (obviously NOT WORKING because this is in flowtype) {{{
 " lua << EOF
-" require'nvim_lsp'.tsserver.setup{}
+" require'lspconfig'.tsserver.setup{}
 " EOF
 "   augroup nvim_lsp_easel
 "     autocmd!

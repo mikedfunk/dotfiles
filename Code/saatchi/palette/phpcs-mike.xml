@@ -250,6 +250,10 @@
     <exclude name="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingTraversableParameterTypeHintSpecification" />
     <exclude name="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingTraversableReturnTypeHintSpecification" />
     <exclude name="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.UselessDocComment" />
+    <exclude name="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint" /><!-- This is broken in this version. Doesn't respect php 7.0 flag for nullable @params. -->
+    <exclude name="SlevomatCodingStandard.ControlStructures.DisallowYodaComparison" />
+    <exclude name="SlevomatCodingStandard.Classes.ClassConstantVisibility.MissingConstantVisibility" /><!-- not available in php 7.0 -->
+    <exclude name="SlevomatCodingStandard.TypeHints.NullableTypeForNullDefaultValue.NullabilitySymbolRequired" /><!-- not available in php 7.0 -->
   </rule>
 
   <rule ref="SlevomatCodingStandard.TypeHints.TypeHintDeclaration">

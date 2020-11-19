@@ -8,6 +8,7 @@
     "flow-bin": "^0.126.1",
     "intelephense": "^1.5.3",
     "intelephense-server": "^0.8.8",
+    "joplin": "^1.4.3",
     "neovim": "^4.9.0",
     "prettier": "^2.0.5",
     "redoc-cli": "^0.9.8",

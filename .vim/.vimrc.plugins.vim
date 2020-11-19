@@ -383,7 +383,7 @@ Plug 'neoclide/jsonc.vim' " jsonc syntax
 " Plug 'stephpy/vim-yaml' " faster yaml syntax highlighting (vim-polyglot has a different one)
 Plug 'fpob/nette.vim' " .neon format
 " Plug 'pangloss/vim-javascript' " Vastly improved Javascript indentation and syntax support in Vim. (in vim-polyglot)
-" Plug 'flowtype/vim-flow' " flowtype omnicompletion. If not using flow in a project, add this to project .vimrc: let g:flow#enable = 0
+" Plug 'flowtype/vim-flow' " flowtype omnicompletion. If not using flow in a project, add this to project .vimrc: let g:flow#enable = 0 (I use lsp now)
 " Plug 'jez/vim-flow' " fork that adds --quiet. without --quiet doesn't work still as of may 2018 (in vim-polyglot)
 " Plug 'othree/yajs.vim', { 'for': ['javascript', 'jsx', 'vue'] } " additonal javascript syntax highlighting. jsx is included in polyglot above.
 " Plug 'HerringtonDarkholme/yats.vim', { 'for': 'typescript' } " typescript syntax, etc. based on yajs

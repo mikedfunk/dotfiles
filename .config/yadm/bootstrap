@@ -148,26 +148,28 @@ _install_update_homebrew_packages () {
 # }}}
 
 # pin homebrew packages {{{
+# I no longer do this - instead I avoid `brew cleanup` and hope I don't run out of storage :/
+# I unpinned everything and icu4c broke for some reason. I'll add anything to this list that actually breaks.
 _pin_homebrew_packages () {
     _log_info "Pinning brew packages that need pinning"
-    brew pin bison
-    brew pin bzip2
+    # brew pin bison
+    # brew pin bzip2
     # brew pin cmake
-    brew pin curl
+    # brew pin curl
     brew pin icu4c
-    brew pin imagemagick
-    brew pin libcouchbase
-    brew pin "libcouchbase@2"
-    brew pin libedit
-    brew pin libiconv
-    brew pin libmcrypt
-    brew pin libmemcached
-    brew pin openssl
-    brew pin pkg-config
-    brew pin re2c
-    brew pin readline
-    brew pin xz
-    brew pin zlib
+    # brew pin imagemagick
+    # brew pin libcouchbase
+    # brew pin "libcouchbase@2"
+    # brew pin libedit
+    # brew pin libiconv
+    # brew pin libmcrypt
+    # brew pin libmemcached
+    # brew pin openssl
+    # brew pin pkg-config
+    # brew pin re2c
+    # brew pin readline
+    # brew pin xz
+    # brew pin zlib
 }
 # }}}
 
@@ -298,6 +300,27 @@ _update_asdf_plugins () {
 # }}}
 
 # install php versions {{{
+# not working at the moment despite a ton of research:
+# https://github.com/Homebrew/homebrew-core/pull/61820
+# https://bugs.php.net/bug.php?id=80171
+#
+# Undefined symbols for architecture x86_64:
+#   "_php_readdir_r", referenced from:
+#       _ps_gc_files in mod_files.o
+#       _php_plain_files_dirstream_read in plain_wrapper.o
+# Undefined symbols for architecture x86_64:
+#   "_php_readdir_r", referenced from:
+# Undefined symbols for architecture x86_64:
+#   "_php_readdir_r", referenced from:
+#       _ps_gc_files in mod_files.o
+#       _php_plain_files_dirstream_read in plain_wrapper.o
+#       _ps_gc_files in mod_files.o
+#       _php_plain_files_dirstream_read in plain_wrapper.o
+# Undefined symbols for architecture x86_64:
+#   "_php_readdir_r", referenced from:
+#       _ps_gc_files in mod_files.o
+#       _php_plain_files_dirstream_read in plain_wrapper.o
+#
 _install_php_70 () {
     ( asdf list php | grep --quiet 7.0.33 ) && return
     _log_info "installing php 7.0.33"
@@ -328,6 +351,76 @@ _install_php_70 () {
     asdf reshim php 7.0.33
 }
 
+_install_php_71 () {
+    # clang: error: no such file or directory: '/var/folders/3p/m5qcn0zj1x575j3fxyk7d0d80000gp/T/php-src-php-7.1.33/Zend/zend_ini_parser.c'
+    # Zend/zend_ini_scanner.l:29:10: fatal error: 'zend_ini_parser.h' file not found
+
+    ( asdf list php | grep --quiet 7.1.33 ) && return
+    _log_info "installing php 7.1.33"
+    asdf install php 7.1.33
+    asdf global php 7.1.33
+    local PHP_PATH
+    PHP_PATH="$(asdf where php)"
+
+    # install php extensions (different set for 7.1.33)
+    mkdir -p "${PHP_PATH}"/conf.d
+    _has pecl || _install_pear "7.1.33"
+    PECL="${PHP_PATH}"/pear/bin/pecl
+
+    # NOTE: pcs is a sub requirement of couchbase
+    yes "" | "${PECL}" install pcs && ( echo 'extension="phpcs.so"' >"${PHP_PATH}"/conf.d/01_pcs.ini )
+    # NOTE: this requires `brew install couchbase@2`
+    yes "" | "${PECL}" install couchbase-2.2.4 && ( echo 'extension="couchbase.so"' >"${PHP_PATH}"/conf.d/02_couchbase.ini )
+    yes "" | "${PECL}" install memcached && ( echo 'extension="memcached.so"' >"${PHP_PATH}"/conf.d/03_memcached.ini )
+    yes "" | "${PECL}" install imagick && ( echo 'extension="imagick.so"' >"${PHP_PATH}"/conf.d/04_imagick.ini )
+    # xdebug master is now php 7.1+ :(
+    yes "" | "${PECL}" install xdebug-2.8.1 && ( echo 'zend_extension="xdebug.so"' >"${PHP_PATH}"/conf.d/05_xdebug.ini )
+    # NOTE: I have 05_memory_limit.ini already there in my yadm files
+
+    # install composer global packages
+    mkdir -p  "${PHP_PATH}"/{.,}composer
+    ln -sf "$HOME"/.composer/composer.json "${PHP_PATH}"/.composer/composer.json
+    _install_update_composer_packages
+    asdf reshim php 7.1.33
+}
+
+_install_php_72 () {
+    # clang: error: no such file or directory: '/var/folders/3p/m5qcn0zj1x575j3fxyk7d0d80000gp/T/php-src-php-7.2.34/Zend/zend_ini_parser.c'
+    # clang: error: no input files
+    # make: *** [Zend/zend_ini_parser.lo] Error 1
+    # make: *** Waiting for unfinished jobs....
+    # Zend/zend_ini_scanner.l:29:10: fatal error: 'zend_ini_parser.h' file not found
+    #include <zend_ini_parser.h>
+
+    ( asdf list php | grep --quiet 7.2.34 ) && return
+    _log_info "installing php 7.2.34"
+    asdf install php 7.2.34
+    asdf global php 7.2.34
+    local PHP_PATH
+    PHP_PATH="$(asdf where php)"
+
+    # install php extensions (different set for 7.2.34)
+    mkdir -p "${PHP_PATH}"/conf.d
+    _has pecl || _install_pear "7.2.34"
+    PECL="${PHP_PATH}"/pear/bin/pecl
+
+    # NOTE: pcs is a sub requirement of couchbase
+    yes "" | "${PECL}" install pcs && ( echo 'extension="phpcs.so"' >"${PHP_PATH}"/conf.d/01_pcs.ini )
+    # NOTE: this requires `brew install couchbase@2`
+    yes "" | "${PECL}" install couchbase-2.2.4 && ( echo 'extension="couchbase.so"' >"${PHP_PATH}"/conf.d/02_couchbase.ini )
+    yes "" | "${PECL}" install memcached && ( echo 'extension="memcached.so"' >"${PHP_PATH}"/conf.d/03_memcached.ini )
+    yes "" | "${PECL}" install imagick && ( echo 'extension="imagick.so"' >"${PHP_PATH}"/conf.d/04_imagick.ini )
+    # xdebug master is now php 7.1+ :(
+    yes "" | "${PECL}" install xdebug-2.8.1 && ( echo 'zend_extension="xdebug.so"' >"${PHP_PATH}"/conf.d/05_xdebug.ini )
+    # NOTE: I have 05_memory_limit.ini already there in my yadm files
+
+    # install composer global packages
+    mkdir -p  "${PHP_PATH}"/{.,}composer
+    ln -sf "$HOME"/.composer/composer.json "${PHP_PATH}"/.composer/composer.json
+    _install_update_composer_packages
+    asdf reshim php 7.2.34
+}
+
 _install_pear () {
     _log_info "Installing pear"
     local PHP_VERSION="$1"
@@ -348,7 +441,7 @@ _install_php_74 () {
     mkdir -p "${PHP_PATH}"/conf.d
 
     _has pecl || _install_pear "7.4.7"
-    PECL="${PHP_PATH}"/pear/bin/pecl
+    local PECL="${PHP_PATH}"/pear/bin/pecl
 
     yes "" | "${PECL}" install couchbase && ( echo 'extension="couchbase.so"' >"${PHP_PATH}"/conf.d/01_couchbase.ini )
     yes "" | "${PECL}" install memcached && ( echo 'extension="memcached.so"' >"${PHP_PATH}"/conf.d/02_memcached.ini )
@@ -391,43 +484,142 @@ _install_php_80 () {
     asdf reshim php "8.0.0RC3"
 }
 
+# https://github.com/asdf-community/asdf-php/blob/master/.github/workflows/workflow.yml#L33-L52
 _install_php_versions () {
     pushd .
     builtin cd "$HOME" >/dev/null || return
     _log_info "Installing php version(s)"
+    asdf plugin add php
+    local INSTALL_PATH=""$HOME"/.asdf/plugins/php/bin/install"
+    # intl fails to install in php 7.0 due to an incompatibility with icu4c latest
+    [ -f "$INSTALL_PATH" ] && ( sed -i '' "/--enable-intl/d" "$INSTALL_PATH" )
     # gd fails to install in php 8.0
-    asdf plugin add php &&
-        ( sed -i '' "/--enable-intl/d" "$HOME"/.asdf/plugins/php/bin/install ) &&
-        ( sed -i '' "/--enable-gd/d" "$HOME"/.asdf/plugins/php/bin/install )
+    [ -f "$INSTALL_PATH" ] && ( sed -i '' "/--enable-gd/d" "$INSTALL_PATH" )
 
-    # configure openssl {{{
-    export PATH="/usr/local/opt/openssl@1.1/bin:${PATH}"
-    # For compilers to find openssl@1.1 you may need to set:
-    export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
-    export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
-    # For pkg-config to find openssl@1.1 you may need to set:
-    export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig:${PKG_CONFIG_PATH}"
-    # }}}
+#     # configure flags and paths for homebrew tools (I don't think I need to explicitly define these - I think they're defined by the installer) {{{
 
-    # configure bison {{{
-    export PATH="/usr/local/opt/bison/bin:${PATH}"
-    # For compilers to find bison you may need to set:
-    export LDFLAGS="-L/usr/local/opt/bison/lib"
-    # }}}
+#     # configure bison {{{
+#     export PATH="$(brew --prefix bison)/bin:${PATH}"
+#     # For compilers to find bison you may need to set:
+#     export LDFLAGS="-L$(brew --prefix bison)/lib ${LDFLAGS}"
+#     # }}}
 
-    # configure icu4c {{{
-    # If you need to have icu4c first in your PATH run:
-    export PATH="/usr/local/opt/icu4c/bin:${PATH}"
-    export PATH="/usr/local/opt/icu4c/sbin:${PATH}"
-    # For compilers to find icu4c you may need to set:
-    export LDFLAGS="-L/usr/local/opt/icu4c/lib"
-    export CPPFLAGS="-I/usr/local/opt/icu4c/include"
-    # For pkg-config to find icu4c you may need to set:
-    export PKG_CONFIG_PATH="/usr/local/opt/icu4c/lib/pkgconfig:${PKG_CONFIG_PATH}"
-    # }}}
+#     # configure bzip2 {{{
+#     export PATH="$(brew --prefix bzip2)/bin:${PATH}"
+#     export LDFLAGS="-L$(brew --prefix bzip2)/lib ${LDFLAGS}"
+#     export CPPFLAGS="-I$(brew --prefix bzip2)/include ${CPPFLAGS}"
+#     # }}}
 
-    _install_php_70
-    _install_php_74
+#     # configure curl {{{
+#     export PATH="$(brew --prefix curl)/bin:${PATH}"
+#     export LDFLAGS="-L$(brew --prefix curl)/lib ${LDFLAGS}"
+#     export CPPFLAGS="-I$(brew --prefix curl)/include ${CPPFLAGS}"
+#     export PKG_CONFIG_PATH="$(brew --prefix curl)/lib/pkgconfig:${PKG_CONFIG_PATH}"
+#     # }}}
+
+#     # configure freetype {{{
+#     export PKG_CONFIG_PATH="-I$(brew --prefix freetype)/pkgconfig:${PKG_CONFIG_PATH}"
+#     # }}}
+
+#     # configure gettext {{{
+#     export PATH="$(brew --prefix gettext)/bin:${PATH}"
+#     export LDFLAGS="-L$(brew --prefix gettext)/lib ${LDFLAGS}"
+#     export CPPFLAGS="-I$(brew --prefix gettext)/include ${CPPFLAGS}"
+#     # }}}
+
+#     # configure icu4c {{{
+#     # If you need to have icu4c first in your PATH run:
+#     export PATH="$(brew --prefix icu4c)/bin:${PATH}"
+#     export PATH="$(brew --prefix icu4c)/sbin:${PATH}"
+#     # For compilers to find icu4c you may need to set:
+#     export LDFLAGS="-L$(brew --prefix icu4c)/lib ${LDFLAGS}"
+#     export CPPFLAGS="-I$(brew --prefix icu4c)/include ${CPPFLAGS}"
+#     # For pkg-config to find icu4c you may need to set:
+#     export PKG_CONFIG_PATH="$(brew --prefix icu4c)/lib/pkgconfig:${PKG_CONFIG_PATH}"
+#     # export LDFLAGS=$(echo "${LDFLAGS}" | sed 's/-L\/lib //g')
+#     # export CFLAGS=$(echo "${CFLAGS}" | sed 's/-L\/lib //g')
+#     # }}}
+
+#     # configure krb5 {{{
+#     export PATH="$(brew --prefix krb5)/bin:${PATH}"
+#     export PATH="$(brew --prefix krb5)/sbin:${PATH}"
+#     export LDFLAGS="-L$(brew --prefix krb5)/lib ${LDFLAGS}"
+#     export CPPFLAGS="-I$(brew --prefix krb5)/include ${CPPFLAGS}"
+#     export PKG_CONFIG_PATH="$(brew --prefix krb5)/lib/pkgconfig:${PKG_CONFIG_PATH}"
+#     # }}}
+
+#     # configure libiconv {{{
+#     export PATH="$(brew --prefix libiconv)/bin:${PATH}"
+#     export LDFLAGS="-L$(brew --prefix libiconv)/lib ${LDFLAGS}"
+#     export CPPFLAGS="-I$(brew --prefix libiconv)/include ${CPPFLAGS}"
+#     # }}}
+
+#     # configure libedit {{{
+#     export LDFLAGS="-L$(brew --prefix libedit)/lib ${LDFLAGS}"
+#     export CPPFLAGS="-I$(brew --prefix libedit)/include ${CPPFLAGS}"
+#     export PKG_CONFIG_PATH="$(brew --prefix libedit)/lib/pkgconfig:${PKG_CONFIG_PATH}"
+#     # }}}
+
+#     # configure libjpeg {{{
+#     export PATH="$(brew --prefix libjpeg)/bin:${PATH}"
+#     export LDFLAGS="-L$(brew --prefix libjpeg)/lib ${LDFLAGS}"
+#     export CPPFLAGS="-I$(brew --prefix libjpeg)/include ${CPPFLAGS}"
+#     export PKG_CONFIG_PATH="$(brew --prefix libjpeg)/lib/pkgconfig:${PKG_CONFIG_PATH}"
+#     # }}}
+
+#     # configure libmcrypt {{{
+#     export PATH="$(brew --prefix libmcrypt)/bin:${PATH}"
+#     export LDFLAGS="-L$(brew --prefix libmcrypt)/lib ${LDFLAGS}"
+#     export CPPFLAGS="-I$(brew --prefix libmcrypt)/include ${CPPFLAGS}"
+#     # }}}
+
+#     # configure libpng {{{
+#     export PATH="$(brew --prefix libpng)/bin:${PATH}"
+#     export LDFLAGS="-L$(brew --prefix libpng)/lib ${LDFLAGS}"
+#     export CPPFLAGS="-I$(brew --prefix libpng)/include ${CPPFLAGS}"
+#     export PKG_CONFIG_PATH="$(brew --prefix libpng)/lib/pkgconfig:${PKG_CONFIG_PATH}"
+#     # }}}
+
+#     # configure libxml2 {{{
+#     export PATH="$(brew --prefix libxml2)/bin:${PATH}"
+#     export LDFLAGS="-L$(brew --prefix libxml2)/lib ${LDFLAGS}"
+#     export CPPFLAGS="-I$(brew --prefix libxml2)/include ${CPPFLAGS}"
+#     export PKG_CONFIG_PATH="$(brew --prefix libxml2)/lib/pkgconfig:${PKG_CONFIG_PATH}"
+#     # }}}
+
+#     # configure libzip {{{
+#     export PATH="$(brew --prefix libzip)/bin:${PATH}"
+#     export LDFLAGS="-L$(brew --prefix libzip)/lib ${LDFLAGS}"
+#     export CPPFLAGS="-I$(brew --prefix libzip)/include ${CPPFLAGS}"
+#     export PKG_CONFIG_PATH="$(brew --prefix libzip)/lib/pkgconfig:${PKG_CONFIG_PATH}"
+#     # }}}
+
+#     # configure openssl {{{
+#     export PATH="$(brew --prefix openssl)/bin:${PATH}"
+#     # For compilers to find openssl@1.1 you may need to set:
+#     export LDFLAGS="-L$(brew --prefix openssl)/lib ${LDFLAGS}"
+#     export CPPFLAGS="-I$(brew --prefix openssl)/include ${CPPFLAGS}"
+#     # For pkg-config to find openssl@1.1 you may need to set:
+#     export PKG_CONFIG_PATH="$(brew --prefix openssl)/lib/pkgconfig:${PKG_CONFIG_PATH}"
+#     # }}}
+
+#     # configure zlib {{{
+#     export LDFLAGS="-L$(brew --prefix zlib)/lib ${LDFLAGS}"
+#     export CPPFLAGS="-I$(brew --prefix zlib)/include ${CPPFLAGS}"
+#     export PKG_CONFIG_PATH="$(brew --prefix zlib)/lib/pkgconfig:${PKG_CONFIG_PATH}"
+#     # }}}
+
+#     # }}}
+
+    # change implicit function declaration to warning instead of error
+    # https://bugs.php.net/bug.php?id=80171
+    export CFLAGS="-Wno-error=implicit-function-declaration ${CFLAGS}"
+    # export CFLAGS="-Wno-error ${CFLAGS}"
+
+    # _install_php_70 # not working at the moment due to readdir_r
+    # _install_php_71 # not working at the moment due to missing zend class
+    _install_php_72 # not working at the moment
+    _install_php_74 # works because whatever feature used readdir_r was removed
     _install_php_80
     asdf global php 7.4.7
 
@@ -741,43 +933,43 @@ _clear_evalcache () {
 # run functions {{{
 # this way I can still source this file but comment out these function calls
 # and run one or more independently. This is extremely useful!!
-_create_dirs
-_install_xcode_command_line_tools
-_install_necessary_headers_in_include_on_mojave
-_install_homebrew_if_its_missing
-_install_update_homebrew_packages
+# _create_dirs
+# _install_xcode_command_line_tools
+# _install_necessary_headers_in_include_on_mojave
+# _install_homebrew_if_its_missing
+# _install_update_homebrew_packages
 _install_php_versions
-_install_update_composer_packages
-_install_node_versions
-_install_upgrade_yarn_packages
-_fix_yarn_link
-_install_python_versions
-_update_python3_pip_packages
-_install_ruby_versions
-_install_update_ruby_gems
-_install_upgrade_akamai
-_set_zsh_as_shell
-_install_tmux_plugin_manager
-_install_upgrade_tmux_plugins
-_create_vim_directories
-_install_vim_plug
-_install_upgrade_vim_plugins
-_install_upgrade_phive
-_install_upgrade_phive_packages
-_install_upgrade_psysh
-_install_phpdcd
-_update_antibody_plugins
-_apply_hosts_file
-_let_iterm_see_italics
-_apply_mac_preferences
-_start_launch_agents
-_fix_file_size_limit_for_watching_with_entr
-# _install_activate_nextdns
-_install_cod
-_install_update_nnn_plugins
-_install_upgrade_sshrc
-_update_asdf_plugins
-_fix_delta_syntax_highlighting_for_php
-_clear_evalcache
+# _install_update_composer_packages
+# _install_node_versions
+# _install_upgrade_yarn_packages
+# _fix_yarn_link
+# _install_python_versions
+# _update_python3_pip_packages
+# _install_ruby_versions
+# _install_update_ruby_gems
+# _install_upgrade_akamai
+# _set_zsh_as_shell
+# _install_tmux_plugin_manager
+# _install_upgrade_tmux_plugins
+# _create_vim_directories
+# _install_vim_plug
+# _install_upgrade_vim_plugins
+# _install_upgrade_phive
+# _install_upgrade_phive_packages
+# _install_upgrade_psysh
+# _install_phpdcd
+# _update_antibody_plugins
+# _apply_hosts_file
+# _let_iterm_see_italics
+# _apply_mac_preferences
+# _start_launch_agents
+# _fix_file_size_limit_for_watching_with_entr
+# # _install_activate_nextdns
+# _install_cod
+# _install_update_nnn_plugins
+# _install_upgrade_sshrc
+# _update_asdf_plugins
+# _fix_delta_syntax_highlighting_for_php
+# _clear_evalcache
 _log_info "Installation complete"
 # }}}
