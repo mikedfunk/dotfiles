@@ -490,7 +490,7 @@ _install_php_versions () {
     builtin cd "$HOME" >/dev/null || return
     _log_info "Installing php version(s)"
     asdf plugin add php
-    local INSTALL_PATH=""$HOME"/.asdf/plugins/php/bin/install"
+    local INSTALL_PATH="$HOME"/.asdf/plugins/php/bin/install
     # intl fails to install in php 7.0 due to an incompatibility with icu4c latest
     [ -f "$INSTALL_PATH" ] && ( sed -i '' "/--enable-intl/d" "$INSTALL_PATH" )
     # gd fails to install in php 8.0
@@ -618,8 +618,8 @@ _install_php_versions () {
 
     # _install_php_70 # not working at the moment due to readdir_r
     # _install_php_71 # not working at the moment due to missing zend class
-    _install_php_72 # not working at the moment
-    _install_php_74 # works because whatever feature used readdir_r was removed
+    # _install_php_72 # not working at the moment due to missing zend header
+    _install_php_74 # *works* because whatever feature used readdir_r was removed
     _install_php_80
     asdf global php 7.4.7
 
@@ -933,43 +933,43 @@ _clear_evalcache () {
 # run functions {{{
 # this way I can still source this file but comment out these function calls
 # and run one or more independently. This is extremely useful!!
-# _create_dirs
-# _install_xcode_command_line_tools
-# _install_necessary_headers_in_include_on_mojave
-# _install_homebrew_if_its_missing
-# _install_update_homebrew_packages
+_create_dirs
+_install_xcode_command_line_tools
+_install_necessary_headers_in_include_on_mojave
+_install_homebrew_if_its_missing
+_install_update_homebrew_packages
 _install_php_versions
-# _install_update_composer_packages
-# _install_node_versions
-# _install_upgrade_yarn_packages
-# _fix_yarn_link
-# _install_python_versions
-# _update_python3_pip_packages
-# _install_ruby_versions
-# _install_update_ruby_gems
-# _install_upgrade_akamai
-# _set_zsh_as_shell
-# _install_tmux_plugin_manager
-# _install_upgrade_tmux_plugins
-# _create_vim_directories
-# _install_vim_plug
-# _install_upgrade_vim_plugins
-# _install_upgrade_phive
-# _install_upgrade_phive_packages
-# _install_upgrade_psysh
-# _install_phpdcd
-# _update_antibody_plugins
-# _apply_hosts_file
-# _let_iterm_see_italics
-# _apply_mac_preferences
-# _start_launch_agents
-# _fix_file_size_limit_for_watching_with_entr
-# # _install_activate_nextdns
-# _install_cod
-# _install_update_nnn_plugins
-# _install_upgrade_sshrc
-# _update_asdf_plugins
-# _fix_delta_syntax_highlighting_for_php
-# _clear_evalcache
+_install_update_composer_packages
+_install_node_versions
+_install_upgrade_yarn_packages
+_fix_yarn_link
+_install_python_versions
+_update_python3_pip_packages
+_install_ruby_versions
+_install_update_ruby_gems
+_install_upgrade_akamai
+_set_zsh_as_shell
+_install_tmux_plugin_manager
+_install_upgrade_tmux_plugins
+_create_vim_directories
+_install_vim_plug
+_install_upgrade_vim_plugins
+_install_upgrade_phive
+_install_upgrade_phive_packages
+_install_upgrade_psysh
+_install_phpdcd
+_update_antibody_plugins
+_apply_hosts_file
+_let_iterm_see_italics
+_apply_mac_preferences
+_start_launch_agents
+_fix_file_size_limit_for_watching_with_entr
+# _install_activate_nextdns
+_install_cod
+_install_update_nnn_plugins
+_install_upgrade_sshrc
+_update_asdf_plugins
+_fix_delta_syntax_highlighting_for_php
+_clear_evalcache
 _log_info "Installation complete"
 # }}}

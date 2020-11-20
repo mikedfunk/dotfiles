@@ -484,20 +484,16 @@
           "prefix": "/usr/local",
           "files": {
             "big_sur": {
-              "url": "https://homebrew.bintray.com/bottles/hostess-0.5.2.big_sur.bottle.tar.gz",
-              "sha256": "b3ba5dc41977ec8bf7ec2075079131202a24e2a1f30736890ab7b44301c04dd3"
+              "url": "https://homebrew.bintray.com/bottles/hostess-0.5.2.big_sur.bottle.1.tar.gz",
+              "sha256": "addb5bc6b7ff84ad6d2a33f2e0c46298f16865473ad82a32c02434def068c26b"
             },
             "catalina": {
-              "url": "https://homebrew.bintray.com/bottles/hostess-0.5.2.catalina.bottle.tar.gz",
-              "sha256": "80480773a167fdcad3fadb3feeb298b51aeb89aec5863204f512f941af7271da"
+              "url": "https://homebrew.bintray.com/bottles/hostess-0.5.2.catalina.bottle.1.tar.gz",
+              "sha256": "9386f4841bb16ea44d5131b0a360138a3d33d7595e85d0baba3b9546762d7ae6"
             },
             "mojave": {
-              "url": "https://homebrew.bintray.com/bottles/hostess-0.5.2.mojave.bottle.tar.gz",
-              "sha256": "f3f06881067507c0d115209d515e6ebbe4090d7aa8fcff7bc685027c49ea6479"
-            },
-            "high_sierra": {
-              "url": "https://homebrew.bintray.com/bottles/hostess-0.5.2.high_sierra.bottle.tar.gz",
-              "sha256": "15050f5b2f5936fe74e47937323c8a872ec12b75ed639b3df2c6eac11cf7da6f"
+              "url": "https://homebrew.bintray.com/bottles/hostess-0.5.2.mojave.bottle.1.tar.gz",
+              "sha256": "90e6b36f4131f2e8a914cd81e6a17e59075e734fa83b583654e178c6e7e65aa3"
             }
           }
         }
@@ -1182,6 +1178,10 @@
           "cellar": ":any",
           "prefix": "/usr/local",
           "files": {
+            "big_sur": {
+              "url": "https://homebrew.bintray.com/bottles/pre-commit-2.8.2.big_sur.bottle.tar.gz",
+              "sha256": "e55be03b804112043dacb30264428db5a35798692a795f467805dfb0eab655a4"
+            },
             "catalina": {
               "url": "https://homebrew.bintray.com/bottles/pre-commit-2.8.2.catalina.bottle.tar.gz",
               "sha256": "73511104e64effc54febbe966cfe7cbb224059df9caeebc93ee83784970621df"
@@ -2477,6 +2477,10 @@
           "cellar": ":any_skip_relocation",
           "prefix": "/usr/local",
           "files": {
+            "big_sur": {
+              "url": "https://homebrew.bintray.com/bottles/python-yq-2.11.1_1.big_sur.bottle.tar.gz",
+              "sha256": "f5d014ddb9d16c8cb902eed5adaf297f3fc10a96a492db5d2a567b3d0d637a6e"
+            },
             "catalina": {
               "url": "https://homebrew.bintray.com/bottles/python-yq-2.11.1_1.catalina.bottle.tar.gz",
               "sha256": "45289e8520aa9dced6210c1fa4baa69042f9d15ca49b89dc21659c6f49311df8"
@@ -2751,26 +2755,22 @@
         }
       },
       "krb5": {
-        "version": "1.18.2",
+        "version": "1.18.3",
         "bottle": {
           "cellar": "/usr/local/Cellar",
           "prefix": "/usr/local",
           "files": {
             "big_sur": {
-              "url": "https://homebrew.bintray.com/bottles/krb5-1.18.2.big_sur.bottle.tar.gz",
-              "sha256": "d95b2f5722443acf69d20e4713882ddbb5fd127a84e1c6f2b94e387bf68d997e"
+              "url": "https://homebrew.bintray.com/bottles/krb5-1.18.3.big_sur.bottle.tar.gz",
+              "sha256": "ce41211e7264912be6fc05d8e5ed3bbc141679b0ab6c9b4099a36da811077a9f"
             },
             "catalina": {
-              "url": "https://homebrew.bintray.com/bottles/krb5-1.18.2.catalina.bottle.tar.gz",
-              "sha256": "db39e4570abab6459fb857cb41fdd0a375810d25a4c712f4504585255397d150"
+              "url": "https://homebrew.bintray.com/bottles/krb5-1.18.3.catalina.bottle.tar.gz",
+              "sha256": "f50ff30a8268899f65150363f294ddcbd1969759f8700efac874caa181bca75d"
             },
             "mojave": {
-              "url": "https://homebrew.bintray.com/bottles/krb5-1.18.2.mojave.bottle.tar.gz",
-              "sha256": "e35ce1f9da67683b70fa075f4317a476c8356860c0a1c935d6a56eaee6716e8e"
-            },
-            "high_sierra": {
-              "url": "https://homebrew.bintray.com/bottles/krb5-1.18.2.high_sierra.bottle.tar.gz",
-              "sha256": "972a37782e92d2dec91a9f6cd90d2a98f4004101268579e1a1d6c3650014bed4"
+              "url": "https://homebrew.bintray.com/bottles/krb5-1.18.3.mojave.bottle.tar.gz",
+              "sha256": "4e5751f16b7e6d9f27968a9efb1ba5f702292c7fefdb25a32c940ef71f81b7cd"
             }
           }
         }
@@ -3225,7 +3225,7 @@
         "revision": "841bdf137939c293c0a26a068c0bbc0e5be3fc1a"
       },
       "homebrew/cask-fonts": {
-        "revision": "a6b5503ecab081fca3b6e084d718ec17a5446315"
+        "revision": "4f65d0605eb215621fb24d34342e54c1f5470488"
       },
       "microsoft/git": {
         "revision": "55173e590d3401b6c8bbbd9744e835b3ea7820a4"
@@ -3246,7 +3246,7 @@
         "revision": "c5a605b018c05d08b90c4b794c088d25736997c3"
       },
       "homebrew/cask": {
-        "revision": "ca87de00b23691c22cdb378e1b883efe2c9b76cf"
+        "revision": "98730b06840bb8666f6a9eaa28eba765f61954b4"
       },
       "wfxr/code-minimap": {
         "revision": "fe2d6f5f01a3d3507ec4b50a6d82ea4db75642f6"
@@ -3563,7 +3563,7 @@
         }
       },
       "nvidia-geforce-now": {
-        "version": "2.0.25.119,D52EC7",
+        "version": "2.0.25.124,AB256E",
         "options": {
           "full_name": "nvidia-geforce-now"
         }
@@ -3575,7 +3575,7 @@
         }
       },
       "zoomus": {
-        "version": "5.2.45131.0907",
+        "version": "5.4.58887.1115",
         "options": {
           "full_name": "zoomus"
         }
@@ -3624,10 +3624,10 @@
         "macOS": "10.15.7"
       },
       "big_sur": {
-        "HOMEBREW_VERSION": "2.5.11-56-g1255557",
+        "HOMEBREW_VERSION": "2.5.11-78-g6d850a9",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "95eec2c40ea07e634070fab68ac47a735bf363a6",
-        "CLT": "",
+        "Homebrew/homebrew-core": "f07512274985fb1306ad815bbe50d5a6af8666bf",
+        "CLT": "12.2.0.0.1.1604076827",
         "Xcode": "12.2",
         "macOS": "11.0.1"
       }
