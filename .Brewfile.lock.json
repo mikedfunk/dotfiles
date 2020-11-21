@@ -2217,6 +2217,10 @@
           "cellar": ":any_skip_relocation",
           "prefix": "/usr/local",
           "files": {
+            "big_sur": {
+              "url": "https://homebrew.bintray.com/bottles/gitlab-gem-4.16.1.big_sur.bottle.tar.gz",
+              "sha256": "97278a64a84c52acd33f9591f45a12929a3c7eeac95b387fed43def92512c7e5"
+            },
             "catalina": {
               "url": "https://homebrew.bintray.com/bottles/gitlab-gem-4.16.1.catalina.bottle.tar.gz",
               "sha256": "25266a76b57a3a19d41e17adc9a9989b89933f5dcaed509189bd10769fb505e6"
@@ -2556,6 +2560,10 @@
           "cellar": ":any_skip_relocation",
           "prefix": "/usr/local",
           "files": {
+            "big_sur": {
+              "url": "https://homebrew.bintray.com/bottles/docker-credential-helper-ecr-0.4.0.big_sur.bottle.tar.gz",
+              "sha256": "fe14097587f1f22cba7ba36b49c738abc8027408cd6944e768030608deb49738"
+            },
             "catalina": {
               "url": "https://homebrew.bintray.com/bottles/docker-credential-helper-ecr-0.4.0.catalina.bottle.tar.gz",
               "sha256": "d5e603dc272c983cfd10995ac0b39418308e26c791a28d1a56fc13282d5425bb"
@@ -3225,7 +3233,7 @@
         "revision": "841bdf137939c293c0a26a068c0bbc0e5be3fc1a"
       },
       "homebrew/cask-fonts": {
-        "revision": "4f65d0605eb215621fb24d34342e54c1f5470488"
+        "revision": "eb37574312d178087e611429c6f3c95c61ea0737"
       },
       "microsoft/git": {
         "revision": "55173e590d3401b6c8bbbd9744e835b3ea7820a4"
@@ -3246,7 +3254,7 @@
         "revision": "c5a605b018c05d08b90c4b794c088d25736997c3"
       },
       "homebrew/cask": {
-        "revision": "98730b06840bb8666f6a9eaa28eba765f61954b4"
+        "revision": "34df186bfd22ff450944ccd1bc397ae73873726b"
       },
       "wfxr/code-minimap": {
         "revision": "fe2d6f5f01a3d3507ec4b50a6d82ea4db75642f6"
@@ -3624,9 +3632,9 @@
         "macOS": "10.15.7"
       },
       "big_sur": {
-        "HOMEBREW_VERSION": "2.5.11-78-g6d850a9",
+        "HOMEBREW_VERSION": "2.5.11-125-g31adc60",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "f07512274985fb1306ad815bbe50d5a6af8666bf",
+        "Homebrew/homebrew-core": "7cb22cbf15ea9a6e17a2b0f69e89dd881746ae0d",
         "CLT": "12.2.0.0.1.1604076827",
         "Xcode": "12.2",
         "macOS": "11.0.1"

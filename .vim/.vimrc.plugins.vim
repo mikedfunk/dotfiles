@@ -156,7 +156,7 @@ Plug 'AndrewRadev/splitjoin.vim', { 'for': ['php', 'javascript', 'html'] } " spl
     " Plug 'benmills/vimux' " run stuff in a tmux split
 " endif
 " Plug 'arecarn/vim-auto-autoread' " make autoread work as expected
-Plug 'tmux-plugins/vim-tmux-focus-events' " makes FocusGained and FocusLost events work in terminal vim. Also handles functionality of vim-auto-autoread.
+" Plug 'tmux-plugins/vim-tmux-focus-events' " makes FocusGained and FocusLost events work in terminal vim. Also handles functionality of vim-auto-autoread.
 Plug 'tpope/vim-endwise' " auto add end/endif for vimscript/ruby. no lazy load or per-filetype load.
 Plug 'tpope/vim-tbone', { 'on': ['Tmux', 'Tput', 'Tyank', 'Twrite', 'Tattach'] } " do stuff with tmux like send visual text to a split. Handy for repls.
 " Plug 'mtth/scratch.vim' " :Scratch to open scratch buffer in split

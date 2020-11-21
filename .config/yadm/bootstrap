@@ -443,10 +443,11 @@ _install_php_74 () {
     _has pecl || _install_pear "7.4.7"
     local PECL="${PHP_PATH}"/pear/bin/pecl
 
-    yes "" | "${PECL}" install couchbase && ( echo 'extension="couchbase.so"' >"${PHP_PATH}"/conf.d/01_couchbase.ini )
-    yes "" | "${PECL}" install memcached && ( echo 'extension="memcached.so"' >"${PHP_PATH}"/conf.d/02_memcached.ini )
-    yes "" | "${PECL}" install imagick && ( echo 'extension="imagick.so"' >"${PHP_PATH}"/conf.d/03_imagick.ini )
-    yes "" | "${PECL}" install xdebug && ( echo 'zend_extension="xdebug.so"' >"${PHP_PATH}"/conf.d/04_xdebug.ini )
+    yes "" | "${PECL}" install pcs-beta && ( echo 'extension="pcs.so"' >"${PHP_PATH}"/conf.d/01_pcs.ini )
+    yes "" | "${PECL}" install couchbase-2.2.4 && ( echo 'extension="couchbase.so"' >"${PHP_PATH}"/conf.d/02_couchbase.ini )
+    yes "" | "${PECL}" install memcached && ( echo 'extension="memcached.so"' >"${PHP_PATH}"/conf.d/03_memcached.ini )
+    yes "" | "${PECL}" install imagick && ( echo 'extension="imagick.so"' >"${PHP_PATH}"/conf.d/04_imagick.ini )
+    yes "" | "${PECL}" install xdebug && ( echo 'zend_extension="xdebug.so"' >"${PHP_PATH}"/conf.d/05_xdebug.ini )
     echo 'phar.readonly = false' > "${PHP_PATH}"/conf.d/05_phar.ini
 
     # install global composer packages
