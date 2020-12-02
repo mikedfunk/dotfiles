@@ -315,7 +315,9 @@ let g:php_syncmethod = 10 " :help :syn-sync https://stackoverflow.com/a/30732393
 " curly brace in a class, it breaks syntax until you page back up to whatever
 " line breaks it. Then if you go back to the last curly brace it breaks again.
 " Not worth it. Apparently it has something to do with php extending html as
-" the broken highlight group is `htmlError`.
+" the broken highlight group is `htmlError`. It could be related to this
+" https://github.com/sheerun/vim-polyglot/blob/28388008327aacfc48db3c31f415564d93cd983f/syntax/php.vim#L73
+" I think it has to do with nested braces in parens.
 " :h doxygen
 " let g:load_doxygen_syntax = 1 " pretty docblocks in php, c, etc.
 " let g:doxygen_enhanced_color = 1 " prettier docblocks
@@ -607,6 +609,10 @@ augroup dollarsignphp
     autocmd FileType php set iskeyword -=$
 augroup END
 
+" You can get Lua syntax highlighting inside .vim files by putting let
+" g:vimsyn_embed = 'l' in your configuration file. See :help g:vimsyn_embed
+" for more on this option.
+let g:vimsyn_embed = 'l'
 " }}}
 
 " Completion {{{
@@ -1043,6 +1049,19 @@ let matches = fzf#run({
 endfunction
 
 inoremap <silent> <C-X><C-T> <C-o>:call <SID>tmux_words(expand('<cWORD>'))<CR>
+" }}}
+
+" lua helpers {{{
+" https://github.com/nanotee/nvim-lua-guide#introduction
+" Writing print(vim.inspect(x)) every time you want to inspect the contents of
+" an object can get pretty tedious. It might be worthwhile to have a global
+" wrapper function somewhere in your configuration:
+lua <<EOF
+function _G.dump(...)
+  local objects = vim.tbl_map(vim.inspect, {...})
+  print(unpack(objects))
+end
+EOF
 " }}}
 
 " }}}

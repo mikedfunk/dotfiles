@@ -70,6 +70,7 @@ brew "docker-credential-helper-ecr" # tell docker abount ECR so it can pull
 # brew "dry" # docker monitoring (does not work with docker-machine. works with docker for mac because needs access to docker.sock.)
 # brew "dtrx" # do the right extraction - so you don't have to remember tar args (I found a helpful pneumonic to remember tar args: eXtract Ze Vucking Files, Compress Ze Vucking Files)
 # brew "elktail" # tail kibana logs (doesn't work with latest elk version)
+# brew "emacs" # text editor - the terminal version
 brew "entr" # file watcher (I use this a lot in my shell functions)
 # brew "fasd" # Command-line productivity booster, offers quick access to files and directories, inspired by autojump, z and v. (I use wd)
 brew "fd" # prettier alternative to find that respects gitignore (haven't used it yet)
@@ -289,7 +290,7 @@ cask "docker" # docker for mac desktop app
 # cask "dozer" # little menubar app that allows hiding menubar icon clutter (replaced by hiddenbar)
 # cask "dropbox" # I especially use this for synching my notes so I can view them in the joplin mobile app (not using this feature right now)
 cask "eloston-chromium" # de-googled chromium
-# cask "emacs" # this actually makes sense as a cask. It becomes tmux, vim, and kitty all in one.
+# cask "emacs" # this actually makes sense as a cask. It becomes tmux, vim, and kitty all in one. This is the standalone gui native mac app version, not the terminal version.
 cask "epic-games" # game store
 # cask "ferdi" # all messaging in one electron app (slack, discord, google voice, android messages, etc.) another approach to this is matrix (riot.im) with "bridges" to other services
 cask "firefox" # I use firefox for my home profile

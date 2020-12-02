@@ -1,5 +1,9 @@
 " vim: set foldmethod=marker:
 
+" blamer.nvim {{{
+let g:blamer_enabled = 0
+" }}}
+
 " color {{{
 " colo despacio
 " let g:airline_theme = base16

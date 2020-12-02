@@ -277,6 +277,7 @@ _install_upgrade_vim_plugins () {
         +PlugUpdate \
         +PlugClean! \
         "+LspInstall intelephense" \
+        "+LspInstall sumneko_lua" \
         +qall
 
     # treesitter language parsers
@@ -458,16 +459,16 @@ _install_php_74 () {
 }
 
 _install_php_80 () {
-    ( asdf list php | grep --quiet "8.0.0RC3" ) && return
-    _log_info "installing php 8.0.0RC3"
-    asdf install php 8.0.0RC3
-    asdf global php 8.0.0RC3
+    ( asdf list php | grep --quiet "8.0.0" ) && return
+    _log_info "installing php 8.0.0"
+    asdf install php 8.0.0
+    asdf global php 8.0.0
 
-    # install php extensions (different set for 8.0.0RC3)
+    # install php extensions (different set for 8.0.0)
     local PHP_PATH="$(asdf where php)"
     mkdir -p "${PHP_PATH}"/conf.d
 
-    # _has pecl || _install_pear "8.0.0RC3"
+    # _has pecl || _install_pear "8.0.0"
     # local PECL="${PHP_PATH}"/pear/bin/pecl
     local PECL="pecl" # php 8 install apparently comes with pecl
 
@@ -482,7 +483,7 @@ _install_php_80 () {
     mkdir -p  "${PHP_PATH}"/{.,}composer
     ln -sf "$HOME"/.composer/composer.json "${PHP_PATH}"/composer/composer.json
     _install_update_composer_packages
-    asdf reshim php "8.0.0RC3"
+    asdf reshim php "8.0.0"
 }
 
 # https://github.com/asdf-community/asdf-php/blob/master/.github/workflows/workflow.yml#L33-L52

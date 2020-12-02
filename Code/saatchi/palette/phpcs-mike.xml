@@ -251,9 +251,11 @@
     <exclude name="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingTraversableReturnTypeHintSpecification" />
     <exclude name="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.UselessDocComment" />
     <exclude name="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint" /><!-- This is broken in this version. Doesn't respect php 7.0 flag for nullable @params. -->
+    <exclude name="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingReturnTypeHint" /><!-- this is broken in this version. Doesn't know how to read generics. -->
     <exclude name="SlevomatCodingStandard.ControlStructures.DisallowYodaComparison" />
     <exclude name="SlevomatCodingStandard.Classes.ClassConstantVisibility.MissingConstantVisibility" /><!-- not available in php 7.0 -->
     <exclude name="SlevomatCodingStandard.TypeHints.NullableTypeForNullDefaultValue.NullabilitySymbolRequired" /><!-- not available in php 7.0 -->
+    <exclude name="SlevomatCodingStandard.Classes.UnusedPrivateElements.UnusedMethod" /><!-- doesn't respect callables in array_map, etc. -->
   </rule>
 
   <rule ref="SlevomatCodingStandard.TypeHints.TypeHintDeclaration">
@@ -322,11 +324,12 @@
     <exclude name="Inpsyde.CodeQuality.LineLength" />
     <exclude name="Inpsyde.CodeQuality.NoAccessors" />
     <exclude name="Inpsyde.CodeQuality.NoElse" /><!-- this is already covered by phpmd -->
+    <exclude name="WordPress.Arrays.CommaAfterArrayItem.NoComma" /><!-- this is already covered by SlevomatCodingStandard.Arrays.TrailingArrayComma.MissingTrailingComma -->
   </rule>
 
   <rule ref="Inpsyde.CodeQuality.ElementNameMinimalLength">
     <properties>
-      <property name="allowedShortNames" type="array" value="id,db,x,y,e" />
+      <property name="allowedShortNames" type="array" value="id,db,x,y,e,ip" />
     </properties>
   </rule>
 

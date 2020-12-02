@@ -53,7 +53,12 @@ endif
 " let g:ale_php_phpcbf_executable = '~/.support/phpcbf-helper.sh'
 " let g:ale_php_phpcbf_use_global = 1
 "
-
+" ['intelephense-lsp', 'intelephense', 'langserver', 'phan', 'php', 'phpcs', 'phpmd', 'phpstan', 'psalm', 'tlint']
+let g:ale_linters = {}
+let g:ale_linters['php'] = ['php', 'phpcs', 'phpmd']
+let g:ale_linters['javascript'] = ['esline']
+" ['intelephense-lsp', 'intelephense', 'langserver', 'phan', 'php', 'phpcs', 'phpmd', 'phpstan', 'psalm', 'tlint']
+" ['eslint', 'fecs', 'flow', 'flow-language-server', 'jscs', 'jshint', 'standard', 'tsserver', 'xo']
 " tradeoff to make saatchi not dead slow. <leader>af to fix, <leader>al to lint.
 " let g:ale_lint_on_save = 0
 let g:ale_lint_on_save = 1 " acceptable speed

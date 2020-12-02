@@ -170,6 +170,8 @@ Plug 'tpope/vim-rsi' " readline mappings for insert and command modes
 if has('nvim') && has('python3')
     Plug 'raghur/vim-ghost', {'do': ':GhostInstall'} " manually connect a text field with neovim. I like this better because it doesn't vimify _all_ of my input areas.
 endif
+Plug 'Jorengarenar/vim-SQL-UPPER' " uppercase sql keywords in sql files
+" Plug 'svermeulen/vimpeccable' " neovim lua config helper
 " }}}
 
 " Html {{{
@@ -372,8 +374,9 @@ Plug 'kristijanhusak/vim-js-file-import' " ctags-based importing
 Plug 'gerw/vim-HiLinkTrace' " adds an <leader>hlt command to get all highlight groups under cursor
 " Plug 'elzr/vim-json' " json syntax (in vim-polyglot)
 " annoyingly this must be loaded before polyglot is loaded :/
+" this commit broke my php rendering until I disabled graphql https://github.com/sheerun/vim-polyglot/commit/c228e993ad6a8b79db5a5a77aecfdbd8e92ea31f
 let g:polyglot_disabled = [
-            \ 'php',
+            \ 'graphql',
             \ 'rst'
             \ ]
 Plug 'sheerun/vim-polyglot' " just about every filetype under the sun in one package
@@ -391,7 +394,7 @@ Plug 'fpob/nette.vim' " .neon format
 " Plug 'MaxMEllon/vim-jsx-pretty'
 " Plug 'elixir-editors/vim-elixir'
 " Plug 'othree/es.next.syntax.vim', { 'for': ['javascript', 'jsx', 'vue'] }
-" Plug 'StanAngeloff/php.vim' " php 5.6+ (including 7.x) syntax highlighting improvements like docblocks (in vim-polyglot)
+" Plug 'StanAngeloff/php.vim' " php 5.6+ (including 7.x) syntax highlighting improvements like docblocks (in vim-polyglot) (the author refuses to fix known bugs https://github.com/StanAngeloff/php.vim/issues/81)
 " Plug 'kkoomen/vim-doge' " docblock comments for a variety of languages <leader>dd (doesn't work for shit in php)
 " Plug 'posva/vim-vue' " vue.js syntax (in vim-polyglot)
 " Plug 'digitaltoad/vim-pug', { 'for': ['pug', 'jade'] } " pug (formerly jade) highlighting

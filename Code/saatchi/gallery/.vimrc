@@ -19,6 +19,10 @@ let g:airline_theme = 'base16'
 " ale {{{
 " if executable('prettier-eslint') | call add(js_linters, 'prettier_eslint') | endif
 " * JavaScript: `eslint`, `flow`, `jscs`, `jshint`, `prettier`, `prettier-eslint` >= 4.2.0, `prettier-standard`, `standard`, `xo`
+
+let g:ale_linters = {}
+let g:ale_linters['php'] = ['intelephense-lsp', 'php', 'phpcs', 'phpmd', 'phpstan']
+
 if exists('g:ale_fixers')
     let g:ale_fixers['javascript'] = ['prettier', 'eslint', 'importjs']
     " let g:ale_fixers['javascript'] = ['prettier_eslint', 'eslint', 'importjs']

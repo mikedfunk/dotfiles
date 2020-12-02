@@ -17,8 +17,11 @@ if has_key(g:plugs, 'ale') && executable('intelephense')
     call ale#Set('php_intelephense_use_global', get(g:, 'ale_use_global_executables', 1))
 
     " same config as for nvim-lspconfig
+    " NOTE someone added `intelephense` as a linter but it's broken right now
+    " https://github.com/dense-analysis/ale/issues/3458 once this is fixed I
+    " hope I can remove this and just add the lsp config as a global var
     call ale#linter#Define('php', {
-                \  'name': 'intelephense',
+                \  'name': 'intelephense-lsp',
                 \  'lsp': 'stdio',
                 \  'lsp_config': {
                 \    'environment': {
@@ -41,7 +44,6 @@ if has_key(g:plugs, 'ale') && executable('intelephense')
                 \      ]
                 \    },
                 \    'completion': {
-                \      'insertUseDeclaration': v:true,
                 \      'fullyQualifyGlobalConstantsAndFunctions': v:true
                 \    },
                 \    'stubs': [
@@ -885,7 +887,7 @@ EOF
     " }}}
 
     " lsp commands and mappings {{{
-    command! CodeAction <cmd>lua vim.lsp.buf.code_action()<CR>
+    command! CodeAction :lua vim.lsp.buf.code_action()<CR>
     " moved this to local codebase .vimrcs:
     " nnoremap <c-i> :CodeAction<cr>
     " example config from :help lsp:
@@ -1073,6 +1075,20 @@ EOF
     " require'lspconfig'.flow.setup{}
     " }}}
 
+    " lua lsp setup {{{
+    if (executable($HOME . '/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/bin/macOS/lua-language-server'))
+lua <<EOF
+require'lspconfig'.sumneko_lua.setup{
+    cmd = {
+        os.getenv('HOME') .. "/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/bin/macOS/lua-language-server",
+        "-E",
+        os.getenv('HOME') .. "/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/main.lua"
+    }
+}
+EOF
+    endif
+    " }}}
+
 endif
 " }}}
 
@@ -1216,9 +1232,9 @@ endif
 " make the $ sign in variables the same color as the word (doesn't work)
 " let php_var_selector_is_identifier = 1
 
+" let g:php_html_load = 0
+
 function! PhpSyntaxOverride() abort
-    " make the $ sign in variables the same color as the word
-    " hi! link phpVarSelector phpIdentifier
     " docblock color
     " hi! link phpDocTags phpDefine
     " hi! phpDocTags cterm=italic
@@ -1234,10 +1250,10 @@ function! PhpSyntaxOverride() abort
 endfunction
 if has_key(g:plugs, 'php.vim') || has_key(g:plugs, 'vim-polyglot')
     " highlight docblocks
-    " augroup phpdoctagsgroup
-    "     autocmd!
-    "     autocmd FileType php call PhpSyntaxOverride()
-    " augroup END
+    augroup phpdoctagsgroup
+        autocmd!
+        autocmd FileType php call PhpSyntaxOverride()
+    augroup END
 endif
 " }}}
 
@@ -2242,11 +2258,16 @@ if exists(':PlugUpdate') | nnoremap <leader>bu :Source<cr> :silent! :UpdateRemot
 " }}}
 
 " vim-polyglot {{{
+" https://github.com/sheerun/vim-polyglot/blob/master/syntax/php.vim
+" I don't have any need for these
+" let php_html_in_nowdoc = 0 " default: 1
+" let php_html_in_heredoc = 0 " default: 1
+let php_ignore_phpdoc = 0
+
 " This config was moved to ~/.vim/.vimrc.plugins.vim because it's required to
 " be set before the plugin loads :/
 " I use a different php syntax plugin
 " let g:polyglot_disabled = [
-"             \ 'php',
 "             \ 'rst'
 "             \ ]
 " }}}
