@@ -187,6 +187,12 @@ _has lazyload && lazyload akamai -- '_has akamai && eval "$(akamai --zsh)"'
 autoload -Uz compinit
 compinit
 
+# _has bat && export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+# use `gO` to open a quickfox with a table of contents!
+# _has nvim && export MANPAGER='nvim +Man!'
+# my vimrc is not needed for man pages
+_has nvim && export MANPAGER='nvim -u NORC +Man!'
+
 export COMPOSE_HTTP_TIMEOUT=120 # default is 60
 export ZSH_ALIAS_FINDER_AUTOMATIC=true # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/alias-finder#usage
 # ZSH_AUTOSUGGEST_STRATEGY=(history completion) # https://github.com/zsh-users/zsh-autosuggestions#suggestion-strategy (this prevents me from typing more e.g. `php artisan ...`!)

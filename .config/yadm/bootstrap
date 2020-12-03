@@ -498,120 +498,120 @@ _install_php_versions () {
     # gd fails to install in php 8.0
     [ -f "$INSTALL_PATH" ] && ( sed -i '' "/--enable-gd/d" "$INSTALL_PATH" )
 
-#     # configure flags and paths for homebrew tools (I don't think I need to explicitly define these - I think they're defined by the installer) {{{
+    # configure flags and paths for homebrew tools (I probably don't need to configure all of these) {{{
 
-#     # configure bison {{{
-#     export PATH="$(brew --prefix bison)/bin:${PATH}"
-#     # For compilers to find bison you may need to set:
-#     export LDFLAGS="-L$(brew --prefix bison)/lib ${LDFLAGS}"
-#     # }}}
+    # configure bison {{{
+    export PATH="$(brew --prefix bison)/bin:${PATH}"
+    # For compilers to find bison you may need to set:
+    export LDFLAGS="-L$(brew --prefix bison)/lib ${LDFLAGS}"
+    # }}}
 
-#     # configure bzip2 {{{
-#     export PATH="$(brew --prefix bzip2)/bin:${PATH}"
-#     export LDFLAGS="-L$(brew --prefix bzip2)/lib ${LDFLAGS}"
-#     export CPPFLAGS="-I$(brew --prefix bzip2)/include ${CPPFLAGS}"
-#     # }}}
+    # configure bzip2 {{{
+    export PATH="$(brew --prefix bzip2)/bin:${PATH}"
+    export LDFLAGS="-L$(brew --prefix bzip2)/lib ${LDFLAGS}"
+    export CPPFLAGS="-I$(brew --prefix bzip2)/include ${CPPFLAGS}"
+    # }}}
 
-#     # configure curl {{{
-#     export PATH="$(brew --prefix curl)/bin:${PATH}"
-#     export LDFLAGS="-L$(brew --prefix curl)/lib ${LDFLAGS}"
-#     export CPPFLAGS="-I$(brew --prefix curl)/include ${CPPFLAGS}"
-#     export PKG_CONFIG_PATH="$(brew --prefix curl)/lib/pkgconfig:${PKG_CONFIG_PATH}"
-#     # }}}
+    # configure curl {{{
+    export PATH="$(brew --prefix curl)/bin:${PATH}"
+    export LDFLAGS="-L$(brew --prefix curl)/lib ${LDFLAGS}"
+    export CPPFLAGS="-I$(brew --prefix curl)/include ${CPPFLAGS}"
+    export PKG_CONFIG_PATH="$(brew --prefix curl)/lib/pkgconfig:${PKG_CONFIG_PATH}"
+    # }}}
 
-#     # configure freetype {{{
-#     export PKG_CONFIG_PATH="-I$(brew --prefix freetype)/pkgconfig:${PKG_CONFIG_PATH}"
-#     # }}}
+    # configure freetype {{{
+    export PKG_CONFIG_PATH="-I$(brew --prefix freetype)/pkgconfig:${PKG_CONFIG_PATH}"
+    # }}}
 
-#     # configure gettext {{{
-#     export PATH="$(brew --prefix gettext)/bin:${PATH}"
-#     export LDFLAGS="-L$(brew --prefix gettext)/lib ${LDFLAGS}"
-#     export CPPFLAGS="-I$(brew --prefix gettext)/include ${CPPFLAGS}"
-#     # }}}
+    # configure gettext {{{
+    export PATH="$(brew --prefix gettext)/bin:${PATH}"
+    export LDFLAGS="-L$(brew --prefix gettext)/lib ${LDFLAGS}"
+    export CPPFLAGS="-I$(brew --prefix gettext)/include ${CPPFLAGS}"
+    # }}}
 
-#     # configure icu4c {{{
-#     # If you need to have icu4c first in your PATH run:
-#     export PATH="$(brew --prefix icu4c)/bin:${PATH}"
-#     export PATH="$(brew --prefix icu4c)/sbin:${PATH}"
-#     # For compilers to find icu4c you may need to set:
-#     export LDFLAGS="-L$(brew --prefix icu4c)/lib ${LDFLAGS}"
-#     export CPPFLAGS="-I$(brew --prefix icu4c)/include ${CPPFLAGS}"
-#     # For pkg-config to find icu4c you may need to set:
-#     export PKG_CONFIG_PATH="$(brew --prefix icu4c)/lib/pkgconfig:${PKG_CONFIG_PATH}"
-#     # export LDFLAGS=$(echo "${LDFLAGS}" | sed 's/-L\/lib //g')
-#     # export CFLAGS=$(echo "${CFLAGS}" | sed 's/-L\/lib //g')
-#     # }}}
+    # configure icu4c {{{
+    # If you need to have icu4c first in your PATH run:
+    export PATH="$(brew --prefix icu4c)/bin:${PATH}"
+    export PATH="$(brew --prefix icu4c)/sbin:${PATH}"
+    # For compilers to find icu4c you may need to set:
+    export LDFLAGS="-L$(brew --prefix icu4c)/lib ${LDFLAGS}"
+    export CPPFLAGS="-I$(brew --prefix icu4c)/include ${CPPFLAGS}"
+    # For pkg-config to find icu4c you may need to set:
+    export PKG_CONFIG_PATH="$(brew --prefix icu4c)/lib/pkgconfig:${PKG_CONFIG_PATH}"
+    # export LDFLAGS=$(echo "${LDFLAGS}" | sed 's/-L\/lib //g')
+    # export CFLAGS=$(echo "${CFLAGS}" | sed 's/-L\/lib //g')
+    # }}}
 
-#     # configure krb5 {{{
-#     export PATH="$(brew --prefix krb5)/bin:${PATH}"
-#     export PATH="$(brew --prefix krb5)/sbin:${PATH}"
-#     export LDFLAGS="-L$(brew --prefix krb5)/lib ${LDFLAGS}"
-#     export CPPFLAGS="-I$(brew --prefix krb5)/include ${CPPFLAGS}"
-#     export PKG_CONFIG_PATH="$(brew --prefix krb5)/lib/pkgconfig:${PKG_CONFIG_PATH}"
-#     # }}}
+    # configure krb5 {{{
+    export PATH="$(brew --prefix krb5)/bin:${PATH}"
+    export PATH="$(brew --prefix krb5)/sbin:${PATH}"
+    export LDFLAGS="-L$(brew --prefix krb5)/lib ${LDFLAGS}"
+    export CPPFLAGS="-I$(brew --prefix krb5)/include ${CPPFLAGS}"
+    export PKG_CONFIG_PATH="$(brew --prefix krb5)/lib/pkgconfig:${PKG_CONFIG_PATH}"
+    # }}}
 
-#     # configure libiconv {{{
-#     export PATH="$(brew --prefix libiconv)/bin:${PATH}"
-#     export LDFLAGS="-L$(brew --prefix libiconv)/lib ${LDFLAGS}"
-#     export CPPFLAGS="-I$(brew --prefix libiconv)/include ${CPPFLAGS}"
-#     # }}}
+    # configure libiconv {{{
+    export PATH="$(brew --prefix libiconv)/bin:${PATH}"
+    export LDFLAGS="-L$(brew --prefix libiconv)/lib ${LDFLAGS}"
+    export CPPFLAGS="-I$(brew --prefix libiconv)/include ${CPPFLAGS}"
+    # }}}
 
-#     # configure libedit {{{
-#     export LDFLAGS="-L$(brew --prefix libedit)/lib ${LDFLAGS}"
-#     export CPPFLAGS="-I$(brew --prefix libedit)/include ${CPPFLAGS}"
-#     export PKG_CONFIG_PATH="$(brew --prefix libedit)/lib/pkgconfig:${PKG_CONFIG_PATH}"
-#     # }}}
+    # configure libedit {{{
+    export LDFLAGS="-L$(brew --prefix libedit)/lib ${LDFLAGS}"
+    export CPPFLAGS="-I$(brew --prefix libedit)/include ${CPPFLAGS}"
+    export PKG_CONFIG_PATH="$(brew --prefix libedit)/lib/pkgconfig:${PKG_CONFIG_PATH}"
+    # }}}
 
-#     # configure libjpeg {{{
-#     export PATH="$(brew --prefix libjpeg)/bin:${PATH}"
-#     export LDFLAGS="-L$(brew --prefix libjpeg)/lib ${LDFLAGS}"
-#     export CPPFLAGS="-I$(brew --prefix libjpeg)/include ${CPPFLAGS}"
-#     export PKG_CONFIG_PATH="$(brew --prefix libjpeg)/lib/pkgconfig:${PKG_CONFIG_PATH}"
-#     # }}}
+    # configure libjpeg {{{
+    export PATH="$(brew --prefix libjpeg)/bin:${PATH}"
+    export LDFLAGS="-L$(brew --prefix libjpeg)/lib ${LDFLAGS}"
+    export CPPFLAGS="-I$(brew --prefix libjpeg)/include ${CPPFLAGS}"
+    export PKG_CONFIG_PATH="$(brew --prefix libjpeg)/lib/pkgconfig:${PKG_CONFIG_PATH}"
+    # }}}
 
-#     # configure libmcrypt {{{
-#     export PATH="$(brew --prefix libmcrypt)/bin:${PATH}"
-#     export LDFLAGS="-L$(brew --prefix libmcrypt)/lib ${LDFLAGS}"
-#     export CPPFLAGS="-I$(brew --prefix libmcrypt)/include ${CPPFLAGS}"
-#     # }}}
+    # configure libmcrypt {{{
+    export PATH="$(brew --prefix libmcrypt)/bin:${PATH}"
+    export LDFLAGS="-L$(brew --prefix libmcrypt)/lib ${LDFLAGS}"
+    export CPPFLAGS="-I$(brew --prefix libmcrypt)/include ${CPPFLAGS}"
+    # }}}
 
-#     # configure libpng {{{
-#     export PATH="$(brew --prefix libpng)/bin:${PATH}"
-#     export LDFLAGS="-L$(brew --prefix libpng)/lib ${LDFLAGS}"
-#     export CPPFLAGS="-I$(brew --prefix libpng)/include ${CPPFLAGS}"
-#     export PKG_CONFIG_PATH="$(brew --prefix libpng)/lib/pkgconfig:${PKG_CONFIG_PATH}"
-#     # }}}
+    # configure libpng {{{
+    export PATH="$(brew --prefix libpng)/bin:${PATH}"
+    export LDFLAGS="-L$(brew --prefix libpng)/lib ${LDFLAGS}"
+    export CPPFLAGS="-I$(brew --prefix libpng)/include ${CPPFLAGS}"
+    export PKG_CONFIG_PATH="$(brew --prefix libpng)/lib/pkgconfig:${PKG_CONFIG_PATH}"
+    # }}}
 
-#     # configure libxml2 {{{
-#     export PATH="$(brew --prefix libxml2)/bin:${PATH}"
-#     export LDFLAGS="-L$(brew --prefix libxml2)/lib ${LDFLAGS}"
-#     export CPPFLAGS="-I$(brew --prefix libxml2)/include ${CPPFLAGS}"
-#     export PKG_CONFIG_PATH="$(brew --prefix libxml2)/lib/pkgconfig:${PKG_CONFIG_PATH}"
-#     # }}}
+    # configure libxml2 {{{
+    export PATH="$(brew --prefix libxml2)/bin:${PATH}"
+    export LDFLAGS="-L$(brew --prefix libxml2)/lib ${LDFLAGS}"
+    export CPPFLAGS="-I$(brew --prefix libxml2)/include ${CPPFLAGS}"
+    export PKG_CONFIG_PATH="$(brew --prefix libxml2)/lib/pkgconfig:${PKG_CONFIG_PATH}"
+    # }}}
 
-#     # configure libzip {{{
-#     export PATH="$(brew --prefix libzip)/bin:${PATH}"
-#     export LDFLAGS="-L$(brew --prefix libzip)/lib ${LDFLAGS}"
-#     export CPPFLAGS="-I$(brew --prefix libzip)/include ${CPPFLAGS}"
-#     export PKG_CONFIG_PATH="$(brew --prefix libzip)/lib/pkgconfig:${PKG_CONFIG_PATH}"
-#     # }}}
+    # configure libzip {{{
+    export PATH="$(brew --prefix libzip)/bin:${PATH}"
+    export LDFLAGS="-L$(brew --prefix libzip)/lib ${LDFLAGS}"
+    export CPPFLAGS="-I$(brew --prefix libzip)/include ${CPPFLAGS}"
+    export PKG_CONFIG_PATH="$(brew --prefix libzip)/lib/pkgconfig:${PKG_CONFIG_PATH}"
+    # }}}
 
-#     # configure openssl {{{
-#     export PATH="$(brew --prefix openssl)/bin:${PATH}"
-#     # For compilers to find openssl@1.1 you may need to set:
-#     export LDFLAGS="-L$(brew --prefix openssl)/lib ${LDFLAGS}"
-#     export CPPFLAGS="-I$(brew --prefix openssl)/include ${CPPFLAGS}"
-#     # For pkg-config to find openssl@1.1 you may need to set:
-#     export PKG_CONFIG_PATH="$(brew --prefix openssl)/lib/pkgconfig:${PKG_CONFIG_PATH}"
-#     # }}}
+    # configure openssl {{{
+    export PATH="$(brew --prefix openssl)/bin:${PATH}"
+    # For compilers to find openssl@1.1 you may need to set:
+    export LDFLAGS="-L$(brew --prefix openssl)/lib ${LDFLAGS}"
+    export CPPFLAGS="-I$(brew --prefix openssl)/include ${CPPFLAGS}"
+    # For pkg-config to find openssl@1.1 you may need to set:
+    export PKG_CONFIG_PATH="$(brew --prefix openssl)/lib/pkgconfig:${PKG_CONFIG_PATH}"
+    # }}}
 
-#     # configure zlib {{{
-#     export LDFLAGS="-L$(brew --prefix zlib)/lib ${LDFLAGS}"
-#     export CPPFLAGS="-I$(brew --prefix zlib)/include ${CPPFLAGS}"
-#     export PKG_CONFIG_PATH="$(brew --prefix zlib)/lib/pkgconfig:${PKG_CONFIG_PATH}"
-#     # }}}
+    # configure zlib {{{
+    export LDFLAGS="-L$(brew --prefix zlib)/lib ${LDFLAGS}"
+    export CPPFLAGS="-I$(brew --prefix zlib)/include ${CPPFLAGS}"
+    export PKG_CONFIG_PATH="$(brew --prefix zlib)/lib/pkgconfig:${PKG_CONFIG_PATH}"
+    # }}}
 
-#     # }}}
+    # }}}
 
     # change implicit function declaration to warning instead of error
     # https://bugs.php.net/bug.php?id=80171
@@ -623,7 +623,8 @@ _install_php_versions () {
     # _install_php_72 # not working at the moment due to missing zend header
     _install_php_74 # *works* because whatever feature used readdir_r was removed
     _install_php_80
-    asdf global php 7.4.7
+    # asdf global php 7.4.7
+    asdf global php 8.0.0 # I want to believe
 
     popd || return
 }

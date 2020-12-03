@@ -3157,7 +3157,7 @@
         "revision": "841bdf137939c293c0a26a068c0bbc0e5be3fc1a"
       },
       "homebrew/cask-fonts": {
-        "revision": "40b132f111dae71032287dbba323e0d758b003e6"
+        "revision": "4232b261cb924794b61eeb175aee57d2bddcb90f"
       },
       "microsoft/git": {
         "revision": "55173e590d3401b6c8bbbd9744e835b3ea7820a4"
@@ -3178,7 +3178,7 @@
         "revision": "c5a605b018c05d08b90c4b794c088d25736997c3"
       },
       "homebrew/cask": {
-        "revision": "b89ffd81ac631ee9dc0fbee32196e788b90f78d1"
+        "revision": "312ef8d82659be88fc042378943303126660756c"
       },
       "wfxr/code-minimap": {
         "revision": "fe2d6f5f01a3d3507ec4b50a6d82ea4db75642f6"
@@ -3556,9 +3556,9 @@
         "macOS": "10.15.7"
       },
       "big_sur": {
-        "HOMEBREW_VERSION": "2.6.0-44-gd0feb49",
+        "HOMEBREW_VERSION": "2.6.0-51-gedb7496",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "119da4ff5bbe7de4d7a05cc19c1e5f6d437ce3ce",
+        "Homebrew/homebrew-core": "88132eb4a1c8993a28c1a15b6ff2b1caf1b45f22",
         "CLT": "12.2.0.0.1.1604076827",
         "Xcode": "12.2",
         "macOS": "11.0.1"

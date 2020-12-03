@@ -887,6 +887,28 @@ command! PhpPrefixNamespaces :call PhpPrefixNamespaces()
 nnoremap <silent> <Leader>hl :exe "let m = matchadd('Search','\\%" . line('.') . "l')"<CR>
 nnoremap <silent> <Leader>hw :exe "let m=matchadd('Search','\\<\\w*\\%" . line(".") . "l\\%" . col(".") . "c\\w*\\>')"<CR>
 nnoremap <silent> <Leader>hc :call clearmatches()<CR>
+
+" php one line per chain link e.g.
+"
+" turn `$this->someObject->doSomething();` into this:
+"
+" ```php
+" $this
+"     ->someObject
+"     ->doSomething();
+" ```
+"
+" I use this a lot so I need it to be super quick and easy
+augroup php_break_chain_mapping
+    autocmd!
+    autocmd FileType php nnoremap <leader>. ^f-i<enter><esc>
+    " autocmd FileType php nnoremap <leader>gu :GoToUseBlock<cr>
+augroup END
+augroup php_break_chain_mapping
+    autocmd!
+    autocmd FileType javascript,java nnoremap <leader>. ^f.i<enter><esc>
+    " autocmd FileType php nnoremap <leader>gu :GoToUseBlock<cr>
+augroup END
 " }}}
 
 " Visuals {{{
