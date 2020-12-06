@@ -735,8 +735,11 @@ _update_python3_pip_packages () {
     # 	pip3 freeze >"$HOME/requirements.txt"
     # pip3 list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip3 install -U
     _pip-update || PIP_SUCCESSFUL=0
-    # otherwise it might freeze a failed state
-    [[ $PIP_SUCCESSFUL ]] && pip3 freeze >"$HOME"/requirements.txt
+    # this is ok but it adds a ton of shit to my requirements when really the
+    # only thing I require are... my requirements :/ . This adds requirements
+    # of my requirements, which I don't want. It also led to a catch-22
+    # requirements.txt where there were conflicting requirements.
+    # [[ $PIP_SUCCESSFUL ]] && pip3 freeze >"$HOME"/requirements.txt
 }
 # }}}
 

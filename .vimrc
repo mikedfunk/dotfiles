@@ -902,12 +902,10 @@ nnoremap <silent> <Leader>hc :call clearmatches()<CR>
 augroup php_break_chain_mapping
     autocmd!
     autocmd FileType php nnoremap <leader>. ^f-i<enter><esc>
-    " autocmd FileType php nnoremap <leader>gu :GoToUseBlock<cr>
 augroup END
-augroup php_break_chain_mapping
+augroup js_break_chain_mapping
     autocmd!
     autocmd FileType javascript,java nnoremap <leader>. ^f.i<enter><esc>
-    " autocmd FileType php nnoremap <leader>gu :GoToUseBlock<cr>
 augroup END
 " }}}
 
