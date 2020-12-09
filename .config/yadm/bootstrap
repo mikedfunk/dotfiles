@@ -326,23 +326,25 @@ _install_php_70 () {
     ( asdf list php | grep --quiet 7.0.33 ) && return
     _log_info "installing php 7.0.33"
     asdf install php 7.0.33
-    asdf global php 7.0.33
+    asdf global php 7.0.33 || return
     local PHP_PATH
     PHP_PATH="$(asdf where php)"
 
     # install php extensions (different set for 7.0.33)
     mkdir -p "${PHP_PATH}"/conf.d
-    _has pecl || _install_pear "7.0.33"
-    PECL="${PHP_PATH}"/pear/bin/pecl
+
+    local PICKLE="${PHP_PATH}"/pickle.phar
+    wget -O "${PICKLE}" https://github.com/FriendsOfPHP/pickle/releases/latest/download/pickle.phar
+    chmod +x "${PICKLE}"
 
     # NOTE: pcs is a sub requirement of couchbase
-    yes "" | "${PECL}" install pcs && ( echo 'extension="phpcs.so"' >"${PHP_PATH}"/conf.d/01_pcs.ini )
+    yes "" | "${PICKLE}" install pcs && ( echo 'extension="phpcs.so"' >"${PHP_PATH}"/conf.d/01_pcs.ini )
     # NOTE: this requires `brew install couchbase@2`
-    yes "" | "${PECL}" install couchbase-2.2.4 && ( echo 'extension="couchbase.so"' >"${PHP_PATH}"/conf.d/02_couchbase.ini )
-    yes "" | "${PECL}" install memcached && ( echo 'extension="memcached.so"' >"${PHP_PATH}"/conf.d/03_memcached.ini )
-    yes "" | "${PECL}" install imagick && ( echo 'extension="imagick.so"' >"${PHP_PATH}"/conf.d/04_imagick.ini )
+    yes "" | "${PICKLE}" install couchbase@2.2.4 && ( echo 'extension="couchbase.so"' >"${PHP_PATH}"/conf.d/02_couchbase.ini )
+    yes "" | "${PICKLE}" install memcached && ( echo 'extension="memcached.so"' >"${PHP_PATH}"/conf.d/03_memcached.ini )
+    yes "" | "${PICKLE}" install imagick && ( echo 'extension="imagick.so"' >"${PHP_PATH}"/conf.d/04_imagick.ini )
     # xdebug master is now php 7.1+ :(
-    yes "" | "${PECL}" install xdebug-2.8.1 && ( echo 'zend_extension="xdebug.so"' >"${PHP_PATH}"/conf.d/05_xdebug.ini )
+    yes "" | "${PICKLE}" install xdebug@2.8.1 && ( echo 'zend_extension="xdebug.so"' >"${PHP_PATH}"/conf.d/05_xdebug.ini )
     # NOTE: I have 05_memory_limit.ini already there in my yadm files
 
     # install composer global packages
@@ -359,23 +361,25 @@ _install_php_71 () {
     ( asdf list php | grep --quiet 7.1.33 ) && return
     _log_info "installing php 7.1.33"
     asdf install php 7.1.33
-    asdf global php 7.1.33
+    asdf global php 7.1.33 || return
     local PHP_PATH
     PHP_PATH="$(asdf where php)"
 
     # install php extensions (different set for 7.1.33)
     mkdir -p "${PHP_PATH}"/conf.d
-    _has pecl || _install_pear "7.1.33"
-    PECL="${PHP_PATH}"/pear/bin/pecl
+
+    local PICKLE="${PHP_PATH}"/pickle.phar
+    wget -O "${PICKLE}" https://github.com/FriendsOfPHP/pickle/releases/latest/download/pickle.phar
+    chmod +x "${PICKLE}"
 
     # NOTE: pcs is a sub requirement of couchbase
-    yes "" | "${PECL}" install pcs && ( echo 'extension="phpcs.so"' >"${PHP_PATH}"/conf.d/01_pcs.ini )
+    yes "" | "${PICKLE}" install pcs && ( echo 'extension="phpcs.so"' >"${PHP_PATH}"/conf.d/01_pcs.ini )
     # NOTE: this requires `brew install couchbase@2`
-    yes "" | "${PECL}" install couchbase-2.2.4 && ( echo 'extension="couchbase.so"' >"${PHP_PATH}"/conf.d/02_couchbase.ini )
-    yes "" | "${PECL}" install memcached && ( echo 'extension="memcached.so"' >"${PHP_PATH}"/conf.d/03_memcached.ini )
-    yes "" | "${PECL}" install imagick && ( echo 'extension="imagick.so"' >"${PHP_PATH}"/conf.d/04_imagick.ini )
+    yes "" | "${PICKLE}" install couchbase@2.2.4 && ( echo 'extension="couchbase.so"' >"${PHP_PATH}"/conf.d/02_couchbase.ini )
+    yes "" | "${PICKLE}" install memcached && ( echo 'extension="memcached.so"' >"${PHP_PATH}"/conf.d/03_memcached.ini )
+    yes "" | "${PICKLE}" install imagick && ( echo 'extension="imagick.so"' >"${PHP_PATH}"/conf.d/04_imagick.ini )
     # xdebug master is now php 7.1+ :(
-    yes "" | "${PECL}" install xdebug-2.8.1 && ( echo 'zend_extension="xdebug.so"' >"${PHP_PATH}"/conf.d/05_xdebug.ini )
+    yes "" | "${PICKLE}" install xdebug@2.8.1 && ( echo 'zend_extension="xdebug.so"' >"${PHP_PATH}"/conf.d/05_xdebug.ini )
     # NOTE: I have 05_memory_limit.ini already there in my yadm files
 
     # install composer global packages
@@ -396,23 +400,24 @@ _install_php_72 () {
     ( asdf list php | grep --quiet 7.2.34 ) && return
     _log_info "installing php 7.2.34"
     asdf install php 7.2.34
-    asdf global php 7.2.34
+    asdf global php 7.2.34 || return
     local PHP_PATH
     PHP_PATH="$(asdf where php)"
 
     # install php extensions (different set for 7.2.34)
     mkdir -p "${PHP_PATH}"/conf.d
-    _has pecl || _install_pear "7.2.34"
-    PECL="${PHP_PATH}"/pear/bin/pecl
+    local PICKLE="${PHP_PATH}"/pickle.phar
+    wget -O "${PICKLE}" https://github.com/FriendsOfPHP/pickle/releases/latest/download/pickle.phar
+    chmod +x "${PICKLE}"
 
     # NOTE: pcs is a sub requirement of couchbase
-    yes "" | "${PECL}" install pcs && ( echo 'extension="phpcs.so"' >"${PHP_PATH}"/conf.d/01_pcs.ini )
+    yes "" | "${PICKLE}" install pcs && ( echo 'extension="phpcs.so"' >"${PHP_PATH}"/conf.d/01_pcs.ini )
     # NOTE: this requires `brew install couchbase@2`
-    yes "" | "${PECL}" install couchbase-2.2.4 && ( echo 'extension="couchbase.so"' >"${PHP_PATH}"/conf.d/02_couchbase.ini )
-    yes "" | "${PECL}" install memcached && ( echo 'extension="memcached.so"' >"${PHP_PATH}"/conf.d/03_memcached.ini )
-    yes "" | "${PECL}" install imagick && ( echo 'extension="imagick.so"' >"${PHP_PATH}"/conf.d/04_imagick.ini )
+    yes "" | "${PICKLE}" install couchbase@2.2.4 && ( echo 'extension="couchbase.so"' >"${PHP_PATH}"/conf.d/02_couchbase.ini )
+    yes "" | "${PICKLE}" install memcached && ( echo 'extension="memcached.so"' >"${PHP_PATH}"/conf.d/03_memcached.ini )
+    yes "" | "${PICKLE}" install imagick && ( echo 'extension="imagick.so"' >"${PHP_PATH}"/conf.d/04_imagick.ini )
     # xdebug master is now php 7.1+ :(
-    yes "" | "${PECL}" install xdebug-2.8.1 && ( echo 'zend_extension="xdebug.so"' >"${PHP_PATH}"/conf.d/05_xdebug.ini )
+    yes "" | "${PICKLE}" install xdebug@2.8.1 && ( echo 'zend_extension="xdebug.so"' >"${PHP_PATH}"/conf.d/05_xdebug.ini )
     # NOTE: I have 05_memory_limit.ini already there in my yadm files
 
     # install composer global packages
@@ -434,21 +439,22 @@ _install_php_74 () {
     ( asdf list php | grep --quiet 7.4.7 ) && return
     _log_info "installing php 7.4.7"
     asdf install php 7.4.7
-    asdf global php 7.4.7
+    asdf global php 7.4.7 || return
 
     # install php extensions (different set for 7.4.7)
     local PHP_PATH
     PHP_PATH="$(asdf where php)"
     mkdir -p "${PHP_PATH}"/conf.d
 
-    _has pecl || _install_pear "7.4.7"
-    local PECL="${PHP_PATH}"/pear/bin/pecl
+    local PICKLE="${PHP_PATH}"/pickle.phar
+    wget -O "${PICKLE}" https://github.com/FriendsOfPHP/pickle/releases/latest/download/pickle.phar
+    chmod +x "${PICKLE}"
 
-    yes "" | "${PECL}" install pcs-beta && ( echo 'extension="pcs.so"' >"${PHP_PATH}"/conf.d/01_pcs.ini )
-    yes "" | "${PECL}" install couchbase-2.2.4 && ( echo 'extension="couchbase.so"' >"${PHP_PATH}"/conf.d/02_couchbase.ini )
-    yes "" | "${PECL}" install memcached && ( echo 'extension="memcached.so"' >"${PHP_PATH}"/conf.d/03_memcached.ini )
-    yes "" | "${PECL}" install imagick && ( echo 'extension="imagick.so"' >"${PHP_PATH}"/conf.d/04_imagick.ini )
-    yes "" | "${PECL}" install xdebug && ( echo 'zend_extension="xdebug.so"' >"${PHP_PATH}"/conf.d/05_xdebug.ini )
+    yes "" | "${PICKLE}" install pcs-beta && ( echo 'extension="pcs.so"' >"${PHP_PATH}"/conf.d/01_pcs.ini )
+    yes "" | "${PICKLE}" install couchbase@2.2.4 && ( echo 'extension="couchbase.so"' >"${PHP_PATH}"/conf.d/02_couchbase.ini )
+    yes "" | "${PICKLE}" install memcached && ( echo 'extension="memcached.so"' >"${PHP_PATH}"/conf.d/03_memcached.ini )
+    yes "" | "${PICKLE}" install imagick && ( echo 'extension="imagick.so"' >"${PHP_PATH}"/conf.d/04_imagick.ini )
+    yes "" | "${PICKLE}" install xdebug && ( echo 'zend_extension="xdebug.so"' >"${PHP_PATH}"/conf.d/05_xdebug.ini )
     echo 'phar.readonly = false' > "${PHP_PATH}"/conf.d/05_phar.ini
 
     # install global composer packages
@@ -462,22 +468,22 @@ _install_php_80 () {
     ( asdf list php | grep --quiet "8.0.0" ) && return
     _log_info "installing php 8.0.0"
     asdf install php 8.0.0
-    asdf global php 8.0.0
+    asdf global php 8.0.0 || return
 
     # install php extensions (different set for 8.0.0)
     local PHP_PATH="$(asdf where php)"
     mkdir -p "${PHP_PATH}"/conf.d
 
     # _has pecl || _install_pear "8.0.0"
-    # local PECL="${PHP_PATH}"/pear/bin/pecl
-    local PECL="pecl" # php 8 install apparently comes with pecl
+    local PICKLE="${PHP_PATH}"/pickle.phar
+    wget -O "${PICKLE}" https://github.com/FriendsOfPHP/pickle/releases/latest/download/pickle.phar
+    chmod +x "${PICKLE}"
 
-    # yes "" | "${PECL}" install couchbase && ( echo 'extension="couchbase.so"' >"${PHP_PATH}"/conf.d/01_couchbase.ini )
-    # yes "" | "${PECL}" install memcached && ( echo 'extension="memcached.so"' >"${PHP_PATH}"/conf.d/02_memcached.ini )
-    # yes "" | "${PECL}" install imagick && ( echo 'extension="imagick.so"' >"${PHP_PATH}"/conf.d/03_imagick.ini )
-    # This doesn't work yet because xdebug 3 is not yet on pecl and <= 2 don't work with php 8
-    # yes "" | "${PECL}" install xdebug && ( echo 'zend_extension="xdebug.so"' >"${PHP_PATH}"/conf.d/04_xdebug.ini )
-    # echo 'phar.readonly = false' > "${PHP_PATH}"/conf.d/05_phar.ini
+    # yes "" | "${PICKLE}" install couchbase && ( echo 'extension="couchbase.so"' >"${PHP_PATH}"/conf.d/01_couchbase.ini )
+    # yes "" | "${PICKLE}" install memcached && ( echo 'extension="memcached.so"' >"${PHP_PATH}"/conf.d/02_memcached.ini )
+    # yes "" | "${PICKLE}" install imagick && ( echo 'extension="imagick.so"' >"${PHP_PATH}"/conf.d/03_imagick.ini )
+    yes "" | "${PICKLE}" install xdebug && ( echo 'zend_extension="xdebug.so"' >"${PHP_PATH}"/conf.d/04_xdebug.ini )
+    echo 'phar.readonly = false' > "${PHP_PATH}"/conf.d/05_phar.ini
 
     # install global composer packages
     mkdir -p  "${PHP_PATH}"/{.,}composer

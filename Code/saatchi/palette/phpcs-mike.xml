@@ -329,7 +329,7 @@
 
   <rule ref="Inpsyde.CodeQuality.ElementNameMinimalLength">
     <properties>
-      <property name="allowedShortNames" type="array" value="id,db,x,y,e,ip" />
+      <property name="allowedShortNames" type="array" value="id,db,x,y,e,ip,i" />
     </properties>
   </rule>
 

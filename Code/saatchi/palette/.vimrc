@@ -11,7 +11,9 @@ silent! colo base16-horizon-dark
 " silent! colo base16-outrun-dark
 " set wildignore+=*/vendor/*
 set wildignore+=*/coverage/*
-let g:airline_theme = "base16"
+" this makes inactive tabs almost invisible
+" let g:airline_theme = "base16"
+let g:airline_theme = "base16_vim"
 set wildignore+=*/build/*,cscope.out,tags,.git/*,Session.vim
 " }}}
 

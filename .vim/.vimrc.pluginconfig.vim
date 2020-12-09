@@ -507,6 +507,18 @@ endif
 " }}}
 
 " diagnostic-nvim {{{
+"
+" TODO
+" 'vim.lsp.diagnostic' is now builtin. 'nvim-lua/diagnostic-nvim' is now deprecated.
+" To migrate from 'nvim-lua/diagnostic-nvim' to builtin,
+"   See: https://github.com/nvim-lua/diagnostic-nvim/issues/73
+" For more information about new features,
+"   See: https://github.com/neovim/neovim/pull/12655
+" buf_clear_diagnostics is deprecated. Use vim.lsp.diagnostic.clear
+" buf_diagnostics_save_positions is deprecated. Use vim.lsp.diagnostic.save
+" diagnostics_by_buf is deprecated. Use 'vim.lsp.diagnostic.get'
+" buf_diagnostics_underline is deprecated. Use 'vim.lsp.diagnostic.set_underline'
+"
 let g:diagnostic_enable_virtual_text = 1
 let g:diagnostic_virtual_text_prefix = ' '
 let g:diagnostic_insert_delay = 1 " prevent diagnostics from updating while in insert mode
