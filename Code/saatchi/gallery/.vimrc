@@ -39,9 +39,10 @@ function! TriggerALEHover () abort
     let g:preview_window_is_open = 1
 endfunction
 
-if has_key(g:plugs, 'ale')
-    nnoremap <c-k> :call TriggerALEHover()<cr>
-endif
+" if has_key(g:plugs, 'ale')
+" nnoremap <c-k> :call TriggerALEHover()<cr>
+" inoremap <c-k> <c-o>:call TriggerALEHover()<cr>
+" endif
 
 " }}}
 
@@ -99,6 +100,7 @@ EOF
     autocmd FileType php nnoremap <buffer> <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
     autocmd FileType php nnoremap <buffer> <silent> gD <cmd>lua vim.lsp.buf.implementation()<CR>
     autocmd FileType php nnoremap <buffer> <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+    autocmd FileType php inoremap <buffer> <silent> <c-k> <c-o><cmd>lua vim.lsp.buf.signature_help()<CR>
     autocmd FileType php nnoremap <buffer> <silent> 1gD <cmd>lua vim.lsp.buf.type_definition()<CR>
     autocmd FileType php nnoremap <buffer> <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
     " if has_key(g:plugs, 'ale')
@@ -151,10 +153,10 @@ endif
 " }}}
 
 " vim-gutentags {{{
-if executable('cscope') && has('cscope') && exists('g:gutentags_modules')
-    call add(g:gutentags_modules, 'cscope')
+" if executable('cscope') && has('cscope') && exists('g:gutentags_modules')
+    " call add(g:gutentags_modules, 'cscope')
     " set cscopetag " this is set in ~/.vimrc
-endif
+" endif
 " }}}
 
 " vim-lsp (NOT WORKING) {{{
@@ -173,8 +175,8 @@ endif
 " }}}
 
 " vim-tbone {{{
-if has_key(g:plugs, 'vim-tbone')
-    " send selection to repl
-    vnoremap <leader>r :Twrite 2<CR>
-endif
+" if has_key(g:plugs, 'vim-tbone')
+" send selection to repl
+" vnoremap <leader>r :Twrite 2<CR>
+" endif
 " }}}

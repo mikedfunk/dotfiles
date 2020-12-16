@@ -343,6 +343,7 @@ export PINENTRY_USER_DATA="USE_CURSES=1"
 
 # fzf {{{
 export FZF_DEFAULT_OPTS="--multi"
+export FZF_DEFAULT_COMMAND='ag --files-with-matches --skip-vcs-ignores -g ""'
 # }}}
 
 # functions and aliases {{{
@@ -352,6 +353,7 @@ export FZF_DEFAULT_OPTS="--multi"
 alias nb="BROWSER=\"open '%u'\" newsboat"
 alias info="info --vi-keys" # info -> pinfo is like top -> htop
 alias updatedb="/usr/libexec/locate.updatedb" # remember to sudo
+alias vimlua="v -u ~/.config/nvim/init-lua.vim" # temp for testing
 
 # https://www.youtube.com/watch?v=Wl7CDe9jsuo&feature=youtu.be
 alias mv="mv -iv"

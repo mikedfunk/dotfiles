@@ -92,10 +92,10 @@ colorscheme:saatchishared
 
 # shared config {{{
 # I tried to combine these in braces: [\{|\}|\[|\]] but was getting strange results
-cs_re:white,,bold:\{
-cs_re:white,,bold:\}
-cs_re:white,,bold:\[
-cs_re:white,,bold:\]
+cs_re:green,,bold:\{
+cs_re:green,,bold:\}
+cs_re:green,,bold:\[
+cs_re:green,,bold:\]
 
 # skus
 cs_re:cyan:P[0-9]+-U[0-9]+-A[0-9]+(-L)?(-T[0-9])?(-F[0-9]+)?(-W[0-9]+)?
@@ -145,10 +145,10 @@ colorscheme:catalog
 
 # shared config {{{
 # I tried to combine these in braces: [\{|\}|\[|\]] but was getting strange results
-cs_re:white,,bold:\{
-cs_re:white,,bold:\}
-cs_re:white,,bold:\[
-cs_re:white,,bold:\]
+cs_re:green,,bold:\{
+cs_re:green,,bold:\}
+cs_re:green,,bold:\[
+cs_re:green,,bold:\]
 
 # skus
 cs_re:cyan:P[0-9]+-U[0-9]+-A[0-9]+(-L)?(-T[0-9])?(-F[0-9]+)?(-W[0-9]+)?
@@ -212,10 +212,10 @@ colorscheme:legacy
 
 # shared config {{{
 # I tried to combine these in braces: [\{|\}|\[|\]] but was getting strange results
-cs_re:white,,bold:\{
-cs_re:white,,bold:\}
-cs_re:white,,bold:\[
-cs_re:white,,bold:\]
+cs_re:green,,bold:\{
+cs_re:green,,bold:\}
+cs_re:green,,bold:\[
+cs_re:green,,bold:\]
 
 # skus
 cs_re:cyan:P[0-9]+-U[0-9]+-A[0-9]+(-L)?(-T[0-9])?(-F[0-9]+)?(-W[0-9]+)?
@@ -296,10 +296,10 @@ colorscheme:gallery
 
 # shared config {{{
 # I tried to combine these in braces: [\{|\}|\[|\]] but was getting strange results
-cs_re:white,,bold:\{
-cs_re:white,,bold:\}
-cs_re:white,,bold:\[
-cs_re:white,,bold:\]
+cs_re:green,,bold:\{
+cs_re:green,,bold:\}
+cs_re:green,,bold:\[
+cs_re:green,,bold:\]
 
 # skus
 cs_re:cyan:P[0-9]+-U[0-9]+-A[0-9]+(-L)?(-T[0-9])?(-F[0-9]+)?(-W[0-9]+)?
@@ -367,10 +367,10 @@ colorscheme:easel
 
 # shared config {{{
 # I tried to combine these in braces: [\{|\}|\[|\]] but was getting strange results
-cs_re:white,,bold:\{
-cs_re:white,,bold:\}
-cs_re:white,,bold:\[
-cs_re:white,,bold:\]
+cs_re:green,,bold:\{
+cs_re:green,,bold:\}
+cs_re:green,,bold:\[
+cs_re:green,,bold:\]
 
 # skus
 cs_re:cyan:P[0-9]+-U[0-9]+-A[0-9]+(-L)?(-T[0-9])?(-F[0-9]+)?(-W[0-9]+)?
@@ -446,10 +446,10 @@ colorscheme:palette
 
 # shared config {{{
 # I tried to combine these in braces: [\{|\}|\[|\]] but was getting strange results
-cs_re:white,,bold:\{
-cs_re:white,,bold:\}
-cs_re:white,,bold:\[
-cs_re:white,,bold:\]
+cs_re:green,,bold:\{
+cs_re:green,,bold:\}
+cs_re:green,,bold:\[
+cs_re:green,,bold:\]
 
 # skus
 cs_re:cyan:P[0-9]+-U[0-9]+-A[0-9]+(-L)?(-T[0-9])?(-F[0-9]+)?(-W[0-9]+)?
@@ -529,10 +529,10 @@ colorscheme:xgateway
 
 # shared config {{{
 # I tried to combine these in braces: [\{|\}|\[|\]] but was getting strange results
-cs_re:white,,bold:\{
-cs_re:white,,bold:\}
-cs_re:white,,bold:\[
-cs_re:white,,bold:\]
+cs_re:green,,bold:\{
+cs_re:green,,bold:\}
+cs_re:green,,bold:\[
+cs_re:green,,bold:\]
 
 # skus
 cs_re:cyan:P[0-9]+-U[0-9]+-A[0-9]+(-L)?(-T[0-9])?(-F[0-9]+)?(-W[0-9]+)?
@@ -582,10 +582,10 @@ colorscheme:zed
 
 # shared config {{{
 # I tried to combine these in braces: [\{|\}|\[|\]] but was getting strange results
-cs_re:white,,bold:\{
-cs_re:white,,bold:\}
-cs_re:white,,bold:\[
-cs_re:white,,bold:\]
+cs_re:green,,bold:\{
+cs_re:green,,bold:\}
+cs_re:green,,bold:\[
+cs_re:green,,bold:\]
 
 # skus
 cs_re:cyan:P[0-9]+-U[0-9]+-A[0-9]+(-L)?(-T[0-9])?(-F[0-9]+)?(-W[0-9]+)?
@@ -667,10 +667,10 @@ colorscheme:lb
 
 # shared config {{{
 # I tried to combine these in braces: [\{|\}|\[|\]] but was getting strange results
-cs_re:white,,bold:\{
-cs_re:white,,bold:\}
-cs_re:white,,bold:\[
-cs_re:white,,bold:\]
+cs_re:green,,bold:\{
+cs_re:green,,bold:\}
+cs_re:green,,bold:\[
+cs_re:green,,bold:\]
 
 # skus
 cs_re:cyan:P[0-9]+-U[0-9]+-A[0-9]+(-L)?(-T[0-9])?(-F[0-9]+)?(-W[0-9]+)?
@@ -730,10 +730,10 @@ colorscheme:mjmship
 
 # shared config {{{
 # I tried to combine these in braces: [\{|\}|\[|\]] but was getting strange results
-cs_re:white,,bold:\{
-cs_re:white,,bold:\}
-cs_re:white,,bold:\[
-cs_re:white,,bold:\]
+cs_re:green,,bold:\{
+cs_re:green,,bold:\}
+cs_re:green,,bold:\[
+cs_re:green,,bold:\]
 
 # skus
 cs_re:cyan:P[0-9]+-U[0-9]+-A[0-9]+(-L)?(-T[0-9])?(-F[0-9]+)?(-W[0-9]+)?

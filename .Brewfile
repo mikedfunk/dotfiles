@@ -331,7 +331,7 @@ cask "maccy" # simple clipboard manager. WAY better than jumpcut!
 # cask "mudlet" # muds are rad
 cask "multifirefox" # profile picker until firefox fixes this glaring omission
 # cask "multipass" # "ubuntu LTS on tap" launch instances of ubuntu and initialize them with cloud-init metadata in a matter of seconds. Uses hypervisor or virtualbox behind the scenes.
-cask "muzzle" # stop notifications while screensharing
+# cask "muzzle" # stop notifications while screensharing ( lately it's been incorrectly hiding a lot of notifications when I'm not even in zoom :/ )
 cask "neovim-nightly" # nightly neovim with lsp support
 # cask "noti" # mac native pushbullet notifications (I use the chrome/firefox extension)
 # cask "ngrok" # securely expose your local site to the internet and inspect and repeat traffic

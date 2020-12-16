@@ -671,6 +671,16 @@ if has_key(g:plugs, 'git-messenger.vim')
 endif
 " }}}
 
+" gitsessions.vim {{{
+if isdirectory(expand("~/.vim/plugged/gitsessions.vim"))
+    nnoremap <leader>ss :GitSessionSave<cr>
+    nnoremap <leader>sl :GitSessionLoad<cr>
+    nnoremap <leader>sd :GitSessionDelete<cr>
+endif
+" let g:gitsessions_dir = $PWD . '/sessions'
+let g:gitsessions_disable_auto_load = 1
+" }}}
+
 " goyo.vim + limelight.vim {{{
 " https://github.com/junegunn/dotfiles/blob/5a152686a9456e3713c5b0d4abc7798607db1979/vimrc#L1213
 let g:limelight_paragraph_span = 1
@@ -1884,16 +1894,6 @@ endif
 " vim-gitgutter {{{
 " let g:gitgutter_sign_column_always = 1
 let g:gitgutter_realtime = 0 | let g:gitgutter_eager = 0 " trade accuracy for speed. Only on save.
-" }}}
-
-" gitsessions.vim {{{
-if isdirectory(expand("~/.vim/plugged/gitsessions.vim"))
-    nnoremap <leader>ss :GitSessionSave<cr>
-    nnoremap <leader>sl :GitSessionLoad<cr>
-    nnoremap <leader>sd :GitSessionDelete<cr>
-endif
-" let g:gitsessions_dir = $PWD . '/sessions'
-let g:gitsessions_disable_auto_load = 1
 " }}}
 
 " vim-ghost {{{

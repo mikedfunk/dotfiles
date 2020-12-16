@@ -28,6 +28,15 @@ let g:airline_theme = 'base16_monokai'
 " general {{{
 set wildignore+=*/build/*,*/coverage/*,*/strings/vocabulary/*,*/public/media/js/lib/ckeditor/*,*/node_modules/*,*/assets/react/node_modules/*,*/.git/*,composer.phar,Session.vim,*.csv,.php_cs
 
+function! OpenTagInNewTab () abort
+    :normal! mz
+    :tabe %
+    :normal! `z
+    :exec("tjump ".expand('<cword>'))
+endfunction
+
+nnoremap <silent><leader><c-]> :call OpenTagInNewTab()<cr>
+
 let g:preview_window_is_open = 0
 function! TriggerPreviewHover () abort
     if g:preview_window_is_open
@@ -39,9 +48,9 @@ function! TriggerPreviewHover () abort
     let g:preview_window_is_open = 1
 endfunction
 
-if has_key(g:plugs, 'ale')
+" if has_key(g:plugs, 'ale')
     nnoremap <c-k> :call TriggerPreviewHover()<cr>
-endif
+" endif
 
 " set completeopt+=preview
 " }}}
@@ -131,8 +140,8 @@ augroup END
 " }}}
 
 " vim-tbone {{{
-if has_key(g:plugs, 'vim-tbone')
-    " send selection to repl
-    vnoremap <leader>r :Twrite 2<CR>
-endif
+" if has_key(g:plugs, 'vim-tbone')
+"     " send selection to repl
+"     vnoremap <leader>r :Twrite 2<CR>
+" endif
 " }}}
