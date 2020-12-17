@@ -286,6 +286,7 @@ _install_upgrade_vim_plugins () {
         +PackerClean \
         "+LspInstall intelephense" \
         "+LspInstall sumneko_lua" \
+        "+LspInstall diagnosticls" \
         +qall
 
     # treesitter language parsers
