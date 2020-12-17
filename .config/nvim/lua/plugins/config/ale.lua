@@ -20,29 +20,18 @@ g['ale_virtualtext_cursor'] = 1
 g['ale_virtualtext_prefix'] = ' '
 g['ale_sign_highlight_linenrs'] = 1
 
-if is_plugin_installed('ale') then
-  nvim_set_keymap('n', '[w', ':ALEPreviousWrap<cr>', {noremap = true, silent = true})
-  nvim_set_keymap('n', ']w', ':ALENextWrap<cr>', {noremap = true, silent = true})
-
-  nvim_set_keymap('n', '[e', ':ALEPrevious -error<cr>', {noremap = true, silent = true})
-  nvim_set_keymap('n', ']e', ':ALENext -error<cr>', {noremap = true, silent = true})
-
-  nvim_set_keymap('n', '<leader>al', ':ALELint<cr>', {noremap = true})
-  nvim_set_keymap('n', '<leader>af', ':ALEFix<cr>', {noremap = true})
-end
-
 g['ale_hover_to_preview'] = 1
 
 g['ale_completion_symbols'] = {
   text = '',
   method = '',
-  -- function = '',
+  ['function'] = '',
   constructor = '',
   field = '',
   variable = '',
   class = '',
   interface = '',
-  module = '',
+  ['module'] = '',
   property = '',
   unit = 'unit',
   value = 'val',
@@ -59,10 +48,8 @@ g['ale_completion_symbols'] = {
   event = 'event',
   operator = '',
   type_parameter = 'type param',
-  -- <default> = 'v',
+  ['<default>'] = 'v',
 }
-g['ale_completion_symbols']['function'] = ''
-g['ale_completion_symbols']['<default>'] = 'v'
 -- do not set the error sign background color to red. If I don't do this it looks weird with an emoji icon.
 cmd('highlight! link ALEErrorSign ALEWarningSign')
 
@@ -74,7 +61,15 @@ cmd('highlight! link ALEVirtualTextStyleError Comment')
 cmd('highlight! link ALEVirtualTextStyleWarning Comment')
 
 if is_plugin_installed('ale') then
-  -- rename bindings
+  nvim_set_keymap('n', '[w', ':ALEPreviousWrap<cr>', {noremap = true, silent = true})
+  nvim_set_keymap('n', ']w', ':ALENextWrap<cr>', {noremap = true, silent = true})
+
+  nvim_set_keymap('n', '[e', ':ALEPrevious -error<cr>', {noremap = true, silent = true})
+  nvim_set_keymap('n', ']e', ':ALENext -error<cr>', {noremap = true, silent = true})
+
+  nvim_set_keymap('n', '<leader>al', ':ALELint<cr>', {noremap = true})
+  nvim_set_keymap('n', '<leader>af', ':ALEFix<cr>', {noremap = true})
+
   nvim_set_keymap('n', '<leader>rrv', 'ALERename<cr>', {noremap = true}) -- rename local variable
   nvim_set_keymap('n', '<leader>rrp', 'ALERename<cr>', {noremap = true}) -- rename class variable
   nvim_set_keymap('n', '<leader>rrm', 'ALERename<cr>', {noremap = true}) -- rename class method
