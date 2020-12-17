@@ -138,6 +138,7 @@ augroup php_lsp_mappings
     autocmd FileType php nnoremap <buffer> <silent> <leader><c-]> mz:tabe %<CR>`z<cmd>lua vim.lsp.buf.definition()<CR>
     autocmd FileType php nnoremap <buffer> <silent> <c-w><c-]> :vsp<CR><cmd>lua vim.lsp.buf.definition()<CR>
     autocmd FileType php nnoremap <silent> <c-w>} <cmd>lua peek_definition()<CR>
+    " autocmd CursorHold *.php lua peek_definition() -- this is neato but takes up too much space
 
     autocmd FileType php nnoremap <buffer> <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
     autocmd FileType php nnoremap <buffer> <silent> gD <cmd>lua vim.lsp.buf.implementation()<CR>

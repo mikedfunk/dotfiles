@@ -1,8 +1,9 @@
 local helpers = require'helpers'
 local lspconfig = require'lspconfig'
-local eslint = require'lsp-diagnostics.linters.eslint'
-local prettier = require'lsp-diagnostics.fixers.prettier'
-local phpcs = require'lsp-diagnostics.linters.phpcs'
+local eslint = require'plugins.config.nvim-lspconfig.diagnosticls.eslint'
+local prettier = require'plugins.config.nvim-lspconfig.diagnosticls.prettier'
+local phpcs = require'plugins.config.nvim-lspconfig.diagnosticls.phpcs'
+local phpstan = require'plugins.config.nvim-lspconfig.diagnosticls.phpstan'
 local intelephense = require'plugins.config.nvim-lspconfig.intelephense'
 local is_plugin_installed = helpers.is_plugin_installed
 local tbl_isempty, tbl_islist, lsp, getenv = vim.tbl_isempty, vim.tbl_islist, vim.lsp, vim.fn.getenv
@@ -23,7 +24,7 @@ if is_plugin_installed('nvim-lspconfig') then
   end
 
   -- intentionally global! preview the definition under the cursor
-  local function peek_definition()
+  function peek_definition()
     local params = lsp.util.make_position_params()
     return lsp.buf_request(0, 'textDocument/definition', params, preview_location_callback)
   end
@@ -38,6 +39,7 @@ if is_plugin_installed('nvim-lspconfig') then
   -- https://github.com/bmewburn/intelephense-docs/blob/master/installation.md
   lspconfig.intelephense.setup{settings = intelephense}
 
+  -- https://github.com/iamcco/diagnostic-languageserver/wiki/Linters
   lspconfig.diagnosticls.setup{
     filetypes = {
         'javascript',
@@ -52,7 +54,8 @@ if is_plugin_installed('nvim-lspconfig') then
         ["javascript.jsx"] = 'eslint',
         typescript = 'eslint',
         ["typescript.tsx"] = 'eslint',
-        php = 'phpcs'
+        php = 'phpcs',
+        php = 'phpstan',
       },
       formatFiletypes = {
         javascript = 'prettier',
@@ -62,7 +65,8 @@ if is_plugin_installed('nvim-lspconfig') then
       },
       linters = {
         eslint = eslint,
-        phpcs = phpcs
+        phpcs = phpcs,
+        phpstan = phpstan,
       },
       formatters = {
         prettier = prettier
