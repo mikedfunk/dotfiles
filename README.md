@@ -6,7 +6,7 @@
 curl https://raw.githubusercontent.com/mikedfunk/dotfiles/master/install.sh | sh
 ```
 
-My Bash, Vim, Git, and other dotfiles. Managed by [yadm](https://thelocehiliosan.github.io/yadm/docs).
+My Bash, Neovim, Git, and other dotfiles. Managed by [yadm](https://thelocehiliosan.github.io/yadm/docs).
 
 ![screenshot](https://user-images.githubusercontent.com/661038/71217556-0cd39e00-2273-11ea-9be5-009dd6c874ce.png)
 
@@ -26,9 +26,7 @@ Script to install/upgrade everything:
 
 Key config files, annotated:
 
-* [Vimrc](.vimrc)
-* [Vim plugins](.vim/.vimrc.plugins.vim)
-* [Vim plugin config](.vim/.vimrc.pluginconfig.vim)
+* [Neovim init.lua](.config/nvim/init.lua)
 * [Zshrc and zsh plugins](.zshrc)
 * [P10k prompt config](.p10k.zsh)
 * [Git config](.gitconfig)

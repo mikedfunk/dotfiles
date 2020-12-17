@@ -36,7 +36,7 @@ if is_plugin_installed('nvim-lspconfig') then
   -- end
 
   -- https://github.com/bmewburn/intelephense-docs/blob/master/installation.md
-  lspconfig.intelephense.setup(intelephense)
+  lspconfig.intelephense.setup{settings = intelephense}
 
   lspconfig.diagnosticls.setup{
     filetypes = {

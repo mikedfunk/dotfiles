@@ -29,7 +29,7 @@
     <!-- <exclude-pattern>database/seeds/*</exclude-pattern> -->
   </rule>
 
-  <rule ref="StaticAccess">
+  <rule ref="rulesets/cleancode.xml/StaticAccess">
     <properties>
       <property type="array" name="exceptions" value="Carbon\Carbon" />
     </properties>
