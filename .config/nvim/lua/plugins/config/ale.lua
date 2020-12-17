@@ -20,7 +20,7 @@ g['ale_virtualtext_cursor'] = 1
 g['ale_virtualtext_prefix'] = ' '
 g['ale_sign_highlight_linenrs'] = 1
 
-g['ale_hover_to_preview'] = 1
+g['ale_hover_to_preview'] = 1 -- unfortunately ale doesn't support neovim floating windows :/
 
 g['ale_completion_symbols'] = {
   text = '',

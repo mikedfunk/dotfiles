@@ -1,6 +1,7 @@
 require'plugins.config.ale'
 require'plugins.config.base16-vim'
 require'plugins.config.blamer'
+require'plugins.config.fix-cursor-hold'
 require'plugins.config.editorconfig'
 require'plugins.config.fzf'
 require'plugins.config.nnn'
