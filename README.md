@@ -8,7 +8,7 @@ curl https://raw.githubusercontent.com/mikedfunk/dotfiles/master/install.sh | sh
 
 My Bash, Neovim, Git, and other dotfiles. Managed by [yadm](https://thelocehiliosan.github.io/yadm/docs).
 
-![screenshot](https://user-images.githubusercontent.com/661038/71217556-0cd39e00-2273-11ea-9be5-009dd6c874ce.png)
+<img width="1792" alt="Screen Shot 2020-12-17 at 12 32 28 PM" src="https://user-images.githubusercontent.com/661038/102560587-68538a00-4087-11eb-88c5-fc13fbb36bd7.png">
 
 ## Key files
 
