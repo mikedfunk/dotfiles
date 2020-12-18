@@ -1,6 +1,6 @@
 local helpers = require'helpers'
 local create_augroup, minus_equals, plus_equals = helpers.create_augroup, helpers.minus_equals, helpers.plus_equals
-local g, o, cmd, nvim_set_keymap, executable, filereadable = vim.g, vim.o, vim.cmd, vim.api.nvim_set_keymap, vim.fn.executable, vim.fn.filereadable
+local g, o, cmd, nvim_set_keymap, executable, filereadable, getenv = vim.g, vim.o, vim.cmd, vim.api.nvim_set_keymap, vim.fn.executable, vim.fn.filereadable, o.getenv
 
 -- cmd 'runtime macros/matchit.vim'
 g['mapleader'] = ','
@@ -124,7 +124,7 @@ create_augroup('quickfix_mappings', {
   -- is frustrating when you have 3 or 4 splits as it makes the results
   -- difficult to read and navigate to.
   -- TODO this is probably causing my quickfix bug
-  {'FileType', 'qf', 'wincmd J'},
+  -- {'FileType', 'qf', 'wincmd J'},
 })
 
 -- web-based documentation with shift-K
@@ -181,3 +181,8 @@ create_augroup('folding_for_some_filetypes', {
 create_augroup('highlight_on_yank', {
   {'TextYankPost', '*', 'silent! lua vim.highlight.on_yank()'},
 })
+
+o.backupdir = getenv('HOME') .. '/.config/nvim/backup'
+o.viewdir = getenv('HOME') .. '/.config/nvim/views'
+o.directory = getenv('HOME') .. '/.config/nvim/swap'
+o.undodir = getenv('HOME') .. '/.config/nvim/undo'

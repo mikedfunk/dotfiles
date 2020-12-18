@@ -1,5 +1,5 @@
 local helpers = require'helpers'
-local intelephense = require'plugins/config/nvim-lspconfig/intelephense'
+local intelephense = require'plugins.config.nvim-lspconfig.intelephense'
 local is_plugin_installed = helpers.is_plugin_installed
 local nvim_set_keymap = vim.api.nvim_set_keymap
 local g, cmd, fn = vim.g, vim.cmd, vim.fn
@@ -20,7 +20,10 @@ g['ale_virtualtext_cursor'] = 1
 g['ale_virtualtext_prefix'] = ' '
 g['ale_sign_highlight_linenrs'] = 1
 
-g['ale_hover_to_preview'] = 1 -- unfortunately ale doesn't support neovim floating windows :/
+-- https://github.com/dense-analysis/ale/issues/3458#issuecomment-733738981
+g['ale_php_intelephense_config'] = intelephense
+
+g['ale_hover_to_preview'] = 1 -- unfortunately ale doesn't support neovim floating windows :/ but at least the preview prevents "press enter to continue"
 
 g['ale_completion_symbols'] = {
   text = '',

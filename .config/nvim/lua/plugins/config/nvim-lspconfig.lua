@@ -1,3 +1,5 @@
+-- vim: set fdm=marker:
+
 local helpers = require'helpers'
 local lspconfig = require'lspconfig'
 local eslint = require'plugins.config.nvim-lspconfig.diagnosticls.eslint'
@@ -10,6 +12,7 @@ local tbl_isempty, tbl_islist, lsp, getenv = vim.tbl_isempty, vim.tbl_islist, vi
 
 if is_plugin_installed('nvim-lspconfig') then
 
+  -- peek_definition {{{
   local function preview_location_callback(_, method, result)
     if result == nil or tbl_isempty(result) then
       lsp.log.info(method, 'No location found')
@@ -28,17 +31,23 @@ if is_plugin_installed('nvim-lspconfig') then
     local params = lsp.util.make_position_params()
     return lsp.buf_request(0, 'textDocument/definition', params, preview_location_callback)
   end
+  -- }}}
 
+  -- on_attach handler {{{
   -- intentionally global! shared on_attach lua handler for nvim lsp
   -- function on_attach(client, bufnr)
   --   if is_plugin_installed('completion-nvim') then
   --     require'completion'.on_attach(client, bufnr)
   --   end
   -- end
+  -- }}}
 
+  -- intelephense lsp {{{
   -- https://github.com/bmewburn/intelephense-docs/blob/master/installation.md
   lspconfig.intelephense.setup{settings = intelephense}
+  -- }}}
 
+  -- diagnosticls lsp {{{
   -- https://github.com/iamcco/diagnostic-languageserver/wiki/Linters
   lspconfig.diagnosticls.setup{
     filetypes = {
@@ -73,31 +82,36 @@ if is_plugin_installed('nvim-lspconfig') then
       }
     }
   }
+  -- }}}
+
+  -- sumneko (lua) lsp {{{
+  -- this takes a ton of CPU so I'm only going to enable it when I need it.
+
+  -- lspconfig.sumneko_lua.setup{
+  --   cmd = {
+  --     -- this was suggested in the output of :LspInstall sumneko_lua
+  --     -- see :LspInstallInfo sumneko_lua
+  --     getenv('HOME') .. "/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/bin/macOS/lua-language-server",
+  --     "-E",
+  --     getenv('HOME') .. "/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/main.lua"
+  --   },
+  --   settings = {
+  --     Lua = {
+  --       diagnostics = {
+  --         globals = {
+  --           'vim',
+  --           'use',
+  --         },
+  --       },
+  --       workspace = {
+  --         library = {
+  --           ['$VIMRUNTIME/lua'] = true,
+  --         }
+  --       }
+  --     },
+  --   },
+  -- }
+  -- }}}
 
   lspconfig.solargraph.setup{}
-
-  lspconfig.sumneko_lua.setup{
-    cmd = {
-      -- this was suggested in the output of :LspInstall sumneko_lua
-      -- see :LspInstallInfo sumneko_lua
-      getenv('HOME') .. "/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/bin/macOS/lua-language-server",
-      "-E",
-      getenv('HOME') .. "/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/main.lua"
-    },
-    settings = {
-      Lua = {
-        diagnostics = {
-          globals = {
-            'vim',
-            'use',
-          },
-        },
-        workspace = {
-          library = {
-            ['$VIMRUNTIME/lua'] = true,
-          }
-        }
-      },
-    },
-  }
 end

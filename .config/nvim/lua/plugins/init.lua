@@ -8,7 +8,10 @@ cmd [[packadd packer.nvim]]
 -- vim._update_package_paths()
 
 return require'packer'.startup(function()
-  use {'dense-analysis/ale'} -- linter, fixer, even lsp implementation. I only have this here temporarily until I can get built-in lsp diagnostics working.
+
+  -- package definitions {{{
+  g['polyglot_disabled'] = {'graphql', 'rst'} -- annoyingly this config must be loaded before polyglot is loaded :/ this commit broke my php rendering until I disabled graphql https://github.com/sheerun/vim-polyglot/commit/c228e993ad6a8b79db5a5a77aecfdbd8e92ea31f
+
   use {'APZelos/blamer.nvim'} -- yet another git blame virtual text plugin
   use {'AndrewRadev/splitjoin.vim'} -- split and join php arrays to/from multiline/single line (gS, gJ) SO USEFUL! Doesn't like being loaded by filetype :/
   use {'AndrewRadev/undoquit.vim'} -- another one to reopen closed buffers/windows/tabs: <c-w>u
@@ -19,6 +22,7 @@ return require'packer'.startup(function()
   use {'antoinemadec/FixCursorHold.nvim'} -- improve performance of CursorHold event
   use {'ap/vim-css-color', ft = {'scss', 'css'}} -- colorize css colors e.g. #333 with the actual color in the background
   use {'chriskempson/base16-vim'} -- themes made of 16 colors
+  use {'dense-analysis/ale'} -- linter, fixer, even lsp implementation. I only have this here temporarily until I can get built-in lsp diagnostics working.
   use {'diepm/vim-rest-console'} -- like above but more capable (latest version) NOTE see ~/.yadm/bootstrap for notes on wuzz as a replacement for this. NOTE: { 'for': 'rest' } prevents this from setting filetypes correctly
   use {'docunext/closetag.vim', ft = {'html', 'xml', 'html.twig', 'blade', 'php', 'phtml', 'javascript.jsx'}} -- auto close tags by typing </ . different from auto-pairs.
   use {'fpob/nette.vim'} -- .neon format
@@ -40,16 +44,19 @@ return require'packer'.startup(function()
   use {'lukas-reineke/indent-blankline.nvim'} -- works with above plugin to include indent symbols on blank lines. finally!
   use {'machakann/vim-swap'} -- move args left/right with g< g> or gs for interactive mode
   use {'mbbill/undotree', cmd = {'UndotreeToggle'}} -- show a sidebar with branching undo history so you can redo on a different branch
+  use {'mcchrish/nnn.vim'} -- shim to browse with nnn terminal file browser
   use {'mhinz/vim-signify'} -- show git changes in sidebar
   use {'mhinz/vim-startify'} -- better vim start screen
   use {'michaeljsmith/vim-indent-object'} -- select in indentation level e.g. vii
   use {'milkypostman/vim-togglelist'} -- toggle quickfix and location lists. barely a plugin.
   use {'neovim/nvim-lspconfig'} -- official language server protocol config
+  use {'gfanto/fzf-lsp.nvim'} -- fuzzy find lsp stuff. This is especially helpful for searching all symbols or finding references.
   use {'rhysd/committia.vim'} -- prettier commit editor. Really cool!
   use {'rhysd/vim-gfm-syntax'} -- github-flavored markdown
   use {'ryanoasis/vim-devicons'} -- file type icons in netrw, etc.
   use {'scrooloose/vim-orgymode'} -- kind of like emacs org-mode. <c-c> will toggle markdown checkbox. Also some syntax highlighting and ultisnips snippets. I use it a lot in my notes.
   use {'sgur/vim-editorconfig'} -- faster version of editorconfig
+  use {'sheerun/vim-polyglot'} -- just about every filetype under the sun in one package
   use {'sickill/vim-pasta'} -- paste with context-sensitive indenting
   use {'skywind3000/asyncrun.vim'} -- run commands, etc asynchronously
   use {'styled-components/vim-styled-components', branch = 'main'} -- styled-components support
@@ -62,6 +69,7 @@ return require'packer'.startup(function()
   use {'tpope/vim-git'} -- Git file mappings and functions (e.g. rebase helpers) and syntax highlighting, etc. I add mappings in my plugin config.
   use {'tpope/vim-jdaddy'} --`gqaj` to pretty-print json, `gwaj` to merge the json object in the clipboard with the one under the cursor
   use {'tpope/vim-projectionist'} -- link tests and classes together
+  use {'tpope/vim-rhubarb'} -- fugitive github integration
   use {'tpope/vim-surround'} -- surround text in quotes or something
   use {'tpope/vim-unimpaired'} -- lots of useful, basic keyboard shortcuts
   use {'unblevable/quick-scope'} -- highlights chars for f, F, t, T
@@ -76,11 +84,6 @@ return require'packer'.startup(function()
     use {'vim-vdebug/vdebug', ft = 'php'} -- debug php
     use {'raghur/vim-ghost', opt = true, run = ':GhostInstall'} -- manually connect a text field with neovim. I like this better because it doesn't vimify _all_ of my input areas.
   end
+  -- }}}
 
-  g['polyglot_disabled'] = {'graphql', 'rst'} -- annoyingly this config must be loaded before polyglot is loaded :/ this commit broke my php rendering until I disabled graphql https://github.com/sheerun/vim-polyglot/commit/c228e993ad6a8b79db5a5a77aecfdbd8e92ea31f
-  use {'sheerun/vim-polyglot'} -- just about every filetype under the sun in one package
-
-  if executable('nnn') then
-    use {'mcchrish/nnn.vim'} -- shim to browse with nnn terminal file browser
-  end
 end)

@@ -2,7 +2,7 @@ local helpers = require'helpers'
 local create_augroup, is_plugin_installed = helpers.create_augroup, helpers.is_plugin_installed
 local g, getenv, call = vim.g, vim.fn.getenv, vim.call
 
--- g['airline#extensions#vista#enabled'] = 1
+g['airline#extensions#vista#enabled'] = 1
 g['airline#extensions#tmuxline#enabled'] = 0
 g['airline#extensions#gutentags#enabled'] = 1
 g['airline_theme'] = 'base16'

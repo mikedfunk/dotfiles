@@ -1,5 +1,6 @@
 local helpers = require'helpers'
 local is_plugin_installed, create_augroup = helpers.is_plugin_installed, helpers.create_augroup
+local nvim_buf_set_keymap = vim.api.nvim_buf_set_keymap
 
 if is_plugin_installed('vim-git') then
   -- intentionally global
