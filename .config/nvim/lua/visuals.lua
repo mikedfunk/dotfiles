@@ -1,4 +1,15 @@
-local o, cmd = vim.o, vim.cmd
+local o, cmd, nvim_exec = vim.o, vim.cmd, vim.api.nvim_exec
+
+o.termguicolors = true
+
+-- TODO convert to lua
+-- @link https://github.com/vim/vim/issues/981#issuecomment-241941032
+nvim_exec(
+[[
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+]],
+true)
 
 o.redrawtime = 10000 -- avoid problem with losting syntax highlighting https://github.com/vim/vim/issues/2790#issuecomment-400547834
 o.background = 'dark'
@@ -21,8 +32,7 @@ o.listchars = table.concat({
 }, ',')
 
 cmd('highlight! Comment cterm=italic, gui=italic') -- italic comments https://stackoverflow.com/questions/3494435/vimrc-make-comments-italic
-
-o.termguicolors = true
+cmd('highlight! Special cterm=italic, gui=italic')
 
 -- TIP: z= will show spell completion options. zg will add the word to the
 -- spelling library. zw will mark a word as incorrect spelling. set spell or

@@ -39,18 +39,20 @@ return require'packer'.startup(function()
   use {'kreskij/Repeatable.vim'} -- make mappings repeatable easily (I use this to open/close vdebug trees)
   use {'kristijanhusak/vim-js-file-import'} -- ctags-based importing
   use {'lifepillar/vim-cheat40'} -- Customizable cheatsheet. Mine is in ~/.vim/plugged/cheat40.txt. Open cheatsheet with <leader>? . I use this to avoid written cheatsheets on my desk for refactor tools and vdebug.
+  use {'liuchengxu/vim-which-key'} -- show keybindings on <leader> in a popup
   use {'liuchengxu/vista.vim'} -- like tagbar for lsp symbols
   use {'ludovicchabant/vim-gutentags'} -- auto ctags runner. no lazy load.
   use {'lukas-reineke/indent-blankline.nvim'} -- works with above plugin to include indent symbols on blank lines. finally!
   use {'machakann/vim-swap'} -- move args left/right with g< g> or gs for interactive mode
-  use {'mbbill/undotree', cmd = {'UndotreeToggle'}} -- show a sidebar with branching undo history so you can redo on a different branch
+  use {'mbbill/undotree', cmd = 'UndotreeToggle'} -- show a sidebar with branching undo history so you can redo on a different branch
   use {'mcchrish/nnn.vim'} -- shim to browse with nnn terminal file browser
   use {'mhinz/vim-signify'} -- show git changes in sidebar
   use {'mhinz/vim-startify'} -- better vim start screen
   use {'michaeljsmith/vim-indent-object'} -- select in indentation level e.g. vii
   use {'milkypostman/vim-togglelist'} -- toggle quickfix and location lists. barely a plugin.
   use {'neovim/nvim-lspconfig'} -- official language server protocol config
-  use {'gfanto/fzf-lsp.nvim'} -- fuzzy find lsp stuff. This is especially helpful for searching all symbols or finding references.
+  use {'nvim-treesitter/nvim-treesitter'} -- unlocks a world of possibilities
+  use {'ojroques/nvim-lspfuzzy', branch = 'main'} -- fuzzy find lsp stuff. This is especially helpful for searching all symbols or finding references.
   use {'rhysd/committia.vim'} -- prettier commit editor. Really cool!
   use {'rhysd/vim-gfm-syntax'} -- github-flavored markdown
   use {'ryanoasis/vim-devicons'} -- file type icons in netrw, etc.

@@ -146,13 +146,13 @@ augroup php_lsp_mappings
     autocmd FileType php nnoremap <buffer> <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
     autocmd FileType php inoremap <buffer> <silent> <c-k> <c-o><cmd>lua vim.lsp.buf.signature_help()<CR>
     autocmd FileType php nnoremap <buffer> <silent> 1gD <cmd>lua vim.lsp.buf.type_definition()<CR>
-    " autocmd FileType php nnoremap <buffer> <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
-    autocmd FileType php nnoremap <buffer> gr :References<CR>
+    autocmd FileType php nnoremap <buffer> <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
+    " autocmd FileType php nnoremap <buffer> gr :References<CR>
     autocmd FileType php nnoremap <buffer> <silent> g0 <cmd>lua vim.lsp.buf.document_symbol()<CR>
     autocmd FileType php nnoremap <buffer> <silent> gW <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
     " unfortunately this doesn't work - some problem with the plugin in lua
     " autocmd FileType php nnoremap <buffer> gW :WorkspaceSymbols<cr>
-    autocmd FileType php nnoremap <buffer> <leader>tt :WorkspaceSymbols<cr>
+    " autocmd FileType php nnoremap <buffer> <leader>tt :WorkspaceSymbols<cr>
     autocmd FileType php nnoremap <buffer> <silent> gd <cmd>lua vim.lsp.buf.declaration()<CR>
 augroup END
 

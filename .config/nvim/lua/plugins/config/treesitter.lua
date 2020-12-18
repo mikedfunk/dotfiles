@@ -1,7 +1,21 @@
 local is_plugin_installed = require'helpers'.is_plugin_installed
 
 if is_plugin_installed('nvim-treesitter') then
-  require'nvim-treesitter.configs'.setup{}
+  require'nvim-treesitter.configs'.setup{
+    ensure_installed = {'javascript', 'php', 'lua', 'json', 'css'},
+    -- highlight = {enable = true}, -- in php this is ugly and it removes a lot of my highlighting enhancements
+    textobjects = {
+      select = {
+        enable = true,
+        keymaps = {
+          ["af"] = "@function.outer",
+          ["if"] = "@function.inner",
+          ["ac"] = "@class.outer",
+          ["ic"] = "@class.inner"
+        },
+      },
+    },
+  }
 
   -- full example:
   --

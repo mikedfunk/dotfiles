@@ -11,5 +11,6 @@ g['fzf_buffers_jump'] = 1
 
 nvim_set_keymap('n', '<leader>ag', ':Ag<cr>', {noremap = true})
 nvim_set_keymap('n', '<leader>ff', ':Files<cr>', {noremap = true})
-nvim_set_keymap('n', '<leader>tt', ':Tags<cr>', {noremap = true})
+-- replaced with lsp workspace symbols
+-- nvim_set_keymap('n', '<leader>tt', ':Tags<cr>', {noremap = true})
 nvim_set_keymap('n', '<leader>hh', ':Helptags<cr>', {noremap = true})

@@ -1,6 +1,6 @@
 local helpers = require'helpers'
 local create_augroup, minus_equals, plus_equals = helpers.create_augroup, helpers.minus_equals, helpers.plus_equals
-local g, o, cmd, nvim_set_keymap, executable, filereadable, getenv = vim.g, vim.o, vim.cmd, vim.api.nvim_set_keymap, vim.fn.executable, vim.fn.filereadable, o.getenv
+local g, o, cmd, nvim_set_keymap, executable, filereadable, getenv, nvim_exec = vim.g, vim.o, vim.cmd, vim.api.nvim_set_keymap, vim.fn.executable, vim.fn.filereadable, vim.fn.getenv, vim.api.nvim_exec
 
 -- cmd 'runtime macros/matchit.vim'
 g['mapleader'] = ','
@@ -169,7 +169,7 @@ create_augroup('dollar_sign_php', {
 -- You can get Lua syntax highlighting inside .vim files by putting let
 -- g:vimsyn_embed = 'l' in your configuration file. See :help g:vimsyn_embed
 -- for more on this option.
-g['vimsyn_embed'] = 'l'
+g['vimsyn_embed'] = 'lPr'
 
 -- folding for some filetypes
 create_augroup('folding_for_some_filetypes', {
@@ -186,3 +186,29 @@ o.backupdir = getenv('HOME') .. '/.config/nvim/backup'
 o.viewdir = getenv('HOME') .. '/.config/nvim/views'
 o.directory = getenv('HOME') .. '/.config/nvim/swap'
 o.undodir = getenv('HOME') .. '/.config/nvim/undo'
+
+-- TODO convert to lua
+-- @link http://stackoverflow.com/a/7321131/557215
+nvim_exec(
+[[
+function! DeleteInactiveBufs() abort
+    "From tabpagebuflist() help, get a list of all buffers in all tabs
+    let l:tablist = []
+    for l:i in range(tabpagenr('$'))
+        call extend(l:tablist, tabpagebuflist(l:i + 1))
+    endfor
+
+    let l:nWipeouts = 0
+    for l:i in range(1, bufnr('$'))
+        if bufexists(l:i) && !getbufvar(l:i,'&mod') && index(l:tablist, l:i) == -1
+        "bufno exists AND isn't modified AND isn't in the list of buffers open in windows and tabs
+            silent exec 'bwipeout' l:i
+            let l:nWipeouts = l:nWipeouts + 1
+        endif
+    endfor
+    echomsg l:nWipeouts . ' buffer(s) wiped out'
+endfunction
+command! Bdi :call DeleteInactiveBufs()
+]],
+true)
+
