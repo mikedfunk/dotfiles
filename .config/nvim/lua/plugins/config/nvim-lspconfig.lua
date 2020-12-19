@@ -48,6 +48,7 @@ if is_plugin_installed('nvim-lspconfig') then
   -- }}}
 
   -- diagnosticls lsp {{{
+  -- TODO this entire lsp doesn't seem to be working yet
   -- https://github.com/iamcco/diagnostic-languageserver/wiki/Linters
   lspconfig.diagnosticls.setup{
     filetypes = {
@@ -76,9 +77,14 @@ if is_plugin_installed('nvim-lspconfig') then
         eslint = eslint,
         phpcs = phpcs,
         phpstan = phpstan,
+        -- TODO php -l
+        -- TODO phpmd
       },
       formatters = {
         prettier = prettier
+        -- TODO phpcbf (don't forget phpcbf-helper.sh)
+        -- TODO php-cs-fixer
+        -- TODO does phpmd have a fixer?
       }
     }
   }

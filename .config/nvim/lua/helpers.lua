@@ -1,6 +1,5 @@
 local api, cmd, fn, g, v, tbl_map = vim.api, vim.cmd, vim.fn, vim.g, vim.v, vim.tbl_map
 local o, wo, bo = vim.o, vim.wo, vim.bo
-local nvim_set_keymap = api.nvim_set_keymap
 local executable, has, filereadable, getenv, fnamemodify = fn.executable, fn.has, fn.filereadable, fn.getenv, fn.fnamemodify
 
 local H = {}

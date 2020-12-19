@@ -13,7 +13,8 @@ g['ale_completion_autoimport'] = 1
 g['ale_php_cs_fixer_options'] = '--config=.php_cs'
 g['ale_sign_column_always'] = 1
 g['ale_sign_warning'] = '⚠️'
-g['ale_sign_error'] = '🚨'
+-- g['ale_sign_error'] = '🚨'
+g['ale_sign_error'] = '💔'
 g['ale_sign_info'] = 'ℹ️'
 g['zenburn_high_Contrast'] = 1
 g['ale_virtualtext_cursor'] = 1

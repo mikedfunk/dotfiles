@@ -1,6 +1,7 @@
 local create_augroup = require'helpers'.create_augroup
 local lsp, cmd, nvim_set_keymap, sign_define = vim.lsp, vim.cmd, vim.api.nvim_set_keymap, vim.fn.sign_define
 
+-- https://github.com/nvim-lua/diagnostic-nvim/issues/73
 lsp.handlers["textDocument/publishDiagnostics"] = lsp.with(
   lsp.diagnostic.on_publish_diagnostics, {
     underline = true,
@@ -25,11 +26,11 @@ cmd('highlight! link LspDiagnosticsWarning Comment')
 cmd('highlight! link LspDiagnosticsHint Comment')
 cmd('highlight! link LspDiagnosticsInformation Comment')
 
-sign_define('LspDiagnosticsSignError', {text = '🚨', texthl='LspDiagnosticsSignError'})
-sign_define('LspDiagnosticsSignWarning', {text = '⚠️', texthl='LspDiagnosticsSignWarning'})
-sign_define('LspDiagnosticsSignInformation', {text = 'ℹ️', texthl='LspDiagnosticsSignInformation'})
-sign_define('LspDiagnosticsSignHint', {text = '💡', texthl='LspDiagnosticsSignHint'})
+sign_define('LspDiagnosticsSignError', {text = '🚨', texthl = 'LspDiagnosticsSignError', linehl = '', numhl = ''})
+sign_define('LspDiagnosticsSignWarning', {text = '⚠️', texthl = 'LspDiagnosticsSignWarning', linehl = '', numhl = ''})
+sign_define('LspDiagnosticsSignInformation', {text = 'ℹ️', texthl = 'LspDiagnosticsSignInformation', linehl = '', numhl = ''})
+sign_define('LspDiagnosticsSignHint', {text = '💡', texthl = 'LspDiagnosticsSignHint', linehl = '', numhl = ''})
 
-create_augroup('hover_lsp_diagnostics', {
-  {"CursorHold", "*", "lua vim.lsp.diagnostic.show_line_diagnostics()"},
-})
+-- create_augroup('hover_lsp_diagnostics', {
+--   {"CursorHold", "*", "lua vim.lsp.diagnostic.show_line_diagnostics()"},
+-- })

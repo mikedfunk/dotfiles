@@ -1,9 +1,21 @@
+-- https://github.com/iamcco/diagnostic-languageserver/wiki/Linters#phpstan
 local phpstan_config = {
   phpstan = {
     command = "./vendor/bin/phpstan",
     debounce = 100,
-    rootPatterns = {"composer.json", "composer.lock", "vendor", ".git"},
-    args = {"analyze", "--error-format", "raw", "--no-progress", "%file"},
+    rootPatterns = {
+      "composer.json",
+      "composer.lock",
+    },
+    requiredFiles = {
+      "phpstan.neon",
+    },
+    args = {
+      "analyze",
+      "--error-format=raw",
+      "--no-progress",
+      "%file",
+    },
     offsetLine = 0,
     offsetColumn = 0,
     sourceName = "phpstan",

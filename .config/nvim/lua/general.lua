@@ -12,6 +12,8 @@ o.exrc = true -- enables reading .exrc or .nvimrc from current directory
 o.secure = true -- Always append set secure when exrc option is enabled!
 
 o.pumblend = 20 -- enable pseudo-transparency for popup menu
+o.winblend = 20 -- enable pseudo-transparency for floating windows
+
 o.fileformat = 'unix' -- Any non-unix line endings are converted to unix
 o.joinspaces = false -- Prevents inserting two spaces after punctuation on a join (J)
 o.splitright = true -- Puts new vsplit windows to the right of the current
@@ -154,8 +156,11 @@ create_augroup('close_preview_on_insert', {
 create_augroup('lua_highlight', {
   {'TextYankPost', '*', "silent! lua require'vim.highlight'.on_yank()"},
 })
-
+--
 o.diffopt = plus_equals(o.diffopt, 'hiddenoff') -- Do not use diff mode for a buffer when it becomes hidden
+-- https://www.reddit.com/r/vim/comments/cn20tv/tip_histogrambased_diffs_using_modern_vim
+o.diffopt = plus_equals(o.diffopt, 'algorithm:histogram')
+o.diffopt = plus_equals(o.diffopt, 'indent-heuristic')
 
 if filereadable('/usr/share/dict/words') == 1 then
   o.dictionary = plus_equals(o.dictionary, '/usr/share/dict/words') -- Make <c-o><c-k> complete English words
