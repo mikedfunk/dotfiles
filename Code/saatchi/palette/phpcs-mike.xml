@@ -55,6 +55,7 @@
     <exclude name="Generic.PHP.RequireStrictTypes.MissingDeclaration" /><!-- overlaps with slevomat which is fixable -->
     <exclude name="Generic.PHP.UpperCaseConstant" />
     <exclude name="Generic.WhiteSpace.DisallowSpaceIndent" />
+    <exclude name="Generic.NamingConventions.CamelCapsFunctionName.ScopeNotCamelCaps" /><!-- this is just not smart enough. Sometimes we uppercase acronyms e.g. ArtistSalesRecordDTOFactory. -->
   </rule>
 
   <!-- Disabling to work with Sergey's if (! $myvar) or if ( ! $myVar) style -->
@@ -74,20 +75,15 @@
   <rule ref="Generic.PHP.ForbiddenFunctions">
     <properties>
       <!-- this is set in order to remove is_null from forbidden functions -->
-      <property name="forbiddenFunctions" type="array" value="sizeof=>count,delete=>unset,print=>echo" />
-      <property name="error" value="false" />
+      <property name="forbiddenFunctions" type="array" value="sizeof=>count,delete=>unset,print=>echo,var_dump=>null,dd=>null,print_r=>var_export" />
+      <property name="error" value="false" /><!-- warning instead of error -->
     </properties>
   </rule>
 
-  <!-- <rule ref="Generic.PHP.DiscouragedFunctions"> -->
-  <!--   <properties> -->
-  <!--     <property name="forbiddenFunctions" type="array" value="error_log=>null,print_r=>null,var_dump=>null" /> -->
-  <!--   </properties> -->
+  <!-- I ended up excluding this rule all together because it wasn't smart enough -->
+  <!-- <rule ref="Generic.NamingConventions.CamelCapsFunctionName.ScopeNotCamelCaps"> -->
+  <!--   <exclude-pattern>spec/*</exclude-pattern> -->
   <!-- </rule> -->
-
-  <rule ref="Generic.NamingConventions.CamelCapsFunctionName.ScopeNotCamelCaps">
-    <exclude-pattern>spec/*</exclude-pattern>
-  </rule>
 
   <rule ref="Generic.PHP.ForbiddenFunctions">
     <properties>
@@ -160,7 +156,7 @@
   <!-- begin Squiz -->
   <rule ref="Squiz">
     <!-- <exclude name="Squiz.Commenting.FunctionCommentThrowTag.Missing" /> --><!-- this is a great rule but it doesn't respect {@inheritDoc} :( -->
-    <!-- <exclude name="Squiz.PHP.CommentedOutCode" /> -->
+    <exclude name="Squiz.PHP.CommentedOutCode" /><!-- it's just a warning -->
     <exclude name="Generic.ControlStructures.DisallowYodaConditions" />
     <exclude name="Squiz.Arrays.ArrayDeclaration" />
     <exclude name="Squiz.Commenting.BlockComment" />
@@ -189,7 +185,6 @@
     <exclude name="Squiz.WhiteSpace.MemberVarSpacing" />
     <exclude name="Squiz.WhiteSpace.ObjectOperatorSpacing" />
   </rule>
-  <!-- end Squiz -->
 
   <rule ref="Squiz.WhiteSpace.MemberVarSpacing">
     <properties>
@@ -227,6 +222,7 @@
       <property name="ignoreNewlines" value="true" />
     </properties>
   </rule>
+    <!-- end Squiz -->
 
   <!-- start Zend -->
   <rule ref="Zend">
@@ -317,6 +313,7 @@
   <!-- https://github.com/infinityloop-dev/coding-standard -->
   <!-- https://github.com/Rarst/phpcs-cognitive-complexity -->
   <!-- https://github.com/mayflower/mo4-coding-standard -->
+  <!-- https://www.doctrine-project.org/projects/doctrine-coding-standard/en/8.2/reference/index.html -->
 
   <!-- begin Inpsyde https://github.com/inpsyde/php-coding-standards -->
   <rule ref="Inpsyde">

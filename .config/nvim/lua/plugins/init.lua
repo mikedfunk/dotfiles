@@ -1,11 +1,36 @@
 -- vim: set fdm=marker:
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
-
 local g, cmd, has, executable = vim.g, vim.cmd, vim.fn.has, vim.fn.executable
+local stdpath, mkdir, system, input = vim.fn.stdpath, vim.fn.mkdir, vim.fn.system, vim.fn.input
+
+-- offer to install packer if it's not installed {{{
+-- https://github.com/lucax88x/configs/blob/e585f0f6bf057675d3765f5a7d5deec85cdc03af/dotfiles/.config/nvim/nvim/lua/lt/plugins.lua
 -- Only required if you have packer in your `opt` pack
-cmd [[packadd packer.nvim]]
--- Only if your version of Neovim doesn't have https://github.com/neovim/neovim/pull/12632 merged
--- vim._update_package_paths()
+local is_packer_installed = pcall(cmd, [[packadd packer.nvim]])
+
+if not is_packer_installed then
+  if input("Download Packer? (y for yes)") ~= "y" then
+    return
+  end
+
+  local directory = string.format(
+    '%s/site/pack/packer/opt/',
+    stdpath('data')
+  )
+
+  mkdir(directory, 'p')
+
+  local out = system(string.format(
+    'git clone %s %s',
+    'https://github.com/wbthomason/packer.nvim',
+    directory .. '/packer.nvim'
+  ))
+
+  print(out)
+  print("Downloading packer.nvim...")
+
+  return
+end
+-- }}}
 
 return require'packer'.startup(function()
 

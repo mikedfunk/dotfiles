@@ -7,11 +7,11 @@ g['php_namespace_sort_after_insert'] = 1
 if is_plugin_installed('vim-php-namespace') then
   -- intentionally global
   function set_up_vim_php_namespace()
-    nvim_buf_set_keymap('i', '<leader><leader>u', '<C-O>:call PhpInsertUse()<cr>', {noremap = true})
-    nvim_buf_set_keymap('n', '<leader><leader>u', ':call PhpInsertUse()<cr>', {noremap = true})
+    nvim_buf_set_keymap(0, 'i', '<leader><leader>u', '<C-O>:call PhpInsertUse()<cr>', {noremap = true})
+    nvim_buf_set_keymap(0, 'n', '<leader><leader>u', ':call PhpInsertUse()<cr>', {noremap = true})
 
-    nvim_buf_set_keymap('i', '<leader><leader>e', '<C-O>:call PhpExpandClass()<cr>', {noremap = true})
-    nvim_buf_set_keymap('n', '<leader><leader>e', '<C-O>:call PhpexpandClass()<cr>', {noremap = true})
+    nvim_buf_set_keymap(0, 'i', '<leader><leader>e', '<C-O>:call PhpExpandClass()<cr>', {noremap = true})
+    nvim_buf_set_keymap(0, 'n', '<leader><leader>e', '<C-O>:call PhpexpandClass()<cr>', {noremap = true})
   end
 
   create_augroup('vim_lost', {

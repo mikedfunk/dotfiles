@@ -22,6 +22,7 @@ local function split_string(s, delimiter)
   return result
 end
 
+-- for comma-separated strings, remove a value from the list
 function H.minus_equals(setting, value)
   if setting == nil or setting == "" then
     return ""
@@ -34,9 +35,11 @@ function H.minus_equals(setting, value)
       table.remove(t, key)
     end
   end
+
   return table.concat(t, ',')
 end
 
+-- for comma-separated strings, add a value to the list
 function H.plus_equals(setting, value)
   if setting == nil then
     setting = ""
@@ -47,6 +50,14 @@ function H.plus_equals(setting, value)
   end
 
   local t = split_string(setting, ',')
+
+  for key, val in pairs(t) do
+    if val == value then
+      -- value already exists in the table
+      return setting
+    end
+  end
+
   table.insert(t, value)
   return table.concat(t, ',')
 end
