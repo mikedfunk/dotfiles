@@ -21,9 +21,11 @@ g['nnn#layout'] = {
   }
 }
 
-if is_plugin_installed('nnn.vim') then
-  nvim_set_keymap('n', '-', ':NnnPicker %<cr>', {noremap = true})
-  nvim_set_keymap('n', '<leader>ee', ':NnnPicker<cr>', {noremap = true})
-  cmd('command! -bang -nargs=* -complete=file Ex NnnPicker <args>')
-  cmd('command! -bang -nargs=* -complete=file Explore NnnPicker <args>')
+if not is_plugin_installed('nnn.vim') then
+  return
 end
+
+nvim_set_keymap('n', '-', ':NnnPicker %<cr>', {noremap = true})
+nvim_set_keymap('n', '<leader>ee', ':NnnPicker<cr>', {noremap = true})
+cmd('command! -bang -nargs=* -complete=file Ex NnnPicker <args>')
+cmd('command! -bang -nargs=* -complete=file Explore NnnPicker <args>')

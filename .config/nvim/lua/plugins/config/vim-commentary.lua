@@ -13,7 +13,9 @@ create_augroup('vim_commentary_config', {
   {'BufRead,BufNewFile', '.env', 'setlocal commentstring=#\\ %s'},
 })
 
-if is_plugin_installed('vim-commentary') then
-  nvim_set_keymap('n', '<leader>c<space>', ':Commentary<cr>', {noremap = true})
-  nvim_set_keymap('v', '<leader>c<space>', ':Commentary<cr>', {noremap = true})
+if not is_plugin_installed('vim-commentary') then
+  return
 end
+
+nvim_set_keymap('n', '<leader>c<space>', ':Commentary<cr>', {noremap = true})
+nvim_set_keymap('v', '<leader>c<space>', ':Commentary<cr>', {noremap = true})

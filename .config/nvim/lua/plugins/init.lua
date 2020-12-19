@@ -32,11 +32,15 @@ if not is_packer_installed then
 end
 -- }}}
 
-return require'packer'.startup(function()
+local function_definitions = function()
+  use {'wbthomason/packer.nvim'}
 
   -- package definitions {{{
-  g['polyglot_disabled'] = {'graphql', 'rst'} -- annoyingly this config must be loaded before polyglot is loaded :/ this commit broke my php rendering until I disabled graphql https://github.com/sheerun/vim-polyglot/commit/c228e993ad6a8b79db5a5a77aecfdbd8e92ea31f
 
+  -- use {'antoinemadec/FixCursorHold.nvim'} -- improve performance of CursorHold event
+  -- use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'} -- unlocks a world of possibilities (Bug in latest version: attempt to call add_directive, a nil value. Related? https://github.com/nvim-treesitter/nvim-treesitter/issues/759)
+  -- use {'tjdevries/nlua.nvim'} -- hopefully better lua lsp than the high cpu sumneko. (I couldn't even get it to work at all)
+  g['polyglot_disabled'] = {'graphql', 'rst'} -- annoyingly this config must be loaded before polyglot is loaded :/ this commit broke my php rendering until I disabled graphql https://github.com/sheerun/vim-polyglot/commit/c228e993ad6a8b79db5a5a77aecfdbd8e92ea31f
   use {'APZelos/blamer.nvim'} -- yet another git blame virtual text plugin
   use {'AndrewRadev/splitjoin.vim'} -- split and join php arrays to/from multiline/single line (gS, gJ) SO USEFUL! Doesn't like being loaded by filetype :/
   use {'AndrewRadev/undoquit.vim'} -- another one to reopen closed buffers/windows/tabs: <c-w>u
@@ -44,12 +48,12 @@ return require'packer'.startup(function()
   use {'Shougo/echodoc.vim'} -- Displays function signatures from completions in the command line. Really helpful for omnicompletion!
   use {'Yggdroot/indentLine'} -- show vertical lines for levels of indentions
   use {'andymass/vim-matchup'} -- " better matchit and match highlighter
-  -- use {'antoinemadec/FixCursorHold.nvim'} -- improve performance of CursorHold event
   use {'ap/vim-css-color', ft = {'scss', 'css'}} -- colorize css colors e.g. #333 with the actual color in the background
   use {'chriskempson/base16-vim'} -- themes made of 16 colors
   use {'dense-analysis/ale'} -- linter, fixer, even lsp implementation. I only have this here temporarily until I can get built-in lsp diagnostics working.
   use {'diepm/vim-rest-console'} -- like above but more capable (latest version) NOTE see ~/.yadm/bootstrap for notes on wuzz as a replacement for this. NOTE: { 'for': 'rest' } prevents this from setting filetypes correctly
   use {'docunext/closetag.vim', ft = {'html', 'xml', 'html.twig', 'blade', 'php', 'phtml', 'javascript.jsx'}} -- auto close tags by typing </ . different from auto-pairs.
+  use {'euclidianAce/BetterLua.vim'} -- recommended better lua syntax highlighting https://github.com/tjdevries/nlua.nvim
   use {'fpob/nette.vim'} -- .neon format
   use {'hotwatermorning/auto-git-diff'} -- cool git rebase diffs per commit
   use {'itchyny/vim-cursorword'} -- highlight matching words. What I like about this one is it keeps the same color and bold/italic.
@@ -76,7 +80,6 @@ return require'packer'.startup(function()
   use {'michaeljsmith/vim-indent-object'} -- select in indentation level e.g. vii
   use {'milkypostman/vim-togglelist'} -- toggle quickfix and location lists. barely a plugin.
   use {'neovim/nvim-lspconfig'} -- official language server protocol config
-  -- use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'} -- unlocks a world of possibilities (Bug in latest version: attempt to call add_directive, a nil value. Related? https://github.com/nvim-treesitter/nvim-treesitter/issues/759)
   use {'ojroques/nvim-lspfuzzy', branch = 'main'} -- fuzzy find lsp stuff. This is especially helpful for searching all symbols or finding references.
   use {'rhysd/committia.vim'} -- prettier commit editor. Really cool!
   use {'rhysd/vim-gfm-syntax'} -- github-flavored markdown
@@ -103,7 +106,6 @@ return require'packer'.startup(function()
   use {'vim-airline/vim-airline'} -- better status bar
   use {'vim-airline/vim-airline-themes'} -- pretty colors for airline
   use {'vim-scripts/BufOnly.vim', cmd = {'BufOnly', 'Bufonly'}} -- close all buffers but the current one
-  use {'wbthomason/packer.nvim'}
   use {'wellle/targets.vim'} -- Adds selection targets like vi2) or vI} to avoid whitespace
 
   if has('python3') then
@@ -112,5 +114,6 @@ return require'packer'.startup(function()
     use {'raghur/vim-ghost', opt = true, run = ':GhostInstall'} -- manually connect a text field with neovim. I like this better because it doesn't vimify _all_ of my input areas.
   end
   -- }}}
+end
 
-end)
+return require'packer'.startup(function_definitions)

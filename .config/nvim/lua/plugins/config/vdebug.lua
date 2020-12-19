@@ -29,18 +29,20 @@ create_augroup('vdebug_watch_panel_larger', {
     {'Bufenter', 'DebuggerStack', 'resize 999'},
 })
 
-if is_plugin_installed('vdebug') and is_plugin_installed('Repeatable.vim') then
-  local function open_vdebug_trees()
-    cmd("silent! " .. g['vdebug_options']["marker_closed_tree"] .. "/normal <cr><cr>")
-  end
-
-  local function close_vdebug_trees()
-    cmd("silent! " .. g['vdebug_options']["marker_open_tree"] .. "/normal <cr><cr>")
-  end
-
-  -- TODO not a command?
-  -- cmd('Repeatable nnoremap <leader>v+ :silent! lua open_vdebug_trees()<cr>')
-  -- cmd('Repeatable nnoremap <leader>v- :silent! lua close_vdebug_trees()<cr>')
-  cmd('nnoremap <leader>v+ :silent! lua open_vdebug_trees()<cr>')
-  cmd('nnoremap <leader>v- :silent! lua close_vdebug_trees()<cr>')
+if not is_plugin_installed('vdebug') or not is_plugin_installed('Repeatable.vim') then
+  return
 end
+
+local function open_vdebug_trees()
+  cmd("silent! " .. g['vdebug_options']["marker_closed_tree"] .. "/normal <cr><cr>")
+end
+
+local function close_vdebug_trees()
+  cmd("silent! " .. g['vdebug_options']["marker_open_tree"] .. "/normal <cr><cr>")
+end
+
+-- TODO not a command?
+-- cmd('Repeatable nnoremap <leader>v+ :silent! lua open_vdebug_trees()<cr>')
+-- cmd('Repeatable nnoremap <leader>v- :silent! lua close_vdebug_trees()<cr>')
+cmd('nnoremap <leader>v+ :silent! lua open_vdebug_trees()<cr>')
+cmd('nnoremap <leader>v- :silent! lua close_vdebug_trees()<cr>')

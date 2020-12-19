@@ -64,33 +64,35 @@ cmd('highlight! link ALEVirtualTextInfo Comment')
 cmd('highlight! link ALEVirtualTextStyleError Comment')
 cmd('highlight! link ALEVirtualTextStyleWarning Comment')
 
-if is_plugin_installed('ale') then
-  nvim_set_keymap('n', '[w', ':ALEPreviousWrap<cr>', {noremap = true, silent = true})
-  nvim_set_keymap('n', ']w', ':ALENextWrap<cr>', {noremap = true, silent = true})
-
-  nvim_set_keymap('n', '[e', ':ALEPrevious -error<cr>', {noremap = true, silent = true})
-  nvim_set_keymap('n', ']e', ':ALENext -error<cr>', {noremap = true, silent = true})
-
-  nvim_set_keymap('n', '<leader>al', ':ALELint<cr>', {noremap = true})
-  nvim_set_keymap('n', '<leader>af', ':ALEFix<cr>', {noremap = true})
-
-  nvim_set_keymap('n', '<leader>rrv', 'ALERename<cr>', {noremap = true}) -- rename local variable
-  nvim_set_keymap('n', '<leader>rrp', 'ALERename<cr>', {noremap = true}) -- rename class variable
-  nvim_set_keymap('n', '<leader>rrm', 'ALERename<cr>', {noremap = true}) -- rename class method
-
-  -- define intelephense lsp for linting
-  fn['ale#Set']('php_intelephense_executable', 'intelephense')
-  fn['ale#Set']('php_intelephense_use_global', 1)
-
-  -- NOTE someone added `intelephense` as a linter but it's broken right now
-  -- https://github.com/dense-analysis/ale/issues/3458 once this is fixed I
-  -- hope I can remove this and just add the lsp config as a global var
-  fn['ale#linter#Define']('php', {
-    name = "intelephense-lsp",
-    lsp = "stdio",
-    lsp_config = intelephense,
-    executable = 'intelephense',
-    command = "%e --stdio",
-    project_root = fn["ale_linters#php#langserver#GetProjectRoot"],
-  })
+if not is_plugin_installed('ale') then
+  return
 end
+
+nvim_set_keymap('n', '[w', ':ALEPreviousWrap<cr>', {noremap = true, silent = true})
+nvim_set_keymap('n', ']w', ':ALENextWrap<cr>', {noremap = true, silent = true})
+
+nvim_set_keymap('n', '[e', ':ALEPrevious -error<cr>', {noremap = true, silent = true})
+nvim_set_keymap('n', ']e', ':ALENext -error<cr>', {noremap = true, silent = true})
+
+nvim_set_keymap('n', '<leader>al', ':ALELint<cr>', {noremap = true})
+nvim_set_keymap('n', '<leader>af', ':ALEFix<cr>', {noremap = true})
+
+nvim_set_keymap('n', '<leader>rrv', 'ALERename<cr>', {noremap = true}) -- rename local variable
+nvim_set_keymap('n', '<leader>rrp', 'ALERename<cr>', {noremap = true}) -- rename class variable
+nvim_set_keymap('n', '<leader>rrm', 'ALERename<cr>', {noremap = true}) -- rename class method
+
+-- define intelephense lsp for linting
+fn['ale#Set']('php_intelephense_executable', 'intelephense')
+fn['ale#Set']('php_intelephense_use_global', 1)
+
+-- NOTE someone added `intelephense` as a linter but it's broken right now
+-- https://github.com/dense-analysis/ale/issues/3458 once this is fixed I
+-- hope I can remove this and just add the lsp config as a global var
+fn['ale#linter#Define']('php', {
+  name = "intelephense-lsp",
+  lsp = "stdio",
+  lsp_config = intelephense,
+  executable = 'intelephense',
+  command = "%e --stdio",
+  project_root = fn["ale_linters#php#langserver#GetProjectRoot"],
+})

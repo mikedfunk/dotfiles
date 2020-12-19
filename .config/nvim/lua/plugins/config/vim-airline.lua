@@ -34,14 +34,15 @@ g['airline#extensions#searchcount#enabled'] = 1
 g['airline#extensions#wordcount#enabled'] = 0
 g['airline#extensions#fugitiveline#enabled'] = 1
 
-if is_plugin_installed('vim-airline') and is_plugin_installed('asyncrun.vim') then
-
-  -- intentionally global
-  function asyncrun_airline_init()
-    g['airline_section_z'] = call('airline#section#create_right', {'%{g:asyncrun_status} ' .. g['airline_section_z']})
-  end
-
-  create_augroup('asyncrun_airline', {
-    {'User', 'AirlineAfterInit', ':lua asyncrun_airline_init()'},
-  })
+if not is_plugin_installed('vim-airline') or not is_plugin_installed('asyncrun.vim') then
+  return
 end
+
+-- intentionally global
+function asyncrun_airline_init()
+  g['airline_section_z'] = call('airline#section#create_right', {'%{g:asyncrun_status} ' .. g['airline_section_z']})
+end
+
+create_augroup('asyncrun_airline', {
+  {'User', 'AirlineAfterInit', ':lua asyncrun_airline_init()'},
+})
