@@ -125,36 +125,37 @@ endif
 " moved this here to avoid probs with legacy, zed, etc.
 " moved again to the on_attach function. https://github.com/neovim/nvim-lspconfig/issues/124#issuecomment-585620235
 " moved it back here so I can disable it in other codebases
-augroup nvim_lsp_php
-    autocmd!
-    autocmd filetype php setlocal omnifunc=v:lua.vim.lsp.omnifunc
-augroup END
+" moved it back to my lua config... we'll see how that works in legacy/zed lol
+" augroup nvim_lsp_php
+"     autocmd!
+"     autocmd filetype php setlocal omnifunc=v:lua.vim.lsp.omnifunc
+" augroup END
 
-augroup php_lsp_mappings
-    autocmd!
+" augroup php_lsp_mappings
+"     autocmd!
 
-    nnoremap <silent> <leader>cc <cmd>lua vim.lsp.buf.code_action()<CR>
-    autocmd FileType php nnoremap <buffer> <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
-    autocmd FileType php nnoremap <buffer> <silent> <leader><c-]> mz:tabe %<CR>`z<cmd>lua vim.lsp.buf.definition()<CR>
-    autocmd FileType php nnoremap <buffer> <silent> <c-w><c-]> :vsp<CR><cmd>lua vim.lsp.buf.definition()<CR>
-    autocmd FileType php nnoremap <silent> <c-w>} <cmd>lua peek_definition()<CR>
-    " autocmd CursorHold *.php lua peek_definition() -- this is neato but takes up too much space
-    " autocmd CursorHold *.php ALEHover -- Opens in preview window. Yuck.
+"     nnoremap <silent> <leader>cc <cmd>lua vim.lsp.buf.code_action()<CR>
+"     autocmd FileType php nnoremap <buffer> <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+"     autocmd FileType php nnoremap <buffer> <silent> <leader><c-]> mz:tabe %<CR>`z<cmd>lua vim.lsp.buf.definition()<CR>
+"     autocmd FileType php nnoremap <buffer> <silent> <c-w><c-]> :vsp<CR><cmd>lua vim.lsp.buf.definition()<CR>
+"     autocmd FileType php nnoremap <silent> <c-w>} <cmd>lua peek_definition()<CR>
+"     " autocmd CursorHold *.php lua peek_definition() -- this is neato but takes up too much space
+"     " autocmd CursorHold *.php ALEHover -- Opens in preview window. Yuck.
 
-    autocmd FileType php nnoremap <buffer> <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
-    autocmd FileType php nnoremap <buffer> <silent> gD <cmd>lua vim.lsp.buf.implementation()<CR>
-    autocmd FileType php nnoremap <buffer> <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-    autocmd FileType php inoremap <buffer> <silent> <c-k> <c-o><cmd>lua vim.lsp.buf.signature_help()<CR>
-    autocmd FileType php nnoremap <buffer> <silent> 1gD <cmd>lua vim.lsp.buf.type_definition()<CR>
-    autocmd FileType php nnoremap <buffer> <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
-    " autocmd FileType php nnoremap <buffer> gr :References<CR>
-    autocmd FileType php nnoremap <buffer> <silent> g0 <cmd>lua vim.lsp.buf.document_symbol()<CR>
-    autocmd FileType php nnoremap <buffer> <silent> gW <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-    " unfortunately this doesn't work - some problem with the plugin in lua
-    " autocmd FileType php nnoremap <buffer> gW :WorkspaceSymbols<cr>
-    " autocmd FileType php nnoremap <buffer> <leader>tt :WorkspaceSymbols<cr>
-    autocmd FileType php nnoremap <buffer> <silent> gd <cmd>lua vim.lsp.buf.declaration()<CR>
-augroup END
+"     autocmd FileType php nnoremap <buffer> <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
+"     autocmd FileType php nnoremap <buffer> <silent> gD <cmd>lua vim.lsp.buf.implementation()<CR>
+"     autocmd FileType php nnoremap <buffer> <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+"     autocmd FileType php inoremap <buffer> <silent> <c-k> <c-o><cmd>lua vim.lsp.buf.signature_help()<CR>
+"     autocmd FileType php nnoremap <buffer> <silent> 1gD <cmd>lua vim.lsp.buf.type_definition()<CR>
+"     autocmd FileType php nnoremap <buffer> <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
+"     " autocmd FileType php nnoremap <buffer> gr :References<CR>
+"     autocmd FileType php nnoremap <buffer> <silent> g0 <cmd>lua vim.lsp.buf.document_symbol()<CR>
+"     autocmd FileType php nnoremap <buffer> <silent> gW <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+"     " unfortunately this doesn't work - some problem with the plugin in lua
+"     " autocmd FileType php nnoremap <buffer> gW :WorkspaceSymbols<cr>
+"     " autocmd FileType php nnoremap <buffer> <leader>tt :WorkspaceSymbols<cr>
+"     autocmd FileType php nnoremap <buffer> <silent> gd <cmd>lua vim.lsp.buf.declaration()<CR>
+" augroup END
 
 " }}}
 

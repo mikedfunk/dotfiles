@@ -44,7 +44,7 @@ return require'packer'.startup(function()
   use {'Shougo/echodoc.vim'} -- Displays function signatures from completions in the command line. Really helpful for omnicompletion!
   use {'Yggdroot/indentLine'} -- show vertical lines for levels of indentions
   use {'andymass/vim-matchup'} -- " better matchit and match highlighter
-  use {'antoinemadec/FixCursorHold.nvim'} -- improve performance of CursorHold event
+  -- use {'antoinemadec/FixCursorHold.nvim'} -- improve performance of CursorHold event
   use {'ap/vim-css-color', ft = {'scss', 'css'}} -- colorize css colors e.g. #333 with the actual color in the background
   use {'chriskempson/base16-vim'} -- themes made of 16 colors
   use {'dense-analysis/ale'} -- linter, fixer, even lsp implementation. I only have this here temporarily until I can get built-in lsp diagnostics working.
