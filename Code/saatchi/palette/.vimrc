@@ -83,16 +83,16 @@ let g:ale_lint_on_enter = 1
 " endif
 
 " moved here so I could do it differently in legacy/zed
-let g:preview_window_is_open = 0
-function! TriggerALEHover () abort
-    if g:preview_window_is_open
-        :pclose
-        let g:preview_window_is_open = 0
-        return
-    endif
-    :ALEHover
-    let g:preview_window_is_open = 1
-endfunction
+" let g:preview_window_is_open = 0
+" function! TriggerALEHover () abort
+"     if g:preview_window_is_open
+"         :pclose
+"         let g:preview_window_is_open = 0
+"         return
+"     endif
+"     :ALEHover
+"     let g:preview_window_is_open = 1
+" endfunction
 
 " if has_key(g:plugs, 'ale')
     " nnoremap <c-k> :call TriggerALEHover()<cr>

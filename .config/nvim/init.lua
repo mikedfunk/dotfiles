@@ -21,3 +21,11 @@ if filereadable('.vimrc') == 1 then
   cmd('source .vimrc')
 end
 -- }}}
+
+-- FileType autocmds stopped working. This is a BAD temp solution. Thanks, i hate it. {{{
+local create_augroup = require'helpers'.create_augroup
+
+create_augroup('fix_filetype', {
+  {'BufRead,BufNewFile', '*', 'e!'}
+})
+-- }}}

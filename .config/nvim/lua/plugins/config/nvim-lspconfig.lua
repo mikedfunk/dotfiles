@@ -1,7 +1,6 @@
 -- vim: set fdm=marker:
 
 local helpers = require'helpers'
-local lspconfig = require'lspconfig'
 local eslint = require'plugins.config.nvim-lspconfig.diagnosticls.eslint'
 local prettier = require'plugins.config.nvim-lspconfig.diagnosticls.prettier'
 local phpcs = require'plugins.config.nvim-lspconfig.diagnosticls.phpcs'
@@ -11,11 +10,14 @@ local is_plugin_installed = helpers.is_plugin_installed
 local tbl_isempty, tbl_islist, lsp, getenv = vim.tbl_isempty, vim.tbl_islist, vim.lsp, vim.fn.getenv
 
 if is_plugin_installed('nvim-lspconfig') then
+  local lspconfig = require'lspconfig'
 
   -- peek_definition {{{
   local function preview_location_callback(_, method, result)
     if result == nil or tbl_isempty(result) then
-      lsp.log.info(method, 'No location found')
+      if not lsp.log == nil then
+        lsp.log.info(method, 'No location found')
+      end
       return nil
     end
 
@@ -26,7 +28,8 @@ if is_plugin_installed('nvim-lspconfig') then
     end
   end
 
-  -- intentionally global! preview the definition under the cursor
+  -- intentionally global
+  -- preview the definition under the cursor
   function peek_definition()
     local params = lsp.util.make_position_params()
     return lsp.buf_request(0, 'textDocument/definition', params, preview_location_callback)

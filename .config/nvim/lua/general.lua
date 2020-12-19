@@ -38,6 +38,7 @@ o.undofile = true -- persistent undo
 o.swapfile = false -- turn off swapfiles - they are annoying and only useful if neovim crashes before I saved
 o.shortmess = o.shortmess .. 'I' -- hide the launch screen
 o.shortmess = o.shortmess .. 'c' -- hide 'back at original', 'match (x of x)', etc.
+-- cmd('set shortmess-=F') -- allow testing autocmds with echo https://github.com/neovim/neovim/wiki/FAQ#calling-inputlist-echomsg-etc-in-filetype-plugins-and-autocmd-does-not-work
 o.startofline = false -- Keep the cursor on the same column
 o.t_kB = "[Z" -- Shift-tab on GNU screen
 

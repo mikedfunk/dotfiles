@@ -34,11 +34,10 @@ for k,wildignore_pattern in pairs(wildignore_patterns) do
 end
 
 o.wildoptions = plus_equals(o.wildoptions, 'tagfile') -- When using CTRL-D to list matching tags, the kind of tag and the file of the tag is listed.	Only one match is displayed per line.
-o.wildoptions = plus_equals(o.wildoptions, 'pum') -- turn the wildmenu into a popup menu
 
 -- tab completion
-nvim_set_keymap('i', '<Tab>', 'pumvisible() ? "<C-n>" : "<Tab>"', {noremap = true, expr = true})
-nvim_set_keymap('i', '<S-Tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"', {noremap = true, expr = true})
+nvim_set_keymap('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {noremap = true, expr = true})
+nvim_set_keymap('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<S-Tab>"', {noremap = true, expr = true})
 
 -- set vim lsp omnifunc for filetypes that should have it {{{
 local lsp_filetypes = {
@@ -48,6 +47,7 @@ local lsp_filetypes = {
   'lua',
   'python',
 }
+
 local autocmds = {}
 for _, filetype in ipairs(lsp_filetypes) do
   table.insert(autocmds, {'FileType', filetype, 'setlocal omnifunc=v:lua.vim.lsp.omnifunc'})
