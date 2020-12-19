@@ -3,7 +3,7 @@ local create_augroup, minus_equals, plus_equals = helpers.create_augroup, helper
 local o, nvim_set_keymap = vim.o, vim.api.nvim_set_keymap
 
 o.completeopt = minus_equals(o.completeopt, 'menu')
-for k,option in pairs({'menu', 'menuone', 'noinsert', 'noselect'}) do
+for k,option in pairs({'menuone', 'noinsert', 'noselect'}) do
   o.completeopt = plus_equals(o.completeopt, option)
 end
 

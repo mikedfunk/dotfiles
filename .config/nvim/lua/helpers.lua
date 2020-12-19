@@ -63,6 +63,12 @@ function H.plus_equals(setting, value)
 end
 
 function H.is_plugin_installed(check_plugin_name)
+  local _, packer = pcall(require, 'packer')
+  if type(packer) == 'string' then
+    -- packer is not installed
+    return false
+  end
+
   -- not pretty but it gets the job done
   local plugin_utils = require('packer.plugin_utils')
   local opt_plugins, start_plugins = plugin_utils.list_installed_plugins()

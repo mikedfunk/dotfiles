@@ -76,7 +76,7 @@ return require'packer'.startup(function()
   use {'michaeljsmith/vim-indent-object'} -- select in indentation level e.g. vii
   use {'milkypostman/vim-togglelist'} -- toggle quickfix and location lists. barely a plugin.
   use {'neovim/nvim-lspconfig'} -- official language server protocol config
-  use {'nvim-treesitter/nvim-treesitter'} -- unlocks a world of possibilities
+  -- use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'} -- unlocks a world of possibilities (Bug in latest version: attempt to call add_directive, a nil value. Related? https://github.com/nvim-treesitter/nvim-treesitter/issues/759)
   use {'ojroques/nvim-lspfuzzy', branch = 'main'} -- fuzzy find lsp stuff. This is especially helpful for searching all symbols or finding references.
   use {'rhysd/committia.vim'} -- prettier commit editor. Really cool!
   use {'rhysd/vim-gfm-syntax'} -- github-flavored markdown
