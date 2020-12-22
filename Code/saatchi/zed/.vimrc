@@ -62,8 +62,8 @@ let b:jiracomplete_username = 'mike.funk'
 " }}}
 
 " vim-tbone {{{
-if has_key(g:plugs, 'vim-tbone')
-    " send selection to repl
-    vnoremap <leader>r :Twrite 2<CR>
-endif
+" if has_key(g:plugs, 'vim-tbone')
+"     " send selection to repl
+"     vnoremap <leader>r :Twrite 2<CR>
+" endif
 " }}}

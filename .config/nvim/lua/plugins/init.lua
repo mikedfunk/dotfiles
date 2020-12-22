@@ -37,7 +37,10 @@ local function_definitions = function()
 
   -- package definitions {{{
 
-  -- use {'antoinemadec/FixCursorHold.nvim'} -- improve performance of CursorHold event
+  -- use {'Shougo/echodoc.vim'} -- Displays function signatures from completions in the command line. Really helpful for omnicompletion! (hopefully no longer needed with lsp and signature help)
+  -- use {'mcchrish/nnn.vim'} -- shim to browse with nnn terminal file browser TODO replace with fern.vim
+  -- use {'nvim-lua/completion-nvim'} -- completion helper for nvim lsp (I've reinstalled and uninstalled this about 5x. I prefer to choose my type of completion: omni, buffer, spell, line, etc.)
+  -- use {'nvim-telescope/telescope.nvim', requires = {{'nvim-lua/popup.nvim', {'nvim-lua/plenary.nvim'}}}} -- fuzzy searcher (doesn't provide any more capabilities than fzf for me)
   -- use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'} -- unlocks a world of possibilities (Bug in latest version: attempt to call add_directive, a nil value. Related? https://github.com/nvim-treesitter/nvim-treesitter/issues/759)
   -- use {'tjdevries/nlua.nvim'} -- hopefully better lua lsp than the high cpu sumneko. (I couldn't even get it to work at all)
   g['polyglot_disabled'] = {'graphql', 'rst'} -- annoyingly this config must be loaded before polyglot is loaded :/ this commit broke my php rendering until I disabled graphql https://github.com/sheerun/vim-polyglot/commit/c228e993ad6a8b79db5a5a77aecfdbd8e92ea31f
@@ -45,16 +48,17 @@ local function_definitions = function()
   use {'AndrewRadev/splitjoin.vim'} -- split and join php arrays to/from multiline/single line (gS, gJ) SO USEFUL! Doesn't like being loaded by filetype :/
   use {'AndrewRadev/undoquit.vim'} -- another one to reopen closed buffers/windows/tabs: <c-w>u
   use {'MaxMEllon/vim-jsx-pretty'} -- jsx formatting (NOT in vim-polyglot)
-  use {'Shougo/echodoc.vim'} -- Displays function signatures from completions in the command line. Really helpful for omnicompletion!
   use {'Yggdroot/indentLine'} -- show vertical lines for levels of indentions
   use {'andymass/vim-matchup'} -- " better matchit and match highlighter
+  use {'antoinemadec/FixCursorHold.nvim'} -- improve performance of CursorHold event
   use {'ap/vim-css-color', ft = {'scss', 'css'}} -- colorize css colors e.g. #333 with the actual color in the background
   use {'chriskempson/base16-vim'} -- themes made of 16 colors
-  use {'dense-analysis/ale'} -- linter, fixer, even lsp implementation. I only have this here temporarily until I can get built-in lsp diagnostics working.
+  use {'dense-analysis/ale'} -- linter, fixer, even lsp implementation. TODO I only have this here temporarily until I can get built-in lsp diagnostics with diagnosticls working.
   use {'diepm/vim-rest-console'} -- like above but more capable (latest version) NOTE see ~/.yadm/bootstrap for notes on wuzz as a replacement for this. NOTE: { 'for': 'rest' } prevents this from setting filetypes correctly
   use {'docunext/closetag.vim', ft = {'html', 'xml', 'html.twig', 'blade', 'php', 'phtml', 'javascript.jsx'}} -- auto close tags by typing </ . different from auto-pairs.
   use {'euclidianAce/BetterLua.vim'} -- recommended better lua syntax highlighting https://github.com/tjdevries/nlua.nvim
   use {'fpob/nette.vim'} -- .neon format
+  use {'frioux/vim-lost', branch = 'main'} -- gL to see what function you're in. I use this in php sometimes to avoid expensive similar functionality in vim-airline or lsp. TODO use lsp + airline
   use {'hotwatermorning/auto-git-diff'} -- cool git rebase diffs per commit
   use {'itchyny/vim-cursorword'} -- highlight matching words. What I like about this one is it keeps the same color and bold/italic.
   use {'itchyny/vim-highlighturl'} -- just highlight urls like in a browser
@@ -67,6 +71,7 @@ local function_definitions = function()
   use {'justinmk/vim-ipmotion'} -- makes blank line with spaces only the end of a paragraph
   use {'kreskij/Repeatable.vim'} -- make mappings repeatable easily (I use this to open/close vdebug trees)
   use {'kristijanhusak/vim-js-file-import'} -- ctags-based importing
+  use {'lambdalisue/fern.vim', requires = {{'lambdalisue/fern-hijack.vim'}, {'lambdalisue/fern-renderer-nerdfont.vim'}, {'lambdalisue/nerdfont.vim'}}} -- file browser
   use {'lifepillar/vim-cheat40'} -- Customizable cheatsheet. Mine is in ~/.vim/plugged/cheat40.txt. Open cheatsheet with <leader>? . I use this to avoid written cheatsheets on my desk for refactor tools and vdebug.
   use {'liuchengxu/vim-which-key'} -- show keybindings on <leader> in a popup
   use {'liuchengxu/vista.vim'} -- like tagbar for lsp symbols
@@ -74,7 +79,6 @@ local function_definitions = function()
   use {'lukas-reineke/indent-blankline.nvim'} -- works with above plugin to include indent symbols on blank lines. finally!
   use {'machakann/vim-swap'} -- move args left/right with g< g> or gs for interactive mode
   use {'mbbill/undotree', cmd = 'UndotreeToggle'} -- show a sidebar with branching undo history so you can redo on a different branch
-  use {'mcchrish/nnn.vim'} -- shim to browse with nnn terminal file browser
   use {'mhinz/vim-signify'} -- show git changes in sidebar
   use {'mhinz/vim-startify'} -- better vim start screen
   use {'michaeljsmith/vim-indent-object'} -- select in indentation level e.g. vii

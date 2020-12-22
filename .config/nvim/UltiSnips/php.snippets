@@ -2,20 +2,19 @@ extends html
 
 global !p
 
-def namespace(snip, path, prepend = ''):
-    import os
-    namespace = pathToNamespace(path)
-    if (prepend == '' and len(namespace) == 0):
-        return ''
-    if (prepend != '' and len(namespace) > 0):
-        prepend = prepend + '\\'
-    return os.linesep + snip.mkline('namespace ' + prepend + namespace + ';') + os.linesep
+import os
+import re
 
-def pathToNamespace(path):
-    import re
+def capitalizeRegexMatch(match):
+    out = match.group(1).capitalize()
+    out += match.group(2)
+    return out
+
+def getPathToNamespace(path):
     path = path.replace('\\', '/')
 
     parts = []
+
     for part in path.split('/'):
         if re.match('^[A-Z]', part):
             parts.append(part)
@@ -24,6 +23,25 @@ def pathToNamespace(path):
     parts.pop()
 
     return '\\'.join(parts)
+
+def getNamespace(snip, path, prepend = ''):
+    namespace = getPathToNamespace(path)
+
+    if (prepend == '' and len(namespace) == 0):
+        return ''
+
+    if (prepend != '' and len(namespace) > 0):
+        prepend += '\\'
+
+    # python is picky about indentation so these are indented weirdly
+    return os.linesep
+    + snip.mkline(
+        'namespace '
+        + prepend
+        + namespace
+        + ';'
+        )
+    + os.linesep
 
 endglobal
 
@@ -173,16 +191,9 @@ $$1Mock->shouldReceive('$3')
     ->andReturn(${4:true});
 endsnippet
 
-global !p
-def capitalizeMatch(match):
-    out = match.group(1).capitalize()
-    out += match.group(2)
-    return out
-endglobal
-
 # snippet tst
 # $1
-# `!p snip.rv = re.sub(r'^([a-z])(\w*)$', capitalizeMatch, t[1])`
+# `!p snip.rv = re.sub(r'^([a-z])(\w*)$', capitalizeRegexMatch, t[1])`
 # endsnippet
 
 # snippet cstr "DI construct"
@@ -227,7 +238,7 @@ snippet cla "mike's class with all the good stuff"
 <?php
 
 declare(strict_types=1);
-`!p snip.rv = namespace(snip, path)`$5
+`!p snip.rv = getNamespace(snip, path)`$5
 ${1:final }class `!v expand("%:t:r")`$4
 {
     $6
@@ -238,8 +249,8 @@ snippet pcla "palette class"
 <?php
 
 declare(strict_types=1);
-`!p snip.rv = namespace(snip, path, "Palette")`
-${1:/** @see \\Palette`!p snip.rv = "\\" if pathToNamespace(path) else ""``!p snip.rv = pathToNamespace(path)`\\`!v expand("%:t:r")`Spec */
+`!p snip.rv = getNamespace(snip, path, "Palette")`
+${1:/** @see \\Palette`!p snip.rv = "\\" if getPathToNamespace(path) else ""``!p snip.rv = getPathToNamespace(path)`\\`!v expand("%:t:r")`Spec */
 }${1:final }class `!v expand("%:t:r")`$4
 {
     $6
@@ -250,7 +261,7 @@ snippet lsp "laravel service provider"
 <?php
 
 declare(strict_types=1);
-`!p snip.rv = namespace(snip, path)`
+`!p snip.rv = getNamespace(snip, path)`
 use Illuminate\Support\ServiceProvider;
 
 class `!v expand("%:t:r")`$1 extends ServiceProvider
@@ -267,7 +278,7 @@ snippet preq "palette laravel validating request"
 <?php
 
 declare(strict_types=1);
-`!p snip.rv = namespace(snip, path, "Palette")`
+`!p snip.rv = getNamespace(snip, path, "Palette")`
 use Palette\Http\Requests\ApiRequest;
 
 final class `!v expand("%:t:r")` extends ApiRequest
@@ -301,7 +312,7 @@ snippet greq "gallery validating request"
 <?php
 
 declare(strict_types=1);
-`!p snip.rv = namespace(snip, path, "Palette")`
+`!p snip.rv = getNamespace(snip, path, "Palette")`
 use Gallery\Http\Requests\ApiRequest;
 
 final class `!v expand("%:t:r")` extends ApiRequest
@@ -394,7 +405,7 @@ snippet trt "mike's trait"
 <?php
 
 declare(strict_types=1);
-`!p snip.rv = namespace(snip, path)`
+`!p snip.rv = getNamespace(snip, path)`
 trait `!v expand("%:t:r")`
 {
     $6
@@ -453,7 +464,7 @@ snippet sdr "Laravel seeder"
 <?php
 
 declare(strict_types=1);
-`!p snip.rv = namespace(snip, path)`
+`!p snip.rv = getNamespace(snip, path)`
 use Illuminate\Database\Seeder;
 use Str;
 
@@ -491,7 +502,7 @@ endsnippet
 
 # snippet tst
 # test
-# `!p snip.rv = pathToNamespace(path)`\\`!v substitute(expand("%:t:r"), "Test", "", "")`
+# `!p snip.rv = getPathToNamespace(path)`\\`!v substitute(expand("%:t:r"), "Test", "", "")`
 # `!p snip.rv = re.sub(r'^([A-Z])(\w*)$', lambda match: match.group(1).lower() . match.group(2), re.sub(expand("%:t:r"), "Test", "", ""))`
 # endsnippet
 
@@ -499,19 +510,19 @@ snippet pucla "mike's phpunit test template with docblocks"
 <?php
 
 declare(strict_types=1);
-`!p snip.rv = namespace(snip, path)`
+`!p snip.rv = getNamespace(snip, path)`
 use PHPUnit_Framework_TestCase as TestCase;
 
 /**
  * Unit Tests
  *
- * @see \\`!p snip.rv = pathToNamespace(path)`\\`!v substitute(expand("%:t:r"), "Test", "", "")`
+ * @see \\`!p snip.rv = getPathToNamespace(path)`\\`!v substitute(expand("%:t:r"), "Test", "", "")`
  *
  * @group unit
  */
 final class ${2:`!v expand("%:t:r")`} extends TestCase
 {
-    /** @var \\`!p snip.rv = pathToNamespace(path)`\\`!v substitute(expand("%:t:r"), "Test", "", "")` system under test */
+    /** @var \\`!p snip.rv = getPathToNamespace(path)`\\`!v substitute(expand("%:t:r"), "Test", "", "")` system under test */
     private \$${2/(\w+)Test\s*/\l$1/};
 
     /** {@inheritdoc} */
@@ -535,20 +546,20 @@ snippet pscla "mike's phpspec (palette) template"
 <?php
 
 declare(strict_types=1);
-`!p snip.rv = namespace(snip, path, "spec\\Palette")`
+`!p snip.rv = getNamespace(snip, path, "spec\\Palette")`
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
 /**
  * {@inheritdoc}
  *
- * @see \\Palette`!p snip.rv = "\\" if pathToNamespace(path) else ""``!p snip.rv = pathToNamespace(path)`\\`!v substitute(expand("%:t:r"), "Spec", "", "")`
+ * @see \\Palette`!p snip.rv = "\\" if getPathToNamespace(path) else ""``!p snip.rv = getPathToNamespace(path)`\\`!v substitute(expand("%:t:r"), "Spec", "", "")`
  */
 final class `!v expand("%:t:r")` extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('\\Palette`!p snip.rv = "\\" if pathToNamespace(path) else ""``!p snip.rv = pathToNamespace(path)`\\`!v substitute(expand("%:t:r"), "Spec", "", "")`');
+        $this->shouldHaveType('\\Palette`!p snip.rv = "\\" if getPathToNamespace(path) else ""``!p snip.rv = getPathToNamespace(path)`\\`!v substitute(expand("%:t:r"), "Spec", "", "")`');
     }$1
 }
 endsnippet
@@ -623,7 +634,7 @@ snippet inte "interface"
 <?php
 
 declare(strict_types=1);
-`!p snip.rv = namespace(snip, path)`
+`!p snip.rv = getNamespace(snip, path)`
 interface `!v expand("%:t:r")`$1
 {
     $2
@@ -634,7 +645,7 @@ snippet pinte "palette interface"
 <?php
 
 declare(strict_types=1);
-`!p snip.rv = namespace(snip, path, "Palette")`$1
+`!p snip.rv = getNamespace(snip, path, "Palette")`$1
 interface `!v expand("%:t:r")`
 {
     $2
@@ -789,7 +800,7 @@ snippet cmd "laravel artisan command"
 <?php
 
 declare(strict_types=1);
-`!p snip.rv = namespace(snip, path)`
+`!p snip.rv = getNamespace(snip, path)`
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 
@@ -802,7 +813,7 @@ $2class ${1:`!v expand("%:t:r")`} extends Command
     /** {@inheritdoc} */
     protected $signature = '${4:foo:bar {--dry-run} {--user-id=}}';
 
-    `!p snip.rv = "/** @var " + re.sub(r'^([a-z])(\w*)$', capitalizeMatch, t[5]) + " */\n    private $" + t[5] + ";\n"`
+    `!p snip.rv = "/** @var " + re.sub(r'^([a-z])(\w*)$', capitalizeRegexMatch, t[5]) + " */\n    private $" + t[5] + ";\n"`
     public function __construct(${5/\w+\s*/\u$0/} $${5:foo})
     {
         $this->$5 = $$5;
@@ -829,12 +840,12 @@ snippet evt "saatchi palette domain event"
 <?php
 
 declare(strict_types=1);
-`!p snip.rv = namespace(snip, path, "Palette")`
+`!p snip.rv = getNamespace(snip, path, "Palette")`
 use Palette\SaatchiArt\DomainEvent;
 
 class `!v expand("%:t:r")` extends DomainEvent
 {
-    `!p snip.rv = "/** @var " + re.sub(r'^([a-z])(\w*)$', capitalizeMatch, t[1]) + " */\n    private $" + t[1] + ";\n"`
+    `!p snip.rv = "/** @var " + re.sub(r'^([a-z])(\w*)$', capitalizeRegexMatch, t[1]) + " */\n    private $" + t[1] + ";\n"`
     public function __construct(${1/\w+\s*/\u$0/} $${1:foo})
     {
         $this->$1 = $$1;
@@ -860,12 +871,12 @@ snippet hnd "saatchi palette domain event handler"
 <?php
 
 declare(strict_types=1);
-`!p snip.rv = namespace(snip, path, "Palette")`
+`!p snip.rv = getNamespace(snip, path, "Palette")`
 use Palette\SaatchiArt\DomainEvent;
 
 class ${1:`!v expand("%:t:r")`} implements DomainEventHandlerInterface
 {
-    `!p snip.rv = "/** @var " + re.sub(r'^([a-z])(\w*)$', capitalizeMatch, t[1]) + " */\n    private $" + t[1] + ";\n"`
+    `!p snip.rv = "/** @var " + re.sub(r'^([a-z])(\w*)$', capitalizeRegexMatch, t[1]) + " */\n    private $" + t[1] + ";\n"`
     public function __construct(${1/\w+\s*/\u$0/} $${1:foo})
     {
         $this->$1 = $$1;
@@ -1181,8 +1192,4 @@ endsnippet
 
 snippet lgr "import logger interface"
 use Psr\Log\LoggerInterface as Logger;
-endsnippet
-
-snippet ldd "legacy dd"
-\DemandMedia\Helpers\dd($1);
 endsnippet

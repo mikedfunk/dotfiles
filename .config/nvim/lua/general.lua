@@ -35,7 +35,7 @@ o.modelines = 5 -- set number of lines that are checked for commands
 o.showmode = false -- turn off showing mode (normal, visual, etc) on the last line
 o.ttyfast = true -- speeds up terminal vim rendering
 o.undofile = true -- persistent undo
-o.swapfile = false -- turn off swapfiles - they are annoying and only useful if neovim crashes before I saved
+-- o.swapfile = false -- turn off swapfiles - they are annoying and only useful if neovim crashes before I saved
 o.shortmess = o.shortmess .. 'I' -- hide the launch screen
 o.shortmess = o.shortmess .. 'c' -- hide 'back at original', 'match (x of x)', etc.
 -- cmd('set shortmess-=F') -- allow testing autocmds with echo https://github.com/neovim/neovim/wiki/FAQ#calling-inputlist-echomsg-etc-in-filetype-plugins-and-autocmd-does-not-work
@@ -181,11 +181,6 @@ g['vimsyn_embed'] = 'lPr'
 create_augroup('folding_for_some_filetypes', {
   {'FileType', 'json', 'setlocal foldmethod=indent'},
   {'FileType', 'yaml', 'setlocal foldmethod=indent'},
-})
-
--- built-in highlight on yank
-create_augroup('highlight_on_yank', {
-  {'TextYankPost', '*', 'silent! lua vim.highlight.on_yank()'},
 })
 
 o.backupdir = getenv('HOME') .. '/.config/nvim/backup'

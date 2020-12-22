@@ -14,8 +14,8 @@ nvim_set_keymap('n', '<c-e>', ":silent! Lex <C-R>=fnameescape(expand('%:h')).'/'
 -- back to insert mode when done
 
 g['netrw_localrmdir'] = 'rm -r' -- Allow netrw to remove non-empty local directories
-g['netwr_winsize'] = -40
-g['netwr_banner'] = 0
+g['netrw_winsize'] = -40
+g['netrw_banner'] = 0
 
 -- https://github.com/vim/vim/issues/2329#issuecomment-350294641
 create_augroup('netrw_fix', {

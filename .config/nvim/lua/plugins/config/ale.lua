@@ -77,9 +77,10 @@ nvim_set_keymap('n', ']e', ':ALENext -error<cr>', {noremap = true, silent = true
 nvim_set_keymap('n', '<leader>al', ':ALELint<cr>', {noremap = true})
 nvim_set_keymap('n', '<leader>af', ':ALEFix<cr>', {noremap = true})
 
-nvim_set_keymap('n', '<leader>rrv', 'ALERename<cr>', {noremap = true}) -- rename local variable
-nvim_set_keymap('n', '<leader>rrp', 'ALERename<cr>', {noremap = true}) -- rename class variable
-nvim_set_keymap('n', '<leader>rrm', 'ALERename<cr>', {noremap = true}) -- rename class method
+-- moved this to lsp config
+-- nvim_set_keymap('n', '<leader>rrv', 'ALERename<cr>', {noremap = true}) -- rename local variable
+-- nvim_set_keymap('n', '<leader>rrp', 'ALERename<cr>', {noremap = true}) -- rename class variable
+-- nvim_set_keymap('n', '<leader>rrm', 'ALERename<cr>', {noremap = true}) -- rename class method
 
 -- define intelephense lsp for linting
 fn['ale#Set']('php_intelephense_executable', 'intelephense')

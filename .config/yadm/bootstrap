@@ -279,11 +279,12 @@ _install_vim_plug () {
 # install/upgrade vim plugins {{{
 _install_upgrade_vim_plugins () {
     _log_info "Installing/upgrading vim plugins"
-    # vim +PackerInstall +PackerSynce +PackerClean +qall
+    # vim +PackerInstall +PackerUpdate +PackerClean +qall
     nvim \
-        +PackerInstall \
-        +PackerSync \
-        +PackerClean \
+        # +PackerInstall \
+        # +PackerUpdate \
+        # no option yet for non-interactive :/
+        # +PackerClean \
         "+LspInstall intelephense" \
         "+LspInstall sumneko_lua" \
         "+LspInstall diagnosticls" \

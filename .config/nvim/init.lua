@@ -5,7 +5,7 @@ require'sensible'
 require'general'
 require'php'
 require'lua'
-require'completion'
+require'completion-config'
 require'abbreviations'
 require'mappings'
 require'netrw'
@@ -22,7 +22,8 @@ if filereadable('.vimrc') == 1 then
 end
 -- }}}
 
--- FileType autocmds stopped working. This is a BAD temp solution. Thanks, i hate it. {{{
+-- filetype fix {{{
+-- TODO FileType autocmds stopped working. This is a BAD temp solution. Thanks, i hate it.
 local create_augroup = require'helpers'.create_augroup
 
 create_augroup('fix_filetype', {

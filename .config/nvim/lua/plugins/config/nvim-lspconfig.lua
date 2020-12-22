@@ -6,8 +6,9 @@ local prettier = require'plugins.config.nvim-lspconfig.diagnosticls.prettier'
 local phpcs = require'plugins.config.nvim-lspconfig.diagnosticls.phpcs'
 local phpstan = require'plugins.config.nvim-lspconfig.diagnosticls.phpstan'
 local intelephense = require'plugins.config.nvim-lspconfig.intelephense'
+local nvim_buf_set_keymap = vim.api.nvim_buf_set_keymap
 local is_plugin_installed = helpers.is_plugin_installed
-local tbl_isempty, tbl_islist, lsp, getenv = vim.tbl_isempty, vim.tbl_islist, vim.lsp, vim.fn.getenv
+local tbl_isempty, tbl_islist, lsp, getenv, expand, split = vim.tbl_isempty, vim.tbl_islist, vim.lsp, vim.fn.getenv, vim.fn.expand, vim.split
 
 if not is_plugin_installed('nvim-lspconfig') then
   return
@@ -39,18 +40,132 @@ function peek_definition()
 end
 -- }}}
 
+-- set lsp mappings - used in on_attach {{{
+-- https://rishabhrd.github.io/jekyll/update/2020/09/19/nvim_lsp_config.html
+local function set_lsp_mappings(bufnr)
+  local mappings = {
+    {
+      mode = 'n',
+      keys = '<leader>cc',
+      action = '<cmd>lua vim.lsp.buf.code_action()<cr>',
+    },
+    {
+      mode = 'n',
+      keys = '<c-]>',
+      action = '<cmd>lua vim.lsp.buf.definition()<cr>',
+    },
+    {
+      mode = 'n',
+      keys = '<leader><c-]>',
+      action = 'mz:tabe %<cr>`z<cmd>lua vim.lsp.buf.definition()<cr>',
+    },
+    {
+      mode = 'n',
+      keys = '<c-w><c-]>',
+      action = '<cmd>vsp<cr><cmd>lua vim.lsp.buf.definition()<cr>',
+    },
+    {
+      mode = 'n',
+      keys = '<c-w>}',
+      action = '<cmd>lua peek_definition()<cr>',
+    },
+    {
+      mode = 'n',
+      keys = 'gD',
+      action = '<cmd>lua vim.lsp.buf.implementation()<cr>',
+    },
+    {
+      mode = 'n',
+      keys = 'K',
+      action = '<cmd>lua vim.lsp.buf.hover()<cr>',
+    },
+    {
+      mode = 'n',
+      keys = '<c-k>',
+      action = '<cmd>lua vim.lsp.buf.hover()<cr>',
+    },
+    {
+      mode = 'i',
+      keys = '<c-k>',
+      action = '<c-o><cmd>lua vim.lsp.buf.signature_help()<cr>',
+    },
+    {
+      mode = 'n',
+      keys = '1gD',
+      action = '<cmd>lua vim.lsp.buf.type_definition()<cr>',
+    },
+    {
+      mode = 'n',
+      keys = 'gr',
+      action = '<cmd>lua vim.lsp.buf.references()<cr>',
+    },
+    {
+      mode = 'n',
+      keys = 'g0',
+      action = '<cmd>lua vim.lsp.buf.document_symbol()<cr>',
+    },
+    {
+      mode = 'n',
+      keys = 'gW',
+      action = '<cmd>lua vim.lsp.buf.workspace_symbol()<cr>',
+    },
+    {
+      mode = 'n',
+      keys = 'gd',
+      action = '<cmd>lua vim.lsp.buf.declaration()<CR>',
+    },
+    {
+      mode = 'n',
+      keys = '<leader>ee',
+      action = '<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>',
+    },
+    {
+      mode = 'n',
+      keys = '<leader>rr',
+      action = '<cmd>lua vim.lsp.buf.rename()<CR>',
+    },
+    {
+      mode = 'n',
+      keys = '<leader>=',
+      action = '<cmd>lua vim.lsp.buf.formatting()<CR>',
+    },
+    {
+      mode = 'n',
+      keys = '<leader>ai',
+      action = '<cmd>lua vim.lsp.buf.incoming_calls()<CR>',
+    },
+    {
+      mode = 'n',
+      keys = '<leader>ao',
+      action = '<cmd>lua vim.lsp.buf.outgoing_calls()<CR>',
+    },
+  }
+
+  for _, mapping in ipairs(mappings) do
+    local mode, keys, action = mapping.mode, mapping.keys, mapping.action
+    nvim_buf_set_keymap(bufnr, mode, keys, action, {noremap = true, silent = true})
+  end
+end
+-- }}}
+
 -- on_attach handler {{{
--- intentionally global! shared on_attach lua handler for nvim lsp
--- function on_attach(client, bufnr)
---   if is_plugin_installed('completion-nvim') then
---     require'completion'.on_attach(client, bufnr)
---   end
--- end
+local function on_attach(client, bufnr)
+  -- Set the omnifunc for this buffer
+  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+  set_lsp_mappings(bufnr)
+
+  if is_plugin_installed('completion-nvim') then
+    require'completion'.on_attach(client, bufnr)
+  end
+end
 -- }}}
 
 -- intelephense lsp {{{
 -- https://github.com/bmewburn/intelephense-docs/blob/master/installation.md
-lspconfig.intelephense.setup{settings = intelephense}
+lspconfig.intelephense.setup{
+  settings = intelephense,
+  on_attach = on_attach
+}
 -- }}}
 
 -- diagnosticls lsp {{{
@@ -77,7 +192,7 @@ lspconfig.diagnosticls.setup{
       javascript = 'prettier',
       ["javascript.jsx"] = 'prettier',
       typescript = 'prettier',
-      ["typescript.tsx"] = 'prettier'
+      ["typescript.tsx"] = 'prettier',
     },
     linters = {
       eslint = eslint,
@@ -85,14 +200,17 @@ lspconfig.diagnosticls.setup{
       phpstan = phpstan,
       -- TODO php -l
       -- TODO phpmd
+      -- TODO php-cs-fixer
+      -- TODO easy-coding-standard
     },
     formatters = {
-      prettier = prettier
+      prettier = prettier,
       -- TODO phpcbf (don't forget phpcbf-helper.sh)
       -- TODO php-cs-fixer
       -- TODO does phpmd have a fixer?
-    }
-  }
+    },
+  },
+  on_attach = on_attach,
 }
 -- }}}
 
@@ -109,6 +227,8 @@ lspconfig.diagnosticls.setup{
 --   },
 --   settings = {
 --     Lua = {
+--       -- https://rishabhrd.github.io/jekyll/update/2020/09/19/nvim_lsp_config.html
+--       runtime = {version = 'LuaJIT', path = split(package.path, ';')},
 --       diagnostics = {
 --         globals = {
 --           'vim',
@@ -117,12 +237,13 @@ lspconfig.diagnosticls.setup{
 --       },
 --       workspace = {
 --         library = {
---           ['$VIMRUNTIME/lua'] = true,
---         }
---       }
+--           [expand('$VIMRUNTIME/lua')] = true,
+--         },
+--       },
 --     },
 --   },
+--   on_attach = on_attach,
 -- }
 -- }}}
 
-lspconfig.solargraph.setup{}
+-- lspconfig.solargraph.setup{on_attach = on_attach}

@@ -38,6 +38,9 @@ layout autosave on
 
 # https://superuser.com/questions/343541/how-to-force-gnu-screen-to-load-my-bash-profile/343543#343543
 shell -$SHELL
+
+# https://github.com/neovim/neovim/wiki/FAQ#esc-in-tmux-or-gnu-screen-is-delayed
+maptimeout 10
 # }}}
 
 # status bar {{{
