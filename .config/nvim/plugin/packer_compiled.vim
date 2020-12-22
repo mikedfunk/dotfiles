@@ -198,7 +198,6 @@ command! -nargs=* -range -bang -complete=file Bufonly call s:load(['BufOnly.vim'
 augroup packer_load_aucmds
   au!
   " Filetype lazy-loads
-  au FileType php ++once call s:load(['vdebug', 'closetag.vim'], { "ft": "php" })
   au FileType scss ++once call s:load(['vim-css-color'], { "ft": "scss" })
   au FileType css ++once call s:load(['vim-css-color'], { "ft": "css" })
   au FileType html ++once call s:load(['closetag.vim'], { "ft": "html" })
@@ -206,6 +205,7 @@ augroup packer_load_aucmds
   au FileType html.twig ++once call s:load(['closetag.vim'], { "ft": "html.twig" })
   au FileType blade ++once call s:load(['closetag.vim'], { "ft": "blade" })
   au FileType phtml ++once call s:load(['closetag.vim'], { "ft": "phtml" })
+  au FileType php ++once call s:load(['vdebug', 'closetag.vim'], { "ft": "php" })
   au FileType javascript.jsx ++once call s:load(['closetag.vim'], { "ft": "javascript.jsx" })
   " Event lazy-loads
 augroup END

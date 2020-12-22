@@ -38,7 +38,7 @@ local function_definitions = function()
   -- package definitions {{{
 
   -- use {'Shougo/echodoc.vim'} -- Displays function signatures from completions in the command line. Really helpful for omnicompletion! (hopefully no longer needed with lsp and signature help)
-  -- use {'mcchrish/nnn.vim'} -- shim to browse with nnn terminal file browser TODO replace with fern.vim
+  -- use {'mcchrish/nnn.vim'} -- shim to browse with nnn terminal file browser
   -- use {'nvim-lua/completion-nvim'} -- completion helper for nvim lsp (I've reinstalled and uninstalled this about 5x. I prefer to choose my type of completion: omni, buffer, spell, line, etc.)
   -- use {'nvim-telescope/telescope.nvim', requires = {{'nvim-lua/popup.nvim', {'nvim-lua/plenary.nvim'}}}} -- fuzzy searcher (doesn't provide any more capabilities than fzf for me)
   -- use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'} -- unlocks a world of possibilities (Bug in latest version: attempt to call add_directive, a nil value. Related? https://github.com/nvim-treesitter/nvim-treesitter/issues/759)

@@ -6,4 +6,4 @@ if not is_plugin_installed('fern.vim') then
   return
 end
 
-nvim_set_keymap('n', '-', ':Fern %:p:h<cr>', {noremap = true})
+nvim_set_keymap('n', '-', ':Fern . -reveal=%<cr>', {noremap = true})
