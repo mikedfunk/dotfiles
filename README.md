@@ -14,11 +14,11 @@ My Bash, Neovim, Git, and other dotfiles. Managed by [yadm](https://thelocehilio
 
 Tools I use, annotated:
 
-* [Homebrew packages, casks, and mac store apps I use](.Brewfile)
+* [Homebrew packages, casks, and mac store apps](.Brewfile)
 * [Node packages (yarn)](.config/yarn/global/package.json)
 * [Python packages (pip3)](requirements.txt)
 * [Ruby packages (bundler)](Gemfile)
-* [PHP packages (composer)](.composer/composer.json)
+* [PHP packages (phive)](.phive/global.xml)
 
 Script to install/upgrade everything:
 

@@ -979,7 +979,7 @@ _install_upgrade_tmux_plugins
 _create_vim_directories
 _install_vim_plug
 _install_neovim_packer
-_install_upgrade_vim_plugins
+# _install_upgrade_vim_plugins
 _install_upgrade_phive
 _install_upgrade_phive_packages
 _install_upgrade_psysh
