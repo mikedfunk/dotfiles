@@ -16,5 +16,5 @@ g['tmuxline_preset'] = {
 
 if is_plugin_installed('tmuxline.vim') then
     -- apply tmuxline settings and snapshot to file
-    cmd('command! MyTmuxline :Tmuxline | TmuxlineSnapshot! ~/.tmux/tmuxline.conf')
+    cmd('command! MyTmuxline :Tmuxline | TmuxlineSnapshot! ~/.config/tmux/tmuxline.conf')
 end
