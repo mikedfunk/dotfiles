@@ -179,6 +179,7 @@ brew "docker-compose" # manage multiple docker images and how they interact
 brew "docker-credential-helper-ecr" # tell docker abount ECR so it can pull
 brew "entr" # file watcher (I use this a lot in my shell functions)
 brew "fd" # prettier alternative to find that respects gitignore (haven't used it yet)
+brew "flow" # flowtype for javascript. Moved from ~/.config/yarn/global/package.json
 brew "freetds" # needed to build php https://github.com/shivammathur/homebrew-php/blob/master/.github/deps/macos11_20201107.1
 brew "freetype" # needed to build php
 brew "fx" # json funagler used by some of my shell functions
@@ -242,6 +243,7 @@ brew "pipeline" # cool subshell to let you interactively view unix pipeline resu
 brew "pkg-config" # needed for phpenv to build https://github.com/phpenv/phpenv/issues/90#issuecomment-550538864
 brew "plantuml" # uml generation from text. requires java (I use regularly for diagramming processes and sometimes uml class diagrams)
 brew "pre-commit" # yelp git pre-commit framework (local hooks ftw! Easily create hooks that run various CI stuff before committing with pretty output, able to skip during rebases, yaml config.)
+brew "prettier" # javascript and other languages formatter. moved from ~/.config/yarn/global/package.json
 brew "pspg" # , args: ["HEAD"] # "postgres pager" also useful for mysql, etc.
 brew "pygments" # generic syntax highlighter - moved from ~/requirements.txt
 brew "python-yq" # like yq but also comes with xq for xml
