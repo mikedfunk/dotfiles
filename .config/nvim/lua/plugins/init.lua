@@ -35,15 +35,17 @@ end
 local function_definitions = function()
   use {'wbthomason/packer.nvim'}
 
+  g['polyglot_disabled'] = {'graphql', 'rst'} -- annoyingly this config must be loaded before polyglot is loaded :/ this commit broke my php rendering until I disabled graphql https://github.com/sheerun/vim-polyglot/commit/c228e993ad6a8b79db5a5a77aecfdbd8e92ea31f
+
   -- package definitions {{{
 
   -- use {'Shougo/echodoc.vim'} -- Displays function signatures from completions in the command line. Really helpful for omnicompletion! (hopefully no longer needed with lsp and signature help)
   -- use {'mcchrish/nnn.vim'} -- shim to browse with nnn terminal file browser
   -- use {'nvim-lua/completion-nvim'} -- completion helper for nvim lsp (I've reinstalled and uninstalled this about 5x. I prefer to choose my type of completion: omni, buffer, spell, line, etc.)
   -- use {'nvim-telescope/telescope.nvim', requires = {{'nvim-lua/popup.nvim', {'nvim-lua/plenary.nvim'}}}} -- fuzzy searcher (doesn't provide any more capabilities than fzf for me)
-  -- use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'} -- unlocks a world of possibilities (Bug in latest version: attempt to call add_directive, a nil value. Related? https://github.com/nvim-treesitter/nvim-treesitter/issues/759)
+  -- use {'psliwka/vim-smoothie'} -- smooth scrolling (it's not that smooth and it's slow!)
+  -- use {'subnut/nvim-ghost.nvim', cmd = {':call nvim_ghost#installer#install()'}} -- zero-dependency version of GhostText: manually connect a text field with neovim. I like this better because it doesn't vimify _all_ of my input areas.
   -- use {'tjdevries/nlua.nvim'} -- hopefully better lua lsp than the high cpu sumneko. (I couldn't even get it to work at all)
-  g['polyglot_disabled'] = {'graphql', 'rst'} -- annoyingly this config must be loaded before polyglot is loaded :/ this commit broke my php rendering until I disabled graphql https://github.com/sheerun/vim-polyglot/commit/c228e993ad6a8b79db5a5a77aecfdbd8e92ea31f
   use {'APZelos/blamer.nvim'} -- yet another git blame virtual text plugin
   use {'AndrewRadev/splitjoin.vim'} -- split and join php arrays to/from multiline/single line (gS, gJ) SO USEFUL! Doesn't like being loaded by filetype :/
   use {'AndrewRadev/undoquit.vim'} -- another one to reopen closed buffers/windows/tabs: <c-w>u
@@ -56,10 +58,14 @@ local function_definitions = function()
   use {'dense-analysis/ale'} -- linter, fixer, even lsp implementation. TODO I only have this here temporarily until I can get built-in lsp diagnostics with diagnosticls working.
   use {'diepm/vim-rest-console'} -- like above but more capable (latest version) NOTE see ~/.yadm/bootstrap for notes on wuzz as a replacement for this. NOTE: { 'for': 'rest' } prevents this from setting filetypes correctly
   use {'docunext/closetag.vim', ft = {'html', 'xml', 'html.twig', 'blade', 'php', 'phtml', 'javascript.jsx'}} -- auto close tags by typing </ . different from auto-pairs.
+  use {'dstein64/nvim-scrollview'} -- show non-interactive scrollbars
+  use {'edkolev/tmuxline.vim'} -- tmux statusline file generator
+  use {'esneider/YUNOcommit.vim'} -- u save lot but no commit. y u no commit?
   use {'euclidianAce/BetterLua.vim'} -- recommended better lua syntax highlighting https://github.com/tjdevries/nlua.nvim
   use {'fpob/nette.vim'} -- .neon format
   use {'frioux/vim-lost', branch = 'main'} -- gL to see what function you're in. I use this in php sometimes to avoid expensive similar functionality in vim-airline or lsp. TODO use lsp + airline
   use {'hotwatermorning/auto-git-diff'} -- cool git rebase diffs per commit
+  use {'iamcco/markdown-preview.nvim', run = ':call mkdp#util#install()', ft = {'markdown', 'plantuml'}}
   use {'itchyny/vim-cursorword'} -- highlight matching words. What I like about this one is it keeps the same color and bold/italic.
   use {'itchyny/vim-highlighturl'} -- just highlight urls like in a browser
   use {'iusmac/vim-php-namespace'} -- insert use statements (maintained fork) (doesn't like to be loaded by ft)
@@ -67,6 +73,7 @@ local function_definitions = function()
   use {'jesseleite/vim-agriculture'} -- Add :AgRaw to search with args
   use {'junegunn/fzf', run = './install --all'} -- fuzzy finder
   use {'junegunn/fzf.vim'} -- fuzzy finder
+  use {'junegunn/vim-easy-align'} -- make a visual selection and `ga=` to align on = e.g. `vipga=`
   use {'junegunn/vim-peekaboo'} -- preview registers
   use {'justinmk/vim-ipmotion'} -- makes blank line with spaces only the end of a paragraph
   use {'kreskij/Repeatable.vim'} -- make mappings repeatable easily (I use this to open/close vdebug trees)
@@ -84,7 +91,9 @@ local function_definitions = function()
   use {'michaeljsmith/vim-indent-object'} -- select in indentation level e.g. vii
   use {'milkypostman/vim-togglelist'} -- toggle quickfix and location lists. barely a plugin.
   use {'neovim/nvim-lspconfig'} -- official language server protocol config
+  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'} -- unlocks a world of possibilities (Bug in latest version: attempt to call add_directive, a nil value. Related? https://github.com/nvim-treesitter/nvim-treesitter/issues/759)
   use {'ojroques/nvim-lspfuzzy', branch = 'main'} -- fuzzy find lsp stuff. This is especially helpful for searching all symbols or finding references.
+  use {'qnighy/vim-ssh-annex'} -- ssh config syntax highlighting
   use {'rhysd/committia.vim'} -- prettier commit editor. Really cool!
   use {'rhysd/vim-gfm-syntax'} -- github-flavored markdown
   use {'ryanoasis/vim-devicons'} -- file type icons in netrw, etc.
@@ -104,18 +113,21 @@ local function_definitions = function()
   use {'tpope/vim-jdaddy'} --`gqaj` to pretty-print json, `gwaj` to merge the json object in the clipboard with the one under the cursor
   use {'tpope/vim-projectionist'} -- link tests and classes together
   use {'tpope/vim-rhubarb'} -- fugitive github integration
-  use {'tpope/vim-surround'} -- surround text in quotes or something
+  use {'tpope/vim-rsi'} -- readline mappings for insert and command modes
+  use {'tpope/vim-surround', requires = {{'tpope/vim-repeat'}}} -- surround text in quotes or something
   use {'tpope/vim-unimpaired'} -- lots of useful, basic keyboard shortcuts
   use {'unblevable/quick-scope'} -- highlights chars for f, F, t, T
   use {'vim-airline/vim-airline'} -- better status bar
   use {'vim-airline/vim-airline-themes'} -- pretty colors for airline
   use {'vim-scripts/BufOnly.vim', cmd = {'BufOnly', 'Bufonly'}} -- close all buffers but the current one
   use {'wellle/targets.vim'} -- Adds selection targets like vi2) or vI} to avoid whitespace
+  use {'wellle/tmux-complete.vim'} -- tmux completion with <c-x><c-u> (user-defined completion source)
 
   if has('python3') then
     use {'SirVer/ultisnips'} -- snippet system
-    use {'vim-vdebug/vdebug', ft = 'php'} -- debug php
+    use {'ncm2/float-preview.nvim'} -- on completion show a preview with the `info` completion column. Not great, would love an actual lsp preview instead.
     use {'raghur/vim-ghost', opt = true, run = ':GhostInstall'} -- manually connect a text field with neovim. I like this better because it doesn't vimify _all_ of my input areas.
+    use {'vim-vdebug/vdebug', ft = 'php'} -- debug php
   end
   -- }}}
 end

@@ -5,7 +5,7 @@ local executable, has, filereadable, getenv, fnamemodify = fn.executable, fn.has
 local H = {}
 
 function H.create_augroup(group_name, definition)
-  cmd('augroup '..group_name)
+  cmd('augroup ' .. group_name)
   cmd('autocmd!')
   for _, def in ipairs(definition) do
     local command = table.concat(vim.tbl_flatten{'autocmd', def}, ' ')

@@ -1,0 +1,18 @@
+# vim: set foldmethod=marker:
+# tmux window layout setup
+#
+# this is to test out tmuxp settings
+#
+session_name: Test
+windows:
+
+# logs {{{
+  - window_name: logs
+    start_directory: ~/
+    layout: tiled
+    panes:
+      - saatchi-tail-easel-xprod
+      - saatchi-tail-gallery-xprod
+      - saatchi-tail-palette-xprod
+      - saatchi-tail-legacy-xprod
+# }}}

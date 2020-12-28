@@ -1,0 +1,169 @@
+# vim: set foldmethod=marker:
+# see https://github.com/shawncplus/phpcomplete.vim/wiki/Getting-better-tags
+
+# NOTE: universal ctags github and homepage both say that this file is not
+# read, but instead it reads `./.ctags.d/*.ctags` or `~/.ctags.d/*.ctags`. THIS
+# IS NOT TRUE, at least on version HEAD-34ff9d4. Ctags still reads from
+# `./.ctags`, then `~/.ctags` files and ignores `.ctags.d/*.ctags`. I
+# restructured my ctags after reading that and it didn't even work. Lame.
+# https://github.com/universal-ctags/ctags
+
+# general {{{
+--recurse=yes
+--tag-relative=yes
+--sort=foldcase
+--fields=+aimlS
+# fixes double backslash in namespaces https://github.com/universal-ctags/ctags/issues/815
+# BUT this breaks phpcomplete.vim omnicomplete! (as of 2018-03-21 still broken)
+# It's not really a problem though - I can still complete namespaced classes,
+# expand and import classes with vim-php-namespace
+# --output-format=etags
+# supposedly fixes double backslash better
+# https://github.com/shawncplus/phpcomplete.vim/issues/124
+--output-format=e-ctags
+# strangely this defaults to TAGS
+# -ftags
+# WHY does ctags support html??
+# --languages=-html,-javascript
+# I only use it for these languages
+--languages=php,ruby
+# }}}
+
+# additional excludes (ignores) {{{
+--exclude=*.coffee
+# --exclude=*.css
+--exclude=*.log
+--exclude=*.min.js
+--exclude=.git
+--exclude=__TwigTemplate_*
+# If I exclude this I lose the whole point of ide helper lol
+# --exclude=_ide_helper.php
+--exclude=app/cache
+--exclude=app/storage
+--exclude=.next/bundles
+--exclude=.next/dist
+--exclude=bootstrap.php.cache
+--exclude=classes.php.cache
+--exclude=composer.phar
+--exclude=node_modules
+--exclude=yarn-error.log
+--exclude=*.phar
+--exclude=*.json
+
+# I don't need to tag tests
+--exclude=tests
+--exclude=spec
+--exclude=*.spec.js
+--exclude=__mocks__/*
+--exclude=__snapshots__/*
+--exclude=__tests__/*
+--exclude=__specs__/*
+--exclude=vendor/**/*Test.php
+--exclude=vendor/**/*Spec.php
+--exclude=vendor/test/*
+--exclude=vendor/test/**/*
+--exclude=vendor/tests/*
+--exclude=vendor/tests/**/*
+--exclude=vendor/spec/*
+--exclude=vendor/spec/**/*
+--exclude=vendor/specs/*
+--exclude=vendor/specs/**/*
+# --exclude=vendor/**/installed.json
+# --exclude=vendor/**/composer.json
+
+# from files
+#
+# I thought about this a lot - I don't think I need to exclude this. I only tag
+# php and ruby and the only php files I have here are _ide_helper.php in
+# gallery and no ruby files. If I do add a php file and exclude it here, it
+# will be for a reason that I should probably be able to access it via
+# completion and jump to tag. The main reason I commented this out was to allow
+# _ide_helper.php to be tagged and added to cscope. See
+# ~/.support/cscope_find.sh and vim-gutentags.
+# --exclude=@.git/info/exclude
+#
+# This breaks vim-puppet
+# --exclude=@.ignore
+--exclude=.ignore
+--exclude=@/Users/mikefunk/.config/git/ignore
+--exclude=@/Users/mikefunk/.ignore
+# }}}
+
+# php {{{
+# docs: https://github.com/universal-ctags/ctags/blob/master/parsers/php.c#L125-L142
+# c: classes
+# d: constant definitions
+# f: functions
+# i: interfaces
+# l: local variables
+# n: namespaces
+# t: traits
+# v: variables
+# a: aliases (e.g. use statements)
+--PHP-kinds=cfnitv
+# fixes double backslashes in php namespaces in use completion
+# https://github.com/universal-ctags/ctags/issues/787#issuecomment-197138526
+#
+# ^ downside - this actually tags use statements, so jumping to definition will
+# first take you to the use statement :/ Then you have to open a list to find
+# the actual file. Not worth the downside IMHO.
+#
+# --regex-php=/^use .*[ \\]([A-Z0-9a-z]+);/\1/a,alias,aliases/'' ]
+# }}}
+
+# ruby {{{
+# --regex-ruby=/(^|;)[ \t]*(class|module)[ \t]+([A-Z][[:alnum:]_]+(::[A-Z][[:alnum:]_]+)+)/\3/c,class,constant/
+# https://github.com/thoughtbot/dotfiles/blob/master/ctags.d/config.ctags
+# --regex-ruby=/(^|[:;])[ \t]*([A-Z][[:alnum:]_]+) *=/\2/c,class,constant/
+# --regex-ruby=/^[ \t]*attr_(reader|writer|accessor) (:[a-z0-9_]+, )*:([a-z0-9_]+)/\3/A,attr/
+# }}}
+
+# javascript {{{
+# Screw ctags in javascript. There is one tags file for all languages unless
+# you do some crazy config work. This means jumping to tag def in php will show
+# matching tags in javascript too, which is NEVER what you want! Also ctags
+# support is terrible in javascript. TernJS works better for jumping to
+# definition, completion, showing usage, etc. Just use that instead.
+# https://github.com/ternjs/tern
+
+# The following is some old javascript ctags stuff I tried, decided against,
+# but kept here for when I look at this later on to see if I tried the thing I
+# just came across on github. Hi, future me! :D
+
+# https://medium.com/adorableio/modern-javascript-ctags-configuration-199884dbcc1
+# this doesn't work with kristijanhusak/vim-js-file-import
+#
+# --languages=-javascript
+# --langdef=js
+# --langmap=js:.js
+# --langmap=js:+.jsx
+# --regex-js=/[ \t.]([A-Z][A-Z0-9._$]+)[ \t]*[=:][ \t]*([0-9"'\[\{]|null)/\1/n,constant/
+# --regex-js=/\.([A-Za-z0-9._$]+)[ \t]*=[ \t]*\{/\1/o,object/
+# --regex-js=/['"]*([A-Za-z0-9_$]+)['"]*[ \t]*:[ \t]*\{/\1/o,object/
+# --regex-js=/([A-Za-z0-9._$]+)\[["']([A-Za-z0-9_$]+)["']\][ \t]*=[ \t]*\{/\1\.\2/o,object/
+# --regex-js=/([A-Za-z0-9._$]+)[ \t]*=[ \t]*\(function\(\)/\1/c,class/
+# --regex-js=/['"]*([A-Za-z0-9_$]+)['"]*:[ \t]*\(function\(\)/\1/c,class/
+# --regex-js=/class[ \t]+([A-Za-z0-9._$]+)[ \t]*/\1/c,class/
+# --regex-js=/([A-Za-z$][A-Za-z0-9_$()]+)[ \t]*=[ \t]*[Rr]eact.createClass[ \t]*\(/\1/c,class/
+# --regex-js=/([A-Z][A-Za-z0-9_$]+)[ \t]*=[ \t]*[A-Za-z0-9_$]*[ \t]*[{(]/\1/c,class/
+# --regex-js=/([A-Z][A-Za-z0-9_$]+)[ \t]*:[ \t]*[A-Za-z0-9_$]*[ \t]*[{(]/\1/c,class/
+# --regex-js=/([A-Za-z$][A-Za-z0-9_$]+)[ \t]*=[ \t]*function[ \t]*\(/\1/f,function/
+# --regex-js=/(function)*[ \t]*([A-Za-z$_][A-Za-z0-9_$]+)[ \t]*\([^)]*\)[ \t]*\{/\2/f,function/
+# --regex-js=/['"]*([A-Za-z$][A-Za-z0-9_$]+)['"]*:[ \t]*function[ \t]*\(/\1/m,method/
+# --regex-js=/([A-Za-z0-9_$]+)\[["']([A-Za-z0-9_$]+)["']\][ \t]*=[ \t]*function[ \t]*\(/\2/m,method/
+
+# --langdef=typescript
+# --langmap=typescript:.ts
+# --regex-typescript=/^[ \t]*(export)?[ \t]*class[ \t]+([a-zA-Z0-9_]+)/\2/c,classes/
+# --regex-typescript=/^[ \t]*(export)?[ \t]*module[ \t]+([a-zA-Z0-9_]+)/\2/n,modules/
+# --regex-typescript=/^[ \t]*(export)?[ \t]*function[ \t]+([a-zA-Z0-9_]+)/\2/f,functions/
+# --regex-typescript=/^[ \t]*export[ \t]+var[ \t]+([a-zA-Z0-9_]+)/\1/v,variables/
+# --regex-typescript=/^[ \t]*var[ \t]+([a-zA-Z0-9_]+)[ \t]*=[ \t]*function[ \t]*\(\)/\1/v,varlambdas/
+# --regex-typescript=/^[ \t]*(export)?[ \t]*(public|private)[ \t]+(static)?[ \t]*([a-zA-Z0-9_]+)/\4/m,members/
+# --regex-typescript=/^[ \t]*(export)?[ \t]*interface[ \t]+([a-zA-Z0-9_]+)/\2/i,interfaces/
+# --regex-typescript=/^[ \t]*(export)?[ \t]*enum[ \t]+([a-zA-Z0-9_]+)/\2/e,enums/
+# --regex-typescript=/^[ \t]*import[ \t]+([a-zA-Z0-9_]+)/\1/I,imports/
+
+# https://github.com/romainl/ctags-patterns-for-javascript
+# ^ doesn't work with universal ctags :/
+# }}}

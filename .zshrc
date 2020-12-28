@@ -187,11 +187,10 @@ _has lazyload && lazyload akamai -- '_has akamai && eval "$(akamai --zsh)"'
 autoload -Uz compinit
 compinit
 
-# _has bat && export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+_has bat && export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # use `gO` to open a quickfox with a table of contents!
 # _has nvim && export MANPAGER='nvim +Man!'
-# my vimrc is not needed for man pages
-_has nvim && export MANPAGER='nvim -u NORC +Man!'
+# _has nvim && export MANPAGER='nvim -u NORC +Man!'
 
 export COMPOSE_HTTP_TIMEOUT=120 # default is 60
 export ZSH_ALIAS_FINDER_AUTOMATIC=true # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/alias-finder#usage
@@ -420,6 +419,7 @@ pretty-path() { tr : '\n' <<<"$PATH"; }
 # alias tree="alder" # colorized tree from npm (I colorize tree with "lsd" now so this is not needed)
 # https://unix.stackexchange.com/a/293608/287898
 alias mc="mc --nosubshell --xterm"
+alias multitail="multitail -F $HOME/.config/multitail/multitail.conf"
 # }}}
 
 # games {{{

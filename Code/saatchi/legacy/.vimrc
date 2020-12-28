@@ -28,28 +28,28 @@ let g:airline_theme = 'base16_monokai'
 " general {{{
 set wildignore+=*/build/*,*/coverage/*,*/strings/vocabulary/*,*/public/media/js/lib/ckeditor/*,*/node_modules/*,*/assets/react/node_modules/*,*/.git/*,composer.phar,Session.vim,*.csv,.php_cs
 
-function! OpenTagInNewTab () abort
-    :normal! mz
-    :tabe %
-    :normal! `z
-    :exec("tjump ".expand('<cword>'))
-endfunction
+" function! OpenTagInNewTab () abort
+"     :normal! mz
+"     :tabe %
+"     :normal! `z
+"     :exec("tjump ".expand('<cword>'))
+" endfunction
 
-nnoremap <silent><leader><c-]> :call OpenTagInNewTab()<cr>
+" nnoremap <silent><leader><c-]> :call OpenTagInNewTab()<cr>
 
-let g:preview_window_is_open = 0
-function! TriggerPreviewHover () abort
-    if g:preview_window_is_open
-        :pclose
-        let g:preview_window_is_open = 0
-        return
-    endif
-    :exe "ptag " . expand("<cword>")
-    let g:preview_window_is_open = 1
-endfunction
+" let g:preview_window_is_open = 0
+" function! TriggerPreviewHover () abort
+"     if g:preview_window_is_open
+"         :pclose
+"         let g:preview_window_is_open = 0
+"         return
+"     endif
+"     :exe "ptag " . expand("<cword>")
+"     let g:preview_window_is_open = 1
+" endfunction
 
 " if has_key(g:plugs, 'ale')
-    nnoremap <c-k> :call TriggerPreviewHover()<cr>
+    " nnoremap <c-k> :call TriggerPreviewHover()<cr>
 " endif
 
 " set completeopt+=preview

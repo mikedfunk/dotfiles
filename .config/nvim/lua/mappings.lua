@@ -31,7 +31,7 @@ nvim_set_keymap('n', "<c-w>t", ':tabe<cr>', {noremap = true})
 -- only one result, jump away. :h tjump. I don't see why I would want to do it
 -- any other way!! The default sucks - it sometimes takes me to the wrong match
 -- because it's the first match.
-nvim_set_keymap('n', '<c-]>', ':exec("tjump ".expand("<cword>"))<cr>', {noremap = true})
+-- nvim_set_keymap('n', '<c-]>', ':exec("tjump ".expand("<cword>"))<cr>', {noremap = true})
 
 -- TODO convert to lua
 -- open tag in tab
@@ -45,8 +45,8 @@ nvim_set_keymap('n', '<c-]>', ':exec("tjump ".expand("<cword>"))<cr>', {noremap 
 -- endfunction
 -- nnoremap <silent><leader><c-]> :call OpenTagInNewTab()<cr>
 
-nvim_set_keymap('n', '<c-w><c-]>', ':vsp<CR>:exec("tjump ".expand("<cword>"))<CR>', {noremap = true}) -- open tag in vertical split
-nvim_set_keymap('n', '<c-w>}', ':exec("ptjump ".expand("<cword>"))<CR>', {noremap = true}) -- open tag in preview window (<c-w><c-z> to close)
+-- nvim_set_keymap('n', '<c-w><c-]>', ':vsp<CR>:exec("tjump ".expand("<cword>"))<CR>', {noremap = true}) -- open tag in vertical split
+-- nvim_set_keymap('n', '<c-w>}', ':exec("ptjump ".expand("<cword>"))<CR>', {noremap = true}) -- open tag in preview window (<c-w><c-z> to close)
 
 -- stupid f1 help
 nvim_set_keymap('n', '<f1>', '<nop>', {noremap = true})

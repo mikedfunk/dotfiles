@@ -1,0 +1,76 @@
+# vim: set foldmethod=marker:
+# tmux window layout setup
+session_name: Home
+windows:
+
+# config {{{
+  - window_name: config
+    start_directory: ~/.config/yadm
+    layout: main-horizontal
+    focus: true
+    panes:
+      - v -S
+      - yadm st
+      # - sourcegraph
+      # - ctop
+      # htop has been giving me major trouble lately, will have to fall back to
+      # top or some other *top app.
+      # - htop
+      - top -F -u -stats pid,command,cpu,mem,time,user,state
+# }}}
+
+# blog {{{
+  - window_name: blog
+    start_directory: ~/Code/mikedfunk.github.io
+    layout: main-horizontal
+    panes:
+      - v -S
+      - ts
+      - bundle install && bundle exec jekyll serve --watch
+# }}}
+
+# bookymark {{{
+  - window_name: bookymark
+    panes:
+      - v -S
+      - ts
+      - php artisan serve
+# }}}
+
+# magento (disabled) {{{
+  # - window_name: magento
+  #   start_directory: ~/Code/magento
+  #   layout: main-horizontal
+  #   panes:
+  #     - v -S
+  #     - ts
+  #     # TODO tests, etc.
+# }}}
+
+# notes {{{
+  - window_name: notes
+    panes:
+      - notes
+# }}}
+
+# railsblog (disabled) {{{
+  # - window_name: railsblog
+  #   start_directory: ~/Code/railsblog
+  #   layout: main-horizontal
+  #   panes:
+  #     - shell_command:
+  #         - vim -S
+  #       focus: true
+  #     - ts
+  #     - bundle install; rails c
+  #     - litecli db/development.sqlite3
+  #     - sleep 240 && rails server
+  #     # - multitail -cT ANSI -i log/development.log
+# }}}
+
+# news {{{
+# not sure this is a good idea...
+  - window_name: news
+    panes:
+      - nb
+# }}}

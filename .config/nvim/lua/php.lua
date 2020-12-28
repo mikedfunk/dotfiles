@@ -1,5 +1,5 @@
 local create_augroup = require'helpers'.create_augroup
-local g, cmd = vim.g, vim.cmd
+local g, cmd, nvim_exec, nvim_set_keymap = vim.g, vim.cmd, vim.api.nvim_exec, vim.api.nvim_set_keymap
 
 g['PHP_removeCRwhenUnix'] = 1
 -- means that PHP tags will match the indent of the HTML around them in files that a mix of PHP and HTML
@@ -35,16 +35,34 @@ create_augroup('php_helpers', {
 })
 
 -- TODO convert to lua
--- " single line to multiline docblock
--- function PhpSingleToMultiDocblock() abort
---     :.,.s/\/\*\* \(.*\) \*\//\/\*\*\r     * \1\r     *\//g
--- endfunction
--- augroup phpsingletomultilinedocblockgroup
---     autocmd!
---     autocmd FileType php nnoremap <leader>cm :call PhpSingleToMultiDocblock()<cr>
--- augroup END
+-- single line to multiline docblock
+nvim_exec(
+[[
+function PhpSingleToMultiDocblock() abort
+    :.,.s/\/\*\* \(.*\) \*\//\/\*\*\r     * \1\r     *\//g
+endfunction
+]],
+true)
 
--- array() to [] TODO
+-- intentionally global
+function php_map_single_to_multi_docblock()
+  nvim_set_keymap('n', '<leader>cm', ':call PhpSingleToMultiDocblock()<cr>', {noremap = true})
+end
+
+create_augroup('php_single_to_multi_docblock', {
+    {'FileType', 'php', "lua php_map_single_to_multi_docblock()<cr>"}
+  })
+
+-- array() to []
+-- TODO doesn't work
+-- nvim_exec(
+-- [[
+-- augroup phpfixarray
+--   autocmd!
+--   autocmd FileType php nnoremap <leader>xa mv?array(
+-- f(mz%r]`zr[hvFa;d`v
+-- augroup END
+-- ]], true)
 
 -- TODO conver to lua
 -- " prefix php namespaces
