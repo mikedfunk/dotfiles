@@ -35,28 +35,21 @@ o.modelines = 5 -- set number of lines that are checked for commands
 o.showmode = false -- turn off showing mode (normal, visual, etc) on the last line
 o.ttyfast = true -- speeds up terminal vim rendering
 o.undofile = true -- persistent undo
+o.foldcolumn = 'auto' -- make folds visible left of the sign column. Very cool ui feature!
 -- o.swapfile = false -- turn off swapfiles - they are annoying and only useful if neovim crashes before I saved
 o.shortmess = o.shortmess .. 'I' -- hide the launch screen
 o.shortmess = o.shortmess .. 'c' -- hide 'back at original', 'match (x of x)', etc.
 -- cmd('set shortmess-=F') -- allow testing autocmds with echo https://github.com/neovim/neovim/wiki/FAQ#calling-inputlist-echomsg-etc-in-filetype-plugins-and-autocmd-does-not-work
 o.startofline = false -- Keep the cursor on the same column
-o.t_kB = "[Z" -- Shift-tab on GNU screen
-
--- escape codes for italic fonts
-o.t_ZH = "[3m"
-o.t_ZR = "[23m"
 
 -- use system clipboard. If this isn't here you have to \"* before every
--- yank/delete/paste command. Really annoying. Leader commands are tricky too
+-- yank/delete/paste command. Really annoying. Leader maps are tricky too
 -- if you want to make them work with motions and visual selections.
 o.clipboard = "unnamed"
 
 o.concealcursor = "" -- do not conceal anything when cursor is over a line
 o.inccommand = 'split' -- preview susbstitute in neovim https://dev.to/petermbenjamin/comment/7ng0
 o.mouse = 'a' -- Automatically enable mouse usage
--- TODO not found: o.mousehide = true
--- TODO if &term =~# '^screen'
--- TODO not found: o.ttymouse = 'sgr' -- enable split dragging
 
 create_augroup('ignorecase_augroup', {
   {"InsertEnter", "*", "set noignorecase"},
@@ -90,6 +83,15 @@ create_augroup('resize_equalize', {
 -- this is because some of my notes start with 'vim:'
 create_augroup('disable_modeline_for_markdown', {
   {"FileType", "markdown", "setlocal nomodeline"},
+})
+
+-- gf normally is “goto file under cursor”, but requires you also have the file
+-- suffix in the string. suffixesadd also checks for files with that suffix. If
+-- you have suffixesadd=.md, then pressing gf on the string “foo” will look for
+-- files foo and foo.md. https://www.hillelwayne.com/post/intermediate-vim/
+create_augroup('suffixes_for_imports', {
+  {"FileType", "javascript", "setlocal suffixesadd=.js,.jsx,.ts,/index.js,/index.jsx,/index.ts"},
+  {"FileType", "lua", "setlocal suffixesadd=.lua,/init.lua"},
 })
 
 nvim_set_keymap('n', 'Q', '<nop>', {noremap = true}) -- disable Ex mode
@@ -155,7 +157,7 @@ create_augroup('close_preview_on_insert', {
 
 -- https://blog.kdheepak.com/three-built-in-neovim-features.html#highlight-yanked-text
 create_augroup('lua_highlight', {
-  {'TextYankPost', '*', "silent! lua require'vim.highlight'.on_yank()"},
+  {'TextYankPost', '*', "silent! lua vim.highlight.on_yank()"},
 })
 --
 o.diffopt = plus_equals(o.diffopt, 'hiddenoff') -- Do not use diff mode for a buffer when it becomes hidden
@@ -178,7 +180,7 @@ create_augroup('dollar_sign_php', {
 g['vimsyn_embed'] = 'lPr'
 
 -- folding for some filetypes
-create_augroup('folding_for_some_filetypes', {
+create_augroup('indent_folding_for_some_filetypes', {
   {'FileType', 'json', 'setlocal foldmethod=indent'},
   {'FileType', 'yaml', 'setlocal foldmethod=indent'},
 })

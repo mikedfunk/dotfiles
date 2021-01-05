@@ -24,7 +24,8 @@ g['ale_sign_highlight_linenrs'] = 1
 -- https://github.com/dense-analysis/ale/issues/3458#issuecomment-733738981
 g['ale_php_intelephense_config'] = intelephense
 
-g['ale_hover_to_preview'] = 1 -- unfortunately ale doesn't support neovim floating windows :/ but at least the preview prevents "press enter to continue"
+g['ale_hover_to_preview'] = 0 -- unfortunately ale doesn't support neovim floating windows :/ but at least the preview prevents "press enter to continue"
+g['ale_hover_cursor'] = 0 -- Truncated information will be displayed when the cursor rests on a symbol by default, as long as there are no problems on the same line.
 
 g['ale_completion_symbols'] = {
   text = '',
