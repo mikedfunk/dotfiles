@@ -24,34 +24,28 @@ g['php_syncmethod'] = 10 -- :help :syn-sync https://stackoverflow.com/a/30732393
 -- g['load_doxygen_syntax'] = 1 -- pretty docblocks in php, c, etc.
 -- g['doxygen_enhanced_color'] = 1 -- prettier docblocks
 
-create_augroup('php_helpers', {
+create_augroup('php_sort_use', {
     -- sort use statements alphabetically
   {"FileType", "php", "nnoremap <leader>su :call PhpSortUse()<cr>"},
-  -- expand interface methods
-  -- TODO fix invalid escape sequence
+})
+
+-- TODO fix invalid escape sequence
+-- create_augroup('php_expand_interface_methods', {
   -- {"FileType", "php", 'nnoremap <leader>ei :%s/\v(\w+\sfunction\s\w+\(.*\))(\: \w+)?;/\1\2\r    {\r        \/\/\r    }/g<cr>'},
+-- })
+
+create_augroup('php_methods_to_interface_signatures', {
   -- methods to interface signatures,
   {"FileType", "php", "nnoremap <leader>em :%g/    public function/normal! jd%kA;<cr>"},
 })
 
--- TODO convert to lua
--- single line to multiline docblock
-nvim_exec(
-[[
-function PhpSingleToMultiDocblock() abort
-    :.,.s/\/\*\* \(.*\) \*\//\/\*\*\r     * \1\r     *\//g
-endfunction
-]],
-true)
-
--- intentionally global
-function php_map_single_to_multi_docblock()
-  nvim_set_keymap('n', '<leader>cm', ':call PhpSingleToMultiDocblock()<cr>', {noremap = true})
-end
-
 create_augroup('php_single_to_multi_docblock', {
-    {'FileType', 'php', "lua php_map_single_to_multi_docblock()<cr>"}
-  })
+    -- convert single line /** @var something */ to multiline:
+    -- /**
+    --  * @var something
+    --  */
+  {'FileType', 'php', ":nnoremap <leader>cm :.,.s/\\/\\*\\* \\(.*\\) \\*\\//\\/\\*\\*\\r     * \\1\\r     *\\//g<cr>"}
+})
 
 -- array() to []
 -- TODO doesn't work
@@ -64,14 +58,17 @@ create_augroup('php_single_to_multi_docblock', {
 -- augroup END
 -- ]], true)
 
--- TODO conver to lua
--- " prefix php namespaces
--- function! PhpPrefixNamespaces() abort
---     silent! %s/@\([a-z]\+\) \([A-Z]\)/@\1 \\\2/g
---     silent! %s/@author \\/@author /g
---     nohlsearch
--- endfunction
--- command! PhpPrefixNamespaces :call PhpPrefixNamespaces()
+-- TODO convert to lua
+nvim_exec(
+[[
+" prefix php namespaces
+function! PhpPrefixNamespaces() abort
+    silent! %s/@\([a-z]\+\) \([A-Z]\)/@\1 \\\2/g
+    silent! %s/@author \\/@author /g
+    nohlsearch
+endfunction
+command! PhpPrefixNamespaces :call PhpPrefixNamespaces()
+]], true)
 
 create_augroup('php_break_chain_map', {
   {'FileType', 'php', 'nnoremap <leader>. ^f-i<enter><esc>'},

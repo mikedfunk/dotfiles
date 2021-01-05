@@ -63,7 +63,7 @@ local function_definitions = function()
   use {'esneider/YUNOcommit.vim'} -- u save lot but no commit. y u no commit?
   use {'euclidianAce/BetterLua.vim'} -- recommended better lua syntax highlighting https://github.com/tjdevries/nlua.nvim
   use {'fpob/nette.vim'} -- .neon format
-  use {'frioux/vim-lost', branch = 'main'} -- gL to see what function you're in. I use this in php sometimes to avoid expensive similar functionality in vim-airline or lsp. TODO use lsp + airline
+  use {'frioux/vim-lost', branch = 'main'} -- gL to see what function you're in. I use this in php sometimes to avoid expensive similar functionality in vim-airline or lsp. TODO use lsp + airline -- there's a method in vista but it doesn't work for nvim-lsp executive yet https://github.com/liuchengxu/vista.vim#show-the-nearest-methodfunction-in-the-statusline
   use {'hotwatermorning/auto-git-diff'} -- cool git rebase diffs per commit
   use {'iamcco/markdown-preview.nvim', run = ':call mkdp#util#install()', ft = {'markdown', 'plantuml'}}
   use {'itchyny/vim-cursorword'} -- highlight matching words. What I like about this one is it keeps the same color and bold/italic.

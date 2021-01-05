@@ -170,48 +170,49 @@ lspconfig.intelephense.setup{
 
 -- diagnosticls lsp {{{
 -- TODO this entire lsp doesn't seem to be working yet
+-- also this isn't present in all asdf node versions... gotta figure out what to do about that
 -- https://github.com/iamcco/diagnostic-languageserver/wiki/Linters
-lspconfig.diagnosticls.setup{
-  filetypes = {
-      'javascript',
-      'javascript.jsx',
-      'typescript',
-      'typescript.tsx',
-      'php',
-  },
-  init_options = {
-    filetypes = {
-      javascript = 'eslint',
-      ["javascript.jsx"] = 'eslint',
-      typescript = 'eslint',
-      ["typescript.tsx"] = 'eslint',
-      php = 'phpcs',
-      php = 'phpstan',
-    },
-    formatFiletypes = {
-      javascript = 'prettier',
-      ["javascript.jsx"] = 'prettier',
-      typescript = 'prettier',
-      ["typescript.tsx"] = 'prettier',
-    },
-    linters = {
-      eslint = eslint,
-      phpcs = phpcs,
-      phpstan = phpstan,
-      -- TODO php -l
-      -- TODO phpmd
-      -- TODO php-cs-fixer
-      -- TODO easy-coding-standard
-    },
-    formatters = {
-      prettier = prettier,
-      -- TODO phpcbf (don't forget phpcbf-helper.sh)
-      -- TODO php-cs-fixer
-      -- TODO does phpmd have a fixer?
-    },
-  },
-  on_attach = on_attach,
-}
+-- lspconfig.diagnosticls.setup{
+--   filetypes = {
+--       'javascript',
+--       'javascript.jsx',
+--       'typescript',
+--       'typescript.tsx',
+--       'php',
+--   },
+--   init_options = {
+--     filetypes = {
+--       javascript = 'eslint',
+--       ["javascript.jsx"] = 'eslint',
+--       typescript = 'eslint',
+--       ["typescript.tsx"] = 'eslint',
+--       php = 'phpcs',
+--       php = 'phpstan',
+--     },
+--     formatFiletypes = {
+--       javascript = 'prettier',
+--       ["javascript.jsx"] = 'prettier',
+--       typescript = 'prettier',
+--       ["typescript.tsx"] = 'prettier',
+--     },
+--     linters = {
+--       eslint = eslint,
+--       phpcs = phpcs,
+--       phpstan = phpstan,
+--       -- TODO php -l
+--       -- TODO phpmd
+--       -- TODO php-cs-fixer
+--       -- TODO easy-coding-standard
+--     },
+--     formatters = {
+--       prettier = prettier,
+--       -- TODO phpcbf (don't forget phpcbf-helper.sh)
+--       -- TODO php-cs-fixer
+--       -- TODO does phpmd have a fixer?
+--     },
+--   },
+--   on_attach = on_attach,
+-- }
 -- }}}
 
 -- sumneko (lua) lsp {{{
