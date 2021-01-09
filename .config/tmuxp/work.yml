@@ -82,7 +82,7 @@ windows:
       - ts
       # - cd && wait-on http://www.local.saatchiart.com && while true; do saatchi-tinker-gallery-local; sleep 1; done
       - cd && while true; do saatchi-tinker-gallery-local; sleep 1; done
-      # - while true; do puw; sleep 1; done
+      - while true; do puw; sleep 1; done
       # - yarn jest --watch
       - while true; do saatchi-gulp-watch-gallery; sleep 1; done
       # - saatchi-start-gallery
