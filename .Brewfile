@@ -279,6 +279,7 @@ brew "zsh" # awesome bash shell replacement
 
 # cask "adoptopenjdk" # needed to install akamai cli
 # cask "adoptopenjdk8" # needed for swagger-codegen
+# cask "battle-net" # whoa sweet there's a new mac battle.net app (you need to run the installer: `open /usr/local/Caskroom/battle-net/latest/Battle.net-Setup.app`)
 # cask "beardedspice" # keyboard media controls for media sites. Always seems to be broken :/
 # cask "bettertouchtool" # with a config file this lets me vimify any cocoa app https://raw.githubusercontent.com/Vincent-Carrier/CocoaVim/master/CocoaVim.bttpreset
 # cask "bitbar" # use any cli command to show stuff in the menubar with colors and icons and provide menu options

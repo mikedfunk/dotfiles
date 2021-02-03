@@ -11,11 +11,15 @@
     "neovim": "^4.9.0",
     "redoc-cli": "^0.9.8",
     "scsslint": "^0.0.3",
+    "sqlite3": "5.0.0",
     "stylelint": "^8.4.0",
     "stylelint-config-standard": "^20.0.0",
     "stylelint-scss": "^3.1.0",
     "typescript": "^3.3.3333",
     "typescript-language-server": "^0.3.7",
     "wait-on": "^4.0.2"
+  },
+  "resolutions": {
+    "sqlite3": "5.0.0"
   }
 }

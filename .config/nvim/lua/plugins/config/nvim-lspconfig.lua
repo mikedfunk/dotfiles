@@ -19,7 +19,7 @@ end
 
 local lspconfig = require'lspconfig'
 
--- enable logging {{{
+-- enable debug logging {{{
 -- vim.lsp.set_log_level("debug")
 -- you can open the log with :lua vim.cmd('e'..vim.lsp.get_log_path())
 -- }}}

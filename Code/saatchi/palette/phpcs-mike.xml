@@ -8,7 +8,7 @@
   <!-- <config name="installed_paths" value="/Users/mikefunk/.phpenv/versions/7.0.33/composer/global/slevomat/coding-standard/vendor/slevomat/coding-standard,/Users/mikefunk/.phpenv/versions/7.0.33/composer/global/sirbrillig/phpcs-variable-analysis/vendor/sirbrillig/phpcs-variable-analysis" /> -->
 
   <!-- ensure php code is compatible with this version -->
-  <config name="testVersion" value="7.0" />
+  <config name="testVersion" value="7.4" />
 
   <!-- wtf? it's called PHP code sniffer. -->
   <arg name="extensions" value="php" />
@@ -233,69 +233,69 @@
   <!-- begin SlevomatCodingStandard -->
   <!-- NOTE: the last version that supported php 7.0 was slevomat v4.0.0, which is quite old. Upgrade when updating php! -->
   <!-- https://github.com/slevomat/coding-standard/tree/4.0.0 -->
-  <rule ref="SlevomatCodingStandard">
-    <exclude name="SlevomatCodingStandard.Exceptions.ReferenceThrowableOnly" />
-    <exclude name="SlevomatCodingStandard.ControlStructures.RequireYodaComparison.RequiredYodaComparison" />
-    <exclude name="SlevomatCodingStandard.Files.TypeNameMatchesFileName" />
-    <exclude name="SlevomatCodingStandard.Files.TypeNameMatchesFileName" /><!-- doesn't respect relative basepath -->
-    <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation" />
-    <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedExceptions" />
-    <exclude name="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly" />
-    <exclude name="SlevomatCodingStandard.Namespaces.UseOnlyWhitelistedNamespaces" />
-    <exclude name="SlevomatCodingStandard.Namespaces.UseOnlyWhitelistedNamespaces" />
-    <exclude name="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingTraversableParameterTypeHintSpecification" />
-    <!-- <exclude name="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingPropertyTypeHint" /><!-1- might exclude this - it ignores @inheritDoc -1-> -->
-    <exclude name="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingTraversableReturnTypeHintSpecification" />
-    <exclude name="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.UselessDocComment" />
-    <exclude name="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint" /><!-- This is broken in this version. Doesn't respect php 7.0 flag for nullable @params. -->
-    <exclude name="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingReturnTypeHint" /><!-- this is broken in this version. Doesn't know how to read generics. -->
-    <exclude name="SlevomatCodingStandard.ControlStructures.DisallowYodaComparison" />
-    <exclude name="SlevomatCodingStandard.Classes.ClassConstantVisibility.MissingConstantVisibility" /><!-- not available in php 7.0 -->
-    <exclude name="SlevomatCodingStandard.TypeHints.NullableTypeForNullDefaultValue.NullabilitySymbolRequired" /><!-- not available in php 7.0 -->
-    <exclude name="SlevomatCodingStandard.Classes.UnusedPrivateElements.UnusedMethod" /><!-- doesn't respect callables in array_map, etc. -->
-  </rule>
+  <!-- <rule ref="SlevomatCodingStandard"> -->
+  <!--   <exclude name="SlevomatCodingStandard.Exceptions.ReferenceThrowableOnly" /> -->
+  <!--   <exclude name="SlevomatCodingStandard.ControlStructures.RequireYodaComparison.RequiredYodaComparison" /> -->
+  <!--   <exclude name="SlevomatCodingStandard.Files.TypeNameMatchesFileName" /> -->
+  <!--   <exclude name="SlevomatCodingStandard.Files.TypeNameMatchesFileName" /><!-1- doesn't respect relative basepath -1-> -->
+  <!--   <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation" /> -->
+  <!--   <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedExceptions" /> -->
+  <!--   <exclude name="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly" /> -->
+  <!--   <exclude name="SlevomatCodingStandard.Namespaces.UseOnlyWhitelistedNamespaces" /> -->
+  <!--   <exclude name="SlevomatCodingStandard.Namespaces.UseOnlyWhitelistedNamespaces" /> -->
+  <!--   <exclude name="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingTraversableParameterTypeHintSpecification" /> -->
+  <!--   <!-1- <exclude name="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingPropertyTypeHint" /><!-2- might exclude this - it ignores @inheritDoc -2-> -1-> -->
+  <!--   <exclude name="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingTraversableReturnTypeHintSpecification" /> -->
+  <!--   <exclude name="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.UselessDocComment" /> -->
+  <!--   <exclude name="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint" /><!-1- This is broken in this version. Doesn't respect php 7.0 flag for nullable @params. -1-> -->
+  <!--   <exclude name="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingReturnTypeHint" /><!-1- this is broken in this version. Doesn't know how to read generics. -1-> -->
+  <!--   <exclude name="SlevomatCodingStandard.ControlStructures.DisallowYodaComparison" /> -->
+  <!--   <exclude name="SlevomatCodingStandard.Classes.ClassConstantVisibility.MissingConstantVisibility" /><!-1- not available in php 7.0 -1-> -->
+  <!--   <exclude name="SlevomatCodingStandard.TypeHints.NullableTypeForNullDefaultValue.NullabilitySymbolRequired" /><!-1- not available in php 7.0 -1-> -->
+  <!--   <exclude name="SlevomatCodingStandard.Classes.UnusedPrivateElements.UnusedMethod" /><!-1- doesn't respect callables in array_map, etc. -1-> -->
+  <!-- </rule> -->
 
-  <rule ref="SlevomatCodingStandard.TypeHints.TypeHintDeclaration">
-    <properties>
-      <property name="enableVoidTypeHint" value="0" />
-      <property name="enableNullableTypeHints" value="0" />
-    </properties>
-  </rule>
+  <!-- <rule ref="SlevomatCodingStandard.TypeHints.TypeHintDeclaration"> -->
+  <!--   <properties> -->
+  <!--     <property name="enableVoidTypeHint" value="0" /> -->
+  <!--     <property name="enableNullableTypeHints" value="0" /> -->
+  <!--   </properties> -->
+  <!-- </rule> -->
 
-  <rule ref="SlevomatCodingStandard.Types.EmptyLinesAroundTypeBraces">
-    <properties>
-      <property name="linesCountBeforeClosingBrace" value="0" />
-      <property name="linesCountAfterOpeningBrace" value="0" />
-    </properties>
-  </rule>
+  <!-- <rule ref="SlevomatCodingStandard.Types.EmptyLinesAroundTypeBraces"> -->
+  <!--   <properties> -->
+  <!--     <property name="linesCountBeforeClosingBrace" value="0" /> -->
+  <!--     <property name="linesCountAfterOpeningBrace" value="0" /> -->
+  <!--   </properties> -->
+  <!-- </rule> -->
 
-  <rule ref="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly">
-    <properties>
-      <property name="allowFullyQualifiedNameForCollidingClasses" value="true" />
-      <property name="allowFullyQualifiedGlobalClasses" value="true" />
-      <property name="allowFullyQualifiedExceptions" value="true" />
-      <property name="allowFullyQualifiedGlobalFunctions" value="true" />
-      <property name="allowFullyQualifiedGlobalConstants" value="true" />
-    </properties>
-  </rule>
+  <!-- <rule ref="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly"> -->
+  <!--   <properties> -->
+  <!--     <property name="allowFullyQualifiedNameForCollidingClasses" value="true" /> -->
+  <!--     <property name="allowFullyQualifiedGlobalClasses" value="true" /> -->
+  <!--     <property name="allowFullyQualifiedExceptions" value="true" /> -->
+  <!--     <property name="allowFullyQualifiedGlobalFunctions" value="true" /> -->
+  <!--     <property name="allowFullyQualifiedGlobalConstants" value="true" /> -->
+  <!--   </properties> -->
+  <!-- </rule> -->
 
-  <rule ref="SlevomatCodingStandard.TypeHints.TypeHintDeclaration">
-    <properties>
-      <property name="enableNullableTypeHints" value="false" />
-      <property name="enableVoidTypeHint" value="false" />
-      <property name="enableEachParameterAndReturnInspection" value="false" />
-      <!-- <property name="enableEachParameterAndReturnInspection" value="true" /> -->
-    </properties>
-  </rule>
+  <!-- <rule ref="SlevomatCodingStandard.TypeHints.TypeHintDeclaration"> -->
+  <!--   <properties> -->
+  <!--     <property name="enableNullableTypeHints" value="false" /> -->
+  <!--     <property name="enableVoidTypeHint" value="false" /> -->
+  <!--     <property name="enableEachParameterAndReturnInspection" value="false" /> -->
+  <!--     <!-1- <property name="enableEachParameterAndReturnInspection" value="true" /> -1-> -->
+  <!--   </properties> -->
+  <!-- </rule> -->
 
-  <rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes">
-    <properties>
-      <property name="newlinesCountBetweenOpenTagAndDeclare" value="2" />
-      <property name="newlinesCountAfterDeclare" value = "2" />
-      <property name="spacesCountAroundEqualsSign" value = "0" />
-      <property name="spacesCountAroundEqualsSign" value="0" />
-    </properties>
-  </rule>
+  <!-- <rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes"> -->
+  <!--   <properties> -->
+  <!--     <property name="newlinesCountBetweenOpenTagAndDeclare" value="2" /> -->
+  <!--     <property name="newlinesCountAfterDeclare" value = "2" /> -->
+  <!--     <property name="spacesCountAroundEqualsSign" value = "0" /> -->
+  <!--     <property name="spacesCountAroundEqualsSign" value="0" /> -->
+  <!--   </properties> -->
+  <!-- </rule> -->
   <!-- end SlevomatCodingStandard -->
 
   <!-- compatible with this php version but not installed -->
@@ -316,28 +316,28 @@
   <!-- https://www.doctrine-project.org/projects/doctrine-coding-standard/en/8.2/reference/index.html -->
 
   <!-- begin Inpsyde https://github.com/inpsyde/php-coding-standards -->
-  <rule ref="Inpsyde">
-    <exclude name="Inpsyde.CodeQuality.FunctionBodyStart.WrongForMultiLineDeclaration" />
-    <exclude name="Inpsyde.CodeQuality.FunctionLength.TooLong" /><!-- also covered by phpmd rulesets/codesize.xml/ExcessiveMethodLength -->
-    <exclude name="Inpsyde.CodeQuality.LineLength" />
-    <exclude name="Inpsyde.CodeQuality.NoAccessors" />
-    <exclude name="Inpsyde.CodeQuality.NoElse" /><!-- this is already covered by phpmd -->
-    <exclude name="WordPress.Arrays.CommaAfterArrayItem.NoComma" /><!-- this is already covered by SlevomatCodingStandard.Arrays.TrailingArrayComma.MissingTrailingComma -->
-  </rule>
+  <!-- <rule ref="Inpsyde"> -->
+  <!--   <exclude name="Inpsyde.CodeQuality.FunctionBodyStart.WrongForMultiLineDeclaration" /> -->
+  <!--   <exclude name="Inpsyde.CodeQuality.FunctionLength.TooLong" /><!-1- also covered by phpmd rulesets/codesize.xml/ExcessiveMethodLength -1-> -->
+  <!--   <exclude name="Inpsyde.CodeQuality.LineLength" /> -->
+  <!--   <exclude name="Inpsyde.CodeQuality.NoAccessors" /> -->
+  <!--   <exclude name="Inpsyde.CodeQuality.NoElse" /><!-1- this is already covered by phpmd -1-> -->
+  <!--   <exclude name="WordPress.Arrays.CommaAfterArrayItem.NoComma" /><!-1- this is already covered by SlevomatCodingStandard.Arrays.TrailingArrayComma.MissingTrailingComma -1-> -->
+  <!-- </rule> -->
 
-  <rule ref="Inpsyde.CodeQuality.ElementNameMinimalLength">
-    <properties>
-      <property name="allowedShortNames" type="array" value="id,db,x,y,e,ip,i" />
-    </properties>
-  </rule>
+  <!-- <rule ref="Inpsyde.CodeQuality.ElementNameMinimalLength"> -->
+  <!--   <properties> -->
+  <!--     <property name="allowedShortNames" type="array" value="id,db,x,y,e,ip,i" /> -->
+  <!--   </properties> -->
+  <!-- </rule> -->
 
-  <rule ref="Inpsyde.CodeQuality.FunctionLength.TooLong">
-    <exclude-pattern>spec/*</exclude-pattern>
-  </rule>
+  <!-- <rule ref="Inpsyde.CodeQuality.FunctionLength.TooLong"> -->
+  <!--   <exclude-pattern>spec/*</exclude-pattern> -->
+  <!-- </rule> -->
 
-  <rule ref="Inpsyde.CodeQuality.ArgumentTypeDeclaration">
-    <exclude-pattern>spec/*</exclude-pattern>
-  </rule>
+  <!-- <rule ref="Inpsyde.CodeQuality.ArgumentTypeDeclaration"> -->
+  <!--   <exclude-pattern>spec/*</exclude-pattern> -->
+  <!-- </rule> -->
   <!-- end Inpsyde -->
 
 </ruleset>

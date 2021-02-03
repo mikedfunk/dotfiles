@@ -1,6 +1,11 @@
+-- NOTE: if intelephense is dying silently, first start by turning on debugging
+-- in ~/.config/nvim/lua/plugins/config/nvim-lspconfig.lua. Then tail the logs,
+-- open the php file, and try an action and view the logs. Recently this
+-- happened when I tried to upgrade nodejs to 15.x latest. Intelephense breaks
+-- on any node version over 14!
 local intelephense_settings = {
   intelephense = {
-    environment = {phpVersion = "7.0.0"},
+    environment = {phpVersion = "7.4.7"},
     diagnostics = {
       enable = true,
       run = "onSave",
@@ -26,7 +31,7 @@ local intelephense_settings = {
         "**/vendor/**/vendor/**",
         -- below was added to the list
         "**/spec/**",
-        "**/coverage/**"
+        "**/coverage/**",
       },
     },
     stubs = {

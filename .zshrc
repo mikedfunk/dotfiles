@@ -500,6 +500,7 @@ psw-pretty() {
 # }}}
 
 # composer {{{
+export COMPOSER_MEMORY_LIMIT=-1
 alias cda="composer dump-autoload"
 alias cu="composer update"
 alias ci="composer install --prefer-dist"

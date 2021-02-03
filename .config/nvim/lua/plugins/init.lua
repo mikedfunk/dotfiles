@@ -71,17 +71,18 @@ local function_definitions = function()
   -- use {'unblevable/quick-scope'} -- highlights chars for f, F, t, T
   -- use {'wellle/targets.vim'} -- Adds selection targets like vi2) or vI} to avoid whitespace
   -- use {'wellle/tmux-complete.vim'} -- tmux completion with <c-x><c-u> (user-defined completion source)
-
   use {'APZelos/blamer.nvim'} -- yet another git blame virtual text plugin. It's not perfect - if you include a prefix it will show even when there's no git repo :/ Alternative: 'f-person/git-blame.nvim'
-  use {'AndrewRadev/splitjoin.vim', ft = {'php', 'javascript', 'html'}} -- split and join php arrays to/from multiline/single line (gS, gJ) SO USEFUL!
+  use {'AndrewRadev/splitjoin.vim', ft = {'php', 'javascript', 'html'}, branch = 'main'} -- split and join php arrays to/from multiline/single line (gS, gJ) SO USEFUL!
   use {'Yggdroot/indentLine'} -- show vertical lines for levels of indentions
   use {'andymass/vim-matchup'} -- " better matchit and match highlighter
+  use {'anott03/nvim-lspinstall'} -- re-add installer functions that were removed from neovim for lsp servers
   use {'ap/vim-css-color', ft = {'scss', 'css'}} -- colorize css colors e.g. #333 with the actual color in the background
   use {'chriskempson/base16-vim'} -- themes made of 16 colors
   use {'dense-analysis/ale'} -- linter, fixer, even lsp implementation. TODO I only have this here temporarily until I can get built-in lsp diagnostics with diagnosticls working.
   use {'diepm/vim-rest-console'} -- like above but more capable (latest version) NOTE see ~/.yadm/bootstrap for notes on wuzz as a replacement for this. NOTE: { 'for': 'rest' } prevents this from setting filetypes correctly
   use {'docunext/closetag.vim', ft = {'html', 'xml', 'html.twig', 'blade', 'php', 'phtml', 'javascript.jsx'}} -- auto close tags by typing </ . different from auto-pairs.
   use {'euclidianAce/BetterLua.vim'} -- recommended better lua syntax highlighting https://github.com/tjdevries/nlua.nvim
+  use {'flwyd/vim-conjoin'} -- when joining multiple times, also join string concats into one string. similar to formatoptions=j where you join multi-line comments into one comment and get rid of the comment chars on the second line.
   use {'fpob/nette.vim'} -- .neon format (not in polyglot as of 2021-01-08)
   use {'frioux/vim-lost', branch = 'main'} -- gL to see what function you're in. I use this in php sometimes to avoid expensive similar functionality in vim-airline or lsp. TODO use lsp + airline -- there's a method in vista but it doesn't work for nvim-lsp executive yet https://github.com/liuchengxu/vista.vim#show-the-nearest-methodfunction-in-the-statusline
   use {'hotwatermorning/auto-git-diff'} -- cool git rebase diffs per commit
@@ -92,6 +93,8 @@ local function_definitions = function()
   use {'jesseleite/vim-agriculture'} -- Add :AgRaw to search with args
   use {'junegunn/fzf.vim', requires = {{'junegunn/fzf', run = './install --all'}}} -- fuzzy finder
   use {'justinmk/vim-ipmotion'} -- makes blank line with spaces only the end of a paragraph
+  use {'kevinhwang91/nvim-bqf'} -- add a preview for quickfix items!
+  -- use {'kosayoda/nvim-lightbulb'} -- just shows a lightbulb in the sidebar when a code action is available.
   use {'liuchengxu/vista.vim'} -- like tagbar for lsp symbols
   use {'ludovicchabant/vim-gutentags'} -- auto ctags runner. no lazy load.
   use {'lukas-reineke/indent-blankline.nvim'} -- works with indentLine plugin to include indent symbols on blank lines. finally!
