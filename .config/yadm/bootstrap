@@ -311,58 +311,6 @@ _update_asdf_plugins () {
 # }}}
 
 # install php versions {{{
-# not working at the moment despite a ton of research:
-# https://github.com/Homebrew/homebrew-core/pull/61820
-# https://bugs.php.net/bug.php?id=80171
-#
-# Undefined symbols for architecture x86_64:
-#   "_php_readdir_r", referenced from:
-#       _ps_gc_files in mod_files.o
-#       _php_plain_files_dirstream_read in plain_wrapper.o
-# Undefined symbols for architecture x86_64:
-#   "_php_readdir_r", referenced from:
-# Undefined symbols for architecture x86_64:
-#   "_php_readdir_r", referenced from:
-#       _ps_gc_files in mod_files.o
-#       _php_plain_files_dirstream_read in plain_wrapper.o
-#       _ps_gc_files in mod_files.o
-#       _php_plain_files_dirstream_read in plain_wrapper.o
-# Undefined symbols for architecture x86_64:
-#   "_php_readdir_r", referenced from:
-#       _ps_gc_files in mod_files.o
-#       _php_plain_files_dirstream_read in plain_wrapper.o
-#
-_install_php_70 () {
-    ( asdf list php | grep --quiet 7.0.33 ) && return
-    _log_info "installing php 7.0.33"
-    asdf install php 7.0.33
-    asdf global php 7.0.33 || return
-    local PHP_PATH
-    PHP_PATH="$(asdf where php)"
-
-    # install php extensions (different set for 7.0.33)
-    mkdir -p "${PHP_PATH}"/conf.d
-
-    local PICKLE="${PHP_PATH}"/pickle.phar
-    wget -O "${PICKLE}" https://github.com/FriendsOfPHP/pickle/releases/latest/download/pickle.phar
-    chmod +x "${PICKLE}"
-
-    # NOTE: pcs is a sub requirement of couchbase
-    yes "" | "${PICKLE}" install pcs && ( echo 'extension="phpcs.so"' >"${PHP_PATH}"/conf.d/01_pcs.ini )
-    # NOTE: this requires `brew install couchbase@2`
-    yes "" | "${PICKLE}" install couchbase@2.2.4 && ( echo 'extension="couchbase.so"' >"${PHP_PATH}"/conf.d/02_couchbase.ini )
-    yes "" | "${PICKLE}" install memcached && ( echo 'extension="memcached.so"' >"${PHP_PATH}"/conf.d/03_memcached.ini )
-    yes "" | "${PICKLE}" install imagick && ( echo 'extension="imagick.so"' >"${PHP_PATH}"/conf.d/04_imagick.ini )
-    # xdebug master is now php 7.1+ :(
-    yes "" | "${PICKLE}" install xdebug@2.8.1 && ( echo 'zend_extension="xdebug.so"' >"${PHP_PATH}"/conf.d/05_xdebug.ini )
-    # NOTE: I have 05_memory_limit.ini already there in my yadm files
-
-    # install composer global packages
-    mkdir -p  "${PHP_PATH}"/{.,}composer
-    ln -sf "$HOME"/.composer/composer.json "${PHP_PATH}"/.composer/composer.json
-    _install_update_composer_packages
-    asdf reshim php 7.0.33
-}
 
 _install_php_71 () {
     # clang: error: no such file or directory: '/var/folders/3p/m5qcn0zj1x575j3fxyk7d0d80000gp/T/php-src-php-7.1.33/Zend/zend_ini_parser.c'
@@ -634,13 +582,12 @@ _install_php_versions () {
     export CFLAGS="-Wno-error=implicit-function-declaration ${CFLAGS}"
     # export CFLAGS="-Wno-error ${CFLAGS}"
 
-    # _install_php_70 # not working at the moment due to readdir_r
     # _install_php_71 # not working at the moment due to missing zend class
     # _install_php_72 # not working at the moment due to missing zend header
     _install_php_74 # *works* because whatever feature used readdir_r was removed
     _install_php_80
-    # asdf global php 7.4.7
-    asdf global php 8.0.0 # I want to believe
+    asdf global php 7.4.7
+    # asdf global php 8.0.0 # I want to believe
 
     popd || return
 }
@@ -659,6 +606,7 @@ _install_node_versions () {
     ( asdf list nodejs | grep --quiet 14.4.0 ) || asdf install nodejs 14.4.0
     # easel (new, formerly 10.11.0):
     ( asdf list nodejs | grep --quiet 15.4.0 ) || asdf install nodejs 15.4.0
+    # NOTE do NOT set this to node 15, it will break intelephense!
     asdf global nodejs 14.4.0
     builtin cd - >/dev/null || return
 }

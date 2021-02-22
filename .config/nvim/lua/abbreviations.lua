@@ -20,4 +20,7 @@ cmd('abbrev Connecitno Connection')
 cmd('abbrev leagcy legacy')
 cmd('abbrev Leagcy Legacy')
 
+cmd('abbrev Couchbsae Couchbase')
+cmd('abbrev couchbsae couchbase')
+
 cmd("cabbr <expr> %% expand('%:p:h')") -- in ex mode %% is current dir
