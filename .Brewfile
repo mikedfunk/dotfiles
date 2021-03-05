@@ -391,7 +391,7 @@ cask "rectangle" # snap window to screen edges with mouse or keyboard. replaces 
 cask "sequel-pro-nightly" # nightly has bug fixes and dark mode! B)
 cask "skype" # Dad uses skype. Skype web requires chrome. I don't like chrome.
 cask "slack" # needed for screen sharing features. I mostly use the web app.
-cask "zoomus" # zoom video conferencing (installed and managed via my company)
+cask "zoom" # zoom video conferencing (installed and managed via my company)
 
 # }}}
 

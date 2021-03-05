@@ -157,7 +157,7 @@ _pin_homebrew_packages () {
     # brew pin cmake
     # brew pin curl
     brew pin icu4c
-    # brew pin imagemagick
+    brew pin imagemagick
     # brew pin libcouchbase
     # brew pin "libcouchbase@2"
     # brew pin libedit

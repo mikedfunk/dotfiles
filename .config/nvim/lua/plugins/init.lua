@@ -129,6 +129,7 @@ local function_definitions = function()
   use {'vim-airline/vim-airline'} -- better status bar
   use {'vim-airline/vim-airline-themes'} -- pretty colors for airline
   use {'vim-scripts/BufOnly.vim', cmd = {'BufOnly', 'Bufonly'}} -- close all buffers but the current one
+  use {'onsails/lspkind-nvim'} -- tiny plugin to add little pictograms next to completion types
 
   if has('python3') then
     -- use {'ncm2/float-preview.nvim'} -- on completion show a preview with the `info` completion column. Not great, would love an actual lsp preview instead.
