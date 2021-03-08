@@ -37,7 +37,6 @@ local function_definitions = function()
 
   g['polyglot_disabled'] = {'graphql', 'rst'} -- annoyingly this config must be loaded before polyglot is loaded :/ this commit broke my php rendering until I disabled graphql https://github.com/sheerun/vim-polyglot/commit/c228e993ad6a8b79db5a5a77aecfdbd8e92ea31f
 
-
   -- package definitions {{{
   -- use {'AndrewRadev/undoquit.vim'} -- another one to reopen closed buffers/windows/tabs: <c-w>u
   -- use {'MaxMEllon/vim-jsx-pretty'} -- jsx formatting (NOT in vim-polyglot)
@@ -51,7 +50,6 @@ local function_definitions = function()
   -- use {'iamcco/markdown-preview.nvim', run = ':call mkdp#util#install()', ft = {'markdown', 'plantuml'}}
   -- use {'junegunn/vim-easy-align'} -- make a visual selection and `ga=` to align on = e.g. `vipga=`
   -- use {'junegunn/vim-peekaboo'} -- preview registers
-  -- use {'kosayoda/nvim-lightbulb'} -- just shows a lightbulb in the sidebar when a code action is available.
   -- use {'kreskij/Repeatable.vim'} -- make mappings repeatable easily (I use this to open/close vdebug trees)
   -- use {'kristijanhusak/vim-js-file-import'} -- ctags-based importing
   -- use {'lambdalisue/fern.vim', requires = {{'lambdalisue/fern-hijack.vim'}, {'lambdalisue/fern-renderer-nerdfont.vim'}, {'lambdalisue/nerdfont.vim'}}} -- file browser
@@ -86,6 +84,7 @@ local function_definitions = function()
   use {'flwyd/vim-conjoin'} -- when joining multiple times, also join string concats into one string. similar to formatoptions=j where you join multi-line comments into one comment and get rid of the comment chars on the second line.
   use {'fpob/nette.vim'} -- .neon format (not in polyglot as of 2021-01-08)
   use {'frioux/vim-lost', branch = 'main'} -- gL to see what function you're in. I use this in php sometimes to avoid expensive similar functionality in vim-airline or lsp. TODO use lsp + airline -- there's a method in vista but it doesn't work for nvim-lsp executive yet https://github.com/liuchengxu/vista.vim#show-the-nearest-methodfunction-in-the-statusline
+  use {'gennaro-tedesco/nvim-peekup'} -- show registers picker with ""
   use {'glepnir/lspsaga.nvim', required = {{'neovim/nvim-lspconfig'}}} -- fancier lsp UI for definitions/references, code actions, etc.
   use {'hotwatermorning/auto-git-diff'} -- cool git rebase diffs per commit
   use {'itchyny/vim-cursorword'} -- highlight matching words. What I like about this one is it keeps the same color and bold/italic. It just underlines matching words.
@@ -96,6 +95,7 @@ local function_definitions = function()
   use {'junegunn/fzf.vim', requires = {{'junegunn/fzf', run = './install --all'}}} -- fuzzy finder
   use {'justinmk/vim-ipmotion'} -- makes blank line with spaces only the end of a paragraph
   use {'kevinhwang91/nvim-bqf'} -- add a preview for quickfix items!
+  use {'kosayoda/nvim-lightbulb'} -- just shows a lightbulb in the sidebar when a code action is available.
   use {'liuchengxu/vista.vim'} -- like tagbar for lsp symbols
   use {'ludovicchabant/vim-gutentags'} -- auto ctags runner. no lazy load.
   use {'lukas-reineke/indent-blankline.nvim'} -- works with indentLine plugin to include indent symbols on blank lines. finally!

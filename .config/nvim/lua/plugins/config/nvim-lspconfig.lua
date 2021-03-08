@@ -70,7 +70,7 @@ local function set_lsp_mappings(client, bufnr)
     {mode = 'n', keys = ']d', action = '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>'}, -- go to the next diagnostic message
     {mode = 'n', keys = '<leader>dq', action = '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>'}, -- populate any lsp diagnostics into the loclist and open the loclist
 
-    {mode = 'n', keys = '<leader>cc', action = '<cmd>lua vim.lsp.buf.code_action()<cr>'}, -- open a "menu" with available code actions
+    -- {mode = 'n', keys = '<leader>cc', action = '<cmd>lua vim.lsp.buf.code_action()<cr>'}, -- open a "menu" with available code actions
     {mode = 'n', keys = '<c-]>', action = '<cmd>lua vim.lsp.buf.definition()<cr>'}, -- jump to the symbol under the cursor
     {mode = 'n', keys = '<leader><c-]>', action = 'mz:tabe %<cr>`z<cmd>lua vim.lsp.buf.definition()<cr>'}, -- jump to the symbol under the cursor in a new tab
     {mode = 'n', keys = '<c-w><c-]>', action = '<cmd>vsp<cr><cmd>lua vim.lsp.buf.definition()<cr>'}, -- jump to the symbol under the cursor in a vertical split
