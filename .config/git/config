@@ -355,8 +355,8 @@
 [pull]
     rebase = true
 [rerere]
-    enabled = 1
-    autoupdate = true
+    # enabled = 1
+    # autoupdate = true
 [fetch]
     prune = true
 [sequence]

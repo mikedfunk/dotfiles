@@ -1,4 +1,4 @@
-local nvim_set_keymap = vim.api.nvim_set_keymap
+local nvim_set_keymap, nvim_exec = vim.api.nvim_set_keymap, vim.api.nvim_exec
 
 nvim_set_keymap('n', '<leader>so', ":lua require'plugins'<cr>", {noremap = true})
 -- from practical vim recommendation
@@ -25,7 +25,7 @@ nvim_set_keymap('n', 'zh', 'zH', {noremap = true})
 -- my version of fast tabs. Doesn't work in netrw tabs.
 nvim_set_keymap('n', 'gh', 'gT', {noremap = true})
 nvim_set_keymap('n', 'gl', 'gt', {noremap = true})
-nvim_set_keymap('n', "<c-w>t", ':tabe<cr>', {noremap = true})
+nvim_set_keymap('n', "<c-w>t", 'mz:tabe %<cr>`z', {noremap = true})
 
 -- for all tag jumps, show the menu when there are more than one result! if
 -- only one result, jump away. :h tjump. I don't see why I would want to do it

@@ -64,7 +64,7 @@ local function set_lsp_mappings(client, bufnr)
     {mode = 'n', keys = '<leader>td', action = '<cmd>lua vim.lsp.buf.type_definition()<cr>'}, -- e.g. if you have a var with an instance of a class, go to the _class_ definition instead of the variable definition
     -- {mode = 'n', keys = '1gD', action = '<cmd>lua vim.lsp.buf.type_definition()<cr>'},
     {mode = 'n', keys = '<leader>rr', action = '<cmd>lua vim.lsp.buf.rename()<CR>'}, -- rename the symbol under the cursor, prompts for a new name
-    {mode = 'n', keys = 'gr', action = '<cmd>lua vim.lsp.buf.references()<cr>'}, -- populate a quickfix with lines in the workspace that have references to the symbol under the cursor, then open it
+    -- {mode = 'n', keys = 'gr', action = '<cmd>lua vim.lsp.buf.references()<cr>'}, -- populate a quickfix with lines in the workspace that have references to the symbol under the cursor, then open it
     -- {mode = 'n', keys = '<leader>ee', action = '<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>'}, -- not working 2021-01-11
     {mode = 'n', keys = '[d', action = '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>'}, -- go to the previous diagnostic message
     {mode = 'n', keys = ']d', action = '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>'}, -- go to the next diagnostic message
