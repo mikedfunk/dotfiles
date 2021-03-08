@@ -141,7 +141,7 @@ _install_update_homebrew_packages () {
     brew upgrade --cask  # upgrade all homebrew casks
     # brew cleanup         # remove outdated versions and dead symlinks from the homebrew prefix. WARNING this could break dependencies if low level libs are not pinned!!
     # brew bundle --global cleanup --force # remove brew packages not in ~/.Brewfile
-    brew link libcouchbase@2 --force
+    brew link libcouchbase@2 --overwrite
     _pin_homebrew_packages
 }
 
