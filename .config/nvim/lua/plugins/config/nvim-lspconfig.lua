@@ -112,7 +112,8 @@ end
 -- }}}
 
 -- on_attach handler {{{
-local function on_attach(client, bufnr)
+-- intentionally global so easel can use this when setting up the flow language server
+function on_attach(client, bufnr)
   -- Set the omnifunc for this buffer
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
   set_lsp_mappings(client, bufnr)

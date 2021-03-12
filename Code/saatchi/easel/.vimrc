@@ -12,7 +12,7 @@ let g:ale_linters = {'javascript.jsx': ['eslint', 'flow', 'flow-language-server'
 " https://prettier.io/docs/en/eslint.html#docsNav
 " let g:ale_fixers['javascript'] = ['prettier', 'eslint', 'importjs']
 let g:ale_fixers = get(g:, 'ale_fixers', {})
-let g:ale_fixers['javascript'] = ['eslint', 'importjs', 'prettier', 'prettier_eslint', 'trim_whitespace', 'remove_trailing_lines']
+let g:ale_fixers['javascript'] = ['eslint', 'importjs', 'prettier', 'trim_whitespace', 'remove_trailing_lines']
 let g:ale_fix_on_save = 1 " This is off by default. You could do it manually with :ALEFix
 let g:ale_javascript_prettier_options = '--trailing-comma es5'
 " }}}
@@ -51,12 +51,9 @@ autocmd BufReadPre *.js let b:javascript_lib_use_react = 1
 " }}}
 
 " nvim-lsp {{{
-if (has('nvim'))
+" if (has('nvim'))
 lua << EOF
-require'lspconfig'.flow.setup{
-  cmd = { "flow", "lsp" },
-  on_attach = on_attach
-}
+require'lspconfig'.flow.setup{cmd = { "flow", "lsp" }, on_attach = on_attach}
 EOF
 " cmd = { "/usr/local/bin/flow", "lsp" }
 " cmd = { "npm", "run", "flow", "lsp", "--" }
@@ -65,18 +62,18 @@ EOF
 augroup nvim_lsp_easel
   autocmd!
   autocmd filetype javascript.jsx setlocal omnifunc=v:lua.vim.lsp.omnifunc
-  augroup END
-endif
+augroup END
+" endif
 
 " NOTE flow lsp doesn't offer any code actions :(
 " nnoremap <silent> <leader>ca <cmd>lua vim.lsp.buf.code_action()<CR>
-nnoremap <silent> <c-w>} <cmd>lua peek_definition()<CR>
-nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> <leader><c-]> mz:tabe %<CR>`z<cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> <c-w><c-]> <cmd>vsp<CR><cmd>lua vim.lsp.buf.definition()<CR>
+" nnoremap <silent> <c-w>} <cmd>lua peek_definition()<CR>
+" nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+" nnoremap <silent> <leader><c-]> mz:tabe %<CR>`z<cmd>lua vim.lsp.buf.definition()<CR>
+" nnoremap <silent> <c-w><c-]> <cmd>vsp<CR><cmd>lua vim.lsp.buf.definition()<CR>
 " nnoremap <silent> <c-w>} <cmd>lua vim.lsp.buf.definition()<CR><cmd>sleep 100m<CR><cmd>pedit<CR><c-o>
-nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
+" nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
+" nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
 
 " not supported by flow-language-server:
 " nnoremap <silent> gd <cmd>lua vim.lsp.buf.declaration()<CR>

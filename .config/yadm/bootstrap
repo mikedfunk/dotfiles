@@ -336,6 +336,7 @@ _install_php_71 () {
     yes "" | "${PICKLE}" install couchbase@2.2.4 && ( echo 'extension="couchbase.so"' >"${PHP_PATH}"/conf.d/02_couchbase.ini )
     yes "" | "${PICKLE}" install memcached && ( echo 'extension="memcached.so"' >"${PHP_PATH}"/conf.d/03_memcached.ini )
     yes "" | "${PICKLE}" install imagick && ( echo 'extension="imagick.so"' >"${PHP_PATH}"/conf.d/04_imagick.ini )
+    yes "" | "${PICKLE}" install gd && ( echo 'extension="gd.so"' >"${PHP_PATH}"/conf.d/04_gd.ini )
     # xdebug master is now php 7.1+ :(
     yes "" | "${PICKLE}" install xdebug@2.8.1 && ( echo 'zend_extension="xdebug.so"' >"${PHP_PATH}"/conf.d/05_xdebug.ini )
     # NOTE: I have 05_memory_limit.ini already there in my yadm files
@@ -409,6 +410,7 @@ _install_php_74 () {
     chmod +x "${PICKLE}"
 
     yes "" | "${PICKLE}" install pcs-beta && ( echo 'extension="pcs.so"' >"${PHP_PATH}"/conf.d/01_pcs.ini )
+    # TODO this may require a few more times pressing enter, figure out how to send enter as many times as necessary
     yes "" | "${PICKLE}" install couchbase@2.2.4 && ( echo 'extension="couchbase.so"' >"${PHP_PATH}"/conf.d/02_couchbase.ini )
     yes "" | "${PICKLE}" install memcached && ( echo 'extension="memcached.so"' >"${PHP_PATH}"/conf.d/03_memcached.ini )
     yes "" | "${PICKLE}" install imagick && ( echo 'extension="imagick.so"' >"${PHP_PATH}"/conf.d/04_imagick.ini )
