@@ -36,6 +36,7 @@ o.showmode = false -- turn off showing mode (normal, visual, etc) on the last li
 o.ttyfast = true -- speeds up terminal vim rendering
 o.undofile = true -- persistent undo
 o.foldcolumn = 'auto' -- make folds visible left of the sign column. Very cool ui feature!
+o.signcolumn = 'yes' -- always show the sign column
 -- o.swapfile = false -- turn off swapfiles - they are annoying and only useful if neovim crashes before I saved
 o.shortmess = o.shortmess .. 'I' -- hide the launch screen
 o.shortmess = o.shortmess .. 'c' -- hide 'back at original', 'match (x of x)', etc.
@@ -136,14 +137,14 @@ create_augroup('quickfix_mappings', {
 -- https://www.reddit.com/r/vim/comments/3oo1e0/has_anyone_found_a_way_to_make_k_useful/
 -- NOTE: keywordprg is not invoked silently, so you will get 'press enter to continue'
 create_augroup('devdocs_keywordprg', {
-  {'FileType', 'php', 'set keywordprg="devdocs php"'},
-  {'FileType', 'javascript*', 'set keywordprg="devdocs javascript"'},
-  {'FileType', 'html', 'set keywordprg="devdocs html"'},
-  {'FileType', 'ruby', 'set keywordprg="devdocs ruby"'},
-  {'FileType', 'css*', 'set keywordprg="devdocs css"'},
-  {'FileType', 'zsh', 'set keywordprg="devdocs bash"'},
-  {'FileType', 'bash', 'set keywordprg="devdocs bash"'},
-  {'FileType', 'sh', 'set keywordprg="devdocs bash"'},
+  {'FileType', 'php', 'set keywordprg=devdocs\\ php'},
+  {'FileType', 'javascript*', 'set keywordprg=devdocs\\ javascript'},
+  {'FileType', 'html', 'set keywordprg=devdocs\\ html'},
+  {'FileType', 'ruby', 'set keywordprg=devdocs\\ ruby'},
+  {'FileType', 'css*', 'set keywordprg=devdocs\\ css'},
+  {'FileType', 'zsh', 'set keywordprg=devdocs\\ bash'},
+  {'FileType', 'bash', 'set keywordprg=devdocs\\ bash'},
+  {'FileType', 'sh', 'set keywordprg=devdocs\\ bash'},
 })
 
 -- line text object e.g. `vil` `yil`

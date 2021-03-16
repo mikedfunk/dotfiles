@@ -16,7 +16,8 @@ require'lsp-diagnostics'
 require'plugins.config'
 
 -- exrc fix {{{
--- TODO exrc isn't working even if I change it to .nvimrc... doing this in the mean time. last tested 2021-01-05
+-- TODO exrc isn't working even if I change it to .nvimrc and set exrc and
+-- secure in vimscript... doing this in the mean time. last tested 2021-03-15
 if filereadable('.vimrc') == 1 then
   cmd('source .vimrc')
 end

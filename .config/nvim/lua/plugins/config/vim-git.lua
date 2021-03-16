@@ -14,6 +14,14 @@ function vim_git_mappings()
   nvim_buf_set_keymap(0, 'n', 'S', ':Squash<cr>', {noremap = true, silent = true})
   nvim_buf_set_keymap(0, 'n', 'F', ':Fixup<cr>', {noremap = true, silent = true})
   nvim_buf_set_keymap(0, 'n', 'D', ':Drop<cr>', {noremap = true, silent = true})
+
+  -- need to test these (visual mode)
+  nvim_buf_set_keymap(0, 'v', 'I', ':Pick<cr>', {noremap = true, silent = true})
+  nvim_buf_set_keymap(0, 'v', 'R', ':Reword<cr>', {noremap = true, silent = true})
+  nvim_buf_set_keymap(0, 'v', 'E', ':Edit<cr>', {noremap = true, silent = true})
+  nvim_buf_set_keymap(0, 'v', 'S', ':Squash<cr>', {noremap = true, silent = true})
+  nvim_buf_set_keymap(0, 'v', 'F', ':Fixup<cr>', {noremap = true, silent = true})
+  nvim_buf_set_keymap(0, 'v', 'D', ':Drop<cr>', {noremap = true, silent = true})
 end
 
 create_augroup('vim_git', {

@@ -50,6 +50,7 @@ local function_definitions = function()
   -- use {'iamcco/markdown-preview.nvim', run = ':call mkdp#util#install()', ft = {'markdown', 'plantuml'}}
   -- use {'junegunn/vim-easy-align'} -- make a visual selection and `ga=` to align on = e.g. `vipga=`
   -- use {'junegunn/vim-peekaboo'} -- preview registers
+  -- use {'kosayoda/nvim-lightbulb'} -- just shows a lightbulb in the sidebar when a code action is available. (lspsaga already does this)
   -- use {'kreskij/Repeatable.vim'} -- make mappings repeatable easily (I use this to open/close vdebug trees)
   -- use {'kristijanhusak/vim-js-file-import'} -- ctags-based importing
   -- use {'lambdalisue/fern.vim', requires = {{'lambdalisue/fern-hijack.vim'}, {'lambdalisue/fern-renderer-nerdfont.vim'}, {'lambdalisue/nerdfont.vim'}}} -- file browser
@@ -87,6 +88,7 @@ local function_definitions = function()
   use {'gennaro-tedesco/nvim-peekup'} -- show registers picker with ""
   use {'glepnir/lspsaga.nvim', required = {{'neovim/nvim-lspconfig'}}} -- fancier lsp UI for definitions/references, code actions, etc.
   use {'hotwatermorning/auto-git-diff'} -- cool git rebase diffs per commit
+  use {'hrsh7th/nvim-compe'} -- everything completion I have mapped to <c-space>
   use {'itchyny/vim-cursorword'} -- highlight matching words. What I like about this one is it keeps the same color and bold/italic. It just underlines matching words.
   use {'itchyny/vim-highlighturl'} -- just highlight urls like in a browser
   use {'iusmac/vim-php-namespace'} -- insert use statements (maintained fork) (doesn't like to be loaded by ft)
@@ -95,7 +97,6 @@ local function_definitions = function()
   use {'junegunn/fzf.vim', requires = {{'junegunn/fzf', run = './install --all'}}} -- fuzzy finder
   use {'justinmk/vim-ipmotion'} -- makes blank line with spaces only the end of a paragraph
   use {'kevinhwang91/nvim-bqf'} -- add a preview for quickfix items!
-  use {'kosayoda/nvim-lightbulb'} -- just shows a lightbulb in the sidebar when a code action is available.
   use {'liuchengxu/vista.vim'} -- like tagbar for lsp symbols
   use {'ludovicchabant/vim-gutentags'} -- auto ctags runner. no lazy load.
   use {'lukas-reineke/indent-blankline.nvim'} -- works with indentLine plugin to include indent symbols on blank lines. finally!
@@ -107,6 +108,7 @@ local function_definitions = function()
   use {'milkypostman/vim-togglelist'} -- toggle quickfix and location lists. barely a plugin.
   use {'nathunsmitty/nvim-ale-diagnostic'} -- show lsp diagnostic errors in ALE
   use {'neovim/nvim-lspconfig'} -- official language server protocol config
+  use {'nvim-lua/lsp-status.nvim'} -- show current lsp context in statusbar
   use {'onsails/lspkind-nvim'} -- tiny plugin to add little pictograms next to completion types
   use {'osyo-manga/vim-precious', requires = {'Shougo/context_filetype.vim'}} -- highlight embedded code blocks in markdown only when the cursor is over them
   use {'rhysd/committia.vim'} -- prettier commit editor. Really cool!
@@ -132,8 +134,6 @@ local function_definitions = function()
   use {'vim-airline/vim-airline'} -- better status bar
   use {'vim-airline/vim-airline-themes'} -- pretty colors for airline
   use {'vim-scripts/BufOnly.vim', cmd = {'BufOnly', 'Bufonly'}} -- close all buffers but the current one
-  use {'hrsh7th/nvim-compe'} -- everything completion I have mapped to <c-space>
-  use {'nvim-lua/lsp-status.nvim'} -- show current lsp context in statusbar
 
   if has('python3') then
     -- use {'ncm2/float-preview.nvim'} -- on completion show a preview with the `info` completion column. Not great, would love an actual lsp preview instead.

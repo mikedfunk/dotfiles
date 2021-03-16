@@ -1,4 +1,5 @@
 require'plugins.config.ale'
+require'plugins.config.asyncrun'
 require'plugins.config.base16-vim'
 require'plugins.config.blamer'
 require'plugins.config.completion-nvim'

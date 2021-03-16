@@ -1,4 +1,5 @@
-local nvim_set_keymap, nvim_exec = vim.api.nvim_set_keymap, vim.api.nvim_exec
+local helpers = require'helpers'
+local g, create_augroup, nvim_set_keymap, nvim_exec = vim.g, helpers.create_augroup, vim.api.nvim_set_keymap, vim.api.nvim_exec
 
 nvim_set_keymap('n', '<leader>so', ":lua require'plugins'<cr>", {noremap = true})
 -- from practical vim recommendation
@@ -52,14 +53,12 @@ nvim_set_keymap('n', "<c-w>t", 'mz:tabe %<cr>`z', {noremap = true})
 nvim_set_keymap('n', '<f1>', '<nop>', {noremap = true})
 nvim_set_keymap('i', '<f1>', '<nop>', {noremap = true})
 
--- TODO convert to lua
 -- " switch to the last active tab
--- let g:lasttab = 1
--- nnoremap <Leader>tl :exe "tabn ".g:lasttab<CR>
--- augroup tableavegroup
---     autocmd!
---     autocmd TabLeave * let g:lasttab = tabpagenr()
--- augroup END
+g['last_tab'] = 1
+nvim_set_keymap('n', '<leader>tl', ':exe "tabn ".g:last_tab<cr>', {noremap = true})
+create_augroup('tab_last', {
+  {"TabLeave", "*", "let g:last_tab = tabpagenr()"},
+})
 
 nvim_set_keymap('n', '<leader>fa', ':delmarks z<cr>hh :echo "formatted file"<cr>', {noremap = true}) -- format all
 
@@ -96,4 +95,4 @@ nvim_set_keymap('n', '<leader>dl', ':diffget LOCAL<cr>', {noremap = true})
 -- nnoremap <silent> <Leader>hw :exe "let m=matchadd('Search','\\<\\w*\\%" . line(".") . "l\\%" . col(".") . "c\\w*\\>')"<CR>
 -- nnoremap <silent> <Leader>hc :call clearmatches()<CR>
 
-nvim_set_keymap('n', '<leader>zz', ':lua vim.lsp.buf.code_action()<cr>', {noremap = true})
+-- nvim_set_keymap('n', '<leader>zz', ':lua vim.lsp.buf.code_action()<cr>', {noremap = true})

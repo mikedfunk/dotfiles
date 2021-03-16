@@ -28,38 +28,3 @@ g['airline#extensions#wordcount#enabled'] = 0
 g['airline_highlighting_cache'] = 1 -- cache syntax highlighting for better performance
 g['airline_powerline_fonts'] = 1 -- airline use cool powerline symbols (this also makes vista.vim use powerline symbols)
 g['airline_theme'] = 'base16'
-
-if is_plugin_installed('vim-airline') and is_plugin_installed('asyncrun.vim') then
-  -- intentionally global
-  function asyncrun_airline_init()
-    g['airline_section_z'] = call('airline#section#create_right', {'%{g:asyncrun_status} ' .. g['airline_section_z']})
-  end
-
-  create_augroup('asyncrun_airline', {
-    {'User', 'AirlineAfterInit', ':lua asyncrun_airline_init()'},
-  })
-end
-
-if is_plugin_installed('vim-airline') and is_plugin_installed('lsp-status.nvim') then
-  g['airline#extensions#nvimlsp#enabled'] = 0
-
-  -- intentionally global
-  function lsp_status_airline_init()
-    -- TODO convert to lua
-    nvim_exec([[
-    function! LspStatus() abort
-      let status = luaeval('require("lsp-status").status()')
-      return trim(status)
-    endfunction
-    ]], true)
-
-    call('airline#parts#define_function', 'lsp_status', 'LspStatus')
-    call('airline#parts#define_condition', 'lsp_status', 'luaeval("#vim.lsp.buf_get_clients() > 0")')
-
-    g['airline_section_x'] = call('airline#section#create_right', {'lsp_status', g['airline_section_x']})
-  end
-
-  create_augroup('lsp_status_airline', {
-    {'User', 'AirlineAfterInit', ':lua lsp_status_airline_init()'},
-  })
-end

@@ -12,13 +12,25 @@ g['ale_lint_on_text_changed'] = 'never'
 g['ale_completion_autoimport'] = 1
 g['ale_php_cs_fixer_options'] = '--config=.php_cs'
 g['ale_sign_column_always'] = 1
+
 g['ale_sign_warning'] = '⚠️'
 g['ale_sign_error'] = '🚨'
 -- g['ale_sign_error'] = '💔'
 g['ale_sign_info'] = 'ℹ️'
+--
+-- g['ale_sign_warning'] = ''
+-- g['ale_sign_error'] = ''
+-- g['ale_sign_info'] = ''
+-- g['ale_change_sign_column_color'] = 1
+
 g['zenburn_high_Contrast'] = 1
-g['ale_virtualtext_cursor'] = 1
-g['ale_virtualtext_prefix'] = ' '
+
+-- these enable showing warnings/errors as neovim virtual text. I turned this
+-- off because I decided to show git log messages there and just show ale error
+-- messages in the command area (bottom left).
+-- g['ale_virtualtext_cursor'] = 1
+-- g['ale_virtualtext_prefix'] = ' '
+
 g['ale_sign_highlight_linenrs'] = 1
 
 -- https://github.com/dense-analysis/ale/issues/3458#issuecomment-733738981
