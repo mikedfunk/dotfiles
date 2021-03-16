@@ -1,6 +1,8 @@
 local is_plugin_installed = require'helpers'.is_plugin_installed
 local tbl_extend = vim.tbl_extend
 
+-- https://github.com/bmewburn/intelephense-docs/blob/master/gettingStarted.md
+
 -- NOTE: if intelephense is dying silently, first start by turning on debugging
 -- in ~/.config/nvim/lua/plugins/config/nvim-lspconfig.lua. Then tail the logs,
 -- open the php file, and try an action and view the logs. Recently this

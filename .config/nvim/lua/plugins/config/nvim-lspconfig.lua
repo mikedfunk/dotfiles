@@ -77,7 +77,7 @@ local function set_lsp_mappings(client, bufnr)
     -- {mode = 'n', keys = '<c-w>}', action = '<cmd>lua peek_definition()<cr>'}, -- open a popup with the definition of the method under the cursor
     {mode = 'n', keys = 'g0', action = '<cmd>lua vim.lsp.buf.document_symbol()<cr>'}, -- open a quickfix with all symbols in the current file e.g. class, variable, method, etc.
     {mode = 'n', keys = 'gW', action = '<cmd>lua vim.lsp.buf.workspace_symbol()<cr>'}, -- search for the typed workspace symbol
-    {mode = 'n', keys = '<leader>tt', action = '<cmd>lua vim.lsp.buf.workspace_symbol()<cr>'}, -- search for the typed workspace symbol
+    -- {mode = 'n', keys = '<leader>tt', action = '<cmd>lua vim.lsp.buf.workspace_symbol()<cr>'}, -- search for the typed workspace symbol
     -- {mode = 'n', keys = '<leader>ai', action = '<cmd>lua vim.lsp.buf.incoming_calls()<CR>'}, -- not working 2021-01-11
     -- {mode = 'n', keys = '<leader>ao', action = '<cmd>lua vim.lsp.buf.outgoing_calls()<CR>'}, -- not working 2021-01-11
   }

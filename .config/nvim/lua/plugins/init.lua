@@ -86,6 +86,7 @@ local function_definitions = function()
   use {'fpob/nette.vim'} -- .neon format (not in polyglot as of 2021-01-08)
   use {'frioux/vim-lost', branch = 'main'} -- gL to see what function you're in. I use this in php sometimes to avoid expensive similar functionality in vim-airline or lsp. TODO use lsp + airline -- there's a method in vista but it doesn't work for nvim-lsp executive yet https://github.com/liuchengxu/vista.vim#show-the-nearest-methodfunction-in-the-statusline
   use {'gennaro-tedesco/nvim-peekup'} -- show registers picker with ""
+  use {'gfanto/fzf-lsp.nvim'} -- search lsp symbols with fzf
   use {'glepnir/lspsaga.nvim', required = {{'neovim/nvim-lspconfig'}}} -- fancier lsp UI for definitions/references, code actions, etc.
   use {'hotwatermorning/auto-git-diff'} -- cool git rebase diffs per commit
   use {'hrsh7th/nvim-compe'} -- everything completion I have mapped to <c-space>
