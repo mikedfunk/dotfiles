@@ -53,7 +53,23 @@ autocmd BufReadPre *.js let b:javascript_lib_use_react = 1
 " nvim-lsp {{{
 " if (has('nvim'))
 lua << EOF
-require'lspconfig'.flow.setup{cmd = { "flow", "lsp" }, on_attach = on_attach}
+local is_plugin_installed = require'helpers'.is_plugin_installed
+
+local flow_settings = {
+  cmd = { "flow", "lsp" },
+  on_attach = on_attach,
+}
+
+
+if is_plugin_installed('lsp-status.nvim') then
+  flow_settings.compatibilities = vim.tbl_extend(
+    'keep',
+    flow_settings.capabilities or {},
+    require'lsp-status'.capabilities
+  )
+end
+
+require'lspconfig'.flow.setup(flow_settings)
 EOF
 " cmd = { "/usr/local/bin/flow", "lsp" }
 " cmd = { "npm", "run", "flow", "lsp", "--" }

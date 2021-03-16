@@ -1,3 +1,6 @@
+local is_plugin_installed = require'helpers'.is_plugin_installed
+local tbl_extend = vim.tbl_extend
+
 -- NOTE: if intelephense is dying silently, first start by turning on debugging
 -- in ~/.config/nvim/lua/plugins/config/nvim-lspconfig.lua. Then tail the logs,
 -- open the php file, and try an action and view the logs. Recently this
@@ -117,5 +120,13 @@ local intelephense_settings = {
     },
   },
 }
+
+if is_plugin_installed('lsp-status.nvim') then
+  intelephense_settings.compatibilities = tbl_extend(
+    'keep',
+    intelephense_settings.capabilities or {},
+    require'lsp-status'.capabilities
+  )
+end
 
 return intelephense_settings

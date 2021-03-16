@@ -121,6 +121,10 @@ function on_attach(client, bufnr)
   if is_plugin_installed('completion-nvim') then
     require'completion'.on_attach(client, bufnr)
   end
+
+  if is_plugin_installed('lsp-status.nvim') then
+    require'lsp-status'.on_attach(client, bufnr)
+  end
 end
 -- }}}
 
