@@ -141,6 +141,8 @@
     # my go-to log format
     # lg = log --pretty=format:'commit %Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
     lg = log --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+    # log between the last semantic tag and HEAD
+    lt = "!git log $(git semver | grep -v 'v' | tail -n1)..HEAD"
     # lgdate = log --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cd) %C(bold blue)<%an>%Creset'
     ld = log --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' develop..HEAD --no-merges
     lm = log --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' master..HEAD --no-merges

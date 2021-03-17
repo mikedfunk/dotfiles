@@ -153,6 +153,7 @@ bind generic grc @git rc "%(prompt Enter release version: )"
 
 bind generic gld !git ld
 bind generic glm !git lm
+bind generic glt !git lt
 bind generic go @git open
 bind generic gpf ?git push --force
 bind generic gpl !git pull --rebase
